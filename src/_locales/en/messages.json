@@ -1,0 +1,26 @@
+{
+    "an_error_occured_msg": {
+        "message": "An error occured."
+    },
+    "error_code_label": {
+        "message": "Error code: "
+    },
+    "error_type_label": {
+        "message": "Error type: "
+    },
+    "error_msg_label": {
+        "message": "Error message: "
+    },
+    "error_more_info_btn_text": {
+        "message": "More info"
+    },
+    "reload_ui_btn_text": {
+        "message": "Reload"
+    },
+    "cant_render_ui_error": {
+        "message": "Can't render user interface."
+    },
+    "dependencicies_from_other_page_loaded_into_this_page_alert": {
+        "message": "DEPENDENCIES FROM THE OTHER PAGE ACCIDENTALLY LOADED INTO THIS PAGE!!!\nCULPRIT PAGE: "
+    }
+}

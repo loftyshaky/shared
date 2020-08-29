@@ -1,0 +1,23 @@
+{
+    "an_error_occured_msg": {
+        "message": "Произошла ошибка."
+    },
+    "error_code_label": {
+        "message": "Код ошибки: "
+    },
+    "error_type_label": {
+        "message": "Тип ошибки: "
+    },
+    "error_msg_label": {
+        "message": "Сообщение ошибки: "
+    },
+    "error_more_info_btn_text": {
+        "message": "Больше информации"
+    },
+    "reload_ui_btn_text": {
+        "message": "Перезагрузить"
+    },
+    "cant_render_ui_error": {
+        "message": "Не удалось отобразить пользовательский интерфейс."
+    }
+}
