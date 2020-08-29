@@ -17,6 +17,13 @@ export class Files {
             'shared',
         );
 
+        const src_js_ext_path = path.join(
+            __dirname,
+            'js',
+            'loftyshaky',
+            'ext',
+        );
+
         const src_js_package_path = path.join(
             __dirname,
             'js',
@@ -36,10 +43,15 @@ export class Files {
         );
 
         apps.forEach((app, i) => {
+            fs.copySync(
+                src_js_shared_path,
+                paths.js_shared[i],
+            );
+
             if (app_types[i] === 'ext') {
                 fs.copySync(
-                    src_js_shared_path,
-                    paths.js_shared[i],
+                    src_js_ext_path,
+                    paths.js_ext[i],
                 );
 
                 fs.copySync(

@@ -6,7 +6,7 @@ import transformPaths from 'ts-transform-paths';
 import svgr from '@svgr/rollup';
 import scss from 'rollup-plugin-scss';
 import del from 'rollup-plugin-delete';
-import watcher from './js/loftyshaky/shared/plugins/watcher';
+import watcher from './js/loftyshaky/ext/plugins/watcher';
 import copy from './js/loftyshaky/shared/plugins/rollup-plugin-copy';
 
 import { paths } from './js/apps';

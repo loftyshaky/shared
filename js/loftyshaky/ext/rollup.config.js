@@ -11,7 +11,7 @@ import nodePolyfills from 'rollup-plugin-node-polyfills';
 import del from 'rollup-plugin-delete';
 import { terser } from 'rollup-plugin-terser';
 import watcher from './plugins/watcher';
-import copy from './plugins/rollup-plugin-copy';
+import copy from '../shared/plugins/rollup-plugin-copy';
 
 export const shared_config = ({ callback_end }) => (
     {

@@ -62,6 +62,13 @@ const create_js_shared_paths = () => js.map((js_dir) => path.join(
 
 const js_shared = create_js_shared_paths();
 
+const create_js_ext_paths = () => js.map((js_dir) => path.join(
+    js_dir,
+    'ext',
+));
+
+const js_ext = create_js_ext_paths();
+
 const create_js_package_paths = () => js.map((js_dir) => path.join(
     js_dir,
     'package',
@@ -108,6 +115,7 @@ export const paths = {
     eslintrc,
     stylelintrc,
     js_shared,
+    js_ext,
     js_package,
     scss,
     css,
