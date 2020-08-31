@@ -15,7 +15,7 @@ export class Body extends React.Component<Props> {
 
     public componentDidCatch(err_obj: Error): void {
         show_err_ribbon(err_obj,
-            1000,
+            's1000',
             { error_msg_key: 'cant_render_ui' });
     }
 

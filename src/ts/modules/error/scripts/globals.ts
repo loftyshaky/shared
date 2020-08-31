@@ -5,17 +5,17 @@ import { i_error } from 'modules/internal';
 declare global {
     function show_err_ribbon(
         error_obj: any,
-        error_code: number,
+        error_code: number | string,
         obj?: i_error.ShowError
     ): void;
     function err<T1>(
         f: () => T1,
-        error_code: number,
+        error_code: number | string,
         obj?: i_error.ShowError
     ): T1;
     function err_async<T1>(
         f: () => Promise<T1>,
-        error_code: number,
+        error_code: number | string,
         obj?: i_error.ShowError
     ): Promise<T1>;
     function throw_err(msg: string): void;
@@ -24,7 +24,7 @@ declare global {
 
 window.show_err_ribbon = (
     error_obj: any,
-    error_code: number,
+    error_code: number | string,
     {
         error_msg_key = '',
         silent = false,
@@ -46,7 +46,7 @@ window.show_err_ribbon = (
 
 window.err = <T1>(
     f: () => T1,
-    error_code: number,
+    error_code: number | string,
     {
         error_msg_key = '',
         silent = false,
@@ -76,7 +76,7 @@ window.err = <T1>(
 
 window.err_async = async <T1>(
     f: () => Promise<T1>,
-    error_code: number,
+    error_code: number | string,
     {
         error_msg_key = '',
         silent = false,
