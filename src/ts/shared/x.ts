@@ -10,6 +10,9 @@ declare global {
     const l: any;
     function n<T1>(val: T1 | undefined | null): val is T1;
     function nu<T1>(val: T1 | null): val is T1;
+    function ru(f: t.CallbackVariadicAny | undefined): any;
+    function rb(f: t.CallbackVariadicAny | undefined): any;
+    function rs(f: t.CallbackVariadicAny | undefined): any;
     function s<T1>(selector: string): T1 | undefined;
     function sa<T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined;
     function sb<T1>(base_el: t.BaseEl, selector: string): T1 | undefined;
@@ -29,6 +32,24 @@ window.n = <T1>(val: T1 | undefined | null): val is T1 => ( // n = not nil (nil 
 
 window.nu = <T1>(val: T1 | null): val is T1 => ( // n = not null
     val !== null
+);
+
+window.ru = (f: t.CallbackVariadicAny | undefined): any => (
+    n(f)
+        ? f()
+        : undefined
+);
+
+window.rb = (f: t.CallbackVariadicAny | undefined): any => (
+    n(f)
+        ? f()
+        : false
+);
+
+window.rs = (f: t.CallbackVariadicAny | undefined): any => (
+    n(f)
+        ? f()
+        : ''
 );
 // < undefined/null check
 

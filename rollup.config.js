@@ -19,11 +19,15 @@ const files = new Files();
 const styles = new Styles();
 
 const config = {
-    input: 'src/index.ts',
+    input: [
+        'src/index.ts',
+        'src/inputs.ts',
+    ],
     output: [{
-        file: 'build/index.js',
+        dir: 'build',
+        entryFileNames: '[name].js',
+        chunkFileNames: 'chunk-[name]-[hash].js',
         format: 'es',
-        exports: 'named',
         sourcemap: false,
     }],
     treeshake: true,

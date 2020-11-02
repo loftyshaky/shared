@@ -7,6 +7,9 @@ interface Window {
     l: any;
     n: <T1>(val: T1 | undefined | null) => val is T1;
     nu: <T1>(val: T1 | null) => val is T1;
+    ru(f: import('shared/t').CallbackVariadicAny | undefined): any;
+    rb(f: import('shared/t').CallbackVariadicAny | undefined): any;
+    rs(f: import('shared/t').CallbackVariadicAny | undefined): any;
     s: <T1>(selector: string) => T1 | undefined;
     sa: <T1 extends HTMLElement>(selector: string) => NodeListOf<T1> | undefined;
     sb: <T1>(base_el: import('shared/t').BaseEl, selector: string) => T1 | undefined;

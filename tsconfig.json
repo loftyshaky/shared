@@ -12,6 +12,9 @@
         "sourceMap": true,
         "experimentalDecorators": true,
         "paths": {
+            "inputs/*": [
+                "./ts/inputs/*"
+            ],
             "modules/*": [
                 "./ts/modules/*"
             ],
