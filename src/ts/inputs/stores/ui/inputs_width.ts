@@ -64,7 +64,7 @@ export class InputsWidth {
         {
             sections,
         }: {
-            sections: o_inputs.Section[]
+            sections: { [index: string]: o_inputs.Section }
         },
     ): void => err(() => {
         Object.values(sections).forEach((section: o_inputs.Section): void => {

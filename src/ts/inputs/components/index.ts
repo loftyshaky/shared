@@ -1,3 +1,5 @@
+export * from 'inputs/components/section';
+export * from 'inputs/components/section_content';
 export * from 'inputs/components/input_item';
 export * from 'inputs/components/label';
 export * from 'inputs/components/textarea';
