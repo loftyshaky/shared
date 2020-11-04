@@ -1,7 +1,7 @@
 import {
     c_error,
     c_crash_handler,
-} from 'modules/internal';
+} from 'error_modules/internal';
 
 export {
     X,

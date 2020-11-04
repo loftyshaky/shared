@@ -18,8 +18,8 @@
             "inputs/*": [
                 "./ts/inputs/*"
             ],
-            "modules/*": [
-                "./ts/modules/*"
+            "error_modules/*": [
+                "./ts/error_modules/*"
             ],
             "shared/*": [
                 "./ts/shared/*"

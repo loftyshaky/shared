@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { observer } from 'mobx-react';
 
-import { u_crash_handler } from 'modules/internal';
+import { u_crash_handler } from 'error_modules/internal';
 
 interface Props {
     children: JSX.Element;

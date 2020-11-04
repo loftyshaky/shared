@@ -1,7 +1,6 @@
 import path from 'path';
 import fs from 'fs-extra';
 import { magentaBright } from 'colorette';
-import sass from 'node-sass';
 
 import {
     paths,
@@ -10,11 +9,6 @@ import {
 } from './apps';
 
 export class Styles {
-    css_files = [
-        'font_face',
-        'error',
-    ];
-
     scss_shared_path = path.join(
         'src',
         'scss',
@@ -25,34 +19,6 @@ export class Styles {
     compile_and_copy = async () => {
         app_ids.forEach((app_id, i) => {
             if (app_types[i] === 'ext') {
-                this.css_files.forEach((css_file) => {
-                    let scss_path = path.join(
-                        this.scss_shared_path,
-                        `${css_file}.scss`,
-                    );
-
-                    if (!fs.pathExistsSync(scss_path)) {
-                        scss_path = path.join(
-                            this.scss_shared_path,
-                            'modules',
-                            `${css_file}.scss`,
-                        );
-                    }
-
-                    const result = sass.renderSync({
-                        file: scss_path,
-                    });
-
-                    this.output_css({
-                        dest: path.join(
-                            `${paths.css[i]}`,
-                            `${css_file}.css`,
-                        ),
-                        data: result.css,
-                        app_id,
-                    });
-                });
-
                 fs.readdirSync(path.join(
                     this.scss_shared_path,
                 )).forEach((file) => {

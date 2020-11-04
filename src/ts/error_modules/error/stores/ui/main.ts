@@ -6,7 +6,7 @@ import {
 import {
     u_error,
     i_error,
-} from 'modules/internal';
+} from 'error_modules/internal';
 
 configure({ enforceActions: 'observed' });
 

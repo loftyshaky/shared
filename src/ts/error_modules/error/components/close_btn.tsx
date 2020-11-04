@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import { svg } from 'shared/internal';
-import { u_error } from 'modules/internal';
+import { u_error } from 'error_modules/internal';
 
 @observer
 export class CloseBtn extends React.Component {

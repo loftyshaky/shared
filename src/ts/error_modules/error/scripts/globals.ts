@@ -1,6 +1,6 @@
-import { Main } from 'modules/error/stores/ui/main';
+import { Main } from 'error_modules/error/stores/ui/main';
 
-import { i_error } from 'modules/internal';
+import { i_error } from 'error_modules/internal';
 
 declare global {
     function show_err_ribbon(

@@ -22,17 +22,17 @@ interface Window {
     show_err_ribbon: (
         error_obj: any,
         error_code: number | string,
-        obj?: import('modules/error/interfaces/show_error').ShowError
+        obj?: import('error_modules/error/interfaces/show_error').ShowError
     ) => void;
     err: <T1>(
         f: () => T1,
         error_code: number | string,
-        obj?: import('modules/error/interfaces/show_error').ShowError
+        obj?: import('error_modules/error/interfaces/show_error').ShowError
     ) => T1;
     err_async: <T1>(
         f: () => Promise<T1>,
         error_code: number | string,
-        obj?: import('modules/error/interfaces/show_error').ShowError
+        obj?: import('error_modules/error/interfaces/show_error').ShowError
     ) => Promise<T1>;
     throw_err(msg: string): void;
     err_obj(msg: string): Error;

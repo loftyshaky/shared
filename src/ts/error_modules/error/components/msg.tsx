@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { u_error } from 'modules/internal';
+import { u_error } from 'error_modules/internal';
 
 @observer
 export class Msg extends React.Component {

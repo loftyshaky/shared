@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { Css, u_error, c_error } from 'modules/internal';
+import { Css, u_error, c_error } from 'error_modules/internal';
 
 interface Props {
     app_id: string;
