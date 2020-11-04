@@ -49,3 +49,8 @@ $border-width: 1px;
     border: none;
     padding: 0;
 }
+
+@mixin input_basic {
+    border: none;
+    outline: none;
+}
