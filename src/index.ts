@@ -7,6 +7,7 @@ export {
     X,
     Ext,
     t,
+    Utils,
     BaseTr,
     Transition,
 } from 'shared/internal';
