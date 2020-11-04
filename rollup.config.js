@@ -22,6 +22,7 @@ const config = {
     input: [
         'src/index.ts',
         'src/inputs.ts',
+        'src/settings.ts',
     ],
     output: [{
         dir: 'build',

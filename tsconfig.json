@@ -12,6 +12,9 @@
         "sourceMap": true,
         "experimentalDecorators": true,
         "paths": {
+            "settings/*": [
+                "./ts/settings/*"
+            ],
             "inputs/*": [
                 "./ts/inputs/*"
             ],
