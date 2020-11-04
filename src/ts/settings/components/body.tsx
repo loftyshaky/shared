@@ -18,6 +18,19 @@ export class Body extends React.Component<Props> {
         return (
             <div className='main'>
                 <div className='main_2'>
+                    <div className='section_btns'>
+                        {
+                            Object.values(sections).map((
+                                section: o_inputs.Section,
+                                i: number,
+                            ): JSX.Element => (
+                                <c_inputs.SectionBtn
+                                    key={i}
+                                    section={section}
+                                />
+                            ))
+                        }
+                    </div>
                     <div
                         className='sections'
                     >

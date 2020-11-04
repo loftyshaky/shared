@@ -42,6 +42,11 @@ $border-width: 1px;
     border: $border-width solid $blue;
 }
 
+@mixin border_bottom {
+    border-bottom-width: $border-width;
+    border-bottom-style: solid;
+}
+
 @mixin btn {
     background-color: transparent;
     outline: none;
