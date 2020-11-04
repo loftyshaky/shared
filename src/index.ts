@@ -3,11 +3,13 @@ import {
     c_crash_handler,
 } from 'modules/internal';
 
-export { X,
+export {
+    X,
     Ext,
     t,
     BaseTr,
-    Transition } from 'shared/internal';
+    Transition,
+} from 'shared/internal';
 
 export const { Body: CrashHandler } = c_crash_handler;
 export const { Body: Error } = c_error;
