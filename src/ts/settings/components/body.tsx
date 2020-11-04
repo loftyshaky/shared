@@ -18,7 +18,6 @@ export class Body extends React.Component<Props> {
         return (
             <div className='main'>
                 <div className='main_2'>
-                    <div className='main_3' />
                     <div
                         className='sections'
                     >
