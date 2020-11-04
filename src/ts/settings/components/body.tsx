@@ -30,6 +30,7 @@ export class Body extends React.Component<Props> {
                                 />
                             ))
                         }
+                        <div className='filler' />
                     </div>
                     <div
                         className='sections'
