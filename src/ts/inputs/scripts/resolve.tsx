@@ -22,7 +22,7 @@ export const resolve = (
     } else if (input.type === 'number') {
         //   input_el = <c_inputs.Text input={input} />;
     } else if (input.type === 'textarea') {
-        input_el = <c_inputs.Textarea input={input as i_inputs.Input} />;
+        input_el = <c_inputs.Textarea input={input as o_inputs.Textarea} />;
     } else if (input.type === 'select') {
         //   input_el = <c_inputs.Select input={input} />;
     } else if (input.type === 'checkbox') {

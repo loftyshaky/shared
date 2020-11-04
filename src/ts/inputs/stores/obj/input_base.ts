@@ -9,7 +9,6 @@ configure({ enforceActions: 'observed' });
 
 export class InputBase {
     public name: string;
-    public type?: string;
     public is_visible_key?: string; // settings object key
     @observable public is_visible?: boolean = true;
     @observable public is_in_warn_state?: boolean = false;
@@ -24,6 +23,10 @@ export class InputBase {
     public event_callback: t.CallbackAny;
 
     public constructor(obj: InputBase) {
+        Object.assign(
+            this,
+            obj,
+        );
         this.name = obj.name;
         this.event_callback = obj.event_callback;
     }

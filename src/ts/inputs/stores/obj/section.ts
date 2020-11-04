@@ -17,6 +17,10 @@ export class Section {
     }[];
 
     public constructor(obj: Section) {
+        Object.assign(
+            this,
+            obj,
+        );
         this.name = obj.name;
     }
 }

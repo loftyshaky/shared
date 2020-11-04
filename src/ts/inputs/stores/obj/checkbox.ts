@@ -1,9 +1,9 @@
 import { o_inputs } from 'inputs/internal';
 
-export class Textarea extends o_inputs.InputBase {
-    public type?: 'textarea' = 'textarea';
+export class Checkbox extends o_inputs.InputBase {
+    public type?: 'checkbox' = 'checkbox';
 
-    public constructor(obj: Textarea) {
+    public constructor(obj: Checkbox) {
         super(obj);
         Object.assign(
             this,
