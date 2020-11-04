@@ -7,21 +7,17 @@ import {
 } from 'inputs/internal';
 
 interface Props {
-    i: number;
     section: o_inputs.Section;
 }
 
 @observer
 export class Section extends React.Component<Props> {
     public render(): JSX.Element {
-        const {
-            i,
-            section,
-        } = this.props;
+        const { section } = this.props;
 
         return (
             <div
-                key={i}
+
                 className={x.cls([
                     'section',
                     section.name,

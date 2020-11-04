@@ -26,7 +26,10 @@ export class Body extends React.Component<Props> {
                                 section: o_inputs.Section,
                                 i: number,
                             ): JSX.Element => (
-                                <c_inputs.Section i={i} section={section} />
+                                <c_inputs.Section
+                                    key={i}
+                                    section={section}
+                                />
                             ))
                         }
                     </div>
