@@ -1,9 +1,5 @@
 import 'shared/internal';
-import {
+
+export {
     o_inputs,
 } from 'inputs/internal';
-
-export const {
-    Section,
-    Textarea,
-} = o_inputs;
