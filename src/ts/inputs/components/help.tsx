@@ -2,7 +2,10 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import { BaseTr } from 'shared/internal';
-import { o_inputs, i_inputs } from 'inputs/internal';
+import {
+    o_inputs,
+    i_inputs,
+} from 'inputs/internal';
 
 interface Props {
     section_or_input: o_inputs.Section | i_inputs.Input;

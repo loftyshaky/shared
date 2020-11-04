@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { svg } from 'shared/internal';
-import { d_inputs, o_inputs, i_inputs } from 'inputs/internal';
+import {
+    d_inputs,
+    o_inputs,
+    i_inputs,
+} from 'inputs/internal';
 
 interface Props {
     section_or_input: o_inputs.Section | i_inputs.Input;
