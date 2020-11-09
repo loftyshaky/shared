@@ -1,19 +1,32 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
+import { t } from 'shared/internal';
 import {
     o_inputs,
     c_inputs,
 } from 'inputs/internal';
+import { u_settings } from 'settings/internal';
 
 interface Props {
     sections: { [index: string]: o_inputs.Section };
+    initial_section: string;
+    change_section_callback: t.CallbackVoid;
 }
 
 @observer
 export class Body extends React.Component<Props> {
+    public componentDidMount(): void {
+        const { initial_section } = this.props;
+
+        u_settings.Sections.i.change({ section_name: initial_section });
+    }
+
     public render(): JSX.Element {
-        const { sections } = this.props;
+        const {
+            sections,
+            change_section_callback,
+        } = this.props;
 
         return (
             <div className='main'>
@@ -27,6 +40,7 @@ export class Body extends React.Component<Props> {
                                 <c_inputs.SectionBtn
                                     key={i}
                                     section={section}
+                                    change_section_callback={change_section_callback}
                                 />
                             ))
                         }

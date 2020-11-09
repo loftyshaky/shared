@@ -5,6 +5,7 @@ import {
     o_inputs,
     c_inputs,
 } from 'inputs/internal';
+import { u_settings } from 'settings/internal';
 
 interface Props {
     section: o_inputs.Section;
@@ -21,6 +22,9 @@ export class Section extends React.Component<Props> {
                 className={x.cls([
                     'section',
                     section.name,
+                    section.name === u_settings.Sections.i.current_section
+                        ? ''
+                        : 'hidden',
                 ])}
             >
                 <div className='section_help'>
