@@ -5,9 +5,13 @@ export class Link {
     public type?: string = 'link';
     public browser?: t.Browser;
     public href?: string ;
-    public force_resolve: boolean = false;
+    public force_resolve?: boolean = false;
 
     public constructor(obj: Link) {
+        Object.assign(
+            this,
+            obj,
+        );
         this.name = obj.name;
     }
 
@@ -43,7 +47,7 @@ export class Link {
             link_is_cross_browser
             || !link_browser_is_the_same_as_env_browser
             || (
-                this.force_resolve
+                n(this.force_resolve)
                 && (
                     n(this.href_final)
                     && n(this.href_final())
