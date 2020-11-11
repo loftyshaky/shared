@@ -2,6 +2,7 @@ import 'shared/globals';
 
 export * from 'shared/x';
 export * from 'shared/ext';
+export * as vars from 'shared/vars';
 export * from 'shared/utils';
 export * from 'shared/base_tr';
 

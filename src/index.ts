@@ -7,6 +7,7 @@ export {
     X,
     Ext,
     t,
+    vars,
     Utils,
     BaseTr,
     Transition,
