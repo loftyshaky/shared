@@ -8,7 +8,7 @@ import {
 } from 'inputs/internal';
 
 interface Props {
-    inputs: i_inputs.Inputs;
+    inputs: i_inputs.Inputs | i_inputs.Links;
 }
 
 @observer

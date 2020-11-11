@@ -10,10 +10,10 @@ export class Section {
     public name: string;
     public include_help?: boolean = false;
     @observable public help_is_visible?: boolean = false;
-    public inputs: i_inputs.Inputs;
+    public inputs: i_inputs.Inputs | i_inputs.Links;
     public subsections?: {
         name: string;
-        inputs: i_inputs.Inputs;
+        inputs: i_inputs.Inputs | i_inputs.Links;
     }[];
 
     public constructor(obj: Section) {
