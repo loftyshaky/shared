@@ -2,9 +2,12 @@ import _ from 'lodash';
 import {
     configure,
     observable,
+    action,
     runInAction,
 } from 'mobx';
 
+import { vars } from 'shared/internal';
+import { u_settings } from 'settings/internal';
 import { o_inputs } from 'inputs/internal';
 
 configure({ enforceActions: 'observed' });
@@ -19,6 +22,7 @@ export class InputsWidth {
     }
 
     @observable public width: { [index: string]: number | undefined } = {};
+    @observable public max_width: number = 0;
     private min_width: number = 300;
     private old_max_width: { [index: string]: number } = {};
 
@@ -80,4 +84,16 @@ export class InputsWidth {
         });
     },
     's1006');
+
+    @action public set_max_width = (): void => err(() => {
+        const current_section = s<HTMLDivElement>(`.section.${u_settings.Sections.i.current_section}`);
+
+        if (current_section) {
+            this.max_width = Math.max(
+                current_section.offsetWidth - vars.scrollbar_width,
+                this.min_width,
+            );
+        }
+    },
+    's1012');
 }

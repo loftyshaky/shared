@@ -20,6 +20,18 @@ export class Body extends React.Component<Props> {
         const { initial_section } = this.props;
 
         u_settings.Sections.i.change({ section_name: initial_section });
+
+        window.addEventListener(
+            'resize',
+            u_settings.InputsWidth.i.set_max_width,
+        );
+    }
+
+    public componentWillUnmount(): void {
+        window.removeEventListener(
+            'resize',
+            u_settings.InputsWidth.i.set_max_width,
+        );
     }
 
     public render(): JSX.Element {

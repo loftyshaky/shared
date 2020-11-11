@@ -31,7 +31,10 @@ export class Textarea extends React.Component<Props> {
                             'inset_border',
                             'calculate_width',
                         ])}
-                        style={{ minWidth: u_settings.InputsWidth.i.width[input.section!] }}
+                        style={{
+                            minWidth: u_settings.InputsWidth.i.width[input.section!],
+                            maxWidth: u_settings.InputsWidth.i.max_width,
+                        }}
                     >
                         <textarea
                             id={input.name}
