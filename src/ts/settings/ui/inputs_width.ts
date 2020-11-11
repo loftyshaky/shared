@@ -1,5 +1,9 @@
 import _ from 'lodash';
-import { configure, observable } from 'mobx';
+import {
+    configure,
+    observable,
+    runInAction,
+} from 'mobx';
 
 import { o_inputs } from 'inputs/internal';
 
@@ -22,7 +26,9 @@ export class InputsWidth {
         window.requestAnimationFrame((): Promise<void> => err_async(async () => {
             const input_ws = sa<HTMLSpanElement>(`.section.${section_name} .input_item .input_w.calculate_width`);
 
-            this.width[section_name] = undefined;
+            runInAction(() => {
+                this.width[section_name] = undefined;
+            });
 
             const get_input_w_with_max_width = (): HTMLSpanElement | undefined => err(() => {
                 const input_w_with_max_width = _.maxBy(
@@ -47,7 +53,9 @@ export class InputsWidth {
                         : input_w_with_max_width.offsetWidth;
 
                     if (input_w_max_width === this.old_max_width[section_name]) {
-                        this.width[section_name] = input_w_max_width;
+                        runInAction(() => {
+                            this.width[section_name] = input_w_max_width;
+                        });
                     } else {
                         this.old_max_width[section_name] = input_w_max_width;
 
