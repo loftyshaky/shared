@@ -8,6 +8,7 @@ export {
     Ext,
     t,
     vars,
+    CssVars,
     Utils,
     BaseTr,
     Transition,
