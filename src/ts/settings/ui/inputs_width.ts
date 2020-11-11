@@ -18,8 +18,8 @@ export class InputsWidth {
         return this.i0;
     }
 
-    @observable width: { [index: string]: number | undefined } = {};
-    public min_width: number = 300;
+    @observable public width: { [index: string]: number | undefined } = {};
+    private min_width: number = 300;
     private old_max_width: { [index: string]: number } = {};
 
     public calculate_for_section = ({ section_name }: { section_name: string }): void => {
