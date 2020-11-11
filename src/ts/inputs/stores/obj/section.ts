@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { configure, observable } from 'mobx';
 
 import {
@@ -23,5 +24,12 @@ export class Section {
         );
         this.name = obj.name;
         this.inputs = obj.inputs;
+        _.map(
+            obj.inputs,
+            (obj_2) => _.extend(
+                { section: this.name },
+                obj_2,
+            ),
+        );
     }
 }

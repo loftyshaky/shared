@@ -7,6 +7,10 @@ import {
     c_inputs,
 } from 'inputs/internal';
 
+import {
+    u_settings,
+} from 'settings/internal';
+
 interface Props {
     input: o_inputs.Textarea;
 }
@@ -25,7 +29,9 @@ export class Textarea extends React.Component<Props> {
                             'textarea',
                             input.name,
                             'inset_border',
+                            'calculate_width',
                         ])}
+                        style={{ minWidth: u_settings.InputsWidth.i.width[input.section!] }}
                     >
                         <textarea
                             id={input.name}
