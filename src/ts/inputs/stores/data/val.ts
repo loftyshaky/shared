@@ -29,7 +29,7 @@ export class Val {
             new_input.val = e.target.value;
         }
 
-        input.event_callback();
+        input.event_callback({ input });
     },
     's1008');
 }

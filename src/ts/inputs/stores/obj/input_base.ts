@@ -20,7 +20,7 @@ export class InputBase {
     public style?: any;
     public section?: string;
     public subsection?: string;
-    public event_callback: t.CallbackAny;
+    public event_callback: t.CallbackVariadicAny;
 
     public constructor(obj: InputBase) {
         Object.assign(
