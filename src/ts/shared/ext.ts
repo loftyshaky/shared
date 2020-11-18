@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
     browser,
     Tabs,
@@ -146,4 +147,45 @@ export class Ext {
             }
         });
     };
+
+    public storage_get = async (keys?: any): Promise<any> => {
+        const data_sync: any = await browser.storage.sync.get(keys);
+
+        if (n(data_sync)) {
+            return data_sync;
+        }
+
+        const data_local: any = await browser.storage.local.get(keys);
+
+        return data_local;
+    };
+
+    public storage_set = _.debounce(async (obj: any): Promise<void> => {
+        try {
+            const data_local: any = await browser.storage.local.get();
+
+            if (n(data_local)) {
+                const merged_data: any = _.merge(
+                    data_local,
+                    obj,
+                );
+
+                await browser.storage.sync.set(merged_data);
+            } else {
+                await browser.storage.sync.set(obj);
+            }
+
+            await browser.storage.local.clear();
+        } catch (error_obj) {
+            const data_sync: any = await browser.storage.sync.get();
+
+            if (n(data_sync)) {
+                await browser.storage.local.set(data_sync);
+                await browser.storage.sync.clear();
+            }
+
+            await browser.storage.local.set(obj);
+        }
+    },
+    1000);
 }
