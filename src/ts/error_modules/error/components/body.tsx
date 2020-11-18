@@ -25,6 +25,11 @@ export class Body extends React.Component<Props> {
                     u_error.State.i.is_highlighted_cls,
                 ])}
                 role='none'
+                style={{
+                    display: u_error.State.i.is_loaded
+                        ? ''
+                        : 'none',
+                }}
                 onMouseDown={u_error.State.i.clear_all_reset_state_timeouts}
             >
                 <c_error.Msg />

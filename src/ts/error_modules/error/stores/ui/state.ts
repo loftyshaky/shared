@@ -18,6 +18,7 @@ export class State {
 
     [index: string]: any;
 
+    @observable public is_loaded: boolean = false;
     @observable private is_visible: boolean = false;
     @observable private is_highlighted: boolean = false; // true = error ribbon is yellow / false = error ribbon is red
 

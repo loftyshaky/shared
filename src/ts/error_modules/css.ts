@@ -1,3 +1,5 @@
+import { u_error } from 'error_modules/internal';
+
 export class Css {
     private static i0: Css;
 
@@ -27,10 +29,24 @@ export class Css {
                     error_shadow,
                 );
 
-                x.css(
+                const error_css = x.css(
                     'error',
                     error_shadow,
                 );
+
+                if (n(error_css)) {
+                    error_css.addEventListener(
+                        'load',
+                        (): void => {
+                            u_error.State.i.change_state(
+                                {
+                                    observable_key: 'is_loaded',
+                                    state: true,
+                                },
+                            );
+                        },
+                    );
+                }
             }
         }
     };
