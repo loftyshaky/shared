@@ -160,7 +160,7 @@ export class Ext {
         return data_local;
     };
 
-    public storage_set = _.debounce(async (obj: any): Promise<void> => {
+    public storage_set = async (obj: any): Promise<void> => {
         try {
             const data_local: any = await browser.storage.local.get();
 
@@ -186,6 +186,5 @@ export class Ext {
 
             await browser.storage.local.set(obj);
         }
-    },
-    1000);
+    };
 }
