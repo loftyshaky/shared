@@ -38,7 +38,12 @@ export class Textarea extends React.Component<Props> {
                     >
                         <textarea
                             id={input.name}
-                            className='input'
+                            className={x.cls([
+                                'input',
+                                input.is_in_warn_state
+                                    ? 'is_in_warn_state'
+                                    : '',
+                            ])}
                             value={input.val}
                             spellCheck='false'
                             onInput={(e): void => {

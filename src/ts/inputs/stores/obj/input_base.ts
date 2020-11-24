@@ -21,6 +21,7 @@ export class InputBase {
     public section?: string;
     public subsection?: string;
     public event_callback: t.CallbackVariadicAny;
+    public warn_state_checker?: t.CallbackVariadicAny;
 
     public constructor(obj: InputBase) {
         Object.assign(
@@ -29,5 +30,6 @@ export class InputBase {
         );
         this.name = obj.name;
         this.event_callback = obj.event_callback;
+        this.warn_state_checker = obj.warn_state_checker;
     }
 }
