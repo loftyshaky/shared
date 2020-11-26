@@ -28,7 +28,7 @@ interface Props {
     cls: string;
     state: boolean;
     attr?: { [index: string]: string };
-    style?: { [index: string]: string };
+    style?: { [index: string]: string | number | undefined};
     tr_end_unactive?: t.CallbackVariadicVoid[];
     tr_end_active?: t.CallbackVariadicVoid[];
 }
