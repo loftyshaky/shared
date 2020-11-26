@@ -19,5 +19,8 @@
     },
     "cant_render_ui_error": {
         "message": "Не удалось отобразить пользовательский интерфейс."
+    },
+    "help_btn_title": {
+        "message": "Помощь"
     }
 }
