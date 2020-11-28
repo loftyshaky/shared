@@ -25,5 +25,8 @@
     },
     "help_btn_title": {
         "message": "Help"
+    },
+    "remove_val_text_input_btn_title": {
+        "message": "Remove value"
     }
 }

@@ -12,11 +12,11 @@ import {
 } from 'settings/internal';
 
 interface Props {
-    input: o_inputs.Textarea;
+    input: o_inputs.Text;
 }
 
 @observer
-export class Textarea extends React.Component<Props> {
+export class Text extends React.Component<Props> {
     public render(): JSX.Element {
         const { input } = this.props;
 
@@ -26,23 +26,25 @@ export class Textarea extends React.Component<Props> {
                     <span
                         className={x.cls([
                             'input_w',
-                            'textarea',
+                            'text',
                             input.name,
                             'inset_border',
-                            'calculate_width',
                         ])}
                         style={{
                             minWidth: u_settings.InputsWidth.i.width[input.section!],
                             maxWidth: u_settings.InputsWidth.i.max_width,
                         }}
                     >
-                        <textarea
+                        <input
                             id={input.name}
                             className={x.cls([
                                 'input',
+                                input.text_type,
                                 d_inputs.Val.i.warn_state({ input }),
                             ])}
+                            type={input.type}
                             value={input.val}
+                            autoComplete='off'
                             spellCheck='false'
                             onInput={(e): void => {
                                 d_inputs.Val.i.change(
@@ -52,7 +54,13 @@ export class Textarea extends React.Component<Props> {
                                     e,
                                 );
                             }}
-                            onChange={(): null => null}
+                            onChange={(): undefined => undefined}
+                        />
+                        <c_inputs.TextBtn
+                            name='remove_val'
+                            svg_name='Close'
+                            input={input}
+                            on_click={() => d_inputs.Val.i.remove_val({ input })}
                         />
                     </span>
                     {

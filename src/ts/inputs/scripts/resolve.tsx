@@ -18,9 +18,7 @@ export const resolve = (
     if (input.type === 'color') {
         //   input_el = <c_inputs.Color input={input} />;
     } else if (input.type === 'text') {
-    //    input_el = <c_inputs.Text input={input} />;
-    } else if (input.type === 'number') {
-        //   input_el = <c_inputs.Text input={input} />;
+        input_el = <c_inputs.Text input={input as o_inputs.Text} />;
     } else if (input.type === 'textarea') {
         input_el = <c_inputs.Textarea input={input as o_inputs.Textarea} />;
     } else if (input.type === 'select') {
