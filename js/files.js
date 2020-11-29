@@ -1,6 +1,5 @@
 import path from 'path';
 import fs from 'fs-extra';
-import { magentaBright } from 'colorette';
 
 import {
     paths,
@@ -9,69 +8,19 @@ import {
 } from './apps';
 
 export class Files {
-    copy = async () => {
-        const src_js_shared_path = path.join(
-            __dirname,
-            'js',
-            'loftyshaky',
-            'shared',
-        );
-
-        const src_js_ext_path = path.join(
-            __dirname,
-            'js',
-            'loftyshaky',
-            'ext',
-        );
-
-        const src_js_package_path = path.join(
-            __dirname,
-            'js',
-            'loftyshaky',
-            'package',
-        );
-
-        const src_locales_path = path.join(
-            __dirname,
-            'src',
-            '_locales',
-        );
-
+    copy = () => {
         const src_stylelintrc_path = path.join(
             __dirname,
             '.stylelintrc',
         );
 
         apps.forEach((app, i) => {
-            fs.copySync(
-                src_js_shared_path,
-                paths.js_shared[i],
-            );
-
             if (app_types[i] === 'ext') {
-                fs.copySync(
-                    src_js_ext_path,
-                    paths.js_ext[i],
-                );
-
-                fs.copySync(
-                    src_locales_path,
-                    paths.locales[i],
-                );
-
                 fs.copySync(
                     src_stylelintrc_path,
                     paths.stylelintrc[i],
                 );
-            } else if (app_types[i] === 'package') {
-                fs.copySync(
-                    src_js_package_path,
-                    paths.js_package[i],
-                );
             }
         });
-
-        // eslint-disable-next-line no-console
-        console.log(magentaBright('Copied files'));
     }
 }

@@ -6,17 +6,15 @@ import transformPaths from 'ts-transform-paths';
 import svgr from '@svgr/rollup';
 import scss from 'rollup-plugin-scss';
 import del from 'rollup-plugin-delete';
-import watcher from './js/loftyshaky/ext/plugins/watcher';
-import copy from './js/loftyshaky/shared/plugins/rollup-plugin-copy';
+import watcher from './js/build/ext/plugins/watcher';
+import copy from './js/build/shared/plugins/rollup-plugin-copy';
 
 import { paths } from './js/apps';
 import { Delete } from './js/delete';
 import { Files } from './js/files';
-import { Styles } from './js/styles';
 
 const delete_inst = new Delete();
 const files = new Files();
-const styles = new Styles();
 
 const config = {
     input: [
@@ -55,7 +53,7 @@ const config = {
             preferBuiltins: false,
         }),
         svgr(),
-        scss(),
+        scss({ includePaths: ['node_modules/'] }),
         del({
             targets: 'build',
         }),
@@ -67,23 +65,26 @@ const config = {
                     dest: 'build',
                 },
                 {
+                    src: 'js/build/*',
+                    dest: 'build/js',
+                },
+                {
                     src: 'src/_locales',
+                    dest: 'build',
+                },
+                {
+                    src: 'src/scss',
                     dest: 'build',
                 },
                 {
                     src: '.eslintrc.js',
                     dest: paths.app,
                 },
-                {
-                    src: 'build/*',
-                    dest: paths.node_molules,
-                },
             ],
             hook: 'writeBundle',
             callback_start: async () => {
                 await delete_inst.delete_by_path();
-                styles.compile_and_copy();
-                files.copy();
+                await files.copy();
             },
         }),
     ],
