@@ -6,6 +6,8 @@ export * as vars from 'shared/vars';
 export * from 'shared/css_vars';
 export * from 'shared/utils';
 export * from 'shared/base_tr';
+export * from 'shared/no_tr';
+export * from 'shared/theme';
 export * from 'shared/loading_screen/components';
 export * from 'shared/loading_screen/ui';
 

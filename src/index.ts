@@ -15,6 +15,8 @@ export {
     vars,
     CssVars,
     Utils,
+    NoTr,
+    Theme,
     BaseTr,
     Transition,
 } from 'shared/internal';

@@ -30,6 +30,5 @@ export class InputBase {
         );
         this.name = obj.name;
         this.event_callback = obj.event_callback;
-        this.warn_state_checker = obj.warn_state_checker;
     }
 }
