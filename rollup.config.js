@@ -6,8 +6,8 @@ import transformPaths from 'ts-transform-paths';
 import svgr from '@svgr/rollup';
 import scss from 'rollup-plugin-scss';
 import del from 'rollup-plugin-delete';
-import watcher from './js/build/ext/plugins/watcher';
-import copy from './js/build/shared/plugins/rollup-plugin-copy';
+import watcher from './js/shared/ext/plugins/watcher';
+import copy from './js/shared/shared/plugins/rollup-plugin-copy';
 
 import { paths } from './js/apps';
 import { Delete } from './js/delete';
@@ -65,7 +65,7 @@ const config = {
                     dest: 'build',
                 },
                 {
-                    src: 'js/build/*',
+                    src: 'js/shared/*',
                     dest: 'build/js',
                 },
                 {
