@@ -1,9 +1,16 @@
-import _ from 'lodash';
-import path from 'path';
-import fs from 'fs-extra';
+const path = require('path');
+const fs = require('fs-extra');
 
-export class Manifest {
-    generate = ({ manifest }) => {
+class Manifest {
+    constructor({ app_root }) {
+        this.app_root = app_root;
+    }
+
+    generate = ({
+        manifest,
+        mode,
+        browser,
+    }) => {
         const shared_manifest = {
             manifest_version: 2,
             version: process.env.npm_package_version,
@@ -26,16 +33,16 @@ export class Manifest {
                 'chrome',
                 'opera',
                 'edge',
-            ].includes(process.env.browser)
+            ].includes(browser)
         ) {
             shared_manifest.icons[128] = 'icon128.png';
         }
 
-        if (process.env.browser === 'firefox') {
+        if (browser === 'firefox') {
             shared_manifest.icons[96] = 'icon96.png';
         }
 
-        if (process.env.browser === 'firefox' || process.env.build === 'dev') {
+        if (browser === 'firefox' || mode === 'dev') {
             shared_manifest.applications = {
                 gecko: {
                     id: `${process.env.npm_package_name}@loftyshaky`,
@@ -45,16 +52,17 @@ export class Manifest {
 
         fs.outputFileSync(
             path.join(
-                __dirname,
-                'build',
+                this.app_root,
+                'dist',
                 'manifest.json',
             ),
-            JSON.stringify(_.merge(
-                {},
-                shared_manifest,
-                manifest,
-            )),
+            JSON.stringify({
+                ...shared_manifest,
+                ...manifest,
+            }),
             'utf-8',
         );
     }
 }
+
+module.exports = { Manifest };

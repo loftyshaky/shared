@@ -1,19 +1,17 @@
-import path from 'path';
-import fs from 'fs-extra';
+const path = require('path');
+const fs = require('fs-extra');
 
-import {
+const {
     paths,
     apps,
     app_types,
-} from './apps';
+} = require('./apps');
 
-export class Files {
+class Files {
     copy = () => {
-        const src_stylelintrc_path = path.join(
-            __dirname,
+        const src_stylelintrc_path = path.resolve(
             '.stylelintrc',
         );
-
         apps.forEach((app, i) => {
             if (app_types[i] === 'ext') {
                 fs.copySync(
@@ -24,3 +22,4 @@ export class Files {
         });
     }
 }
+module.exports = { Files };

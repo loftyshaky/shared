@@ -1,4 +1,4 @@
-export class ProjectName {
+class ProjectName {
     transform = ({ project }) => (
         project.toLowerCase().replace(
             / /g,
@@ -6,3 +6,5 @@ export class ProjectName {
         )
     )
 }
+
+module.exports = { ProjectName };

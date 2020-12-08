@@ -1,14 +1,18 @@
-import path from 'path';
-import fs from 'fs-extra';
+const path = require('path');
+const fs = require('fs-extra');
 
-export class Env {
-     generate = () => {
-         const env = `window.env = { browser: '${process.env.browser}' }; // eslint-disable-line eol-last`;
+class Env {
+    constructor({ app_root }) {
+        this.app_root = app_root;
+    }
+
+     generate = ({ browser }) => {
+         const env = `window.env = { browser: '${browser}' }; // eslint-disable-line eol-last`;
 
          fs.outputFileSync(
              path.join(
-                 __dirname,
-                 'build',
+                 this.app_root,
+                 'dist',
                  'env.js',
              ),
              env,
@@ -16,3 +20,5 @@ export class Env {
          );
      }
 }
+
+module.exports = { Env };

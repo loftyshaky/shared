@@ -1,16 +1,19 @@
-import _ from 'lodash';
-import path from 'path';
-import fs from 'fs-extra';
+const path = require('path');
+const fs = require('fs-extra');
 
-export class Locales {
+class Locales {
+    constructor({ app_root }) {
+        this.app_root = app_root;
+    }
+
     merge = async () => {
         const app_locales_path = path.join(
-            __dirname,
+            this.app_root,
             'src',
             '_locales',
         );
         const shared_locales_path = path.join(
-            __dirname,
+            this.app_root,
             'node_modules',
             '@loftyshaky',
             'shared',
@@ -31,19 +34,22 @@ export class Locales {
                 'messages.json',
             ));
 
-            const merged_messages = _.merge(
-                {},
-                shared_messages,
-                app_messages,
-            );
-            const dest_messages = path.join(
-                __dirname,
-                'build',
+            const merged_messages = {
+                ...shared_messages,
+                ...app_messages,
+            };
+            const locale_path = path.join(
+                this.app_root,
+                'dist',
                 '_locales',
                 locale,
+            );
+            const dest_messages = path.join(
+                locale_path,
                 'messages.json',
             );
 
+            fs.ensureDirSync(locale_path);
             fs.writeJsonSync(
                 dest_messages,
                 merged_messages,
@@ -51,3 +57,5 @@ export class Locales {
         });
     }
 }
+
+module.exports = { Locales };

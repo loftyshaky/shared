@@ -1,9 +1,9 @@
-import path from 'path'
-import util from 'util'
-import fs from 'fs-extra'
-import isObject from 'is-plain-object'
-import globby from 'globby'
-import { bold, green, yellow } from 'colorette'
+const path = require('path');
+const util = require('util');
+const fs = require('fs-extra');
+const isObject = require('is-plain-object');
+const globby = require('globby');
+const { bold, green, yellow } = require('colorette');
 
 function stringify(value) {
     return util.inspect(value, { breakLength: Infinity })
@@ -42,7 +42,7 @@ async function generateCopyTarget(src, dest, { flatten, rename, transform }) {
     }
 }
 
-export default function copy(options = {}) {
+module.exports = function copy(options = {}) {
     const {
         copyOnce = false,
         flatten = true,

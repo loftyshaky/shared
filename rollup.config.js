@@ -1,20 +1,19 @@
 import typescript2 from 'rollup-plugin-typescript2';
 import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import transformPaths from 'ts-transform-paths';
 import svgr from '@svgr/rollup';
-import scss from 'rollup-plugin-scss';
-import del from 'rollup-plugin-delete';
-import watcher from './js/shared/ext/plugins/watcher';
-import copy from './js/shared/shared/plugins/rollup-plugin-copy';
+import { terser } from 'rollup-plugin-terser';
 
-import { paths } from './js/apps';
-import { Delete } from './js/delete';
-import { Files } from './js/files';
+const copy = require('./js/shared/package/plugins/rollup-plugin-copy');
+const watcher = require('./js/shared/package/plugins/watcher');
+const { Terser } = require('./js/shared/package/terser');
 
-const delete_inst = new Delete();
+const { paths } = require('./js/apps');
+const { Files } = require('./js/files');
+
 const files = new Files();
+const terserInst = new Terser();
 
 const config = {
     input: [
@@ -23,13 +22,13 @@ const config = {
         'src/settings.ts',
     ],
     output: [{
-        dir: 'build',
+        dir: 'dist',
         entryFileNames: '[name].js',
         chunkFileNames: 'chunk-[name]-[hash].js',
         format: 'es',
         sourcemap: false,
     }],
-    treeshake: true,
+    treeshake: process.env.mode === 'production',
     watch: {
         clearScreen: false,
     },
@@ -45,36 +44,29 @@ const config = {
             transformers: [transformPaths],
         }),
         commonjs(),
-        json({
-            compact: true,
-        }),
         resolve({
             browser: true,
             preferBuiltins: false,
         }),
         svgr(),
-        scss({ includePaths: ['node_modules/'] }),
-        del({
-            targets: 'build',
-        }),
-        watcher(),
+        watcher({ mode: process.env.mode }),
         copy({
             targets: [
                 {
                     src: 'package.json',
-                    dest: 'build',
+                    dest: 'dist',
                 },
                 {
                     src: 'js/shared/*',
-                    dest: 'build/js',
+                    dest: 'dist/js',
                 },
                 {
                     src: 'src/_locales',
-                    dest: 'build',
+                    dest: 'dist',
                 },
                 {
                     src: 'src/scss',
-                    dest: 'build',
+                    dest: 'dist',
                 },
                 {
                     src: '.eslintrc.js',
@@ -83,10 +75,12 @@ const config = {
             ],
             hook: 'writeBundle',
             callback_start: async () => {
-                await delete_inst.delete_by_path();
                 await files.copy();
             },
         }),
+        process.env.mode === 'production'
+            ? terser(terserInst.config)
+            : undefined,
     ],
 };
 

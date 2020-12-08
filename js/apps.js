@@ -1,18 +1,18 @@
-import path from 'path';
+const path = require('path');
 
-import { ProjectName } from './project_name';
-import { absolute_paths } from '../../../absolute_paths';
+const { absolute_paths } = require('../../../absolute_paths');
+const { ProjectName } = require('./shared/project_name');
 
 const project_name = new ProjectName();
 
-export const apps = [
+const apps = [
     'Extension Reloader Watch 1',
     'Extension Reloader Watch 2',
     'Extension Reloader',
     'Base64 font-face',
 ];
 
-export const app_types = [
+const app_types = [
     'package',
     'package',
     'ext',
@@ -41,8 +41,14 @@ const create_stylelintrc_paths = () => app.map((app_dir) => path.join(
 
 const stylelintrc = create_stylelintrc_paths();
 
-export const paths = {
+const paths = {
     app,
     eslintrc,
     stylelintrc,
+};
+
+module.exports = {
+    apps,
+    app_types,
+    paths,
 };

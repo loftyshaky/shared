@@ -1,18 +1,24 @@
-import path from 'path';
-import recursiveReaddir from 'recursive-readdir';
-import _ from 'lodash';
+const path = require('path');
+
+const appRoot = require('app-root-path').path;
+const recursiveReaddir = require('recursive-readdir');
+const _ = require('lodash');
+
+const { TaskScheduler } = require('../../task_scheduler');
+
+const task_scheduler = new TaskScheduler();
 
 const generate_watch_files = async () => {
     let watch_files = [];
 
     const src_dir = path.join(
-        __dirname,
+        appRoot,
         'src',
     );
 
     const dirs = [
         path.join(
-            __dirname,
+            appRoot,
             'js',
         ),
         path.join(
@@ -37,9 +43,14 @@ const generate_watch_files = async () => {
     return watch_files;
 };
 
-export default function watcher() {
+module.exports = function watcher({ mode }) {
     return {
         async buildStart() {
+            await task_scheduler.unlock_dist({
+                package_name: 'Shared',
+                remove_dist: mode === 'production',
+            });
+
             const watch_files = await generate_watch_files();
 
             watch_files.forEach((file) => {
@@ -47,4 +58,4 @@ export default function watcher() {
             });
         },
     };
-}
+};
