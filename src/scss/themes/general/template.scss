@@ -1,33 +1,33 @@
 @import "../../mixins";
 
 ::selection {
-    background-color: $color_6 !important;
+    background-color: $nqp !important;
     color: white !important;
 }
 
 .main ::-webkit-scrollbar-thumb {
-    background-color: $color_7;
+    background-color: $uvi;
 }
 
 .main ::-webkit-scrollbar-track {
-    background-color: $color_1;
+    background-color: $gaq;
 }
 
 .main ::-webkit-scrollbar-corner,
 .main ::-webkit-resizer {
-    background-color: $color_4;
+    background-color: $lpe;
 }
 
 .loading_screen.main {
-    background-color: $color_13;
+    background-color: $dfp;
 }
 
 .loading_screen svg {
-    stroke: $color_4;
+    stroke: $lpe;
 }
 
 body {
-    background-color: $color_1;
+    background-color: $gaq;
 }
 
 .main,
@@ -35,90 +35,86 @@ button,
 select,
 input,
 textarea {
-    color: $color_4;
+    color: $lpe;
 }
 
 .main {
-    border-color: $color_4;
+    border-color: $lpe;
 }
 
 .section_btns {
-    background-color: $color_2;
+    background-color: $nrf;
 }
 
 .section_btn {
-    border-color: $color_4;
-    background-color: $color_2;
+    border-color: $lpe;
+    background-color: $nrf;
 }
 
 .section_btn.selected {
-    background-color: $color_3;
+    background-color: $htc;
 }
 
 .section_btns .filler:after,
 .section_btn:after {
-    background-color: $color_4;
+    background-color: $lpe;
 }
 
 .section_btn:not(.selected):hover {
-    background-color: $color_8;
+    background-color: $cop;
 }
 
 .sections {
-    background-color: $color_3;
+    background-color: $htc;
 }
 
 .input_item .input,
 .input_item .btn.text {
-    background-color: $color_1;
-}
-
-.input_item .input:focus {
-    background-color: $color_2;
+    background-color: $gaq;
 }
 
 .input_w.inset_border:before {
-    border-color: $color_4;
+    border-color: $lpe;
 }
 
 .palette {
-    background-color: $color_3;
+    background-color: $htc;
 }
 
 .top_palette_visualization_btns .palette_visualization {
-    background-color: $color_1;
+    background-color: $gaq;
 }
 
 .input_w .visualization {
-    border-color: $color_4;
-    background-color: $color_1;
+    border-color: $lpe;
+    background-color: $gaq;
 }
 
 .help_btn svg,
 .checkbox .box svg {
-    fill: $color_4;
+    fill: $lpe;
 }
 
 .btn.text svg {
-    fill: $color_4;
+    fill: $lpe;
 }
 
 select {
-    background-image: linear-gradient(45deg, transparent 50%, $color_4 50%),
-        linear-gradient(135deg, $color_4 50%, transparent 50%), linear-gradient(to right, $color_4, $color_4);
+    background-image: linear-gradient(45deg, transparent 50%, $lpe 50%),
+        linear-gradient(135deg, $lpe 50%, transparent 50%), linear-gradient(to right, $lpe, $lpe);
 }
 
 .checkbox .box {
-    background-color: $color_1;
+    background-color: $gaq;
 }
 
 .pcr-app {
-    border-color: $color_4 !important;
-    background-color: $color_3 !important;
+    border-color: $lpe !important;
+    background-color: $htc !important;
 }
 
 .color_picker_w *:not(.pcr-last-color):not(.pcr-current-color) {
-    color: $color_4 !important;
+    color: $lpe !important;
 }
 
 .pcr-color-preview,
@@ -127,44 +123,33 @@ select {
 .pcr-picker,
 .pcr-result,
 .color_picker_w input {
-    border-color: $color_4 !important;
+    border-color: $lpe !important;
 }
 
 .color_picker_w input {
-    background-color: $color_1 !important;
-}
-
-.input_item .input:focus,
-.input_item .input:focus + .btn.text:not(.is_in_warn_state) {
-    background-color: $color_5;
-}
-
-.pcr-result:focus,
-.color_picker_w input:hover:not(.pcr-result):not(.active) {
-    background-color: $color_5 !important;
-}
-
-.color_picker_w .pcr-type.active {
-    background-color: $color_2 !important;
+    background-color: $gaq !important;
 }
 
 .link {
-    color: $color_9;
+    color: $pdv;
 }
 
 .link:visited {
-    color: $color_10;
+    color: $pec;
 }
 
 .link:hover {
-    color: $color_11;
+    color: $bvs;
 }
 
 .link:active {
-    color: $color_12;
+    color: $nmy;
 }
 
-.btn.text.is_in_warn_state,
-.input_w .input.is_in_warn_state {
-    background-color: $color_14;
+.input_w.is_in_focus_state:before {
+    border-color: $myo;
+}
+
+.input_w.is_in_warn_state:before {
+    border-color: $ptn;
 }

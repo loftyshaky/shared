@@ -28,6 +28,8 @@ export const Textarea = observer((props: Props) => {
                         input.name,
                         'inset_border',
                         'calculate_width',
+                        d_inputs.Val.i.focus_state({ input }),
+                        d_inputs.Val.i.warn_state({ input }),
                     ])}
                     style={{
                         minWidth: u_settings.InputsWidth.i.width[input.section!],
@@ -36,10 +38,7 @@ export const Textarea = observer((props: Props) => {
                 >
                     <textarea
                         id={input.name}
-                        className={x.cls([
-                            'input',
-                            d_inputs.Val.i.warn_state({ input }),
-                        ])}
+                        className='input'
                         value={input.val}
                         spellCheck='false'
                         onInput={(e): void => {
@@ -51,6 +50,22 @@ export const Textarea = observer((props: Props) => {
                             );
                         }}
                         onChange={(): null => null}
+                        onFocus={(): void => {
+                            d_inputs.Val.i.set_focus_state(
+                                {
+                                    input,
+                                    state: true,
+                                },
+                            );
+                        }}
+                        onBlur={(): void => {
+                            d_inputs.Val.i.set_focus_state(
+                                {
+                                    input,
+                                    state: false,
+                                },
+                            );
+                        }}
                     />
                 </span>
                 {

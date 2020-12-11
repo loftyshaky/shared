@@ -25,6 +25,28 @@ export class Val {
         return this.i0;
     }
 
+    public set_focus_state = (
+        {
+            input,
+            state,
+        }: {
+            input: i_inputs.Input;
+            state: boolean
+        },
+    ): void => err(() => {
+        const new_input = input;
+        new_input.is_in_focus_state = state;
+    },
+    's1022');
+
+    public focus_state = computedFn(
+        function ({ input }: { input: i_inputs.Input; }): string {
+            return input.is_in_focus_state
+                ? 'is_in_focus_state'
+                : '';
+        },
+    );
+
     public warn_state = computedFn(
         function ({ input }: { input: i_inputs.Input; }): string {
             if (n(input.warn_state_checker)) {

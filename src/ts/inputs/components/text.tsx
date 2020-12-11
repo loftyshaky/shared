@@ -27,6 +27,8 @@ export const Text = observer((props: Props) => {
                         'text',
                         input.name,
                         'inset_border',
+                        d_inputs.Val.i.focus_state({ input }),
+                        d_inputs.Val.i.warn_state({ input }),
                     ])}
                     style={{
                         minWidth: u_settings.InputsWidth.i.width[input.section!],
@@ -38,7 +40,6 @@ export const Text = observer((props: Props) => {
                         className={x.cls([
                             'input',
                             input.text_type,
-                            d_inputs.Val.i.warn_state({ input }),
                         ])}
                         type={input.type}
                         value={input.val}
@@ -50,6 +51,22 @@ export const Text = observer((props: Props) => {
                                     input,
                                 },
                                 e,
+                            );
+                        }}
+                        onFocus={(): void => {
+                            d_inputs.Val.i.set_focus_state(
+                                {
+                                    input,
+                                    state: true,
+                                },
+                            );
+                        }}
+                        onBlur={(): void => {
+                            d_inputs.Val.i.set_focus_state(
+                                {
+                                    input,
+                                    state: false,
+                                },
                             );
                         }}
                         onChange={(): undefined => undefined}

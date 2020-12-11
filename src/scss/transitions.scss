@@ -5,10 +5,8 @@
     transition-property: opacity;
 }
 
-.input,
 .btn,
-.color_picker_w .accept_color,
-.color_picker_w input {
+.color_picker_w .accept_color {
     transition: var(--transition);
     transition-property: background-color;
 }

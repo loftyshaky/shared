@@ -9,6 +9,7 @@ export class InputBase {
     public name: string;
     public is_visible_key?: string; // settings object key
     public is_visible?: boolean = true;
+    public is_in_focus_state?: boolean = false;
     public is_in_warn_state?: boolean = false;
     public val?: string = '';
     public alt_msg?: string;
@@ -26,6 +27,7 @@ export class InputBase {
             this,
             {
                 is_visible: observable,
+                is_in_focus_state: observable,
                 is_in_warn_state: observable,
                 val: observable,
                 help_is_visible: observable,
