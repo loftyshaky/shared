@@ -6,7 +6,7 @@ import {
     makeObservable,
 } from 'mobx';
 
-import { vars } from 'shared/internal';
+import { CssVars } from 'shared/internal';
 import { u_settings } from 'settings/internal';
 import { o_inputs } from 'inputs/internal';
 
@@ -99,7 +99,13 @@ export class InputsWidth {
 
         if (current_section) {
             this.max_width = Math.max(
-                current_section.offsetWidth - vars.scrollbar_width,
+                current_section.offsetWidth - parseInt(
+                    CssVars.i.get({ name: 'help_btn_size' }),
+                    10,
+                ) - parseInt(
+                    CssVars.i.get({ name: 'help_btn_margin' }),
+                    10,
+                ),
                 this.min_width,
             );
         }

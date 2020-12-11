@@ -1,5 +1,3 @@
-$help_btn_size: 20px;
-
 .section_help + .subsection {
     margin-top: $gap;
 }
@@ -25,7 +23,7 @@ $help_btn_size: 20px;
 
 .help_btn {
     @include btn;
-    margin-left: $margin;
+    margin-left: var(--help_btn_margin);
     display: flex;
     order: 1;
 }
@@ -41,6 +39,6 @@ $help_btn_size: 20px;
 
 .help_btn svg {
     display: block;
-    width: $help_btn_size;
-    height: $help_btn_size;
+    width: var(--help_btn_size);
+    height: var(--help_btn_size);
 }

@@ -24,6 +24,10 @@ export const Body = observer((props: p_settings.Body) => {
             'resize',
             u_settings.InputsWidth.i.set_max_width,
         );
+        window.addEventListener(
+            'mousemove',
+            u_settings.InputsWidth.i.set_max_width,
+        );
     },
     [
         props,
@@ -34,6 +38,10 @@ export const Body = observer((props: p_settings.Body) => {
         () => {
             window.removeEventListener(
                 'resize',
+                u_settings.InputsWidth.i.set_max_width,
+            );
+            window.removeEventListener(
+                'mousemove',
                 u_settings.InputsWidth.i.set_max_width,
             );
         }
