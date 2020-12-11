@@ -1,6 +1,6 @@
 import {
-    configure,
     action,
+    makeObservable,
 } from 'mobx';
 
 import {
@@ -8,10 +8,17 @@ import {
     i_error,
 } from 'error_modules/internal';
 
-configure({ enforceActions: 'observed' });
-
 export class Main {
     private static i0: Main;
+
+    constructor() {
+        makeObservable(
+            this,
+            {
+                show_error: action,
+            },
+        );
+    }
 
     public static get i() {
         if (!this.i0) { this.i0 = new this(); }
@@ -27,7 +34,7 @@ export class Main {
     persistent = don't hide (true) / hide (false) error ribbon after 5 seconds
     exit = terminate code execution (true) / show error message; don't terminate code execution (false)
     */
-    @action public show_error = (
+    public show_error = (
         error_obj: any,
         error_code: number | string,
         {
@@ -138,5 +145,5 @@ export class Main {
             // eslint-disable-next-line no-console
             console.error(console_output);
         }
-    }
+    };
 }

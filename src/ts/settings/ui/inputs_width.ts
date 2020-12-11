@@ -1,19 +1,28 @@
 import _ from 'lodash';
 import {
-    configure,
     observable,
     action,
     runInAction,
+    makeObservable,
 } from 'mobx';
 
 import { vars } from 'shared/internal';
 import { u_settings } from 'settings/internal';
 import { o_inputs } from 'inputs/internal';
 
-configure({ enforceActions: 'observed' });
-
 export class InputsWidth {
     private static i0: InputsWidth;
+
+    constructor() {
+        makeObservable(
+            this,
+            {
+                width: observable,
+                max_width: observable,
+                set_max_width: action,
+            },
+        );
+    }
 
     public static get i() {
         if (!this.i0) { this.i0 = new this(); }
@@ -21,8 +30,8 @@ export class InputsWidth {
         return this.i0;
     }
 
-    @observable public width: { [index: string]: number | undefined } = {};
-    @observable public max_width: number = 0;
+    public width: { [index: string]: number | undefined } = {};
+    public max_width: number = 0;
     private min_width: number = 300;
     private old_max_width: { [index: string]: number } = {};
 
@@ -85,7 +94,7 @@ export class InputsWidth {
     },
     's1006');
 
-    @action public set_max_width = (): void => err(() => {
+    public set_max_width = (): void => err(() => {
         const current_section = s<HTMLDivElement>(`.section.${u_settings.Sections.i.current_section}`);
 
         if (current_section) {

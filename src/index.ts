@@ -1,3 +1,4 @@
+import 'error_modules/error/scripts';
 import {
     c_error,
     c_crash_handler,

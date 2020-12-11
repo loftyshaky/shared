@@ -1,5 +1,9 @@
 import _ from 'lodash';
-import { configure, observable } from 'mobx';
+import {
+    configure,
+    observable,
+    makeObservable,
+} from 'mobx';
 
 import {
     i_inputs,
@@ -10,7 +14,7 @@ configure({ enforceActions: 'observed' });
 export class Section {
     public name: string;
     public include_help?: boolean = false;
-    @observable public help_is_visible?: boolean = false;
+    public help_is_visible?: boolean = false;
     public inputs: i_inputs.Inputs | i_inputs.Links;
     public subsections?: {
         name: string;
@@ -18,6 +22,11 @@ export class Section {
     }[];
 
     public constructor(obj: Section) {
+        makeObservable(this,
+            {
+                help_is_visible: observable,
+            });
+
         Object.assign(
             this,
             obj,

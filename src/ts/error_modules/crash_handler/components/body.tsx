@@ -1,14 +1,9 @@
 import React, { ReactNode } from 'react';
 import { observer } from 'mobx-react';
 
-import { u_crash_handler } from 'error_modules/internal';
+import { u_crash_handler, p_crash_handler } from 'error_modules/internal';
 
-interface Props {
-    children: JSX.Element;
-}
-
-@observer
-export class Body extends React.Component<Props> {
+export const Body = observer(class Body extends React.Component<p_crash_handler.Body> {
     public static getDerivedStateFromError(): any {
         u_crash_handler.Visibility.i.change_visibility_of_reload_ui_screen({ is_visible: true });
     }
@@ -42,4 +37,4 @@ export class Body extends React.Component<Props> {
 
         return children;
     }
-}
+});

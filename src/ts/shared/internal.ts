@@ -16,3 +16,4 @@ export * from 'shared/svg';
 
 export * as u_loading_screen from 'shared/loading_screen/ui';
 export * as c_loading_screen from 'shared/loading_screen/components';
+export * as p_loading_screen from 'shared/loading_screen/components/prop_types';

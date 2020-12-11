@@ -1,11 +1,21 @@
-import { configure, action } from 'mobx';
+import {
+    action,
+    makeObservable,
+} from 'mobx';
 
 import { o_inputs, i_inputs } from 'inputs/internal';
 
-configure({ enforceActions: 'observed' });
-
 export class HelpVisibility {
     private static i0: HelpVisibility;
+
+    constructor() {
+        makeObservable(
+            this,
+            {
+                change: action,
+            },
+        );
+    }
 
     public static get i() {
         if (!this.i0) { this.i0 = new this(); }
@@ -13,7 +23,7 @@ export class HelpVisibility {
         return this.i0;
     }
 
-    @action public change = (
+    public change = (
         {
             section_or_input,
         }: {

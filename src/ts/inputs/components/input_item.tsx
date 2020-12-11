@@ -12,27 +12,24 @@ interface Props {
     include_label: boolean;
 }
 
-@observer
-export class InputItem extends React.Component<Props> {
-    public render(): JSX.Element {
-        const { input, input_w, include_label } = this.props;
+export const InputItem = observer((props: Props) => {
+    const { input, input_w, include_label } = props;
 
-        return (
-            <div
-                className={x.cls([
-                    'input_item',
-                    input.type,
-                    input.name,
-                    n(input.parent)
-                        ? 'child'
-                        : '',
-                ])}
-            >
-                {include_label
-                    ? <c_inputs.Label input={input} />
-                    : undefined}
-                {input_w}
-            </div>
-        );
-    }
-}
+    return (
+        <div
+            className={x.cls([
+                'input_item',
+                input.type,
+                input.name,
+                n(input.parent)
+                    ? 'child'
+                    : '',
+            ])}
+        >
+            {include_label
+                ? <c_inputs.Label input={input} />
+                : undefined}
+            {input_w}
+        </div>
+    );
+});

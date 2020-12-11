@@ -6,9 +6,9 @@ const { ProjectName } = require('./shared/project_name');
 const project_name = new ProjectName();
 
 const apps = [
-    'Extension Reloader Watch 1',
-    'Extension Reloader Watch 2',
-    'Extension Reloader',
+    'Advanced Extension Reloader Watch 1',
+    'Advanced Extension Reloader Watch 2',
+    'Advanced Extension Reloader',
     'Base64 font-face',
 ];
 

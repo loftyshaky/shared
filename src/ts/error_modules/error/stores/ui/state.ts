@@ -1,14 +1,26 @@
 import {
-    configure,
     action,
     observable,
     computed,
+    makeObservable,
 } from 'mobx';
-
-configure({ enforceActions: 'observed' });
 
 export class State {
     private static i0: State;
+
+    constructor() {
+        makeObservable<State, 'is_visible' | 'is_highlighted'>(
+            this,
+            {
+                is_loaded: observable,
+                is_visible: observable,
+                is_highlighted: observable,
+                is_visible_cls: computed,
+                is_highlighted_cls: computed,
+                change_state: action,
+            },
+        );
+    }
 
     public static get i() {
         if (!this.i0) { this.i0 = new this(); }
@@ -18,17 +30,17 @@ export class State {
 
     [index: string]: any;
 
-    @observable public is_loaded: boolean = false;
-    @observable private is_visible: boolean = false;
-    @observable private is_highlighted: boolean = false; // true = error ribbon is yellow / false = error ribbon is red
+    public is_loaded: boolean = false;
+    private is_visible: boolean = false;
+    private is_highlighted: boolean = false; // true = error ribbon is yellow / false = error ribbon is red
 
-    @computed public get is_visible_cls(): string {
+    public get is_visible_cls(): string {
         return this.is_visible
             ? ''
             : 'none';
     }
 
-    @computed public get is_highlighted_cls(): string {
+    public get is_highlighted_cls(): string {
         return this.is_highlighted
             ? 'is_highlighted'
             : '';
@@ -37,7 +49,7 @@ export class State {
     private is_visible_timeout: number = 0;
     private is_highlighted_timeout: number = 0;
 
-    @action public change_state = ({
+    public change_state = ({
         observable_key,
         state,
     }: {
@@ -45,7 +57,7 @@ export class State {
         state: boolean;
     }): void => { // show or hide / highlight dehighlight error ribbon
         this[observable_key] = state;
-    }
+    };
 
     public run_reset_state_timeout = ({
         observable_key,

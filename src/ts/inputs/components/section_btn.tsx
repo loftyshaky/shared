@@ -12,33 +12,30 @@ interface Props {
     change_section_callback: t.CallbackVoid;
 }
 
-@observer
-export class SectionBtn extends React.Component<Props> {
-    public render(): JSX.Element {
-        const {
-            section,
-            change_section_callback,
-        } = this.props;
+export const SectionBtn = observer((props: Props) => {
+    const {
+        section,
+        change_section_callback,
+    } = props;
 
-        return (
-            <button
-                className={x.cls([
-                    'section_btn',
-                    section.name,
-                    section.name === u_settings.Sections.i.current_section
-                        ? 'selected'
-                        : '',
-                ])}
-                type='button'
-                onClick={() => u_settings.Sections.i.change(
-                    {
-                        section_name: section.name,
-                        callback: change_section_callback,
-                    },
-                )}
-            >
-                {ext.msg(`${section.name}_section_text`)}
-            </button>
-        );
-    }
-}
+    return (
+        <button
+            className={x.cls([
+                'section_btn',
+                section.name,
+                section.name === u_settings.Sections.i.current_section
+                    ? 'selected'
+                    : '',
+            ])}
+            type='button'
+            onClick={() => u_settings.Sections.i.change(
+                {
+                    section_name: section.name,
+                    callback: change_section_callback,
+                },
+            )}
+        >
+            {ext.msg(`${section.name}_section_text`)}
+        </button>
+    );
+});

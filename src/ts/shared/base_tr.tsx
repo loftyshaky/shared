@@ -1,11 +1,9 @@
 // eslint-disable-next-line max-classes-per-file
 import React from 'react';
-import { action, configure } from 'mobx';
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 
 import { t } from 'shared/internal';
-
-configure({ enforceActions: 'observed' });
 
 export class Transition {
     public unactive_cls: string;
@@ -33,7 +31,6 @@ interface Props {
     tr_end_active?: t.CallbackVariadicVoid[];
 }
 
-@observer
 export class BaseTr extends React.Component<Props> {
     private tr_el_ref = React.createRef<HTMLElement>();
 
@@ -48,32 +45,8 @@ export class BaseTr extends React.Component<Props> {
         }),
     };
 
-    public componentDidMount(): void {
-        this.handle_transition({ called_from_component_did_update: false });
-    }
-
-    public componentDidUpdate(): void {
-        this.handle_transition({ called_from_component_did_update: true });
-    }
-
-    //> choose component mode (shown or hidden)
-    private transit = (
-        {
-            name,
-            state,
-        }: {
-            name: string;
-            state: boolean;
-        },
-    ): string => (
-        state
-            ? this.transitions[name].active_cls
-            : this.transitions[name].unactive_cls
-    );
-    //< choose component mode (shown or hidden)
-
     //> hide component when it faded out or show component when it starting fading in
-    @action private handle_transition = ({
+    private handle_transition = action(({
         called_from_component_did_update,
         tr_end_unactive,
         tr_end_active,
@@ -117,8 +90,32 @@ export class BaseTr extends React.Component<Props> {
                 );
             }
         }
-    }
+    })
     //< hide component when it faded out or show component when it starting fading in
+
+    public componentDidMount(): void {
+        this.handle_transition({ called_from_component_did_update: false });
+    }
+
+    public componentDidUpdate(): void {
+        this.handle_transition({ called_from_component_did_update: true });
+    }
+
+    //> choose component mode (shown or hidden)
+    private transit = (
+        {
+            name,
+            state,
+        }: {
+            name: string;
+            state: boolean;
+        },
+    ): string => (
+        state
+            ? this.transitions[name].active_cls
+            : this.transitions[name].unactive_cls
+    );
+    //< choose component mode (shown or hidden)
 
     private run_tr_end_callbacks = ({
         tr_end_callbacks,
@@ -175,3 +172,5 @@ export class BaseTr extends React.Component<Props> {
         );
     }
 }
+
+observer(BaseTr);

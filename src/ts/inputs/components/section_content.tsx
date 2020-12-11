@@ -11,28 +11,25 @@ interface Props {
     inputs: i_inputs.Inputs | i_inputs.Links;
 }
 
-@observer
-export class SectionContent extends React.Component<Props> {
-    public render(): JSX.Element {
-        const { inputs } = this.props;
+export const SectionContent = observer((props: Props) => {
+    const { inputs } = props;
 
-        return (
-            <>
-                {
-                    Object.values(inputs).map(
-                        (
-                            input: i_inputs.Input | o_inputs.Link,
-                            i: number,
-                        ): JSX.Element => (
-                            <React.Fragment key={i}>
-                                {
-                                    s_inputs.resolve({ input })
-                                }
-                            </React.Fragment>
-                        ),
-                    )
-                }
-            </>
-        );
-    }
-}
+    return (
+        <>
+            {
+                Object.values(inputs).map(
+                    (
+                        input: i_inputs.Input | o_inputs.Link,
+                        i: number,
+                    ): JSX.Element => (
+                        <React.Fragment key={i}>
+                            {
+                                s_inputs.resolve({ input })
+                            }
+                        </React.Fragment>
+                    ),
+                )
+            }
+        </>
+    );
+});

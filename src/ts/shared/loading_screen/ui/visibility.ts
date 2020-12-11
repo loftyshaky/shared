@@ -1,16 +1,25 @@
 import {
-    configure,
     observable,
     action,
     runInAction,
+    makeObservable,
 } from 'mobx';
 
 import { CssVars } from 'shared/internal';
 
-configure({ enforceActions: 'observed' });
-
 export class Visibility {
     private static i0: Visibility;
+
+    constructor() {
+        makeObservable(
+            this,
+            {
+                outer_is_visible: observable,
+                inner_is_none: observable,
+                show: action,
+            },
+        );
+    }
 
     public static get i() {
         if (!this.i0) { this.i0 = new this(); }
@@ -18,10 +27,10 @@ export class Visibility {
         return this.i0;
     }
 
-    @observable public outer_is_visible: boolean = false;
-    @observable public inner_is_none: boolean = false;
+    public outer_is_visible: boolean = false;
+    public inner_is_none: boolean = false;
 
-    @action public show = (): Promise<void> => err_async(async () => {
+    public show = (): Promise<void> => err_async(async () => {
         if (!this.inner_is_none) {
             this.outer_is_visible = true;
         }

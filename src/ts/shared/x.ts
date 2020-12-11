@@ -397,7 +397,7 @@ export class X {
         /^\d+$|^\d+\.\d+$/.test(val)
     );
 
-    public delay = (delay: number): Promise<undefined> => (
+    public delay = (delay: number): Promise<void> => (
         new Promise((resolve): number => (
             window.setTimeout(
                 (): void => resolve(),

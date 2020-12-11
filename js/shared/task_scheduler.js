@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs-extra');
 const childProcess = require('child_process');
 
-const { absolute_paths } = require('../../../../absolute_paths');
 const { ProjectName } = require('./project_name');
 
 const project_name = new ProjectName();
@@ -25,6 +24,9 @@ class TaskScheduler {
             childProcess.execSync(`SCHTASKS.EXE /RUN /TN "Unlock ${package_name} dist dir"`);
 
             if (remove_dist) {
+                // eslint-disable-next-line global-require
+                const { absolute_paths } = require('../../../../absolute_paths');
+
                 fs.removeSync(
                     path.join(
                         absolute_paths.q,

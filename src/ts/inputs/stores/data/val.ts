@@ -1,12 +1,23 @@
-import { configure, action } from 'mobx';
+import {
+    action,
+    makeObservable,
+} from 'mobx';
 import { computedFn } from 'mobx-utils';
 
 import { i_inputs } from 'inputs/internal';
 
-configure({ enforceActions: 'observed' });
-
 export class Val {
     private static i0: Val;
+
+    constructor() {
+        makeObservable(
+            this,
+            {
+                change: action,
+                remove_val: action,
+            },
+        );
+    }
 
     public static get i() {
         if (!this.i0) { this.i0 = new this(); }
@@ -26,7 +37,7 @@ export class Val {
         },
     );
 
-    @action public change = (
+    public change = (
         {
             input,
         }: {
@@ -46,7 +57,7 @@ export class Val {
     },
     's1008');
 
-    @action public remove_val = (
+    public remove_val = (
         {
             input,
         }: {

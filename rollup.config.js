@@ -28,6 +28,10 @@ const config = {
         format: 'es',
         sourcemap: false,
     }],
+    external: [
+        'react',
+        'react-dom',
+    ],
     treeshake: process.env.mode === 'production',
     watch: {
         clearScreen: false,

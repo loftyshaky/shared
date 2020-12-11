@@ -1,11 +1,23 @@
-import { configure, observable, action } from 'mobx';
+import {
+    observable,
+    action,
+    makeObservable,
+} from 'mobx';
 
 import { t } from 'shared/internal';
 
-configure({ enforceActions: 'observed' });
-
 export class Sections {
     private static i0: Sections;
+
+    constructor() {
+        makeObservable(
+            this,
+            {
+                current_section: observable,
+                change: action,
+            },
+        );
+    }
 
     public static get i() {
         if (!this.i0) { this.i0 = new this(); }
@@ -13,9 +25,9 @@ export class Sections {
         return this.i0;
     }
 
-    @observable public current_section: string = '';
+    public current_section: string = '';
 
-    @action public change = (
+    public change = (
         {
             section_name,
             callback,

@@ -1,21 +1,19 @@
 import {
-    configure,
     observable,
+    makeObservable,
 } from 'mobx';
 
 import { t } from 'shared/internal';
 
-configure({ enforceActions: 'observed' });
-
 export class InputBase {
     public name: string;
     public is_visible_key?: string; // settings object key
-    @observable public is_visible?: boolean = true;
-    @observable public is_in_warn_state?: boolean = false;
-    @observable public val?: string = '';
+    public is_visible?: boolean = true;
+    public is_in_warn_state?: boolean = false;
+    public val?: string = '';
     public alt_msg?: string;
     public include_help?: boolean = false;
-    @observable public help_is_visible?: boolean = false;
+    public help_is_visible?: boolean = false;
     public parent?: string;
     public style?: any;
     public section?: string;
@@ -24,6 +22,16 @@ export class InputBase {
     public warn_state_checker?: t.CallbackVariadicAny;
 
     public constructor(obj: InputBase) {
+        makeObservable(
+            this,
+            {
+                is_visible: observable,
+                is_in_warn_state: observable,
+                val: observable,
+                help_is_visible: observable,
+            },
+        );
+
         Object.assign(
             this,
             obj,
