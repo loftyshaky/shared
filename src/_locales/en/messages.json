@@ -32,6 +32,21 @@
     "links_section_text": {
         "message": "Links"
     },
+    "back_up_section_text": {
+        "message": "Back up"
+    },
+    "restore_section_text": {
+        "message": "Restore"
+    },
+    "download_back_up_btn_text": {
+        "message": "Download back up"
+    },
+    "upload_back_up_btn_text": {
+        "message": "Restore back up"
+    },
+    "restore_defaults_btn_text": {
+        "message": "Restore default settings"
+    },
     "help_btn_title": {
         "message": "Help"
     },
