@@ -30,7 +30,7 @@ export const resolve = (
     } else if (input.type === 'btns_group') {
         // input_el = <c_inputs.BtnsGroup btns_group={input} />;
     } else if (input.type === 'btn') {
-        // input_el = <c_inputs.Btn btn={input} />;
+        input_el = <c_inputs.Btn input={input as o_inputs.Btn} />;
     }
 
     return input_el as JSX.Element;

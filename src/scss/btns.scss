@@ -19,3 +19,7 @@ $btn_size: 32px;
     height: $input_height;
     padding: 7px 9px 6px 9px;
 }
+
+.btn.text:not(:first-child) {
+    margin-top: $gap;
+}

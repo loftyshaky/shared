@@ -68,8 +68,12 @@ textarea {
     background-color: $htc;
 }
 
+.btn.text:hover {
+    background-color: $yos;
+}
+
 .input_item .input,
-.input_item .btn.text {
+.input_item .btn.text_input {
     background-color: $gaq;
 }
 
@@ -95,7 +99,7 @@ textarea {
     fill: $lpe;
 }
 
-.btn.text svg {
+.btn.text_input svg {
     fill: $lpe;
 }
 

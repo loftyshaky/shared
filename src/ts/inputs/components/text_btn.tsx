@@ -32,7 +32,7 @@ export const TextBtn = observer((props: Props) => {
             <button
                 className={x.cls([
                     'btn',
-                    'text',
+                    'text_input',
                     input.remove_val_btn_is_visible!({ input }),
                     d_inputs.Val.i.warn_state({ input }),
                 ])}
