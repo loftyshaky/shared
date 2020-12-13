@@ -1,6 +1,9 @@
 import { computedFn } from 'mobx-utils';
 
-import { o_inputs } from 'inputs/internal';
+import {
+    d_inputs,
+    o_inputs,
+} from 'inputs/internal';
 
 export class Text extends o_inputs.InputBase {
     public type?: 'text' = 'text';
@@ -15,11 +18,11 @@ export class Text extends o_inputs.InputBase {
         );
     }
 
-    remove_val_btn_visibility? = computedFn(
-        function (this: Text): string {
+    remove_val_btn_is_visible? = computedFn(
+        function ({ input }: { input: Text; }): string {
             return (
-                this.allow_removing_val
-                && this.val === ''
+                input.allow_removing_val
+                && d_inputs.Val.i.access({ input }) === ''
                     ? 'hidden'
                     : ''
             );
