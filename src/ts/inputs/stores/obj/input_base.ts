@@ -11,6 +11,7 @@ export class InputBase {
     public is_visible?: boolean = true;
     public is_in_focus_state?: boolean = false;
     public is_in_warn_state?: boolean = false;
+    public val_accessor?: string;
     public val?: string = '';
     public alt_msg?: string;
     public include_help?: boolean = false;
@@ -29,7 +30,6 @@ export class InputBase {
                 is_visible: observable,
                 is_in_focus_state: observable,
                 is_in_warn_state: observable,
-                val: observable,
                 help_is_visible: observable,
             },
         );

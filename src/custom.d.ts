@@ -5,6 +5,7 @@ interface Window {
         browser: import('shared/t').Browser
     };
     l: any;
+    data: any;
     n: <T1>(val: T1 | undefined | null) => val is T1;
     nu: <T1>(val: T1 | null) => val is T1;
     ru(f: import('shared/t').CallbackVariadicAny | undefined): any;

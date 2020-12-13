@@ -39,7 +39,7 @@ export const Textarea = observer((props: Props) => {
                     <textarea
                         id={input.name}
                         className='input'
-                        value={input.val}
+                        value={d_inputs.Val.i.access({ input })}
                         spellCheck='false'
                         onInput={(e): void => {
                             d_inputs.Val.i.change(

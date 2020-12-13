@@ -1,4 +1,5 @@
 import 'shared/globals';
+import 'shared/data';
 
 export * from 'shared/x';
 export * from 'shared/ext';

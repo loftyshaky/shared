@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
     action,
     makeObservable,
@@ -12,10 +13,7 @@ export class Val {
     constructor() {
         makeObservable(
             this,
-            {
-                change: action,
-                remove_val: action,
-            },
+            { remove_val: action },
         );
     }
 
@@ -59,6 +57,18 @@ export class Val {
         },
     );
 
+    public access = ({ input }: { input: i_inputs.Input }): any => err(() => {
+        if (n(input.val_accessor)) {
+            return _.get(
+                data,
+                input.val_accessor,
+            );
+        }
+
+        return data[input.name] || '';
+    },
+    's1023');
+
     public change = (
         {
             input,
@@ -67,28 +77,56 @@ export class Val {
         },
         e: any,
     ): void => err(() => {
-        const new_input = input;
-
-        if (new_input.type === 'checkbox') {
-            new_input.val = e.target.checked;
+        if (input.type === 'checkbox') {
+            this.set({
+                val: e.target.checked,
+                input,
+            });
         } else {
-            new_input.val = e.target.value;
+            this.set({
+                val: e.target.value,
+                input,
+            });
         }
 
         input.event_callback({ input });
     },
     's1008');
 
-    public remove_val = (
+    private set = action(({
+        val,
+        input,
+    }: {
+        val: string | boolean
+        input: i_inputs.Input;
+    }): void => err(() => {
+        if (n(input.val_accessor)) {
+            _.set(
+                data,
+                input.val_accessor,
+                val,
+            );
+        }
+
+        data[input.name] = val;
+    },
+    's1024'));
+
+    public remove_val = action((
         {
             input,
         }: {
             input: i_inputs.Input;
         },
     ): void => err(() => {
-        const new_input = input;
+        if (n(input.val_accessor)) {
+            this.set({
+                val: '',
+                input,
+            });
+        }
 
-        new_input.val = '';
+        data[input.name] = '';
     },
-    's1017');
+    's1017'));
 }

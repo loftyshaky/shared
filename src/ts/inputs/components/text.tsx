@@ -42,7 +42,7 @@ export const Text = observer((props: Props) => {
                             input.text_type,
                         ])}
                         type={input.type}
-                        value={input.val}
+                        value={d_inputs.Val.i.access({ input })}
                         autoComplete='off'
                         spellCheck='false'
                         onInput={(e): void => {
