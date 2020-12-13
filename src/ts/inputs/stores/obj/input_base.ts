@@ -12,7 +12,6 @@ export class InputBase {
     public is_in_focus_state?: boolean = false;
     public is_in_warn_state?: boolean = false;
     public val_accessor?: string;
-    public val?: string = '';
     public alt_msg?: string;
     public include_help?: boolean = false;
     public help_is_visible?: boolean = false;
