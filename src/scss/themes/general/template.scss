@@ -68,13 +68,14 @@ textarea {
     background-color: $htc;
 }
 
-.btn.text:hover {
-    background-color: $yos;
-}
-
+body .btn.text,
 .input_item .input,
 .input_item .btn.text_input {
     background-color: $gaq;
+}
+
+.btn.text:hover {
+    background-color: $yos;
 }
 
 .input_w.inset_border:before {
