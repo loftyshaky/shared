@@ -31,6 +31,8 @@ export const resolve = (
         // input_el = <c_inputs.BtnsGroup btns_group={input} />;
     } else if (input.type === 'btn') {
         input_el = <c_inputs.Btn input={input as o_inputs.Btn} />;
+    } else if (input.type === 'file') {
+        input_el = <c_inputs.File input={input as o_inputs.File} />;
     }
 
     return input_el as JSX.Element;

@@ -5,7 +5,7 @@ import {
     o_inputs,
     c_inputs,
 } from 'inputs/internal';
-import { u_settings } from 'settings/internal';
+import { d_settings } from 'settings/internal';
 
 interface Props {
     section: o_inputs.Section;
@@ -16,11 +16,10 @@ export const Section = observer((props: Props) => {
 
     return (
         <div
-
             className={x.cls([
                 'section',
                 section.name,
-                section.name === u_settings.Sections.i.current_section
+                section.name === d_settings.Sections.i.current_section
                     ? ''
                     : 'hidden',
             ])}

@@ -7,7 +7,7 @@ import {
 } from 'mobx';
 
 import { CssVars } from 'shared/internal';
-import { u_settings } from 'settings/internal';
+import { d_settings } from 'settings/internal';
 import { o_inputs } from 'inputs/internal';
 
 export class InputsWidth {
@@ -95,7 +95,7 @@ export class InputsWidth {
     's1006');
 
     public set_max_width = (): void => err(() => {
-        const current_section = s<HTMLDivElement>(`.section.${u_settings.Sections.i.current_section}`);
+        const current_section = s<HTMLDivElement>(`.section.${d_settings.Sections.i.current_section}`);
 
         if (current_section) {
             this.max_width = Math.max(

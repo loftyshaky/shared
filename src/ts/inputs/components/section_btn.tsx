@@ -5,7 +5,7 @@ import { t } from 'shared/internal';
 import {
     o_inputs,
 } from 'inputs/internal';
-import { u_settings } from 'settings/internal';
+import { d_settings } from 'settings/internal';
 
 interface Props {
     section: o_inputs.Section;
@@ -23,12 +23,12 @@ export const SectionBtn = observer((props: Props) => {
             className={x.cls([
                 'section_btn',
                 section.name,
-                section.name === u_settings.Sections.i.current_section
+                section.name === d_settings.Sections.i.current_section
                     ? 'selected'
                     : '',
             ])}
             type='button'
-            onClick={() => u_settings.Sections.i.change(
+            onClick={() => d_settings.Sections.i.change(
                 {
                     section_name: section.name,
                     callback: change_section_callback,

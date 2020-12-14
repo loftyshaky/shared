@@ -451,4 +451,14 @@ export class X {
 
         return updated_obj;
     };
+
+    public sanitize_filename = (
+        filename: string,
+        new_character: string = '_',
+    ): string => (
+        filename.replace(
+            /[<>:"/\\|?]/g,
+            new_character,
+        )
+    )
 }

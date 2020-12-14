@@ -10,3 +10,4 @@ export * from 'inputs/components/btn';
 export * from 'inputs/components/link';
 export * from 'inputs/components/help';
 export * from 'inputs/components/help_btn';
+export * from 'inputs/components/file';

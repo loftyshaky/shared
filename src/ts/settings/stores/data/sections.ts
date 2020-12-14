@@ -6,6 +6,7 @@ import {
 
 import { t } from 'shared/internal';
 import { o_inputs } from 'inputs/internal';
+import { d_settings } from 'settings/internal';
 
 export class Sections {
     private static i0: Sections;
@@ -52,8 +53,8 @@ export class Sections {
             upload_back_up_callback,
             restore_defaults_callback,
         }: {
-            download_back_up_callback: t.CallbackVoid;
-            upload_back_up_callback: t.CallbackVoid;
+            download_back_up_callback: t.CallbackVariadicVoid;
+            upload_back_up_callback: t.CallbackVariadicVoid;
             restore_defaults_callback: t.CallbackVoid;
         },
     ): o_inputs.Section[] => err(() => [
@@ -62,10 +63,20 @@ export class Sections {
             inputs: [
                 new o_inputs.Btn({
                     name: 'download_back_up',
-                    event_callback: download_back_up_callback,
+                    event_callback: (): Promise<void> => err_async(async () => {
+                        const data_obj = await download_back_up_callback();
+
+                        d_settings.BackUp.i.download({ data_obj });
+                    },
+                    's1030'),
                 }),
                 new o_inputs.Btn({
                     name: 'upload_back_up',
+                    event_callback: d_settings.BackUp.i.open_file_browser,
+                }),
+                new o_inputs.File({
+                    name: 'back_up',
+                    accept: '.json',
                     event_callback: upload_back_up_callback,
                 }),
             ],

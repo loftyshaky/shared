@@ -5,3 +5,4 @@ export * from 'inputs/stores/obj/text';
 export * from 'inputs/stores/obj/textarea';
 export * from 'inputs/stores/obj/checkbox';
 export * from 'inputs/stores/obj/btn';
+export * from 'inputs/stores/obj/file';

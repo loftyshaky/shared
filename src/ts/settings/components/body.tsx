@@ -6,6 +6,7 @@ import {
     c_inputs,
 } from 'inputs/internal';
 import {
+    d_settings,
     u_settings,
     p_settings,
 } from 'settings/internal';
@@ -18,7 +19,7 @@ export const Body = observer((props: p_settings.Body) => {
     } = props;
 
     useEffect(() => {
-        u_settings.Sections.i.change({ section_name: initial_section });
+        d_settings.Sections.i.change({ section_name: initial_section });
 
         window.addEventListener(
             'resize',

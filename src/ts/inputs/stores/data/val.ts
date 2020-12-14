@@ -65,7 +65,7 @@ export class Val {
             );
         }
 
-        return data[input.name] || '';
+        return data.settings[input.name] || '';
     },
     's1023');
 
@@ -108,7 +108,7 @@ export class Val {
             );
         }
 
-        data[input.name] = val;
+        data.settings[input.name] = val;
     },
     's1024'));
 
@@ -126,7 +126,7 @@ export class Val {
             });
         }
 
-        data[input.name] = '';
+        data.settings[input.name] = '';
     },
     's1017'));
 }

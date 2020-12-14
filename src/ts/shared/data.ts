@@ -1,7 +1,9 @@
-window.data = {};
+import { observable } from 'mobx';
 
 declare global {
     let data: any;
 }
 
-export {};
+window.data = observable({
+    settings: {},
+});
