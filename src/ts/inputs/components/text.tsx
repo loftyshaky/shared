@@ -32,7 +32,9 @@ export const Text = observer((props: Props) => {
                     ])}
                     style={{
                         minWidth: u_settings.InputsWidth.i.width[input.section!],
-                        maxWidth: u_settings.InputsWidth.i.max_width,
+                        maxWidth: n(u_settings.InputsWidth.i.max_width)
+                            ? u_settings.InputsWidth.i.max_width
+                            : 0,
                     }}
                 >
                     <input

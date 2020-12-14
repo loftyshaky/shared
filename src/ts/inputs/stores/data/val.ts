@@ -13,7 +13,10 @@ export class Val {
     constructor() {
         makeObservable(
             this,
-            { remove_val: action },
+            {
+                set_focus_state: action,
+                remove_val: action,
+            },
         );
     }
 
