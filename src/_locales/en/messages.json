@@ -60,7 +60,7 @@
         "message": "⭐️ Rate this extension if you like it"
     },
     "help_translating_link_text": {
-        "message": "🈯 Help translating Advanced Extension Reloader into the language you know"
+        "message": "🈯 Help translating this extension into the language you know"
     },
     "facebook_page_link_text": {
         "message": "🖼️ Follow my Facebook page"
@@ -71,7 +71,7 @@
     "restore_defaults_confirm": {
         "message": "Restore default settings?"
     },
-   "invalid_file_type_back_up_error": {
-        "message": "Invalid file type. Upload a back up txt file."
+    "invalid_file_type_back_up_error": {
+        "message": "Invalid file type. Upload a backed up json file."
     }
 }
