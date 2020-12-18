@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { observer } from 'mobx-react';
 
@@ -33,9 +34,9 @@ export const Textarea = observer((props: Props) => {
                     ])}
                     style={{
                         minWidth: u_settings.InputsWidth.i.width[input.section!],
-                        maxWidth: n(u_settings.InputsWidth.i.max_width)
-                            ? u_settings.InputsWidth.i.max_width
-                            : 0,
+                        maxWidth: _.isNaN(u_settings.InputsWidth.i.max_width)
+                            ? 0
+                            : u_settings.InputsWidth.i.max_width,
                     }}
                 >
                     <textarea
