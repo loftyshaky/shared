@@ -9,7 +9,7 @@ declare global {
     };
     const l: any;
     function n<T1>(val: T1 | undefined | null): val is T1;
-    function nu<T1>(val: T1 | null): val is T1;
+    function nn<T1>(val: T1 | null): val is T1;
     function ru(f: t.CallbackVariadicAny | undefined): any;
     function rb(f: t.CallbackVariadicAny | undefined): any;
     function rs(f: t.CallbackVariadicAny | undefined): any;
@@ -26,27 +26,27 @@ declare global {
 window.l = console.log.bind(console);
 
 // > undefined/null check
-window.n = <T1>(val: T1 | undefined | null): val is T1 => ( // n = not nil (nil is null or undefined)
+window.n = <T1>(val: T1 | undefined | null): val is T1 => ( // not nil (nil is undefined or null)
     val != null
 );
 
-window.nu = <T1>(val: T1 | null): val is T1 => ( // n = not null
+window.nn = <T1>(val: T1 | null): val is T1 => ( // not null
     val !== null
 );
 
-window.ru = (f: t.CallbackVariadicAny | undefined): any => (
+window.ru = (f: t.CallbackVariadicAny | undefined): any => ( // resolve undefined
     n(f)
         ? f()
         : undefined
 );
 
-window.rb = (f: t.CallbackVariadicAny | undefined): any => (
+window.rb = (f: t.CallbackVariadicAny | undefined): any => ( // resolve boolean
     n(f)
         ? f()
         : false
 );
 
-window.rs = (f: t.CallbackVariadicAny | undefined): any => (
+window.rs = (f: t.CallbackVariadicAny | undefined): any => ( // resolve string
     n(f)
         ? f()
         : ''
@@ -55,7 +55,7 @@ window.rs = (f: t.CallbackVariadicAny | undefined): any => (
 
 const shared: any = {
     ensure_els: <T1 extends HTMLElement>(
-        els: T1 | null,
+        els: T1 | undefined,
     ): T1 | NodeListOf<T1> | undefined => {
         if (n(els)) {
             return els;

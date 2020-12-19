@@ -46,7 +46,7 @@ export const Textarea = observer((props: p_inputs.Textarea) => {
                                 e,
                             );
                         }}
-                        onChange={(): null => null}
+                        onChange={() => undefined}
                         onFocus={(): void => {
                             d_inputs.Val.i.set_focus_state(
                                 {

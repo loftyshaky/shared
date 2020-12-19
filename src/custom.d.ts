@@ -7,7 +7,7 @@ interface Window {
     l: any;
     data: any;
     n: <T1>(val: T1 | undefined | null) => val is T1;
-    nu: <T1>(val: T1 | null) => val is T1;
+    nn: <T1>(val: T1 | null) => val is T1;
     ru(f: import('shared/t').CallbackVariadicAny | undefined): any;
     rb(f: import('shared/t').CallbackVariadicAny | undefined): any;
     rs(f: import('shared/t').CallbackVariadicAny | undefined): any;
