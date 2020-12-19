@@ -6,4 +6,6 @@ export * as d_inputs from 'inputs/stores/data';
 
 export * as c_inputs from 'inputs/components';
 
+export * as p_inputs from 'inputs/components/prop_types';
+
 export * as i_inputs from 'inputs/interfaces';

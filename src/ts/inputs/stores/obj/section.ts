@@ -1,15 +1,12 @@
 import _ from 'lodash';
 import {
-    configure,
-    observable,
     makeObservable,
+    observable,
 } from 'mobx';
 
 import {
     i_inputs,
 } from 'inputs/internal';
-
-configure({ enforceActions: 'observed' });
 
 export class Section {
     public name: string;

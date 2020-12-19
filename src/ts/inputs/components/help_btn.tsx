@@ -4,15 +4,10 @@ import { observer } from 'mobx-react';
 import { svg } from 'shared/internal';
 import {
     d_inputs,
-    o_inputs,
-    i_inputs,
+    p_inputs,
 } from 'inputs/internal';
 
-interface Props {
-    section_or_input: o_inputs.Section | i_inputs.Input;
-}
-
-export const HelpBtn = observer((props: Props) => {
+export const HelpBtn = observer((props: p_inputs.HelpBtn) => {
     const { section_or_input } = props;
 
     return (

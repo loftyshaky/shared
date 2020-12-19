@@ -1,7 +1,7 @@
 import {
+    makeObservable,
     action,
     observable,
-    makeObservable,
 } from 'mobx';
 
 export class Visibility {

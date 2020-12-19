@@ -3,20 +3,14 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import {
-    o_inputs,
     d_inputs,
     c_inputs,
+    p_inputs,
 } from 'inputs/internal';
 
-import {
-    u_settings,
-} from 'settings/internal';
+import { u_settings } from 'settings/internal';
 
-interface Props {
-    input: o_inputs.Text;
-}
-
-export const Text = observer((props: Props) => {
+export const Text = observer((props: p_inputs.Text) => {
     const { input } = props;
 
     const input_w: JSX.Element = (

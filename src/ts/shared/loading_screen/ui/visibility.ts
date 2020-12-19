@@ -1,8 +1,8 @@
 import {
+    makeObservable,
     observable,
     action,
     runInAction,
-    makeObservable,
 } from 'mobx';
 
 import { CssVars } from 'shared/internal';

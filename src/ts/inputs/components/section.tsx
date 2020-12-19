@@ -2,16 +2,12 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import {
-    o_inputs,
     c_inputs,
+    p_inputs,
 } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
-interface Props {
-    section: o_inputs.Section;
-}
-
-export const Section = observer((props: Props) => {
+export const Section = observer((props: p_inputs.Section) => {
     const { section } = props;
 
     return (

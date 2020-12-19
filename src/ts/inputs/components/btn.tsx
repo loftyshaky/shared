@@ -1,13 +1,9 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { i_inputs } from 'inputs/internal';
+import { p_inputs } from 'inputs/internal';
 
-interface Props {
-    input: i_inputs.Input;
-}
-
-export const Btn = observer((props: Props) => {
+export const Btn = observer((props: p_inputs.Btn) => {
     const { input } = props;
 
     return (

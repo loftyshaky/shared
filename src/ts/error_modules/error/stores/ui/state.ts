@@ -1,8 +1,8 @@
 import {
+    makeObservable,
     action,
     observable,
     computed,
-    makeObservable,
 } from 'mobx';
 
 export class State {

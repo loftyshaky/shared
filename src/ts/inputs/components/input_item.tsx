@@ -2,17 +2,11 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import {
-    i_inputs,
+    p_inputs,
     c_inputs,
 } from 'inputs/internal';
 
-interface Props {
-    input: i_inputs.Input;
-    input_w: JSX.Element;
-    include_label: boolean;
-}
-
-export const InputItem = observer((props: Props) => {
+export const InputItem = observer((props: p_inputs.InputItem) => {
     const { input, input_w, include_label } = props;
 
     return (

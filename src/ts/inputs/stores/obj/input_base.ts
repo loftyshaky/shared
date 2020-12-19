@@ -1,6 +1,6 @@
 import {
-    observable,
     makeObservable,
+    observable,
 } from 'mobx';
 
 import { t } from 'shared/internal';

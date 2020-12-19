@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {
-    action,
     makeObservable,
+    action,
 } from 'mobx';
 import { computedFn } from 'mobx-utils';
 

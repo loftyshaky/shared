@@ -1,24 +1,14 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import {
-    t,
-    svg,
-} from 'shared/internal';
+import { svg } from 'shared/internal';
 
 import {
-    o_inputs,
     d_inputs,
+    p_inputs,
 } from 'inputs/internal';
 
-interface Props {
-    name: string;
-    svg_name: string;
-    input: o_inputs.Text;
-    on_click?: t.CallbackAny;
-}
-
-export const TextBtn = observer((props: Props) => {
+export const TextBtn = observer((props: p_inputs.TextBtn) => {
     const {
         input,
         name,

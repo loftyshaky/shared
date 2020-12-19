@@ -1,7 +1,10 @@
 import React, { ReactNode } from 'react';
 import { observer } from 'mobx-react';
 
-import { u_crash_handler, p_crash_handler } from 'error_modules/internal';
+import {
+    u_crash_handler,
+    p_crash_handler,
+} from 'error_modules/internal';
 
 export const Body = observer(class Body extends React.Component<p_crash_handler.Body> {
     public static getDerivedStateFromError(): any {

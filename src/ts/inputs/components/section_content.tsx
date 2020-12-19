@@ -4,14 +4,11 @@ import { observer } from 'mobx-react';
 import {
     s_inputs,
     o_inputs,
+    p_inputs,
     i_inputs,
 } from 'inputs/internal';
 
-interface Props {
-    inputs: i_inputs.Inputs | i_inputs.Links;
-}
-
-export const SectionContent = observer((props: Props) => {
+export const SectionContent = observer((props: p_inputs.SectionContent) => {
     const { inputs } = props;
 
     return (

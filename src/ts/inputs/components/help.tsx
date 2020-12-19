@@ -3,17 +3,12 @@ import { observer } from 'mobx-react';
 
 import { BaseTr } from 'shared/internal';
 import {
-    o_inputs,
+    p_inputs,
     i_inputs,
 } from 'inputs/internal';
-import {
-    u_settings,
-} from 'settings/internal';
+import { u_settings } from 'settings/internal';
 
-interface Props {
-    section_or_input: o_inputs.Section | i_inputs.Input;
-}
-export const Help = observer((props: Props) => {
+export const Help = observer((props: p_inputs.Help) => {
     const { section_or_input } = props;
     const section_name: string | undefined = (section_or_input as i_inputs.Input).section;
     const is_input: boolean = n(section_name);

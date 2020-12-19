@@ -1,18 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { t } from 'shared/internal';
-import {
-    o_inputs,
-} from 'inputs/internal';
+import { p_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
-interface Props {
-    section: o_inputs.Section;
-    change_section_callback: t.CallbackVoid;
-}
-
-export const SectionBtn = observer((props: Props) => {
+export const SectionBtn = observer((props: p_inputs.SectionBtn) => {
     const {
         section,
         change_section_callback,

@@ -1,19 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import {
-    o_inputs,
-} from 'inputs/internal';
+import { p_inputs } from 'inputs/internal';
 
-import {
-    d_settings,
-} from 'settings/internal';
+import { d_settings } from 'settings/internal';
 
-interface Props {
-    input: o_inputs.File;
-}
-
-export const File = observer((props: Props) => {
+export const File = observer((props: p_inputs.File) => {
     const { input } = props;
 
     return (

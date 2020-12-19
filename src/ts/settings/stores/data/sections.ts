@@ -1,7 +1,7 @@
 import {
+    makeObservable,
     observable,
     action,
-    makeObservable,
 } from 'mobx';
 
 import { t } from 'shared/internal';

@@ -1,9 +1,12 @@
 import {
-    action,
     makeObservable,
+    action,
 } from 'mobx';
 
-import { o_inputs, i_inputs } from 'inputs/internal';
+import {
+    o_inputs,
+    i_inputs,
+} from 'inputs/internal';
 
 export class HelpVisibility {
     private static i0: HelpVisibility;

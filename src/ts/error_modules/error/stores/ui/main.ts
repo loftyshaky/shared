@@ -1,6 +1,6 @@
 import {
-    action,
     makeObservable,
+    action,
 } from 'mobx';
 
 import {
