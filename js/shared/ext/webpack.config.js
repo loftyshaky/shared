@@ -69,6 +69,7 @@ const shared_config = ({
                 app_root,
                 'dist',
             ),
+            publicPath: '',
         },
         resolve: {
             alias: {
