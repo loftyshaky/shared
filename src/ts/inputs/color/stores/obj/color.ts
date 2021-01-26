@@ -32,7 +32,6 @@ export class Color extends o_inputs.InputBase {
         ...Array(d_color.Color.i.palette_color_amount).fill(color_picker_state),
     }
 
-    public save_callback: t.CallbackVariadicVoid;
     public select_palette_color_callback: t.CallbackVariadicVoid;
     public hide_color_help_callback: t.CallbackVoid;
 
@@ -57,7 +56,6 @@ export class Color extends o_inputs.InputBase {
             obj,
         );
 
-        this.save_callback = obj.save_callback;
         this.select_palette_color_callback = obj.select_palette_color_callback;
         this.hide_color_help_callback = obj.hide_color_help_callback;
     }

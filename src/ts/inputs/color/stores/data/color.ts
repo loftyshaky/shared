@@ -122,7 +122,7 @@ export class Color {
         });
 
         if (i === 'main') {
-            input.save_callback({ input });
+            input.event_callback({ input });
 
             d_color.Visibility.i.hide_main_and_palette({ input });
         } else {
