@@ -8,7 +8,7 @@ import {
 
 export const Body = observer(class Body extends React.Component<p_crash_handler.Body> {
     public static getDerivedStateFromError(): any {
-        u_crash_handler.Visibility.i.change_visibility_of_reload_ui_screen({ is_visible: true });
+        u_crash_handler.Visibility.i.show_reload_ui_screen();
     }
 
     public componentDidCatch(err_obj: Error): void {
@@ -24,11 +24,7 @@ export const Body = observer(class Body extends React.Component<p_crash_handler.
                     <button
                         className='btn'
                         type='button'
-                        onClick={(): void => (
-                            u_crash_handler.Visibility.i.change_visibility_of_reload_ui_screen(
-                                { is_visible: false },
-                            )
-                        )}
+                        onClick={u_crash_handler.Main.i.reload_page}
                     >
                         {ext.msg('reload_ui_btn_text')}
                     </button>

@@ -12,7 +12,7 @@ export class Visibility {
             this,
             {
                 page_is_crashed: observable,
-                change_visibility_of_reload_ui_screen: action,
+                show_reload_ui_screen: action,
             },
         );
     }
@@ -25,9 +25,7 @@ export class Visibility {
 
     public page_is_crashed: boolean = false; // true = shows reload ui screen
 
-    public change_visibility_of_reload_ui_screen = (
-        { is_visible }: { is_visible: boolean },
-    ): void => {
-        this.page_is_crashed = is_visible;
+    public show_reload_ui_screen = (): void => {
+        this.page_is_crashed = true;
     };
 }
