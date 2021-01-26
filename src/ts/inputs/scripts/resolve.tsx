@@ -2,7 +2,9 @@ import React from 'react';
 
 import {
     o_inputs,
+    o_color,
     c_inputs,
+    c_color,
     i_inputs,
 } from 'inputs/internal';
 
@@ -16,7 +18,7 @@ export const resolve = (
     let input_el;
 
     if (input.type === 'color') {
-        //   input_el = <c_inputs.Color input={input} />;
+        input_el = <c_color.Body input={input as o_color.Color} />;
     } else if (input.type === 'text') {
         input_el = <c_inputs.Text input={input as o_inputs.Text} />;
     } else if (input.type === 'textarea') {

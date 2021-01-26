@@ -1,0 +1,9 @@
+.link_btn {
+    display: block;
+    font-size: $font_small;
+    margin-top: 6px;
+}
+
+.link_btn.hide {
+    margin-top: 4px;
+}

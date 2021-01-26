@@ -45,3 +45,4 @@ declare module '*.svg' {
 }
 
 declare module 'svg-inline-react';
+declare module '@simonwep/pickr';

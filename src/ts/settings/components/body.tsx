@@ -3,6 +3,8 @@ import { observer } from 'mobx-react';
 
 import {
     o_inputs,
+    d_color,
+    s_color,
     c_inputs,
 } from 'inputs/internal';
 import {
@@ -29,6 +31,14 @@ export const Body = observer((props: p_settings.Body) => {
             'mousemove',
             u_settings.InputsWidth.i.set_max_width,
         );
+        document.addEventListener(
+            'mousedown',
+            d_color.Visibility.i.hide_all,
+        );
+        window.addEventListener(
+            'resize',
+            s_color.Position.i.set,
+        );
     },
     [
         props,
@@ -44,6 +54,14 @@ export const Body = observer((props: p_settings.Body) => {
             window.removeEventListener(
                 'mousemove',
                 u_settings.InputsWidth.i.set_max_width,
+            );
+            document.removeEventListener(
+                'mousedown',
+                d_color.Visibility.i.hide_all,
+            );
+            window.removeEventListener(
+                'resize',
+                s_color.Position.i.set,
             );
         }
     ));
@@ -68,6 +86,7 @@ export const Body = observer((props: p_settings.Body) => {
                 </div>
                 <div
                     className='sections'
+                    onScroll={s_color.Position.i.set}
                 >
                     {
                         Object.values(sections).map((

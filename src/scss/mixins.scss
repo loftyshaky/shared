@@ -92,3 +92,13 @@ $border-width: 1px;
     border: none;
     outline: none;
 }
+
+$box_shadow_for_mixin: rgba(0, 0, 0, 0.3) 0px 0px 2px, rgba(0, 0, 0, 0.3) 0px 4px 8px;
+
+@mixin box_shadow {
+    box-shadow: $box_shadow_for_mixin;
+}
+
+@mixin box_shadow_important {
+    box-shadow: $box_shadow_for_mixin !important;
+}

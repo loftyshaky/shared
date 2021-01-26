@@ -53,6 +53,12 @@
     "remove_val_text_input_btn_title": {
         "message": "Remove value"
     },
+    "hide_link_btn_text": {
+        "message": "Hide"
+    },
+    "color_help_text": {
+        "message": "Right-click on the main color button to choose a custom color.\nRight-click on a pallete color to change it."
+    },
     "privacy_policy_link_text": {
         "message": "📜 Privacy policy"
     },

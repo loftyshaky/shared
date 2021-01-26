@@ -1,0 +1,88 @@
+$outline_width: 1px;
+$outline_offset: 2px;
+
+.input_item .visualization_w {
+    display: flex;
+}
+
+.input_item .visualization {
+    @include border;
+    margin-right: $input_content_gap;
+    width: $input_height;
+    height: $input_height;
+    cursor: pointer;
+    outline: none;
+}
+
+.input_item.color .label {
+    align-self: normal;
+}
+
+.fill_shadow_w {
+    position: absolute;
+    top: $input_height + $input_content_gap;
+    left: 0;
+}
+
+.fill_shadow {
+    position: fixed;
+    display: block;
+    visibility: hidden;
+}
+
+.palette_w {
+    z-index: 1;
+    position: absolute;
+    top: $input_height + $input_content_gap;
+    left: 0;
+}
+
+.palette {
+    @include border;
+    @include box_shadow;
+    position: fixed;
+    padding: 10px;
+    width: 410px;
+    line-height: 0;
+}
+
+.palette_visualization_w {
+    display: inline-block;
+    padding: 0;
+    margin-right: $gap;
+    margin-bottom: $gap;
+    cursor: pointer;
+}
+
+.palette_visualization_w:nth-child(10),
+.palette_visualization_w:nth-child(20),
+.palette_visualization_w:nth-child(30) {
+    margin-right: 0;
+}
+
+.palette_visualization {
+    @include btn;
+    width: $input_height;
+    height: $input_height;
+}
+
+.palette_visualization_w:nth-child(n + 21) {
+    margin-bottom: 0;
+}
+
+.palette_visualization_w.selected .palette_visualization {
+    outline-style: dashed;
+    outline-width: $outline_width;
+    outline-offset: $outline_offset;
+}
+
+.visualization_w.opened .visualization,
+.palette_visualization_w.opened .palette_visualization {
+    outline-style: solid;
+    outline-width: $outline_width;
+    outline-offset: $outline_offset;
+}
+
+.color_help_w {
+    margin-bottom: $gap;
+}

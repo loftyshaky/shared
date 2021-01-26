@@ -1,0 +1,92 @@
+$pcr_picker_size: 16px;
+$btn_padding: 6px;
+
+.color_picker_w {
+    position: absolute;
+    z-index: 2;
+    top: $input_height + $input_content_gap;
+    left: 0;
+    user-select: none;
+}
+
+.color_picker {
+    position: fixed;
+}
+
+.pcr-app {
+    @include box_shadow_important;
+    position: relative !important;
+    left: initial !important;
+    top: initial !important;
+    width: fit-content !important;
+    padding: $gap !important;
+    transition: none !important;
+}
+
+.pcr-picker {
+    width: $pcr_picker_size !important;
+    height: $pcr_picker_size !important;
+    border-width: 1px !important;
+}
+
+.pcr-color-preview {
+    margin-bottom: $gap !important;
+}
+
+.pcr-swatches {
+    margin-top: 3px !important;
+}
+
+.pcr-app,
+.pcr-last-color,
+.pcr-palette,
+.pcr-current-color,
+.pcr-slider,
+.color_picker_w input {
+    border-radius: 0 !important;
+}
+
+.pcr-app,
+.pcr-color-preview,
+.pcr-palette,
+.pcr-slider,
+.color_picker_w input {
+    @include border;
+}
+
+.color_picker_w input {
+    -webkit-filter: initial !important;
+    filter: initial !important;
+}
+
+.color_picker_w input:not(.pcr-result) {
+    padding: $btn_padding $btn_padding 5px $btn_padding;
+}
+
+.pcr-interaction {
+    display: unset !important;
+    margin: -2px !important;
+}
+
+.pcr-result {
+    width: calc(100% - 5px);
+    display: block;
+    margin-top: 9px !important;
+    padding-top: 6px !important;
+}
+
+.pcr-interaction input:focus {
+    box-shadow: none !important;
+}
+
+.pcr-color-chooser {
+    margin-top: $gap !important;
+}
+
+.pcr-app .pcr-interaction > * {
+    margin-right: 2px !important;
+}
+
+[data-type="HEXA"] {
+    margin-right: 3px !important;
+}

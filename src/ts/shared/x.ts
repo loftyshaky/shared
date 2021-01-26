@@ -329,7 +329,7 @@ export class X {
                 },
             );
 
-            new_link.href = browser.extension.getURL(`${filename}.css`);
+            new_link.href = browser.runtime.getURL(`${filename}.css`);
             new_link.setAttribute(
                 'rel',
                 'stylesheet',

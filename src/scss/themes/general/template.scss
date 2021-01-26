@@ -86,10 +86,6 @@ body .btn.text,
     background-color: $htc;
 }
 
-.top_palette_visualization_btns .palette_visualization {
-    background-color: $gaq;
-}
-
 .input_w .visualization {
     border-color: $lpe;
     background-color: $gaq;
@@ -135,7 +131,20 @@ select {
     background-color: $gaq !important;
 }
 
-.link {
+.color_picker_w input:hover:not(.pcr-result):not(.active) {
+    background-color: $yos !important;
+}
+
+.pcr-result:focus {
+    border-color: $myo !important;
+}
+
+.color_picker_w .pcr-type.active {
+    background-color: $nrf !important;
+}
+
+.link,
+.link_btn {
     color: $pdv;
 }
 
@@ -143,12 +152,19 @@ select {
     color: $pec;
 }
 
-.link:hover {
+.link:hover,
+.link_btn:hover {
     color: $bvs;
 }
 
-.link:active {
+.link:active,
+.link_btn:active {
     color: $nmy;
+}
+
+.input_item .visualization_w .visualization,
+.input_item .palette_visualization {
+    outline-color: $myo;
 }
 
 .input_w.is_in_focus_state:before {
