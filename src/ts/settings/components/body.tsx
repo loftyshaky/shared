@@ -39,14 +39,8 @@ export const Body = observer((props: p_settings.Body) => {
             'resize',
             s_color.Position.i.set,
         );
-    },
-    [
-        props,
-        initial_section,
-    ]);
 
-    useEffect(() => (
-        () => {
+        return () => {
             window.removeEventListener(
                 'resize',
                 u_settings.InputsWidth.i.set_max_width,
@@ -63,8 +57,12 @@ export const Body = observer((props: p_settings.Body) => {
                 'resize',
                 s_color.Position.i.set,
             );
-        }
-    ));
+        };
+    },
+    [
+        props,
+        initial_section,
+    ]);
 
     return (
         <div className='main'>
