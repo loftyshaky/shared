@@ -132,14 +132,15 @@ export class Color {
     's1038');
 
     public restore_old_color = (): void => err(() => {
-        const color: string = typeof this.previous_color === 'number'
-            ? data.settings.colors[this.previous_color]
-            : this.previous_color;
-
         if (
             d_color.Visibility.i.previously_visible_input
             && d_color.Visibility.i.previously_visible_color_picker_i
         ) {
+            const color: i_color.Color = d_color.Visibility.i.previously_visible_color_picker_i !== 'main'
+                                         && typeof this.previous_color === 'number'
+                ? data.settings.colors[this.previous_color]
+                : this.previous_color;
+
             this.set({
                 input: d_color.Visibility.i.previously_visible_input,
                 i: d_color.Visibility.i.previously_visible_color_picker_i,
@@ -210,10 +211,12 @@ export class Color {
             i: i_color.I
         },
     ): void => err(() => {
-        this.previous_color = d_color.Color.i.access({
-            input,
-            i,
-        });
+        this.previous_color = i === 'main'
+            ? data.settings[input.name]
+            : d_color.Color.i.access({
+                input,
+                i,
+            });
     },
     's1049');
 }
