@@ -136,7 +136,7 @@ export class Color extends o_inputs.InputBase {
             { i }: { i: i_color.I; },
         ): string {
             return (
-                i === data.settings.selected_palette_visualization
+                i === data.settings.selected_palette_color
                     ? 'selected'
                     : ''
             );

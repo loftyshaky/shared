@@ -35,7 +35,6 @@ export const Visualization = observer((props: p_color.Visualization) => {
                     : palette_visualization_cls,
                 `${i}_visualization_w`,
                 input.inset_border_cls!({ i }),
-                input.palette_visualization_outline_selected!({ i }),
                 input.visualization_outline_opened!({ i }),
                 input.visualization_selected_opened!({ i }),
             ])}
