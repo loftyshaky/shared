@@ -68,7 +68,9 @@ export class Val {
             );
         }
 
-        return data.settings[input.name] || '';
+        return n(data.settings[input.name])
+            ? data.settings[input.name]
+            : '';
     },
     's1023');
 
