@@ -43,7 +43,7 @@ const rules = {
         ],
         'max-nested-callbacks': [
             'error',
-            4,
+            8,
         ],
         'multiline-ternary': [
             'error',
