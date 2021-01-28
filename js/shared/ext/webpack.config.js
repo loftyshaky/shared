@@ -85,6 +85,10 @@ const shared_config = ({
                     paths.ts,
                     'settings',
                 ),
+                content_script: path.join(
+                    paths.ts,
+                    'content_script',
+                ),
             },
             extensions: [
                 '.js',
