@@ -88,6 +88,13 @@ export class Color {
     },
     's1045');
 
+    public access_from_val = ({ val }: { val: i_color.Color; }): string => err(() => (
+        typeof val === 'number'
+            ? data.settings.colors[val]
+            : val
+    ),
+    's1050');
+
     public set = (
         {
             input,
