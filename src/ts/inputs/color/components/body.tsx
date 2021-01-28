@@ -77,7 +77,7 @@ export const Body = observer((props: p_color.Body) => {
                             <div className='palette_colors'>
                                 {
                                     n(data.settings.colors)
-                                        ? Object.keys(data.settings.colors).map(
+                                        ? data.settings.colors.map(
                                             (color: string, i: number): JSX.Element => (
                                                 <c_color.Visualization
                                                     key={i}

@@ -29,38 +29,38 @@ export class Color {
         );
     }
 
-    public default_colors: any = {
-        0: 'rgb(255 255 255)',
-        1: 'rgb(0 0 0)',
-        2: 'rgb(255 0 0)',
-        3: 'rgb(183 28 28)',
-        4: 'rgb(244 67 54)',
-        5: 'rgb(245 0 87)',
-        6: 'rgb(136 14 79)',
-        7: 'rgb(240 98 146)',
-        8: 'rgb(170 0 255)',
-        9: 'rgb(74 20 140)',
-        10: 'rgb(156 39 176)',
-        11: 'rgb(98 0 234)',
-        12: 'rgb(103 58 183)',
-        13: 'rgb(48 79 254)',
-        14: 'rgb(63 81 181)',
-        15: 'rgb(0 176 255)',
-        16: 'rgb(24 255 255)',
-        17: 'rgb(29 233 182)',
-        18: 'rgb(0 150 136)',
-        19: 'rgb(0 200 83)',
-        20: 'rgb(27 94 32)',
-        21: 'rgb(100 221 23)',
-        22: 'rgb(174 234 0)',
-        23: 'rgb(255 214 0)',
-        24: 'rgb(255 235 59)',
-        25: 'rgb(255 111 0)',
-        26: 'rgb(255 213 79)',
-        27: 'rgb(255 152 0)',
-        28: 'rgb(221 44 0)',
-        29: 'rgb(191 54 12)',
-    };
+    public default_colors: i_color.Color[] = [
+        'rgb(255 255 255)',
+        'rgb(0 0 0)',
+        'rgb(255 0 0)',
+        'rgb(183 28 28)',
+        'rgb(244 67 54)',
+        'rgb(245 0 87)',
+        'rgb(136 14 79)',
+        'rgb(240 98 146)',
+        'rgb(170 0 255)',
+        'rgb(74 20 140)',
+        'rgb(156 39 176)',
+        'rgb(98 0 234)',
+        'rgb(103 58 183)',
+        'rgb(48 79 254)',
+        'rgb(63 81 181)',
+        'rgb(0 176 255)',
+        'rgb(24 255 255)',
+        'rgb(29 233 182)',
+        'rgb(0 150 136)',
+        'rgb(0 200 83)',
+        'rgb(27 94 32)',
+        'rgb(100 221 23)',
+        'rgb(174 234 0)',
+        'rgb(255 214 0)',
+        'rgb(255 235 59)',
+        'rgb(255 111 0)',
+        'rgb(255 213 79)',
+        'rgb(255 152 0)',
+        'rgb(221 44 0)',
+        'rgb(191 54 12)',
+    ];
 
     public palette_color_amount: number = Object.keys(this.default_colors).length;
     public previous_color: i_color.Color = '';
@@ -122,12 +122,15 @@ export class Color {
         });
 
         if (i === 'main') {
-            input.event_callback({ input });
-
             d_color.Visibility.i.hide_main_and_palette({ input });
         } else {
             d_color.Visibility.i.hide_palette_color_pickers({ input });
         }
+
+        input.event_callback({
+            input,
+            i,
+        });
     },
     's1038');
 
@@ -188,7 +191,10 @@ export class Color {
             d_color.Visibility.i.previously_visible_input = input;
             d_color.Visibility.i.previously_visible_color_picker_i = i;
 
-            input.select_palette_color_callback({ input });
+            input.select_palette_color_callback({
+                input,
+                i,
+            });
         }
     },
     's1046');
