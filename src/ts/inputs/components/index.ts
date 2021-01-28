@@ -6,6 +6,7 @@ export * from 'inputs/components/label';
 export * from 'inputs/components/text';
 export * from 'inputs/components/text_btn';
 export * from 'inputs/components/textarea';
+export * from 'inputs/components/checkbox';
 export * from 'inputs/components/btn';
 export * from 'inputs/components/link_btn';
 export * from 'inputs/components/link';

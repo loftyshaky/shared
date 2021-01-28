@@ -9,6 +9,7 @@ export * from 'inputs/components/prop_types/help_btn';
 export * from 'inputs/components/prop_types/text';
 export * from 'inputs/components/prop_types/text_btn';
 export * from 'inputs/components/prop_types/textarea';
+export * from 'inputs/components/prop_types/checkbox';
 export * from 'inputs/components/prop_types/section';
 export * from 'inputs/components/prop_types/section_btn';
 export * from 'inputs/components/prop_types/section_content';
