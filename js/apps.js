@@ -9,12 +9,14 @@ const apps = [
     'Advanced Extension Reloader Watch 1',
     'Advanced Extension Reloader Watch 2',
     'Advanced Extension Reloader',
+    'Google Enhancement Suite',
     'Base64 font-face',
 ];
 
 const app_types = [
     'package',
     'package',
+    'ext',
     'ext',
     'ext',
 ];
