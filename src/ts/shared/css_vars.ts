@@ -1,11 +1,13 @@
 export class CssVars {
     private static i0: CssVars;
 
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
+    public static i(): CssVars {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
+
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
 
     public get = (
         {

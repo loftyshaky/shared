@@ -22,7 +22,7 @@ export class Text extends o_inputs.InputBase {
         function ({ input }: { input: Text; }): string {
             return (
                 input.allow_removing_val
-                && d_inputs.Val.i.access({ input }) === ''
+                && d_inputs.Val.i().access({ input }) === ''
                     ? 'hidden'
                     : ''
             );

@@ -24,7 +24,7 @@ export const TextBtn = observer((props: p_inputs.TextBtn) => {
                     'btn',
                     'text_input',
                     input.remove_val_btn_is_visible!({ input }),
-                    d_inputs.Val.i.warn_state({ input }),
+                    d_inputs.Val.i().warn_state({ input }),
                 ])}
                 type='button'
                 title={ext.msg(`${name}_text_input_btn_title`)}

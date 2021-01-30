@@ -11,7 +11,7 @@ export const FillShadow = observer((props: p_color.FillShadow) => {
         const { is_visible } = props;
 
         if (is_visible) {
-            s_color.Position.i.set();
+            s_color.Position.i().set();
         }
     });
 

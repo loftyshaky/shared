@@ -18,7 +18,7 @@ export const File = observer((props: p_inputs.File) => {
             accept={input.accept}
             value=''
             onChange={(e): void => {
-                d_settings.BackUp.i.upload(
+                d_settings.BackUp.i().upload(
                     {
                         input,
                     },

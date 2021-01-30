@@ -13,13 +13,12 @@ import {
 export class Color {
     private static i0: Color;
 
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
+    public static i(): Color {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
 
-    public constructor() {
+    private constructor() {
         makeObservable(
             this,
             {
@@ -129,9 +128,9 @@ export class Color {
         });
 
         if (i === 'main') {
-            d_color.Visibility.i.hide_main_and_palette({ input });
+            d_color.Visibility.i().hide_main_and_palette({ input });
         } else {
-            d_color.Visibility.i.hide_palette_color_pickers({ input });
+            d_color.Visibility.i().hide_palette_color_pickers({ input });
         }
 
         input.event_callback({
@@ -142,18 +141,19 @@ export class Color {
     's1038');
 
     public restore_old_color = (): void => err(() => {
+        const inst = d_color.Visibility.i();
         if (
-            d_color.Visibility.i.previously_visible_input
-            && d_color.Visibility.i.previously_visible_color_picker_i
+            n(inst.previously_visible_input)
+            && n(inst.previously_visible_color_picker_i)
         ) {
-            const color: i_color.Color = d_color.Visibility.i.previously_visible_color_picker_i !== 'main'
+            const color: i_color.Color = inst.previously_visible_color_picker_i !== 'main'
                                          && typeof this.previous_color === 'number'
                 ? data.settings.colors[this.previous_color]
                 : this.previous_color;
 
             this.set({
-                input: d_color.Visibility.i.previously_visible_input,
-                i: d_color.Visibility.i.previously_visible_color_picker_i,
+                input: inst.previously_visible_input,
+                i: inst.previously_visible_color_picker_i,
                 color,
             });
         }
@@ -195,8 +195,8 @@ export class Color {
 
             this.previous_color = i;
 
-            d_color.Visibility.i.previously_visible_input = input;
-            d_color.Visibility.i.previously_visible_color_picker_i = i;
+            d_color.Visibility.i().previously_visible_input = input;
+            d_color.Visibility.i().previously_visible_color_picker_i = i;
 
             input.select_palette_color_callback({
                 input,
@@ -226,7 +226,7 @@ export class Color {
     ): void => err(() => {
         this.previous_color = i === 'main'
             ? data.settings[input.name]
-            : d_color.Color.i.access({
+            : d_color.Color.i().access({
                 input,
                 i,
             });

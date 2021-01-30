@@ -22,14 +22,14 @@ export const Text = observer((props: p_inputs.Text) => {
                         'text',
                         input.name,
                         'inset_border',
-                        d_inputs.Val.i.focus_state({ input }),
-                        d_inputs.Val.i.warn_state({ input }),
+                        d_inputs.Val.i().focus_state({ input }),
+                        d_inputs.Val.i().warn_state({ input }),
                     ])}
                     style={{
-                        minWidth: u_settings.InputsWidth.i.width[input.section!],
-                        maxWidth: _.isNaN(u_settings.InputsWidth.i.max_width)
+                        minWidth: u_settings.InputsWidth.i().width[input.section!],
+                        maxWidth: _.isNaN(u_settings.InputsWidth.i().max_width)
                             ? 0
-                            : u_settings.InputsWidth.i.max_width,
+                            : u_settings.InputsWidth.i().max_width,
                     }}
                 >
                     <input
@@ -39,11 +39,11 @@ export const Text = observer((props: p_inputs.Text) => {
                             input.text_type,
                         ])}
                         type={input.type}
-                        value={d_inputs.Val.i.access({ input })}
+                        value={d_inputs.Val.i().access({ input })}
                         autoComplete='off'
                         spellCheck='false'
                         onInput={(e): void => {
-                            d_inputs.Val.i.change(
+                            d_inputs.Val.i().change(
                                 {
                                     input,
                                 },
@@ -51,7 +51,7 @@ export const Text = observer((props: p_inputs.Text) => {
                             );
                         }}
                         onFocus={(): void => {
-                            d_inputs.Val.i.set_focus_state(
+                            d_inputs.Val.i().set_focus_state(
                                 {
                                     input,
                                     state: true,
@@ -59,7 +59,7 @@ export const Text = observer((props: p_inputs.Text) => {
                             );
                         }}
                         onBlur={(): void => {
-                            d_inputs.Val.i.set_focus_state(
+                            d_inputs.Val.i().set_focus_state(
                                 {
                                     input,
                                     state: false,
@@ -72,7 +72,7 @@ export const Text = observer((props: p_inputs.Text) => {
                         name='remove_val'
                         svg_name='Close'
                         input={input}
-                        on_click={() => d_inputs.Val.i.remove_val({ input })}
+                        on_click={() => d_inputs.Val.i().remove_val({ input })}
                     />
                 </span>
                 {

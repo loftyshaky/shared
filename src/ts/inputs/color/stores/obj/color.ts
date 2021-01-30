@@ -29,7 +29,7 @@ export class Color extends o_inputs.InputBase {
     public show_color_input_help?: boolean = false;
     public state?: any = {
         main: color_picker_state,
-        ...Array(d_color.Color.i.palette_color_amount).fill(color_picker_state),
+        ...Array(d_color.Color.i().palette_color_amount).fill(color_picker_state),
     }
 
     public select_palette_color_callback: t.CallbackVariadicVoid;

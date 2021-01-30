@@ -32,11 +32,11 @@ export const Body = observer((props: p_loading_screen.Body) => {
                 show_border
                     ? 'border'
                     : '',
-                u_loading_screen.Visibility.i.inner_is_none
+                u_loading_screen.Visibility.i().inner_is_none
                     ? 'none'
                     : '',
             ])}
-            state={u_loading_screen.Visibility.i.outer_is_visible}
+            state={u_loading_screen.Visibility.i().outer_is_visible}
             style={{
                 left: left!,
                 top: top!,

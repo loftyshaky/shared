@@ -15,7 +15,7 @@ export const HelpBtn = observer((props: p_inputs.HelpBtn) => {
             className='help_btn'
             type='button'
             title={ext.msg('help_btn_title')}
-            onClick={(): void => { d_inputs.HelpVisibility.i.change({ section_or_input }); }}
+            onClick={(): void => { d_inputs.HelpVisibility.i().change({ section_or_input }); }}
         >
             <svg.Help />
         </button>

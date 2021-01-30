@@ -12,13 +12,12 @@ import {
 export class Visibility {
     private static i0: Visibility;
 
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
+    public static i(): Visibility {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
 
-    public constructor() {
+    private constructor() {
         makeObservable(
             this,
             {
@@ -79,7 +78,7 @@ export class Visibility {
                 && n(this.previously_visible_input)
                 && n(this.previously_visible_color_picker_i)
             ) {
-                d_color.Color.i.restore_old_color();
+                d_color.Color.i().restore_old_color();
             }
         }
 
@@ -93,7 +92,7 @@ export class Visibility {
                 new_input.state[i][color_picker_state] = color_picker_state_bool;
 
                 if (color_picker_state === 'is_visible') {
-                    d_color.Color.i.set_previous_color({
+                    d_color.Color.i().set_previous_color({
                         input,
                         i,
                     });
@@ -121,7 +120,7 @@ export class Visibility {
     public hide_palette_color_pickers = ({ input }: { input: o_color.Color }): void => err(() => {
         const new_input: o_color.Color = input;
 
-        d_color.Color.i.filter_palette_colors(
+        d_color.Color.i().filter_palette_colors(
             { obj: new_input.state },
         ).forEach((item, i: number): void => {
             if (item !== 'main') {
@@ -182,7 +181,7 @@ export class Visibility {
                     || e.button === 0
                 )
             ) {
-                d_color.Color.i.restore_old_color();
+                d_color.Color.i().restore_old_color();
             }
         }
     },

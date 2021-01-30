@@ -10,11 +10,13 @@ import {
 export class ColorPicker {
     private static i0: ColorPicker;
 
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
+    public static i(): ColorPicker {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
+
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
 
     public setting_color: boolean = false;
 
@@ -61,7 +63,7 @@ export class ColorPicker {
         pickr.on('save',
             () => {
                 if (!this.setting_color) {
-                    d_color.Color.i.save({
+                    d_color.Color.i().save({
                         i,
                         input,
                     });
@@ -71,10 +73,10 @@ export class ColorPicker {
         pickr.on('change',
             (color: any) => {
                 if (input.state[i].is_visible) {
-                    d_color.Color.i.set({
+                    d_color.Color.i().set({
                         input,
                         i,
-                        color: d_color.Color.i.convert_pickr_color_to_rgb_string(
+                        color: d_color.Color.i().convert_pickr_color_to_rgb_string(
                             { pickr_color: color },
                         ),
                     });
@@ -101,7 +103,7 @@ export class ColorPicker {
 
             this.setting_color = true;
 
-            pickr.setColor(d_color.Color.i.access({
+            pickr.setColor(d_color.Color.i().access({
                 input,
                 i,
             }));

@@ -21,41 +21,41 @@ export const Body = observer((props: p_settings.Body) => {
     } = props;
 
     useEffect(() => {
-        d_settings.Sections.i.change({ section_name: initial_section });
+        d_settings.Sections.i().change({ section_name: initial_section });
 
         window.addEventListener(
             'resize',
-            u_settings.InputsWidth.i.set_max_width,
+            u_settings.InputsWidth.i().set_max_width,
         );
         window.addEventListener(
             'mousemove',
-            u_settings.InputsWidth.i.set_max_width,
+            u_settings.InputsWidth.i().set_max_width,
         );
         document.addEventListener(
             'mousedown',
-            d_color.Visibility.i.hide_all,
+            d_color.Visibility.i().hide_all,
         );
         window.addEventListener(
             'resize',
-            s_color.Position.i.set,
+            s_color.Position.i().set,
         );
 
         return () => {
             window.removeEventListener(
                 'resize',
-                u_settings.InputsWidth.i.set_max_width,
+                u_settings.InputsWidth.i().set_max_width,
             );
             window.removeEventListener(
                 'mousemove',
-                u_settings.InputsWidth.i.set_max_width,
+                u_settings.InputsWidth.i().set_max_width,
             );
             document.removeEventListener(
                 'mousedown',
-                d_color.Visibility.i.hide_all,
+                d_color.Visibility.i().hide_all,
             );
             window.removeEventListener(
                 'resize',
-                s_color.Position.i.set,
+                s_color.Position.i().set,
             );
         };
     },
@@ -84,7 +84,7 @@ export const Body = observer((props: p_settings.Body) => {
                 </div>
                 <div
                     className='sections'
-                    onScroll={s_color.Position.i.set}
+                    onScroll={s_color.Position.i().set}
                 >
                     {
                         Object.values(sections).map((

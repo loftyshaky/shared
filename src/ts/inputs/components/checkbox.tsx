@@ -24,10 +24,10 @@ export const Checkbox = observer((props: p_inputs.Checkbox) => {
                         input.name,
                     ])}
                     style={{
-                        minWidth: u_settings.InputsWidth.i.width[input.section!],
-                        maxWidth: _.isNaN(u_settings.InputsWidth.i.max_width)
+                        minWidth: u_settings.InputsWidth.i().width[input.section!],
+                        maxWidth: _.isNaN(u_settings.InputsWidth.i().max_width)
                             ? 0
-                            : u_settings.InputsWidth.i.max_width,
+                            : u_settings.InputsWidth.i().max_width,
                     }}
                 >
                     { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
@@ -35,9 +35,9 @@ export const Checkbox = observer((props: p_inputs.Checkbox) => {
                         <input
                             id={input.name}
                             type='checkbox'
-                            checked={d_inputs.Val.i.access({ input })}
+                            checked={d_inputs.Val.i().access({ input })}
                             onChange={(e): void => {
-                                d_inputs.Val.i.change(
+                                d_inputs.Val.i().change(
                                     {
                                         input,
                                     },

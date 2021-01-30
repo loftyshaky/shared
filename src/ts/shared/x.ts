@@ -100,11 +100,13 @@ window.sab = <T1 extends HTMLElement>(
 export class X {
     private static i0: X;
 
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
+    public static i(): X {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
+
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
 
     // el.nodeType === 1 = not document
 

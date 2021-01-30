@@ -8,7 +8,12 @@ import {
 export class State {
     private static i0: State;
 
-    constructor() {
+    public static i(): State {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
+    }
+
+    private constructor() {
         makeObservable<State, 'is_visible' | 'is_highlighted'>(
             this,
             {
@@ -20,12 +25,6 @@ export class State {
                 change_state: action,
             },
         );
-    }
-
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
     }
 
     [index: string]: any;

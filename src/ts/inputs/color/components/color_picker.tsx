@@ -32,7 +32,7 @@ export const ColorPicker = observer((props: p_color.ColorPicker) => {
         }
 
         if (n(color_picker_ref.current)) {
-            s_color.ColorPicker.i.update({
+            s_color.ColorPicker.i().update({
                 pickr: pickr_ref.current,
                 color_picker: color_picker_ref.current,
                 input,
@@ -52,7 +52,7 @@ export const ColorPicker = observer((props: p_color.ColorPicker) => {
                 if (color_picker && visualization) {
                     const { input, i } = props;
 
-                    pickr_ref.current = await s_color.ColorPicker.i.init({
+                    pickr_ref.current = await s_color.ColorPicker.i().init({
                         input,
                         i,
                         color_picker,

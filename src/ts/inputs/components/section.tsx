@@ -15,7 +15,7 @@ export const Section = observer((props: p_inputs.Section) => {
             className={x.cls([
                 'section',
                 section.name,
-                section.name === d_settings.Sections.i.current_section
+                section.name === d_settings.Sections.i().current_section
                     ? ''
                     : 'hidden',
             ])}

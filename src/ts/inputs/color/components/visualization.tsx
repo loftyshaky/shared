@@ -50,20 +50,20 @@ export const Visualization = observer((props: p_color.Visualization) => {
                 type='button'
                 aria-label={aria_label}
                 style={{
-                    backgroundColor: d_color.Color.i.access!({
+                    backgroundColor: d_color.Color.i().access!({
                         input,
                         i,
                     }),
                 }}
                 ref={visualization_ref}
                 onClick={(): void => {
-                    d_color.Color.i.select_palette_color({
+                    d_color.Color.i().select_palette_color({
                         input,
                         i,
                     });
                 }}
                 onMouseUp={(e: any): void => {
-                    d_color.Visibility.i.change_visibility({
+                    d_color.Visibility.i().change_visibility({
                         input,
                         i,
                         color_picker_state: 'is_visible',
@@ -71,7 +71,7 @@ export const Visualization = observer((props: p_color.Visualization) => {
                     e);
                 }}
                 onMouseEnter={(e: any): void => {
-                    d_color.Visibility.i.change_visibility({
+                    d_color.Visibility.i().change_visibility({
                         input,
                         i,
                         color_picker_state: 'is_initialized',

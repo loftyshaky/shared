@@ -7,7 +7,12 @@ import {
 export class Visibility {
     private static i0: Visibility;
 
-    constructor() {
+    public static i(): Visibility {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
+    }
+
+    private constructor() {
         makeObservable(
             this,
             {
@@ -15,12 +20,6 @@ export class Visibility {
                 show_reload_ui_screen: action,
             },
         );
-    }
-
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
     }
 
     public page_is_crashed: boolean = false; // true = shows reload ui screen

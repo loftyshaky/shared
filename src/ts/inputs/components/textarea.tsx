@@ -23,23 +23,23 @@ export const Textarea = observer((props: p_inputs.Textarea) => {
                         input.name,
                         'inset_border',
                         'calculate_width',
-                        d_inputs.Val.i.focus_state({ input }),
-                        d_inputs.Val.i.warn_state({ input }),
+                        d_inputs.Val.i().focus_state({ input }),
+                        d_inputs.Val.i().warn_state({ input }),
                     ])}
                     style={{
-                        minWidth: u_settings.InputsWidth.i.width[input.section!],
-                        maxWidth: _.isNaN(u_settings.InputsWidth.i.max_width)
+                        minWidth: u_settings.InputsWidth.i().width[input.section!],
+                        maxWidth: _.isNaN(u_settings.InputsWidth.i().max_width)
                             ? 0
-                            : u_settings.InputsWidth.i.max_width,
+                            : u_settings.InputsWidth.i().max_width,
                     }}
                 >
                     <textarea
                         id={input.name}
                         className='input'
-                        value={d_inputs.Val.i.access({ input })}
+                        value={d_inputs.Val.i().access({ input })}
                         spellCheck='false'
                         onInput={(e): void => {
-                            d_inputs.Val.i.change(
+                            d_inputs.Val.i().change(
                                 {
                                     input,
                                 },
@@ -48,7 +48,7 @@ export const Textarea = observer((props: p_inputs.Textarea) => {
                         }}
                         onChange={() => undefined}
                         onFocus={(): void => {
-                            d_inputs.Val.i.set_focus_state(
+                            d_inputs.Val.i().set_focus_state(
                                 {
                                     input,
                                     state: true,
@@ -56,7 +56,7 @@ export const Textarea = observer((props: p_inputs.Textarea) => {
                             );
                         }}
                         onBlur={(): void => {
-                            d_inputs.Val.i.set_focus_state(
+                            d_inputs.Val.i().set_focus_state(
                                 {
                                     input,
                                     state: false,

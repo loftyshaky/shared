@@ -8,7 +8,7 @@ import {
 
 export const Body = observer(class Body extends React.Component<p_crash_handler.Body> {
     public static getDerivedStateFromError(): any {
-        u_crash_handler.Visibility.i.show_reload_ui_screen();
+        u_crash_handler.Visibility.i().show_reload_ui_screen();
     }
 
     public componentDidCatch(err_obj: Error): void {
@@ -18,13 +18,13 @@ export const Body = observer(class Body extends React.Component<p_crash_handler.
     }
 
     public render(): JSX.Element | ReactNode {
-        if (u_crash_handler.Visibility.i.page_is_crashed) {
+        if (u_crash_handler.Visibility.i().page_is_crashed) {
             return (
                 <div className='reload_ui_btn_w'>
                     <button
                         className='btn'
                         type='button'
-                        onClick={u_crash_handler.Main.i.reload_page}
+                        onClick={u_crash_handler.Main.i().reload_page}
                     >
                         {ext.msg('reload_ui_btn_text')}
                     </button>

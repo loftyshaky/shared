@@ -8,7 +8,12 @@ import {
 export class Msg {
     private static i0: Msg;
 
-    constructor() {
+    public static i(): Msg {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
+    }
+
+    private constructor() {
         makeObservable<Msg, 'advanced_msg_is_visible'>(
             this,
             {
@@ -20,12 +25,6 @@ export class Msg {
                 change_visibility_of_advanced_msg: action,
             },
         );
-    }
-
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
     }
 
     private advanced_msg_is_visible: boolean = false;

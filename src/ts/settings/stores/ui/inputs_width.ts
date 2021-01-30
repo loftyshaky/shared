@@ -13,7 +13,12 @@ import { o_inputs } from 'inputs/internal';
 export class InputsWidth {
     private static i0: InputsWidth;
 
-    constructor() {
+    public static i(): InputsWidth {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
+    }
+
+    private constructor() {
         makeObservable(
             this,
             {
@@ -22,12 +27,6 @@ export class InputsWidth {
                 set_max_width: action,
             },
         );
-    }
-
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
     }
 
     public width: { [index: string]: number | undefined } = {};
@@ -95,15 +94,15 @@ export class InputsWidth {
     's1006');
 
     public set_max_width = (): void => err(() => {
-        const current_section = s<HTMLDivElement>(`.section.${d_settings.Sections.i.current_section}`);
+        const current_section = s<HTMLDivElement>(`.section.${d_settings.Sections.i().current_section}`);
 
         if (current_section) {
             this.max_width = Math.max(
                 current_section.offsetWidth - parseInt(
-                    CssVars.i.get({ name: 'help_btn_size' }),
+                    CssVars.i().get({ name: 'help_btn_size' }),
                     10,
                 ) - parseInt(
-                    CssVars.i.get({ name: 'help_btn_margin' }),
+                    CssVars.i().get({ name: 'help_btn_margin' }),
                     10,
                 ),
                 this.min_width,

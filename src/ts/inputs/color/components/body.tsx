@@ -70,7 +70,7 @@ export const Body = observer((props: p_color.Body) => {
                                 <c_inputs.LinkBtn
                                     name='hide'
                                     on_click={(): void => {
-                                        d_color.Visibility.i.hide_color_help({ input });
+                                        d_color.Visibility.i().hide_color_help({ input });
                                     }}
                                 />
                             </BaseTr>

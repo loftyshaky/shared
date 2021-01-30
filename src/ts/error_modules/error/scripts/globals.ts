@@ -30,9 +30,9 @@ window.show_err_ribbon = (
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = Main.i.hide_delay,
+        hide_delay = Main.i().hide_delay,
     }: i_error.ShowError = {},
-) => Main.i.show_error(
+) => Main.i().show_error(
     error_obj,
     error_code,
     {
@@ -52,13 +52,13 @@ window.err = <T1>(
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = Main.i.hide_delay,
+        hide_delay = Main.i().hide_delay,
     }: i_error.ShowError = {},
 ): T1 => {
     try {
         return f();
     } catch (error_obj) {
-        Main.i.show_error(
+        Main.i().show_error(
             error_obj,
             error_code,
             {
@@ -82,13 +82,13 @@ window.err_async = async <T1>(
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = Main.i.hide_delay,
+        hide_delay = Main.i().hide_delay,
     }: i_error.ShowError = {},
 ): Promise<T1> => {
     try {
         return await f();
     } catch (error_obj) {
-        Main.i.show_error(
+        Main.i().show_error(
             error_obj,
             error_code,
             {

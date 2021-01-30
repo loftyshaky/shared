@@ -11,19 +11,18 @@ import {
 export class HelpVisibility {
     private static i0: HelpVisibility;
 
-    constructor() {
+    public static i(): HelpVisibility {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
+    }
+
+    private constructor() {
         makeObservable(
             this,
             {
                 change: action,
             },
         );
-    }
-
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
     }
 
     public change = (

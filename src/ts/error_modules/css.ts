@@ -3,11 +3,13 @@ import { u_error } from 'error_modules/internal';
 export class Css {
     private static i0: Css;
 
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
+    public static i(): Css {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
+
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
 
     public load = ({ app_id }: {app_id: string}): void => {
         x.css(
@@ -38,7 +40,7 @@ export class Css {
                     error_css.addEventListener(
                         'load',
                         (): void => {
-                            u_error.State.i.change_state(
+                            u_error.State.i().change_state(
                                 {
                                     observable_key: 'is_loaded',
                                     state: true,

@@ -51,11 +51,13 @@ window.misplaced_dependency = (
 export class Ext {
     private static i0: Ext;
 
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
+    public static i(): Ext {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
+
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
 
     public msg = (msg: string): string => {
         const msg_2: string | undefined = browser.i18n.getMessage(msg);

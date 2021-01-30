@@ -10,7 +10,12 @@ import { i_inputs } from 'inputs/internal';
 export class Val {
     private static i0: Val;
 
-    constructor() {
+    public static i(): Val {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
+    }
+
+    private constructor() {
         makeObservable(
             this,
             {
@@ -18,12 +23,6 @@ export class Val {
                 remove_val: action,
             },
         );
-    }
-
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
     }
 
     public set_focus_state = (

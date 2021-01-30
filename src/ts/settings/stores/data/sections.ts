@@ -11,7 +11,12 @@ import { d_settings } from 'settings/internal';
 export class Sections {
     private static i0: Sections;
 
-    constructor() {
+    public static i(): Sections {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
+    }
+
+    private constructor() {
         makeObservable(
             this,
             {
@@ -19,12 +24,6 @@ export class Sections {
                 change: action,
             },
         );
-    }
-
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
     }
 
     public current_section: string = '';
@@ -66,13 +65,13 @@ export class Sections {
                     event_callback: (): Promise<void> => err_async(async () => {
                         const data_obj = await download_back_up_callback();
 
-                        d_settings.BackUp.i.download({ data_obj });
+                        d_settings.BackUp.i().download({ data_obj });
                     },
                     's1030'),
                 }),
                 new o_inputs.Btn({
                     name: 'upload_back_up',
-                    event_callback: d_settings.BackUp.i.open_file_browser,
+                    event_callback: d_settings.BackUp.i().open_file_browser,
                 }),
                 new o_inputs.File({
                     name: 'back_up',

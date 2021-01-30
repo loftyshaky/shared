@@ -10,7 +10,12 @@ import { CssVars } from 'shared/internal';
 export class Visibility {
     private static i0: Visibility;
 
-    constructor() {
+    public static i(): Visibility {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
+    }
+
+    private constructor() {
         makeObservable(
             this,
             {
@@ -19,12 +24,6 @@ export class Visibility {
                 show: action,
             },
         );
-    }
-
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
     }
 
     public outer_is_visible: boolean = false;
@@ -44,7 +43,7 @@ export class Visibility {
             this.outer_is_visible = false;
         });
 
-        await x.delay(+CssVars.i.get({ name: 'transition_duration' }));
+        await x.delay(+CssVars.i().get({ name: 'transition_duration' }));
 
         runInAction((): void => {
             this.inner_is_none = true;

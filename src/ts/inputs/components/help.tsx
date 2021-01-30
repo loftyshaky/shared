@@ -21,7 +21,7 @@ export const Help = observer((props: p_inputs.Help) => {
             state={section_or_input.help_is_visible as boolean}
             style={{
                 width: is_input
-                    ? u_settings.InputsWidth.i.width[section_name!]
+                    ? u_settings.InputsWidth.i().width[section_name!]
                     : '',
             }}
         >

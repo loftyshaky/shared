@@ -3,11 +3,13 @@ import { Viewport } from 'shared/internal';
 export class Position {
     private static i0: Position;
 
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
+    public static i(): Position {
+        // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
+
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
 
     private gap_between_visualization_and_color_picker: number = 8;
 
@@ -89,8 +91,8 @@ export class Position {
                         const visualization_width: number = visualization.offsetWidth;
                         const scroll_top: number = scroll_container.scrollTop;
                         const scroll_left: number = scroll_container.scrollLeft;
-                        const viewport_width: number = Viewport.i.get_dim({ dim: 'width' });
-                        const viewport_height: number = Viewport.i.get_dim({ dim: 'height' });
+                        const viewport_width: number = Viewport.i().get_dim({ dim: 'width' });
+                        const viewport_height: number = Viewport.i().get_dim({ dim: 'height' });
 
                         scroll_container.scrollTop = scroll_top;
                         scroll_container.scrollLeft = scroll_left;

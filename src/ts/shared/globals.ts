@@ -6,5 +6,5 @@ declare global {
     const ext: Ext;
 }
 
-window.x = X.i;
-window.ext = Ext.i;
+window.x = X.i();
+window.ext = Ext.i();
