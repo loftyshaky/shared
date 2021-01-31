@@ -5,7 +5,10 @@ import {
 } from 'mobx';
 
 import { t } from 'shared/internal';
-import { o_inputs } from 'inputs/internal';
+import {
+    o_inputs,
+    d_color,
+} from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
 export class Sections {
@@ -38,6 +41,8 @@ export class Sections {
             callback?: t.CallbackVoid;
         },
     ): void => err(() => {
+        d_color.Visibility.i().previously_visible_input = undefined;
+
         this.current_section = section_name;
 
         if (callback) {
