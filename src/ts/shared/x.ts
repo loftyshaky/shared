@@ -122,12 +122,15 @@ export class X {
     };
 
     public append = (
-        el: HTMLElement | undefined,
+        el: HTMLElement | ShadowRoot | undefined | null,
         child: HTMLElement,
     ): void => {
         if (
             n(el)
-            && el.nodeType === 1
+            && [
+                1,
+                11,
+            ].includes(el.nodeType)
         ) {
             el.appendChild(child);
         }
@@ -145,13 +148,16 @@ export class X {
 
     public before = (
         el_to_insert_before: HTMLElement | undefined,
-        el_to_insert: HTMLElement | undefined,
+        el_to_insert: HTMLElement | ShadowRoot | undefined | null,
     ): void => {
         if (
             n(el_to_insert_before)
             && n(el_to_insert)
             && n(el_to_insert_before.parentNode)
-            && el_to_insert.nodeType === 1
+            && [
+                1,
+                11,
+            ].includes(el_to_insert.nodeType)
         ) {
             el_to_insert_before.parentNode.insertBefore(
                 el_to_insert,
@@ -162,13 +168,16 @@ export class X {
 
     public after = (
         el_to_insert_after: HTMLElement | undefined,
-        el_to_insert: HTMLElement | undefined,
+        el_to_insert: HTMLElement | ShadowRoot | undefined | null,
     ): void => {
         if (
             n(el_to_insert_after)
             && n(el_to_insert)
             && n(el_to_insert_after.parentNode)
-            && el_to_insert.nodeType === 1
+            && [
+                1,
+                11,
+            ].includes(el_to_insert.nodeType)
         ) {
             el_to_insert_after.parentNode.insertBefore(
                 el_to_insert,
@@ -178,14 +187,17 @@ export class X {
     };
 
     public as_first = (
-        parent: HTMLElement | undefined,
+        parent: HTMLElement | ShadowRoot | undefined | null,
         child: HTMLElement | undefined,
     ): void => {
         if (
             n(parent)
             && n(child)
             && n(parent.parentNode)
-            && parent.nodeType === 1
+            && [
+                1,
+                11,
+            ].includes(parent.nodeType)
         ) {
             parent.insertBefore(
                 child,
