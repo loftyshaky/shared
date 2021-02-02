@@ -116,7 +116,7 @@ const shared_config = ({
                 },
                 {
                     test: /\.svg$/,
-                    type: 'asset/inline',
+                    use: ['@svgr/webpack'],
                 },
             ],
         },
