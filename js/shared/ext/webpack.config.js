@@ -8,6 +8,7 @@ const shared_config = ({
     MiniCssExtractPlugin,
     // FixStyleOnlyEntriesPlugin,
     CopyWebpackPlugin,
+    copy_patters,
     callback_begin,
     callback_done,
 }) => {
@@ -31,6 +32,8 @@ const shared_config = ({
             'general',
         ),
     };
+
+    const copy_patterns_final = copy_patters || [];
 
     return {
         entry: {
@@ -123,37 +126,40 @@ const shared_config = ({
             // new FixStyleOnlyEntriesPlugin(),
             new CopyWebpackPlugin({
                 patterns: [
-                    {
-                        from: path.join(
-                            app_root,
-                            'src',
-                            'html',
-                        ),
-                    },
-                    {
-                        from: path.join(
-                            app_root,
-                            'node_modules',
-                            'normalize.css',
-                            'normalize.css',
-                        ),
-                    },
-                    {
-                        from: path.join(
-                            app_root,
-                            'src',
-                            'icons',
-                            'all',
-                        ),
-                    },
-                    {
-                        from: path.join(
-                            app_root,
-                            'src',
-                            'icons',
-                            env.browser,
-                        ),
-                    },
+                    ...[
+                        {
+                            from: path.join(
+                                app_root,
+                                'src',
+                                'html',
+                            ),
+                        },
+                        {
+                            from: path.join(
+                                app_root,
+                                'node_modules',
+                                'normalize.css',
+                                'normalize.css',
+                            ),
+                        },
+                        {
+                            from: path.join(
+                                app_root,
+                                'src',
+                                'icons',
+                                'all',
+                            ),
+                        },
+                        {
+                            from: path.join(
+                                app_root,
+                                'src',
+                                'icons',
+                                env.browser,
+                            ),
+                        },
+                    ],
+                    ...copy_patterns_final,
                 ],
             }),
             {
