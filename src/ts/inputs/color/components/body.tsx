@@ -76,9 +76,9 @@ export const Body = observer((props: p_color.Body) => {
                             </BaseTr>
                             <div className='palette_link_btns'>
                                 <c_inputs.LinkBtn
-                                    name='restore_default_color'
+                                    name='remove_color'
                                     on_click={(): void => {
-                                        d_color.Color.i().restore_default_color({ input });
+                                        d_color.Color.i().remove_color({ input });
                                     }}
                                 />
                                 <c_inputs.LinkBtn

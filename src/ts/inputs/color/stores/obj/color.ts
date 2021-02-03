@@ -19,7 +19,6 @@ const color_picker_state: i_color.ColorPickerState = {
 
 export class Color extends o_inputs.InputBase {
     public type?: 'color' = 'color';
-    public default_val?: i_color.Color = '';
     public include_visualization?: boolean= true;
     public include_palette_label?: boolean = false;
     public palette_is_visible?: boolean = false;
@@ -34,7 +33,7 @@ export class Color extends o_inputs.InputBase {
     }
 
     public select_palette_color_callback: t.CallbackVariadicVoid;
-    public restore_default_color_callback: t.CallbackVariadicVoid;
+    public remove_color_callback: t.CallbackVariadicVoid;
     public restore_default_palette_callback: t.CallbackVariadicVoid;
     public hide_color_help_callback: t.CallbackVoid;
 
@@ -60,7 +59,7 @@ export class Color extends o_inputs.InputBase {
         );
 
         this.select_palette_color_callback = obj.select_palette_color_callback;
-        this.restore_default_color_callback = obj.restore_default_color_callback;
+        this.remove_color_callback = obj.remove_color_callback;
         this.restore_default_palette_callback = obj.restore_default_palette_callback;
         this.hide_color_help_callback = obj.hide_color_help_callback;
     }

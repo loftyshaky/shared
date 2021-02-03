@@ -53,8 +53,8 @@
     "hide_link_btn_text": {
         "message": "Скрыть"
     },
-    "restore_default_color_link_btn_text": {
-        "message": "Восстановить цвет по-умолчанию"
+    "remove_color_link_btn_text": {
+        "message": "Удалить цвет"
     },
     "restore_default_palette_link_btn_text": {
         "message": "Восстановить палитру по-умолчанию"

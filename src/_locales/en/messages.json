@@ -56,8 +56,8 @@
     "hide_link_btn_text": {
         "message": "Hide"
     },
-    "restore_default_color_link_btn_text": {
-        "message": "Restore default color"
+    "remove_color_link_btn_text": {
+        "message": "Remove color"
     },
     "restore_default_palette_link_btn_text": {
         "message": "Restore default palette"

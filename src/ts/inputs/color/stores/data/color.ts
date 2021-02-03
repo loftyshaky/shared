@@ -243,17 +243,15 @@ export class Color {
     },
     's1049');
 
-    public restore_default_color = ({ input }: { input: o_color.Color; }): void => err(() => {
-        if (input.default_val !== undefined) {
-            d_color.Color.i().set({
-                input,
-                i: 'main',
-                color: input.default_val,
-            });
+    public remove_color = ({ input }: { input: o_color.Color; }): void => err(() => {
+        d_color.Color.i().set({
+            input,
+            i: 'main',
+            color: '',
+        });
 
-            this.reset_previous_vars();
-            input.restore_default_color_callback({ input });
-        }
+        this.reset_previous_vars();
+        input.remove_color_callback({ input });
     },
     's1051');
 
