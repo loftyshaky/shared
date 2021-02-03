@@ -24,6 +24,7 @@ export class Color {
             {
                 set: action,
                 select_palette_color: action,
+                restore_default_palette: action,
             },
         );
     }
@@ -250,14 +251,41 @@ export class Color {
                 color: input.default_val,
             });
 
-            d_color.Color.i().previous_color = '';
-            d_color.Visibility.i().previously_visible_input = undefined;
-            d_color.Visibility.i().previously_visible_color_picker_i = (
-                undefined
-            );
-
+            this.reset_previous_vars();
             input.restore_default_color_callback({ input });
         }
     },
     's1051');
+
+    public restore_default_palette = (
+        {
+            input,
+            default_colors,
+        }: {
+            input: o_color.Color;
+            default_colors?: any
+        },
+    ): void => err(() => {
+        // eslint-disable-next-line no-alert
+        const confirmed_restore: boolean = window.confirm(ext.msg('restore_default_palette_confirm'));
+
+        if (confirmed_restore) {
+            data.settings.colors = n(default_colors)
+                ? default_colors
+                : this.default_colors;
+
+            this.reset_previous_vars();
+            input.restore_default_palette_callback({ default_colors: data.settings.colors });
+        }
+    },
+    's1052');
+
+    public reset_previous_vars = (): void => err(() => {
+        d_color.Color.i().previous_color = '';
+        d_color.Visibility.i().previously_visible_input = undefined;
+        d_color.Visibility.i().previously_visible_color_picker_i = (
+            undefined
+        );
+    },
+    's1053');
 }

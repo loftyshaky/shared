@@ -59,6 +59,9 @@
     "restore_default_color_link_btn_text": {
         "message": "Restore default color"
     },
+    "restore_default_palette_link_btn_text": {
+        "message": "Restore default palette"
+    },
     "color_help_text": {
         "message": "Right-click on the main color button to choose a custom color.\nRight-click on a pallete color to change it."
     },
@@ -79,6 +82,9 @@
     },
     "restore_defaults_confirm": {
         "message": "Restore default settings?"
+    },
+    "restore_default_palette_confirm": {
+        "message": "Restore default palette?"
     },
     "invalid_file_type_back_up_error": {
         "message": "Invalid file type. Upload a backed up json file."

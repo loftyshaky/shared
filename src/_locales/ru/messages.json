@@ -56,6 +56,9 @@
     "restore_default_color_link_btn_text": {
         "message": "Восстановить цвет по-умолчанию"
     },
+    "restore_default_palette_link_btn_text": {
+        "message": "Восстановить палитру по-умолчанию"
+    },
     "color_help_text": {
         "message": "Клиткните правой кнопкой мыши на основную кнопку цвета, чтобы выбрать пользовательский цвет.\nКликните правой кнопкой мыши на цвет из палитры, чтобы изменить его."
     },
@@ -76,6 +79,9 @@
     },
     "restore_defaults_confirm": {
         "message": "Восстановить настройки по умолчанию?"
+    },
+    "restore_default_palette_confirm": {
+        "message": "Восстановить палитру по-умолчанию?"
     },
     "invalid_file_type_back_up_error": {
         "message": "Недопустимый тип файла. Загрузите ранее скачаный json файл резервной копии."

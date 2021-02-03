@@ -74,12 +74,20 @@ export const Body = observer((props: p_color.Body) => {
                                     }}
                                 />
                             </BaseTr>
-                            <c_inputs.LinkBtn
-                                name='restore_default_color'
-                                on_click={(): void => {
-                                    d_color.Color.i().restore_default_color({ input });
-                                }}
-                            />
+                            <div className='palette_link_btns'>
+                                <c_inputs.LinkBtn
+                                    name='restore_default_color'
+                                    on_click={(): void => {
+                                        d_color.Color.i().restore_default_color({ input });
+                                    }}
+                                />
+                                <c_inputs.LinkBtn
+                                    name='restore_default_palette'
+                                    on_click={(): void => {
+                                        d_color.Color.i().restore_default_palette({ input });
+                                    }}
+                                />
+                            </div>
                             <div className='palette_colors'>
                                 {
                                     n(data.settings.colors)
