@@ -62,7 +62,7 @@ export const Visualization = observer((props: p_color.Visualization) => {
                         i,
                     });
                 }}
-                onMouseUp={(e: any): void => {
+                onMouseDown={(e: any): void => {
                     d_color.Visibility.i().change_visibility({
                         input,
                         i,
