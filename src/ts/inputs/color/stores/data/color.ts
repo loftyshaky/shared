@@ -102,7 +102,7 @@ export class Color {
         }: {
             input: o_color.Color;
             i: i_color.I;
-            color: i_color.Color
+            color: i_color.Color;
         },
     ): void => err(() => {
         if (i === 'main') {
@@ -142,8 +142,8 @@ export class Color {
 
     public restore_old_color = (): void => err(() => {
         const inst = d_color.Visibility.i();
-        if (
-            n(inst.previously_visible_input)
+
+        if (n(inst.previously_visible_input)
             && n(inst.previously_visible_color_picker_i)
         ) {
             const color: i_color.Color = inst.previously_visible_color_picker_i !== 'main'
@@ -155,6 +155,15 @@ export class Color {
                 input: inst.previously_visible_input,
                 i: inst.previously_visible_color_picker_i,
                 color,
+            });
+        } else if (
+            this.previous_color === ''
+            && n(inst.visible_input)
+        ) {
+            this.set({
+                input: inst.visible_input,
+                i: 'main',
+                color: this.previous_color,
             });
         }
     },
@@ -232,4 +241,23 @@ export class Color {
             });
     },
     's1049');
+
+    public restore_default_color = ({ input }: { input: o_color.Color; }): void => err(() => {
+        if (input.default_val !== undefined) {
+            d_color.Color.i().set({
+                input,
+                i: 'main',
+                color: input.default_val,
+            });
+
+            d_color.Color.i().previous_color = '';
+            d_color.Visibility.i().previously_visible_input = undefined;
+            d_color.Visibility.i().previously_visible_color_picker_i = (
+                undefined
+            );
+
+            input.restore_default_color_callback({ input });
+        }
+    },
+    's1051');
 }

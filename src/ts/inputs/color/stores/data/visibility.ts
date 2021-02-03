@@ -28,7 +28,7 @@ export class Visibility {
         );
     }
 
-    private visible_input: o_color.Color | undefined;
+    public visible_input: o_color.Color | undefined;
     public previously_visible_input: o_color.Color | undefined;
     public previously_visible_color_picker_i: i_color.I | undefined;
     private visualization_of_visible_input: HTMLButtonElement | undefined;
@@ -96,10 +96,15 @@ export class Visibility {
                         input,
                         i,
                     });
-
-                    this.previously_visible_input = input;
-                    this.previously_visible_color_picker_i = i;
                 }
+            }
+
+            if (
+                color_picker_state === 'is_visible'
+                && color_picker_state_bool
+            ) {
+                this.previously_visible_input = input;
+                this.previously_visible_color_picker_i = i;
             }
         }
 
@@ -133,7 +138,7 @@ export class Visibility {
     public hide_all = (e: any): void => err(() => {
         const clicked_visualization = x.closest<HTMLButtonElement>(
             e.target,
-            '.visualization',
+            '.visualization, .palette_visualization',
         );
         const clicked_inside_color_picker: boolean = Boolean(
             x.closest<HTMLSpanElement>(
@@ -149,28 +154,24 @@ export class Visibility {
         );
         const clicked_on_visualization_of_already_opened_input: boolean = (
             clicked_visualization === this.visualization_of_visible_input
+            || !n(this.visualization_of_visible_input)
         );
 
         if (clicked_visualization) {
-            this.visualization_of_visible_input = x.closest<HTMLButtonElement>(
-                e.target,
-                '.visualization',
-            );
+            this.visualization_of_visible_input = clicked_visualization;
         }
 
         if (
-            n(this.visible_input)
-                && !clicked_inside_color_picker
-                && !clicked_on_visualization_of_already_opened_input
+            !clicked_inside_color_picker
+            && !clicked_on_visualization_of_already_opened_input
         ) {
-            if (
-                clicked_inside_palette
-                    && !clicked_visualization
-            ) {
-                this.hide_palette_color_pickers({ input: this.visible_input });
-            } else {
-                this.hide_main_and_palette({ input: this.visible_input });
-                this.hide_palette_color_pickers({ input: this.visible_input });
+            if (n(this.visible_input)) {
+                if (clicked_inside_palette) {
+                    this.hide_palette_color_pickers({ input: this.visible_input });
+                } else {
+                    this.hide_main_and_palette({ input: this.visible_input });
+                    this.hide_palette_color_pickers({ input: this.visible_input });
+                }
             }
 
             if (

@@ -103,10 +103,16 @@ export class ColorPicker {
 
             this.setting_color = true;
 
-            pickr.setColor(d_color.Color.i().access({
+            const color: string = d_color.Color.i().access({
                 input,
                 i,
-            }));
+            });
+
+            pickr.setColor(
+                color === ''
+                    ? '#fff'
+                    : color,
+            );
 
             this.setting_color = false;
 

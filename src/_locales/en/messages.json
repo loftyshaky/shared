@@ -56,6 +56,9 @@
     "hide_link_btn_text": {
         "message": "Hide"
     },
+    "restore_default_color_link_btn_text": {
+        "message": "Restore default color"
+    },
     "color_help_text": {
         "message": "Right-click on the main color button to choose a custom color.\nRight-click on a pallete color to change it."
     },

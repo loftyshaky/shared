@@ -41,12 +41,15 @@ export class Sections {
             callback?: t.CallbackVoid;
         },
     ): void => err(() => {
-        d_color.Visibility.i().previously_visible_input = undefined;
+        if (this.current_section !== section_name) {
+            d_color.Visibility.i().previously_visible_color_picker_i = undefined;
+            d_color.Visibility.i().previously_visible_input = undefined;
 
-        this.current_section = section_name;
+            this.current_section = section_name;
 
-        if (callback) {
-            callback();
+            if (callback) {
+                callback();
+            }
         }
     },
     's1011');
