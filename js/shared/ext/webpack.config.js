@@ -68,6 +68,7 @@ const shared_config = ({
         },
         output: {
             filename: '[name].js',
+            chunkFilename: 'chunks/[name].js',
             path: path.join(
                 app_root,
                 'dist',
