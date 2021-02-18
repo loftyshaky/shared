@@ -61,6 +61,11 @@ export class Ext {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
+    private log_error = (error_obj: any): void => {
+        // eslint-disable-next-line no-console
+        console.log(error_obj.message);
+    };
+
     public msg = (msg: string): string => {
         const msg_2: string | undefined = browser.i18n.getMessage(msg);
 
@@ -84,7 +89,7 @@ export class Ext {
         try {
             await browser.runtime.sendMessage(msg);
         } catch (error_obj) {
-            l(error_obj.message);
+            this.log_error(error_obj);
         }
     };
 
@@ -94,7 +99,7 @@ export class Ext {
 
             return response;
         } catch (error_obj) {
-            l(error_obj.message);
+            this.log_error(error_obj);
         }
 
         return undefined;
@@ -107,7 +112,7 @@ export class Ext {
                 msg,
             );
         } catch (error_obj) {
-            l(error_obj.message);
+            this.log_error(error_obj);
         }
     };
 
@@ -120,7 +125,7 @@ export class Ext {
 
             return response;
         } catch (error_obj) {
-            l(error_obj.message);
+            this.log_error(error_obj);
         }
 
         return undefined;
