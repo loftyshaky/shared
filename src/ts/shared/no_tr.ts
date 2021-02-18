@@ -11,7 +11,7 @@ export class NoTr {
 
     private cls: string = 'no_tr';
 
-    public enable = ({ el = document.head }: { el?: HTMLElement }): void => err(() => {
+    public enable = ({ el = document.head }: { el?: HTMLElement | ShadowRoot }): void => err(() => {
         x.css(
             this.cls,
             el,
@@ -20,7 +20,7 @@ export class NoTr {
     's1020');
 
     public disable = (
-        { el = document.head }: { el?: HTMLElement },
+        { el = document.head }: { el?: HTMLElement | ShadowRoot },
     ): Promise<void> => err(async () => {
         await x.delay(500);
 
