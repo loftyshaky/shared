@@ -1,3 +1,5 @@
+// Allowing send_msg functions to throw errors (red) makes extension freeze when sending message to tab without onMessage event listrener!
+
 import _ from 'lodash';
 import {
     browser,
@@ -78,37 +80,57 @@ export class Ext {
         return tabs[0];
     };
 
-    public send_msg = (msg: t.Msg): void => {
-        browser.runtime.sendMessage(msg);
+    public send_msg = async (msg: t.Msg): Promise<any> => {
+        try {
+            await browser.runtime.sendMessage(msg);
+        } catch (error_obj) {
+            l(error_obj.message);
+        }
     };
 
     public send_msg_resp = async (msg: t.Msg): Promise<any> => {
-        const response = await browser.runtime.sendMessage(msg);
+        try {
+            const response = await browser.runtime.sendMessage(msg);
 
-        return response;
+            return response;
+        } catch (error_obj) {
+            l(error_obj.message);
+        }
+
+        return undefined;
     };
 
-    public send_msg_to_tab = (id: number, msg: t.Msg): void => {
-        browser.tabs.sendMessage(
-            id,
-            msg,
-        );
+    public send_msg_to_tab = async (id: number, msg: t.Msg): Promise<void> => {
+        try {
+            await browser.tabs.sendMessage(
+                id,
+                msg,
+            );
+        } catch (error_obj) {
+            l(error_obj.message);
+        }
     };
 
     public send_msg_to_tab_resp = async (id: number, msg: t.Msg): Promise<any> => {
-        const response = await browser.tabs.sendMessage(
-            id,
-            msg,
-        );
+        try {
+            const response = await browser.tabs.sendMessage(
+                id,
+                msg,
+            );
 
-        return response;
+            return response;
+        } catch (error_obj) {
+            l(error_obj.message);
+        }
+
+        return undefined;
     };
 
     public send_msg_to_active_tab = async (msg: t.Msg): Promise<void> => {
         const tab: Tabs.Tab = await this.get_active_tab();
 
         if (n(tab.id)) {
-            this.send_msg_to_tab(
+            await this.send_msg_to_tab(
                 tab.id,
                 msg,
             );
