@@ -3,6 +3,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import {
+    o_inputs,
     d_inputs,
     c_inputs,
     p_inputs,
@@ -10,8 +11,9 @@ import {
 
 import { u_settings } from 'settings/internal';
 
-export const Text = observer((props: p_inputs.Text) => {
+export const Select = observer((props: p_inputs.Select) => {
     const { input } = props;
+    const options = input.options[input.name];
 
     const input_w: JSX.Element = (
         <>
@@ -19,7 +21,7 @@ export const Text = observer((props: p_inputs.Text) => {
                 <span
                     className={x.cls([
                         'input_w',
-                        'text',
+                        'select',
                         input.name,
                         'inset_border',
                         'calculate_width',
@@ -33,17 +35,11 @@ export const Text = observer((props: p_inputs.Text) => {
                             : u_settings.InputsWidth.i().max_width,
                     }}
                 >
-                    <input
+                    <select
                         id={input.name}
-                        className={x.cls([
-                            'input',
-                            input.text_type,
-                        ])}
-                        type={input.type}
+                        className='input'
                         value={d_inputs.Val.i().access({ input })}
-                        autoComplete='off'
-                        spellCheck='false'
-                        onInput={(e): void => {
+                        onChange={(e): void => {
                             d_inputs.Val.i().change(
                                 {
                                     input,
@@ -67,14 +63,18 @@ export const Text = observer((props: p_inputs.Text) => {
                                 },
                             );
                         }}
-                        onChange={(): undefined => undefined}
-                    />
-                    <c_inputs.TextBtn
-                        name='remove_val'
-                        svg_name='Close'
-                        input={input}
-                        on_click={() => d_inputs.Val.i().remove_val({ input })}
-                    />
+                    >
+                        {
+                            options.map((option: o_inputs.Option, i: number): JSX.Element => (
+                                <option
+                                    key={i}
+                                    value={option.val}
+                                >
+                                    { input.option_text!({ i })}
+                                </option>
+                            ))
+                        }
+                    </select>
                 </span>
                 {
                     input.include_help

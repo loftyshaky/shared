@@ -24,7 +24,7 @@ export const resolve = (
     } else if (input.type === 'textarea') {
         input_el = <c_inputs.Textarea input={input as o_inputs.Textarea} />;
     } else if (input.type === 'select') {
-        //   input_el = <c_inputs.Select input={input} />;
+        input_el = <c_inputs.Select input={input as o_inputs.Select} />;
     } else if (input.type === 'checkbox') {
         input_el = <c_inputs.Checkbox input={input as o_inputs.Checkbox} />;
     } else if (input.type === 'link') {

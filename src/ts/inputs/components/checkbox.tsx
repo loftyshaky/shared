@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { observer } from 'mobx-react';
 
@@ -8,8 +7,6 @@ import {
     c_inputs,
     p_inputs,
 } from 'inputs/internal';
-
-import { u_settings } from 'settings/internal';
 
 export const Checkbox = observer((props: p_inputs.Checkbox) => {
     const { input } = props;
@@ -23,12 +20,6 @@ export const Checkbox = observer((props: p_inputs.Checkbox) => {
                         'checkbox',
                         input.name,
                     ])}
-                    style={{
-                        minWidth: u_settings.InputsWidth.i().width[input.section!],
-                        maxWidth: _.isNaN(u_settings.InputsWidth.i().max_width)
-                            ? 0
-                            : u_settings.InputsWidth.i().max_width,
-                    }}
                 >
                     { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <label className='wrap_label'>
