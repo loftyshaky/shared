@@ -14,6 +14,7 @@ export class InputBase {
     public is_in_warn_state?: boolean = false;
     public val_accessor?: string;
     public alt_msg?: string;
+    public alt_help_msg?: string;
     public include_help?: boolean = false;
     public help_is_visible?: boolean = false;
     public parent?: string;

@@ -25,7 +25,10 @@ export const Help = observer((props: p_inputs.Help) => {
                     : '',
             }}
         >
-            {ext.msg(`${section_or_input.name}_help_text`)}
+            {
+                ext.msg(`${section_or_input.name}_help_text`)
+                || section_or_input.alt_help_msg
+            }
         </BaseTr>
     );
 });
