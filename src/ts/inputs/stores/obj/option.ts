@@ -9,5 +9,7 @@ export class Option {
             obj,
         );
         this.name = obj.name;
+        this.val = obj.val
+                   || obj.name;
     }
 }
