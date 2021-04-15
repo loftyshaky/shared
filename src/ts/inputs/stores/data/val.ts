@@ -5,7 +5,10 @@ import {
 } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { i_inputs } from 'inputs/internal';
+import {
+    o_inputs,
+    i_inputs,
+} from 'inputs/internal';
 
 export class Val {
     private static i0: Val;
@@ -131,6 +134,10 @@ export class Val {
         }
 
         data.settings[input.name] = '';
+
+        if (n((input as o_inputs.Text).remove_val_callback)) {
+            (input as o_inputs.Text).remove_val_callback!({ input });
+        }
     },
     's1017'));
 }

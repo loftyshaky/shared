@@ -1,5 +1,6 @@
 import { computedFn } from 'mobx-utils';
 
+import { t } from 'shared/internal';
 import {
     d_inputs,
     o_inputs,
@@ -9,6 +10,7 @@ export class Text extends o_inputs.InputBase {
     public type?: 'text' = 'text';
     public text_type?: 'text' | 'number' = 'text';
     public allow_removing_val?: boolean = true;
+    public remove_val_callback?: t.CallbackVariadicAny;
 
     public constructor(obj: Text) {
         super(obj);
@@ -16,6 +18,7 @@ export class Text extends o_inputs.InputBase {
             this,
             obj,
         );
+        this.remove_val_callback = obj.remove_val_callback;
     }
 
     remove_val_btn_is_visible? = computedFn(
