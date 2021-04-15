@@ -7,3 +7,7 @@ input {
     font-family: u6Pgzb39sNF, sans-serif;
     font-size: 17px;
 }
+
+.input_item.text .label {
+    margin-bottom: $label_margin_bottom;
+}
