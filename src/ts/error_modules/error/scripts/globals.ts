@@ -2,6 +2,8 @@ import { Main } from 'error_modules/error/stores/ui/main';
 
 import { i_error } from 'error_modules/internal';
 
+declare const global: Global;
+
 declare global {
     function show_err_ribbon(
         error_obj: any,
@@ -22,7 +24,7 @@ declare global {
     function err_obj(msg: string): Error;
 }
 
-window.show_err_ribbon = (
+global.show_err_ribbon = (
     error_obj: any,
     error_code: number | string,
     {
@@ -44,7 +46,7 @@ window.show_err_ribbon = (
     },
 );
 
-window.err = <T1>(
+global.err = <T1>(
     f: () => T1,
     error_code: number | string,
     {
@@ -74,7 +76,7 @@ window.err = <T1>(
     return f();
 };
 
-window.err_async = async <T1>(
+global.err_async = async <T1>(
     f: () => Promise<T1>,
     error_code: number | string,
     {
@@ -104,8 +106,8 @@ window.err_async = async <T1>(
     return f();
 };
 
-window.throw_err = (msg: string): void => {
+global.throw_err = (msg: string): void => {
     throw new Error(msg);
 };
 
-window.err_obj = (msg: string): Error => new Error(msg);
+global.err_obj = (msg: string): Error => new Error(msg);

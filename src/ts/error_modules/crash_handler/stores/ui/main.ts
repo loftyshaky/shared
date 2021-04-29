@@ -12,6 +12,6 @@ export class Main {
     public page_is_crashed: boolean = false; // true = shows reload ui screen
 
     public reload_page = (): void => {
-        window.location.reload();
+        global.location.reload();
     };
 }

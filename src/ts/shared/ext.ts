@@ -9,27 +9,32 @@ import {
 
 import { t } from 'shared/internal';
 
+declare const global: Global;
+
 declare global {
     const page: string;
     const misplaced_dependency: t.CallbackVariadicVoid;
 }
 
 ((): void => {
-    const title = document.querySelector('title');
+    const title = global.document
+        ? document.querySelector('title')
+        : undefined;
 
     if ([
         'https:',
         'http:',
-    ].includes(window.location.protocol)) {
-        window.page = 'content_script';
+    ].includes(global.location.protocol)
+    ) {
+        global.page = 'content_script';
     } else {
-        window.page = n(title) && n(title.dataset.page)
+        global.page = n(title) && n(title.dataset.page)
             ? title.dataset.page
             : 'background';
     }
 })();
 
-window.misplaced_dependency = (
+global.misplaced_dependency = (
     culprit_page: string,
     current_page_cond?: t.CallbackAny,
 ): void => {

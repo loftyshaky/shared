@@ -1,9 +1,11 @@
 import { observable } from 'mobx';
 
+declare const global: Global;
+
 declare global {
     let data: any;
 }
 
-window.data = observable({
+global.data = observable({
     settings: {},
 });

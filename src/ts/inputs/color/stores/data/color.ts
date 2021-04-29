@@ -265,7 +265,7 @@ export class Color {
         },
     ): void => err(() => {
         // eslint-disable-next-line no-alert
-        const confirmed_restore: boolean = window.confirm(ext.msg('restore_default_palette_confirm'));
+        const confirmed_restore: boolean = global.confirm(ext.msg('restore_default_palette_confirm'));
 
         if (confirmed_restore) {
             data.settings.colors = n(default_colors)

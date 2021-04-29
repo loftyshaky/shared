@@ -65,7 +65,7 @@ export class State {
         observable_key: string;
         delay: number;
     }): void => {
-        this[`${observable_key}_timeout`] = window.setTimeout((): void => {
+        this[`${observable_key}_timeout`] = global.setTimeout((): void => {
             this.change_state({
                 observable_key,
                 state: false,

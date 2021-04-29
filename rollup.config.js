@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import transformPaths from 'ts-transform-paths';
 import svgr from '@svgr/rollup';
+import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 
 const copy = require('./js/shared/package/plugins/rollup-plugin-copy');
@@ -54,6 +55,10 @@ const config = {
         }),
         svgr(),
         watcher({ mode: process.env.mode }),
+        replace({
+            include: ['node_modules/@simonwep/pickr/**'],
+            window: 'self',
+        }),
         copy({
             targets: [
                 {

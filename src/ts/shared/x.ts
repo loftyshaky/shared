@@ -3,6 +3,8 @@ import { browser } from 'webextension-polyfill-ts';
 
 import { t } from 'shared/internal';
 
+declare const global: Global;
+
 declare global {
     const env: {
         browser: t.Browser
@@ -23,30 +25,30 @@ declare global {
 }
 
 // eslint-disable-next-line no-console
-window.l = console.log.bind(console);
+global.l = console.log.bind(console);
 
 // > undefined/null check
-window.n = <T1>(val: T1 | undefined | null): val is T1 => ( // not nil (nil is undefined or null)
+global.n = <T1>(val: T1 | undefined | null): val is T1 => ( // not nil (nil is undefined or null)
     val != null
 );
 
-window.nn = <T1>(val: T1 | null): val is T1 => ( // not null
+global.nn = <T1>(val: T1 | null): val is T1 => ( // not null
     val !== null
 );
 
-window.ru = (f: t.CallbackVariadicAny | undefined): any => ( // resolve undefined
+global.ru = (f: t.CallbackVariadicAny | undefined): any => ( // resolve undefined
     n(f)
         ? f()
         : undefined
 );
 
-window.rb = (f: t.CallbackVariadicAny | undefined): any => ( // resolve boolean
+global.rb = (f: t.CallbackVariadicAny | undefined): any => ( // resolve boolean
     n(f)
         ? f()
         : false
 );
 
-window.rs = (f: t.CallbackVariadicAny | undefined): any => ( // resolve string
+global.rs = (f: t.CallbackVariadicAny | undefined): any => ( // resolve string
     n(f)
         ? f()
         : ''
@@ -66,15 +68,15 @@ const shared: any = {
 };
 
 // > selecting elements
-window.s = <T1>(selector: string): T1 | undefined => (
+global.s = <T1>(selector: string): T1 | undefined => (
     shared.ensure_els(document.querySelector(selector))
 );
 
-window.sa = <T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined => (
+global.sa = <T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined => (
     shared.ensure_els(document.querySelectorAll(selector))
 );
 
-window.sb = <T1>(
+global.sb = <T1>(
     base_el: t.BaseEl,
     selector: string,
 ): T1 | undefined => {
@@ -85,7 +87,7 @@ window.sb = <T1>(
     return undefined;
 };
 
-window.sab = <T1 extends HTMLElement>(
+global.sab = <T1 extends HTMLElement>(
     base_el: t.BaseEl,
     selector: string,
 ): NodeListOf<T1> | undefined => {
@@ -420,7 +422,7 @@ export class X {
     );
 
     public id = (): string => {
-        const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
+        const uint32 = global.crypto.getRandomValues(new Uint32Array(1))[0];
 
         return Array.from(uint32.toString(16)).map((char: string): string => (
             this.rand_bool()

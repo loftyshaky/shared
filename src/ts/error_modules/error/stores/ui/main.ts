@@ -44,7 +44,7 @@ export class Main {
             hide_delay = this.hide_delay,
         }: i_error.ShowError,
     ): void => {
-        const is_browser = window !== undefined;
+        const is_browser = global !== undefined;
 
         if (
             is_browser

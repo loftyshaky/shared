@@ -1,4 +1,8 @@
-interface Window {
+interface Global {
+    window: Window,
+    document: Document,
+    location: Location,
+    crypto: Crypto,
     x: import('shared/x').X,
     ext: import('shared/ext').Ext,
     env: {
