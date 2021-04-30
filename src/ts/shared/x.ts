@@ -160,10 +160,10 @@ export class X {
         const remove_one_el = (el: HTMLElement): void => {
             if (
                 n(el)
-                && n(el.parentNode)
+                && n(el.parentElement)
                 && el.nodeType === 1
             ) {
-                el.parentNode.removeChild(el);
+                el.parentElement.removeChild(el);
             }
         };
 
@@ -180,13 +180,13 @@ export class X {
         if (
             n(el_to_insert_before)
             && n(el_to_insert)
-            && n(el_to_insert_before.parentNode)
+            && n(el_to_insert_before.parentElement)
             && [
                 1,
                 11,
             ].includes(el_to_insert.nodeType)
         ) {
-            el_to_insert_before.parentNode.insertBefore(
+            el_to_insert_before.parentElement.insertBefore(
                 el_to_insert,
                 el_to_insert_before,
             );
@@ -200,13 +200,13 @@ export class X {
         if (
             n(el_to_insert_after)
             && n(el_to_insert)
-            && n(el_to_insert_after.parentNode)
+            && n(el_to_insert_after.parentElement)
             && [
                 1,
                 11,
             ].includes(el_to_insert.nodeType)
         ) {
-            el_to_insert_after.parentNode.insertBefore(
+            el_to_insert_after.parentElement.insertBefore(
                 el_to_insert,
                 el_to_insert_after.nextElementSibling,
             );
@@ -220,7 +220,7 @@ export class X {
         if (
             n(parent)
             && n(child)
-            && n(parent.parentNode)
+            && n(parent.parentElement)
             && [
                 1,
                 11,
