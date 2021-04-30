@@ -112,6 +112,24 @@ export class X {
 
     // el.nodeType === 1 = not document
 
+    private all = (
+        els: Window | Document | HTMLElement[] | NodeList | HTMLElement | undefined,
+        callback: t.CallbackVariadicVoid,
+    ): void => {
+        if (n(els)) {
+            if (
+                els instanceof NodeList
+                || (els as any).length > 1
+            ) {
+                Array.from(els as any).forEach((el): void => {
+                    callback(el);
+                });
+            } else if (els instanceof HTMLElement) {
+                callback(els);
+            }
+        }
+    };
+
     // > dom manipulation
     public create = <T1 extends keyof HTMLElementTagNameMap>(
         el_type: T1,
@@ -138,14 +156,21 @@ export class X {
         }
     };
 
-    public remove = (el: HTMLElement | undefined): void => {
-        if (
-            n(el)
-            && n(el.parentNode)
-            && el.nodeType === 1
-        ) {
-            el.parentNode.removeChild(el);
-        }
+    public remove = (els: HTMLElement[] | NodeList | HTMLElement | undefined): void => {
+        const remove_one_el = (el: HTMLElement): void => {
+            if (
+                n(el)
+                && n(el.parentNode)
+                && el.nodeType === 1
+            ) {
+                el.parentNode.removeChild(el);
+            }
+        };
+
+        this.all(
+            els,
+            remove_one_el,
+        );
     };
 
     public before = (
@@ -249,15 +274,22 @@ export class X {
     };
 
     public remove_cls = (
-        el: HTMLElement | undefined,
+        els: HTMLElement[] | NodeList | HTMLElement | undefined,
         cls: string,
     ): void => {
-        if (
-            n(el)
-            && el.nodeType === 1
-        ) {
-            el.classList.remove(cls);
-        }
+        const remove_cls_one = (el: HTMLElement): void => {
+            if (
+                n(el)
+                && el.nodeType === 1
+            ) {
+                el.classList.remove(cls);
+            }
+        };
+
+        this.all(
+            els,
+            remove_cls_one,
+        );
     };
 
     // > array
@@ -288,25 +320,19 @@ export class X {
 
     // > add event listener to one or multiple elements t
     public bind = (
-        els: Window | Document | NodeList | HTMLElement | undefined,
+        els: Window | Document | HTMLElement[] | NodeList | HTMLElement | undefined,
         event: string,
         f: t.CallbackVariadicVoid,
     ): void => {
-        if (n(els)) {
-            if (els instanceof NodeList) {
-                Array.from(els).forEach((el): void => {
-                    el.addEventListener(
-                        event,
-                        f,
-                    );
-                });
-            } else if (els instanceof HTMLElement) {
-                els.addEventListener(
+        this.all(
+            els,
+            (el: Window | Document | HTMLElement) => {
+                el.addEventListener(
                     event,
                     f,
                 );
-            }
-        }
+            },
+        );
     };
     // < add event listener to one or multiple elements t
 
