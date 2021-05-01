@@ -502,5 +502,73 @@ export class X {
             /[<>:"/\\|?]/g,
             new_character,
         )
-    )
+    );
+
+    public convert_blob_to_base64 = (
+        { blob }: { blob: Blob },
+    ): Promise<string> => new Promise((resolve, reject) => {
+        const reader: any = new FileReader();
+        reader.onerror = reject;
+        reader.onload = () => {
+            resolve(reader.result);
+        };
+        reader.readAsDataURL(blob);
+    });
+
+    public copy_text = (text: string): void => {
+        const input = this.create(
+            'input',
+            '',
+        );
+
+        input.style.position = 'fixed';
+        input.style.opacity = '0';
+
+        this.append(
+            document.body,
+            input,
+        );
+
+        input.value = text;
+
+        input.focus();
+        input.select();
+
+        document.execCommand('copy');
+
+        this.remove(input);
+    };
+
+    public copy_img = (img_url: string): void => {
+        const div = this.create(
+            'div',
+            '',
+        );
+        const img = this.create(
+            'img',
+            '',
+        );
+
+        div.contentEditable = 'true';
+        img.style.position = 'fixed';
+        img.style.opacity = '0';
+        img.src = img_url;
+
+        this.append(
+            document.body,
+            div,
+        );
+        this.append(
+            div,
+            img,
+        );
+
+        div.focus();
+
+        document.execCommand('selectAll');
+        document.execCommand('Copy');
+
+        this.remove(div);
+        this.remove(img);
+    }
 }
