@@ -504,16 +504,16 @@ export class X {
         )
     );
 
-    public convert_blob_to_base64 = (
-        { blob }: { blob: Blob },
-    ): Promise<string> => new Promise((resolve, reject) => {
-        const reader: any = new FileReader();
-        reader.onerror = reject;
-        reader.onload = () => {
-            resolve(reader.result);
-        };
-        reader.readAsDataURL(blob);
-    });
+    public convert_blob_to_base64 = (blob: Blob): Promise<string> => new Promise(
+        (resolve, reject) => {
+            const reader: any = new FileReader();
+            reader.onerror = reject;
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+            reader.readAsDataURL(blob);
+        },
+    );
 
     public copy_text = (text: string): void => {
         const input = this.create(
