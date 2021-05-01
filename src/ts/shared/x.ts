@@ -540,35 +540,32 @@ export class X {
     };
 
     public copy_img = (img_url: string): void => {
-        const div = this.create(
-            'div',
-            '',
-        );
         const img = this.create(
             'img',
             '',
         );
 
-        div.contentEditable = 'true';
         img.style.position = 'fixed';
         img.style.opacity = '0';
         img.src = img_url;
 
         this.append(
             document.body,
-            div,
-        );
-        this.append(
-            div,
             img,
         );
 
-        div.focus();
+        const range: any = document.createRange();
 
-        document.execCommand('selectAll');
+        range.setStartBefore(img);
+        range.setEndAfter(img);
+        range.selectNode(img);
+
+        const selection: any = window.getSelection();
+
+        selection.addRange(range);
+
         document.execCommand('Copy');
 
-        this.remove(div);
         this.remove(img);
     }
 }
