@@ -38,6 +38,10 @@ class Manifest {
             shared_manifest.icons[128] = 'icon128.png';
         }
 
+        if (browser === 'edge') {
+            shared_manifest.icons[24] = 'icon24.png';
+        }
+
         if (browser === 'firefox') {
             shared_manifest.icons[96] = 'icon96.png';
         }
