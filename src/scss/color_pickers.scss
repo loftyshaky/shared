@@ -30,13 +30,13 @@ $btn_padding: 6px;
 }
 
 .pcr-color-preview {
+    @include border;
     margin-bottom: $gap !important;
 }
 
 .pcr-swatches {
     margin-top: 3px !important;
 }
-
 .pcr-app,
 .pcr-last-color,
 .pcr-palette,
@@ -47,11 +47,10 @@ $btn_padding: 6px;
 }
 
 .pcr-app,
-.pcr-color-preview,
 .pcr-palette,
 .pcr-slider,
 .color_picker_w input {
-    @include border;
+    @include outline_solid;
 }
 
 .color_picker_w input {
@@ -72,10 +71,6 @@ $btn_padding: 6px;
     display: block;
     margin-top: 9px !important;
     padding-top: 6px !important;
-}
-
-.pcr-interaction input:focus {
-    box-shadow: none !important;
 }
 
 .pcr-color-chooser {

@@ -34,9 +34,9 @@ export const Visualization = observer((props: p_color.Visualization) => {
                     ? `${input.palette_visualization_cls!({ i })}_w`
                     : palette_visualization_cls,
                 `${i}_visualization_w`,
-                input.inset_border_cls!({ i }),
+                input.inset_border_cls!({ i }), // needed to display palette color pickers at correct position
                 input.visualization_outline_opened!({ i }),
-                input.visualization_selected_opened!({ i }),
+                input.visualization_outline_selected!({ i }),
             ])}
             ref={visualization_w_ref}
             onContextMenu={prevent_default}

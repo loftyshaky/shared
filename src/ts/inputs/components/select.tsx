@@ -26,7 +26,6 @@ export const Select = observer((props: p_inputs.Select) => {
                         'inset_border',
                         'calculate_width',
                         d_inputs.Val.i().focus_state({ input }),
-                        d_inputs.Val.i().warn_state({ input }),
                     ])}
                     style={{
                         minWidth: u_settings.InputsWidth.i().width[input.section!],

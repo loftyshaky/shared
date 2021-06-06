@@ -10,7 +10,8 @@
 
 .reload_ui_btn_w .btn {
     @include btn;
-    @include black_border;
+    @include outline_solid;
+    outline-color: $black;
     visibility: visible;
     color: $black;
     background-color: $light_orange;
@@ -29,6 +30,7 @@
     color: $black;
 }
 
-.reload_ui_btn_w .using_keyboard .btn:focus {
-    @include blue_border;
+.reload_ui_btn_w .btn:focus {
+    @include outline_solid_thick;
+    outline-color: #293fe2;
 }

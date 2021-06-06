@@ -99,7 +99,7 @@ export class ColorPicker {
         i: i_color.I;
     }): Promise<void> => err_async(async () => {
         if (input.state[i].is_visible) {
-            await x.delay(0);
+            await x.delay(50);
 
             this.setting_color = true;
 

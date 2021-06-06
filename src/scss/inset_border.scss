@@ -5,7 +5,7 @@
 }
 
 .inset_border:before {
-    @include border;
+    @include outline_solid;
     content: "";
     position: absolute;
     pointer-events: none;
@@ -14,4 +14,12 @@
     right: 0;
     bottom: 0;
     z-index: 1;
+}
+
+.input_item.color .inset_border:before {
+    outline: none;
+}
+
+.btn.text:before {
+    display: none;
 }

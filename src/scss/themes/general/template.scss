@@ -1,4 +1,5 @@
 @import "../../mixins";
+@import "template_focus";
 
 ::selection {
     background-color: $nqp !important;
@@ -78,15 +79,12 @@ body .btn.text,
     background-color: $yos;
 }
 
-.input_w.inset_border:before {
-    border-color: $lpe;
-}
-
 .palette {
     background-color: $htc;
 }
 
-.input_w .visualization {
+.input_w .visualization,
+.input_w .palette_visualization {
     border-color: $lpe;
     background-color: $gaq;
 }
@@ -113,7 +111,6 @@ select {
     border-color: $lpe !important;
     background-color: $htc !important;
 }
-
 .color_picker_w *:not(.pcr-last-color):not(.pcr-current-color) {
     color: $lpe !important;
 }
@@ -133,10 +130,6 @@ select {
 
 .color_picker_w input:hover:not(.pcr-result):not(.active) {
     background-color: $yos !important;
-}
-
-.pcr-result:focus {
-    border-color: $myo !important;
 }
 
 .color_picker_w .pcr-type.active {
@@ -160,17 +153,4 @@ select {
 .link:active,
 .link_btn:active {
     color: $nmy;
-}
-
-.input_item .visualization_w .visualization,
-.input_item .palette_visualization {
-    outline-color: $myo;
-}
-
-.input_w.is_in_focus_state:before {
-    border-color: $myo;
-}
-
-.input_w.is_in_warn_state:before {
-    border-color: $ptn;
 }

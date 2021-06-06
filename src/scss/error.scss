@@ -2,7 +2,8 @@
 @import "vars";
 @import "mods";
 @import "mixins";
-@import "text"; 
+@import "text";
+@import "focus";
 
 body,
 button {
@@ -34,30 +35,23 @@ button {
     position: absolute;
     top: 7px;
     right: 7px;
-    outline-offset: 2px;
 }
 
 .error .close_btn svg {
+    display: block;
     fill: white;
     height: 20px;
     width: 20px;
 }
 
-.error .close_btn:focus {
-    outline: none;
-}
-
-.using_keyboard .error .close_btn:focus {
-    outline: 1px solid white;
-}
-
 .error .more_info_btn {
-    @include white_border();
+    @include btn();
+    @include outline_solid();
+    outline-color: white;
     background-color: transparent;
     display: table;
     margin: auto;
     margin-top: 6px;
-    outline: none;
     padding: 3px 6px 3px 6px;
     cursor: pointer;
     white-space: nowrap;
@@ -68,22 +62,16 @@ button {
     background-color: white;
 }
 
-.error .more_info_btn:active {
-    color: $black;
-    background-color: $yellow;
-    border-color: $yellow;
-}
-
-.using_keyboard .error .more_info_btn:focus {
-    background-color: $blue;
-    border-color: $blue;
-}
-
-.using_keyboard .error .more_info_btn:hover:focus {
-    color: white;
-}
-
 .error.is_highlighted {
     background-color: #e28036;
 }
 
+.error .more_info_btn:focus,
+.error .close_btn:focus {
+    @include outline_solid_thick;
+    outline-color: $black;
+}
+
+.error .close_btn:focus {
+    outline-offset: $outline_offset;
+}

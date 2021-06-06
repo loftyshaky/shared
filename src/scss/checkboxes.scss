@@ -1,32 +1,26 @@
 $box_size: 18px;
 $checkmark_size: 16px;
 
-.checkbox:not(:first-child) {
-    margin-top: $gap;
-}
-
 .checkbox input {
     display: none;
 }
 
 .checkbox .wrap_label {
+    @include border_transparent;
     margin-right: $input_content_gap;
 }
 
 .checkbox .box {
-    @include border;
+    @include center_flex;
+    @include outline_solid;
     height: $box_size;
     width: $box_size;
     cursor: pointer;
-    display: block;
 }
 
 .checkbox .box svg {
-    margin-top: 1px;
-    margin-left: 1px;
     width: $checkmark_size;
     height: $checkmark_size;
-    display: block;
 }
 
 .checkbox input + .box svg {

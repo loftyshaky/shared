@@ -20,3 +20,4 @@ export * from 'shared/svg';
 export * as u_loading_screen from 'shared/loading_screen/store/ui';
 export * as c_loading_screen from 'shared/loading_screen/components';
 export * as p_loading_screen from 'shared/loading_screen/components/prop_types';
+export * as s_tab_index from 'shared/tab_index/scripts';

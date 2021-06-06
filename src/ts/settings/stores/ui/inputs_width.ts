@@ -31,7 +31,7 @@ export class InputsWidth {
 
     public width: { [index: string]: number | undefined } = {};
     public max_width: number = 0;
-    private min_width: number = 300;
+    private min_width: number = 298;
     private old_max_width: { [index: string]: number } = {};
 
     public calculate_for_section = ({ section_name }: { section_name: string }): void => {

@@ -52,12 +52,24 @@ export const Body = observer((props: p_color.Body) => {
                         name='fade'
                         cls='palette_w'
                         state={input.palette_w_is_visible!()}
+                        tr_end_unactive={
+                            [(): void => {
+                                d_color.Visibility.i().mark_palette_as_closed(
+                                    {
+                                        input,
+                                        is_closed: true,
+                                    },
+                                );
+                            }]
+                        }
                     >
                         <div
-                            className='palette'
+                            className={x.cls([
+                                'palette',
+                                input.palette_is_closed_none_cls!(),
+                            ])}
                             ref={palette_ref}
                         >
-
                             <BaseTr
                                 tag='div'
                                 name='fade'

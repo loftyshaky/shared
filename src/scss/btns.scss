@@ -1,5 +1,3 @@
-$btn_size: 32px;
-
 .btn {
     @include btn;
     border-radius: 0;
@@ -7,17 +5,14 @@ $btn_size: 32px;
     vertical-align: bottom;
 }
 
-.btn svg {
-    height: $btn_size;
-    width: $btn_size;
-}
-
 .btn.text {
     @include btn;
+    @include border_transparent;
+    @include outline_solid;
     display: block;
-    border: none;
-    height: $input_height;
-    padding: 7px 9px 6px 9px;
+    height: $input_height + ($border_width * 2);
+    padding: 0px $input_inner_padding 0px $input_inner_padding;
+    outline-offset: -1px;
 }
 
 .btn.text:not(:first-child) {

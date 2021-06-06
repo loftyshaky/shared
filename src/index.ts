@@ -7,6 +7,7 @@ import {
 import {
     u_loading_screen,
     c_loading_screen,
+    s_tab_index,
 } from 'shared/internal';
 
 export {
@@ -26,5 +27,6 @@ export {
 
 export const { Visibility: LoadingScreenVisibility } = u_loading_screen;
 export const { Body: LoadingScreenBody } = c_loading_screen;
+export const { Main: TabIndex } = s_tab_index;
 export const { Body: CrashHandler } = c_crash_handler;
 export const { Body: Error } = c_error;

@@ -15,6 +15,7 @@ import {
 const color_picker_state: i_color.ColorPickerState = {
     is_initialized: false,
     is_visible: false,
+    is_closed: true,
 };
 
 export class Color extends o_inputs.InputBase {
@@ -22,6 +23,7 @@ export class Color extends o_inputs.InputBase {
     public include_visualization?: boolean= true;
     public include_palette_label?: boolean = false;
     public palette_is_visible?: boolean = false;
+    public palette_is_closed?: boolean = true;
     public palette_width?: number = 0;
     public palette_height?: number = 0;
     public color_picker_width?: number = 0;
@@ -44,6 +46,7 @@ export class Color extends o_inputs.InputBase {
             this,
             {
                 palette_is_visible: observable,
+                palette_is_closed: observable,
                 palette_width: observable,
                 palette_height: observable,
                 color_picker_width: observable,
@@ -118,7 +121,7 @@ export class Color extends o_inputs.InputBase {
         },
     );
 
-    visualization_selected_opened? = computedFn(
+    visualization_outline_selected? = computedFn(
         function (
             this: Color,
             { i }: { i: i_color.I; },
@@ -144,6 +147,25 @@ export class Color extends o_inputs.InputBase {
                     ? 'selected'
                     : ''
             );
+        },
+    );
+
+    color_picker_is_closed_none_cls? = computedFn(
+        function (
+            this: Color,
+            { i }: { i: i_color.I; },
+        ): string {
+            return this.state[i].is_closed
+                ? 'none'
+                : '';
+        },
+    );
+
+    palette_is_closed_none_cls? = computedFn(
+        function (this: Color): string {
+            return this.palette_is_closed
+                ? 'none'
+                : '';
         },
     );
 }

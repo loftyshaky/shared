@@ -23,6 +23,12 @@ input[type="file"] {
     white-space: normal;
 }
 
+.input_item.text .label,
+.input_item.textarea .label,
+.input_item.select .label {
+    margin-bottom: $gap_small;
+}
+
 .main.window .input_item .label {
     height: unset;
 }
@@ -30,7 +36,7 @@ input[type="file"] {
 .input_item .input {
     @include input_basic;
     height: $input_height;
-    padding: 0 9px 0 9px;
+    padding: 0px $input_inner_padding 0px $input_inner_padding;
     flex-grow: 1;
     border-radius: 0;
     box-sizing: border-box;
@@ -45,4 +51,16 @@ input[type="file"] {
     position: relative;
     display: flex;
     flex-shrink: 0;
+}
+
+.input_w.text,
+.input_w.textarea,
+.input_w.select {
+    @include border_transparent;
+}
+
+.input_w.is_in_focus_state:not(.select):before,
+.input_w.is_in_warn_state:not(.select):before,
+.keyboard .input_w:not(.text):not(.textarea).is_in_focus_state:before {
+    @include outline_solid_thick;
 }

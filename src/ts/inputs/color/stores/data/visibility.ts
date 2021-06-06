@@ -22,6 +22,8 @@ export class Visibility {
         makeObservable(
             this,
             {
+                mark_color_picker_as_closed: action,
+                mark_palette_as_closed: action,
                 hide_main_and_palette: action,
                 hide_palette_color_pickers: action,
             },
@@ -32,6 +34,34 @@ export class Visibility {
     public previously_visible_input: o_color.Color | undefined;
     public previously_visible_color_picker_i: i_color.I | undefined;
     private visualization_of_visible_input: HTMLButtonElement | undefined;
+
+    public mark_color_picker_as_closed = (
+        {
+            input,
+            i,
+            is_closed,
+        }: {
+            input: o_color.Color;
+            i: i_color.I;
+            is_closed: boolean
+        },
+    ): void => err(() => {
+        input.state[i].is_closed = is_closed;
+    },
+    's1067');
+
+    public mark_palette_as_closed = (
+        {
+            input,
+            is_closed,
+        }: {
+            input: o_color.Color;
+            is_closed: boolean
+        },
+    ): void => err(() => {
+        input.palette_is_closed = is_closed;
+    },
+    's1068');
 
     public change_visibility = ({
         input,
@@ -88,6 +118,13 @@ export class Visibility {
 
             if (is_palette) {
                 new_input.palette_is_visible = palette_is_visible;
+
+                if (palette_is_visible) {
+                    this.mark_palette_as_closed({
+                        input: new_input,
+                        is_closed: false,
+                    });
+                }
             } else if (
                 e.button === 2
             || color_picker_state === 'is_initialized'
@@ -99,6 +136,12 @@ export class Visibility {
                         d_color.Color.i().set_previous_color({
                             input,
                             i,
+                        });
+
+                        this.mark_color_picker_as_closed({
+                            input: new_input,
+                            i,
+                            is_closed: false,
                         });
                     }
                 }

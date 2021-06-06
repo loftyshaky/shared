@@ -3,6 +3,7 @@ import {
     observable,
     action,
 } from 'mobx';
+import { computedFn } from 'mobx-utils';
 
 import { t } from 'shared/internal';
 import {
@@ -30,6 +31,22 @@ export class Sections {
     }
 
     public current_section: string = '';
+
+    public selected_cls = computedFn(
+        function (this: Sections, { section_name }: { section_name: string }): string {
+            return this.current_section === section_name
+                ? 'selected'
+                : '';
+        },
+    );
+
+    public tab_index = computedFn(
+        function (this: Sections, { section_name }: { section_name: string }): number | undefined {
+            return this.current_section === section_name
+                ? -1
+                : undefined;
+        },
+    );
 
     public change = (
         {

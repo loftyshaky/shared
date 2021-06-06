@@ -15,11 +15,14 @@ export const SectionBtn = observer((props: p_inputs.SectionBtn) => {
             className={x.cls([
                 'section_btn',
                 section.name,
-                section.name === d_settings.Sections.i().current_section
-                    ? 'selected'
-                    : '',
+                d_settings.Sections.i().selected_cls(
+                    { section_name: section.name },
+                ),
             ])}
             type='button'
+            tabIndex={d_settings.Sections.i().tab_index(
+                { section_name: section.name },
+            )}
             onClick={() => d_settings.Sections.i().change(
                 {
                     section_name: section.name,

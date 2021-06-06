@@ -39,6 +39,7 @@ export const Checkbox = observer((props: p_inputs.Checkbox) => {
                         <span
                             className='box'
                             role='button'
+                            tabIndex={0}
                         >
                             <svg.Check />
                         </span>
