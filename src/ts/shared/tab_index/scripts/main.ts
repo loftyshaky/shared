@@ -1,3 +1,9 @@
+import {
+    o_color,
+    d_color,
+    i_color,
+} from 'inputs/internal';
+
 export class Main {
     private static i0: Main;
 
@@ -105,4 +111,61 @@ export class Main {
         );
     },
     's1065');
+
+    public simulate_click_on_enter = (e: any): void => err(() => {
+        if (e.code === 'Enter') {
+            e.target.click();
+        }
+    },
+    's1070');
+
+    public simulate_color_visualization_click_on_enter = ({
+        input,
+        i,
+    }: {
+        input: o_color.Color;
+        i: i_color.I;
+    }, e: any): void => err(() => {
+        const e_2: any = { button: 0 };
+        const e_3: any = { detail: 1 };
+
+        const call_change_visibility = (): void => err(() => {
+            d_color.Visibility.i().change_visibility({
+                input,
+                i,
+                color_picker_state: 'is_visible',
+            },
+            e_2);
+        },
+        's1072');
+
+        if (e.code === 'Enter') {
+            if (e.shiftKey) {
+                e_2.button = 2;
+            } else {
+                e_2.button = 0;
+            }
+
+            if (
+                x.matches(
+                    e.target,
+                    '.palette_visualization',
+                )
+                && !e.shiftKey
+            ) {
+                d_color.Color.i().select_palette_color({
+                    input,
+                    i,
+                },
+                e_3);
+
+                if (input.state[i].is_visible) {
+                    call_change_visibility();
+                }
+            } else {
+                call_change_visibility();
+            }
+        }
+    },
+    's1071');
 }

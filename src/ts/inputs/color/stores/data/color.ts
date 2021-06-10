@@ -199,8 +199,14 @@ export class Color {
             input: o_color.Color;
             i: i_color.I;
         },
+        e: any,
     ): void => err(() => {
-        if (input.is_palette_color!({ i })) {
+        const called_by_enter_key: boolean = e.detail === 0;
+
+        if (
+            !called_by_enter_key
+            && input.is_palette_color!({ i })
+        ) {
             data.settings[input.name] = i;
 
             this.previous_color = i;

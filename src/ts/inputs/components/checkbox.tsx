@@ -1,7 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { svg } from 'shared/internal';
+import {
+    svg,
+    s_tab_index,
+} from 'shared/internal';
 import {
     d_inputs,
     c_inputs,
@@ -40,6 +43,7 @@ export const Checkbox = observer((props: p_inputs.Checkbox) => {
                             className='box'
                             role='button'
                             tabIndex={0}
+                            onKeyDown={s_tab_index.Main.i().simulate_click_on_enter}
                         >
                             <svg.Check />
                         </span>

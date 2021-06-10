@@ -1,7 +1,10 @@
 import React, { useRef } from 'react';
 import { observer } from 'mobx-react';
 
-import { prevent_default } from 'shared/internal';
+import {
+    prevent_default,
+    s_tab_index,
+} from 'shared/internal';
 import {
     c_inputs,
     p_color,
@@ -56,11 +59,12 @@ export const Visualization = observer((props: p_color.Visualization) => {
                     }),
                 }}
                 ref={visualization_ref}
-                onClick={(): void => {
+                onClick={(e: any): void => {
                     d_color.Color.i().select_palette_color({
                         input,
                         i,
-                    });
+                    },
+                    e);
                 }}
                 onMouseDown={(e: any): void => {
                     d_color.Visibility.i().change_visibility({
@@ -75,6 +79,21 @@ export const Visualization = observer((props: p_color.Visualization) => {
                         input,
                         i,
                         color_picker_state: 'is_initialized',
+                    },
+                    e);
+                }}
+                onFocus={(e: any): void => {
+                    d_color.Visibility.i().change_visibility({
+                        input,
+                        i,
+                        color_picker_state: 'is_initialized',
+                    },
+                    e);
+                }}
+                onKeyDown={(e: any) => {
+                    s_tab_index.Main.i().simulate_color_visualization_click_on_enter({
+                        input,
+                        i,
                     },
                     e);
                 }}
