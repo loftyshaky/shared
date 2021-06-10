@@ -540,6 +540,10 @@ export class X {
     };
 
     public copy_img = (img_url: string): void => {
+        const selection: any = window.getSelection();
+
+        selection.removeAllRanges();
+
         const img = this.create(
             'img',
             '',
@@ -559,8 +563,6 @@ export class X {
         range.setStartBefore(img);
         range.setEndAfter(img);
         range.selectNode(img);
-
-        const selection: any = window.getSelection();
 
         selection.addRange(range);
 
