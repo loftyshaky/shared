@@ -21,10 +21,6 @@ $text_input_outline_size: 20px;
 .keyboard .pcr-picker:focus,
 .pcr-result:focus,
 .keyboard .color_picker_w input:not(.pcr-result):focus,
-.visualization_w.selected:not(.opened) .visualization,
-.palette_visualization_w.selected:not(.opened) .palette_visualization,
-.visualization_w:not(.selected):not(.opened) .visualization:focus,
-.palette_visualization_w:not(.selected):not(.opened) .palette_visualization:focus,
 .keyboard .btn.text_input:focus:before,
 body.keyboard .btn.text:focus,
 .checkbox .box:focus,
@@ -36,14 +32,32 @@ body.keyboard .btn.text:focus,
 
 .keyboard .pcr-palette:focus,
 .keyboard .pcr-slider:focus,
-.visualization_w.selected:not(.opened) .visualization,
-.palette_visualization_w.selected:not(.opened) .palette_visualization,
-.visualization_w:not(.selected):not(.opened) .visualization:focus,
-.palette_visualization_w:not(.selected):not(.opened) .palette_visualization:focus,
 .keyboard .link:focus,
 .keyboard .link_btn:focus,
 .keyboard .help_btn:focus {
     outline-offset: $outline_offset;
+}
+
+.palette_visualization_w.selected:not(.opened) .palette_visualization {
+    @include outline_solid_thick;
+    outline-offset: $outline_offset;
+}
+
+.visualization_w.opened .visualization,
+.palette_visualization_w.opened .palette_visualization {
+    @include outline_dashed_thick;
+    outline-offset: $outline_offset;
+}
+
+.keyboard .visualization_w .visualization:focus,
+.keyboard .palette_visualization_w .palette_visualization:focus {
+    @include outline_solid_thick;
+    outline-offset: $outline_offset;
+}
+
+.keyboard .visualization_w.opened .visualization:focus,
+.keyboard .palette_visualization_w.opened .palette_visualization:focus {
+    @include outline_dashed_thick;
 }
 
 .keyboard .btn.text_input:focus:before {
