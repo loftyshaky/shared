@@ -32,6 +32,7 @@ export const Body = observer((props: p_error.Body) => {
             }}
             onMouseDown={u_error.State.i().clear_all_reset_state_timeouts}
         >
+            <c_error.ExtName />
             <c_error.Msg />
             <c_error.CloseBtn />
         </div>
