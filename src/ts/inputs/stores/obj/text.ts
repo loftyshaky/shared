@@ -24,8 +24,11 @@ export class Text extends o_inputs.InputBase {
     remove_val_btn_is_visible? = computedFn(
         function ({ input }: { input: Text; }): string {
             return (
-                input.allow_removing_val
-                && d_inputs.Val.i().access({ input }) === ''
+                input.text_type === 'number'
+                || (
+                    input.allow_removing_val
+                    && d_inputs.Val.i().access({ input }) === ''
+                )
                     ? 'hidden'
                     : ''
             );

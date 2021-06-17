@@ -8,6 +8,7 @@ import { computedFn } from 'mobx-utils';
 import { t } from 'shared/internal';
 import {
     o_inputs,
+    d_inputs,
     d_color,
     i_inputs,
 } from 'inputs/internal';
@@ -84,13 +85,13 @@ export class Sections {
             download_back_up_callback,
             upload_back_up_callback,
             restore_defaults_callback,
-            options_page_theme_callback,
+            input_change_val_callback,
             admin_inputs = [],
         }: {
             download_back_up_callback: t.CallbackVariadicVoid;
             upload_back_up_callback: t.CallbackVariadicVoid;
             restore_defaults_callback: t.CallbackVoid;
-            options_page_theme_callback: t.CallbackVariadicVoid;
+            input_change_val_callback: t.CallbackVariadicVoid;
             admin_inputs?: i_inputs.Input[];
         },
     ): o_inputs.Section[] => err(() => [
@@ -131,7 +132,13 @@ export class Sections {
                 new o_inputs.Select({
                     name: 'options_page_theme',
                     options: this.options,
-                    event_callback: options_page_theme_callback,
+                    event_callback: input_change_val_callback,
+                }),
+                new o_inputs.Text({
+                    name: 'transition_duration',
+                    text_type: 'number',
+                    event_callback: input_change_val_callback,
+                    warn_state_checker: d_inputs.Val.i().validate_input,
                 }),
                 ...admin_inputs,
             ],

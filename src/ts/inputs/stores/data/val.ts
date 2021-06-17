@@ -7,6 +7,7 @@ import { computedFn } from 'mobx-utils';
 
 import {
     o_inputs,
+    d_inputs,
     i_inputs,
 } from 'inputs/internal';
 
@@ -140,4 +141,15 @@ export class Val {
         }
     },
     's1017'));
+
+    public validate_input = ({ input }: { input: i_inputs.Input }): any => err(() => {
+        const val: string = d_inputs.Val.i().access({ input });
+
+        if (input.name === 'transition_duration') {
+            return !/^[1-9][0-9]*$/.test(val);
+        }
+
+        return false;
+    },
+    's1075');
 }

@@ -50,6 +50,9 @@
     "options_page_theme_label_text": {
         "message": "Тема страницы насроек"
     },
+    "transition_duration_label_text": {
+        "message": "Продолжительность анимации (мс)"
+    },
     "light_option_text": {
         "message": "Светлая"
     },

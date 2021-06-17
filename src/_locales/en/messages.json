@@ -53,6 +53,9 @@
     "options_page_theme_label_text": {
         "message": "Options page theme"
     },
+    "transition_duration_label_text": {
+        "message": "Animation duration (ms)"
+    },
     "light_option_text": {
         "message": "Light"
     },

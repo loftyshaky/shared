@@ -20,6 +20,7 @@ export const Text = observer((props: p_inputs.Text) => {
                     className={x.cls([
                         'input_w',
                         'text',
+                        input.text_type,
                         input.name,
                         'inset_border',
                         'calculate_width',
@@ -39,7 +40,7 @@ export const Text = observer((props: p_inputs.Text) => {
                             'input',
                             input.text_type,
                         ])}
-                        type={input.type}
+                        type={input.text_type}
                         value={d_inputs.Val.i().access({ input })}
                         autoComplete='off'
                         spellCheck='false'
