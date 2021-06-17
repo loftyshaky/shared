@@ -39,6 +39,10 @@ export const Body = observer((props: p_settings.Body) => {
             'resize',
             s_color.Position.i().set,
         );
+        document.addEventListener(
+            'keydown',
+            d_color.Visibility.i().hide_color_picker_or_palette_on_esc,
+        );
 
         return () => {
             window.removeEventListener(
@@ -56,6 +60,10 @@ export const Body = observer((props: p_settings.Body) => {
             window.removeEventListener(
                 'resize',
                 s_color.Position.i().set,
+            );
+            document.removeEventListener(
+                'keydown',
+                d_color.Visibility.i().hide_color_picker_or_palette_on_esc,
             );
         };
     },

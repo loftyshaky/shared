@@ -30,6 +30,7 @@ export class Visibility {
         );
     }
 
+    private any_color_picker_is_visible: boolean = false;
     public visible_input: o_color.Color | undefined;
     public previously_visible_input: o_color.Color | undefined;
     public previously_visible_color_picker_i: i_color.I | undefined;
@@ -72,6 +73,9 @@ export class Visibility {
         i: i_color.I;
         color_picker_state: 'is_initialized' | 'is_visible',
     }, e: any): Promise<void> => err_async(async () => {
+        if (color_picker_state !== 'is_visible') {
+            this.any_color_picker_is_visible = true;
+        }
         await x.delay(30);
 
         runInAction((): void => {
@@ -167,6 +171,7 @@ export class Visibility {
 
         new_input.state.main.is_visible = false;
         new_input.palette_is_visible = false;
+        this.any_color_picker_is_visible = false;
     },
     's1034');
 
@@ -180,6 +185,8 @@ export class Visibility {
                 new_input.state[i].is_visible = false;
             }
         });
+
+        this.any_color_picker_is_visible = false;
     },
     's1035');
 
@@ -235,6 +242,23 @@ export class Visibility {
         }
     },
     's1036');
+
+    public hide_color_picker_or_palette_on_esc = (e: any): void => err(() => {
+        if (
+            n(this.visible_input)
+            && e.code === 'Escape'
+        ) {
+            if (
+                this.visible_input.palette_is_visible
+                && this.any_color_picker_is_visible
+            ) {
+                this.hide_palette_color_pickers({ input: this.visible_input });
+            } else {
+                this.hide_main_and_palette({ input: this.visible_input });
+            }
+        }
+    },
+    's1074');
 
     public hide_color_help = ({ input }: { input: o_color.Color; }): void => err(() => {
         data.settings.show_color_help = false;
