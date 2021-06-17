@@ -140,7 +140,11 @@ export class Main {
         's1072');
 
         if (e.code === 'Enter') {
-            if (e.shiftKey) {
+            if (
+                e.ctrlKey
+                || e.shiftKey
+                || e.altKey
+            ) {
                 e_2.button = 2;
             } else {
                 e_2.button = 0;
@@ -151,7 +155,9 @@ export class Main {
                     e.target,
                     '.palette_visualization',
                 )
+                && !e.ctrlKey
                 && !e.shiftKey
+                && !e.altKey
             ) {
                 d_color.Color.i().select_palette_color({
                     input,
