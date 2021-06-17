@@ -35,6 +35,9 @@
     "restore_section_text": {
         "message": "Восстановление"
     },
+    "admin_section_text": {
+        "message": "Администрирование"
+    },
     "download_back_up_btn_text": {
         "message": "Скачать резорвную копию"
     },
@@ -43,6 +46,21 @@
     },
     "restore_defaults_btn_text": {
         "message": "Восстановить настройки по умолчанию"
+    },
+    "options_page_theme_label_text": {
+        "message": "Тема страницы насроек"
+    },
+    "light_option_text": {
+        "message": "Светлая"
+    },
+    "dark_option_text": {
+        "message": "Тёмная"
+    },
+    "very_dark_option_text": {
+        "message": "Очень тёмная"
+    },
+    "admin_help_text": {
+        "message": "Функции для разработчиков/экспериментальные функции."
     },
     "help_btn_title": {
         "message": "Помощь"

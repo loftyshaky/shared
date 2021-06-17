@@ -100,7 +100,7 @@ export class Val {
     },
     's1008');
 
-    private set = action(({
+    public set = action(({
         val,
         input,
     }: {
@@ -113,9 +113,9 @@ export class Val {
                 input.val_accessor,
                 val,
             );
+        } else {
+            data.settings[input.name] = val;
         }
-
-        data.settings[input.name] = val;
     },
     's1024'));
 

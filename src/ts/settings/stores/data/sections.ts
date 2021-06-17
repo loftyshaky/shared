@@ -9,6 +9,7 @@ import { t } from 'shared/internal';
 import {
     o_inputs,
     d_color,
+    i_inputs,
 } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
@@ -31,6 +32,13 @@ export class Sections {
     }
 
     public current_section: string = '';
+    private options: any = {
+        options_page_theme: [
+            new o_inputs.Option({ name: 'light' }),
+            new o_inputs.Option({ name: 'dark' }),
+            new o_inputs.Option({ name: 'very_dark' }),
+        ],
+    }
 
     public selected_cls = computedFn(
         function (this: Sections, { section_name }: { section_name: string }): string {
@@ -76,10 +84,14 @@ export class Sections {
             download_back_up_callback,
             upload_back_up_callback,
             restore_defaults_callback,
+            options_page_theme_callback,
+            admin_inputs = [],
         }: {
             download_back_up_callback: t.CallbackVariadicVoid;
             upload_back_up_callback: t.CallbackVariadicVoid;
             restore_defaults_callback: t.CallbackVoid;
+            options_page_theme_callback: t.CallbackVariadicVoid;
+            admin_inputs?: i_inputs.Input[];
         },
     ): o_inputs.Section[] => err(() => [
         new o_inputs.Section({
@@ -111,6 +123,18 @@ export class Sections {
                 name: 'restore_defaults',
                 event_callback: restore_defaults_callback,
             })],
+        }),
+        new o_inputs.Section({
+            name: 'admin',
+            include_help: true,
+            inputs: [
+                new o_inputs.Select({
+                    name: 'options_page_theme',
+                    options: this.options,
+                    event_callback: options_page_theme_callback,
+                }),
+                ...admin_inputs,
+            ],
         }),
     ],
     's1025');

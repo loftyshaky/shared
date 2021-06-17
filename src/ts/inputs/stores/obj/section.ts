@@ -31,12 +31,11 @@ export class Section {
         );
         this.name = obj.name;
         this.inputs = obj.inputs;
-        _.map(
-            obj.inputs,
-            (obj_2) => _.extend(
-                { section: this.name },
-                obj_2,
-            ),
+
+        Object.values(obj.inputs).forEach(
+            (obj_2) => {
+                obj_2.section = this.name;
+            },
         );
     }
 }

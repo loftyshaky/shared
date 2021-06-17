@@ -38,6 +38,9 @@
     "restore_section_text": {
         "message": "Restore"
     },
+    "admin_section_text": {
+        "message": "Admin"
+    },
     "download_back_up_btn_text": {
         "message": "Download back up"
     },
@@ -46,6 +49,21 @@
     },
     "restore_defaults_btn_text": {
         "message": "Restore default settings"
+    },
+    "options_page_theme_label_text": {
+        "message": "Options page theme"
+    },
+    "light_option_text": {
+        "message": "Light"
+    },
+    "dark_option_text": {
+        "message": "Dark"
+    },
+    "very_dark_option_text": {
+        "message": "Very dark"
+    },
+    "admin_help_text": {
+        "message": "Developer/experimental features."
     },
     "help_btn_title": {
         "message": "Help"
