@@ -30,7 +30,6 @@ export class Visibility {
         );
     }
 
-    private any_color_picker_is_visible: boolean = false;
     public visible_input: o_color.Color | undefined;
     public previously_visible_input: o_color.Color | undefined;
     public previously_visible_color_picker_i: i_color.I | undefined;
@@ -73,9 +72,6 @@ export class Visibility {
         i: i_color.I;
         color_picker_state: 'is_initialized' | 'is_visible',
     }, e: any): Promise<void> => err_async(async () => {
-        if (color_picker_state !== 'is_visible') {
-            this.any_color_picker_is_visible = true;
-        }
         await x.delay(30);
 
         runInAction((): void => {
@@ -171,7 +167,6 @@ export class Visibility {
 
         new_input.state.main.is_visible = false;
         new_input.palette_is_visible = false;
-        this.any_color_picker_is_visible = false;
     },
     's1034');
 
@@ -185,8 +180,6 @@ export class Visibility {
                 new_input.state[i].is_visible = false;
             }
         });
-
-        this.any_color_picker_is_visible = false;
     },
     's1035');
 
@@ -248,9 +241,23 @@ export class Visibility {
             n(this.visible_input)
             && e.code === 'Escape'
         ) {
+            const at_least_one_palette_color_picker_opened: boolean = (
+                d_color.Color.i().filter_palette_colors(
+                    { obj: this.visible_input.state },
+                ).some((item, i: number): boolean => {
+                    if (
+                        this.visible_input
+                    && item !== 'main'
+                    ) {
+                        return this.visible_input.state[i].is_visible;
+                    }
+
+                    return false;
+                }));
+
             if (
                 this.visible_input.palette_is_visible
-                && this.any_color_picker_is_visible
+                && at_least_one_palette_color_picker_opened
             ) {
                 this.hide_palette_color_pickers({ input: this.visible_input });
             } else {
