@@ -84,7 +84,7 @@
         "message": "Restore default palette"
     },
     "color_help_text": {
-        "message": "Right-click on the main color button to choose a custom color.\nRight-click on a pallete color to change it."
+        "message": "Right-click on the main or palette color buttons to choose a custom color. (Tab: Ctrl/Shift/Alt + Enter)."
     },
     "privacy_policy_link_text": {
         "message": "📜 Privacy policy"
