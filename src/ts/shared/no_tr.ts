@@ -21,7 +21,7 @@ export class NoTr {
     public disable = (
         { el = document.head }: { el?: HTMLElement | ShadowRoot } = { el: document.head },
     ): Promise<void> =>
-        err(async () => {
+        err_async(async () => {
             await x.delay(500);
 
             const tr_link = sb<HTMLLinkElement>(el, `.${this.cls}_link`);
