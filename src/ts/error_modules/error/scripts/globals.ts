@@ -5,15 +5,11 @@ import { i_error } from 'error_modules/internal';
 declare const global: Global;
 
 declare global {
-    function show_err_ribbon(
-        error_obj: any,
-        error_code: number | string,
-        obj?: i_error.ShowError,
-    ): void;
-    function err<T1>(f: () => T1, error_code: number | string, obj?: i_error.ShowError): T1;
+    function show_err_ribbon(error_obj: any, error_code: string, obj?: i_error.ShowError): void;
+    function err<T1>(f: () => T1, error_code: string, obj?: i_error.ShowError): T1;
     function err_async<T1>(
         f: () => Promise<T1>,
-        error_code: number | string,
+        error_code: string,
         obj?: i_error.ShowError,
     ): Promise<T1>;
     function throw_err(msg: string): void;
@@ -22,7 +18,7 @@ declare global {
 
 global.show_err_ribbon = (
     error_obj: any,
-    error_code: number | string,
+    error_code: string,
     {
         error_msg_key = '',
         silent = false,
@@ -41,7 +37,7 @@ global.show_err_ribbon = (
 
 global.err = <T1>(
     f: () => T1,
-    error_code: number | string,
+    error_code: string,
     {
         error_msg_key = '',
         silent = false,
@@ -67,7 +63,7 @@ global.err = <T1>(
 
 global.err_async = async <T1>(
     f: () => Promise<T1>,
-    error_code: number | string,
+    error_code: string,
     {
         error_msg_key = '',
         silent = false,

@@ -26,7 +26,7 @@ export class Main {
     */
     public show_error = (
         error_obj: any,
-        error_code: number | string,
+        error_code: string,
         {
             error_msg_key = '',
             silent = false,
