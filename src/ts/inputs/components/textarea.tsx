@@ -2,11 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import {
-    d_inputs,
-    c_inputs,
-    p_inputs,
-} from 'inputs/internal';
+import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 import { u_settings } from 'settings/internal';
 
@@ -48,42 +44,24 @@ export const Textarea = observer((props: p_inputs.Textarea) => {
                         }}
                         onChange={() => undefined}
                         onFocus={(): void => {
-                            d_inputs.Val.i().set_focus_state(
-                                {
-                                    input,
-                                    state: true,
-                                },
-                            );
+                            d_inputs.Val.i().set_focus_state({
+                                input,
+                                state: true,
+                            });
                         }}
                         onBlur={(): void => {
-                            d_inputs.Val.i().set_focus_state(
-                                {
-                                    input,
-                                    state: false,
-                                },
-                            );
+                            d_inputs.Val.i().set_focus_state({
+                                input,
+                                state: false,
+                            });
                         }}
                     />
                 </span>
-                {
-                    input.include_help
-                        ? <c_inputs.HelpBtn section_or_input={input} />
-                        : undefined
-                }
+                {input.include_help ? <c_inputs.HelpBtn section_or_input={input} /> : undefined}
             </div>
-            {
-                input.include_help
-                    ? <c_inputs.Help section_or_input={input} />
-                    : undefined
-            }
+            {input.include_help ? <c_inputs.Help section_or_input={input} /> : undefined}
         </>
     );
 
-    return (
-        <c_inputs.InputItem
-            input={input}
-            input_w={input_w}
-            include_label
-        />
-    );
+    return <c_inputs.InputItem input={input} input_w={input_w} include_label />;
 });

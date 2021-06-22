@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
-import {
-    p_color,
-    s_color,
-} from 'inputs/internal';
+import { p_color, s_color } from 'inputs/internal';
 
 export const FillShadow = observer((props: p_color.FillShadow) => {
     useEffect(() => {
@@ -15,11 +12,7 @@ export const FillShadow = observer((props: p_color.FillShadow) => {
         }
     });
 
-    const {
-        is_visible,
-        width,
-        height,
-    } = props;
+    const { is_visible, width, height } = props;
 
     // eslint-disable-next-line no-unused-expressions
     is_visible;

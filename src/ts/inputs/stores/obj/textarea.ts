@@ -5,9 +5,6 @@ export class Textarea extends o_inputs.InputBase {
 
     public constructor(obj: Textarea) {
         super(obj);
-        Object.assign(
-            this,
-            obj,
-        );
+        Object.assign(this, obj);
     }
 }

@@ -1,9 +1,4 @@
-import {
-    makeObservable,
-    action,
-    observable,
-    computed,
-} from 'mobx';
+import { makeObservable, action, observable, computed } from 'mobx';
 
 export class State {
     private static i0: State;
@@ -14,17 +9,14 @@ export class State {
     }
 
     private constructor() {
-        makeObservable<State, 'is_visible' | 'is_highlighted'>(
-            this,
-            {
-                is_loaded: observable,
-                is_visible: observable,
-                is_highlighted: observable,
-                is_visible_cls: computed,
-                is_highlighted_cls: computed,
-                change_state: action,
-            },
-        );
+        makeObservable<State, 'is_visible' | 'is_highlighted'>(this, {
+            is_loaded: observable,
+            is_visible: observable,
+            is_highlighted: observable,
+            is_visible_cls: computed,
+            is_highlighted_cls: computed,
+            change_state: action,
+        });
     }
 
     [index: string]: any;
@@ -34,15 +26,11 @@ export class State {
     private is_highlighted: boolean = false; // true = error ribbon is yellow / false = error ribbon is red
 
     public get is_visible_cls(): string {
-        return this.is_visible
-            ? ''
-            : 'none';
+        return this.is_visible ? '' : 'none';
     }
 
     public get is_highlighted_cls(): string {
-        return this.is_highlighted
-            ? 'is_highlighted'
-            : '';
+        return this.is_highlighted ? 'is_highlighted' : '';
     }
 
     private is_visible_timeout: number = 0;
@@ -54,7 +42,8 @@ export class State {
     }: {
         observable_key: string;
         state: boolean;
-    }): void => { // show or hide / highlight dehighlight error ribbon
+    }): void => {
+        // show or hide / highlight dehighlight error ribbon
         this[observable_key] = state;
     };
 
@@ -70,8 +59,7 @@ export class State {
                 observable_key,
                 state: false,
             }); // hide error ribbon / dehighlight error ribbon
-        },
-        delay);
+        }, delay);
     };
 
     public clear_all_reset_state_timeouts = (): void => {

@@ -13,25 +13,19 @@ export class NoTr {
 
     public enable = (
         { el = document.head }: { el?: HTMLElement | ShadowRoot } = { el: document.head },
-    ): void => err(() => {
-        x.css(
-            this.cls,
-            el,
-        );
-    },
-    's1020');
+    ): void =>
+        err(() => {
+            x.css(this.cls, el);
+        }, 's1020');
 
     public disable = (
         { el = document.head }: { el?: HTMLElement | ShadowRoot } = { el: document.head },
-    ): Promise<void> => err(async () => {
-        await x.delay(500);
+    ): Promise<void> =>
+        err(async () => {
+            await x.delay(500);
 
-        const tr_link = sb<HTMLLinkElement>(
-            el,
-            `.${this.cls}_link`,
-        );
+            const tr_link = sb<HTMLLinkElement>(el, `.${this.cls}_link`);
 
-        x.remove(tr_link);
-    },
-    's1021');
+            x.remove(tr_link);
+        }, 's1021');
 }

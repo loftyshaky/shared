@@ -4,12 +4,8 @@ export class Option {
     public alt_msg?: string;
 
     public constructor(obj: Option) {
-        Object.assign(
-            this,
-            obj,
-        );
+        Object.assign(this, obj);
         this.name = obj.name;
-        this.val = obj.val
-                   || obj.name;
+        this.val = obj.val || obj.name;
     }
 }

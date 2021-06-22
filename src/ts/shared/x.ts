@@ -7,7 +7,7 @@ declare const global: Global;
 
 declare global {
     const env: {
-        browser: t.Browser
+        browser: t.Browser;
     };
     const l: any;
     function n<T1>(val: T1 | undefined | null): val is T1;
@@ -20,7 +20,7 @@ declare global {
     function sb<T1>(base_el: t.BaseEl, selector: string): T1 | undefined;
     function sab<T1 extends HTMLElement>(
         base_el: t.BaseEl,
-        selector: string
+        selector: string,
     ): NodeListOf<T1> | undefined;
 }
 
@@ -28,37 +28,19 @@ declare global {
 global.l = console.log.bind(console);
 
 // > undefined/null check
-global.n = <T1>(val: T1 | undefined | null): val is T1 => ( // not nil (nil is undefined or null)
-    val != null
-);
+global.n = <T1>(val: T1 | undefined | null): val is T1 => val != null; // not nil (nil is undefined or null)
 
-global.nn = <T1>(val: T1 | null): val is T1 => ( // not null
-    val !== null
-);
+global.nn = <T1>(val: T1 | null): val is T1 => val !== null; // not null
 
-global.ru = (f: t.CallbackVariadicAny | undefined): any => ( // resolve undefined
-    n(f)
-        ? f()
-        : undefined
-);
+global.ru = (f: t.CallbackVariadicAny | undefined): any => (n(f) ? f() : undefined); // resolve undefined
 
-global.rb = (f: t.CallbackVariadicAny | undefined): any => ( // resolve boolean
-    n(f)
-        ? f()
-        : false
-);
+global.rb = (f: t.CallbackVariadicAny | undefined): any => (n(f) ? f() : false); // resolve boolean
 
-global.rs = (f: t.CallbackVariadicAny | undefined): any => ( // resolve string
-    n(f)
-        ? f()
-        : ''
-);
+global.rs = (f: t.CallbackVariadicAny | undefined): any => (n(f) ? f() : ''); // resolve string
 // < undefined/null check
 
 const shared: any = {
-    ensure_els: <T1 extends HTMLElement>(
-        els: T1 | undefined,
-    ): T1 | NodeListOf<T1> | undefined => {
+    ensure_els: <T1 extends HTMLElement>(els: T1 | undefined): T1 | NodeListOf<T1> | undefined => {
         if (n(els)) {
             return els;
         }
@@ -68,18 +50,13 @@ const shared: any = {
 };
 
 // > selecting elements
-global.s = <T1>(selector: string): T1 | undefined => (
-    shared.ensure_els(document.querySelector(selector))
-);
+global.s = <T1>(selector: string): T1 | undefined =>
+    shared.ensure_els(document.querySelector(selector));
 
-global.sa = <T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined => (
-    shared.ensure_els(document.querySelectorAll(selector))
-);
+global.sa = <T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined =>
+    shared.ensure_els(document.querySelectorAll(selector));
 
-global.sb = <T1>(
-    base_el: t.BaseEl,
-    selector: string,
-): T1 | undefined => {
+global.sb = <T1>(base_el: t.BaseEl, selector: string): T1 | undefined => {
     if (n(base_el)) {
         return shared.ensure_els(base_el.querySelector(selector));
     }
@@ -117,10 +94,7 @@ export class X {
         callback: t.CallbackVariadicVoid,
     ): void => {
         if (n(els)) {
-            if (
-                els instanceof NodeList
-                || (els as any).length > 1
-            ) {
+            if (els instanceof NodeList || (els as any).length > 1) {
                 Array.from(els as any).forEach((el): void => {
                     callback(el);
                 });
@@ -141,36 +115,20 @@ export class X {
         return el;
     };
 
-    public append = (
-        el: HTMLElement | ShadowRoot | undefined | null,
-        child: HTMLElement,
-    ): void => {
-        if (
-            n(el)
-            && [
-                1,
-                11,
-            ].includes(el.nodeType)
-        ) {
+    public append = (el: HTMLElement | ShadowRoot | undefined | null, child: HTMLElement): void => {
+        if (n(el) && [1, 11].includes(el.nodeType)) {
             el.appendChild(child);
         }
     };
 
     public remove = (els: HTMLElement[] | NodeList | HTMLElement | undefined): void => {
         const remove_one_el = (el: HTMLElement): void => {
-            if (
-                n(el)
-                && n(el.parentNode)
-                && el.nodeType === 1
-            ) {
+            if (n(el) && n(el.parentNode) && el.nodeType === 1) {
                 el.parentNode.removeChild(el);
             }
         };
 
-        this.all(
-            els,
-            remove_one_el,
-        );
+        this.all(els, remove_one_el);
     };
 
     public before = (
@@ -178,18 +136,12 @@ export class X {
         el_to_insert: HTMLElement | ShadowRoot | undefined | null,
     ): void => {
         if (
-            n(el_to_insert_before)
-            && n(el_to_insert)
-            && n(el_to_insert_before.parentNode)
-            && [
-                1,
-                11,
-            ].includes(el_to_insert.nodeType)
+            n(el_to_insert_before) &&
+            n(el_to_insert) &&
+            n(el_to_insert_before.parentNode) &&
+            [1, 11].includes(el_to_insert.nodeType)
         ) {
-            el_to_insert_before.parentNode.insertBefore(
-                el_to_insert,
-                el_to_insert_before,
-            );
+            el_to_insert_before.parentNode.insertBefore(el_to_insert, el_to_insert_before);
         }
     };
 
@@ -198,13 +150,10 @@ export class X {
         el_to_insert: HTMLElement | ShadowRoot | undefined | null,
     ): void => {
         if (
-            n(el_to_insert_after)
-            && n(el_to_insert)
-            && n(el_to_insert_after.parentNode)
-            && [
-                1,
-                11,
-            ].includes(el_to_insert.nodeType)
+            n(el_to_insert_after) &&
+            n(el_to_insert) &&
+            n(el_to_insert_after.parentNode) &&
+            [1, 11].includes(el_to_insert.nodeType)
         ) {
             el_to_insert_after.parentNode.insertBefore(
                 el_to_insert,
@@ -217,58 +166,30 @@ export class X {
         parent: HTMLElement | ShadowRoot | undefined | null,
         child: HTMLElement | undefined,
     ): void => {
-        if (
-            n(parent)
-            && n(child)
-            && n(parent.parentNode)
-            && [
-                1,
-                11,
-            ].includes(parent.nodeType)
-        ) {
-            parent.insertBefore(
-                child,
-                parent.firstElementChild,
-            );
+        if (n(parent) && n(child) && n(parent.parentNode) && [1, 11].includes(parent.nodeType)) {
+            parent.insertBefore(child, parent.firstElementChild);
         }
     };
     // < dom manipulation
 
-    public matches = (
-        el: HTMLElement | undefined,
-        selector: string,
-    ): boolean => {
-        if (
-            n(el)
-            && el.nodeType === 1) {
+    public matches = (el: HTMLElement | undefined, selector: string): boolean => {
+        if (n(el) && el.nodeType === 1) {
             return el.matches(selector);
         }
 
         return false;
     };
 
-    public closest = <T1>(
-        el: HTMLElement | undefined,
-        selector: string,
-    ): T1 | undefined => {
-        if (
-            n(el)
-            && el.nodeType === 1
-        ) {
+    public closest = <T1>(el: HTMLElement | undefined, selector: string): T1 | undefined => {
+        if (n(el) && el.nodeType === 1) {
             return shared.ensure_els(el.closest(selector));
         }
 
         return undefined;
     };
 
-    public add_cls = (
-        el: HTMLElement | undefined,
-        cls: string,
-    ): void => {
-        if (
-            n(el)
-            && el.nodeType === 1
-        ) {
+    public add_cls = (el: HTMLElement | undefined, cls: string): void => {
+        if (n(el) && el.nodeType === 1) {
             el.classList.add(cls);
         }
     };
@@ -278,43 +199,21 @@ export class X {
         cls: string,
     ): void => {
         const remove_cls_one = (el: HTMLElement): void => {
-            if (
-                n(el)
-                && el.nodeType === 1
-            ) {
+            if (n(el) && el.nodeType === 1) {
                 el.classList.remove(cls);
             }
         };
 
-        this.all(
-            els,
-            remove_cls_one,
-        );
+        this.all(els, remove_cls_one);
     };
 
     // > array
-    public move_item = (
-        from: number,
-        to: number,
-        arr: any[],
-    ): void => {
-        arr.splice(
-            to,
-            0,
-            arr.splice(
-                from,
-                1,
-            )[0],
-        );
+    public move_item = (from: number, to: number, arr: any[]): void => {
+        arr.splice(to, 0, arr.splice(from, 1)[0]);
     };
 
-    public remove_item = (
-        i: number, arr: any[],
-    ): void => {
-        arr.splice(
-            i,
-            1,
-        );
+    public remove_item = (i: number, arr: any[]): void => {
+        arr.splice(i, 1);
     };
     // < array
 
@@ -324,15 +223,9 @@ export class X {
         event: string,
         f: t.CallbackVariadicVoid,
     ): void => {
-        this.all(
-            els,
-            (el: Window | Document | HTMLElement) => {
-                el.addEventListener(
-                    event,
-                    f,
-                );
-            },
-        );
+        this.all(els, (el: Window | Document | HTMLElement) => {
+            el.addEventListener(event, f);
+        });
     };
     // < add event listener to one or multiple elements t
 
@@ -344,42 +237,26 @@ export class X {
         if (n(parent)) {
             const cls_final: string = cls || `${filename}_link`;
 
-            const new_link = this.create(
-                'link',
-                cls_final,
-            );
+            const new_link = this.create('link', cls_final);
 
-            this.bind(
-                new_link,
-                'load',
-                (): void => {
-                    const old_links = sab<HTMLLinkElement>(
-                        parent,
-                        `.${cls_final}`,
-                    );
-                    if (n(old_links)) {
-                        const old_links_arr = [...old_links];
+            this.bind(new_link, 'load', (): void => {
+                const old_links = sab<HTMLLinkElement>(parent, `.${cls_final}`);
+                if (n(old_links)) {
+                    const old_links_arr = [...old_links];
 
-                        if (old_links_arr.length > 1) {
-                            old_links_arr.pop();
+                    if (old_links_arr.length > 1) {
+                        old_links_arr.pop();
 
-                            old_links_arr.forEach((old_link): void => {
-                                this.remove(old_link);
-                            });
-                        }
+                        old_links_arr.forEach((old_link): void => {
+                            this.remove(old_link);
+                        });
                     }
-                },
-            );
+                }
+            });
 
             new_link.href = browser.runtime.getURL(`${filename}.css`);
-            new_link.setAttribute(
-                'rel',
-                'stylesheet',
-            );
-            new_link.setAttribute(
-                'type',
-                'text/css',
-            );
+            new_link.setAttribute('rel', 'stylesheet');
+            new_link.setAttribute('type', 'text/css');
             parent.appendChild(new_link);
 
             return new_link;
@@ -394,99 +271,52 @@ export class X {
         css: string,
     ): HTMLStyleElement => {
         const cls_final = `${cls}_style`;
-        const old_style = sb<HTMLStyleElement>(
-            parent,
-            `.${cls_final}`,
-        );
+        const old_style = sb<HTMLStyleElement>(parent, `.${cls_final}`);
 
-        if (n(old_style)) { this.remove(old_style); }
+        if (n(old_style)) {
+            this.remove(old_style);
+        }
 
-        const new_style = this.create(
-            'style',
-            cls_final,
-        );
+        const new_style = this.create('style', cls_final);
         new_style.innerHTML = css;
         parent.appendChild(new_style);
 
         return new_style;
     };
 
-    public get_css_val = (
-        el: HTMLElement,
-        key: string,
-    ): string => (
-        window.getComputedStyle(el).getPropertyValue(key)
-    );
+    public get_css_val = (el: HTMLElement, key: string): string =>
+        window.getComputedStyle(el).getPropertyValue(key);
 
-    public get_numeric_css_val = (
-        el: HTMLElement,
-        key: string,
-    ): number => (
-        parseInt(
-            window.getComputedStyle(el).getPropertyValue(key),
-            10,
-        )
-    );
+    public get_numeric_css_val = (el: HTMLElement, key: string): number =>
+        parseInt(window.getComputedStyle(el).getPropertyValue(key), 10);
 
-    public get_float_css_val = (
-        el: HTMLElement,
-        key: string,
-    ): number => (
-        parseFloat(window.getComputedStyle(el).getPropertyValue(key))
-    );
+    public get_float_css_val = (el: HTMLElement, key: string): number =>
+        parseFloat(window.getComputedStyle(el).getPropertyValue(key));
 
-    public str_is_number = (val: string): boolean => (
-        /^\d+$|^\d+\.\d+$/.test(val)
-    );
+    public str_is_number = (val: string): boolean => /^\d+$|^\d+\.\d+$/.test(val);
 
-    public delay = (delay: number): Promise<void> => (
-        new Promise((resolve): number => (
-            window.setTimeout(
-                (): void => resolve(),
-                delay,
-            )))
-    );
+    public delay = (delay: number): Promise<void> =>
+        new Promise((resolve): number => window.setTimeout((): void => resolve(), delay));
 
     public id = (): string => {
         const uint32 = global.crypto.getRandomValues(new Uint32Array(1))[0];
 
-        return Array.from(uint32.toString(16)).map((char: string): string => (
-            this.rand_bool()
-                ? char.toUpperCase()
-                : char
-        )).join('');
+        return Array.from(uint32.toString(16))
+            .map((char: string): string => (this.rand_bool() ? char.toUpperCase() : char))
+            .join('');
     };
 
-    public range = (
-        min: number,
-        max: number,
-    ): number => (
-        Math.floor(Math.random() * (max - min + 1)) + min
-    );
+    public range = (min: number, max: number): number =>
+        Math.floor(Math.random() * (max - min + 1)) + min;
 
-    public rand_bool = (): boolean => (
-        !Math.round(Math.random())
-    );
+    public rand_bool = (): boolean => !Math.round(Math.random());
 
-    public cls = (classes: (string | undefined)[]): string => (
-        _.reject(
-            classes,
-            (item: string | undefined): boolean => !n(item) || item === '',
-        ).join(' ')
-    )
+    public cls = (classes: (string | undefined)[]): string =>
+        _.reject(classes, (item: string | undefined): boolean => !n(item) || item === '').join(' ');
 
-    public get_prop = <T1, T2 extends keyof T1>(
-        obj: T1,
-        key: T2,
-    ): T1[T2] => (
-        obj[key]
-    )
+    public get_prop = <T1, T2 extends keyof T1>(obj: T1, key: T2): T1[T2] => obj[key];
 
-    public set_prop = <T1, T2 extends keyof T1>(
-        obj: T1,
-        key: T2,
-        val: T1[T2],
-    ): T1 => {
+    public set_prop = <T1, T2 extends keyof T1>(obj: T1, key: T2, val: T1[T2]): T1 => {
         const updated_obj: T1 = obj;
 
         updated_obj[key] = val;
@@ -494,40 +324,26 @@ export class X {
         return updated_obj;
     };
 
-    public sanitize_filename = (
-        filename: string,
-        new_character: string = '_',
-    ): string => (
-        filename.replace(
-            /[<>:"/\\|?]/g,
-            new_character,
-        )
-    );
+    public sanitize_filename = (filename: string, new_character: string = '_'): string =>
+        filename.replace(/[<>:"/\\|?]/g, new_character);
 
-    public convert_blob_to_base64 = (blob: Blob): Promise<string> => new Promise(
-        (resolve, reject) => {
+    public convert_blob_to_base64 = (blob: Blob): Promise<string> =>
+        new Promise((resolve, reject) => {
             const reader: any = new FileReader();
             reader.onerror = reject;
             reader.onload = () => {
                 resolve(reader.result);
             };
             reader.readAsDataURL(blob);
-        },
-    );
+        });
 
     public copy_text = (text: string): void => {
-        const input = this.create(
-            'input',
-            '',
-        );
+        const input = this.create('input', '');
 
         input.style.position = 'fixed';
         input.style.opacity = '0';
 
-        this.append(
-            document.body,
-            input,
-        );
+        this.append(document.body, input);
 
         input.value = text;
 
@@ -544,19 +360,13 @@ export class X {
 
         selection.removeAllRanges();
 
-        const img = this.create(
-            'img',
-            '',
-        );
+        const img = this.create('img', '');
 
         img.style.position = 'fixed';
         img.style.opacity = '0';
         img.src = img_url;
 
-        this.append(
-            document.body,
-            img,
-        );
+        this.append(document.body, img);
 
         const range: any = document.createRange();
 
@@ -569,5 +379,5 @@ export class X {
         document.execCommand('Copy');
 
         this.remove(img);
-    }
+    };
 }

@@ -8,10 +8,12 @@ export const CloseBtn = observer(() => (
     <button
         className='close_btn'
         type='button'
-        onClick={(): void => u_error.State.i().change_state({
-            observable_key: 'is_visible',
-            state: false,
-        })}
+        onClick={(): void =>
+            u_error.State.i().change_state({
+                observable_key: 'is_visible',
+                state: false,
+            })
+        }
     >
         <svg.Close />
     </button>

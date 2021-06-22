@@ -5,9 +5,6 @@ export class Checkbox extends o_inputs.InputBase {
 
     public constructor(obj: Checkbox) {
         super(obj);
-        Object.assign(
-            this,
-            obj,
-        );
+        Object.assign(this, obj);
     }
 }

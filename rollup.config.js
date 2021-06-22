@@ -17,28 +17,27 @@ const files = new Files();
 const terserInst = new Terser();
 
 const config = {
-    input: [
-        'src/index.ts',
-        'src/inputs.ts',
-        'src/settings.ts',
+    input: ['src/index.ts', 'src/inputs.ts', 'src/settings.ts'],
+    output: [
+        {
+            dir: 'dist',
+            entryFileNames: '[name].js',
+            chunkFileNames: 'chunk-[name]-[hash].js',
+            format: 'es',
+            sourcemap: false,
+        },
     ],
-    output: [{
-        dir: 'dist',
-        entryFileNames: '[name].js',
-        chunkFileNames: 'chunk-[name]-[hash].js',
-        format: 'es',
-        sourcemap: false,
-    }],
-    external: [
-        'react',
-        'react-dom',
-    ],
+    external: ['react', 'react-dom'],
     treeshake: process.env.mode === 'production',
     watch: {
         clearScreen: false,
     },
     onwarn(warning, warn) {
-        if (warning.code !== 'CIRCULAR_DEPENDENCY' && (warning.code === 'NON_EXISTENT_EXPORT' && !warning.source.includes('\\interfaces\\'))) {
+        if (
+            warning.code !== 'CIRCULAR_DEPENDENCY' &&
+            warning.code === 'NON_EXISTENT_EXPORT' &&
+            !warning.source.includes('\\interfaces\\')
+        ) {
             warn(warning);
         }
     },
@@ -81,15 +80,17 @@ const config = {
                     src: '.eslintrc.js',
                     dest: paths.app,
                 },
+                {
+                    src: '.prettierrc.js',
+                    dest: paths.app,
+                },
             ],
             hook: 'writeBundle',
             callback_start: async () => {
                 await files.copy();
             },
         }),
-        process.env.mode === 'production'
-            ? terser(terserInst.config)
-            : undefined,
+        process.env.mode === 'production' ? terser(terserInst.config) : undefined,
     ],
 };
 

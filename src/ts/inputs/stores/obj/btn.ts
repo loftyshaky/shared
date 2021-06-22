@@ -5,9 +5,6 @@ export class Btn extends o_inputs.InputBase {
 
     public constructor(obj: Btn) {
         super(obj);
-        Object.assign(
-            this,
-            obj,
-        );
+        Object.assign(this, obj);
     }
 }

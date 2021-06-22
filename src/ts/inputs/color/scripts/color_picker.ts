@@ -1,11 +1,7 @@
 import { runInAction } from 'mobx';
 import Pickr from '@simonwep/pickr';
 
-import {
-    o_color,
-    d_color,
-    i_color,
-} from 'inputs/internal';
+import { o_color, d_color, i_color } from 'inputs/internal';
 
 export class ColorPicker {
     private static i0: ColorPicker;
@@ -20,48 +16,46 @@ export class ColorPicker {
 
     public setting_color: boolean = false;
 
-    public init = (
-        {
-            input,
-            i,
-            color_picker,
-            visualization,
-        }: {
-            input: o_color.Color;
-            i: i_color.I;
-            color_picker: HTMLSpanElement;
-            visualization: HTMLButtonElement
-        },
-    ): void => err(() => {
-        const pickr: any = new Pickr({
-            container: color_picker,
-            el: visualization,
-            theme: 'monolith',
-            default: '#fff',
-            useAsButton: true,
-            autoReposition: false,
-            lockOpacity: true,
-            showAlways: true,
-            components: {
-                palette: true,
-                preview: true,
-                hue: true,
-                interaction: {
-                    hex: true,
-                    rgba: true,
-                    hsva: true,
-                    hsla: true,
-                    input: true,
-                    save: true,
+    public init = ({
+        input,
+        i,
+        color_picker,
+        visualization,
+    }: {
+        input: o_color.Color;
+        i: i_color.I;
+        color_picker: HTMLSpanElement;
+        visualization: HTMLButtonElement;
+    }): void =>
+        err(() => {
+            const pickr: any = new Pickr({
+                container: color_picker,
+                el: visualization,
+                theme: 'monolith',
+                default: '#fff',
+                useAsButton: true,
+                autoReposition: false,
+                lockOpacity: true,
+                showAlways: true,
+                components: {
+                    palette: true,
+                    preview: true,
+                    hue: true,
+                    interaction: {
+                        hex: true,
+                        rgba: true,
+                        hsva: true,
+                        hsla: true,
+                        input: true,
+                        save: true,
+                    },
                 },
-            },
-            i18n: {
-                'btn:save': 'OK',
-            },
-        });
+                i18n: {
+                    'btn:save': 'OK',
+                },
+            });
 
-        pickr.on('save',
-            () => {
+            pickr.on('save', () => {
                 if (!this.setting_color) {
                     d_color.Color.i().save({
                         i,
@@ -70,22 +64,20 @@ export class ColorPicker {
                 }
             });
 
-        pickr.on('change',
-            (color: any) => {
+            pickr.on('change', (color: any) => {
                 if (input.state[i].is_visible) {
                     d_color.Color.i().set({
                         input,
                         i,
-                        color: d_color.Color.i().convert_pickr_color_to_rgb_string(
-                            { pickr_color: color },
-                        ),
+                        color: d_color.Color.i().convert_pickr_color_to_rgb_string({
+                            pickr_color: color,
+                        }),
                     });
                 }
             });
 
-        return pickr;
-    },
-    's1042');
+            return pickr;
+        }, 's1042');
 
     public update = ({
         pickr,
@@ -97,32 +89,28 @@ export class ColorPicker {
         color_picker: HTMLSpanElement;
         input: o_color.Color;
         i: i_color.I;
-    }): Promise<void> => err_async(async () => {
-        if (input.state[i].is_visible) {
-            await x.delay(50);
+    }): Promise<void> =>
+        err_async(async () => {
+            if (input.state[i].is_visible) {
+                await x.delay(50);
 
-            this.setting_color = true;
+                this.setting_color = true;
 
-            const color: string = d_color.Color.i().access({
-                input,
-                i,
-            });
+                const color: string = d_color.Color.i().access({
+                    input,
+                    i,
+                });
 
-            pickr.setColor(
-                color === ''
-                    ? '#fff'
-                    : color,
-            );
+                pickr.setColor(color === '' ? '#fff' : color);
 
-            this.setting_color = false;
+                this.setting_color = false;
 
-            pickr.setColorRepresentation('HSVA');
+                pickr.setColorRepresentation('HSVA');
 
-            runInAction((): void => {
-                input.color_picker_width = color_picker.offsetWidth;
-                input.color_picker_height = color_picker.offsetHeight;
-            });
-        }
-    },
-    '1043');
+                runInAction((): void => {
+                    input.color_picker_width = color_picker.offsetWidth;
+                    input.color_picker_height = color_picker.offsetHeight;
+                });
+            }
+        }, '1043');
 }

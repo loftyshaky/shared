@@ -9,32 +9,30 @@ export class Utils {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public to_object = (
-        {
-            arr,
-            section,
-            subsection,
-        }: {
-            arr: any;
-            section?: string;
-            subsection?: string
-        },
-    ): any => err(() => {
-        const obj_final: { [index: string]: any } = {};
+    public to_object = ({
+        arr,
+        section,
+        subsection,
+    }: {
+        arr: any;
+        section?: string;
+        subsection?: string;
+    }): any =>
+        err(() => {
+            const obj_final: { [index: string]: any } = {};
 
-        arr.forEach((item: any): void => {
-            obj_final[item.name] = item;
+            arr.forEach((item: any): void => {
+                obj_final[item.name] = item;
 
-            if (section) {
-                obj_final[item.name].section = section;
-            }
+                if (section) {
+                    obj_final[item.name].section = section;
+                }
 
-            if (subsection) {
-                obj_final[item.name].subsection = subsection;
-            }
-        });
+                if (subsection) {
+                    obj_final[item.name].subsection = subsection;
+                }
+            });
 
-        return obj_final;
-    },
-    's1010');
+            return obj_final;
+        }, 's1010');
 }

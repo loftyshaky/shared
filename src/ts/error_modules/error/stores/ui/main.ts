@@ -1,12 +1,6 @@
-import {
-    makeObservable,
-    action,
-} from 'mobx';
+import { makeObservable, action } from 'mobx';
 
-import {
-    u_error,
-    i_error,
-} from 'error_modules/internal';
+import { u_error, i_error } from 'error_modules/internal';
 
 export class Main {
     private static i0: Main;
@@ -17,12 +11,9 @@ export class Main {
     }
 
     private constructor() {
-        makeObservable(
-            this,
-            {
-                show_error: action,
-            },
-        );
+        makeObservable(this, {
+            show_error: action,
+        });
     }
 
     public hide_delay: number = 5000;
@@ -46,20 +37,18 @@ export class Main {
     ): void => {
         const is_browser = global !== undefined;
 
-        if (
-            is_browser
-            && !error_obj.silent
-            && !silent
-        ) {
+        if (is_browser && !error_obj.silent && !silent) {
             u_error.Msg.i().change_visibility_of_advanced_msg({ is_visible: false });
 
             const error_msg_pre = ext.msg(`${error_obj.error_msg || error_msg_key}_error`);
-            const error_msg_final = error_msg_pre
-                ? ` ${error_msg_pre}`
-                : '';
+            const error_msg_final = error_msg_pre ? ` ${error_msg_pre}` : '';
 
             u_error.Msg.i().basic_msg = `${ext.msg('an_error_occured_msg') + error_msg_final}`;
-            u_error.Msg.i().advanced_msg = `${ext.msg('error_code_label') + (error_obj.error_code || error_code)}\n${ext.msg('error_type_label') + error_obj.name}\n${ext.msg('error_msg_label') + error_obj.message}`;
+            u_error.Msg.i().advanced_msg = `${
+                ext.msg('error_code_label') + (error_obj.error_code || error_code)
+            }\n${ext.msg('error_type_label') + error_obj.name}\n${
+                ext.msg('error_msg_label') + error_obj.message
+            }`;
 
             u_error.State.i().change_state({
                 observable_key: 'is_visible',
@@ -95,9 +84,7 @@ export class Main {
                 key: string;
                 undefined_property: boolean | string | number;
             }): void => {
-                updated_error_obj[key] = n(error_obj[key])
-                    ? error_obj[key]
-                    : undefined_property;
+                updated_error_obj[key] = n(error_obj[key]) ? error_obj[key] : undefined_property;
             };
 
             set_updated_error_obj_propery({
@@ -128,13 +115,10 @@ export class Main {
             throw updated_error_obj;
         } else {
             //> console output
-            const line = '--------------------------------------------------------------------------------';
-            const separator_top = is_browser
-                ? ''
-                : `${line}\n`;
-            const separator_bottom = is_browser
-                ? ''
-                : `\n${line}`;
+            const line =
+                '--------------------------------------------------------------------------------';
+            const separator_top = is_browser ? '' : `${line}\n`;
+            const separator_bottom = is_browser ? '' : `\n${line}`;
             const error_code_and_msg = `${separator_top}Code: ${error_code}\nMessage: ${error_obj.message}`;
             const console_output = error_obj.stack
                 ? `${error_code_and_msg}\nStack: ${error_obj.stack + separator_bottom}`

@@ -9,10 +9,12 @@ export class Viewport {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public get_dim = ({ dim }: { dim: 'width' | 'height' }): number => err(() => (
-        dim === 'width'
-            ? document.documentElement.clientWidth
-            : document.documentElement.clientHeight
-    ),
-    's1031');
+    public get_dim = ({ dim }: { dim: 'width' | 'height' }): number =>
+        err(
+            () =>
+                dim === 'width'
+                    ? document.documentElement.clientWidth
+                    : document.documentElement.clientHeight,
+            's1031',
+        );
 }

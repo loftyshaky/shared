@@ -8,11 +8,7 @@ export const Btn = observer((props: p_inputs.Btn) => {
 
     return (
         <button
-            className={x.cls([
-                'btn',
-                'text',
-                'inset_border',
-            ])}
+            className={x.cls(['btn', 'text', 'inset_border'])}
             type='button'
             onClick={input.event_callback}
         >

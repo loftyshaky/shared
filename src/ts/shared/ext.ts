@@ -1,11 +1,7 @@
 // Allowing send_msg functions to throw errors (red) makes extension freeze when sending message to tab without onMessage event listrener!
 
 import _ from 'lodash';
-import {
-    browser,
-    Tabs,
-    Windows,
-} from 'webextension-polyfill-ts';
+import { browser, Tabs, Windows } from 'webextension-polyfill-ts';
 
 import { t } from 'shared/internal';
 
@@ -17,33 +13,22 @@ declare global {
 }
 
 ((): void => {
-    const title = global.document
-        ? document.querySelector('title')
-        : undefined;
+    const title = global.document ? document.querySelector('title') : undefined;
 
-    if ([
-        'https:',
-        'http:',
-    ].includes(global.location.protocol)
-    ) {
+    if (['https:', 'http:'].includes(global.location.protocol)) {
         global.page = 'content_script';
     } else {
-        global.page = n(title) && n(title.dataset.page)
-            ? title.dataset.page
-            : 'background';
+        global.page = n(title) && n(title.dataset.page) ? title.dataset.page : 'background';
     }
 })();
 
-global.misplaced_dependency = (
-    culprit_page: string,
-    current_page_cond?: t.CallbackAny,
-): void => {
-    const current_page: string = n(current_page_cond)
-        ? current_page_cond()
-        : page;
+global.misplaced_dependency = (culprit_page: string, current_page_cond?: t.CallbackAny): void => {
+    const current_page: string = n(current_page_cond) ? current_page_cond() : page;
 
     if (current_page !== culprit_page) {
-        const msg: string = browser.i18n.getMessage('dependencicies_from_other_page_loaded_into_this_page_alert') + culprit_page.toUpperCase();
+        const msg: string =
+            browser.i18n.getMessage('dependencicies_from_other_page_loaded_into_this_page_alert') +
+            culprit_page.toUpperCase();
 
         if (current_page === 'background') {
             // eslint-disable-next-line no-console
@@ -74,18 +59,14 @@ export class Ext {
     public msg = (msg: string): string => {
         const msg_2: string | undefined = browser.i18n.getMessage(msg);
 
-        return n(msg_2)
-            ? msg_2
-            : '';
+        return n(msg_2) ? msg_2 : '';
     };
 
     public get_active_tab = async (): Promise<Tabs.Tab> => {
-        const tabs: Tabs.Tab[] = await browser.tabs.query(
-            {
-                active: true,
-                currentWindow: true,
-            },
-        );
+        const tabs: Tabs.Tab[] = await browser.tabs.query({
+            active: true,
+            currentWindow: true,
+        });
 
         return tabs[0];
     };
@@ -112,10 +93,7 @@ export class Ext {
 
     public send_msg_to_tab = async (id: number, msg: t.Msg): Promise<void> => {
         try {
-            await browser.tabs.sendMessage(
-                id,
-                msg,
-            );
+            await browser.tabs.sendMessage(id, msg);
         } catch (error_obj) {
             this.log_error(error_obj);
         }
@@ -123,10 +101,7 @@ export class Ext {
 
     public send_msg_to_tab_resp = async (id: number, msg: t.Msg): Promise<any> => {
         try {
-            const response = await browser.tabs.sendMessage(
-                id,
-                msg,
-            );
+            const response = await browser.tabs.sendMessage(id, msg);
 
             return response;
         } catch (error_obj) {
@@ -140,10 +115,7 @@ export class Ext {
         const tab: Tabs.Tab = await this.get_active_tab();
 
         if (n(tab.id)) {
-            await this.send_msg_to_tab(
-                tab.id,
-                msg,
-            );
+            await this.send_msg_to_tab(tab.id, msg);
         }
     };
 
@@ -151,31 +123,23 @@ export class Ext {
         const tab: Tabs.Tab = await this.get_active_tab();
 
         if (n(tab.id)) {
-            return this.send_msg_to_tab(
-                tab.id,
-                msg,
-            );
+            return this.send_msg_to_tab(tab.id, msg);
         }
 
         return undefined;
     };
 
     public iterate_all_tabs = async (msg: t.Msg): Promise<void> => {
-        const windows: Windows.Window[] = await browser.windows.getAll(
-            {
-                populate: true,
-                windowTypes: ['normal'],
-            },
-        );
+        const windows: Windows.Window[] = await browser.windows.getAll({
+            populate: true,
+            windowTypes: ['normal'],
+        });
 
         windows.forEach((window: Windows.Window): void => {
             if (n(window.tabs)) {
                 window.tabs.forEach((tab: Tabs.Tab): void => {
                     if (n(tab.id)) {
-                        this.send_msg_to_tab(
-                            tab.id,
-                            msg,
-                        );
+                        this.send_msg_to_tab(tab.id, msg);
                     }
                 });
             }
@@ -199,10 +163,7 @@ export class Ext {
             const data_local: any = await browser.storage.local.get();
 
             if (n(data_local)) {
-                const merged_data: any = _.merge(
-                    data_local,
-                    obj,
-                );
+                const merged_data: any = _.merge(data_local, obj);
 
                 await browser.storage.sync.set(merged_data);
             } else {

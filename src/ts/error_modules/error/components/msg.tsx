@@ -8,13 +8,10 @@ export const Msg = observer(() => (
         {u_error.Msg.i().basic_msg}
         <button
             type='button'
-            className={x.cls([
-                'more_info_btn',
-                u_error.Msg.i().more_info_btn_is_visible_cls,
-            ])}
-            onClick={(): void => (
+            className={x.cls(['more_info_btn', u_error.Msg.i().more_info_btn_is_visible_cls])}
+            onClick={(): void =>
                 u_error.Msg.i().change_visibility_of_advanced_msg({ is_visible: true })
-            )}
+            }
         >
             {ext.msg('error_more_info_btn_text')}
         </button>

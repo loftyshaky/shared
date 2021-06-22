@@ -1,12 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import {
-    svg,
-    BaseTr,
-    u_loading_screen,
-    p_loading_screen,
-} from 'shared/internal';
+import { svg, BaseTr, u_loading_screen, p_loading_screen } from 'shared/internal';
 
 export const Body = observer((props: p_loading_screen.Body) => {
     const {
@@ -26,15 +21,9 @@ export const Body = observer((props: p_loading_screen.Body) => {
                 'main',
                 'tr_w',
                 'loading_screen',
-                is_small_svg
-                    ? 'small_svg'
-                    : '',
-                show_border
-                    ? 'border'
-                    : '',
-                u_loading_screen.Visibility.i().inner_is_none
-                    ? 'none'
-                    : '',
+                is_small_svg ? 'small_svg' : '',
+                show_border ? 'border' : '',
+                u_loading_screen.Visibility.i().inner_is_none ? 'none' : '',
             ])}
             state={u_loading_screen.Visibility.i().outer_is_visible}
             style={{

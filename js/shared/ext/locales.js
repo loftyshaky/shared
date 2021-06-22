@@ -7,11 +7,7 @@ class Locales {
     }
 
     merge = async () => {
-        const app_locales_path = path.join(
-            this.app_root,
-            'src',
-            '_locales',
-        );
+        const app_locales_path = path.join(this.app_root, 'src', '_locales');
         const shared_locales_path = path.join(
             this.app_root,
             'node_modules',
@@ -22,40 +18,25 @@ class Locales {
         const locales = fs.readdirSync(app_locales_path);
 
         locales.forEach((locale) => {
-            const app_messages = fs.readJSONSync(path.join(
-                app_locales_path,
-                locale,
-                'messages.json',
-            ));
+            const app_messages = fs.readJSONSync(
+                path.join(app_locales_path, locale, 'messages.json'),
+            );
 
-            const shared_messages = fs.readJSONSync(path.join(
-                shared_locales_path,
-                locale,
-                'messages.json',
-            ));
+            const shared_messages = fs.readJSONSync(
+                path.join(shared_locales_path, locale, 'messages.json'),
+            );
 
             const merged_messages = {
                 ...shared_messages,
                 ...app_messages,
             };
-            const locale_path = path.join(
-                this.app_root,
-                'dist',
-                '_locales',
-                locale,
-            );
-            const dest_messages = path.join(
-                locale_path,
-                'messages.json',
-            );
+            const locale_path = path.join(this.app_root, 'dist', '_locales', locale);
+            const dest_messages = path.join(locale_path, 'messages.json');
 
             fs.ensureDirSync(locale_path);
-            fs.writeJsonSync(
-                dest_messages,
-                merged_messages,
-            );
+            fs.writeJsonSync(dest_messages, merged_messages);
         });
-    }
+    };
 }
 
 module.exports = { Locales };

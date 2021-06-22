@@ -11,12 +11,8 @@ export class Css {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public load = ({ app_id }: {app_id: string}): void => {
-        x.css(
-            'font_face',
-            document.head,
-            `font_face_link_${app_id}`,
-        );
+    public load = ({ app_id }: { app_id: string }): void => {
+        x.css('font_face', document.head, `font_face_link_${app_id}`);
 
         const error_root = s<HTMLDivElement>(`.error_${app_id}`);
 
@@ -26,28 +22,17 @@ export class Css {
                 : undefined;
 
             if (error_shadow) {
-                x.css(
-                    'normalize',
-                    error_shadow,
-                );
+                x.css('normalize', error_shadow);
 
-                const error_css = x.css(
-                    'error',
-                    error_shadow,
-                );
+                const error_css = x.css('error', error_shadow);
 
                 if (n(error_css)) {
-                    error_css.addEventListener(
-                        'load',
-                        (): void => {
-                            u_error.State.i().change_state(
-                                {
-                                    observable_key: 'is_loaded',
-                                    state: true,
-                                },
-                            );
-                        },
-                    );
+                    error_css.addEventListener('load', (): void => {
+                        u_error.State.i().change_state({
+                            observable_key: 'is_loaded',
+                            state: true,
+                        });
+                    });
                 }
             }
         }

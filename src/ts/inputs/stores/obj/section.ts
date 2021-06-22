@@ -1,12 +1,7 @@
 import _ from 'lodash';
-import {
-    makeObservable,
-    observable,
-} from 'mobx';
+import { makeObservable, observable } from 'mobx';
 
-import {
-    i_inputs,
-} from 'inputs/internal';
+import { i_inputs } from 'inputs/internal';
 
 export class Section {
     public name: string;
@@ -20,22 +15,16 @@ export class Section {
     }[];
 
     public constructor(obj: Section) {
-        makeObservable(this,
-            {
-                help_is_visible: observable,
-            });
+        makeObservable(this, {
+            help_is_visible: observable,
+        });
 
-        Object.assign(
-            this,
-            obj,
-        );
+        Object.assign(this, obj);
         this.name = obj.name;
         this.inputs = obj.inputs;
 
-        Object.values(obj.inputs).forEach(
-            (obj_2) => {
-                obj_2.section = this.name;
-            },
-        );
+        Object.values(obj.inputs).forEach((obj_2) => {
+            obj_2.section = this.name;
+        });
     }
 }

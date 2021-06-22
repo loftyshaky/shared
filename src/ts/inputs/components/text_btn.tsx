@@ -3,18 +3,10 @@ import { observer } from 'mobx-react';
 
 import { svg } from 'shared/internal';
 
-import {
-    d_inputs,
-    p_inputs,
-} from 'inputs/internal';
+import { d_inputs, p_inputs } from 'inputs/internal';
 
 export const TextBtn = observer((props: p_inputs.TextBtn) => {
-    const {
-        input,
-        name,
-        svg_name,
-        on_click,
-    } = props;
+    const { input, name, svg_name, on_click } = props;
     const Svg = svg[svg_name];
 
     return (

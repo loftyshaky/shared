@@ -1,12 +1,12 @@
 interface Global {
-    window: Window,
-    document: Document,
-    location: Location,
-    crypto: Crypto,
-    x: import('shared/x').X,
-    ext: import('shared/ext').Ext,
+    window: Window;
+    document: Document;
+    location: Location;
+    crypto: Crypto;
+    x: import('shared/x').X;
+    ext: import('shared/ext').Ext;
     env: {
-        browser: import('shared/t').Browser
+        browser: import('shared/t').Browser;
     };
     l: any;
     data: any;
@@ -20,24 +20,24 @@ interface Global {
     sb: <T1>(base_el: import('shared/t').BaseEl, selector: string) => T1 | undefined;
     sab: <T1 extends HTMLElement>(
         base_el: import('shared/t').BaseEl,
-        selector: string
+        selector: string,
     ) => NodeListOf<T1> | undefined;
     page: string;
     misplaced_dependency: import('shared/t').CallbackVariadicVoid;
     show_err_ribbon: (
         error_obj: any,
         error_code: number | string,
-        obj?: import('error_modules/error/interfaces/show_error').ShowError
+        obj?: import('error_modules/error/interfaces/show_error').ShowError,
     ) => void;
     err: <T1>(
         f: () => T1,
         error_code: number | string,
-        obj?: import('error_modules/error/interfaces/show_error').ShowError
+        obj?: import('error_modules/error/interfaces/show_error').ShowError,
     ) => T1;
     err_async: <T1>(
         f: () => Promise<T1>,
         error_code: number | string,
-        obj?: import('error_modules/error/interfaces/show_error').ShowError
+        obj?: import('error_modules/error/interfaces/show_error').ShowError,
     ) => Promise<T1>;
     throw_err(msg: string): void;
     err_obj(msg: string): Error;

@@ -6,11 +6,7 @@ class Manifest {
         this.app_root = app_root;
     }
 
-    generate = ({
-        manifest,
-        mode,
-        browser,
-    }) => {
+    generate = ({ manifest, mode, browser }) => {
         const shared_manifest = {
             manifest_version: 2,
             version: process.env.npm_package_version,
@@ -28,13 +24,7 @@ class Manifest {
             },
         };
 
-        if (
-            [
-                'chrome',
-                'opera',
-                'edge',
-            ].includes(browser)
-        ) {
+        if (['chrome', 'opera', 'edge'].includes(browser)) {
             shared_manifest.icons[128] = 'icon128.png';
         }
 
@@ -55,18 +45,14 @@ class Manifest {
         }
 
         fs.outputFileSync(
-            path.join(
-                this.app_root,
-                'dist',
-                'manifest.json',
-            ),
+            path.join(this.app_root, 'dist', 'manifest.json'),
             JSON.stringify({
                 ...shared_manifest,
                 ...manifest,
             }),
             'utf-8',
         );
-    }
+    };
 }
 
 module.exports = { Manifest };

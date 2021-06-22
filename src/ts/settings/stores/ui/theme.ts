@@ -18,18 +18,14 @@ export class Theme {
     }: {
         input: o_inputs.Select;
         val: string;
-    }): void => err(() => {
-        if (input.name === 'options_page_theme') {
-            NoTr.i().enable();
+    }): void =>
+        err(() => {
+            if (input.name === 'options_page_theme') {
+                NoTr.i().enable();
 
-            x.css(
-                `${val}_theme`,
-                document.head,
-                'theme_link',
-            );
+                x.css(`${val}_theme`, document.head, 'theme_link');
 
-            NoTr.i().disable();
-        }
-    },
-    's1073');
+                NoTr.i().disable();
+            }
+        }, 's1073');
 }

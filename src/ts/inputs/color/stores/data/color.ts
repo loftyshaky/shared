@@ -1,14 +1,7 @@
 import _ from 'lodash';
-import {
-    makeObservable,
-    action,
-} from 'mobx';
+import { makeObservable, action } from 'mobx';
 
-import {
-    o_color,
-    d_color,
-    i_color,
-} from 'inputs/internal';
+import { o_color, d_color, i_color } from 'inputs/internal';
 
 export class Color {
     private static i0: Color;
@@ -19,14 +12,11 @@ export class Color {
     }
 
     private constructor() {
-        makeObservable(
-            this,
-            {
-                set: action,
-                select_palette_color: action,
-                restore_default_palette: action,
-            },
-        );
+        makeObservable(this, {
+            set: action,
+            select_palette_color: action,
+            restore_default_palette: action,
+        });
     }
 
     public default_colors: i_color.Color[] = [
@@ -65,131 +55,95 @@ export class Color {
     public palette_color_amount: number = Object.keys(this.default_colors).length;
     public previous_color: i_color.Color = '';
 
-    public access = (
-        {
-            input,
-            i,
-        }: {
-            input: o_color.Color;
-            i: i_color.I;
-        },
-    ): string => err(() => {
-        if (i === 'main') {
-            const val: i_color.Color = data.settings[input.name];
+    public access = ({ input, i }: { input: o_color.Color; i: i_color.I }): string =>
+        err(() => {
+            if (i === 'main') {
+                const val: i_color.Color = data.settings[input.name];
 
-            if (this.val_is_palette_color({ input })) {
-                return data.settings.colors[val];
+                if (this.val_is_palette_color({ input })) {
+                    return data.settings.colors[val];
+                }
+
+                return val;
             }
 
-            return val;
-        }
+            return data.settings.colors[i];
+        }, 's1045');
 
-        return data.settings.colors[i];
-    },
-    's1045');
+    public access_from_val = ({ val }: { val: i_color.Color }): string =>
+        err(() => (typeof val === 'number' ? data.settings.colors[val] : val), 's1050');
 
-    public access_from_val = ({ val }: { val: i_color.Color; }): string => err(() => (
-        typeof val === 'number'
-            ? data.settings.colors[val]
-            : val
-    ),
-    's1050');
+    public set = ({
+        input,
+        i,
+        color,
+    }: {
+        input: o_color.Color;
+        i: i_color.I;
+        color: i_color.Color;
+    }): void =>
+        err(() => {
+            if (i === 'main') {
+                data.settings[input.name] = color;
+            } else {
+                data.settings.colors[i] = color;
+            }
+        }, 's1037');
 
-    public set = (
-        {
-            input,
-            i,
-            color,
-        }: {
-            input: o_color.Color;
-            i: i_color.I;
-            color: i_color.Color;
-        },
-    ): void => err(() => {
-        if (i === 'main') {
-            data.settings[input.name] = color;
-        } else {
-            data.settings.colors[i] = color;
-        }
-    },
-    's1037');
-
-    public save = (
-        {
-            input,
-            i,
-        }: {
-            input: o_color.Color;
-            i: i_color.I;
-        },
-    ): void => err(() => {
-        this.set_previous_color({
-            input,
-            i,
-        });
-
-        if (i === 'main') {
-            d_color.Visibility.i().hide_main_and_palette({ input });
-        } else {
-            d_color.Visibility.i().hide_palette_color_pickers({ input });
-        }
-
-        input.event_callback({
-            input,
-            i,
-        });
-    },
-    's1038');
-
-    public restore_old_color = (): void => err(() => {
-        const inst = d_color.Visibility.i();
-
-        if (n(inst.previously_visible_input)
-            && n(inst.previously_visible_color_picker_i)
-        ) {
-            const color: i_color.Color = inst.previously_visible_color_picker_i !== 'main'
-                                         && typeof this.previous_color === 'number'
-                ? data.settings.colors[this.previous_color]
-                : this.previous_color;
-
-            this.set({
-                input: inst.previously_visible_input,
-                i: inst.previously_visible_color_picker_i,
-                color,
+    public save = ({ input, i }: { input: o_color.Color; i: i_color.I }): void =>
+        err(() => {
+            this.set_previous_color({
+                input,
+                i,
             });
-        } else if (
-            this.previous_color === ''
-            && n(inst.visible_input)
-        ) {
-            this.set({
-                input: inst.visible_input,
-                i: 'main',
-                color: this.previous_color,
+
+            if (i === 'main') {
+                d_color.Visibility.i().hide_main_and_palette({ input });
+            } else {
+                d_color.Visibility.i().hide_palette_color_pickers({ input });
+            }
+
+            input.event_callback({
+                input,
+                i,
             });
-        }
-    },
-    's1039');
+        }, 's1038');
 
-    public convert_pickr_color_to_rgb_string = (
-        { pickr_color }: { pickr_color: any },
-    ): string => err(() => {
-        const { round } = Math;
-        const rgba = pickr_color.toRGBA();
+    public restore_old_color = (): void =>
+        err(() => {
+            const inst = d_color.Visibility.i();
 
-        return `rgb(${round(rgba[0])} ${round(rgba[1])} ${round(rgba[2])})`;
-    },
-    's1040');
+            if (n(inst.previously_visible_input) && n(inst.previously_visible_color_picker_i)) {
+                const color: i_color.Color =
+                    inst.previously_visible_color_picker_i !== 'main' &&
+                    typeof this.previous_color === 'number'
+                        ? data.settings.colors[this.previous_color]
+                        : this.previous_color;
 
-    public filter_palette_colors = (
-        { obj }: { obj: any },
-    ): string[] => err(() => (
-        Object.keys(obj).filter(
-            (key: string): boolean => (
-                !_.isNaN(+key)
-            ),
-        )
-    ),
-    's1044');
+                this.set({
+                    input: inst.previously_visible_input,
+                    i: inst.previously_visible_color_picker_i,
+                    color,
+                });
+            } else if (this.previous_color === '' && n(inst.visible_input)) {
+                this.set({
+                    input: inst.visible_input,
+                    i: 'main',
+                    color: this.previous_color,
+                });
+            }
+        }, 's1039');
+
+    public convert_pickr_color_to_rgb_string = ({ pickr_color }: { pickr_color: any }): string =>
+        err(() => {
+            const { round } = Math;
+            const rgba = pickr_color.toRGBA();
+
+            return `rgb(${round(rgba[0])} ${round(rgba[1])} ${round(rgba[2])})`;
+        }, 's1040');
+
+    public filter_palette_colors = ({ obj }: { obj: any }): string[] =>
+        err(() => Object.keys(obj).filter((key: string): boolean => !_.isNaN(+key)), 's1044');
 
     public select_palette_color = (
         {
@@ -200,96 +154,81 @@ export class Color {
             i: i_color.I;
         },
         e: any,
-    ): void => err(() => {
-        const called_by_enter_key: boolean = e.detail === 0;
+    ): void =>
+        err(() => {
+            const called_by_enter_key: boolean = e.detail === 0;
 
-        if (
-            !called_by_enter_key
-            && input.is_palette_color!({ i })
-        ) {
-            data.settings[input.name] = i;
+            if (!called_by_enter_key && input.is_palette_color!({ i })) {
+                data.settings[input.name] = i;
 
-            this.previous_color = i;
+                this.previous_color = i;
 
-            d_color.Visibility.i().previously_visible_input = input;
-            d_color.Visibility.i().previously_visible_color_picker_i = i;
+                d_color.Visibility.i().previously_visible_input = input;
+                d_color.Visibility.i().previously_visible_color_picker_i = i;
 
-            input.select_palette_color_callback({
+                input.select_palette_color_callback({
+                    input,
+                    i,
+                });
+            }
+        }, 's1046');
+
+    public val_is_palette_color = ({ input }: { input: o_color.Color }): boolean =>
+        err(() => {
+            const val: i_color.Color = data.settings[input.name];
+            const val_is_palette_color: boolean = typeof val === 'number';
+
+            return val_is_palette_color;
+        }, 's1048');
+
+    public set_previous_color = ({ input, i }: { input: o_color.Color; i: i_color.I }): void =>
+        err(() => {
+            this.previous_color =
+                i === 'main'
+                    ? data.settings[input.name]
+                    : d_color.Color.i().access({
+                          input,
+                          i,
+                      });
+        }, 's1049');
+
+    public remove_color = ({ input }: { input: o_color.Color }): void =>
+        err(() => {
+            d_color.Color.i().set({
                 input,
-                i,
+                i: 'main',
+                color: '',
             });
-        }
-    },
-    's1046');
-
-    public val_is_palette_color = ({ input }: {input: o_color.Color }): boolean => err(() => {
-        const val: i_color.Color = data.settings[input.name];
-        const val_is_palette_color: boolean = typeof val === 'number';
-
-        return val_is_palette_color;
-    },
-    's1048');
-
-    public set_previous_color = (
-        {
-            input,
-            i,
-        }:
-        {
-            input: o_color.Color;
-            i: i_color.I
-        },
-    ): void => err(() => {
-        this.previous_color = i === 'main'
-            ? data.settings[input.name]
-            : d_color.Color.i().access({
-                input,
-                i,
-            });
-    },
-    's1049');
-
-    public remove_color = ({ input }: { input: o_color.Color; }): void => err(() => {
-        d_color.Color.i().set({
-            input,
-            i: 'main',
-            color: '',
-        });
-
-        this.reset_previous_vars();
-        input.remove_color_callback({ input });
-    },
-    's1051');
-
-    public restore_default_palette = (
-        {
-            input,
-            default_colors,
-        }: {
-            input: o_color.Color;
-            default_colors?: any
-        },
-    ): void => err(() => {
-        // eslint-disable-next-line no-alert
-        const confirmed_restore: boolean = global.confirm(ext.msg('restore_default_palette_confirm'));
-
-        if (confirmed_restore) {
-            data.settings.colors = n(default_colors)
-                ? default_colors
-                : this.default_colors;
 
             this.reset_previous_vars();
-            input.restore_default_palette_callback({ default_colors: data.settings.colors });
-        }
-    },
-    's1052');
+            input.remove_color_callback({ input });
+        }, 's1051');
 
-    public reset_previous_vars = (): void => err(() => {
-        d_color.Color.i().previous_color = '';
-        d_color.Visibility.i().previously_visible_input = undefined;
-        d_color.Visibility.i().previously_visible_color_picker_i = (
-            undefined
-        );
-    },
-    's1053');
+    public restore_default_palette = ({
+        input,
+        default_colors,
+    }: {
+        input: o_color.Color;
+        default_colors?: any;
+    }): void =>
+        err(() => {
+            // eslint-disable-next-line no-alert
+            const confirmed_restore: boolean = global.confirm(
+                ext.msg('restore_default_palette_confirm'),
+            );
+
+            if (confirmed_restore) {
+                data.settings.colors = n(default_colors) ? default_colors : this.default_colors;
+
+                this.reset_previous_vars();
+                input.restore_default_palette_callback({ default_colors: data.settings.colors });
+            }
+        }, 's1052');
+
+    public reset_previous_vars = (): void =>
+        err(() => {
+            d_color.Color.i().previous_color = '';
+            d_color.Visibility.i().previously_visible_input = undefined;
+            d_color.Visibility.i().previously_visible_color_picker_i = undefined;
+        }, 's1053');
 }

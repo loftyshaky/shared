@@ -11,34 +11,21 @@ const task_scheduler = new TaskScheduler();
 const generate_watch_files = async () => {
     let watch_files = [];
 
-    const src_dir = path.join(
-        appRoot,
-        'src',
-    );
+    const src_dir = path.join(appRoot, 'src');
 
     const dirs = [
-        path.join(
-            appRoot,
-            'js',
-        ),
-        path.join(
-            src_dir,
-            '_locales',
-        ),
-        path.join(
-            src_dir,
-            'scss',
-        ),
+        path.join(appRoot, 'js'),
+        path.join(src_dir, '_locales'),
+        path.join(src_dir, 'scss'),
     ];
 
-    await Promise.all(dirs.map(async (dir) => {
-        const files = await recursiveReaddir(dir);
+    await Promise.all(
+        dirs.map(async (dir) => {
+            const files = await recursiveReaddir(dir);
 
-        watch_files = _.union(
-            watch_files,
-            files,
-        );
-    }));
+            watch_files = _.union(watch_files, files);
+        }),
+    );
 
     return watch_files;
 };

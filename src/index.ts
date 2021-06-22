@@ -1,14 +1,7 @@
 import 'error_modules/error/scripts';
-import {
-    c_error,
-    c_crash_handler,
-} from 'error_modules/internal';
+import { c_error, c_crash_handler } from 'error_modules/internal';
 
-import {
-    u_loading_screen,
-    c_loading_screen,
-    s_tab_index,
-} from 'shared/internal';
+import { u_loading_screen, c_loading_screen, s_tab_index } from 'shared/internal';
 
 export {
     X,

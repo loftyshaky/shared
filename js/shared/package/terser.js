@@ -12,7 +12,7 @@ class Terser {
             },
         },
         mangle: false,
-    }
+    };
 }
 
 module.exports = { Terser };

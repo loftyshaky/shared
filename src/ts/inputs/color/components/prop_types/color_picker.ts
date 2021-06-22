@@ -1,7 +1,4 @@
-import {
-    o_color,
-    i_color,
-} from 'inputs/internal';
+import { o_color, i_color } from 'inputs/internal';
 
 export interface ColorPicker {
     input: o_color.Color;

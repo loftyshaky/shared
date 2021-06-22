@@ -1,10 +1,5 @@
 class ProjectName {
-    transform = ({ project }) => (
-        project.toLowerCase().replace(
-            / /g,
-            '-',
-        )
-    )
+    transform = ({ project }) => project.toLowerCase().replace(/ /g, '-');
 }
 
 module.exports = { ProjectName };

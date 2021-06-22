@@ -7,20 +7,8 @@ const { ProjectName } = require('./project_name');
 const project_name = new ProjectName();
 
 class TaskScheduler {
-    unlock_dist = async ({
-        package_name,
-        remove_dist,
-    }) => {
-        if (
-            fs.existsSync(
-                path.join(
-                    'C:',
-                    'Program Files',
-                    'LockHunter',
-                    'LockHunter.exe',
-                ),
-            )
-        ) {
+    unlock_dist = async ({ package_name, remove_dist }) => {
+        if (fs.existsSync(path.join('C:', 'Program Files', 'LockHunter', 'LockHunter.exe'))) {
             childProcess.execSync(`SCHTASKS.EXE /RUN /TN "Unlock ${package_name} dist dir"`);
 
             if (remove_dist) {
@@ -37,7 +25,7 @@ class TaskScheduler {
                 );
             }
         }
-    }
+    };
 }
 
 module.exports = { TaskScheduler };

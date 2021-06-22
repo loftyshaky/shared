@@ -6,10 +6,7 @@ export class File extends o_inputs.InputBase {
 
     public constructor(obj: File) {
         super(obj);
-        Object.assign(
-            this,
-            obj,
-        );
+        Object.assign(this, obj);
         this.accept = obj.accept;
     }
 }

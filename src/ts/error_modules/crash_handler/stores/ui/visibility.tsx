@@ -1,8 +1,4 @@
-import {
-    makeObservable,
-    action,
-    observable,
-} from 'mobx';
+import { makeObservable, action, observable } from 'mobx';
 
 export class Visibility {
     private static i0: Visibility;
@@ -13,13 +9,10 @@ export class Visibility {
     }
 
     private constructor() {
-        makeObservable(
-            this,
-            {
-                page_is_crashed: observable,
-                show_reload_ui_screen: action,
-            },
-        );
+        makeObservable(this, {
+            page_is_crashed: observable,
+            show_reload_ui_screen: action,
+        });
     }
 
     public page_is_crashed: boolean = false; // true = shows reload ui screen

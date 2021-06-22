@@ -1,16 +1,9 @@
-import {
-    makeObservable,
-    observable,
-} from 'mobx';
+import { makeObservable, observable } from 'mobx';
 
 import { computedFn } from 'mobx-utils';
 
 import { t } from 'shared/internal';
-import {
-    o_inputs,
-    d_color,
-    i_color,
-} from 'inputs/internal';
+import { o_inputs, d_color, i_color } from 'inputs/internal';
 
 const color_picker_state: i_color.ColorPickerState = {
     is_initialized: false,
@@ -20,7 +13,7 @@ const color_picker_state: i_color.ColorPickerState = {
 
 export class Color extends o_inputs.InputBase {
     public type?: 'color' = 'color';
-    public include_visualization?: boolean= true;
+    public include_visualization?: boolean = true;
     public include_palette_label?: boolean = false;
     public palette_is_visible?: boolean = false;
     public palette_is_closed?: boolean = true;
@@ -32,7 +25,7 @@ export class Color extends o_inputs.InputBase {
     public state?: any = {
         main: color_picker_state,
         ...Array(d_color.Color.i().palette_color_amount).fill(color_picker_state),
-    }
+    };
 
     public select_palette_color_callback: t.CallbackVariadicVoid;
     public remove_color_callback: t.CallbackVariadicVoid;
@@ -42,24 +35,18 @@ export class Color extends o_inputs.InputBase {
     public constructor(obj: Color) {
         super(obj);
 
-        makeObservable(
-            this,
-            {
-                palette_is_visible: observable,
-                palette_is_closed: observable,
-                palette_width: observable,
-                palette_height: observable,
-                color_picker_width: observable,
-                color_picker_height: observable,
-                show_color_input_help: observable,
-                state: observable,
-            },
-        );
+        makeObservable(this, {
+            palette_is_visible: observable,
+            palette_is_closed: observable,
+            palette_width: observable,
+            palette_height: observable,
+            color_picker_width: observable,
+            color_picker_height: observable,
+            show_color_input_help: observable,
+            state: observable,
+        });
 
-        Object.assign(
-            this,
-            obj,
-        );
+        Object.assign(this, obj);
 
         this.select_palette_color_callback = obj.select_palette_color_callback;
         this.remove_color_callback = obj.remove_color_callback;
@@ -67,105 +54,57 @@ export class Color extends o_inputs.InputBase {
         this.hide_color_help_callback = obj.hide_color_help_callback;
     }
 
-    is_palette_color? = ({ i }: { i: i_color.I; }): boolean => (
-        typeof i === 'number'
-    )
+    is_palette_color? = ({ i }: { i: i_color.I }): boolean => typeof i === 'number';
 
-    visualization_cls? = ({ i }: { i: i_color.I; }): string => (
-        i === 'main'
-            ? 'visualization'
-            : ''
-    )
+    visualization_cls? = ({ i }: { i: i_color.I }): string => (i === 'main' ? 'visualization' : '');
 
-    palette_visualization_cls? = ({ i }: { i: i_color.I; }): string => (
-        i === 'main'
-            ? ''
-            : 'palette_visualization'
-    )
+    palette_visualization_cls? = ({ i }: { i: i_color.I }): string =>
+        i === 'main' ? '' : 'palette_visualization';
 
-    inset_border_cls? = ({ i }: { i: i_color.I; }): string => (
-        i === 'main'
-            ? ''
-            : 'inset_border'
-    )
+    inset_border_cls? = ({ i }: { i: i_color.I }): string => (i === 'main' ? '' : 'inset_border');
 
-    el_to_show_type? = ({ i }: { i: i_color.I; }): string => (
-        i === 'main'
-            ? 'color_picker_or_palette'
-            : 'color_picker'
-    )
+    el_to_show_type? = ({ i }: { i: i_color.I }): string =>
+        i === 'main' ? 'color_picker_or_palette' : 'color_picker';
 
-    palette_w_is_visible? = computedFn(
-        function (this: Color): boolean {
-            return (
-                this.include_visualization
-                    ? this.palette_is_visible as boolean
-                    : true
-            );
-        },
-    );
+    palette_w_is_visible? = computedFn(function (this: Color): boolean {
+        return this.include_visualization ? (this.palette_is_visible as boolean) : true;
+    });
 
-    visualization_outline_opened? = computedFn(
-        function (
-            this: Color,
-            { i }: { i: i_color.I; },
-        ): string {
-            return (
-                (
-                    i === 'main'
-                    && this.palette_is_visible
-                ) || this.state[i].is_visible
-                    ? 'opened'
-                    : ''
-            );
-        },
-    );
+    visualization_outline_opened? = computedFn(function (
+        this: Color,
+        { i }: { i: i_color.I },
+    ): string {
+        return (i === 'main' && this.palette_is_visible) || this.state[i].is_visible
+            ? 'opened'
+            : '';
+    });
 
-    visualization_outline_selected? = computedFn(
-        function (
-            this: Color,
-            { i }: { i: i_color.I; },
-        ): string {
-            if (
-                this.is_palette_color!({ i })
-                && i === data.settings[this.name]
-            ) {
-                return 'selected';
-            }
+    visualization_outline_selected? = computedFn(function (
+        this: Color,
+        { i }: { i: i_color.I },
+    ): string {
+        if (this.is_palette_color!({ i }) && i === data.settings[this.name]) {
+            return 'selected';
+        }
 
-            return '';
-        },
-    );
+        return '';
+    });
 
-    palette_visualization_outline_selected? = computedFn(
-        function (
-            this: Color,
-            { i }: { i: i_color.I; },
-        ): string {
-            return (
-                i === data.settings.selected_palette_color
-                    ? 'selected'
-                    : ''
-            );
-        },
-    );
+    palette_visualization_outline_selected? = computedFn(function (
+        this: Color,
+        { i }: { i: i_color.I },
+    ): string {
+        return i === data.settings.selected_palette_color ? 'selected' : '';
+    });
 
-    color_picker_is_closed_none_cls? = computedFn(
-        function (
-            this: Color,
-            { i }: { i: i_color.I; },
-        ): string {
-            return this.state[i].is_closed
-                ? 'none'
-                : '';
-        },
-    );
+    color_picker_is_closed_none_cls? = computedFn(function (
+        this: Color,
+        { i }: { i: i_color.I },
+    ): string {
+        return this.state[i].is_closed ? 'none' : '';
+    });
 
-    palette_is_closed_none_cls? = computedFn(
-        function (this: Color): string {
-            return this.palette_is_closed
-                ? 'none'
-                : '';
-        },
-    );
+    palette_is_closed_none_cls? = computedFn(function (this: Color): string {
+        return this.palette_is_closed ? 'none' : '';
+    });
 }

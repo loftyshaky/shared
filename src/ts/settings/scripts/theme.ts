@@ -12,24 +12,14 @@ export class Theme {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public change = ({
-        input,
-        val,
-    }: {
-        input: i_inputs.Input;
-        val: string;
-    }): void => err(() => {
-        if (input.name === 'options_page_theme') {
-            NoTr.i().enable();
+    public change = ({ input, val }: { input: i_inputs.Input; val: string }): void =>
+        err(() => {
+            if (input.name === 'options_page_theme') {
+                NoTr.i().enable();
 
-            x.css(
-                `${val}_theme`,
-                document.head,
-                'theme_link',
-            );
+                x.css(`${val}_theme`, document.head, 'theme_link');
 
-            NoTr.i().disable();
-        }
-    },
-    's1073');
+                NoTr.i().disable();
+            }
+        }, 's1073');
 }

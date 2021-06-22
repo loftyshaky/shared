@@ -10,10 +10,7 @@ export const File = observer((props: p_inputs.File) => {
 
     return (
         <input
-            className={x.cls([
-                'file',
-                input.name,
-            ])}
+            className={x.cls(['file', input.name])}
             type='file'
             accept={input.accept}
             value=''

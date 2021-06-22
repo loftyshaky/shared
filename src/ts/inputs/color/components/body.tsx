@@ -1,17 +1,9 @@
-import React, {
-    useEffect,
-    useRef,
-} from 'react';
+import React, { useEffect, useRef } from 'react';
 import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 
 import { BaseTr } from 'shared/internal';
-import {
-    c_inputs,
-    d_color,
-    p_color,
-    c_color,
-} from 'inputs/internal';
+import { c_inputs, d_color, p_color, c_color } from 'inputs/internal';
 
 export const Body = observer((props: p_color.Body) => {
     const { input } = props;
@@ -19,10 +11,7 @@ export const Body = observer((props: p_color.Body) => {
 
     useEffect(() => {
         runInAction(() => {
-            if (
-                input.palette_is_visible
-                && n(palette_ref.current)
-            ) {
+            if (input.palette_is_visible && n(palette_ref.current)) {
                 input.palette_width = palette_ref.current.offsetWidth;
                 input.palette_height = palette_ref.current.offsetHeight;
             }
@@ -30,18 +19,14 @@ export const Body = observer((props: p_color.Body) => {
     });
 
     // eslint-disable-next-line no-unused-expressions
-    input.palette_is_visible; input.state.main;
+    input.palette_is_visible;
+    // eslint-disable-next-line no-unused-expressions
+    input.state.main;
 
     const input_w: JSX.Element = (
         <>
             <div className='input_w_and_help_btn'>
-                <div
-                    className={x.cls([
-                        'input_w',
-                        'color',
-                        input.name,
-                    ])}
-                >
+                <div className={x.cls(['input_w', 'color', input.name])}>
                     <c_color.FillShadow
                         is_visible={input.palette_is_visible || false}
                         width={input.palette_width!}
@@ -52,22 +37,17 @@ export const Body = observer((props: p_color.Body) => {
                         name='fade'
                         cls='palette_w'
                         state={input.palette_w_is_visible!()}
-                        tr_end_unactive={
-                            [(): void => {
-                                d_color.Visibility.i().mark_palette_as_closed(
-                                    {
-                                        input,
-                                        is_closed: true,
-                                    },
-                                );
-                            }]
-                        }
+                        tr_end_unactive={[
+                            (): void => {
+                                d_color.Visibility.i().mark_palette_as_closed({
+                                    input,
+                                    is_closed: true,
+                                });
+                            },
+                        ]}
                     >
                         <div
-                            className={x.cls([
-                                'palette',
-                                input.palette_is_closed_none_cls!(),
-                            ])}
+                            className={x.cls(['palette', input.palette_is_closed_none_cls!()])}
                             ref={palette_ref}
                         >
                             <BaseTr
@@ -76,9 +56,7 @@ export const Body = observer((props: p_color.Body) => {
                                 cls='color_help_w'
                                 state={data.settings.show_color_help}
                             >
-                                <p className='color_help'>
-                                    {ext.msg('color_help_text')}
-                                </p>
+                                <p className='color_help'>{ext.msg('color_help_text')}</p>
                                 <c_inputs.LinkBtn
                                     name='hide'
                                     on_click={(): void => {
@@ -101,39 +79,27 @@ export const Body = observer((props: p_color.Body) => {
                                 />
                             </div>
                             <div className='palette_colors'>
-                                {
-                                    n(data.settings.colors)
-                                        ? data.settings.colors.map(
-                                            (color: string, i: number): JSX.Element => (
-                                                <c_color.Visualization
-                                                    key={i}
-                                                    input={input}
-                                                    i={i}
-                                                    aria_label='Open color picker'
-                                                />
-                                            ),
-                                        )
-                                        : undefined
-                                }
+                                {n(data.settings.colors)
+                                    ? data.settings.colors.map(
+                                          (color: string, i: number): JSX.Element => (
+                                              <c_color.Visualization
+                                                  key={i}
+                                                  input={input}
+                                                  i={i}
+                                                  aria_label='Open color picker'
+                                              />
+                                          ),
+                                      )
+                                    : undefined}
                             </div>
                         </div>
                     </BaseTr>
-                    {
-                        input.include_visualization
-                            ? (
-                                <c_color.Visualization
-                                    input={input}
-                                    i='main'
-                                    aria_label='Choose color'
-                                />
-                            )
-                            : undefined
-                    }
+                    {input.include_visualization ? (
+                        <c_color.Visualization input={input} i='main' aria_label='Choose color' />
+                    ) : undefined}
                 </div>
             </div>
-            {input.include_help
-                ? <c_inputs.Help section_or_input={input} />
-                : undefined}
+            {input.include_help ? <c_inputs.Help section_or_input={input} /> : undefined}
         </>
     );
 

@@ -8,17 +8,13 @@ declare global {
     function show_err_ribbon(
         error_obj: any,
         error_code: number | string,
-        obj?: i_error.ShowError
+        obj?: i_error.ShowError,
     ): void;
-    function err<T1>(
-        f: () => T1,
-        error_code: number | string,
-        obj?: i_error.ShowError
-    ): T1;
+    function err<T1>(f: () => T1, error_code: number | string, obj?: i_error.ShowError): T1;
     function err_async<T1>(
         f: () => Promise<T1>,
         error_code: number | string,
-        obj?: i_error.ShowError
+        obj?: i_error.ShowError,
     ): Promise<T1>;
     function throw_err(msg: string): void;
     function err_obj(msg: string): Error;
@@ -34,17 +30,14 @@ global.show_err_ribbon = (
         exit = false,
         hide_delay = Main.i().hide_delay,
     }: i_error.ShowError = {},
-) => Main.i().show_error(
-    error_obj,
-    error_code,
-    {
+) =>
+    Main.i().show_error(error_obj, error_code, {
         error_msg_key,
         silent,
         persistent,
         exit,
         hide_delay,
-    },
-);
+    });
 
 global.err = <T1>(
     f: () => T1,
@@ -60,17 +53,13 @@ global.err = <T1>(
     try {
         return f();
     } catch (error_obj) {
-        Main.i().show_error(
-            error_obj,
-            error_code,
-            {
-                error_msg_key,
-                silent,
-                persistent,
-                exit,
-                hide_delay,
-            },
-        );
+        Main.i().show_error(error_obj, error_code, {
+            error_msg_key,
+            silent,
+            persistent,
+            exit,
+            hide_delay,
+        });
     }
 
     return f();
@@ -90,17 +79,13 @@ global.err_async = async <T1>(
     try {
         return await f();
     } catch (error_obj) {
-        Main.i().show_error(
-            error_obj,
-            error_code,
-            {
-                error_msg_key,
-                silent,
-                persistent,
-                exit,
-                hide_delay,
-            },
-        );
+        Main.i().show_error(error_obj, error_code, {
+            error_msg_key,
+            silent,
+            persistent,
+            exit,
+            hide_delay,
+        });
     }
 
     return f();
