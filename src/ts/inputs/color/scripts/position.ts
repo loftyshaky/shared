@@ -147,5 +147,5 @@ export class Position {
                     }
                 });
             }
-        }, 's1032');
+        }, 'shr_1004');
 }

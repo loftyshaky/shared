@@ -61,7 +61,7 @@ export class Sections {
                     callback();
                 }
             }
-        }, 's1011');
+        }, 'shr_1052');
 
     public make_shared_sections = ({
         download_back_up_callback,
@@ -88,7 +88,7 @@ export class Sections {
                                     const data_obj = await download_back_up_callback();
 
                                     d_settings.BackUp.i().download({ data_obj });
-                                }, 's1030'),
+                                }, 'shr_1053'),
                         }),
                         new o_inputs.Btn({
                             name: 'upload_back_up',
@@ -129,6 +129,6 @@ export class Sections {
                     ],
                 }),
             ],
-            's1025',
+            'shr_1054',
         );
 }

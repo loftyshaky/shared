@@ -10,7 +10,7 @@ export class CssVars {
     private constructor() {}
 
     public get = ({ name, el }: { name: string; el?: HTMLElement }): string =>
-        err(() => x.get_css_val(n(el) ? el : document.documentElement, `--${name}`), 's1013');
+        err(() => x.get_css_val(n(el) ? el : document.documentElement, `--${name}`), 'shr_1061');
 
     public set_var = ({
         roots,
@@ -25,7 +25,7 @@ export class CssVars {
             roots.forEach((root: HTMLElement): void => {
                 root.style.setProperty(`--${name}`, val);
             });
-        }, 's1018');
+        }, 'shr_1062');
 
     public set_transition_vars = ({
         roots,
@@ -50,5 +50,5 @@ export class CssVars {
                 name: 'animation',
                 val: `${+transition_duration < 1 ? 1 : transition_duration}ms ease-out 1 forwards`,
             });
-        }, 's1014');
+        }, 'shr_1063');
 }

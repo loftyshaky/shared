@@ -49,7 +49,7 @@ export const ColorPicker = observer((props: p_color.ColorPicker) => {
                     }
                 }
             }
-        }, '1041');
+        }, 'shr_1001');
 
     const { input, i } = props;
 

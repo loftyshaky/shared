@@ -77,7 +77,7 @@ export class ColorPicker {
             });
 
             return pickr;
-        }, 's1042');
+        }, 'shr_1002');
 
     public update = ({
         pickr,
@@ -112,5 +112,5 @@ export class ColorPicker {
                     input.color_picker_height = color_picker.offsetHeight;
                 });
             }
-        }, '1043');
+        }, 'shr_1003');
 }

@@ -23,7 +23,7 @@ export class Val {
         err(() => {
             const new_input = input;
             new_input.is_in_focus_state = state;
-        }, 's1022');
+        }, 'shr_1037');
 
     public focus_state = computedFn(function ({ input }: { input: i_inputs.Input }): string {
         return input.is_in_focus_state ? 'is_in_focus_state' : '';
@@ -44,7 +44,7 @@ export class Val {
             }
 
             return n(data.settings[input.name]) ? data.settings[input.name] : '';
-        }, 's1023');
+        }, 'shr_1038');
 
     public change = (
         {
@@ -68,7 +68,7 @@ export class Val {
             }
 
             input.event_callback({ input });
-        }, 's1008');
+        }, 'shr_1039');
 
     public set = action(({ val, input }: { val: string | boolean; input: i_inputs.Input }): void =>
         err(() => {
@@ -77,7 +77,7 @@ export class Val {
             } else {
                 data.settings[input.name] = val;
             }
-        }, 's1024'),
+        }, 'shr_1040'),
     );
 
     public remove_val = action(({ input }: { input: i_inputs.Input }): void =>
@@ -94,7 +94,7 @@ export class Val {
             if (n((input as o_inputs.Text).remove_val_callback)) {
                 (input as o_inputs.Text).remove_val_callback!({ input });
             }
-        }, 's1017'),
+        }, 'shr_1041'),
     );
 
     public validate_input = ({ input }: { input: i_inputs.Input }): any =>
@@ -106,5 +106,5 @@ export class Val {
             }
 
             return false;
-        }, 's1075');
+        }, 'shr_1042');
 }

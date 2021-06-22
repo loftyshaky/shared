@@ -25,5 +25,5 @@ export class HelpVisibility {
             const new_input: o_inputs.Section | i_inputs.Input = section_or_input;
 
             new_input.help_is_visible = !new_input.help_is_visible;
-        }, 's1009');
+        }, 'shr_1027');
 }

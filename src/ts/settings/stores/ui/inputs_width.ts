@@ -46,7 +46,7 @@ export class InputsWidth {
                             );
 
                             return input_w_with_max_width;
-                        }, 's1007');
+                        }, 'shr_1055');
 
                     window.requestAnimationFrame(
                         (): Promise<void> =>
@@ -72,9 +72,9 @@ export class InputsWidth {
                                         this.calculate_for_section({ section_name });
                                     }
                                 }
-                            }, 's1005'),
+                            }, 'shr_1056'),
                     );
-                }, 's1004'),
+                }, 'shr_1057'),
         );
     };
 
@@ -87,7 +87,7 @@ export class InputsWidth {
             Object.values(sections).forEach((section: o_inputs.Section): void => {
                 this.calculate_for_section({ section_name: section.name });
             });
-        }, 's1006');
+        }, 'shr_1058');
 
     public set_max_width = (): void =>
         err(() => {
@@ -103,5 +103,5 @@ export class InputsWidth {
                     this.min_width,
                 );
             }
-        }, 's1012');
+        }, 'shr_1059');
 }

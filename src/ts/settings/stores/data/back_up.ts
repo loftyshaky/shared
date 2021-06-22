@@ -28,7 +28,7 @@ export class BackUp {
             )} back up ${new Date().toLocaleString(ext.msg('@@ui_locale').replace(/_/, '-'))}.json`;
             a.click();
             x.remove(a);
-        }, 's1026');
+        }, 'shr_1048');
 
     public open_file_browser = (): void =>
         err(() => {
@@ -37,7 +37,7 @@ export class BackUp {
             if (upload_back_up_input) {
                 upload_back_up_input.click();
             }
-        }, 's1027');
+        }, 'shr_1049');
 
     public upload = (
         {
@@ -65,7 +65,7 @@ export class BackUp {
                     throw_err('Invalid file type');
                 }
             },
-            's1028',
+            'shr_1050',
             { error_msg_key: 'invalid_file_type_back_up' },
         );
 
@@ -84,5 +84,5 @@ export class BackUp {
 
                 reader.readAsText(blob);
             });
-        }, 's1029');
+        }, 'shr_1051');
 }

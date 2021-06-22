@@ -15,6 +15,6 @@ export class Viewport {
                 dim === 'width'
                     ? document.documentElement.clientWidth
                     : document.documentElement.clientHeight,
-            's1031',
+            'shr_1077',
         );
 }

@@ -35,7 +35,7 @@ export class Visibility {
     }): void =>
         err(() => {
             input.state[i].is_closed = is_closed;
-        }, 's1067');
+        }, 'shr_1018');
 
     public mark_palette_as_closed = ({
         input,
@@ -46,7 +46,7 @@ export class Visibility {
     }): void =>
         err(() => {
             input.palette_is_closed = is_closed;
-        }, 's1068');
+        }, 'shr_1019');
 
     public change_visibility = (
         {
@@ -138,7 +138,7 @@ export class Visibility {
                     this.visible_input = new_input;
                 }
             });
-        }, 's1033');
+        }, 'shr_1020');
 
     public hide_main_and_palette = ({ input }: { input: o_color.Color }): void =>
         err(() => {
@@ -146,7 +146,7 @@ export class Visibility {
 
             new_input.state.main.is_visible = false;
             new_input.palette_is_visible = false;
-        }, 's1034');
+        }, 'shr_1021');
 
     public hide_palette_color_pickers = ({ input }: { input: o_color.Color }): void =>
         err(() => {
@@ -159,7 +159,7 @@ export class Visibility {
                         new_input.state[i].is_visible = false;
                     }
                 });
-        }, 's1035');
+        }, 'shr_1022');
 
     public hide_all = (e: any): void =>
         err(() => {
@@ -199,7 +199,7 @@ export class Visibility {
                     d_color.Color.i().restore_old_color();
                 }
             }
-        }, 's1036');
+        }, 'shr_1023');
 
     public hide_color_picker_or_palette_on_esc = (e: any): void =>
         err(() => {
@@ -223,12 +223,12 @@ export class Visibility {
                     this.hide_main_and_palette({ input: this.visible_input });
                 }
             }
-        }, 's1074');
+        }, 'shr_1024');
 
     public hide_color_help = ({ input }: { input: o_color.Color }): void =>
         err(() => {
             data.settings.show_color_help = false;
 
             input.hide_color_help_callback();
-        }, 's1047');
+        }, 'shr_1025');
 }

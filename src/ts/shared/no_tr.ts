@@ -16,7 +16,7 @@ export class NoTr {
     ): void =>
         err(() => {
             x.css(this.cls, el);
-        }, 's1020');
+        }, 'shr_1066');
 
     public disable = (
         { el = document.head }: { el?: HTMLElement | ShadowRoot } = { el: document.head },
@@ -27,5 +27,5 @@ export class NoTr {
             const tr_link = sb<HTMLLinkElement>(el, `.${this.cls}_link`);
 
             x.remove(tr_link);
-        }, 's1021');
+        }, 'shr_1067');
 }

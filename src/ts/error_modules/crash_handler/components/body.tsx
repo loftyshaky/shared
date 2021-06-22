@@ -10,7 +10,7 @@ export const Body = observer(
         }
 
         public componentDidCatch(err_obj: Error): void {
-            show_err_ribbon(err_obj, 's1000', { error_msg_key: 'cant_render_ui' });
+            show_err_ribbon(err_obj, 'shr_1000', { error_msg_key: 'cant_render_ui' });
         }
 
         public render(): JSX.Element | ReactNode {

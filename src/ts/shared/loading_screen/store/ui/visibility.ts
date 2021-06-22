@@ -26,7 +26,7 @@ export class Visibility {
             if (!this.inner_is_none) {
                 this.outer_is_visible = true;
             }
-        }, 's1015');
+        }, 'shr_1064');
 
     public hide = (): Promise<void> =>
         err_async(async () => {
@@ -41,5 +41,5 @@ export class Visibility {
             runInAction((): void => {
                 this.inner_is_none = true;
             });
-        }, 's1016');
+        }, 'shr_1065');
 }

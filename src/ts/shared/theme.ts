@@ -32,5 +32,5 @@ export class Theme {
             }
 
             NoTr.i().disable({ el });
-        }, 's1019');
+        }, 'shr_1075');
 }

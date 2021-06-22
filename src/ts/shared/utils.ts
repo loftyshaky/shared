@@ -34,5 +34,5 @@ export class Utils {
             });
 
             return obj_final;
-        }, 's1010');
+        }, 'shr_1076');
 }

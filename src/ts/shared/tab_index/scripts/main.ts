@@ -29,7 +29,7 @@ export class Main {
                 input_type: string;
                 app_id_2?: string;
             }): string =>
-                err(() => (app_id === '' ? input_type : `${input_type}_${app_id_2}`), 1069);
+                err(() => (app_id === '' ? input_type : `${input_type}_${app_id_2}`), 'shr_1068');
 
             const mouse_cls: string = generate_class({
                 input_type: 'mouse',
@@ -50,7 +50,7 @@ export class Main {
                     x.add_cls(parent, input_type_2);
                 }
             }
-        }, 's1064');
+        }, 'shr_1069');
 
     public bind_set_input_type_f = ({
         parent,
@@ -71,18 +71,18 @@ export class Main {
                         },
                         e,
                     );
-                }, 's1066');
+                }, 'shr_1070');
 
             parent_final.addEventListener('mousedown', set_input_type);
             parent_final.addEventListener('keydown', set_input_type);
-        }, 's1065');
+        }, 'shr_1071');
 
     public simulate_click_on_enter = (e: any): void =>
         err(() => {
             if (e.code === 'Enter') {
                 e.target.click();
             }
-        }, 's1070');
+        }, 'shr_1072');
 
     public simulate_color_visualization_click_on_enter = (
         {
@@ -108,7 +108,7 @@ export class Main {
                         },
                         e_2,
                     );
-                }, 's1072');
+                }, 'shr_1073');
 
             if (e.code === 'Enter') {
                 if (e.ctrlKey || e.shiftKey || e.altKey) {
@@ -138,5 +138,5 @@ export class Main {
                     call_change_visibility();
                 }
             }
-        }, 's1071');
+        }, 'shr_1074');
 }

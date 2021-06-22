@@ -27,5 +27,5 @@ export class Theme {
 
                 NoTr.i().disable();
             }
-        }, 's1073');
+        }, 'shr_1060');
 }
