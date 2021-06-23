@@ -53,9 +53,9 @@ export const Body = observer((props: p_settings.Body) => {
                             <c_inputs.Section key={i} section={section} />
                         ),
                     )}
-                    <c_ext_version.Body />
                 </div>
             </div>
+            <c_ext_version.Body />
         </div>
     );
 });

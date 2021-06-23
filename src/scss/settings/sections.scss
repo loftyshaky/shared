@@ -1,5 +1,4 @@
 .sections {
-    position: relative;
     flex-grow: 1;
     height: 100%;
     overflow: auto;
@@ -18,12 +17,4 @@
 
 .subsection .name:not(:first-child) {
     margin-top: $main_margin;
-}
-
-.ext_version {
-    position: absolute;
-    bottom: 4px;
-    right: 7px;
-    font-size: 14px;
-    z-index: 1;
 }
