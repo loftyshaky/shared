@@ -1,8 +1,8 @@
-@import "mixins";
-@import "transitions";
-@import "text";
-@import "mods";
-@import "crash_handler"; 
+@import 'mixins';
+@import 'transitions';
+@import 'text';
+@import 'mods';
+@import 'crash_handler';
 
 $svg_size: 110px;
 $window_mode_svg_size: 64px;

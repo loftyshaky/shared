@@ -1,5 +1,5 @@
-@import "../../mixins";
-@import "template_focus";
+@import '../../mixins';
+@import 'template_focus';
 
 ::selection {
     background-color: $nqp !important;

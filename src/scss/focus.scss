@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity */
 
-@import "mixins";
+@import 'mixins';
 
 $text_input_outline_size: 20px;
 
@@ -61,7 +61,7 @@ body.keyboard .btn.text:focus,
 }
 
 .keyboard .btn.text_input:focus:before {
-    content: "";
+    content: '';
     position: absolute;
     width: $text_input_outline_size;
     height: $text_input_outline_size;

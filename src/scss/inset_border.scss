@@ -1,4 +1,4 @@
-@import "mixins";
+@import 'mixins';
 
 .inset_border {
     position: relative;
@@ -6,7 +6,7 @@
 
 .inset_border:before {
     @include outline_solid;
-    content: "";
+    content: '';
     position: absolute;
     pointer-events: none;
     top: 0;

@@ -1,5 +1,5 @@
-@import "vars";
-@import "mixins";
+@import 'vars';
+@import 'mixins';
 
 .reload_ui_btn_w {
     @include full_spread;
