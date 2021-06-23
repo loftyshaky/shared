@@ -12,7 +12,7 @@
         "dev": "rollup -c --watch --environment mode:development",
         "prod": "rollup -c --environment mode:production",
         "pub": "npm publish --folder dist --access public",
-        "format": "prettier --config .prettierrc.js js/**/*.js src/ts/**/*.ts --write"
+        "format": "prettier --config .prettierrc.js rollup.config.js js/**/*.js src/**/*.ts src/scss/**/*.scss src/_locales/**/*.json --write"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^17.0.0",
