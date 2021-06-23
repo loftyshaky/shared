@@ -17,6 +17,7 @@ export * from 'shared/loading_screen/store/ui';
 export * as t from 'shared/t';
 export * from 'shared/svg';
 
+export * as c_ext_version from 'shared/ext_version/components';
 export * as u_loading_screen from 'shared/loading_screen/store/ui';
 export * as c_loading_screen from 'shared/loading_screen/components';
 export * as p_loading_screen from 'shared/loading_screen/components/prop_types';

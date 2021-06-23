@@ -1,3 +1,10 @@
 import React from 'react';
 
-export const ExtName = () => <div className='ext_name'>{ext.msg('name')}</div>;
+import { c_ext_version } from 'shared/internal';
+
+export const ExtName = () => (
+    <span className='ext_name'>
+        {`${ext.msg('name')} `}
+        <c_ext_version.Body />
+    </span>
+);

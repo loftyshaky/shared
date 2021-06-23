@@ -56,6 +56,8 @@ export class Ext {
         console.log(error_obj.message);
     };
 
+    public get_ext_version = (): string => browser.runtime.getManifest().version;
+
     public msg = (msg: string): string => {
         const msg_2: string | undefined = browser.i18n.getMessage(msg);
 
