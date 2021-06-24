@@ -98,7 +98,11 @@ export class X {
                 Array.from(els as any).forEach((el): void => {
                     callback(el);
                 });
-            } else if (els instanceof HTMLElement) {
+            } else if (
+                els instanceof Window ||
+                els instanceof Document ||
+                els instanceof HTMLElement
+            ) {
                 callback(els);
             }
         }

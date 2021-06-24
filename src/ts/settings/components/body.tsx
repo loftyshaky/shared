@@ -11,14 +11,11 @@ export const Body = observer((props: p_settings.Body) => {
     useEffect(() => {
         d_settings.Sections.i().change({ section_name: initial_section });
 
-        window.addEventListener('resize', u_settings.InputsWidth.i().set_max_width);
-        window.addEventListener('mousemove', u_settings.InputsWidth.i().set_max_width);
-        document.addEventListener('mousedown', d_color.Visibility.i().hide_all);
-        window.addEventListener('resize', s_color.Position.i().set);
-        document.addEventListener(
-            'keydown',
-            d_color.Visibility.i().hide_color_picker_or_palette_on_esc,
-        );
+        x.bind(window, 'resize', u_settings.InputsWidth.i().set_max_width);
+        x.bind(window, 'mousemove', u_settings.InputsWidth.i().set_max_width);
+        x.bind(document, 'mousedown', d_color.Visibility.i().hide_all);
+        x.bind(window, 'resize', s_color.Position.i().set);
+        x.bind(document, 'keydown', d_color.Visibility.i().hide_color_picker_or_palette_on_esc);
     }, [props, initial_section]);
 
     return (

@@ -27,7 +27,7 @@ export class Css {
                 const error_css = x.css('error', error_shadow);
 
                 if (n(error_css)) {
-                    error_css.addEventListener('load', (): void => {
+                    x.bind(error_css, 'load', (): void => {
                         u_error.State.i().change_state({
                             observable_key: 'is_loaded',
                             state: true,

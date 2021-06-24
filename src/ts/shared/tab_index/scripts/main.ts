@@ -73,8 +73,8 @@ export class Main {
                     );
                 }, 'shr_1070');
 
-            parent_final.addEventListener('mousedown', set_input_type);
-            parent_final.addEventListener('keydown', set_input_type);
+            x.bind(parent_final, 'mousedown', set_input_type);
+            x.bind(parent_final, 'keydown', set_input_type);
         }, 'shr_1071');
 
     public simulate_click_on_enter = (e: any): void =>
