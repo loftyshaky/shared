@@ -6,7 +6,7 @@ import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 import { u_settings } from 'settings/internal';
 
-export const Text = observer((props: p_inputs.Text) => {
+export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => {
     const { input } = props;
 
     const input_w: JSX.Element = (

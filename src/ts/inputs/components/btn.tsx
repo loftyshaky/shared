@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { p_inputs } from 'inputs/internal';
 
-export const Btn = observer((props: p_inputs.Btn) => {
+export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
     const { input } = props;
 
     return (

@@ -5,7 +5,7 @@ import { c_tr } from 'shared/internal';
 import { p_inputs, i_inputs } from 'inputs/internal';
 import { u_settings } from 'settings/internal';
 
-export const Help = observer((props: p_inputs.Help) => {
+export const Help: React.FunctionComponent<p_inputs.Help> = observer((props) => {
     const { section_or_input } = props;
     const section_name: string | undefined = (section_or_input as i_inputs.Input).section;
     const is_input: boolean = n(section_name);

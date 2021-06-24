@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { c_error, u_error, s_css, p_error } from 'error_modules/internal';
 
-export const Body = observer((props: p_error.Body) => {
+export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
     useEffect(() => {
         const { app_id } = props;
 

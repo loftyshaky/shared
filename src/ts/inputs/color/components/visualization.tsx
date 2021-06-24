@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { prevent_default, s_tab_index } from 'shared/internal';
 import { c_inputs, c_color, d_color, p_color } from 'inputs/internal';
 
-export const Visualization = observer((props: p_color.Visualization) => {
+export const Visualization: React.FunctionComponent<p_color.Visualization> = observer((props) => {
     const visualization_w_ref = useRef<HTMLSpanElement>(null);
     const visualization_ref = useRef<HTMLButtonElement>(null);
 

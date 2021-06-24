@@ -6,7 +6,7 @@ import { o_inputs, d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 import { u_settings } from 'settings/internal';
 
-export const Select = observer((props: p_inputs.Select) => {
+export const Select: React.FunctionComponent<p_inputs.Select> = observer((props) => {
     const { input } = props;
     const options = input.options[input.name];
 

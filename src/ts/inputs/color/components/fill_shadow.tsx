@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { s_color, p_color } from 'inputs/internal';
 
-export const FillShadow = observer((props: p_color.FillShadow) => {
+export const FillShadow: React.FunctionComponent<p_color.FillShadow> = observer((props) => {
     useEffect(() => {
         const { is_visible } = props;
 

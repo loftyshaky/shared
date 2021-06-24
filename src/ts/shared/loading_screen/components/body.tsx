@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { svg, c_tr, u_loading_screen, p_loading_screen } from 'shared/internal';
 
-export const Body = observer((props: p_loading_screen.Body) => {
+export const Body: React.FunctionComponent<p_loading_screen.Body> = observer((props) => {
     const {
         left = '0',
         top = '0',

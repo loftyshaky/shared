@@ -5,7 +5,7 @@ import { observer } from 'mobx-react';
 import { c_tr } from 'shared/internal';
 import { c_inputs, c_color, d_color, p_color } from 'inputs/internal';
 
-export const Body = observer((props: p_color.Body) => {
+export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
     const { input } = props;
     const palette_ref = useRef<HTMLDivElement>(null);
 

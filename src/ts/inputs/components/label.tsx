@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { p_inputs } from 'inputs/internal';
 
-export const Label = observer((props: p_inputs.Label) => {
+export const Label: React.FunctionComponent<p_inputs.Label> = observer((props) => {
     const { input } = props;
 
     return (

@@ -6,7 +6,7 @@ import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 import { u_settings } from 'settings/internal';
 
-export const Textarea = observer((props: p_inputs.Textarea) => {
+export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((props) => {
     const { input } = props;
 
     const input_w: JSX.Element = (

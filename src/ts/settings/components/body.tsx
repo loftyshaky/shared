@@ -5,7 +5,7 @@ import { c_ext_version } from 'shared/internal';
 import { c_inputs, o_inputs, d_color, s_color } from 'inputs/internal';
 import { d_settings, u_settings, p_settings } from 'settings/internal';
 
-export const Body = observer((props: p_settings.Body) => {
+export const Body: React.FunctionComponent<p_settings.Body> = observer((props) => {
     const { sections, initial_section, change_section_callback } = props;
 
     useEffect(() => {

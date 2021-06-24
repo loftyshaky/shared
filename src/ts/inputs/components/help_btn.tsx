@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { svg } from 'shared/internal';
 import { d_inputs, p_inputs } from 'inputs/internal';
 
-export const HelpBtn = observer((props: p_inputs.HelpBtn) => {
+export const HelpBtn: React.FunctionComponent<p_inputs.HelpBtn> = observer((props) => {
     const { section_or_input } = props;
 
     return (

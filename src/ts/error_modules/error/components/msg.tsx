@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { u_error } from 'error_modules/internal';
 
-export const Msg = observer(() => (
+export const Msg: React.FunctionComponent = observer(() => (
     <div className='msg'>
         {u_error.Msg.i().basic_msg}
         <button

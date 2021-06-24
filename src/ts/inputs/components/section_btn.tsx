@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { p_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
-export const SectionBtn = observer((props: p_inputs.SectionBtn) => {
+export const SectionBtn: React.FunctionComponent<p_inputs.SectionBtn> = observer((props) => {
     const { section, change_section_callback } = props;
 
     return (

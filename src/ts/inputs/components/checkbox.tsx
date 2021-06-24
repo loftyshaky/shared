@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { svg, s_tab_index } from 'shared/internal';
 import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
-export const Checkbox = observer((props: p_inputs.Checkbox) => {
+export const Checkbox: React.FunctionComponent<p_inputs.Checkbox> = observer((props) => {
     const { input } = props;
 
     const input_w: JSX.Element = (

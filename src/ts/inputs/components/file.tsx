@@ -5,7 +5,7 @@ import { p_inputs } from 'inputs/internal';
 
 import { d_settings } from 'settings/internal';
 
-export const File = observer((props: p_inputs.File) => {
+export const File: React.FunctionComponent<p_inputs.File> = observer((props) => {
     const { input } = props;
 
     return (

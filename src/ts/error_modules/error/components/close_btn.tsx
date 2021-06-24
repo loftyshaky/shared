@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { svg } from 'shared/internal';
 import { u_error } from 'error_modules/internal';
 
-export const CloseBtn = observer(() => (
+export const CloseBtn: React.FunctionComponent = observer(() => (
     <button
         className='close_btn'
         type='button'

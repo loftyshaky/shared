@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { p_inputs } from 'inputs/internal';
 
-export const LinkBtn = observer((props: p_inputs.LinkBtn) => {
+export const LinkBtn: React.FunctionComponent<p_inputs.LinkBtn> = observer((props) => {
     const { name, on_click } = props;
 
     return (

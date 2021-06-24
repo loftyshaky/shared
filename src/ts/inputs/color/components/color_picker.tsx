@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { c_tr } from 'shared/internal';
 import { c_color, d_color, s_color, p_color } from 'inputs/internal';
 
-export const ColorPicker = observer((props: p_color.ColorPicker) => {
+export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observer((props) => {
     const pickr_ref = useRef<any>(null);
     const color_picker_ref = useRef<HTMLSpanElement>(null);
     const color_picker_is_initialized_ref = useRef<boolean>(false);

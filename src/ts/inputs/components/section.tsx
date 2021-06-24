@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { c_inputs, p_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
-export const Section = observer((props: p_inputs.Section) => {
+export const Section: React.FunctionComponent<p_inputs.Section> = observer((props) => {
     const { section } = props;
 
     return (
