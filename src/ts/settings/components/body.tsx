@@ -19,17 +19,6 @@ export const Body = observer((props: p_settings.Body) => {
             'keydown',
             d_color.Visibility.i().hide_color_picker_or_palette_on_esc,
         );
-
-        return () => {
-            window.removeEventListener('resize', u_settings.InputsWidth.i().set_max_width);
-            window.removeEventListener('mousemove', u_settings.InputsWidth.i().set_max_width);
-            document.removeEventListener('mousedown', d_color.Visibility.i().hide_all);
-            window.removeEventListener('resize', s_color.Position.i().set);
-            document.removeEventListener(
-                'keydown',
-                d_color.Visibility.i().hide_color_picker_or_palette_on_esc,
-            );
-        };
     }, [props, initial_section]);
 
     return (
