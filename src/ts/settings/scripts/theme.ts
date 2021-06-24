@@ -1,4 +1,4 @@
-import { NoTr } from 'shared/internal';
+import { s_theme } from 'shared/internal';
 import { i_inputs } from 'inputs/internal';
 
 export class Theme {
@@ -12,14 +12,10 @@ export class Theme {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public change = ({ input, val }: { input: i_inputs.Input; val: string }): void =>
+    public change = ({ input, name }: { input: i_inputs.Input; name: string }): void =>
         err(() => {
             if (input.name === 'options_page_theme') {
-                NoTr.i().enable();
-
-                x.css(`${val}_theme`, document.head, 'theme_link');
-
-                NoTr.i().disable();
+                s_theme.Main.i().set({ name });
             }
         }, 'shr_1047');
 }

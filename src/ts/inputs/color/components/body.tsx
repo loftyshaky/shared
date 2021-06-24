@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 
-import { BaseTr } from 'shared/internal';
-import { c_inputs, d_color, p_color, c_color } from 'inputs/internal';
+import { c_tr } from 'shared/internal';
+import { c_inputs, c_color, d_color, p_color } from 'inputs/internal';
 
 export const Body = observer((props: p_color.Body) => {
     const { input } = props;
@@ -32,7 +32,7 @@ export const Body = observer((props: p_color.Body) => {
                         width={input.palette_width!}
                         height={input.palette_height!}
                     />
-                    <BaseTr
+                    <c_tr.BaseTr
                         tag='div'
                         name='fade'
                         cls='palette_w'
@@ -50,7 +50,7 @@ export const Body = observer((props: p_color.Body) => {
                             className={x.cls(['palette', input.palette_is_closed_none_cls!()])}
                             ref={palette_ref}
                         >
-                            <BaseTr
+                            <c_tr.BaseTr
                                 tag='div'
                                 name='fade'
                                 cls='color_help_w'
@@ -63,7 +63,7 @@ export const Body = observer((props: p_color.Body) => {
                                         d_color.Visibility.i().hide_color_help({ input });
                                     }}
                                 />
-                            </BaseTr>
+                            </c_tr.BaseTr>
                             <div className='palette_link_btns'>
                                 <c_inputs.LinkBtn
                                     name='remove_color'
@@ -93,7 +93,7 @@ export const Body = observer((props: p_color.Body) => {
                                     : undefined}
                             </div>
                         </div>
-                    </BaseTr>
+                    </c_tr.BaseTr>
                     {input.include_visualization ? (
                         <c_color.Visualization input={input} i='main' aria_label='Choose color' />
                     ) : undefined}

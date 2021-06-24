@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { o_inputs, o_color, c_inputs, c_color, i_inputs } from 'inputs/internal';
+import { c_inputs, c_color, o_inputs, o_color, i_inputs } from 'inputs/internal';
 
 export const resolve = ({ input }: { input: i_inputs.Input | o_inputs.Link }): JSX.Element =>
     err(() => {

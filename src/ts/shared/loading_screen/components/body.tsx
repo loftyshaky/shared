@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { svg, BaseTr, u_loading_screen, p_loading_screen } from 'shared/internal';
+import { svg, c_tr, u_loading_screen, p_loading_screen } from 'shared/internal';
 
 export const Body = observer((props: p_loading_screen.Body) => {
     const {
@@ -14,7 +14,7 @@ export const Body = observer((props: p_loading_screen.Body) => {
     } = props;
 
     return (
-        <BaseTr
+        <c_tr.BaseTr
             tag='div'
             name='fade'
             cls={x.cls([
@@ -34,6 +34,6 @@ export const Body = observer((props: p_loading_screen.Body) => {
             }}
         >
             <svg.Hourglass />
-        </BaseTr>
+        </c_tr.BaseTr>
     );
 });

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { observer } from 'mobx-react';
 
 import { prevent_default, s_tab_index } from 'shared/internal';
-import { c_inputs, p_color, c_color, d_color } from 'inputs/internal';
+import { c_inputs, c_color, d_color, p_color } from 'inputs/internal';
 
 export const Visualization = observer((props: p_color.Visualization) => {
     const visualization_w_ref = useRef<HTMLSpanElement>(null);

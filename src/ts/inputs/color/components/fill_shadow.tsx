@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
-import { p_color, s_color } from 'inputs/internal';
+import { s_color, p_color } from 'inputs/internal';
 
 export const FillShadow = observer((props: p_color.FillShadow) => {
     useEffect(() => {

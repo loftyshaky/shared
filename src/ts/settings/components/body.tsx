@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
 import { c_ext_version } from 'shared/internal';
-import { o_inputs, d_color, s_color, c_inputs } from 'inputs/internal';
+import { c_inputs, o_inputs, d_color, s_color } from 'inputs/internal';
 import { d_settings, u_settings, p_settings } from 'settings/internal';
 
 export const Body = observer((props: p_settings.Body) => {

@@ -1,4 +1,4 @@
-import { Viewport } from 'shared/internal';
+import { s_viewport } from 'shared/internal';
 
 export class Position {
     private static i0: Position;
@@ -76,8 +76,12 @@ export class Position {
                             const visualization_width: number = visualization.offsetWidth;
                             const scroll_top: number = scroll_container.scrollTop;
                             const scroll_left: number = scroll_container.scrollLeft;
-                            const viewport_width: number = Viewport.i().get_dim({ dim: 'width' });
-                            const viewport_height: number = Viewport.i().get_dim({ dim: 'height' });
+                            const viewport_width: number = s_viewport.Main.i().get_dim({
+                                dim: 'width',
+                            });
+                            const viewport_height: number = s_viewport.Main.i().get_dim({
+                                dim: 'height',
+                            });
 
                             scroll_container.scrollTop = scroll_top;
                             scroll_container.scrollLeft = scroll_left;

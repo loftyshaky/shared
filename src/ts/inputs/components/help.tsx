@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { BaseTr } from 'shared/internal';
+import { c_tr } from 'shared/internal';
 import { p_inputs, i_inputs } from 'inputs/internal';
 import { u_settings } from 'settings/internal';
 
@@ -11,7 +11,7 @@ export const Help = observer((props: p_inputs.Help) => {
     const is_input: boolean = n(section_name);
 
     return (
-        <BaseTr
+        <c_tr.BaseTr
             tag='p'
             name='fade'
             cls='help'
@@ -21,6 +21,6 @@ export const Help = observer((props: p_inputs.Help) => {
             }}
         >
             {ext.msg(`${section_or_input.name}_help_text`) || section_or_input.alt_help_msg}
-        </BaseTr>
+        </c_tr.BaseTr>
     );
 });

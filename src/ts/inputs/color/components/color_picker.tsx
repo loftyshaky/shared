@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 
-import { BaseTr } from 'shared/internal';
-import { p_color, d_color, s_color, c_color } from 'inputs/internal';
+import { c_tr } from 'shared/internal';
+import { c_color, d_color, s_color, p_color } from 'inputs/internal';
 
 export const ColorPicker = observer((props: p_color.ColorPicker) => {
     const pickr_ref = useRef<any>(null);
@@ -62,7 +62,7 @@ export const ColorPicker = observer((props: p_color.ColorPicker) => {
                         width={input.color_picker_width!}
                         height={input.color_picker_height!}
                     />
-                    <BaseTr
+                    <c_tr.BaseTr
                         tag='span'
                         name='fade'
                         cls='color_picker_w'
@@ -89,7 +89,7 @@ export const ColorPicker = observer((props: p_color.ColorPicker) => {
                             }}
                             ref={color_picker_ref}
                         />
-                    </BaseTr>
+                    </c_tr.BaseTr>
                 </>
             ) : undefined}
         </>

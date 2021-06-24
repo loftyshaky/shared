@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
-import { Css, u_error, c_error, p_error } from 'error_modules/internal';
+import { c_error, u_error, s_css, p_error } from 'error_modules/internal';
 
 export const Body = observer((props: p_error.Body) => {
     useEffect(() => {
         const { app_id } = props;
 
-        Css.i().load({ app_id });
+        s_css.Main.i().load({ app_id });
     }, [props]);
 
     return (
