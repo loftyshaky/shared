@@ -95,7 +95,7 @@ export class X {
     // el.nodeType === 1 = not document
 
     private all = (
-        els: Window | Document | HTMLElement[] | NodeList | HTMLElement | undefined,
+        els: Window | Document | ShadowRoot | null | t.XEls,
         callback: t.CallbackVariadicVoid,
     ): void =>
         err(() => {
@@ -104,11 +104,7 @@ export class X {
                     Array.from(els as any).forEach((el): void => {
                         callback(el);
                     });
-                } else if (
-                    els instanceof Window ||
-                    els instanceof Document ||
-                    els instanceof HTMLElement
-                ) {
+                } else {
                     callback(els);
                 }
             }
@@ -126,61 +122,14 @@ export class X {
             return el;
         }, 'shr_1089');
 
-    public append = (el: HTMLElement | ShadowRoot | undefined | null, child: HTMLElement): void =>
+    public append = (parent: t.XEl, child: HTMLElement): void =>
         err(() => {
-            if (n(el) && [1, 11].includes(el.nodeType)) {
-                el.appendChild(child);
+            if (n(parent) && [1, 11].includes(parent.nodeType)) {
+                parent.appendChild(child);
             }
         }, 'shr_1090');
 
-    public remove = (els: HTMLElement[] | NodeList | HTMLElement | undefined): void =>
-        err(() => {
-            const remove_one_el = (el: HTMLElement): void => {
-                if (n(el) && n(el.parentNode) && el.nodeType === 1) {
-                    el.parentNode.removeChild(el);
-                }
-            };
-
-            this.all(els, remove_one_el);
-        }, 'shr_1091');
-
-    public before = (
-        el_to_insert_before: HTMLElement | undefined,
-        el_to_insert: HTMLElement | ShadowRoot | undefined | null,
-    ): void =>
-        err(() => {
-            if (
-                n(el_to_insert_before) &&
-                n(el_to_insert) &&
-                n(el_to_insert_before.parentNode) &&
-                [1, 11].includes(el_to_insert.nodeType)
-            ) {
-                el_to_insert_before.parentNode.insertBefore(el_to_insert, el_to_insert_before);
-            }
-        }, 'shr_1092');
-
-    public after = (
-        el_to_insert_after: HTMLElement | undefined,
-        el_to_insert: HTMLElement | ShadowRoot | undefined | null,
-    ): void =>
-        err(() => {
-            if (
-                n(el_to_insert_after) &&
-                n(el_to_insert) &&
-                n(el_to_insert_after.parentNode) &&
-                [1, 11].includes(el_to_insert.nodeType)
-            ) {
-                el_to_insert_after.parentNode.insertBefore(
-                    el_to_insert,
-                    el_to_insert_after.nextElementSibling,
-                );
-            }
-        }, 'shr_1093');
-
-    public as_first = (
-        parent: HTMLElement | ShadowRoot | undefined | null,
-        child: HTMLElement | undefined,
-    ): void =>
+    public as_first = (parent: t.XEl, child: HTMLElement | undefined): void =>
         err(() => {
             if (
                 n(parent) &&
@@ -191,6 +140,45 @@ export class X {
                 parent.insertBefore(child, parent.firstElementChild);
             }
         }, 'shr_1094');
+
+    public before = (el_to_insert_before: HTMLElement | undefined, child: t.XEl): void =>
+        err(() => {
+            if (
+                n(el_to_insert_before) &&
+                n(child) &&
+                n(el_to_insert_before.parentNode) &&
+                [1, 11].includes(child.nodeType)
+            ) {
+                el_to_insert_before.parentNode.insertBefore(child, el_to_insert_before);
+            }
+        }, 'shr_1092');
+
+    public after = (el_to_insert_after: HTMLElement | undefined, child: t.XEl): void =>
+        err(() => {
+            if (
+                n(el_to_insert_after) &&
+                n(child) &&
+                n(el_to_insert_after.parentNode) &&
+                [1, 11].includes(child.nodeType)
+            ) {
+                el_to_insert_after.parentNode.insertBefore(
+                    child,
+                    el_to_insert_after.nextElementSibling,
+                );
+            }
+        }, 'shr_1093');
+
+    public remove = (els: t.XEls): void =>
+        err(() => {
+            const one = (el: HTMLElement): void =>
+                err(() => {
+                    if (n(el) && n(el.parentNode) && el.nodeType === 1) {
+                        el.parentNode.removeChild(el);
+                    }
+                }, 'shr_1162');
+
+            this.all(els, one);
+        }, 'shr_1091');
     // < dom manipulation
 
     public matches = (el: HTMLElement | undefined, selector: string): boolean =>
@@ -211,25 +199,28 @@ export class X {
             return undefined;
         }, 'shr_1096');
 
-    public add_cls = (el: HTMLElement | undefined, cls: string): void =>
+    public add_cls = (els: t.XEls, cls: string): void =>
         err(() => {
-            if (n(el) && el.nodeType === 1) {
-                el.classList.add(cls);
-            }
+            const one = (el: HTMLElement): void =>
+                err(() => {
+                    if (n(el) && el.nodeType === 1) {
+                        el.classList.add(cls);
+                    }
+                }, 'shr_1167');
+
+            this.all(els, one);
         }, 'shr_1097');
 
-    public remove_cls = (
-        els: HTMLElement[] | NodeList | HTMLElement | undefined,
-        cls: string,
-    ): void =>
+    public remove_cls = (els: t.XEls, cls: string): void =>
         err(() => {
-            const remove_cls_one = (el: HTMLElement): void => {
-                if (n(el) && el.nodeType === 1) {
-                    el.classList.remove(cls);
-                }
-            };
+            const one = (el: HTMLElement): void =>
+                err(() => {
+                    if (n(el) && el.nodeType === 1) {
+                        el.classList.remove(cls);
+                    }
+                }, 'shr_1168');
 
-            this.all(els, remove_cls_one);
+            this.all(els, one);
         }, 'shr_1098');
 
     // > array
@@ -246,14 +237,19 @@ export class X {
 
     // > add event listener to one or multiple elements t
     public bind = (
-        els: Window | Document | HTMLElement[] | NodeList | HTMLElement | undefined,
+        els: Window | Document | t.XEls,
         event: string,
         f: t.CallbackVariadicVoid,
     ): void =>
         err(() => {
-            this.all(els, (el: Window | Document | HTMLElement) => {
-                el.addEventListener(event, f);
-            });
+            const one = (el: HTMLElement): void =>
+                err(() => {
+                    if (n(el.addEventListener)) {
+                        el.addEventListener(event, f);
+                    }
+                }, 'shr_1164');
+
+            this.all(els, one);
         }, 'shr_1101');
     // < add event listener to one or multiple elements t
 

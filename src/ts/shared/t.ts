@@ -1,3 +1,5 @@
+export type XEl = HTMLElement | ShadowRoot | undefined | null;
+export type XEls = HTMLElement[] | NodeList | HTMLElement | undefined;
 export type Browser = 'chrome' | 'edge' | 'opera' | 'firefox';
 export type BaseEl = Document | ShadowRoot | HTMLElement | undefined;
 export type CallbackVoid = () => void;
