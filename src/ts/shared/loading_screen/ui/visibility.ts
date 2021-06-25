@@ -32,14 +32,18 @@ export class Visibility {
         err_async(async () => {
             await x.delay(300);
 
-            runInAction((): void => {
-                this.outer_is_visible = false;
-            });
+            runInAction((): void =>
+                err(() => {
+                    this.outer_is_visible = false;
+                }, 'shr_1156'),
+            );
 
             await x.delay(+s_css_vars.Main.i().get({ name: 'transition_duration' }));
 
-            runInAction((): void => {
-                this.inner_is_none = true;
-            });
+            runInAction((): void =>
+                err(() => {
+                    this.inner_is_none = true;
+                }, 'shr_1157'),
+            );
         }, 'shr_1065');
 }

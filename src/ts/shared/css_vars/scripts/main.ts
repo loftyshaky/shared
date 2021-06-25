@@ -22,9 +22,11 @@ export class Main {
         val: string;
     }): void =>
         err(() => {
-            roots.forEach((root: HTMLElement): void => {
-                root.style.setProperty(`--${name}`, val);
-            });
+            roots.forEach((root: HTMLElement): void =>
+                err(() => {
+                    root.style.setProperty(`--${name}`, val);
+                }, 'shr_1133'),
+            );
         }, 'shr_1062');
 
     public set_transition_vars = ({

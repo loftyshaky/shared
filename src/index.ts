@@ -1,4 +1,5 @@
 import 'error_modules/error/scripts';
+import { init } from 'shared/internal';
 
 export { c_crash_handler, c_error } from 'error_modules/internal';
 export {
@@ -18,3 +19,5 @@ export {
     s_utils,
     s_viewport,
 } from 'shared/internal';
+
+init();

@@ -9,14 +9,18 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
     const { input } = props;
     const palette_ref = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        runInAction(() => {
-            if (input.palette_is_visible && n(palette_ref.current)) {
-                input.palette_width = palette_ref.current.offsetWidth;
-                input.palette_height = palette_ref.current.offsetHeight;
-            }
-        });
-    });
+    useEffect(() =>
+        err(() => {
+            runInAction(() =>
+                err(() => {
+                    if (input.palette_is_visible && n(palette_ref.current)) {
+                        input.palette_width = palette_ref.current.offsetWidth;
+                        input.palette_height = palette_ref.current.offsetHeight;
+                    }
+                }, 'shr_1160'),
+            );
+        }, 'shr_1161'),
+    );
 
     // eslint-disable-next-line no-unused-expressions
     input.palette_is_visible;

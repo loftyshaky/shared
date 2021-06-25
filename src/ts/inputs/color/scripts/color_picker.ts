@@ -55,26 +55,30 @@ export class ColorPicker {
                 },
             });
 
-            pickr.on('save', () => {
-                if (!this.setting_color) {
-                    d_color.Color.i().save({
-                        i,
-                        input,
-                    });
-                }
-            });
+            pickr.on('save', () =>
+                err(() => {
+                    if (!this.setting_color) {
+                        d_color.Color.i().save({
+                            i,
+                            input,
+                        });
+                    }
+                }, 'shr_1143'),
+            );
 
-            pickr.on('change', (color: any) => {
-                if (input.state[i].is_visible) {
-                    d_color.Color.i().set({
-                        input,
-                        i,
-                        color: d_color.Color.i().convert_pickr_color_to_rgb_string({
-                            pickr_color: color,
-                        }),
-                    });
-                }
-            });
+            pickr.on('change', (color: any) =>
+                err(() => {
+                    if (input.state[i].is_visible) {
+                        d_color.Color.i().set({
+                            input,
+                            i,
+                            color: d_color.Color.i().convert_pickr_color_to_rgb_string({
+                                pickr_color: color,
+                            }),
+                        });
+                    }
+                }, 'shr_1144'),
+            );
 
             return pickr;
         }, 'shr_1002');
@@ -107,10 +111,12 @@ export class ColorPicker {
 
                 pickr.setColorRepresentation('HSVA');
 
-                runInAction((): void => {
-                    input.color_picker_width = color_picker.offsetWidth;
-                    input.color_picker_height = color_picker.offsetHeight;
-                });
+                runInAction((): void =>
+                    err(() => {
+                        input.color_picker_width = color_picker.offsetWidth;
+                        input.color_picker_height = color_picker.offsetHeight;
+                    }, 'shr_1153'),
+                );
             }
         }, 'shr_1003');
 }

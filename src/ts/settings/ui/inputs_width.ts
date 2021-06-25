@@ -34,9 +34,11 @@ export class InputsWidth {
                         `.section.${section_name} .input_item .input_w.calculate_width`,
                     );
 
-                    runInAction(() => {
-                        this.width[section_name] = undefined;
-                    });
+                    runInAction(() =>
+                        err(() => {
+                            this.width[section_name] = undefined;
+                        }, 'shr_1154'),
+                    );
 
                     const get_input_w_with_max_width = (): HTMLSpanElement | undefined =>
                         err(() => {
@@ -63,9 +65,11 @@ export class InputsWidth {
                                             : input_w_with_max_width.offsetWidth;
 
                                     if (input_w_max_width === this.old_max_width[section_name]) {
-                                        runInAction(() => {
-                                            this.width[section_name] = input_w_max_width;
-                                        });
+                                        runInAction(() =>
+                                            err(() => {
+                                                this.width[section_name] = input_w_max_width;
+                                            }, 'shr_1155'),
+                                        );
                                     } else {
                                         this.old_max_width[section_name] = input_w_max_width;
 
@@ -84,9 +88,11 @@ export class InputsWidth {
         sections: { [index: string]: o_inputs.Section };
     }): void =>
         err(() => {
-            Object.values(sections).forEach((section: o_inputs.Section): void => {
-                this.calculate_for_section({ section_name: section.name });
-            });
+            Object.values(sections).forEach((section: o_inputs.Section): void =>
+                err(() => {
+                    this.calculate_for_section({ section_name: section.name });
+                }, 'shr_1134'),
+            );
         }, 'shr_1058');
 
     public set_max_width = (): void =>

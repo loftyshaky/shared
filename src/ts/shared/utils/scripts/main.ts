@@ -21,17 +21,19 @@ export class Main {
         err(() => {
             const obj_final: { [index: string]: any } = {};
 
-            arr.forEach((item: any): void => {
-                obj_final[item.name] = item;
+            arr.forEach((item: any): void =>
+                err(() => {
+                    obj_final[item.name] = item;
 
-                if (section) {
-                    obj_final[item.name].section = section;
-                }
+                    if (section) {
+                        obj_final[item.name].section = section;
+                    }
 
-                if (subsection) {
-                    obj_final[item.name].subsection = subsection;
-                }
-            });
+                    if (subsection) {
+                        obj_final[item.name].subsection = subsection;
+                    }
+                }, 'shr_1129'),
+            );
 
             return obj_final;
         }, 'shr_1076');

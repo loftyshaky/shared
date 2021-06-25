@@ -53,17 +53,20 @@ export class Color extends o_inputs.InputBase {
         this.hide_color_help_callback = obj.hide_color_help_callback;
     }
 
-    is_palette_color? = ({ i }: { i: i_color.I }): boolean => typeof i === 'number';
+    is_palette_color? = ({ i }: { i: i_color.I }): boolean =>
+        err(() => typeof i === 'number', 'shr_1145');
 
-    visualization_cls? = ({ i }: { i: i_color.I }): string => (i === 'main' ? 'visualization' : '');
+    visualization_cls? = ({ i }: { i: i_color.I }): string =>
+        err(() => (i === 'main' ? 'visualization' : ''), 'shr_1146');
 
     palette_visualization_cls? = ({ i }: { i: i_color.I }): string =>
-        i === 'main' ? '' : 'palette_visualization';
+        err(() => (i === 'main' ? '' : 'palette_visualization'), 'shr_1147');
 
-    inset_border_cls? = ({ i }: { i: i_color.I }): string => (i === 'main' ? '' : 'inset_border');
+    inset_border_cls? = ({ i }: { i: i_color.I }): string =>
+        err(() => (i === 'main' ? '' : 'inset_border'), 'shr_1148');
 
     el_to_show_type? = ({ i }: { i: i_color.I }): string =>
-        i === 'main' ? 'color_picker_or_palette' : 'color_picker';
+        err(() => (i === 'main' ? 'color_picker_or_palette' : 'color_picker'), 'shr_1149');
 
     palette_w_is_visible? = computedFn(function (this: Color): boolean {
         return this.include_visualization ? (this.palette_is_visible as boolean) : true;

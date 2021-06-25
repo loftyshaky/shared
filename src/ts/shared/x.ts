@@ -28,52 +28,57 @@ declare global {
 global.l = console.log.bind(console);
 
 // > undefined/null check
-global.n = <T1>(val: T1 | undefined | null): val is T1 => val != null; // not nil (nil is undefined or null)
+global.n = <T1>(val: T1 | undefined | null): val is T1 => err(() => val != null, 'shr_1078'); // not nil (nil is undefined or null)
 
-global.nn = <T1>(val: T1 | null): val is T1 => val !== null; // not null
+global.nn = <T1>(val: T1 | null): val is T1 => err(() => val !== null, 'shr_1079'); // not null
 
-global.ru = (f: t.CallbackVariadicAny | undefined): any => (n(f) ? f() : undefined); // resolve undefined
+global.ru = (f: t.CallbackVariadicAny | undefined): any =>
+    err(() => (n(f) ? f() : undefined), 'shr_1080'); // resolve undefined
 
-global.rb = (f: t.CallbackVariadicAny | undefined): any => (n(f) ? f() : false); // resolve boolean
+global.rb = (f: t.CallbackVariadicAny | undefined): any =>
+    err(() => (n(f) ? f() : false), 'shr_1081'); // resolve boolean
 
-global.rs = (f: t.CallbackVariadicAny | undefined): any => (n(f) ? f() : ''); // resolve string
+global.rs = (f: t.CallbackVariadicAny | undefined): any => err(() => (n(f) ? f() : ''), 'shr_1082'); // resolve string
 // < undefined/null check
 
 const shared: any = {
-    ensure_els: <T1 extends HTMLElement>(els: T1 | undefined): T1 | NodeListOf<T1> | undefined => {
-        if (n(els)) {
-            return els;
-        }
+    ensure_els: <T1 extends HTMLElement>(els: T1 | undefined): T1 | NodeListOf<T1> | undefined =>
+        err(() => {
+            if (n(els)) {
+                return els;
+            }
 
-        return undefined;
-    },
+            return undefined;
+        }, 'shr_1083'),
 };
 
 // > selecting elements
 global.s = <T1>(selector: string): T1 | undefined =>
-    shared.ensure_els(document.querySelector(selector));
+    err(() => shared.ensure_els(document.querySelector(selector)), 'shr_1084');
 
 global.sa = <T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined =>
-    shared.ensure_els(document.querySelectorAll(selector));
+    err(() => shared.ensure_els(document.querySelectorAll(selector)), 'shr_1085');
 
-global.sb = <T1>(base_el: t.BaseEl, selector: string): T1 | undefined => {
-    if (n(base_el)) {
-        return shared.ensure_els(base_el.querySelector(selector));
-    }
+global.sb = <T1>(base_el: t.BaseEl, selector: string): T1 | undefined =>
+    err(() => {
+        if (n(base_el)) {
+            return shared.ensure_els(base_el.querySelector(selector));
+        }
 
-    return undefined;
-};
+        return undefined;
+    }, 'shr_1086');
 
 global.sab = <T1 extends HTMLElement>(
     base_el: t.BaseEl,
     selector: string,
-): NodeListOf<T1> | undefined => {
-    const els: NodeListOf<T1> | undefined = n(base_el)
-        ? base_el.querySelectorAll(selector)
-        : undefined;
+): NodeListOf<T1> | undefined =>
+    err(() => {
+        const els: NodeListOf<T1> | undefined = n(base_el)
+            ? base_el.querySelectorAll(selector)
+            : undefined;
 
-    return shared.ensure_els(els);
-};
+        return shared.ensure_els(els);
+    }, 'shr_1087');
 // > selecting elements
 
 export class X {
@@ -92,133 +97,151 @@ export class X {
     private all = (
         els: Window | Document | HTMLElement[] | NodeList | HTMLElement | undefined,
         callback: t.CallbackVariadicVoid,
-    ): void => {
-        if (n(els)) {
-            if (els instanceof NodeList || (els as any).length > 1) {
-                Array.from(els as any).forEach((el): void => {
-                    callback(el);
-                });
-            } else if (
-                els instanceof Window ||
-                els instanceof Document ||
-                els instanceof HTMLElement
-            ) {
-                callback(els);
+    ): void =>
+        err(() => {
+            if (n(els)) {
+                if (els instanceof NodeList || (els as any).length > 1) {
+                    Array.from(els as any).forEach((el): void => {
+                        callback(el);
+                    });
+                } else if (
+                    els instanceof Window ||
+                    els instanceof Document ||
+                    els instanceof HTMLElement
+                ) {
+                    callback(els);
+                }
             }
-        }
-    };
+        }, 'shr_1088');
 
     // > dom manipulation
     public create = <T1 extends keyof HTMLElementTagNameMap>(
         el_type: T1,
         cls: string,
-    ): HTMLElementTagNameMap[T1] => {
-        const el: HTMLElementTagNameMap[T1] = document.createElement(el_type);
-        el.className = cls;
+    ): HTMLElementTagNameMap[T1] =>
+        err(() => {
+            const el: HTMLElementTagNameMap[T1] = document.createElement(el_type);
+            el.className = cls;
 
-        return el;
-    };
+            return el;
+        }, 'shr_1089');
 
-    public append = (el: HTMLElement | ShadowRoot | undefined | null, child: HTMLElement): void => {
-        if (n(el) && [1, 11].includes(el.nodeType)) {
-            el.appendChild(child);
-        }
-    };
-
-    public remove = (els: HTMLElement[] | NodeList | HTMLElement | undefined): void => {
-        const remove_one_el = (el: HTMLElement): void => {
-            if (n(el) && n(el.parentNode) && el.nodeType === 1) {
-                el.parentNode.removeChild(el);
+    public append = (el: HTMLElement | ShadowRoot | undefined | null, child: HTMLElement): void =>
+        err(() => {
+            if (n(el) && [1, 11].includes(el.nodeType)) {
+                el.appendChild(child);
             }
-        };
+        }, 'shr_1090');
 
-        this.all(els, remove_one_el);
-    };
+    public remove = (els: HTMLElement[] | NodeList | HTMLElement | undefined): void =>
+        err(() => {
+            const remove_one_el = (el: HTMLElement): void => {
+                if (n(el) && n(el.parentNode) && el.nodeType === 1) {
+                    el.parentNode.removeChild(el);
+                }
+            };
+
+            this.all(els, remove_one_el);
+        }, 'shr_1091');
 
     public before = (
         el_to_insert_before: HTMLElement | undefined,
         el_to_insert: HTMLElement | ShadowRoot | undefined | null,
-    ): void => {
-        if (
-            n(el_to_insert_before) &&
-            n(el_to_insert) &&
-            n(el_to_insert_before.parentNode) &&
-            [1, 11].includes(el_to_insert.nodeType)
-        ) {
-            el_to_insert_before.parentNode.insertBefore(el_to_insert, el_to_insert_before);
-        }
-    };
+    ): void =>
+        err(() => {
+            if (
+                n(el_to_insert_before) &&
+                n(el_to_insert) &&
+                n(el_to_insert_before.parentNode) &&
+                [1, 11].includes(el_to_insert.nodeType)
+            ) {
+                el_to_insert_before.parentNode.insertBefore(el_to_insert, el_to_insert_before);
+            }
+        }, 'shr_1092');
 
     public after = (
         el_to_insert_after: HTMLElement | undefined,
         el_to_insert: HTMLElement | ShadowRoot | undefined | null,
-    ): void => {
-        if (
-            n(el_to_insert_after) &&
-            n(el_to_insert) &&
-            n(el_to_insert_after.parentNode) &&
-            [1, 11].includes(el_to_insert.nodeType)
-        ) {
-            el_to_insert_after.parentNode.insertBefore(
-                el_to_insert,
-                el_to_insert_after.nextElementSibling,
-            );
-        }
-    };
+    ): void =>
+        err(() => {
+            if (
+                n(el_to_insert_after) &&
+                n(el_to_insert) &&
+                n(el_to_insert_after.parentNode) &&
+                [1, 11].includes(el_to_insert.nodeType)
+            ) {
+                el_to_insert_after.parentNode.insertBefore(
+                    el_to_insert,
+                    el_to_insert_after.nextElementSibling,
+                );
+            }
+        }, 'shr_1093');
 
     public as_first = (
         parent: HTMLElement | ShadowRoot | undefined | null,
         child: HTMLElement | undefined,
-    ): void => {
-        if (n(parent) && n(child) && n(parent.parentNode) && [1, 11].includes(parent.nodeType)) {
-            parent.insertBefore(child, parent.firstElementChild);
-        }
-    };
+    ): void =>
+        err(() => {
+            if (
+                n(parent) &&
+                n(child) &&
+                n(parent.parentNode) &&
+                [1, 11].includes(parent.nodeType)
+            ) {
+                parent.insertBefore(child, parent.firstElementChild);
+            }
+        }, 'shr_1094');
     // < dom manipulation
 
-    public matches = (el: HTMLElement | undefined, selector: string): boolean => {
-        if (n(el) && el.nodeType === 1) {
-            return el.matches(selector);
-        }
+    public matches = (el: HTMLElement | undefined, selector: string): boolean =>
+        err(() => {
+            if (n(el) && el.nodeType === 1) {
+                return el.matches(selector);
+            }
 
-        return false;
-    };
+            return false;
+        }, 'shr_1095');
 
-    public closest = <T1>(el: HTMLElement | undefined, selector: string): T1 | undefined => {
-        if (n(el) && el.nodeType === 1) {
-            return shared.ensure_els(el.closest(selector));
-        }
+    public closest = <T1>(el: HTMLElement | undefined, selector: string): T1 | undefined =>
+        err(() => {
+            if (n(el) && el.nodeType === 1) {
+                return shared.ensure_els(el.closest(selector));
+            }
 
-        return undefined;
-    };
+            return undefined;
+        }, 'shr_1096');
 
-    public add_cls = (el: HTMLElement | undefined, cls: string): void => {
-        if (n(el) && el.nodeType === 1) {
-            el.classList.add(cls);
-        }
-    };
+    public add_cls = (el: HTMLElement | undefined, cls: string): void =>
+        err(() => {
+            if (n(el) && el.nodeType === 1) {
+                el.classList.add(cls);
+            }
+        }, 'shr_1097');
 
     public remove_cls = (
         els: HTMLElement[] | NodeList | HTMLElement | undefined,
         cls: string,
-    ): void => {
-        const remove_cls_one = (el: HTMLElement): void => {
-            if (n(el) && el.nodeType === 1) {
-                el.classList.remove(cls);
-            }
-        };
+    ): void =>
+        err(() => {
+            const remove_cls_one = (el: HTMLElement): void => {
+                if (n(el) && el.nodeType === 1) {
+                    el.classList.remove(cls);
+                }
+            };
 
-        this.all(els, remove_cls_one);
-    };
+            this.all(els, remove_cls_one);
+        }, 'shr_1098');
 
     // > array
-    public move_item = (from: number, to: number, arr: any[]): void => {
-        arr.splice(to, 0, arr.splice(from, 1)[0]);
-    };
+    public move_item = (from: number, to: number, arr: any[]): void =>
+        err(() => {
+            arr.splice(to, 0, arr.splice(from, 1)[0]);
+        }, 'shr_1099');
 
-    public remove_item = (i: number, arr: any[]): void => {
-        arr.splice(i, 1);
-    };
+    public remove_item = (i: number, arr: any[]): void =>
+        err(() => {
+            arr.splice(i, 1);
+        }, 'shr_1100');
     // < array
 
     // > add event listener to one or multiple elements t
@@ -226,162 +249,188 @@ export class X {
         els: Window | Document | HTMLElement[] | NodeList | HTMLElement | undefined,
         event: string,
         f: t.CallbackVariadicVoid,
-    ): void => {
-        this.all(els, (el: Window | Document | HTMLElement) => {
-            el.addEventListener(event, f);
-        });
-    };
+    ): void =>
+        err(() => {
+            this.all(els, (el: Window | Document | HTMLElement) => {
+                el.addEventListener(event, f);
+            });
+        }, 'shr_1101');
     // < add event listener to one or multiple elements t
 
     public css = (
         filename: string,
         parent: HTMLHeadElement | ShadowRoot | undefined,
         cls?: string,
-    ): HTMLLinkElement | undefined => {
-        if (n(parent)) {
-            const cls_final: string = cls || `${filename}_link`;
+    ): HTMLLinkElement | undefined =>
+        err(() => {
+            if (n(parent)) {
+                const cls_final: string = cls || `${filename}_link`;
 
-            const new_link = this.create('link', cls_final);
+                const new_link = this.create('link', cls_final);
 
-            this.bind(new_link, 'load', (): void => {
-                const old_links = sab<HTMLLinkElement>(parent, `.${cls_final}`);
-                if (n(old_links)) {
-                    const old_links_arr = [...old_links];
+                this.bind(new_link, 'load', (): void => {
+                    const old_links = sab<HTMLLinkElement>(parent, `.${cls_final}`);
+                    if (n(old_links)) {
+                        const old_links_arr = [...old_links];
 
-                    if (old_links_arr.length > 1) {
-                        old_links_arr.pop();
+                        if (old_links_arr.length > 1) {
+                            old_links_arr.pop();
 
-                        old_links_arr.forEach((old_link): void => {
-                            this.remove(old_link);
-                        });
+                            old_links_arr.forEach((old_link): void => {
+                                this.remove(old_link);
+                            });
+                        }
                     }
-                }
-            });
+                });
 
-            new_link.href = browser.runtime.getURL(`${filename}.css`);
-            new_link.setAttribute('rel', 'stylesheet');
-            new_link.setAttribute('type', 'text/css');
-            parent.appendChild(new_link);
+                new_link.href = browser.runtime.getURL(`${filename}.css`);
+                new_link.setAttribute('rel', 'stylesheet');
+                new_link.setAttribute('type', 'text/css');
+                parent.appendChild(new_link);
 
-            return new_link;
-        }
+                return new_link;
+            }
 
-        return undefined;
-    };
+            return undefined;
+        }, 'shr_1102');
 
     public dynamic_css = (
         parent: HTMLHeadElement | ShadowRoot,
         cls: string,
         css: string,
-    ): HTMLStyleElement => {
-        const cls_final = `${cls}_style`;
-        const old_style = sb<HTMLStyleElement>(parent, `.${cls_final}`);
+    ): HTMLStyleElement =>
+        err(() => {
+            const cls_final = `${cls}_style`;
+            const old_style = sb<HTMLStyleElement>(parent, `.${cls_final}`);
 
-        if (n(old_style)) {
-            this.remove(old_style);
-        }
+            if (n(old_style)) {
+                this.remove(old_style);
+            }
 
-        const new_style = this.create('style', cls_final);
-        new_style.innerHTML = css;
-        parent.appendChild(new_style);
+            const new_style = this.create('style', cls_final);
+            new_style.innerHTML = css;
+            parent.appendChild(new_style);
 
-        return new_style;
-    };
+            return new_style;
+        }, 'shr_1103');
 
     public get_css_val = (el: HTMLElement, key: string): string =>
-        window.getComputedStyle(el).getPropertyValue(key);
+        err(() => window.getComputedStyle(el).getPropertyValue(key), 'shr_1088');
 
     public get_numeric_css_val = (el: HTMLElement, key: string): number =>
-        parseInt(window.getComputedStyle(el).getPropertyValue(key), 10);
+        err(() => parseInt(window.getComputedStyle(el).getPropertyValue(key), 10), 'shr_1088');
 
     public get_float_css_val = (el: HTMLElement, key: string): number =>
-        parseFloat(window.getComputedStyle(el).getPropertyValue(key));
+        err(() => parseFloat(window.getComputedStyle(el).getPropertyValue(key)), 'shr_1088');
 
-    public str_is_number = (val: string): boolean => /^\d+$|^\d+\.\d+$/.test(val);
+    public str_is_number = (val: string): boolean =>
+        err(() => /^\d+$|^\d+\.\d+$/.test(val), 'shr_1088');
 
     public delay = (delay: number): Promise<void> =>
-        new Promise((resolve): number => window.setTimeout((): void => resolve(), delay));
+        new Promise((resolve): number =>
+            err(
+                () =>
+                    window.setTimeout((): void => {
+                        resolve();
+                    }, delay),
+                'shr_1104',
+            ),
+        );
 
-    public id = (): string => {
-        const uint32 = global.crypto.getRandomValues(new Uint32Array(1))[0];
+    public id = (): string =>
+        err(() => {
+            const uint32 = global.crypto.getRandomValues(new Uint32Array(1))[0];
 
-        return Array.from(uint32.toString(16))
-            .map((char: string): string => (this.rand_bool() ? char.toUpperCase() : char))
-            .join('');
-    };
+            return Array.from(uint32.toString(16))
+                .map((char: string): string => (this.rand_bool() ? char.toUpperCase() : char))
+                .join('');
+        }, 'shr_1105');
 
     public range = (min: number, max: number): number =>
-        Math.floor(Math.random() * (max - min + 1)) + min;
+        err(() => Math.floor(Math.random() * (max - min + 1)) + min, 'shr_1088');
 
-    public rand_bool = (): boolean => !Math.round(Math.random());
+    public rand_bool = (): boolean => err(() => !Math.round(Math.random()), 'shr_1088');
 
     public cls = (classes: (string | undefined)[]): string =>
-        _.reject(classes, (item: string | undefined): boolean => !n(item) || item === '').join(' ');
+        err(
+            () =>
+                _.reject(
+                    classes,
+                    (item: string | undefined): boolean => !n(item) || item === '',
+                ).join(' '),
+            'shr_1106',
+        );
 
-    public get_prop = <T1, T2 extends keyof T1>(obj: T1, key: T2): T1[T2] => obj[key];
+    public get_prop = <T1, T2 extends keyof T1>(obj: T1, key: T2): T1[T2] =>
+        err(() => obj[key], 'shr_1088');
 
-    public set_prop = <T1, T2 extends keyof T1>(obj: T1, key: T2, val: T1[T2]): T1 => {
-        const updated_obj: T1 = obj;
+    public set_prop = <T1, T2 extends keyof T1>(obj: T1, key: T2, val: T1[T2]): T1 =>
+        err(() => {
+            const updated_obj: T1 = obj;
 
-        updated_obj[key] = val;
+            updated_obj[key] = val;
 
-        return updated_obj;
-    };
+            return updated_obj;
+        }, 'shr_1107');
 
     public sanitize_filename = (filename: string, new_character: string = '_'): string =>
-        filename.replace(/[<>:"/\\|?]/g, new_character);
+        err(() => filename.replace(/[<>:"/\\|?]/g, new_character), 'shr_1088');
 
     public convert_blob_to_base64 = (blob: Blob): Promise<string> =>
         new Promise((resolve, reject) => {
-            const reader: any = new FileReader();
-            reader.onerror = reject;
-            reader.onload = () => {
-                resolve(reader.result);
-            };
-            reader.readAsDataURL(blob);
+            err(() => {
+                const reader: any = new FileReader();
+                reader.onerror = reject;
+                reader.onload = () => {
+                    resolve(reader.result);
+                };
+                reader.readAsDataURL(blob);
+            }, 'shr_1108');
         });
 
-    public copy_text = (text: string): void => {
-        const input = this.create('input', '');
+    public copy_text = (text: string): void =>
+        err(() => {
+            const input = this.create('input', '');
 
-        input.style.position = 'fixed';
-        input.style.opacity = '0';
+            input.style.position = 'fixed';
+            input.style.opacity = '0';
 
-        this.append(document.body, input);
+            this.append(document.body, input);
 
-        input.value = text;
+            input.value = text;
 
-        input.focus();
-        input.select();
+            input.focus();
+            input.select();
 
-        document.execCommand('copy');
+            document.execCommand('copy');
 
-        this.remove(input);
-    };
+            this.remove(input);
+        }, 'shr_1109');
 
-    public copy_img = (img_url: string): void => {
-        const selection: any = window.getSelection();
+    public copy_img = (img_url: string): void =>
+        err(() => {
+            const selection: any = window.getSelection();
 
-        selection.removeAllRanges();
+            selection.removeAllRanges();
 
-        const img = this.create('img', '');
+            const img = this.create('img', '');
 
-        img.style.position = 'fixed';
-        img.style.opacity = '0';
-        img.src = img_url;
+            img.style.position = 'fixed';
+            img.style.opacity = '0';
+            img.src = img_url;
 
-        this.append(document.body, img);
+            this.append(document.body, img);
 
-        const range: any = document.createRange();
+            const range: any = document.createRange();
 
-        range.setStartBefore(img);
-        range.setEndAfter(img);
-        range.selectNode(img);
+            range.setStartBefore(img);
+            range.setEndAfter(img);
+            range.selectNode(img);
 
-        selection.addRange(range);
+            selection.addRange(range);
 
-        document.execCommand('Copy');
+            document.execCommand('Copy');
 
-        this.remove(img);
-    };
+            this.remove(img);
+        }, 'shr_1110');
 }

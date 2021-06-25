@@ -33,26 +33,27 @@ export class Transition {
                 called_from_component_did_update: boolean;
             },
             e?: React.TransitionEvent,
-        ): void => {
-            const component_uses_fading_transition = name.includes('fade');
+        ): void =>
+            err(() => {
+                const component_uses_fading_transition = name.includes('fade');
 
-            if (component_uses_fading_transition) {
-                if (n(tr_el_ref.current)) {
-                    if (!called_from_component_did_update && !state) {
-                        x.add_cls(tr_el_ref.current, 'hidden');
-                    } else if (state) {
-                        x.remove_cls(tr_el_ref.current, 'hidden');
+                if (component_uses_fading_transition) {
+                    if (n(tr_el_ref.current)) {
+                        if (!called_from_component_did_update && !state) {
+                            x.add_cls(tr_el_ref.current, 'hidden');
+                        } else if (state) {
+                            x.remove_cls(tr_el_ref.current, 'hidden');
+                        }
                     }
                 }
-            }
-            if (n(e)) {
-                if (n(tr_end_active) && state) {
-                    this.run_tr_end_callbacks({ tr_end_callbacks: tr_end_active }, e);
-                } else if (n(tr_end_unactive) && !state) {
-                    this.run_tr_end_callbacks({ tr_end_callbacks: tr_end_unactive }, e);
+                if (n(e)) {
+                    if (n(tr_end_active) && state) {
+                        this.run_tr_end_callbacks({ tr_end_callbacks: tr_end_active }, e);
+                    } else if (n(tr_end_unactive) && !state) {
+                        this.run_tr_end_callbacks({ tr_end_callbacks: tr_end_unactive }, e);
+                    }
                 }
-            }
-        },
+            }, 'shr_1126'),
     );
     //< hide component when it faded out or show component when it starting fading in
 
@@ -65,7 +66,11 @@ export class Transition {
         transitions: { [index: string]: o_tr.Transition };
         name: string;
         state: boolean;
-    }): string => (state ? transitions[name].active_cls : transitions[name].unactive_cls);
+    }): string =>
+        err(
+            () => (state ? transitions[name].active_cls : transitions[name].unactive_cls),
+            'shr_1127',
+        );
     //< choose component mode (shown or hidden)
 
     public run_tr_end_callbacks = (
@@ -75,9 +80,10 @@ export class Transition {
             tr_end_callbacks: t.CallbackVariadicVoid[];
         },
         e: React.TransitionEvent,
-    ): void => {
-        tr_end_callbacks.forEach((callback): void => {
-            callback(e);
-        });
-    };
+    ): void =>
+        err(() => {
+            tr_end_callbacks.forEach((callback): void => {
+                callback(e);
+            });
+        }, 'shr_1128');
 }

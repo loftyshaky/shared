@@ -73,16 +73,20 @@ export class BackUp {
         err_async(async () => {
             const reader = new FileReader();
 
-            return new Promise((resolve: any, reject: any): void => {
-                reader.onloadend = (): void => {
-                    resolve(reader.result);
-                };
+            return new Promise((resolve: any, reject: any): void =>
+                err(() => {
+                    reader.onloadend = (): void =>
+                        err(() => {
+                            resolve(reader.result);
+                        }, 'shr_1135');
 
-                reader.onerror = (): void => {
-                    reject();
-                };
+                    reader.onerror = (): void =>
+                        err(() => {
+                            reject();
+                        }, 'shr_1137');
 
-                reader.readAsText(blob);
-            });
+                    reader.readAsText(blob);
+                }, 'shr_1136'),
+            );
         }, 'shr_1051');
 }

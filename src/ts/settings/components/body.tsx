@@ -8,15 +8,23 @@ import { d_settings, u_settings, p_settings } from 'settings/internal';
 export const Body: React.FunctionComponent<p_settings.Body> = observer((props) => {
     const { sections, initial_section, change_section_callback } = props;
 
-    useEffect(() => {
-        d_settings.Sections.i().change({ section_name: initial_section });
+    useEffect(
+        () =>
+            err(() => {
+                d_settings.Sections.i().change({ section_name: initial_section });
 
-        x.bind(window, 'resize', u_settings.InputsWidth.i().set_max_width);
-        x.bind(window, 'mousemove', u_settings.InputsWidth.i().set_max_width);
-        x.bind(document, 'mousedown', d_color.Visibility.i().hide_all);
-        x.bind(window, 'resize', s_color.Position.i().set);
-        x.bind(document, 'keydown', d_color.Visibility.i().hide_color_picker_or_palette_on_esc);
-    }, [props, initial_section]);
+                x.bind(window, 'resize', u_settings.InputsWidth.i().set_max_width);
+                x.bind(window, 'mousemove', u_settings.InputsWidth.i().set_max_width);
+                x.bind(document, 'mousedown', d_color.Visibility.i().hide_all);
+                x.bind(window, 'resize', s_color.Position.i().set);
+                x.bind(
+                    document,
+                    'keydown',
+                    d_color.Visibility.i().hide_color_picker_or_palette_on_esc,
+                );
+            }, 'shr_1139'),
+        [props, initial_section],
+    );
 
     return (
         <div className='main'>

@@ -9,24 +9,26 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
     const color_picker_ref = useRef<HTMLSpanElement>(null);
     const color_picker_is_initialized_ref = useRef<boolean>(false);
 
-    useEffect(() => {
-        const { input, i } = props;
+    useEffect(() =>
+        err(() => {
+            const { input, i } = props;
 
-        if (!color_picker_is_initialized_ref.current && input.state[i].is_initialized) {
-            color_picker_is_initialized_ref.current = true;
+            if (!color_picker_is_initialized_ref.current && input.state[i].is_initialized) {
+                color_picker_is_initialized_ref.current = true;
 
-            init();
-        }
+                init();
+            }
 
-        if (n(color_picker_ref.current)) {
-            s_color.ColorPicker.i().update({
-                pickr: pickr_ref.current,
-                color_picker: color_picker_ref.current,
-                input,
-                i,
-            });
-        }
-    });
+            if (n(color_picker_ref.current)) {
+                s_color.ColorPicker.i().update({
+                    pickr: pickr_ref.current,
+                    color_picker: color_picker_ref.current,
+                    input,
+                    i,
+                });
+            }
+        }, 'shr_1159'),
+    );
 
     const init = (): Promise<void> =>
         err_async(async () => {
