@@ -34,7 +34,6 @@ export class Transition {
             },
             e?: React.TransitionEvent,
         ): void => {
-            l(676666);
             const component_uses_fading_transition = name.includes('fade');
 
             if (component_uses_fading_transition) {
