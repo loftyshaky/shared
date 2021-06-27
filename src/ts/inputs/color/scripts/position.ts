@@ -23,11 +23,11 @@ export class Position {
             );
 
             if (ws.length !== 0) {
-                const fill_shadows_w = ws.map(
+                const fill_shadow_w = ws.map(
                     (item): HTMLSpanElement =>
                         err(() => item.previousElementSibling as HTMLSpanElement, 'shr_1140'),
                 );
-                const fill_shadows = fill_shadows_w.map((item) =>
+                const fill_shadows = fill_shadow_w.map((item) =>
                     err(
                         () => sb<HTMLSpanElement>(item, '.fill_shadow') as HTMLSpanElement,
                         'shr_1141',
@@ -66,8 +66,8 @@ export class Position {
                         }
 
                         if (n(visualization)) {
-                            fill_shadows_w[i].style.top = '';
-                            fill_shadows_w[i].style.left = '';
+                            fill_shadow_w[i].style.top = '';
+                            fill_shadow_w[i].style.left = '';
 
                             const get_scroll_offset = ({ scroll }: { scroll: number }): number =>
                                 color_picker_from_palette ? 0 : scroll;
@@ -78,8 +78,7 @@ export class Position {
                             const scroll_container = s<HTMLDivElement>('.sections');
 
                             if (n(scroll_container)) {
-                                const fill_shadow_w_rect =
-                                    fill_shadows_w[i].getBoundingClientRect();
+                                const fill_shadow_w_rect = fill_shadow_w[i].getBoundingClientRect();
                                 const fill_shadow_rect = fill_shadows[i].getBoundingClientRect();
                                 const visualization_height: number = visualization.offsetHeight;
                                 const visualization_width: number = visualization.offsetWidth;
@@ -128,7 +127,7 @@ export class Position {
                                         this.gap_between_visualization_and_color_picker +
                                         fill_shadow_rect.height
                                     }px`;
-                                    fill_shadows_w[i].style.top = ws[i].style.top;
+                                    fill_shadow_w[i].style.top = ws[i].style.top;
                                 } else {
                                     ws[i].style.top = remove_double_minus({
                                         val: `-${
@@ -137,7 +136,7 @@ export class Position {
                                                 visualization_height)
                                         }px`,
                                     });
-                                    fill_shadows_w[i].style.top = ws[i].style.top;
+                                    fill_shadow_w[i].style.top = ws[i].style.top;
                                 }
 
                                 if (
@@ -150,12 +149,12 @@ export class Position {
                                             (visualization_width - fill_shadow_rect.width)
                                         }px`,
                                     });
-                                    fill_shadows_w[i].style.left = ws[i].style.left;
+                                    fill_shadow_w[i].style.left = ws[i].style.left;
                                 } else {
                                     ws[i].style.left = `-${get_scroll_offset({
                                         scroll: scroll_left,
                                     })}px`;
-                                    fill_shadows_w[i].style.left = ws[i].style.left;
+                                    fill_shadow_w[i].style.left = ws[i].style.left;
                                 }
                             }
                         }

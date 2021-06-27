@@ -18,8 +18,8 @@ export const resolve = ({ input }: { input: i_inputs.Input | o_inputs.Link }): J
             input_el = <c_inputs.Checkbox input={input as o_inputs.Checkbox} />;
         } else if (input.type === 'link') {
             input_el = <c_inputs.Link link={input as o_inputs.Link} />;
-        } else if (input.type === 'btns_group') {
-            // input_el = <c_inputs.BtnsGroup btns_group={input} />;
+        } else if (input.type === 'btn_group') {
+            // input_el = <c_inputs.BtnsGroup btn_group={input} />;
         } else if (input.type === 'btn') {
             input_el = <c_inputs.Btn input={input as o_inputs.Btn} />;
         } else if (input.type === 'file') {
