@@ -11,7 +11,7 @@ export {
     c_loading_screen,
     c_tr,
     o_tr,
-    u_loading_screen,
+    d_loading_screen,
     s_css_vars,
     s_no_tr,
     s_tab_index,

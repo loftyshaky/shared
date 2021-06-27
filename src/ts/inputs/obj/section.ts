@@ -1,6 +1,8 @@
 import { makeObservable, observable } from 'mobx';
+import { computedFn } from 'mobx-utils';
 
 import { i_inputs } from 'inputs/internal';
+import { d_settings } from 'settings/internal';
 
 export class Section {
     public name: string;
@@ -26,4 +28,8 @@ export class Section {
             obj_2.section = this.name;
         });
     }
+
+    visibility_cls? = computedFn(function ({ section }: { section: Section }): string {
+        return section.name === d_settings.Sections.i().current_section ? '' : 'hidden';
+    });
 }

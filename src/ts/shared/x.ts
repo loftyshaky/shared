@@ -429,4 +429,6 @@ export class X {
 
             this.remove(img);
         }, 'shr_1110');
+
+    public px = (val: string | number | undefined): string => err(() => `${val}px`, 'shr_1169');
 }

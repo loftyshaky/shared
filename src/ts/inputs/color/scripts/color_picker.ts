@@ -113,8 +113,8 @@ export class ColorPicker {
 
                 runInAction((): void =>
                     err(() => {
-                        input.color_picker_width = color_picker.offsetWidth;
-                        input.color_picker_height = color_picker.offsetHeight;
+                        input.color_picker_width = color_picker.offsetWidth.toString();
+                        input.color_picker_height = color_picker.offsetHeight.toString();
                     }, 'shr_1153'),
                 );
             }

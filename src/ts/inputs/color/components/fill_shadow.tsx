@@ -24,8 +24,8 @@ export const FillShadow: React.FunctionComponent<p_color.FillShadow> = observer(
             <span
                 className='fill_shadow'
                 style={{
-                    width: `${width}px`,
-                    height: `${height}px`,
+                    width,
+                    height,
                 }}
             />
         </span>

@@ -1,4 +1,4 @@
-import { u_error } from 'error_modules/internal';
+import { d_error } from 'error_modules/internal';
 
 export class Main {
     private static i0: Main;
@@ -28,7 +28,7 @@ export class Main {
 
                 if (n(error_css)) {
                     x.bind(error_css, 'load', (): void => {
-                        u_error.State.i().change_state({
+                        d_error.State.i().change_state({
                             observable_key: 'is_loaded',
                             state: true,
                         });

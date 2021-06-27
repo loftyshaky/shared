@@ -14,8 +14,8 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
             runInAction(() =>
                 err(() => {
                     if (input.palette_is_visible && n(palette_ref.current)) {
-                        input.palette_width = palette_ref.current.offsetWidth;
-                        input.palette_height = palette_ref.current.offsetHeight;
+                        input.palette_width = palette_ref.current.offsetWidth.toString();
+                        input.palette_height = palette_ref.current.offsetHeight.toString();
                     }
                 }, 'shr_1160'),
             );
@@ -33,8 +33,8 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                 <div className={x.cls(['input_w', 'color', input.name])}>
                     <c_color.FillShadow
                         is_visible={input.palette_is_visible || false}
-                        width={input.palette_width!}
-                        height={input.palette_height!}
+                        width={x.px(input.palette_width)}
+                        height={x.px(input.palette_height)}
                     />
                     <c_tr.BaseTr
                         tag='div'
@@ -51,7 +51,10 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                         ]}
                     >
                         <div
-                            className={x.cls(['palette', input.palette_is_closed_none_cls!()])}
+                            className={x.cls([
+                                'palette',
+                                input.palette_is_closed_visibility_cls!(),
+                            ])}
                             ref={palette_ref}
                         >
                             <c_tr.BaseTr

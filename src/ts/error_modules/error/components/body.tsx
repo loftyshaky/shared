@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
-import { c_error, u_error, s_css, p_error } from 'error_modules/internal';
+import { c_error, d_error, s_css, p_error } from 'error_modules/internal';
 
 export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
     useEffect(() => {
@@ -12,17 +12,12 @@ export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
 
     return (
         <div
-            className={x.cls([
-                'main',
-                'error',
-                u_error.State.i().is_visible_cls,
-                u_error.State.i().is_highlighted_cls,
-            ])}
+            className={x.cls(['main', 'error', d_error.State.i().is_highlighted_cls])}
             role='none'
             style={{
-                display: u_error.State.i().is_loaded ? '' : 'none',
+                display: d_error.State.i().is_visible_style,
             }}
-            onMouseDown={u_error.State.i().clear_all_reset_state_timeouts}
+            onMouseDown={d_error.State.i().clear_all_reset_state_timeouts}
         >
             <c_error.ExtName />
             <c_error.Msg />

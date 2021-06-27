@@ -13,7 +13,7 @@ export class State {
             is_loaded: observable,
             is_visible: observable,
             is_highlighted: observable,
-            is_visible_cls: computed,
+            is_visible_style: computed,
             is_highlighted_cls: computed,
             change_state: action,
         });
@@ -25,8 +25,8 @@ export class State {
     private is_visible: boolean = false;
     private is_highlighted: boolean = false; // true = error ribbon is yellow / false = error ribbon is red
 
-    public get is_visible_cls(): string {
-        return this.is_visible ? '' : 'none';
+    public get is_visible_style(): string {
+        return this.is_loaded && this.is_visible ? '' : 'none';
     }
 
     public get is_highlighted_cls(): string {

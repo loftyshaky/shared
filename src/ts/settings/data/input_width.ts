@@ -1,14 +1,15 @@
 import _ from 'lodash';
 import { makeObservable, observable, action, runInAction } from 'mobx';
+import { computedFn } from 'mobx-utils';
 
 import { s_css_vars } from 'shared/internal';
-import { o_inputs } from 'inputs/internal';
+import { o_inputs, i_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
-export class InputsWidth {
-    private static i0: InputsWidth;
+export class InputWidth {
+    private static i0: InputWidth;
 
-    public static i(): InputsWidth {
+    public static i(): InputWidth {
         // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
     }
@@ -21,10 +22,25 @@ export class InputsWidth {
         });
     }
 
-    public width: { [index: string]: number | undefined } = {};
-    public max_width: number = 0;
-    private min_width: number = 298;
-    private old_max_width: { [index: string]: number } = {};
+    public width: { [index: string]: string | undefined } = {};
+    public max_width: string = '0';
+    private min_width: string = '298';
+    private old_max_width: { [index: string]: string } = {};
+
+    max_width_style? = computedFn(function (this: InputWidth): number | string | undefined {
+        return x.px(_.isNaN(this.max_width) ? '0' : this.max_width);
+    });
+
+    min_width_style? = computedFn(function (
+        this: InputWidth,
+        {
+            input,
+        }: {
+            input: i_inputs.Input;
+        },
+    ): number | string | undefined {
+        return x.px(this.width[input.section!]);
+    });
 
     public calculate_for_section = ({ section_name }: { section_name: string }): void => {
         window.requestAnimationFrame(
@@ -60,9 +76,9 @@ export class InputsWidth {
 
                                 if (n(input_w_with_max_width)) {
                                     const input_w_max_width =
-                                        input_w_with_max_width.offsetWidth < this.min_width
+                                        input_w_with_max_width.offsetWidth < +this.min_width
                                             ? this.min_width
-                                            : input_w_with_max_width.offsetWidth;
+                                            : input_w_with_max_width.offsetWidth.toString();
 
                                     if (input_w_max_width === this.old_max_width[section_name]) {
                                         runInAction(() =>
@@ -106,8 +122,8 @@ export class InputsWidth {
                     current_section.offsetWidth -
                         parseInt(s_css_vars.Main.i().get({ name: 'help_btn_size' }), 10) -
                         parseInt(s_css_vars.Main.i().get({ name: 'help_btn_margin' }), 10),
-                    this.min_width,
-                );
+                    +this.min_width,
+                ).toString();
             }
         }, 'shr_1059');
 }

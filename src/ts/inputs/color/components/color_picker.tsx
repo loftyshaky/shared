@@ -61,8 +61,8 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
                 <>
                     <c_color.FillShadow
                         is_visible={input.state[i].is_visible}
-                        width={input.color_picker_width!}
-                        height={input.color_picker_height!}
+                        width={x.px(input.color_picker_width)}
+                        height={x.px(input.color_picker_height)}
                     />
                     <c_tr.BaseTr
                         tag='span'
@@ -82,7 +82,7 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
                         <span
                             className={x.cls([
                                 'color_picker',
-                                input.color_picker_is_closed_none_cls!({
+                                input.color_picker_is_closed_visibility_cls!({
                                     i,
                                 }),
                             ])}

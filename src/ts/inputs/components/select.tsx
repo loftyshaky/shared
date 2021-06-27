@@ -1,10 +1,9 @@
-import _ from 'lodash';
 import React from 'react';
 import { observer } from 'mobx-react';
 
 import { o_inputs, d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
-import { u_settings } from 'settings/internal';
+import { d_settings } from 'settings/internal';
 
 export const Select: React.FunctionComponent<p_inputs.Select> = observer((props) => {
     const { input } = props;
@@ -23,10 +22,8 @@ export const Select: React.FunctionComponent<p_inputs.Select> = observer((props)
                         d_inputs.Val.i().focus_state({ input }),
                     ])}
                     style={{
-                        minWidth: u_settings.InputsWidth.i().width[input.section!],
-                        maxWidth: _.isNaN(u_settings.InputsWidth.i().max_width)
-                            ? 0
-                            : u_settings.InputsWidth.i().max_width,
+                        minWidth: d_settings.InputWidth.i().min_width_style!({ input }),
+                        maxWidth: d_settings.InputWidth.i().max_width_style!(),
                     }}
                 >
                     <select

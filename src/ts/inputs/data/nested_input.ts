@@ -31,7 +31,7 @@ export class NestedInput {
                 }
             }
 
-            input.offset = is_child ? parent_offset + 28 : 0;
+            input.offset = (is_child ? parent_offset + 28 : 0).toString();
         }, 'shr_1028');
 
     public set_parent_disbled_vals = ({

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { c_ext_version } from 'shared/internal';
 import { c_inputs, o_inputs, d_color, s_color } from 'inputs/internal';
-import { d_settings, u_settings, p_settings } from 'settings/internal';
+import { d_settings, p_settings } from 'settings/internal';
 
 export const Body: React.FunctionComponent<p_settings.Body> = observer((props) => {
     const { sections, initial_section, change_section_callback } = props;
@@ -13,8 +13,8 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
             err(() => {
                 d_settings.Sections.i().change({ section_name: initial_section });
 
-                x.bind(window, 'resize', u_settings.InputsWidth.i().set_max_width);
-                x.bind(window, 'mousemove', u_settings.InputsWidth.i().set_max_width);
+                x.bind(window, 'resize', d_settings.InputWidth.i().set_max_width);
+                x.bind(window, 'mousemove', d_settings.InputWidth.i().set_max_width);
                 x.bind(document, 'mousedown', d_color.Visibility.i().hide_all);
                 x.bind(window, 'resize', s_color.Position.i().set);
                 x.bind(

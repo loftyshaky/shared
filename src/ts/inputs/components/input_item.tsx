@@ -21,7 +21,7 @@ export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
                     input.name,
                     input.parent_disabled_cls!(),
                 ])}
-                style={{ marginLeft: input.offset }}
+                style={{ marginLeft: x.px(input.offset) }}
             >
                 {include_label ? <c_inputs.Label input={input} /> : undefined}
                 {input_w}

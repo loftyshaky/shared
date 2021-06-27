@@ -13,7 +13,7 @@ export const HelpBtn: React.FunctionComponent<p_inputs.HelpBtn> = observer((prop
             type='button'
             title={ext.msg('help_btn_title')}
             onClick={(): void => {
-                d_inputs.HelpVisibility.i().change({ section_or_input });
+                d_inputs.Help.i().change_visibility({ section_or_input });
             }}
         >
             <svg.Help />

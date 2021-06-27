@@ -16,10 +16,10 @@ export class Color extends o_inputs.InputBase {
     public include_palette_label?: boolean = false;
     public palette_is_visible?: boolean = false;
     public palette_is_closed?: boolean = true;
-    public palette_width?: number = 0;
-    public palette_height?: number = 0;
-    public color_picker_width?: number = 0;
-    public color_picker_height?: number = 0;
+    public palette_width?: string = '0';
+    public palette_height?: string = '0';
+    public color_picker_width?: string = '0';
+    public color_picker_height?: string = '0';
     public show_color_input_help?: boolean = false;
     public state?: any = {
         main: color_picker_state,
@@ -99,14 +99,14 @@ export class Color extends o_inputs.InputBase {
         return i === data.settings.selected_palette_color ? 'selected' : '';
     });
 
-    color_picker_is_closed_none_cls? = computedFn(function (
+    color_picker_is_closed_visibility_cls? = computedFn(function (
         this: Color,
         { i }: { i: i_color.I },
     ): string {
         return this.state[i].is_closed ? 'none' : '';
     });
 
-    palette_is_closed_none_cls? = computedFn(function (this: Color): string {
+    palette_is_closed_visibility_cls? = computedFn(function (this: Color): string {
         return this.palette_is_closed ? 'none' : '';
     });
 }

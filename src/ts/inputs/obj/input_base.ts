@@ -16,7 +16,7 @@ export class InputBase {
     public help_is_visible?: boolean = false;
     public parent?: string;
     public parent_disabled?: boolean = false;
-    public offset?: number = 0;
+    public offset?: string = '0';
     public style?: any;
     public section?: string;
     public subsection?: string;

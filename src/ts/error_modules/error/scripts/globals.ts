@@ -1,4 +1,4 @@
-import { u_error, i_error } from 'error_modules/internal';
+import { d_error, i_error } from 'error_modules/internal';
 
 declare const global: Global;
 
@@ -22,10 +22,10 @@ global.show_err_ribbon = (
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = u_error.Main.i().hide_delay,
+        hide_delay = d_error.Main.i().hide_delay,
     }: i_error.ShowError = {},
 ) =>
-    u_error.Main.i().show_error(error_obj, error_code, {
+    d_error.Main.i().show_error(error_obj, error_code, {
         error_msg_key,
         silent,
         persistent,
@@ -41,13 +41,13 @@ global.err = <T1>(
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = u_error.Main.i().hide_delay,
+        hide_delay = d_error.Main.i().hide_delay,
     }: i_error.ShowError = {},
 ): T1 => {
     try {
         return f();
     } catch (error_obj) {
-        u_error.Main.i().show_error(error_obj, error_code, {
+        d_error.Main.i().show_error(error_obj, error_code, {
             error_msg_key,
             silent,
             persistent,
@@ -67,13 +67,13 @@ global.err_async = async <T1>(
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = u_error.Main.i().hide_delay,
+        hide_delay = d_error.Main.i().hide_delay,
     }: i_error.ShowError = {},
 ): Promise<T1> => {
     try {
         return await f();
     } catch (error_obj) {
-        u_error.Main.i().show_error(error_obj, error_code, {
+        d_error.Main.i().show_error(error_obj, error_code, {
             error_msg_key,
             silent,
             persistent,

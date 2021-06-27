@@ -1,6 +1,6 @@
 import { makeObservable, action } from 'mobx';
 
-import { u_error, i_error } from 'error_modules/internal';
+import { d_error, i_error } from 'error_modules/internal';
 
 export class Main {
     private static i0: Main;
@@ -38,37 +38,37 @@ export class Main {
         const is_browser = global !== undefined;
 
         if (is_browser && !error_obj.silent && !silent) {
-            u_error.Msg.i().change_visibility_of_advanced_msg({ is_visible: false });
+            d_error.Msg.i().change_visibility_of_advanced_msg({ is_visible: false });
 
             const error_msg_pre = ext.msg(`${error_obj.error_msg || error_msg_key}_error`);
             const error_msg_final = error_msg_pre ? ` ${error_msg_pre}` : '';
 
-            u_error.Msg.i().basic_msg = `${ext.msg('an_error_occured_msg') + error_msg_final}`;
-            u_error.Msg.i().advanced_msg = `${
+            d_error.Msg.i().basic_msg = `${ext.msg('an_error_occured_msg') + error_msg_final}`;
+            d_error.Msg.i().advanced_msg = `${
                 ext.msg('error_code_label') + (error_obj.error_code || error_code)
             }\n${ext.msg('error_type_label') + error_obj.name}\n${
                 ext.msg('error_msg_label') + error_obj.message
             }`;
 
-            u_error.State.i().change_state({
+            d_error.State.i().change_state({
                 observable_key: 'is_visible',
                 state: true,
             }); // show error ribbon
-            u_error.State.i().change_state({
+            d_error.State.i().change_state({
                 observable_key: 'is_highlighted',
                 state: true,
             }); // highlight error ribbon
 
-            u_error.State.i().clear_all_reset_state_timeouts();
+            d_error.State.i().clear_all_reset_state_timeouts();
 
             if (!error_obj.persistent && !persistent) {
-                u_error.State.i().run_reset_state_timeout({
+                d_error.State.i().run_reset_state_timeout({
                     observable_key: 'is_visible',
                     delay: hide_delay + this.highlight_time,
                 });
             }
 
-            u_error.State.i().run_reset_state_timeout({
+            d_error.State.i().run_reset_state_timeout({
                 observable_key: 'is_highlighted',
                 delay: this.highlight_time,
             });
