@@ -1,3 +1,5 @@
+import { t } from 'shared/internal';
+
 export class Main {
     private static i0: Main;
 
@@ -14,14 +16,14 @@ export class Main {
         section,
         subsection,
     }: {
-        arr: any;
+        arr: t.AnyRecord[];
         section?: string;
         subsection?: string;
-    }): any =>
+    }): t.AnyRecord =>
         err(() => {
-            const obj_final: { [index: string]: any } = {};
+            const obj_final: t.AnyRecord = {};
 
-            arr.forEach((item: any): void =>
+            arr.forEach((item: t.AnyRecord): void =>
                 err(() => {
                     obj_final[item.name] = item;
 

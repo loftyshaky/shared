@@ -1,3 +1,5 @@
+export * from 'settings/init';
+
 export * as c_settings from 'settings/components';
 
 export * as d_settings from 'settings/data';

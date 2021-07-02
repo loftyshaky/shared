@@ -29,7 +29,7 @@ export const Select: React.FunctionComponent<p_inputs.Select> = observer((props)
                     <select
                         id={input.name}
                         className='input'
-                        value={d_inputs.Val.i().access({ input })}
+                        value={d_inputs.Val.i().access({ input }) as string}
                         onChange={(e): void => {
                             d_inputs.Val.i().change(
                                 {

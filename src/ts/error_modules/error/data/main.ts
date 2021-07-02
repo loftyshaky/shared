@@ -25,7 +25,7 @@ export class Main {
     exit = terminate code execution (true) / show error message; don't terminate code execution (false)
     */
     public show_error = (
-        error_obj: any,
+        error_obj: i_error.ErrorObj,
         error_code: string,
         {
             error_msg_key = '',
@@ -75,7 +75,7 @@ export class Main {
         }
 
         if (error_obj.exit || exit) {
-            const updated_error_obj = error_obj;
+            const updated_error_obj: i_error.ErrorObj = error_obj;
 
             const set_updated_error_obj_propery = ({
                 key,
@@ -84,7 +84,13 @@ export class Main {
                 key: string;
                 undefined_property: boolean | string | number;
             }): void => {
-                updated_error_obj[key] = n(error_obj[key]) ? error_obj[key] : undefined_property;
+                (updated_error_obj[key as keyof i_error.ErrorObj] as
+                    | string
+                    | number
+                    | boolean
+                    | undefined) = n(error_obj[key as keyof i_error.ErrorObj])
+                    ? error_obj[key as keyof i_error.ErrorObj]
+                    : undefined_property;
             };
 
             set_updated_error_obj_propery({

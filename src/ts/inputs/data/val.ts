@@ -1,7 +1,9 @@
 import _ from 'lodash';
+import { SyntheticEvent } from 'react';
 import { makeObservable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
+import { i_data } from 'shared/internal';
 import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
 
 export class Val {
@@ -37,7 +39,7 @@ export class Val {
         return '';
     });
 
-    public access = ({ input }: { input: i_inputs.Input }): any =>
+    public access = ({ input }: { input: i_inputs.Input }): i_data.Val =>
         err(() => {
             if (n(input.val_accessor)) {
                 return _.get(data, input.val_accessor);
@@ -52,17 +54,17 @@ export class Val {
         }: {
             input: i_inputs.Input;
         },
-        e: any,
+        e: SyntheticEvent,
     ): void =>
         err(() => {
             if (input.type === 'checkbox') {
                 this.set({
-                    val: e.target.checked,
+                    val: (e.target as HTMLInputElement).checked,
                     input,
                 });
             } else {
                 this.set({
-                    val: e.target.value,
+                    val: (e.target as HTMLInputElement).value,
                     input,
                 });
             }
@@ -70,7 +72,7 @@ export class Val {
             input.event_callback({ input });
         }, 'shr_1039');
 
-    public set = action(({ val, input }: { val: string | boolean; input: i_inputs.Input }): void =>
+    public set = action(({ val, input }: { val: i_data.Val; input: i_inputs.Input }): void =>
         err(() => {
             if (n(input.val_accessor)) {
                 _.set(data, input.val_accessor, val);
@@ -97,11 +99,11 @@ export class Val {
         }, 'shr_1041'),
     );
 
-    public validate_input = ({ input }: { input: i_inputs.Input }): any =>
+    public validate_input = ({ input }: { input: i_inputs.Input }): boolean =>
         err(() => {
-            const val: string = d_inputs.Val.i().access({ input });
+            const val: i_data.Val = d_inputs.Val.i().access({ input });
 
-            if (input.name === 'transition_duration') {
+            if (input.name === 'transition_duration' && typeof val === 'string') {
                 return !/^[1-9][0-9]*$/.test(val);
             }
 

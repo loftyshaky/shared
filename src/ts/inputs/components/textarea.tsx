@@ -29,7 +29,7 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
                     <textarea
                         id={input.name}
                         className='input'
-                        value={d_inputs.Val.i().access({ input })}
+                        value={d_inputs.Val.i().access({ input }) as string}
                         spellCheck='false'
                         onInput={(e): void => {
                             d_inputs.Val.i().change(

@@ -3,7 +3,11 @@ import { d_error, i_error } from 'error_modules/internal';
 declare const global: Global;
 
 declare global {
-    function show_err_ribbon(error_obj: any, error_code: string, obj?: i_error.ShowError): void;
+    function show_err_ribbon(
+        error_obj: i_error.ErrorObj,
+        error_code: string,
+        obj?: i_error.ShowError,
+    ): void;
     function err<T1>(f: () => T1, error_code: string, obj?: i_error.ShowError): T1;
     function err_async<T1>(
         f: () => Promise<T1>,
@@ -15,7 +19,7 @@ declare global {
 }
 
 global.show_err_ribbon = (
-    error_obj: any,
+    error_obj: i_error.ErrorObj,
     error_code: string,
     {
         error_msg_key = '',

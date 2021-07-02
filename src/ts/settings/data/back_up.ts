@@ -1,5 +1,7 @@
+import { ChangeEvent } from 'react';
 import { browser } from 'webextension-polyfill-ts';
 
+import { t } from 'shared/internal';
 import { o_inputs } from 'inputs/internal';
 
 export class BackUp {
@@ -13,7 +15,7 @@ export class BackUp {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public download = ({ data_obj }: { data_obj: any }): void =>
+    public download = ({ data_obj }: { data_obj: t.AnyRecord }): void =>
         err(() => {
             const blob: Blob = new Blob([JSON.stringify(data_obj)], {
                 type: 'application/octet-stream',
@@ -45,11 +47,11 @@ export class BackUp {
         }: {
             input: o_inputs.File;
         },
-        e: any,
+        e: ChangeEvent,
     ): Promise<void> =>
         err_async(
             async () => {
-                const blob: Blob = e.target.files![0];
+                const blob: Blob = (e.target as HTMLInputElement).files![0];
 
                 const back_up_file_input = s<HTMLInputElement>('.file.back_up');
 
@@ -73,7 +75,7 @@ export class BackUp {
         err_async(async () => {
             const reader = new FileReader();
 
-            return new Promise((resolve: any, reject: any): void =>
+            return new Promise((resolve, reject): void =>
                 err(() => {
                     reader.onloadend = (): void =>
                         err(() => {

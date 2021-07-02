@@ -2,6 +2,7 @@ import { makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
 import { t } from 'shared/internal';
+import { i_inputs } from 'inputs/internal';
 
 export class InputBase {
     public name: string;
@@ -17,11 +18,10 @@ export class InputBase {
     public parent?: string;
     public parent_disabled?: boolean = false;
     public offset?: string = '0';
-    public style?: any;
     public section?: string;
     public subsection?: string;
-    public event_callback: t.CallbackVariadicAny;
-    public warn_state_checker?: t.CallbackVariadicAny;
+    public event_callback: t.CallbackVariadicVoid;
+    public warn_state_checker?: ({ input }: { input: i_inputs.Input }) => boolean;
 
     public constructor(obj: InputBase) {
         makeObservable(this, {

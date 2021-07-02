@@ -1,6 +1,7 @@
 import { runInAction } from 'mobx';
 import Pickr from '@simonwep/pickr';
 
+import { t } from 'shared/internal';
 import { o_color, d_color, i_color } from 'inputs/internal';
 
 export class ColorPicker {
@@ -26,9 +27,9 @@ export class ColorPicker {
         i: i_color.I;
         color_picker: HTMLSpanElement;
         visualization: HTMLButtonElement;
-    }): void =>
+    }): t.AnyRecord =>
         err(() => {
-            const pickr: any = new Pickr({
+            const pickr: t.AnyRecord = new Pickr({
                 container: color_picker,
                 el: visualization,
                 theme: 'monolith',
@@ -66,14 +67,17 @@ export class ColorPicker {
                 }, 'shr_1143'),
             );
 
-            pickr.on('change', (color: any) =>
+            pickr.on('change', (pickr_color: t.AnyRecord) =>
                 err(() => {
-                    if (input.state[i].is_visible) {
+                    if (
+                        n(input.state) &&
+                        input.state[i as keyof i_color.ColorPickerState].is_visible
+                    ) {
                         d_color.Color.i().set({
                             input,
                             i,
                             color: d_color.Color.i().convert_pickr_color_to_rgb_string({
-                                pickr_color: color,
+                                pickr_color,
                             }),
                         });
                     }
@@ -89,13 +93,13 @@ export class ColorPicker {
         input,
         i,
     }: {
-        pickr: any;
+        pickr: t.AnyRecord;
         color_picker: HTMLSpanElement;
         input: o_color.Color;
         i: i_color.I;
     }): Promise<void> =>
         err_async(async () => {
-            if (input.state[i].is_visible) {
+            if (n(input.state) && input.state[i as keyof i_color.ColorPickerState].is_visible) {
                 await x.delay(50);
 
                 this.setting_color = true;

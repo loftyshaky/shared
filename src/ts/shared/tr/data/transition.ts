@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from 'mobx';
 
-import { t, o_tr } from 'shared/internal';
+import { t, i_tr } from 'shared/internal';
 
 export class Transition {
     private static i0: Transition;
@@ -27,8 +27,8 @@ export class Transition {
             }: {
                 name: string;
                 state: boolean;
-                tr_end_unactive?: t.CallbackVariadicVoid[];
-                tr_end_active?: t.CallbackVariadicVoid[];
+                tr_end_unactive?: t.CallbackVoid[];
+                tr_end_active?: t.CallbackVoid[];
                 tr_el_ref: React.RefObject<HTMLElement>;
                 called_from_component_did_update: boolean;
             },
@@ -63,7 +63,7 @@ export class Transition {
         name,
         state,
     }: {
-        transitions: { [index: string]: o_tr.Transition };
+        transitions: i_tr.Transitions;
         name: string;
         state: boolean;
     }): string =>

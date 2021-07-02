@@ -5,10 +5,12 @@ export * from 'shared/x';
 export * from 'shared/ext';
 
 export * from 'shared/svg';
+export * as svg_namespace from 'shared/svg';
 export * as t from 'shared/t';
 export * as vars from 'shared/vars';
 
-export { prevent_default } from 'shared/functions';
+export * from 'shared/functions';
+export * from 'shared/init';
 
 export * as c_ext_version from 'shared/ext_version/components';
 export * as c_loading_screen from 'shared/loading_screen/components';
@@ -28,3 +30,7 @@ export * as s_viewport from 'shared/viewport/scripts';
 
 export * as p_loading_screen from 'shared/loading_screen/components/prop_types';
 export * as p_tr from 'shared/tr/components/prop_types';
+
+export * as i_data from 'shared/data/interfaces';
+export * as i_tab_index from 'shared/tab_index/interfaces';
+export * as i_tr from 'shared/tr/interfaces';

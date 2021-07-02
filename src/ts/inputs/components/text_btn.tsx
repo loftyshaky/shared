@@ -1,13 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { svg } from 'shared/internal';
-
+import { svg, svg_namespace } from 'shared/internal';
 import { d_inputs, p_inputs } from 'inputs/internal';
 
 export const TextBtn: React.FunctionComponent<p_inputs.TextBtn> = observer((props) => {
     const { input, name, svg_name, on_click } = props;
-    const Svg = svg[svg_name];
+    const Svg = svg[svg_name as keyof svg_namespace.SvgType];
 
     return (
         <>

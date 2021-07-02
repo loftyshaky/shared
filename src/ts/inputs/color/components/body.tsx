@@ -25,7 +25,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
     // eslint-disable-next-line no-unused-expressions
     input.palette_is_visible;
     // eslint-disable-next-line no-unused-expressions
-    input.state.main;
+    n(input.state) && input.state.main;
 
     const input_w: JSX.Element = (
         <>
@@ -114,7 +114,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
         <c_inputs.InputItem
             input={input}
             input_w={input_w}
-            include_label={input.include_palette_label!}
+            include_label={rb(input.include_palette_label)}
         />
     );
 });

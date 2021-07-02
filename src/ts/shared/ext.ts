@@ -9,10 +9,10 @@ declare const global: Global;
 
 declare global {
     const page: string;
-    const misplaced_dependency: t.CallbackVariadicVoid;
+    const misplaced_dependency: (culprit_page: string) => void;
 }
 
-export const init = (): void =>
+export const init_page = (): void =>
     err(() => {
         const title = global.document ? document.querySelector('title') : undefined;
 
@@ -23,17 +23,15 @@ export const init = (): void =>
         }
     }, 'shr_1011');
 
-global.misplaced_dependency = (culprit_page: string, current_page_cond?: t.CallbackAny): void =>
+global.misplaced_dependency = (culprit_page: string): void =>
     err(() => {
-        const current_page: string = n(current_page_cond) ? current_page_cond() : page;
-
-        if (current_page !== culprit_page) {
+        if (page !== culprit_page) {
             const msg: string =
                 browser.i18n.getMessage(
                     'dependencicies_from_other_page_loaded_into_this_page_alert',
                 ) + culprit_page.toUpperCase();
 
-            if (current_page === 'background') {
+            if (page === 'background') {
                 // eslint-disable-next-line no-console
                 console.log(msg);
             } else {
@@ -54,7 +52,7 @@ export class Ext {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    private log_error = (error_obj: any): void =>
+    private log_error = (error_obj: Error): void =>
         err(() => {
             // eslint-disable-next-line no-console
             console.log(error_obj.message);
@@ -80,7 +78,7 @@ export class Ext {
             return tabs[0];
         }, 'shr_1015');
 
-    public send_msg = (msg: t.Msg): Promise<any> =>
+    public send_msg = (msg: t.Msg): Promise<void> =>
         err_async(async () => {
             try {
                 await browser.runtime.sendMessage(msg);
@@ -111,7 +109,7 @@ export class Ext {
             }
         }, 'shr_1018');
 
-    public send_msg_to_tab_resp = (id: number, msg: t.Msg): Promise<any> =>
+    public send_msg_to_tab_resp = (id: number, msg: t.Msg): Promise<void> =>
         err_async(async () => {
             try {
                 const response = await browser.tabs.sendMessage(id, msg);
@@ -133,7 +131,7 @@ export class Ext {
             }
         }, 'shr_1020');
 
-    public send_msg_to_active_tab_resp = (msg: t.Msg): Promise<any> =>
+    public send_msg_to_active_tab_resp = (msg: t.Msg): Promise<void> =>
         err_async(async () => {
             const tab: Tabs.Tab = await this.get_active_tab();
 
@@ -162,26 +160,26 @@ export class Ext {
             });
         }, 'shr_1022');
 
-    public storage_get = (keys?: any): Promise<any> =>
+    public storage_get = (keys?: string | string[]): Promise<any> =>
         err_async(async () => {
-            const data_sync: any = await browser.storage.sync.get(keys);
+            const data_sync: t.AnyRecord = await browser.storage.sync.get(keys);
 
             if (n(data_sync)) {
                 return data_sync;
             }
 
-            const data_local: any = await browser.storage.local.get(keys);
+            const data_local: t.AnyRecord = await browser.storage.local.get(keys);
 
             return data_local;
         }, 'shr_1023');
 
-    public storage_set = (obj: any): Promise<void> =>
+    public storage_set = (obj: t.AnyRecord): Promise<void> =>
         err_async(async () => {
             try {
-                const data_local: any = await browser.storage.local.get();
+                const data_local: t.AnyRecord = await browser.storage.local.get();
 
                 if (n(data_local)) {
-                    const merged_data: any = _.merge(data_local, obj);
+                    const merged_data: t.AnyRecord = _.merge(data_local, obj);
 
                     await browser.storage.sync.set(merged_data);
                 } else {
@@ -190,7 +188,7 @@ export class Ext {
 
                 await browser.storage.local.clear();
             } catch (error_obj) {
-                const data_sync: any = await browser.storage.sync.get();
+                const data_sync: t.AnyRecord = await browser.storage.sync.get();
 
                 if (n(data_sync)) {
                     await browser.storage.local.set(data_sync);

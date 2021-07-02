@@ -1,6 +1,8 @@
+import { MouseEvent } from 'react';
 import _ from 'lodash';
 import { makeObservable, action } from 'mobx';
 
+import { t } from 'shared/internal';
 import { o_color, d_color, i_color } from 'inputs/internal';
 
 export class Color {
@@ -134,7 +136,11 @@ export class Color {
             }
         }, 'shr_1009');
 
-    public convert_pickr_color_to_rgb_string = ({ pickr_color }: { pickr_color: any }): string =>
+    public convert_pickr_color_to_rgb_string = ({
+        pickr_color,
+    }: {
+        pickr_color: t.AnyRecord;
+    }): string =>
         err(() => {
             const { round } = Math;
             const rgba = pickr_color.toRGBA();
@@ -142,7 +148,7 @@ export class Color {
             return `rgb(${round(rgba[0])} ${round(rgba[1])} ${round(rgba[2])})`;
         }, 'shr_1010');
 
-    public filter_palette_colors = ({ obj }: { obj: any }): string[] =>
+    public filter_palette_colors = ({ obj }: { obj: i_color.ColorPickerState }): string[] =>
         err(() => Object.keys(obj).filter((key: string): boolean => !_.isNaN(+key)), 'shr_1011');
 
     public select_palette_color = (
@@ -153,7 +159,7 @@ export class Color {
             input: o_color.Color;
             i: i_color.I;
         },
-        e: any,
+        e: MouseEvent,
     ): void =>
         err(() => {
             const called_by_enter_key: boolean = e.detail === 0;
@@ -209,7 +215,7 @@ export class Color {
         default_colors,
     }: {
         input: o_color.Color;
-        default_colors?: any;
+        default_colors?: i_color.Color[];
     }): void =>
         err(() => {
             // eslint-disable-next-line no-alert

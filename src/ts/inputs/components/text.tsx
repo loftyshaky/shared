@@ -31,7 +31,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         id={input.name}
                         className={x.cls(['input', input.text_type])}
                         type={input.text_type}
-                        value={d_inputs.Val.i().access({ input })}
+                        value={d_inputs.Val.i().access({ input }) as string}
                         autoComplete='off'
                         spellCheck='false'
                         onInput={(e): void => {

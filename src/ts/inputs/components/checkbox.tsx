@@ -16,7 +16,7 @@ export const Checkbox: React.FunctionComponent<p_inputs.Checkbox> = observer((pr
                         <input
                             id={input.name}
                             type='checkbox'
-                            checked={d_inputs.Val.i().access({ input })}
+                            checked={d_inputs.Val.i().access({ input }) as boolean}
                             onChange={(e): void => {
                                 d_inputs.Val.i().change(
                                     {

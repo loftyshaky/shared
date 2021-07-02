@@ -1,14 +1,14 @@
 // eslint-disable-next-line max-classes-per-file
-import React from 'react';
+import React, { TransitionEvent } from 'react';
 import { observer } from 'mobx-react';
 
-import { o_tr, d_tr, p_tr } from 'shared/internal';
+import { o_tr, d_tr, p_tr, i_tr } from 'shared/internal';
 
 // need to be class to be able to be extended in apps
 export class BaseTr extends React.Component<p_tr.BaseTr> {
     private tr_el_ref = React.createRef<HTMLElement>();
 
-    public transitions: { [index: string]: o_tr.Transition } = {
+    public transitions: i_tr.Transitions = {
         fade: new o_tr.Transition({
             unactive_cls: 'opacity_0',
             active_cls: 'opacity_1',
@@ -65,9 +65,9 @@ export class BaseTr extends React.Component<p_tr.BaseTr> {
                 className={cls_final}
                 ref={this.tr_el_ref}
                 style={style}
-                onTransitionEnd={(e: any): void =>
+                onTransitionEnd={(e: TransitionEvent): void =>
                     err(() => {
-                        const tr_end_el_cls = e.target.className;
+                        const tr_end_el_cls = (e.target as HTMLElement).className;
 
                         if (typeof tr_end_el_cls === 'string' && tr_end_el_cls.includes(cls)) {
                             d_tr.Transition.i().handle_transition(

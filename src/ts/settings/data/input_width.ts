@@ -15,17 +15,17 @@ export class InputWidth {
     }
 
     private constructor() {
-        makeObservable(this, {
+        makeObservable<InputWidth, 'max_width'>(this, {
             width: observable,
             max_width: observable,
             set_max_width: action,
         });
     }
 
-    public width: { [index: string]: string | undefined } = {};
-    public max_width: string = '0';
+    public width: Record<string, string | undefined> = {};
+    private max_width: string = '0';
     private min_width: string = '298';
-    private old_max_width: { [index: string]: string } = {};
+    private old_max_width: Record<string, string> = {};
 
     max_width_style? = computedFn(function (this: InputWidth): number | string | undefined {
         return x.px(_.isNaN(this.max_width) ? '0' : this.max_width);
@@ -39,7 +39,11 @@ export class InputWidth {
             input: i_inputs.Input;
         },
     ): number | string | undefined {
-        return x.px(this.width[input.section!]);
+        if (n(input.section)) {
+            return x.px(this.width[input.section]);
+        }
+
+        return undefined;
     });
 
     public calculate_for_section = ({ section_name }: { section_name: string }): void => {
@@ -98,11 +102,7 @@ export class InputWidth {
         );
     };
 
-    public calculate_for_all_sections = ({
-        sections,
-    }: {
-        sections: { [index: string]: o_inputs.Section };
-    }): void =>
+    public calculate_for_all_sections = ({ sections }: { sections: i_inputs.Sections }): void =>
         err(() => {
             Object.values(sections).forEach((section: o_inputs.Section): void =>
                 err(() => {

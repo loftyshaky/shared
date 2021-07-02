@@ -11,7 +11,7 @@ export class Main {
     }
 
     private constructor() {
-        makeObservable(this, {
+        makeObservable<Main, 'inner_is_none'>(this, {
             outer_is_visible: observable,
             inner_is_none: observable,
             inner_visibility_cls: computed,
@@ -20,7 +20,7 @@ export class Main {
     }
 
     public outer_is_visible: boolean = false;
-    public inner_is_none: boolean = false;
+    private inner_is_none: boolean = false;
 
     public get inner_visibility_cls(): string {
         return this.inner_is_none ? 'none' : '';

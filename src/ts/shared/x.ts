@@ -9,12 +9,13 @@ declare global {
     const env: {
         browser: t.Browser;
     };
-    const l: any;
+    const l: CallableFunction;
     function n<T1>(val: T1 | undefined | null): val is T1;
     function nn<T1>(val: T1 | null): val is T1;
-    function ru(f: t.CallbackVariadicAny | undefined): any;
-    function rb(f: t.CallbackVariadicAny | undefined): any;
-    function rs(f: t.CallbackVariadicAny | undefined): any;
+    function rs(variable: t.CallbackVariadicString | string | undefined): string;
+    function rn(variable: t.CallbackVariadicNumber | number | undefined): number;
+    function rb(variable: t.CallbackVariadicBoolean | boolean | undefined): boolean;
+    function ru(variable: t.CallbackVariadicUndefined): undefined;
     function s<T1>(selector: string): T1 | undefined;
     function sa<T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined;
     function sb<T1>(base_el: t.BaseEl, selector: string): T1 | undefined;
@@ -32,16 +33,20 @@ global.n = <T1>(val: T1 | undefined | null): val is T1 => err(() => val != null,
 
 global.nn = <T1>(val: T1 | null): val is T1 => err(() => val !== null, 'shr_1079'); // not null
 
-global.ru = (f: t.CallbackVariadicAny | undefined): any =>
-    err(() => (n(f) ? f() : undefined), 'shr_1080'); // resolve undefined
+global.rs = (variable: t.CallbackVariadicString | string | undefined): string =>
+    err(() => (n(variable) ? shared.resolve_variable(variable) : ''), 'shr_1082'); // resolve string
 
-global.rb = (f: t.CallbackVariadicAny | undefined): any =>
-    err(() => (n(f) ? f() : false), 'shr_1081'); // resolve boolean
+global.rn = (variable: t.CallbackVariadicNumber | number | undefined): number =>
+    err(() => (n(variable) ? shared.resolve_variable(variable) : Infinity), 'shr_1170'); // resolve number
 
-global.rs = (f: t.CallbackVariadicAny | undefined): any => err(() => (n(f) ? f() : ''), 'shr_1082'); // resolve string
+global.rb = (variable: t.CallbackVariadicBoolean | boolean | undefined): boolean =>
+    err(() => (n(variable) ? shared.resolve_variable(variable) : false), 'shr_1081'); // resolve boolean
+
+global.ru = (variable: t.CallbackVariadicUndefined | undefined): undefined =>
+    err(() => (n(variable) ? shared.resolve_variable(variable) : undefined), 'shr_1080'); // resolve undefined
 // < undefined/null check
 
-const shared: any = {
+const shared: t.AnyRecord = {
     ensure_els: <T1 extends HTMLElement>(els: T1 | undefined): T1 | NodeListOf<T1> | undefined =>
         err(() => {
             if (n(els)) {
@@ -50,6 +55,15 @@ const shared: any = {
 
             return undefined;
         }, 'shr_1083'),
+
+    resolve_variable: (variable: t.CallbackVariadicAny | t.AnyUndefined): t.AnyUndefined =>
+        err(() => {
+            if (typeof variable === 'function') {
+                return variable();
+            }
+
+            return variable;
+        }, 'shr_1171'),
 };
 
 // > selecting elements
@@ -100,8 +114,8 @@ export class X {
     ): void =>
         err(() => {
             if (n(els)) {
-                if (els instanceof NodeList || (els as any).length > 1) {
-                    Array.from(els as any).forEach((el): void => {
+                if (els instanceof NodeList || (els as HTMLElement[]).length > 1) {
+                    Array.from(els as HTMLElement[]).forEach((el): void => {
                         callback(el);
                     });
                 } else {
@@ -224,12 +238,12 @@ export class X {
         }, 'shr_1098');
 
     // > array
-    public move_item = (from: number, to: number, arr: any[]): void =>
+    public move_item = (from: number, to: number, arr: t.AnyArray): void =>
         err(() => {
-            arr.splice(to, 0, arr.splice(from, 1)[0]);
+            arr.splice(to, 0, arr.splice(from, 1)[0] as t.AnyArray);
         }, 'shr_1099');
 
-    public remove_item = (i: number, arr: any[]): void =>
+    public remove_item = (i: number, arr: t.AnyArray): void =>
         err(() => {
             arr.splice(i, 1);
         }, 'shr_1100');
@@ -375,10 +389,10 @@ export class X {
     public convert_blob_to_base64 = (blob: Blob): Promise<string> =>
         new Promise((resolve, reject) => {
             err(() => {
-                const reader: any = new FileReader();
+                const reader = new FileReader();
                 reader.onerror = reject;
                 reader.onload = () => {
-                    resolve(reader.result);
+                    resolve(reader.result as string);
                 };
                 reader.readAsDataURL(blob);
             }, 'shr_1108');
@@ -405,29 +419,31 @@ export class X {
 
     public copy_img = (img_url: string): void =>
         err(() => {
-            const selection: any = window.getSelection();
+            const selection = window.getSelection();
 
-            selection.removeAllRanges();
+            if (n(selection)) {
+                selection.removeAllRanges();
 
-            const img = this.create('img', '');
+                const img = this.create('img', '');
 
-            img.style.position = 'fixed';
-            img.style.opacity = '0';
-            img.src = img_url;
+                img.style.position = 'fixed';
+                img.style.opacity = '0';
+                img.src = img_url;
 
-            this.append(document.body, img);
+                this.append(document.body, img);
 
-            const range: any = document.createRange();
+                const range = document.createRange();
 
-            range.setStartBefore(img);
-            range.setEndAfter(img);
-            range.selectNode(img);
+                range.setStartBefore(img);
+                range.setEndAfter(img);
+                range.selectNode(img);
 
-            selection.addRange(range);
+                selection.addRange(range);
 
-            document.execCommand('Copy');
+                document.execCommand('Copy');
 
-            this.remove(img);
+                this.remove(img);
+            }
         }, 'shr_1110');
 
     public px = (val: string | number | undefined): string => err(() => `${val}px`, 'shr_1169');

@@ -36,7 +36,11 @@ export class Help {
         const section_name: string | undefined = (section_or_input as i_inputs.Input).section;
         const is_input: boolean = n(section_name);
 
-        return is_input ? x.px(d_settings.InputWidth.i().width[section_name!]) : '';
+        if (n(section_name)) {
+            return is_input ? x.px(d_settings.InputWidth.i().width[section_name]) : '';
+        }
+
+        return undefined;
     });
 
     msg? = computedFn(function ({

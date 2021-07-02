@@ -1,13 +1,12 @@
 import { computedFn } from 'mobx-utils';
 
-import { t } from 'shared/internal';
-import { o_inputs, d_inputs } from 'inputs/internal';
+import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
 
 export class Text extends o_inputs.InputBase {
     public type?: 'text' = 'text';
     public text_type?: 'text' | 'number' = 'text';
     public allow_removing_val?: boolean = true;
-    public remove_val_callback?: t.CallbackVariadicAny;
+    public remove_val_callback?: ({ input }: { input: i_inputs.Input }) => void;
 
     public constructor(obj: Text) {
         super(obj);

@@ -1,3 +1,4 @@
+import { MouseEvent, FocusEvent, KeyboardEvent } from 'react';
 import { makeObservable, action, runInAction } from 'mobx';
 
 import { o_color, d_color, i_color } from 'inputs/internal';
@@ -34,7 +35,9 @@ export class Visibility {
         is_closed: boolean;
     }): void =>
         err(() => {
-            input.state[i].is_closed = is_closed;
+            if (n(input.state)) {
+                input.state[i as keyof i_color.ColorPickerState].is_closed = is_closed;
+            }
         }, 'shr_1018');
 
     public mark_palette_as_closed = ({
@@ -58,7 +61,7 @@ export class Visibility {
             i: i_color.I;
             color_picker_state: 'is_initialized' | 'is_visible';
         },
-        e: any,
+        e: MouseEvent | FocusEvent,
     ): Promise<void> =>
         err_async(async () => {
             await x.delay(30);
@@ -67,76 +70,87 @@ export class Visibility {
                 err(() => {
                     const new_input: o_color.Color = input;
                     const is_palette_color: boolean = input.is_palette_color!({ i });
+                    const button: number | false = 'button' in e ? e.button : false;
                     const is_palette: boolean =
-                        e.button === 0 &&
+                        button === 0 &&
                         input.el_to_show_type!({ i }) === 'color_picker_or_palette' &&
                         color_picker_state === 'is_visible';
                     let palette_is_visible: boolean = false;
                     let color_picker_state_bool: boolean = false;
 
-                    if (is_palette) {
-                        palette_is_visible = !new_input.palette_is_visible;
-                    } else if (!is_palette) {
-                        color_picker_state_bool = is_palette_color
-                            ? !new_input.state[i][color_picker_state]
-                            : !new_input.state[i][color_picker_state];
-                    }
+                    if (n(new_input.state)) {
+                        if (is_palette) {
+                            palette_is_visible = !new_input.palette_is_visible;
+                        } else if (!is_palette) {
+                            color_picker_state_bool = is_palette_color
+                                ? !new_input.state[i as keyof i_color.ColorPickerState][
+                                      color_picker_state
+                                  ]
+                                : !new_input.state[i as keyof i_color.ColorPickerState][
+                                      color_picker_state
+                                  ];
+                        }
 
-                    if (color_picker_state === 'is_visible') {
-                        if (is_palette_color) {
-                            if (this.previously_visible_color_picker_i) {
-                                const i_key: i_color.I = this.previously_visible_color_picker_i;
-                                new_input.state[i_key][color_picker_state] = false;
+                        if (color_picker_state === 'is_visible') {
+                            if (is_palette_color) {
+                                if (this.previously_visible_color_picker_i) {
+                                    const i_key: i_color.I = this.previously_visible_color_picker_i;
+                                    new_input.state[i_key as keyof i_color.ColorPickerState][
+                                        color_picker_state
+                                    ] = false;
+                                }
+                            } else if (n(this.visible_input)) {
+                                this.hide_main_and_palette({ input: this.visible_input });
+                                this.hide_palette_color_pickers({ input: this.visible_input });
                             }
-                        } else if (n(this.visible_input)) {
-                            this.hide_main_and_palette({ input: this.visible_input });
-                            this.hide_palette_color_pickers({ input: this.visible_input });
+
+                            if (
+                                (button === 2 || i === 'main') &&
+                                n(this.previously_visible_input) &&
+                                n(this.previously_visible_color_picker_i)
+                            ) {
+                                d_color.Color.i().restore_old_color();
+                            }
                         }
 
-                        if (
-                            (e.button === 2 || i === 'main') &&
-                            n(this.previously_visible_input) &&
-                            n(this.previously_visible_color_picker_i)
-                        ) {
-                            d_color.Color.i().restore_old_color();
-                        }
-                    }
+                        if (is_palette) {
+                            new_input.palette_is_visible = palette_is_visible;
 
-                    if (is_palette) {
-                        new_input.palette_is_visible = palette_is_visible;
-
-                        if (palette_is_visible) {
-                            this.mark_palette_as_closed({
-                                input: new_input,
-                                is_closed: false,
-                            });
-                        }
-                    } else if (e.button === 2 || color_picker_state === 'is_initialized') {
-                        if (color_picker_state_bool) {
-                            new_input.state[i][color_picker_state] = color_picker_state_bool;
-
-                            if (color_picker_state === 'is_visible') {
-                                d_color.Color.i().set_previous_color({
-                                    input,
-                                    i,
-                                });
-
-                                this.mark_color_picker_as_closed({
+                            if (palette_is_visible) {
+                                this.mark_palette_as_closed({
                                     input: new_input,
-                                    i,
                                     is_closed: false,
                                 });
                             }
+                        } else if (button === 2 || color_picker_state === 'is_initialized') {
+                            if (color_picker_state_bool) {
+                                new_input.state[i as keyof i_color.ColorPickerState][
+                                    color_picker_state
+                                ] = color_picker_state_bool;
+
+                                if (color_picker_state === 'is_visible') {
+                                    d_color.Color.i().set_previous_color({
+                                        input,
+                                        i,
+                                    });
+
+                                    this.mark_color_picker_as_closed({
+                                        input: new_input,
+                                        i,
+                                        is_closed: false,
+                                    });
+                                }
+                            }
+
+                            if (color_picker_state === 'is_visible' && color_picker_state_bool) {
+                                this.previously_visible_input = input;
+                                this.previously_visible_color_picker_i = i;
+                            }
                         }
 
-                        if (color_picker_state === 'is_visible' && color_picker_state_bool) {
-                            this.previously_visible_input = input;
-                            this.previously_visible_color_picker_i = i;
+                        if (color_picker_state === 'is_visible') {
+                            this.visible_input = new_input;
                         }
-                    }
-
-                    if (color_picker_state === 'is_visible') {
-                        this.visible_input = new_input;
                     }
                 }, 'shr_1152'),
             );
@@ -146,7 +160,10 @@ export class Visibility {
         err(() => {
             const new_input: o_color.Color = input;
 
-            new_input.state.main.is_visible = false;
+            if (n(new_input.state)) {
+                new_input.state.main.is_visible = false;
+            }
+
             new_input.palette_is_visible = false;
         }, 'shr_1021');
 
@@ -154,28 +171,31 @@ export class Visibility {
         err(() => {
             const new_input: o_color.Color = input;
 
-            d_color.Color.i()
-                .filter_palette_colors({ obj: new_input.state })
-                .forEach((item, i: number): void =>
-                    err(() => {
-                        if (item !== 'main') {
-                            new_input.state[i].is_visible = false;
-                        }
-                    }, 'shr_1150'),
-                );
+            if (n(new_input.state)) {
+                d_color.Color.i()
+                    .filter_palette_colors({ obj: new_input.state })
+                    .forEach((item, i: number): void =>
+                        err(() => {
+                            if (n(new_input.state) && item !== 'main') {
+                                new_input.state[i as keyof i_color.ColorPickerState].is_visible =
+                                    false;
+                            }
+                        }, 'shr_1150'),
+                    );
+            }
         }, 'shr_1022');
 
-    public hide_all = (e: any): void =>
+    public hide_all = (e: MouseEvent): void =>
         err(() => {
             const clicked_visualization = x.closest<HTMLButtonElement>(
-                e.target,
+                e.target as HTMLButtonElement,
                 '.visualization, .palette_visualization',
             );
             const clicked_inside_color_picker: boolean = Boolean(
-                x.closest<HTMLSpanElement>(e.target, '.color_picker_w'),
+                x.closest<HTMLSpanElement>(e.target as HTMLSpanElement, '.color_picker_w'),
             );
             const clicked_inside_palette: boolean = Boolean(
-                x.closest<HTMLDivElement>(e.target, '.palette'),
+                x.closest<HTMLDivElement>(e.target as HTMLDivElement, '.palette'),
             );
             const clicked_on_visualization_of_already_opened_input: boolean =
                 clicked_visualization === this.visualization_of_visible_input ||
@@ -205,15 +225,20 @@ export class Visibility {
             }
         }, 'shr_1023');
 
-    public hide_color_picker_or_palette_on_esc = (e: any): void =>
+    public hide_color_picker_or_palette_on_esc = (e: KeyboardEvent): void =>
         err(() => {
-            if (n(this.visible_input) && e.code === 'Escape') {
+            if (n(this.visible_input) && n(this.visible_input.state) && e.code === 'Escape') {
                 const at_least_one_palette_color_picker_opened: boolean = d_color.Color.i()
                     .filter_palette_colors({ obj: this.visible_input.state })
                     .some((item, i: number): boolean =>
                         err(() => {
-                            if (this.visible_input && item !== 'main') {
-                                return this.visible_input.state[i].is_visible;
+                            if (
+                                this.visible_input &&
+                                n(this.visible_input.state) &&
+                                item !== 'main'
+                            ) {
+                                return this.visible_input.state[i as keyof i_color.ColorPickerState]
+                                    .is_visible;
                             }
 
                             return false;

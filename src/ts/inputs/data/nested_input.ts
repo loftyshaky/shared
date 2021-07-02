@@ -39,7 +39,7 @@ export class NestedInput {
         sections,
     }: {
         input: i_inputs.Input;
-        sections: { [index: string]: o_inputs.Section };
+        sections: i_inputs.Sections;
     }): void =>
         err(() => {
             if (d_settings.Sections.i().current_section !== '') {
@@ -87,11 +87,7 @@ export class NestedInput {
             }
         }, 'shr_1033');
 
-    public set_all_parents_disbled_vals = ({
-        sections,
-    }: {
-        sections: { [index: string]: o_inputs.Section };
-    }): void =>
+    public set_all_parents_disbled_vals = ({ sections }: { sections: i_inputs.Sections }): void =>
         err(() => {
             Object.values(sections).forEach((section: o_inputs.Section): void =>
                 err(() => {

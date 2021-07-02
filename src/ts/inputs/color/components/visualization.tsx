@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, MouseEvent, FocusEvent, KeyboardEvent } from 'react';
 import { observer } from 'mobx-react';
 
 import { prevent_default, s_tab_index } from 'shared/internal';
@@ -11,7 +11,8 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
     const { input, i, aria_label } = props;
 
     // eslint-disable-next-line no-unused-expressions
-    input.state[i];
+    n(input.state) && input.state.main;
+
     const visualization_cls = input.visualization_cls!({ i });
     const palette_visualization_cls = input.palette_visualization_cls!({ i });
 
@@ -39,13 +40,13 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                 type='button'
                 aria-label={aria_label}
                 style={{
-                    backgroundColor: d_color.Color.i().access!({
+                    backgroundColor: d_color.Color.i().access({
                         input,
                         i,
                     }),
                 }}
                 ref={visualization_ref}
-                onClick={(e: any): void => {
+                onClick={(e: MouseEvent): void => {
                     d_color.Color.i().select_palette_color(
                         {
                             input,
@@ -54,7 +55,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         e,
                     );
                 }}
-                onMouseDown={(e: any): void => {
+                onMouseDown={(e: MouseEvent): void => {
                     d_color.Visibility.i().change_visibility(
                         {
                             input,
@@ -64,7 +65,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         e,
                     );
                 }}
-                onMouseEnter={(e: any): void => {
+                onMouseEnter={(e: MouseEvent): void => {
                     d_color.Visibility.i().change_visibility(
                         {
                             input,
@@ -74,7 +75,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         e,
                     );
                 }}
-                onFocus={(e: any): void => {
+                onFocus={(e: FocusEvent): void => {
                     d_color.Visibility.i().change_visibility(
                         {
                             input,
@@ -84,7 +85,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         e,
                     );
                 }}
-                onKeyDown={(e: any) => {
+                onKeyDown={(e: KeyboardEvent) => {
                     s_tab_index.Main.i().simulate_color_visualization_click_on_enter(
                         {
                             input,
@@ -100,12 +101,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
             {i === 'main' && input.include_help ? (
                 <c_inputs.HelpBtn section_or_input={input} />
             ) : undefined}
-            <c_color.ColorPicker
-                input={input}
-                i={i}
-                visualization_w_ref={visualization_w_ref}
-                visualization_ref={visualization_ref}
-            />
+            <c_color.ColorPicker input={input} i={i} visualization_ref={visualization_ref} />
         </span>
     );
 });

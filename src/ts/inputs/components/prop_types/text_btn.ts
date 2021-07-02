@@ -6,5 +6,5 @@ export interface TextBtn {
     name: string;
     svg_name: string;
     input: o_inputs.Text;
-    on_click?: t.CallbackAny;
+    on_click?: t.CallbackVoid;
 }

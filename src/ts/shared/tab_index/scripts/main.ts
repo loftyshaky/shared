@@ -1,3 +1,6 @@
+import { MouseEvent, KeyboardEvent } from 'react';
+
+import { i_tab_index } from 'shared/internal';
 import { o_color, d_color, i_color } from 'inputs/internal';
 
 export class Main {
@@ -19,7 +22,7 @@ export class Main {
             parent: HTMLElement;
             app_id?: string;
         },
-        e: any,
+        e: i_tab_index.SetInputTypeEvent,
     ): void =>
         err(() => {
             const generate_class = ({
@@ -40,7 +43,11 @@ export class Main {
                 app_id_2: app_id,
             });
             const input_type_2: string = e.type === 'mousedown' ? mouse_cls : keyboard_cls;
-            const hit_esc = n(e) && n(e.code) && e.code === 'Escape';
+            const hit_esc =
+                e.type === 'keyboard' &&
+                n(e) &&
+                n((e as KeyboardEvent).code) &&
+                (e as KeyboardEvent).code === 'Escape';
             if (input_type_2 === mouse_cls || !hit_esc) {
                 if (input_type_2 === mouse_cls) {
                     x.remove_cls(parent, keyboard_cls);
@@ -62,7 +69,7 @@ export class Main {
         err(() => {
             const parent_final = n(parent) ? parent : document.body;
 
-            const set_input_type = (e: any): void =>
+            const set_input_type = (e: i_tab_index.SetInputTypeEvent): void =>
                 err(() => {
                     this.set_input_type(
                         {
@@ -77,10 +84,10 @@ export class Main {
             x.bind(parent_final, 'keydown', set_input_type);
         }, 'shr_1071');
 
-    public simulate_click_on_enter = (e: any): void =>
+    public simulate_click_on_enter = (e: KeyboardEvent): void =>
         err(() => {
             if (e.code === 'Enter') {
-                e.target.click();
+                (e.target as HTMLElement).click();
             }
         }, 'shr_1072');
 
@@ -92,11 +99,11 @@ export class Main {
             input: o_color.Color;
             i: i_color.I;
         },
-        e: any,
+        e: KeyboardEvent,
     ): void =>
         err(() => {
-            const e_2: any = { button: 0 };
-            const e_3: any = { detail: 1 };
+            const e_2: { button: number } = { button: 0 };
+            const e_3: { detail: number } = { detail: 1 };
 
             const call_change_visibility = (): void =>
                 err(() => {
@@ -106,7 +113,7 @@ export class Main {
                             i,
                             color_picker_state: 'is_visible',
                         },
-                        e_2,
+                        e_2 as MouseEvent,
                     );
                 }, 'shr_1073');
 
@@ -118,7 +125,7 @@ export class Main {
                 }
 
                 if (
-                    x.matches(e.target, '.palette_visualization') &&
+                    x.matches(e.target as HTMLElement, '.palette_visualization') &&
                     !e.ctrlKey &&
                     !e.shiftKey &&
                     !e.altKey
@@ -128,10 +135,13 @@ export class Main {
                             input,
                             i,
                         },
-                        e_3,
+                        e_3 as MouseEvent,
                     );
 
-                    if (input.state[i].is_visible) {
+                    if (
+                        n(input.state) &&
+                        input.state[i as keyof i_color.ColorPickerState].is_visible
+                    ) {
                         call_change_visibility();
                     }
                 } else {

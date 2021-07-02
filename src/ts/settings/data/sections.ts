@@ -21,13 +21,18 @@ export class Sections {
     }
 
     public current_section: string = '';
-    private options: any = {
-        options_page_theme: [
-            new o_inputs.Option({ name: 'light' }),
-            new o_inputs.Option({ name: 'dark' }),
-            new o_inputs.Option({ name: 'very_dark' }),
-        ],
-    };
+    private options: i_inputs.Options = {};
+
+    public init_options = (): void =>
+        err(() => {
+            this.options = {
+                options_page_theme: [
+                    new o_inputs.Option({ name: 'light' }),
+                    new o_inputs.Option({ name: 'dark' }),
+                    new o_inputs.Option({ name: 'very_dark' }),
+                ],
+            };
+        }, 'shr_1172');
 
     public selected_cls = computedFn(function (
         this: Sections,
@@ -70,7 +75,7 @@ export class Sections {
         input_change_val_callback,
         admin_inputs = [],
     }: {
-        download_back_up_callback: t.CallbackVariadicVoid;
+        download_back_up_callback: t.CallbackAnyObj;
         upload_back_up_callback: t.CallbackVariadicVoid;
         restore_defaults_callback: t.CallbackVoid;
         input_change_val_callback: t.CallbackVariadicVoid;

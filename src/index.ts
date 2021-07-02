@@ -1,5 +1,5 @@
 import 'error_modules/error/scripts';
-import { init } from 'shared/internal';
+import { init_page } from 'shared/internal';
 
 export { c_crash_handler, c_error } from 'error_modules/internal';
 export {
@@ -8,6 +8,7 @@ export {
     t,
     vars,
     prevent_default,
+    init_shared,
     c_loading_screen,
     c_tr,
     o_tr,
@@ -18,6 +19,7 @@ export {
     s_theme,
     s_utils,
     s_viewport,
+    i_data,
 } from 'shared/internal';
 
-init();
+init_page(); // need to be here, otherwise error will happen
