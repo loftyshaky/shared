@@ -309,20 +309,24 @@ export class X {
         cls: string,
         css: string,
     ): HTMLStyleElement =>
-        err(() => {
-            const cls_final = `${cls}_style`;
-            const old_style = sb<HTMLStyleElement>(parent, `.${cls_final}`);
+        err(
+            () => {
+                const cls_final = `${cls}_style`;
+                const old_style = sb<HTMLStyleElement>(parent, `.${cls_final}`);
 
-            if (n(old_style)) {
-                this.remove(old_style);
-            }
+                if (n(old_style)) {
+                    this.remove(old_style);
+                }
 
-            const new_style = this.create('style', cls_final);
-            new_style.innerHTML = css;
-            parent.appendChild(new_style);
+                const new_style = this.create('style', cls_final);
+                new_style.innerHTML = css;
+                parent.appendChild(new_style);
 
-            return new_style;
-        }, 'shr_1103');
+                return new_style;
+            },
+            'shr_1103',
+            { silent: true },
+        );
 
     public get_css_val = (el: HTMLElement, key: string): string =>
         err(() => window.getComputedStyle(el).getPropertyValue(key), 'shr_1088');
