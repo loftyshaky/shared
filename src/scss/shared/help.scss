@@ -1,0 +1,55 @@
+.help,
+.color_help {
+    max-width: 700px;
+    font-size: $font_small;
+    margin: 0;
+    margin-top: $gap_small;
+    white-space: pre-wrap;
+}
+
+.help_btn {
+    @include btn;
+    margin-left: var(--help_btn_margin);
+    display: flex;
+    order: 1;
+
+    svg {
+        display: block;
+        width: var(--help_btn_size);
+        height: var(--help_btn_size);
+    }
+}
+
+.section_help {
+    display: flex;
+
+    + .subsection {
+        margin-top: $gap;
+    }
+
+    .help {
+        max-width: unset;
+        margin-top: 0;
+        margin-right: 15px;
+    }
+
+    .help_btn {
+        margin-left: auto;
+        align-self: flex-start;
+    }
+}
+
+.input_item {
+    .color_help_w {
+        margin-bottom: $gap;
+    }
+
+    .color_help {
+        margin: 0;
+        line-height: initial;
+    }
+
+    &:not(.textarea) .help_btn {
+        align-self: center;
+    }
+}

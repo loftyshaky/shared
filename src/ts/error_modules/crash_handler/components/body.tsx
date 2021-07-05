@@ -18,7 +18,7 @@ export const Body = observer(
                 return (
                     <div className='reload_ui_btn_w'>
                         <button
-                            className='btn'
+                            className={x.cls(['btn', 'reload_ui'])}
                             type='button'
                             onClick={s_crash_handler.Page.i().reload}
                         >

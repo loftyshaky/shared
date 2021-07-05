@@ -1,0 +1,28 @@
+.loading_screen,
+.checkbox .box svg,
+.color_picker_w,
+.palette_w,
+.color_help_w {
+    transition: var(--transition);
+    transition-property: opacity;
+}
+
+.btn:not(.reload_ui) {
+    transition: var(--transition);
+    transition-property: background-color;
+}
+
+.link_btn {
+    transition: var(--transition);
+    transition-property: color;
+}
+
+.color_picker_w input {
+    transition: var(--transition) !important;
+    transition-property: background-color !important;
+}
+
+.pcr-last-color,
+.pcr-result {
+    transition: none !important;
+}

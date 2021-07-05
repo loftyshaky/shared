@@ -1,7 +1,7 @@
-@import '../index';
-@import 'transitions';
-@import 'scrollbar';
-@import 'main';
-@import 'sections';
-@import 'section_btns';
+@import '../shared/index';
 @import 'ext_version';
+@import 'main';
+@import 'scrollbar';
+@import 'section_btns';
+@import 'sections';
+@import 'transitions';

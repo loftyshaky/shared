@@ -1,0 +1,12 @@
+.link_btn {
+    display: block;
+    font-size: $font_small;
+
+    &.hide {
+        margin-top: 4px;
+    }
+}
+
+.palette_link_btns .link_btn {
+    margin-bottom: $gap;
+}

@@ -1,0 +1,36 @@
+$box_size: 20px;
+$checkmark_size: 16px;
+
+.input_item {
+    &.checkbox {
+        input {
+            display: none;
+        }
+
+        .wrap_label {
+            @include border_transparent;
+            margin-right: $input_content_gap;
+        }
+
+        .box {
+            @include center_flex;
+            @include outline_solid;
+            height: $box_size;
+            width: $box_size;
+            cursor: pointer;
+        }
+
+        .box svg {
+            width: $checkmark_size;
+            height: $checkmark_size;
+        }
+
+        input + .box svg {
+            opacity: 0;
+        }
+
+        input:checked + .box svg {
+            opacity: 1;
+        }
+    }
+}

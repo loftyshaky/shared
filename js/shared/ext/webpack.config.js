@@ -12,21 +12,28 @@ const shared_config = ({
     callback_begin,
     callback_done,
 }) => {
-    const scss_path = path.join(app_root, 'node_modules', '@loftyshaky', 'shared', 'scss');
+    const shared_path = path.join(
+        app_root,
+        'node_modules',
+        '@loftyshaky',
+        'shared',
+        'scss',
+        'shared',
+    );
     const paths = {
         ts: path.join(app_root, 'src', 'ts'),
-        scss: scss_path,
-        themes: path.join(scss_path, 'themes', 'general'),
+        embed: path.join(shared_path, 'embed'),
+        themes: path.join(shared_path, 'themes', 'general'),
     };
 
     const copy_patterns_final = copy_patters || [];
 
     return {
         entry: {
-            font_face: path.join(paths.scss, 'font_face.scss'),
-            no_tr: path.join(paths.scss, 'no_tr.scss'),
-            error: path.join(paths.scss, 'error.scss'),
-            loading_screen: path.join(paths.scss, 'loading_screen.scss'),
+            font_face: path.join(paths.embed, 'font_face.scss'),
+            no_tr: path.join(paths.embed, 'no_tr.scss'),
+            error: path.join(paths.embed, 'error.scss'),
+            loading_screen: path.join(paths.embed, 'loading_screen.scss'),
             light_theme: path.join(paths.themes, 'light_theme.scss'),
             dark_theme: path.join(paths.themes, 'dark_theme.scss'),
             very_dark_theme: path.join(paths.themes, 'very_dark_theme.scss'),
@@ -71,14 +78,6 @@ const shared_config = ({
                     ...[
                         {
                             from: path.join(app_root, 'src', 'html'),
-                        },
-                        {
-                            from: path.join(
-                                app_root,
-                                'node_modules',
-                                'normalize.css',
-                                'normalize.css',
-                            ),
                         },
                         {
                             from: path.join(app_root, 'src', 'icons', 'all'),

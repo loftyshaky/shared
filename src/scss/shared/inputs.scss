@@ -1,0 +1,71 @@
+input[type='file'] {
+    display: none;
+}
+
+.input_item {
+    padding-right: $main_margin;
+    margin-left: unset;
+    justify-content: unset;
+    align-items: center;
+    flex-direction: column;
+    display: table;
+    width: auto;
+
+    &.parent_disabled {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+
+    &.child {
+        margin-left: 28px;
+    }
+
+    &:not(:first-child) {
+        margin-top: $gap;
+    }
+
+    .label {
+        display: flex;
+        align-items: center;
+        height: unset;
+        margin-right: 0;
+        white-space: normal;
+    }
+
+    &.text .label,
+    &.textarea .label,
+    &.select .label {
+        margin-bottom: $gap_small;
+    }
+
+    .input {
+        @include input_basic;
+        height: $input_height;
+        padding: 0px $input_inner_padding 0px $input_inner_padding;
+        flex-grow: 1;
+        border-radius: 0;
+        box-sizing: border-box;
+    }
+
+    .input_w_and_help_btn {
+        display: flex;
+        align-items: center;
+    }
+
+    .input_w {
+        position: relative;
+        display: flex;
+        flex-shrink: 0;
+
+        &.text,
+        &.textarea,
+        &.select {
+            @include border_transparent;
+        }
+
+        &.is_in_focus_state:not(.select):before,
+        &.is_in_warn_state:not(.select):before {
+            @include outline_solid_thick;
+        }
+    }
+}

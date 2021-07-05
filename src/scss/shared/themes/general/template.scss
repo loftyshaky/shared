@@ -1,0 +1,194 @@
+@import 'template_focus';
+
+::selection {
+    background-color: $nqp !important;
+    color: white !important;
+}
+
+.main {
+    border-color: $lpe;
+
+    ::-webkit-scrollbar-thumb {
+        background-color: $uvi;
+    }
+
+    & ::-webkit-scrollbar-track {
+        background-color: $gaq;
+    }
+
+    & ::-webkit-scrollbar-corner,
+    & ::-webkit-resizer {
+        background-color: $lpe;
+    }
+}
+
+.loading_screen {
+    &.main {
+        background-color: $dfp;
+    }
+
+    svg {
+        stroke: $lpe;
+    }
+}
+
+body {
+    background-color: $gaq;
+
+    .btn.text {
+        background-color: $gaq;
+
+        &:hover {
+            background-color: $yos;
+        }
+    }
+}
+
+.main,
+button,
+select,
+input,
+textarea {
+    color: $lpe;
+}
+
+.sections {
+    background-color: $htc;
+}
+
+.section_btns {
+    background-color: $nrf;
+
+    .filler:after {
+        background-color: $lpe;
+    }
+}
+
+.section_btn {
+    border-color: $lpe;
+    background-color: $nrf;
+
+    &.selected {
+        background-color: $htc;
+    }
+
+    &:not(.selected):hover {
+        background-color: $cop;
+    }
+
+    &:after {
+        background-color: $lpe;
+    }
+}
+
+.help_btn svg {
+    fill: $lpe;
+}
+
+.input_item {
+    .input {
+        background-color: $gaq;
+    }
+
+    .btn.text_input {
+        background-color: $gaq;
+
+        svg {
+            fill: $lpe;
+        }
+    }
+
+    .palette {
+        background-color: $htc;
+    }
+
+    .input_w {
+        .visualization,
+        .palette_visualization {
+            border-color: $lpe;
+            background-color: $gaq;
+        }
+    }
+
+    select {
+        background-image: linear-gradient(45deg, transparent 50%, $lpe 50%),
+            linear-gradient(135deg, $lpe 50%, transparent 50%),
+            linear-gradient(to right, $lpe, $lpe);
+    }
+
+    .checkbox .box {
+        background-color: $gaq;
+
+        svg {
+            fill: $lpe;
+        }
+    }
+
+    .color_picker_w {
+        *:not(.pcr-last-color):not(.pcr-current-color) {
+            color: $lpe !important;
+        }
+
+        input {
+            background-color: $gaq !important;
+            border-color: $lpe !important;
+
+            &:hover:not(.pcr-result):not(.active) {
+                background-color: $yos !important;
+            }
+        }
+    }
+
+    .pcr-app {
+        border-color: $lpe !important;
+        background-color: $htc !important;
+    }
+
+    .pcr-color-preview,
+    .pcr-palette,
+    .pcr-slider,
+    .pcr-picker,
+    .pcr-result {
+        border-color: $lpe !important;
+    }
+
+    .pcr-type.active {
+        background-color: $nrf !important;
+    }
+}
+
+.link {
+    color: $pdv;
+
+    &:visited {
+        color: $pec;
+    }
+
+    &:hover {
+        color: $bvs;
+    }
+
+    &:active {
+        color: $nmy;
+    }
+}
+
+.link_btn {
+    color: $pdv;
+
+    &:visited {
+        color: $pec;
+    }
+
+    &:hover {
+        color: $bvs;
+    }
+
+    &:active {
+        color: $nmy;
+    }
+}
+
+.ext_version {
+    color: $lpe;
+}
