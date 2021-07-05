@@ -114,7 +114,11 @@ export class InputWidth {
     public set_max_width = (): void =>
         err(() => {
             const current_section = s<HTMLDivElement>(
-                `.section.${d_settings.Sections.i().current_section}`,
+                `.section.${
+                    d_settings.Sections.i().current_section
+                        ? d_settings.Sections.i().current_section
+                        : 'all'
+                }`,
             );
 
             if (current_section) {

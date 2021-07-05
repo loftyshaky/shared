@@ -3,8 +3,6 @@ import { observer } from 'mobx-react';
 
 import { o_inputs, d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
-import { d_settings } from 'settings/internal';
-
 export const Select: React.FunctionComponent<p_inputs.Select> = observer((props) => {
     const { input } = props;
     const options = input.options[input.name];
@@ -22,8 +20,8 @@ export const Select: React.FunctionComponent<p_inputs.Select> = observer((props)
                         d_inputs.Val.i().focus_state({ input }),
                     ])}
                     style={{
-                        minWidth: d_settings.InputWidth.i().min_width_style!({ input }),
-                        maxWidth: d_settings.InputWidth.i().max_width_style!(),
+                        minWidth: d_inputs.InputWidth.i().min_width_style!({ input }),
+                        maxWidth: d_inputs.InputWidth.i().max_width_style!(),
                     }}
                 >
                     <select

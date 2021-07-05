@@ -15,6 +15,7 @@ $btn_padding: 6px;
 
 .pcr-app {
     @include box_shadow_important;
+    @include border;
     position: relative !important;
     left: initial !important;
     top: initial !important;
@@ -35,8 +36,9 @@ $btn_padding: 6px;
 }
 
 .pcr-swatches {
-    margin-top: 3px !important;
+    margin-top: 2px !important;
 }
+
 .pcr-app,
 .pcr-last-color,
 .pcr-palette,
@@ -46,14 +48,13 @@ $btn_padding: 6px;
     border-radius: 0 !important;
 }
 
-.pcr-app,
 .pcr-palette,
-.pcr-slider,
-.color_picker_w input {
-    @include outline_solid;
+.pcr-slider {
+    @include border;
 }
 
 .color_picker_w input {
+    @include outline_solid;
     -webkit-filter: initial !important;
     filter: initial !important;
 }
@@ -63,6 +64,10 @@ $btn_padding: 6px;
 }
 
 .pcr-interaction {
+    margin-left: -2px !important;
+    margin-right: -1px !important;
+    margin-bottom: 1px !important;
+    white-space: nowrap;
     display: unset !important;
 }
 
@@ -71,16 +76,13 @@ $btn_padding: 6px;
     display: block;
     margin-top: 9px !important;
     padding-top: 6px !important;
+    margin-bottom: 2px !important;
 }
 
 .pcr-color-chooser {
     margin-top: $gap !important;
 }
 
-.pcr-app .pcr-interaction > * {
-    margin-right: 2px !important;
-}
-
-[data-type='HEXA'] {
-    margin-right: 3px !important;
+.pcr-type {
+    margin-right: 5px !important;
 }

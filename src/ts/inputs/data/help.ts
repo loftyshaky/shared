@@ -1,7 +1,6 @@
 import { makeObservable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
-import { o_inputs, i_inputs } from 'inputs/internal';
-import { d_settings } from 'settings/internal';
+import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
 
 export class Help {
     private static i0: Help;
@@ -37,7 +36,7 @@ export class Help {
         const is_input: boolean = n(section_name);
 
         if (n(section_name)) {
-            return is_input ? x.px(d_settings.InputWidth.i().width[section_name]) : '';
+            return is_input ? x.px(d_inputs.InputWidth.i().width[section_name]) : '';
         }
 
         return undefined;

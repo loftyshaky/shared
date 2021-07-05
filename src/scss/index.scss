@@ -1,6 +1,10 @@
+@import 'normalize.css';
+@import '~@simonwep/pickr/dist/themes/monolith.min.css';
+@import 'themes/general/light_theme';
 @import 'transitions';
 @import 'focus';
 @import 'vars';
+@import 'css_vars';
 @import 'mixins';
 @import 'mods';
 @import 'text';

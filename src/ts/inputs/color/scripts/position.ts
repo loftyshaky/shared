@@ -42,7 +42,7 @@ export class Position {
                             '.palette',
                         );
 
-                        if (color_picker_from_palette) {
+                        if (n(color_picker_from_palette)) {
                             const palette_visualization_w = x.closest<HTMLSpanElement>(
                                 ws[i],
                                 '.palette_visualization_w',
@@ -94,11 +94,13 @@ export class Position {
                                 scroll_container.scrollTop = scroll_top;
                                 scroll_container.scrollLeft = scroll_left;
 
-                                // target = palette_or_color_picker
-
                                 const target_fit_to_display_below_visualization: boolean =
-                                    Math.ceil(fill_shadow_w_rect.top + fill_shadow_rect.height) <=
-                                    viewport_height;
+                                    Math.ceil(
+                                        fill_shadow_w_rect.top +
+                                            fill_shadow_rect.height +
+                                            (visualization_height -
+                                                this.gap_between_visualization_and_color_picker),
+                                    ) <= viewport_height;
                                 const target_fit_to_display_above_visualization: boolean =
                                     Math.floor(
                                         fill_shadow_w_rect.top -
