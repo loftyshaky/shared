@@ -104,7 +104,7 @@ export class Val {
             const val: i_data.Val = d_inputs.Val.i().access({ input });
 
             if (input.name === 'transition_duration' && typeof val === 'string') {
-                return !/^[1-9][0-9]*$/.test(val);
+                return !/^(?!0)[1-9][0-9]*$/.test(val);
             }
 
             return false;

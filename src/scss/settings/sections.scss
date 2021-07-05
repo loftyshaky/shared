@@ -8,13 +8,15 @@
     margin: $main_margin;
 }
 
-.subsection .name {
-    margin: 0;
-    font-weight: bold;
-    font-size: unset;
-    text-decoration: underline;
-}
+.subsection {
+    .name {
+        margin: 0;
+        font-weight: bold;
+        font-size: unset;
+        text-decoration: underline;
 
-.subsection .name:not(:first-child) {
-    margin-top: $main_margin;
+        &:not(:first-child) {
+            margin-top: $main_margin;
+        }
+    }
 }
