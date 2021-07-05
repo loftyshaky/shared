@@ -114,7 +114,10 @@ export class X {
     ): void =>
         err(() => {
             if (n(els)) {
-                if (els instanceof NodeList || (els as HTMLElement[]).length > 1) {
+                if (
+                    !(els instanceof Window) &&
+                    (els instanceof NodeList || (els as HTMLElement[]).length > 1)
+                ) {
                     Array.from(els as HTMLElement[]).forEach((el): void => {
                         callback(el);
                     });
