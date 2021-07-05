@@ -6,6 +6,7 @@ const shared_config = ({
     argv,
     env,
     MiniCssExtractPlugin,
+    OptimizeCssAssetsPlugin,
     // FixStyleOnlyEntriesPlugin,
     CopyWebpackPlugin,
     copy_patters,
@@ -60,7 +61,7 @@ const shared_config = ({
                     loader: 'ts-loader',
                 },
                 {
-                    test: /\.scss$/,
+                    test: /\.(scss)$/,
                     use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
                 },
                 {
@@ -72,6 +73,7 @@ const shared_config = ({
         plugins: [
             new webpack.ProgressPlugin(),
             new MiniCssExtractPlugin(),
+            new OptimizeCssAssetsPlugin(),
             // new FixStyleOnlyEntriesPlugin(),
             new CopyWebpackPlugin({
                 patterns: [
