@@ -22,8 +22,6 @@ export class Main {
                 : undefined;
 
             if (error_shadow) {
-                x.css('normalize', error_shadow);
-
                 const error_css = x.css('error', error_shadow);
 
                 if (n(error_css)) {
