@@ -82,21 +82,26 @@ export class Val {
         }, 'shr_1040'),
     );
 
-    public remove_val = action(({ input }: { input: i_inputs.Input }): void =>
-        err(() => {
-            if (n(input.val_accessor)) {
-                this.set({
-                    val: '',
-                    input,
-                });
-            }
+    public remove_val = action(
+        ({ input, input_el }: { input: i_inputs.Input; input_el: HTMLInputElement | null }): void =>
+            err(() => {
+                if (n(input_el)) {
+                    input_el.focus();
+                }
 
-            data.settings[input.name] = '';
+                if (n(input.val_accessor)) {
+                    this.set({
+                        val: '',
+                        input,
+                    });
+                }
 
-            if (n((input as o_inputs.Text).remove_val_callback)) {
-                (input as o_inputs.Text).remove_val_callback!({ input });
-            }
-        }, 'shr_1041'),
+                data.settings[input.name] = '';
+
+                if (n((input as o_inputs.Text).remove_val_callback)) {
+                    (input as o_inputs.Text).remove_val_callback!({ input });
+                }
+            }, 'shr_1041'),
     );
 
     public validate_input = ({ input }: { input: i_inputs.Input }): boolean =>

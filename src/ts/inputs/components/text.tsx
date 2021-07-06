@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { observer } from 'mobx-react';
 
 import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => {
+    const input_ref = useRef<HTMLInputElement>(null);
+
     const { input } = props;
 
     const input_w: JSX.Element = (
@@ -32,6 +34,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         value={d_inputs.Val.i().access({ input }) as string}
                         autoComplete='off'
                         spellCheck='false'
+                        ref={input_ref}
                         onInput={(e): void => {
                             d_inputs.Val.i().change(
                                 {
@@ -57,7 +60,9 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         name='remove_val'
                         svg_name='Close'
                         input={input}
-                        on_click={() => d_inputs.Val.i().remove_val({ input })}
+                        on_click={() =>
+                            d_inputs.Val.i().remove_val({ input, input_el: input_ref.current })
+                        }
                     />
                 </span>
                 {input.include_help ? <c_inputs.HelpBtn section_or_input={input} /> : undefined}
