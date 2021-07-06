@@ -47,6 +47,9 @@
     "restore_defaults_btn_text": {
         "message": "Восстановить настройки по умолчанию"
     },
+    "reload_ext_btn_text": {
+        "message": "перезагрузить расширение"
+    },
     "options_page_theme_label_text": {
         "message": "Тема страницы насроек"
     },

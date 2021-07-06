@@ -68,6 +68,11 @@ export class Sections {
             }
         }, 'shr_1052');
 
+    private reload_ext = (): void =>
+        err(() => {
+            ext.send_msg({ msg: 'reload_ext' });
+        }, 'shr_1177');
+
     public make_shared_sections = ({
         download_back_up_callback,
         upload_back_up_callback,
@@ -119,6 +124,10 @@ export class Sections {
                     name: 'admin',
                     include_help: true,
                     inputs: [
+                        new o_inputs.Btn({
+                            name: 'reload_ext',
+                            event_callback: this.reload_ext,
+                        }),
                         new o_inputs.Select({
                             name: 'options_page_theme',
                             options: this.options,

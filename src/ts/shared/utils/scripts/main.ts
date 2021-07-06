@@ -1,3 +1,5 @@
+import { browser } from 'webextension-polyfill-ts';
+
 import { t } from 'shared/internal';
 
 export class Main {
@@ -39,4 +41,11 @@ export class Main {
 
             return obj_final;
         }, 'shr_1076');
+
+    public reload_ext = ({ msg }: { msg: string }): void =>
+        err(() => {
+            if (msg === 'reload_ext') {
+                browser.runtime.reload();
+            }
+        }, 'shr_1178');
 }

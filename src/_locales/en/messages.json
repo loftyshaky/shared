@@ -50,6 +50,9 @@
     "restore_defaults_btn_text": {
         "message": "Restore default settings"
     },
+    "reload_ext_btn_text": {
+        "message": "Reload extension"
+    },
     "options_page_theme_label_text": {
         "message": "Options page theme"
     },
