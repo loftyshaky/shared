@@ -1,5 +1,4 @@
 import { t } from 'shared/internal';
-
 import { o_inputs } from 'inputs/internal';
 
 export interface TextBtn {
