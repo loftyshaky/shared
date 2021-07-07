@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { browser } from 'webextension-polyfill-ts';
 
 import { t } from 'shared/internal';
 
@@ -296,7 +295,7 @@ export class X {
                     }
                 });
 
-                new_link.href = browser.runtime.getURL(`${filename}.css`);
+                new_link.href = we.runtime.getURL(`${filename}.css`);
                 new_link.setAttribute('rel', 'stylesheet');
                 new_link.setAttribute('type', 'text/css');
                 parent.appendChild(new_link);

@@ -1,16 +1,19 @@
 // Allowing send_msg functions to throw errors (red) makes extension freeze when sending message to tab without onMessage event listrener!
 
+import { browser as browser_2 } from 'webextension-polyfill-ts';
 import _ from 'lodash';
-import { browser, Tabs, Windows } from 'webextension-polyfill-ts';
 
 import { t } from 'shared/internal';
 
 declare const global: Global;
 
 declare global {
+    const we: typeof browser;
     const page: string;
     const misplaced_dependency: (culprit_page: string) => void;
 }
+
+global.we = browser_2 as any;
 
 export const init_page = (): void =>
     err(() => {
@@ -27,9 +30,8 @@ global.misplaced_dependency = (culprit_page: string): void =>
     err(() => {
         if (page !== culprit_page) {
             const msg: string =
-                browser.i18n.getMessage(
-                    'dependencicies_from_other_page_loaded_into_this_page_alert',
-                ) + culprit_page.toUpperCase();
+                we.i18n.getMessage('dependencicies_from_other_page_loaded_into_this_page_alert') +
+                culprit_page.toUpperCase();
 
             if (page === 'background') {
                 // eslint-disable-next-line no-console
@@ -58,19 +60,18 @@ export class Ext {
             console.log(error_obj.message);
         }, 'shr_1013');
 
-    public get_ext_version = (): string =>
-        err(() => browser.runtime.getManifest().version, 'shr_1013');
+    public get_ext_version = (): string => err(() => we.runtime.getManifest().version, 'shr_1013');
 
     public iterate_all_tabs = (callback: t.CallbackVariadicVoid): Promise<void> =>
         err_async(async () => {
-            const windows: Windows.Window[] = await browser.windows.getAll({
+            const windows: browser.windows.Window[] = await we.windows.getAll({
                 populate: true,
                 windowTypes: ['normal'],
             });
 
-            windows.forEach((window: Windows.Window): void => {
+            windows.forEach((window: browser.windows.Window): void => {
                 if (n(window.tabs)) {
-                    window.tabs.forEach((tab: Tabs.Tab): void => {
+                    window.tabs.forEach((tab: browser.tabs.Tab): void => {
                         if (n(tab.id)) {
                             callback(tab);
                         }
@@ -81,14 +82,14 @@ export class Ext {
 
     public msg = (msg: string): string =>
         err(() => {
-            const msg_2: string | undefined = browser.i18n.getMessage(msg);
+            const msg_2: string | undefined = we.i18n.getMessage(msg);
 
             return n(msg_2) ? msg_2 : '';
         }, 'shr_1014');
 
-    public get_active_tab = (): Promise<Tabs.Tab> =>
+    public get_active_tab = (): Promise<browser.tabs.Tab> =>
         err_async(async () => {
-            const tabs: Tabs.Tab[] = await browser.tabs.query({
+            const tabs: browser.tabs.Tab[] = await we.tabs.query({
                 active: true,
                 currentWindow: true,
             });
@@ -99,7 +100,7 @@ export class Ext {
     public send_msg = (msg: t.Msg): Promise<void> =>
         err_async(async () => {
             try {
-                await browser.runtime.sendMessage(msg);
+                await we.runtime.sendMessage(msg);
             } catch (error_obj) {
                 this.log_error(error_obj);
             }
@@ -108,7 +109,7 @@ export class Ext {
     public send_msg_resp = (msg: t.Msg): Promise<any> =>
         err_async(async () => {
             try {
-                const response = await browser.runtime.sendMessage(msg);
+                const response = await we.runtime.sendMessage(msg);
 
                 return response;
             } catch (error_obj) {
@@ -121,16 +122,17 @@ export class Ext {
     public send_msg_to_tab = (id: number, msg: t.Msg): Promise<void> =>
         err_async(async () => {
             try {
-                await browser.tabs.sendMessage(id, msg);
+                await we.tabs.sendMessage(id, msg);
             } catch (error_obj) {
                 this.log_error(error_obj);
             }
         }, 'shr_1018');
 
-    public send_msg_to_tab_resp = (id: number, msg: t.Msg): Promise<void> =>
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    public send_msg_to_tab_resp = (id: number, msg: t.Msg): Promise<void | object> =>
         err_async(async () => {
             try {
-                const response = await browser.tabs.sendMessage(id, msg);
+                const response = await we.tabs.sendMessage(id, msg);
 
                 return response;
             } catch (error_obj) {
@@ -142,7 +144,7 @@ export class Ext {
 
     public send_msg_to_active_tab = (msg: t.Msg): Promise<void> =>
         err_async(async () => {
-            const tab: Tabs.Tab = await this.get_active_tab();
+            const tab: browser.tabs.Tab = await this.get_active_tab();
 
             if (n(tab.id)) {
                 await this.send_msg_to_tab(tab.id, msg);
@@ -151,7 +153,7 @@ export class Ext {
 
     public send_msg_to_active_tab_resp = (msg: t.Msg): Promise<void> =>
         err_async(async () => {
-            const tab: Tabs.Tab = await this.get_active_tab();
+            const tab: browser.tabs.Tab = await this.get_active_tab();
 
             if (n(tab.id)) {
                 return this.send_msg_to_tab(tab.id, msg);
@@ -162,7 +164,7 @@ export class Ext {
 
     public send_msg_to_all_tabs = (msg: t.Msg): Promise<void> =>
         err_async(async () => {
-            await this.iterate_all_tabs((tab: Tabs.Tab) =>
+            await this.iterate_all_tabs((tab: browser.tabs.Tab) =>
                 err_async(async () => {
                     if (n(tab.id)) {
                         await this.send_msg_to_tab(tab.id, msg);
@@ -173,13 +175,13 @@ export class Ext {
 
     public storage_get = (keys?: string | string[]): Promise<any> =>
         err_async(async () => {
-            const data_sync: t.AnyRecord = await browser.storage.sync.get(keys);
+            const data_sync: t.AnyRecord = await we.storage.sync.get(keys);
 
             if (n(data_sync)) {
                 return data_sync;
             }
 
-            const data_local: t.AnyRecord = await browser.storage.local.get(keys);
+            const data_local: t.AnyRecord = await we.storage.local.get(keys);
 
             return data_local;
         }, 'shr_1023');
@@ -187,26 +189,26 @@ export class Ext {
     public storage_set = (obj: t.AnyRecord): Promise<void> =>
         err_async(async () => {
             try {
-                const data_local: t.AnyRecord = await browser.storage.local.get();
+                const data_local: t.AnyRecord = await we.storage.local.get();
 
                 if (n(data_local)) {
                     const merged_data: t.AnyRecord = _.merge(data_local, obj);
 
-                    await browser.storage.sync.set(merged_data);
+                    await we.storage.sync.set(merged_data);
                 } else {
-                    await browser.storage.sync.set(obj);
+                    await we.storage.sync.set(obj);
                 }
 
-                await browser.storage.local.clear();
+                await we.storage.local.clear();
             } catch (error_obj) {
-                const data_sync: t.AnyRecord = await browser.storage.sync.get();
+                const data_sync: t.AnyRecord = await we.storage.sync.get();
 
                 if (n(data_sync)) {
-                    await browser.storage.local.set(data_sync);
-                    await browser.storage.sync.clear();
+                    await we.storage.local.set(data_sync);
+                    await we.storage.sync.clear();
                 }
 
-                await browser.storage.local.set(obj);
+                await we.storage.local.set(obj);
             }
         }, 'shr_1024');
 }

@@ -23,6 +23,7 @@ interface Global {
         base_el: import('shared/t').BaseEl,
         selector: string,
     ) => NodeListOf<T1> | undefined;
+    we: typeof browser;
     page: string;
     misplaced_dependency: import('shared/t').CallbackVariadicVoid;
     show_err_ribbon: (

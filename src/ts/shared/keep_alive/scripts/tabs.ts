@@ -1,5 +1,3 @@
-import { browser } from 'webextension-polyfill-ts';
-
 import { t } from 'shared/internal';
 
 export class Tabs {
@@ -19,10 +17,10 @@ export class Tabs {
         connect_cond: t.CallbackBoolean;
     }): void =>
         err(() => {
-            browser.tabs.onUpdated.addListener((tab_id: number): void =>
+            we.tabs.onUpdated.addListener((tab_id: number): void =>
                 err(() => {
                     if (connect_cond()) {
-                        browser.tabs.connect(tab_id);
+                        we.tabs.connect(tab_id);
                     }
                 }, 'shr_1181'),
             );
@@ -30,6 +28,6 @@ export class Tabs {
 
     public add_on_connect_listener = (): void =>
         err(() => {
-            browser.runtime.onConnect.addListener(() => undefined);
+            we.runtime.onConnect.addListener(() => undefined);
         }, 'shr_1183');
 }

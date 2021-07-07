@@ -26,5 +26,4 @@ export type CallbackVariadicAny = (...args: any[]) => any;
 export type Constructable<T1> = new (args?: T1) => T1;
 export interface Msg {
     [index: string]: any;
-    msg: string;
 }

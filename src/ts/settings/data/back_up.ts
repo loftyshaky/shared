@@ -1,5 +1,4 @@
 import { ChangeEvent } from 'react';
-import { browser } from 'webextension-polyfill-ts';
 
 import { t } from 'shared/internal';
 import { o_inputs } from 'inputs/internal';
@@ -26,7 +25,7 @@ export class BackUp {
 
             a.href = URL.createObjectURL(blob);
             a.download = `${x.sanitize_filename(
-                browser.runtime.getManifest().name,
+                we.runtime.getManifest().name,
             )} back up ${new Date().toLocaleString(ext.msg('@@ui_locale').replace(/_/, '-'))}.json`;
             a.click();
             x.remove(a);
