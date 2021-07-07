@@ -61,6 +61,24 @@ export class Ext {
     public get_ext_version = (): string =>
         err(() => browser.runtime.getManifest().version, 'shr_1013');
 
+    public iterate_all_tabs = (callback: t.CallbackVariadicVoid): Promise<void> =>
+        err_async(async () => {
+            const windows: Windows.Window[] = await browser.windows.getAll({
+                populate: true,
+                windowTypes: ['normal'],
+            });
+
+            windows.forEach((window: Windows.Window): void => {
+                if (n(window.tabs)) {
+                    window.tabs.forEach((tab: Tabs.Tab): void => {
+                        if (n(tab.id)) {
+                            callback(tab);
+                        }
+                    });
+                }
+            });
+        }, 'shr_1179');
+
     public msg = (msg: string): string =>
         err(() => {
             const msg_2: string | undefined = browser.i18n.getMessage(msg);
@@ -142,22 +160,15 @@ export class Ext {
             return undefined;
         }, 'shr_1021');
 
-    public iterate_all_tabs = (msg: t.Msg): Promise<void> =>
+    public send_msg_to_all_tabs = (msg: t.Msg): Promise<void> =>
         err_async(async () => {
-            const windows: Windows.Window[] = await browser.windows.getAll({
-                populate: true,
-                windowTypes: ['normal'],
-            });
-
-            windows.forEach((window: Windows.Window): void => {
-                if (n(window.tabs)) {
-                    window.tabs.forEach((tab: Tabs.Tab): void => {
-                        if (n(tab.id)) {
-                            this.send_msg_to_tab(tab.id, msg);
-                        }
-                    });
-                }
-            });
+            await this.iterate_all_tabs((tab: Tabs.Tab) =>
+                err_async(async () => {
+                    if (n(tab.id)) {
+                        await this.send_msg_to_tab(tab.id, msg);
+                    }
+                }, 'shr_1180'),
+            );
         }, 'shr_1022');
 
     public storage_get = (keys?: string | string[]): Promise<any> =>
