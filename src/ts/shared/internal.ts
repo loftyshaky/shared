@@ -22,6 +22,7 @@ export * as d_loading_screen from 'shared/loading_screen/data';
 export * as d_tr from 'shared/tr/data';
 
 export * as s_css_vars from 'shared/css_vars/scripts';
+export * as s_keep_alive from 'shared/keep_alive/scripts';
 export * as s_no_tr from 'shared/no_tr/scripts';
 export * as s_tab_index from 'shared/tab_index/scripts';
 export * as s_theme from 'shared/theme/scripts';

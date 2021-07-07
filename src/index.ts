@@ -9,6 +9,7 @@ export {
     vars,
     prevent_default,
     init_shared,
+    s_keep_alive,
     c_loading_screen,
     c_tr,
     o_tr,
