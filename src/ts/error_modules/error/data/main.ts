@@ -121,8 +121,8 @@ export class Main {
             //> console output
             const line =
                 '--------------------------------------------------------------------------------';
-            const separator_top = x.in_service_worker ? `${line}\n` : '';
-            const separator_bottom = x.in_service_worker ? `\n${line}` : '';
+            const separator_top = `${line}\n`;
+            const separator_bottom = `\n${line}`;
             const error_code_and_msg = `${separator_top}Code: ${error_code}\nMessage: ${error_obj.message}`;
             const console_output = error_obj.stack
                 ? `${error_code_and_msg}\nStack: ${error_obj.stack + separator_bottom}`
