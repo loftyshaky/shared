@@ -105,6 +105,8 @@ export class X {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
+    public in_service_worker = typeof document === 'undefined';
+
     // el.nodeType === 1 = not document
 
     private all = (

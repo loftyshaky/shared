@@ -35,9 +35,7 @@ export class Main {
             hide_delay = this.hide_delay,
         }: i_error.ShowError,
     ): void => {
-        const is_browser = global !== undefined;
-
-        if (is_browser && !error_obj.silent && !silent) {
+        if (!x.in_service_worker && !error_obj.silent && !silent) {
             d_error.Msg.i().change_visibility_of_advanced_msg({ is_visible: false });
 
             const error_msg_pre = ext.msg(`${error_obj.error_msg || error_msg_key}_error`);
@@ -123,8 +121,8 @@ export class Main {
             //> console output
             const line =
                 '--------------------------------------------------------------------------------';
-            const separator_top = is_browser ? '' : `${line}\n`;
-            const separator_bottom = is_browser ? '' : `\n${line}`;
+            const separator_top = x.in_service_worker ? `${line}\n` : '';
+            const separator_bottom = x.in_service_worker ? `\n${line}` : '';
             const error_code_and_msg = `${separator_top}Code: ${error_code}\nMessage: ${error_obj.message}`;
             const console_output = error_obj.stack
                 ? `${error_code_and_msg}\nStack: ${error_obj.stack + separator_bottom}`
