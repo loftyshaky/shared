@@ -211,4 +211,48 @@ export class Ext {
                 await we.storage.local.set(obj);
             }
         }, 'shr_1024');
+
+    public inject_js_and_css_in_content_script = (
+        js_file_paths: string[],
+        css_file_paths: string[],
+    ): Promise<void> =>
+        err_async(async () => {
+            await this.iterate_all_tabs((tab: browser.tabs.Tab) =>
+                err(async () => {
+                    if (n(tab.id)) {
+                        const already_injected_script_func = () =>
+                            document.title.includes(
+                                '\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b',
+                            );
+
+                        const result = await (we as any).scripting.executeScript({
+                            function: already_injected_script_func,
+                            target: { tabId: tab.id },
+                        });
+
+                        const already_injected_script: boolean = result[0].result;
+
+                        if (!already_injected_script) {
+                            js_file_paths.forEach((file_path: string): void =>
+                                err(() => {
+                                    (we as any).scripting.executeScript({
+                                        target: { tabId: tab.id },
+                                        files: [file_path],
+                                    });
+                                }, 'shr_1186'),
+                            );
+
+                            css_file_paths.forEach((file_path: string): void =>
+                                err(() => {
+                                    (we as any).scripting.insertCSS({
+                                        target: { tabId: tab.id },
+                                        files: [file_path],
+                                    });
+                                }, 'shr_1187'),
+                            );
+                        }
+                    }
+                }, 'shr_1184'),
+            );
+        }, 'shr_1185');
 }

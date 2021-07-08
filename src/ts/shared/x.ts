@@ -105,7 +105,8 @@ export class X {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public in_service_worker = typeof document === 'undefined';
+    public in_service_worker: boolean = typeof document === 'undefined';
+    public invisible_chars: string = '\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b';
 
     // el.nodeType === 1 = not document
 
@@ -455,4 +456,9 @@ export class X {
         }, 'shr_1110');
 
     public px = (val: string | number | undefined): string => err(() => `${val}px`, 'shr_1169');
+
+    public insert_invisible_chars_in_title = (): void =>
+        err(() => {
+            document.title += this.invisible_chars;
+        }, 'shr_1188');
 }
