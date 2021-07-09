@@ -56,6 +56,9 @@
     "transition_duration_label_text": {
         "message": "Продолжительность анимации (мс)"
     },
+    "enable_cut_features_label_text": {
+        "message": "Включить вырезанные функции"
+    },
     "light_option_text": {
         "message": "Светлая"
     },

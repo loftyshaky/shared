@@ -59,6 +59,9 @@
     "transition_duration_label_text": {
         "message": "Animation duration (ms)"
     },
+    "enable_cut_features_label_text": {
+        "message": "Enable cut features"
+    },
     "light_option_text": {
         "message": "Light"
     },

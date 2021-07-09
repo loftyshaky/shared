@@ -139,6 +139,10 @@ export class Sections {
                             event_callback: input_change_val_callback,
                             warn_state_checker: d_inputs.Val.i().validate_input,
                         }),
+                        new o_inputs.Checkbox({
+                            name: 'enable_cut_features',
+                            event_callback: input_change_val_callback,
+                        }),
                         ...admin_inputs,
                     ],
                 }),
