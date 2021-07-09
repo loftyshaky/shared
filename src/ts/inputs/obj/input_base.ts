@@ -6,6 +6,7 @@ import { i_inputs } from 'inputs/internal';
 
 export class InputBase {
     public name: string;
+    public is_cut?: boolean = false;
     public is_visible_key?: string; // settings object key
     public is_visible?: boolean = true;
     public is_in_focus_state?: boolean = false;
@@ -25,6 +26,7 @@ export class InputBase {
 
     public constructor(obj: InputBase) {
         makeObservable(this, {
+            is_cut: observable,
             is_visible: observable,
             is_in_focus_state: observable,
             is_in_warn_state: observable,

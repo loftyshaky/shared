@@ -13,7 +13,8 @@ export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
             }, 'shr_1138'),
         );
 
-        return (
+        return input.is_visible &&
+            ((input.is_cut && data.settings.enable_cut_features) || !input.is_cut) ? (
             <div
                 className={x.cls([
                     'input_item',
@@ -26,6 +27,6 @@ export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
                 {include_label ? <c_inputs.Label input={input} /> : undefined}
                 {input_w}
             </div>
-        );
+        ) : null;
     },
 );
