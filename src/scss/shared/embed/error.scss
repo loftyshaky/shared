@@ -82,6 +82,10 @@ button {
         outline-color: $black;
     }
 
+    &.is_notification {
+        background-color: #4d94ea;
+    }
+
     &.is_highlighted {
         background-color: #e28036;
     }

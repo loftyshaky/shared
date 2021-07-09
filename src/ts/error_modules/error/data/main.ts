@@ -25,28 +25,32 @@ export class Main {
     exit = terminate code execution (true) / show error message; don't terminate code execution (false)
     */
     public show_error = (
-        error_obj: i_error.ErrorObj,
-        error_code: string,
+        error_obj: i_error.ErrorObj | undefined,
+        error_code: string | undefined,
         {
             error_msg_key = '',
             silent = false,
             persistent = false,
             exit = false,
             hide_delay = this.hide_delay,
-        }: i_error.ShowError,
+            is_notification = false,
+            notification_msg_key = '',
+        }: i_error.ShowError = {},
     ): void => {
-        if (!x.in_service_worker && !error_obj.silent && !silent) {
-            d_error.Msg.i().change_visibility_of_advanced_msg({ is_visible: false });
+        if (!x.in_service_worker && !silent && (!error_obj || !error_obj.silent)) {
+            if (is_notification) {
+                d_error.State.i().change_state({
+                    observable_key: 'is_notification',
+                    state: true,
+                });
 
-            const error_msg_pre = ext.msg(`${error_obj.error_msg || error_msg_key}_error`);
-            const error_msg_final = error_msg_pre ? ` ${error_msg_pre}` : '';
-
-            d_error.Msg.i().basic_msg = `${ext.msg('an_error_occured_msg') + error_msg_final}`;
-            d_error.Msg.i().advanced_msg = `${
-                ext.msg('error_code_label') + (error_obj.error_code || error_code)
-            }\n${ext.msg('error_type_label') + error_obj.name}\n${
-                ext.msg('error_msg_label') + error_obj.message
-            }`;
+                d_error.Msg.i().notification_msg_key = notification_msg_key;
+            } else {
+                d_error.State.i().change_state({
+                    observable_key: 'is_notification',
+                    state: false,
+                });
+            }
 
             d_error.State.i().change_state({
                 observable_key: 'is_visible',
@@ -59,7 +63,7 @@ export class Main {
 
             d_error.State.i().clear_all_reset_state_timeouts();
 
-            if (!error_obj.persistent && !persistent) {
+            if ((!error_obj || !error_obj.persistent) && !persistent) {
                 d_error.State.i().run_reset_state_timeout({
                     observable_key: 'is_visible',
                     delay: hide_delay + this.highlight_time,
@@ -70,67 +74,81 @@ export class Main {
                 observable_key: 'is_highlighted',
                 delay: this.highlight_time,
             });
-        }
 
-        if (error_obj.exit || exit) {
-            const updated_error_obj: i_error.ErrorObj = error_obj;
+            if (error_obj && error_code) {
+                d_error.Msg.i().change_visibility_of_advanced_msg({ is_visible: false });
 
-            const set_updated_error_obj_propery = ({
-                key,
-                undefined_property,
-            }: {
-                key: string;
-                undefined_property: boolean | string | number;
-            }): void => {
-                (updated_error_obj[key as keyof i_error.ErrorObj] as
-                    | string
-                    | number
-                    | boolean
-                    | undefined) = n(error_obj[key as keyof i_error.ErrorObj])
-                    ? error_obj[key as keyof i_error.ErrorObj]
-                    : undefined_property;
-            };
+                const error_msg_pre = ext.msg(`${error_obj.error_msg || error_msg_key}_error`);
+                const error_msg_final = error_msg_pre ? ` ${error_msg_pre}` : '';
 
-            set_updated_error_obj_propery({
-                key: 'error_code',
-                undefined_property: error_code,
-            });
-            set_updated_error_obj_propery({
-                key: 'error_msg',
-                undefined_property: error_msg_key,
-            });
-            set_updated_error_obj_propery({
-                key: 'silent',
-                undefined_property: silent,
-            });
-            set_updated_error_obj_propery({
-                key: 'persistent',
-                undefined_property: persistent,
-            });
-            set_updated_error_obj_propery({
-                key: 'exit',
-                undefined_property: exit,
-            });
-            set_updated_error_obj_propery({
-                key: 'hide_delay',
-                undefined_property: hide_delay,
-            });
+                d_error.Msg.i().basic_msg = `${ext.msg('an_error_occured_msg') + error_msg_final}`;
+                d_error.Msg.i().advanced_msg = `${
+                    ext.msg('error_code_label') + (error_obj.error_code || error_code)
+                }\n${ext.msg('error_type_label') + error_obj.name}\n${
+                    ext.msg('error_msg_label') + error_obj.message
+                }`;
 
-            throw updated_error_obj;
-        } else {
-            //> console output
-            const line =
-                '--------------------------------------------------------------------------------';
-            const separator_top = `${line}\n`;
-            const separator_bottom = `\n${line}`;
-            const error_code_and_msg = `${separator_top}Code: ${error_code}\nMessage: ${error_obj.message}`;
-            const console_output = error_obj.stack
-                ? `${error_code_and_msg}\nStack: ${error_obj.stack + separator_bottom}`
-                : error_code_and_msg + separator_bottom;
-            //< console output
+                if (error_obj.exit || exit) {
+                    const updated_error_obj: i_error.ErrorObj = error_obj;
 
-            // eslint-disable-next-line no-console
-            console.error(console_output);
+                    const set_updated_error_obj_propery = ({
+                        key,
+                        undefined_property,
+                    }: {
+                        key: string;
+                        undefined_property: boolean | string | number;
+                    }): void => {
+                        (updated_error_obj[key as keyof i_error.ErrorObj] as
+                            | string
+                            | number
+                            | boolean
+                            | undefined) = n(error_obj[key as keyof i_error.ErrorObj])
+                            ? error_obj[key as keyof i_error.ErrorObj]
+                            : undefined_property;
+                    };
+
+                    set_updated_error_obj_propery({
+                        key: 'error_code',
+                        undefined_property: error_code,
+                    });
+                    set_updated_error_obj_propery({
+                        key: 'error_msg',
+                        undefined_property: error_msg_key,
+                    });
+                    set_updated_error_obj_propery({
+                        key: 'silent',
+                        undefined_property: silent,
+                    });
+                    set_updated_error_obj_propery({
+                        key: 'persistent',
+                        undefined_property: persistent,
+                    });
+                    set_updated_error_obj_propery({
+                        key: 'exit',
+                        undefined_property: exit,
+                    });
+                    set_updated_error_obj_propery({
+                        key: 'hide_delay',
+                        undefined_property: hide_delay,
+                    });
+
+                    throw updated_error_obj;
+                } else {
+                    //> console output
+                    const line =
+                        '--------------------------------------------------------------------------------';
+                    const separator_top = `${line}\n`;
+                    const separator_bottom = `\n${line}`;
+                    const error_code_and_msg = `${separator_top}Code: ${error_code}\nMessage: ${error_obj.message}`;
+                    const console_output = error_obj.stack
+                        ? `${error_code_and_msg}\nStack: ${error_obj.stack + separator_bottom}`
+                        : error_code_and_msg + separator_bottom;
+                    //< console output
+
+                    // eslint-disable-next-line no-console
+                    console.error(console_output);
+                }
+            }
         }
     };
 }

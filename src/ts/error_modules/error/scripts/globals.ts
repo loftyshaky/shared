@@ -4,8 +4,8 @@ declare const global: Global;
 
 declare global {
     function show_err_ribbon(
-        error_obj: i_error.ErrorObj,
-        error_code: string,
+        error_obj: i_error.ErrorObj | undefined,
+        error_code: string | undefined,
         obj?: i_error.ShowError,
     ): void;
     function err<T1>(f: () => T1, error_code: string, obj?: i_error.ShowError): T1;
@@ -19,14 +19,16 @@ declare global {
 }
 
 global.show_err_ribbon = (
-    error_obj: i_error.ErrorObj,
-    error_code: string,
+    error_obj: i_error.ErrorObj | undefined,
+    error_code: string | undefined,
     {
         error_msg_key = '',
         silent = false,
         persistent = false,
         exit = false,
         hide_delay = d_error.Main.i().hide_delay,
+        is_notification = false,
+        notification_msg_key = '',
     }: i_error.ShowError = {},
 ) =>
     d_error.Main.i().show_error(error_obj, error_code, {
@@ -35,6 +37,8 @@ global.show_err_ribbon = (
         persistent,
         exit,
         hide_delay,
+        is_notification,
+        notification_msg_key,
     });
 
 global.err = <T1>(

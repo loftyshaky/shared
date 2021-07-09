@@ -15,6 +15,7 @@ export class State {
             is_loaded: observable,
             is_visible: observable,
             is_highlighted: observable,
+            is_notification: observable,
             is_visible_style: computed,
             is_highlighted_cls: computed,
             change_state: action,
@@ -24,6 +25,7 @@ export class State {
     private is_loaded: boolean = false;
     private is_visible: boolean = false;
     private is_highlighted: boolean = false; // true = error ribbon is yellow / false = error ribbon is red
+    public is_notification: boolean = false;
 
     public get is_visible_style(): string {
         return this.is_loaded && this.is_visible ? '' : 'none';
@@ -31,6 +33,10 @@ export class State {
 
     public get is_highlighted_cls(): string {
         return this.is_highlighted ? 'is_highlighted' : '';
+    }
+
+    public get is_notification_cls(): string {
+        return this.is_notification ? 'is_notification' : '';
     }
 
     private is_visible_timeout: ReturnType<typeof setTimeout> | undefined;
@@ -43,7 +49,6 @@ export class State {
         observable_key: i_error.ObservableKeys;
         state: boolean;
     }): void => {
-        // show or hide / highlight dehighlight error ribbon
         this[observable_key as i_error.ObservableKeys] = state;
     };
 

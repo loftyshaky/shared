@@ -12,7 +12,12 @@ export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
 
     return (
         <div
-            className={x.cls(['main', 'error', d_error.State.i().is_highlighted_cls])}
+            className={x.cls([
+                'main',
+                'error',
+                d_error.State.i().is_highlighted_cls,
+                d_error.State.i().is_notification_cls,
+            ])}
             role='none'
             style={{
                 display: d_error.State.i().is_visible_style,
