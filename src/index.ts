@@ -1,7 +1,7 @@
 import 'error_modules/error/scripts';
 import { init_page } from 'shared/internal';
 
-export { c_crash_handler, c_error } from 'error_modules/internal';
+export { c_crash_handler, c_error, d_crash_handler } from 'error_modules/internal';
 export {
     Ext,
     X,

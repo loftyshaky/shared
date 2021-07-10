@@ -1,6 +1,6 @@
 import { makeObservable, action } from 'mobx';
 
-import { d_error, i_error } from 'error_modules/internal';
+import { d_crash_handler, d_error, i_error } from 'error_modules/internal';
 
 export class Main {
     private static i0: Main;
