@@ -1,8 +1,10 @@
 // Allowing send_msg functions to throw errors (red) makes extension freeze when sending message to tab without onMessage event listrener!
+// Not using err/err_async because it causes infinite loop in content script and freezing when you disable/reload extension!
 
 import { browser as browser_2 } from 'webextension-polyfill-ts';
 import _ from 'lodash';
 
+import { d_error } from 'error_modules/internal';
 import { t } from 'shared/internal';
 
 declare const global: Global;
@@ -54,16 +56,23 @@ export class Ext {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    private log_error = (error_obj: Error): void =>
-        err(() => {
-            // eslint-disable-next-line no-console
-            console.log(error_obj.message);
-        }, 'shr_1013');
+    private log_error = (error_obj: Error, error_code: string): void => {
+        // eslint-disable-next-line no-console
+        d_error.Main.i().output_error(error_obj, error_code);
+    };
 
-    public get_ext_version = (): string => err(() => we.runtime.getManifest().version, 'shr_1013');
+    public get_ext_version = (): string => {
+        try {
+            return we.runtime.getManifest().version;
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1013');
+        }
 
-    public iterate_all_tabs = (callback: t.CallbackVariadicVoid): Promise<void> =>
-        err_async(async () => {
+        return '';
+    };
+
+    public iterate_all_tabs = async (callback: t.CallbackVariadicVoid): Promise<void> => {
+        try {
             const windows: browser.windows.Window[] = await we.windows.getAll({
                 populate: true,
                 windowTypes: ['normal'],
@@ -78,103 +87,123 @@ export class Ext {
                     });
                 }
             });
-        }, 'shr_1179');
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1179');
+        }
+    };
 
-    public msg = (msg: string): string =>
-        err(() => {
+    public msg = (msg: string): string => {
+        try {
             const msg_2: string | undefined = we.i18n.getMessage(msg);
 
             return n(msg_2) ? msg_2 : '';
-        }, 'shr_1014');
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1014');
+        }
 
-    public get_active_tab = (): Promise<browser.tabs.Tab> =>
-        err_async(async () => {
+        return '';
+    };
+
+    public get_active_tab = async (): Promise<browser.tabs.Tab | undefined> => {
+        try {
             const tabs: browser.tabs.Tab[] = await we.tabs.query({
                 active: true,
                 currentWindow: true,
             });
 
             return tabs[0];
-        }, 'shr_1015');
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1015');
+        }
 
-    public send_msg = (msg: t.Msg): Promise<void> =>
-        err_async(async () => {
-            try {
-                await we.runtime.sendMessage(msg);
-            } catch (error_obj) {
-                this.log_error(error_obj);
-            }
-        }, 'shr_1016');
+        return undefined;
+    };
 
-    public send_msg_resp = (msg: t.Msg): Promise<any> =>
-        err_async(async () => {
-            try {
-                const response = await we.runtime.sendMessage(msg);
+    public send_msg = async (msg: t.Msg): Promise<void> => {
+        try {
+            await we.runtime.sendMessage(msg);
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1016');
+        }
+    };
 
-                return response;
-            } catch (error_obj) {
-                this.log_error(error_obj);
-            }
+    public send_msg_resp = async (msg: t.Msg): Promise<any> => {
+        try {
+            const response = await we.runtime.sendMessage(msg);
 
-            return undefined;
-        }, 'shr_1017');
+            return response;
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1017');
+        }
 
-    public send_msg_to_tab = (id: number, msg: t.Msg): Promise<void> =>
-        err_async(async () => {
-            try {
-                await we.tabs.sendMessage(id, msg);
-            } catch (error_obj) {
-                this.log_error(error_obj);
-            }
-        }, 'shr_1018');
+        return undefined;
+    };
+
+    public send_msg_to_tab = async (id: number, msg: t.Msg): Promise<void> => {
+        try {
+            await we.tabs.sendMessage(id, msg);
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1018');
+        }
+    };
 
     // eslint-disable-next-line @typescript-eslint/ban-types
-    public send_msg_to_tab_resp = (id: number, msg: t.Msg): Promise<void | object> =>
-        err_async(async () => {
-            try {
-                const response = await we.tabs.sendMessage(id, msg);
+    public send_msg_to_tab_resp = async (id: number, msg: t.Msg): Promise<void | object> => {
+        try {
+            const response = await we.tabs.sendMessage(id, msg);
 
-                return response;
-            } catch (error_obj) {
-                this.log_error(error_obj);
-            }
+            return response;
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1019');
+        }
 
-            return undefined;
-        }, 'shr_1019');
+        return undefined;
+    };
 
-    public send_msg_to_active_tab = (msg: t.Msg): Promise<void> =>
-        err_async(async () => {
-            const tab: browser.tabs.Tab = await this.get_active_tab();
+    public send_msg_to_active_tab = async (msg: t.Msg): Promise<void> => {
+        try {
+            const tab: browser.tabs.Tab | undefined = await this.get_active_tab();
 
-            if (n(tab.id)) {
+            if (n(tab) && n(tab.id)) {
                 await this.send_msg_to_tab(tab.id, msg);
             }
-        }, 'shr_1020');
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1020');
+        }
+    };
 
-    public send_msg_to_active_tab_resp = (msg: t.Msg): Promise<void> =>
-        err_async(async () => {
-            const tab: browser.tabs.Tab = await this.get_active_tab();
+    public send_msg_to_active_tab_resp = async (msg: t.Msg): Promise<any> => {
+        try {
+            const tab: browser.tabs.Tab | undefined = await this.get_active_tab();
 
-            if (n(tab.id)) {
+            if (n(tab) && n(tab.id)) {
                 return this.send_msg_to_tab(tab.id, msg);
             }
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1021');
+        }
 
-            return undefined;
-        }, 'shr_1021');
+        return undefined;
+    };
 
-    public send_msg_to_all_tabs = (msg: t.Msg): Promise<void> =>
-        err_async(async () => {
-            await this.iterate_all_tabs((tab: browser.tabs.Tab) =>
-                err_async(async () => {
+    public send_msg_to_all_tabs = async (msg: t.Msg): Promise<void> => {
+        try {
+            await this.iterate_all_tabs(async (tab: browser.tabs.Tab) => {
+                try {
                     if (n(tab.id)) {
                         await this.send_msg_to_tab(tab.id, msg);
                     }
-                }, 'shr_1180'),
-            );
-        }, 'shr_1022');
+                } catch (error_obj) {
+                    this.log_error(error_obj, 'shr_1180');
+                }
+            });
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1022');
+        }
+    };
 
-    public storage_get = (keys?: string | string[]): Promise<any> =>
-        err_async(async () => {
+    public storage_get = async (keys?: string | string[]): Promise<any> => {
+        try {
             const data_sync: t.AnyRecord = await we.storage.sync.get(keys);
 
             if (n(data_sync)) {
@@ -184,75 +213,84 @@ export class Ext {
             const data_local: t.AnyRecord = await we.storage.local.get(keys);
 
             return data_local;
-        }, 'shr_1023');
+        } catch (error_obj) {
+            this.log_error(error_obj, 'shr_1023');
+        }
 
-    public storage_set = (obj: t.AnyRecord): Promise<void> =>
-        err_async(async () => {
-            try {
-                const data_local: t.AnyRecord = await we.storage.local.get();
+        return undefined;
+    };
 
-                if (n(data_local)) {
-                    const merged_data: t.AnyRecord = _.merge(data_local, obj);
+    public storage_set = async (obj: t.AnyRecord): Promise<void> => {
+        try {
+            const data_local: t.AnyRecord = await we.storage.local.get();
 
-                    await we.storage.sync.set(merged_data);
-                } else {
-                    await we.storage.sync.set(obj);
-                }
+            if (n(data_local)) {
+                const merged_data: t.AnyRecord = _.merge(data_local, obj);
 
-                await we.storage.local.clear();
-            } catch (error_obj) {
-                const data_sync: t.AnyRecord = await we.storage.sync.get();
-
-                if (n(data_sync)) {
-                    await we.storage.local.set(data_sync);
-                    await we.storage.sync.clear();
-                }
-
-                await we.storage.local.set(obj);
+                await we.storage.sync.set(merged_data);
+            } else {
+                await we.storage.sync.set(obj);
             }
-        }, 'shr_1024');
 
-    public inject_js_and_css_in_content_script = (
+            await we.storage.local.clear();
+        } catch (error_obj) {
+            const data_sync: t.AnyRecord = await we.storage.sync.get();
+
+            if (n(data_sync)) {
+                await we.storage.local.set(data_sync);
+                await we.storage.sync.clear();
+            }
+
+            await we.storage.local.set(obj);
+        }
+    };
+
+    public inject_js_and_css_in_content_script = async (
         js_file_paths: string[],
         css_file_paths: string[],
-    ): Promise<void> =>
-        err_async(async () => {
-            await this.iterate_all_tabs((tab: browser.tabs.Tab) =>
-                err(async () => {
-                    if (n(tab.id)) {
-                        const already_injected_script_func = () =>
-                            document.title.includes(
-                                '\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b',
-                            );
+    ): Promise<void> => {
+        await this.iterate_all_tabs(async (tab: browser.tabs.Tab) => {
+            try {
+                if (n(tab.id)) {
+                    const already_injected_script_func = () =>
+                        document.title.includes(
+                            '\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b',
+                        );
 
-                        const result = await (we as any).scripting.executeScript({
-                            function: already_injected_script_func,
-                            target: { tabId: tab.id },
+                    const result = await (we as any).scripting.executeScript({
+                        function: already_injected_script_func,
+                        target: { tabId: tab.id },
+                    });
+
+                    const already_injected_script: boolean = result[0].result;
+
+                    if (!already_injected_script) {
+                        js_file_paths.forEach((file_path: string): void => {
+                            try {
+                                (we as any).scripting.executeScript({
+                                    target: { tabId: tab.id },
+                                    files: [file_path],
+                                });
+                            } catch (error_obj) {
+                                this.log_error(error_obj, 'shr_1186');
+                            }
                         });
 
-                        const already_injected_script: boolean = result[0].result;
-
-                        if (!already_injected_script) {
-                            js_file_paths.forEach((file_path: string): void =>
-                                err(() => {
-                                    (we as any).scripting.executeScript({
-                                        target: { tabId: tab.id },
-                                        files: [file_path],
-                                    });
-                                }, 'shr_1186'),
-                            );
-
-                            css_file_paths.forEach((file_path: string): void =>
-                                err(() => {
-                                    (we as any).scripting.insertCSS({
-                                        target: { tabId: tab.id },
-                                        files: [file_path],
-                                    });
-                                }, 'shr_1187'),
-                            );
-                        }
+                        css_file_paths.forEach((file_path: string): void => {
+                            try {
+                                (we as any).scripting.insertCSS({
+                                    target: { tabId: tab.id },
+                                    files: [file_path],
+                                });
+                            } catch (error_obj) {
+                                this.log_error(error_obj, 'shr_1187');
+                            }
+                        });
                     }
-                }, 'shr_1184'),
-            );
-        }, 'shr_1185');
+                }
+            } catch (error_obj) {
+                this.log_error(error_obj, 'shr_1184');
+            }
+        });
+    };
 }
