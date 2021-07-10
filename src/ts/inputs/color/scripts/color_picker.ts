@@ -115,7 +115,7 @@ export class ColorPicker {
 
                 pickr.setColorRepresentation('HSVA');
 
-                runInAction((): void =>
+                runInAction(() =>
                     err(() => {
                         input.color_picker_width = color_picker.offsetWidth.toString();
                         input.color_picker_height = color_picker.offsetHeight.toString();

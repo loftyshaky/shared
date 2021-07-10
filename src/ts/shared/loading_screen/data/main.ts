@@ -37,7 +37,7 @@ export class Main {
         err_async(async () => {
             await x.delay(300);
 
-            runInAction((): void =>
+            runInAction(() =>
                 err(() => {
                     this.outer_is_visible = false;
                 }, 'shr_1156'),
@@ -45,7 +45,7 @@ export class Main {
 
             await x.delay(+s_css_vars.Main.i().get({ name: 'transition_duration' }));
 
-            runInAction((): void =>
+            runInAction(() =>
                 err(() => {
                     this.inner_is_none = true;
                 }, 'shr_1157'),

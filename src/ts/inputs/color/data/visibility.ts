@@ -66,7 +66,7 @@ export class Visibility {
         err_async(async () => {
             await x.delay(30);
 
-            runInAction((): void =>
+            runInAction(() =>
                 err(() => {
                     const new_input: o_color.Color = input;
                     const is_palette_color: boolean = input.is_palette_color!({ i });
