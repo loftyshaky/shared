@@ -1,6 +1,6 @@
 const path = require('path');
 
-const { absolute_paths } = require('../../../absolute_paths');
+const { projects_path } = require('./shared/projects_path');
 const { ProjectName } = require('./shared/project_name');
 
 const project_name = new ProjectName();
@@ -16,9 +16,7 @@ const apps = [
 const app_types = ['package', 'package', 'ext', 'ext', 'ext'];
 
 const create_app_paths = () =>
-    apps.map((project) =>
-        path.join(absolute_paths.q, project, project_name.transform({ project })),
-    );
+    apps.map((project) => path.join(projects_path.q, project, project_name.transform({ project })));
 
 const app = create_app_paths();
 

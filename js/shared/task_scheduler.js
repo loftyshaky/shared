@@ -13,11 +13,11 @@ class TaskScheduler {
 
             if (remove_dist) {
                 // eslint-disable-next-line global-require
-                const { absolute_paths } = require('../../../../absolute_paths');
+                const { projects_path } = require('./projects_path');
 
                 fs.removeSync(
                     path.join(
-                        absolute_paths.q,
+                        projects_path.q,
                         package_name,
                         project_name.transform({ project: package_name }),
                         'dist',
