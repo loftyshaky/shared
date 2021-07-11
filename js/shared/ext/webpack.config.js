@@ -103,6 +103,10 @@ const shared_config = ({
         optimization: {
             sideEffects: argv.mode === 'production',
         },
+        performance: {
+            maxEntrypointSize: 52428800,
+            maxAssetSize: 52428800,
+        },
     };
 };
 
