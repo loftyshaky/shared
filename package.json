@@ -1,7 +1,7 @@
 {
     "name": "@loftyshaky/shared",
     "description": "-",
-    "version": "0.0.10",
+    "version": "0.0.17",
     "author": "loftyshaky",
     "license": "MIT",
     "repository": {
@@ -11,7 +11,7 @@
     "scripts": {
         "dev": "rollup -c --watch --environment mode:development",
         "prod": "rollup -c --environment mode:production",
-        "pub": "npm publish --folder dist --access public",
+        "pub": "npm publish --access public",
         "format": "prettier --config .prettierrc.js rollup.config.js js/**/*.js src/**/*.ts src/scss/**/*.scss src/_locales/**/*.json --write"
     },
     "devDependencies": {
@@ -32,10 +32,12 @@
         "del": "^6.0.0",
         "eslint": "^7.15.0",
         "eslint-config-airbnb": "^18.2.1",
+        "eslint-config-prettier": "^8.3.0",
         "eslint-import-resolver-typescript": "^2.3.0",
         "eslint-plugin-import": "^2.22.1",
         "eslint-plugin-json": "^2.1.2",
         "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-prettier": "^3.4.0",
         "eslint-plugin-react": "^7.21.5",
         "eslint-plugin-react-hooks": "^4.2.0",
         "fs-extra": "^9.0.1",
@@ -54,9 +56,6 @@
     },
     "dependencies": {
         "@simonwep/pickr": "^1.8.1",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-prettier": "^3.4.0",
-        "focus-trap-react": "^8.5.0",
         "lodash": "^4.17.20",
         "mobx": "^6.0.4",
         "mobx-react": "^7.0.5",
@@ -65,8 +64,6 @@
         "prettier": "^2.3.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
-        "react-focus-lock": "^2.5.1",
-        "short-unique-id": "^3.2.0",
         "webextension-polyfill-ts": "^0.26.0"
     }
 }
