@@ -102,6 +102,7 @@ const shared_config = ({
         devtool: false,
         optimization: {
             sideEffects: argv.mode === 'production',
+            splitChunks: false,
         },
         performance: {
             maxEntrypointSize: 52428800,
