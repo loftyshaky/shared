@@ -13,7 +13,6 @@ class Manifest {
             default_locale: 'en',
             icons: {
                 16: 'icon16.png',
-                48: 'icon48.png',
             },
             browser_action: {
                 default_icon: {
@@ -26,6 +25,10 @@ class Manifest {
 
         if (['chrome', 'opera', 'edge'].includes(browser)) {
             shared_manifest.icons[128] = 'icon128.png';
+        }
+
+        if (['chrome', 'firefox'].includes(browser)) {
+            shared_manifest.icons[48] = 'icon48.png';
         }
 
         if (browser === 'edge') {
