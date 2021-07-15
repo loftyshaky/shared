@@ -1,5 +1,3 @@
-import { t } from 'shared/internal';
-
 export class Tabs {
     private static i0: Tabs;
 
@@ -11,17 +9,11 @@ export class Tabs {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public add_on_updated_listener = ({
-        connect_cond,
-    }: {
-        connect_cond: t.CallbackBoolean;
-    }): void =>
+    public keep_long = (): void =>
         err(() => {
             we.tabs.onUpdated.addListener((tab_id: number): void =>
                 err(() => {
-                    if (connect_cond()) {
-                        we.tabs.connect(tab_id);
-                    }
+                    we.tabs.connect(tab_id);
                 }, 'shr_1181'),
             );
         }, 'shr_1182');
