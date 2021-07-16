@@ -8,6 +8,7 @@ const shared_config = ({
     MiniCssExtractPlugin,
     OptimizeCssAssetsPlugin,
     // FixStyleOnlyEntriesPlugin,
+    FixStyleOnlyEntriesPlugin,
     CopyWebpackPlugin,
     copy_patters,
     callback_begin,
@@ -75,6 +76,7 @@ const shared_config = ({
             new MiniCssExtractPlugin(),
             new OptimizeCssAssetsPlugin(),
             // new FixStyleOnlyEntriesPlugin(),
+            new FixStyleOnlyEntriesPlugin(),
             new CopyWebpackPlugin({
                 patterns: [
                     ...[
