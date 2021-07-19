@@ -12,6 +12,7 @@ $window_mode_svg_size: 64px;
 .main {
     @include full_spread;
     @include max_z_index;
+
     position: fixed;
     top: 0;
     margin: 0;
@@ -22,6 +23,7 @@ $window_mode_svg_size: 64px;
 
 svg {
     @include center_translate;
+
     position: absolute;
     height: $svg_size;
     width: $svg_size;

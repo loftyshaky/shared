@@ -1,17 +1,19 @@
 .reload_ui_btn_w {
     @include full_spread;
     @include center_flex;
+
     position: fixed;
     visibility: hidden;
 
     .btn {
         @include btn;
         @include outline_solid;
+
         outline-color: $black;
         visibility: visible;
         color: $black;
         background-color: $light_orange;
-        padding: 6px 12px 6px 12px;
+        padding: 6px 12px;
         width: max-content;
         font-size: 21px;
 
@@ -27,6 +29,7 @@
 
         &:focus {
             @include outline_solid_thick;
+
             outline-color: #293fe2;
         }
     }

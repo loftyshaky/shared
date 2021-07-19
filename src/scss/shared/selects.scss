@@ -2,7 +2,9 @@ $arrow_offset: 11px;
 $separator_offset: 7px;
 
 .input_item select.input {
+    /* stylelint-disable-next-line property-no-vendor-prefix */
     -webkit-appearance: none;
+    /* stylelint-disable-next-line property-no-vendor-prefix */
     -moz-appearance: none;
     background-position: calc(100% - 16px) $arrow_offset, calc(100% - 10px) $arrow_offset,
         calc(100% - 33px) $separator_offset;

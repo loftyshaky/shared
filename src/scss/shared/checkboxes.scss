@@ -9,12 +9,14 @@ $checkmark_size: 16px;
 
         .wrap_label {
             @include border_transparent;
+
             margin-right: $input_content_gap;
         }
 
         .box {
             @include center_flex;
             @include outline_solid;
+
             height: $box_size;
             width: $box_size;
             cursor: pointer;

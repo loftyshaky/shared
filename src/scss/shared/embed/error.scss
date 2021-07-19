@@ -15,12 +15,13 @@ button {
 
 .main {
     @include max_z_index;
+
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     margin: 0;
-    border: none;
+    border: 0;
     overflow: hidden;
     background-color: #da4747;
     color: white;
@@ -42,6 +43,7 @@ button {
 
     .close_btn {
         @include btn();
+
         position: absolute;
         top: $ext_name_offset;
         right: $ext_name_offset;
@@ -61,12 +63,13 @@ button {
     .more_info_btn {
         @include btn();
         @include outline_solid();
+
         outline-color: white;
         background-color: transparent;
         display: table;
         margin: auto;
         margin-top: 6px;
-        padding: 3px 6px 3px 6px;
+        padding: 3px 6px;
         cursor: pointer;
         white-space: nowrap;
     }
@@ -79,6 +82,7 @@ button {
     .more_info_btn:focus,
     .close_btn:focus {
         @include outline_solid_thick;
+
         outline-color: $black;
     }
 

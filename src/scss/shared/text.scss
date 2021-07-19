@@ -7,11 +7,13 @@ input {
 }
 
 .input_item {
+    /* stylelint-disable-next-line property-no-vendor-prefix */
     -moz-appearance: textfield;
 
     .input {
         &::-webkit-inner-spin-button,
         &::-webkit-outer-spin-button {
+            /* stylelint-disable-next-line property-no-vendor-prefix */
             -webkit-appearance: none;
         }
     }

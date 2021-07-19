@@ -1,8 +1,9 @@
 .inset_border {
     position: relative;
 
-    &:before {
+    &::before {
         @include outline_solid;
+
         content: '';
         position: absolute;
         pointer-events: none;
@@ -14,6 +15,6 @@
     }
 }
 
-.input_item.color .inset_border:before {
+.input_item.color .inset_border::before {
     outline: none;
 }

@@ -1,4 +1,4 @@
-/* stylelint-disable no-descending-specificity */
+/* stylelint-disable no-descending-specificity, selector-class-pattern */
 
 $text_input_outline_size: 20px;
 
@@ -19,13 +19,13 @@ $text_input_outline_size: 20px;
 .keyboard .input_item .pcr-picker:focus,
 .input_item .pcr-result:focus,
 .keyboard .input_item .color_picker_w input:not(.pcr-result):focus,
-.keyboard .btn.text_input:focus:before,
+.keyboard .btn.text_input:focus::before,
 body.keyboard .btn.text:focus,
 .keyboard .input_item .checkbox .box:focus,
 .keyboard .link:focus,
 .keyboard .input_item .link_btn:focus,
 .keyboard .input_item .help_btn:focus,
-.keyboard .input_item .input_w:not(.text):not(.textarea).is_in_focus_state:before {
+.keyboard .input_item .input_w:not(.text):not(.textarea).is_in_focus_state::before {
     @include outline_solid_thick;
 }
 
@@ -39,18 +39,21 @@ body.keyboard .btn.text:focus,
 
 .input_item .palette_visualization_w.selected:not(.opened) .palette_visualization {
     @include outline_solid_thick;
+
     outline-offset: $outline_offset;
 }
 
 .input_item .visualization_w.opened .visualization,
 .input_item .palette_visualization_w.opened .palette_visualization {
     @include outline_dashed_thick;
+
     outline-offset: $outline_offset;
 }
 
 .keyboard .input_item .visualization_w .visualization:focus,
 .keyboard .input_item .palette_visualization_w .palette_visualization:focus {
     @include outline_solid_thick;
+
     outline-offset: $outline_offset;
 }
 
@@ -59,7 +62,7 @@ body.keyboard .btn.text:focus,
     @include outline_dashed_thick;
 }
 
-.keyboard .btn.text_input:focus:before {
+.keyboard .btn.text_input:focus::before {
     content: '';
     position: absolute;
     width: $text_input_outline_size;

@@ -9,6 +9,7 @@
 
     .visualization {
         @include border;
+
         outline: none;
         margin-right: $input_content_gap;
         width: $color_input_height;
@@ -36,6 +37,7 @@
 
     .palette_visualization {
         @include border;
+
         outline: none;
         width: $color_input_height;
         height: $color_input_height;
@@ -64,6 +66,7 @@
     .palette {
         @include border;
         @include box_shadow;
+
         position: fixed;
         padding: 10px;
         width: 410px;

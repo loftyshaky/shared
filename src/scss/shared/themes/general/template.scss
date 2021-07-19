@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+
 @import 'template_focus';
 
 ::selection {
@@ -12,12 +14,12 @@
         background-color: $uvi;
     }
 
-    & ::-webkit-scrollbar-track {
+    ::-webkit-scrollbar-track {
         background-color: $gaq;
     }
 
-    & ::-webkit-scrollbar-corner,
-    & ::-webkit-resizer {
+    ::-webkit-scrollbar-corner,
+    ::-webkit-resizer {
         background-color: $lpe;
     }
 }
@@ -59,7 +61,7 @@ textarea {
 .section_btns {
     background-color: $nrf;
 
-    .filler:after {
+    .filler::after {
         background-color: $lpe;
     }
 }
@@ -76,7 +78,7 @@ textarea {
         background-color: $cop;
     }
 
-    &:after {
+    &::after {
         background-color: $lpe;
     }
 }

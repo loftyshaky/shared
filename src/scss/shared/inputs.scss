@@ -40,8 +40,9 @@ input[type='file'] {
 
     .input {
         @include input_basic;
+
         height: $input_height;
-        padding: 0px $input_inner_padding 0px $input_inner_padding;
+        padding: 0 $input_inner_padding 0 $input_inner_padding;
         flex-grow: 1;
         border-radius: 0;
         box-sizing: border-box;
@@ -63,8 +64,8 @@ input[type='file'] {
             @include border_transparent;
         }
 
-        &.is_in_focus_state:not(.select):before,
-        &.is_in_warn_state:not(.select):before {
+        &.is_in_focus_state:not(.select)::before,
+        &.is_in_warn_state:not(.select)::before {
             @include outline_solid_thick;
         }
     }

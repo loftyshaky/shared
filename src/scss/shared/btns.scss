@@ -1,5 +1,6 @@
 .btn {
     @include btn;
+
     border-radius: 0;
     position: relative;
     vertical-align: bottom;
@@ -8,16 +9,17 @@
         @include btn;
         @include border_transparent;
         @include outline_solid;
+
         display: block;
         height: $input_height + ($border_width * 2);
-        padding: 0px $input_inner_padding 0px $input_inner_padding;
+        padding: 0 $input_inner_padding 0 $input_inner_padding;
         outline-offset: -1px;
 
         &:not(:first-child) {
             margin-top: $gap;
         }
 
-        &:before {
+        &::before {
             display: none;
         }
     }

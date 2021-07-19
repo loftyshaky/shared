@@ -9,6 +9,7 @@
 
 .help_btn {
     @include btn;
+
     margin-left: var(--help_btn_margin);
     display: flex;
     order: 1;

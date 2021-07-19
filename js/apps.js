@@ -28,7 +28,8 @@ const create_prettierrc_paths = () => app.map((app_dir) => path.join(app_dir, '.
 
 const prettierrc = create_prettierrc_paths();
 
-const create_stylelintrc_paths = () => app.map((app_dir) => path.join(app_dir, '.stylelintrc'));
+const create_stylelintrc_paths = () =>
+    app.map((app_dir) => path.join(app_dir, '.stylelintrc.json'));
 
 const stylelintrc = create_stylelintrc_paths();
 
