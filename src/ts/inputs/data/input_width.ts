@@ -57,7 +57,7 @@ export class InputWidth {
                     runInAction(() =>
                         err(() => {
                             this.width[section_name] = undefined;
-                        }, 'shr_1154'),
+                        }, 'shr_1046'),
                     );
 
                     const get_input_w_with_max_width = (): HTMLSpanElement | undefined =>
@@ -68,7 +68,7 @@ export class InputWidth {
                             );
 
                             return input_w_with_max_width;
-                        }, 'shr_1055');
+                        }, 'shr_1047');
 
                     window.requestAnimationFrame(
                         (): Promise<void> =>
@@ -88,7 +88,7 @@ export class InputWidth {
                                         runInAction(() =>
                                             err(() => {
                                                 this.width[section_name] = input_w_max_width;
-                                            }, 'shr_1155'),
+                                            }, 'shr_1048'),
                                         );
                                     } else {
                                         this.old_max_width[section_name] = input_w_max_width;
@@ -96,9 +96,9 @@ export class InputWidth {
                                         this.calculate_for_section({ section_name });
                                     }
                                 }
-                            }, 'shr_1056'),
+                            }, 'shr_1049'),
                     );
-                }, 'shr_1057'),
+                }, 'shr_1050'),
         );
     };
 
@@ -107,9 +107,9 @@ export class InputWidth {
             Object.values(sections).forEach((section: o_inputs.Section): void =>
                 err(() => {
                     this.calculate_for_section({ section_name: section.name });
-                }, 'shr_1134'),
+                }, 'shr_1051'),
             );
-        }, 'shr_1058');
+        }, 'shr_1052');
 
     public set_max_width = (): void =>
         err(() => {
@@ -129,5 +129,5 @@ export class InputWidth {
                     +this.min_width,
                 ).toString();
             }
-        }, 'shr_1059');
+        }, 'shr_1053');
 }

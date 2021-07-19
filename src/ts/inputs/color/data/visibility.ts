@@ -38,7 +38,7 @@ export class Visibility {
             if (n(input.state)) {
                 input.state[i as keyof i_color.ColorPickerState].is_closed = is_closed;
             }
-        }, 'shr_1018');
+        }, 'shr_1019');
 
     public mark_palette_as_closed = ({
         input,
@@ -49,7 +49,7 @@ export class Visibility {
     }): void =>
         err(() => {
             input.palette_is_closed = is_closed;
-        }, 'shr_1019');
+        }, 'shr_1020');
 
     public change_visibility = (
         {
@@ -152,9 +152,9 @@ export class Visibility {
                             this.visible_input = new_input;
                         }
                     }
-                }, 'shr_1152'),
+                }, 'shr_1021'),
             );
-        }, 'shr_1020');
+        }, 'shr_1022');
 
     public hide_main_and_palette = ({ input }: { input: o_color.Color }): void =>
         err(() => {
@@ -165,7 +165,7 @@ export class Visibility {
             }
 
             new_input.palette_is_visible = false;
-        }, 'shr_1021');
+        }, 'shr_1023');
 
     public hide_palette_color_pickers = ({ input }: { input: o_color.Color }): void =>
         err(() => {
@@ -180,10 +180,10 @@ export class Visibility {
                                 new_input.state[i as keyof i_color.ColorPickerState].is_visible =
                                     false;
                             }
-                        }, 'shr_1150'),
+                        }, 'shr_1024'),
                     );
             }
-        }, 'shr_1022');
+        }, 'shr_1025');
 
     public hide_all = (e: MouseEvent): void =>
         err(() => {
@@ -223,7 +223,7 @@ export class Visibility {
                     d_color.Color.i().restore_old_color();
                 }
             }
-        }, 'shr_1023');
+        }, 'shr_1026');
 
     public hide_color_picker_or_palette_on_esc = (e: KeyboardEvent): void =>
         err(() => {
@@ -242,7 +242,7 @@ export class Visibility {
                             }
 
                             return false;
-                        }, 'shr_1151'),
+                        }, 'shr_1027'),
                     );
 
                 if (
@@ -254,12 +254,12 @@ export class Visibility {
                     this.hide_main_and_palette({ input: this.visible_input });
                 }
             }
-        }, 'shr_1024');
+        }, 'shr_1028');
 
     public hide_color_help = ({ input }: { input: o_color.Color }): void =>
         err(() => {
             data.settings.show_color_help = false;
 
             input.hide_color_help_callback();
-        }, 'shr_1025');
+        }, 'shr_1029');
 }

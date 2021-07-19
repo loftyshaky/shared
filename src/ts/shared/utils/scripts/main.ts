@@ -34,16 +34,16 @@ export class Main {
                     if (subsection) {
                         obj_final[item.name].subsection = subsection;
                     }
-                }, 'shr_1129'),
+                }, 'shr_1136'),
             );
 
             return obj_final;
-        }, 'shr_1076');
+        }, 'shr_1137');
 
     public reload_ext = ({ msg }: { msg: string }): void =>
         err(() => {
             if (msg === 'reload_ext') {
                 we.runtime.reload();
             }
-        }, 'shr_1178');
+        }, 'shr_1138');
 }

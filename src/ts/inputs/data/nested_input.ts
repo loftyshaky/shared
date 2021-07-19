@@ -32,7 +32,7 @@ export class NestedInput {
             }
 
             input.offset = (is_child ? parent_offset + 28 : 0).toString();
-        }, 'shr_1028');
+        }, 'shr_1054');
 
     public set_parent_disbled_vals = ({
         input,
@@ -56,7 +56,7 @@ export class NestedInput {
                                     const parent_2: i_inputs.Input = Object.values(
                                         section.inputs,
                                     ).find((input_3: i_inputs.Input) =>
-                                        err(() => input_3.name === parent_input.parent, 'shr_1029'),
+                                        err(() => input_3.name === parent_input.parent, 'shr_1055'),
                                     );
 
                                     if (n(parent_2)) {
@@ -67,7 +67,7 @@ export class NestedInput {
                                     } else {
                                         const new_parent_disabled: boolean = !parents.every(
                                             (parent: string) =>
-                                                err(() => data.settings[parent], 'shr_1030'),
+                                                err(() => data.settings[parent], 'shr_1056'),
                                         );
 
                                         input_2.parent_disabled =
@@ -77,15 +77,15 @@ export class NestedInput {
                                                 : input_2.parent_disabled;
                                     }
                                 }
-                            }, 'shr_1031');
+                            }, 'shr_1057');
 
                         if (n(parent_input.parent)) {
                             get_parent();
                         }
-                    }, 'shr_1032'),
+                    }, 'shr_1058'),
                 );
             }
-        }, 'shr_1033');
+        }, 'shr_1059');
 
     public set_all_parents_disbled_vals = ({ sections }: { sections: i_inputs.Sections }): void =>
         err(() => {
@@ -97,9 +97,9 @@ export class NestedInput {
                                 input,
                                 sections,
                             });
-                        }, 'shr_1034'),
+                        }, 'shr_1060'),
                     );
-                }, 'shr_1035'),
+                }, 'shr_1061'),
             );
-        }, 'shr_1036');
+        }, 'shr_1062');
 }

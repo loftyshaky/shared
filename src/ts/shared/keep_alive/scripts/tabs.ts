@@ -14,12 +14,12 @@ export class Tabs {
             we.tabs.onUpdated.addListener((tab_id: number): void =>
                 err(() => {
                     we.tabs.connect(tab_id);
-                }, 'shr_1181'),
+                }, 'shr_1113'),
             );
-        }, 'shr_1182');
+        }, 'shr_1114');
 
     public add_on_connect_listener = (): void =>
         err(() => {
             we.runtime.onConnect.addListener(() => undefined);
-        }, 'shr_1183');
+        }, 'shr_1115');
 }

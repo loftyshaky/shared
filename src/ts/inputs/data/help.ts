@@ -25,7 +25,7 @@ export class Help {
             const new_input: o_inputs.Section | i_inputs.Input = section_or_input;
 
             new_input.help_is_visible = !new_input.help_is_visible;
-        }, 'shr_1027');
+        }, 'shr_1045');
 
     width_style? = computedFn(function ({
         section_or_input,

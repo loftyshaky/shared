@@ -19,7 +19,7 @@ export class Link {
                 ext.msg(`${this.name}_${this.browser}_link_text`);
 
             return text;
-        }, 'shr_1043');
+        }, 'shr_1069');
 
     public href_final? = (): string =>
         err(() => {
@@ -29,7 +29,7 @@ export class Link {
                   ext.msg(`${this.name}_${this.browser}_link_href`);
 
             return href;
-        }, 'shr_1044');
+        }, 'shr_1070');
 
     public show_link? = (): boolean =>
         err(() => {
@@ -41,5 +41,5 @@ export class Link {
                 !link_browser_is_the_same_as_env_browser ||
                 (n(this.force_resolve) && n(this.href_final) && n(this.href_final()))
             );
-        }, 'shr_1045');
+        }, 'shr_1071');
 }

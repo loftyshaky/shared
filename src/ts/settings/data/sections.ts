@@ -32,7 +32,7 @@ export class Sections {
                     new o_inputs.Option({ name: 'very_dark' }),
                 ],
             };
-        }, 'shr_1172');
+        }, 'shr_1082');
 
     public selected_cls = computedFn(function (
         this: Sections,
@@ -66,12 +66,12 @@ export class Sections {
                     callback();
                 }
             }
-        }, 'shr_1052');
+        }, 'shr_1083');
 
     private reload_ext = (): void =>
         err(() => {
             ext.send_msg({ msg: 'reload_ext' });
-        }, 'shr_1177');
+        }, 'shr_1084');
 
     public make_shared_sections = ({
         download_back_up_callback,
@@ -98,7 +98,7 @@ export class Sections {
                                     const data_obj = await download_back_up_callback();
 
                                     d_settings.BackUp.i().download({ data_obj });
-                                }, 'shr_1053'),
+                                }, 'shr_1085'),
                         }),
                         new o_inputs.Btn({
                             name: 'upload_back_up',
@@ -147,6 +147,6 @@ export class Sections {
                     ],
                 }),
             ],
-            'shr_1054',
+            'shr_1086',
         );
 }

@@ -27,4 +27,4 @@ export const resolve = ({ input }: { input: i_inputs.Input | o_inputs.Link }): J
         }
 
         return input_el as JSX.Element;
-    }, 'shr_1026');
+    }, 'shr_1073');

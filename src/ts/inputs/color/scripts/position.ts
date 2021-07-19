@@ -25,12 +25,12 @@ export class Position {
             if (ws.length !== 0) {
                 const fill_shadow_w = ws.map(
                     (item): HTMLSpanElement =>
-                        err(() => item.previousElementSibling as HTMLSpanElement, 'shr_1140'),
+                        err(() => item.previousElementSibling as HTMLSpanElement, 'shr_1040'),
                 );
                 const fill_shadows = fill_shadow_w.map((item) =>
                     err(
                         () => sb<HTMLSpanElement>(item, '.fill_shadow') as HTMLSpanElement,
-                        'shr_1141',
+                        'shr_1041',
                     ),
                 );
 
@@ -160,8 +160,8 @@ export class Position {
                                 }
                             }
                         }
-                    }, 'shr_1142'),
+                    }, 'shr_1042'),
                 );
             }
-        }, 'shr_1004');
+        }, 'shr_1043');
 }

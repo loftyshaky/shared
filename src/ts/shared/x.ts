@@ -28,21 +28,21 @@ declare global {
 global.l = console.log.bind(console);
 
 // > undefined/null check
-global.n = <T1>(val: T1 | undefined | null): val is T1 => err(() => val != null, 'shr_1078'); // not nil (nil is undefined or null)
+global.n = <T1>(val: T1 | undefined | null): val is T1 => err(() => val != null, 'shr_1140'); // not nil (nil is undefined or null)
 
-global.nn = <T1>(val: T1 | null): val is T1 => err(() => val !== null, 'shr_1079'); // not null
+global.nn = <T1>(val: T1 | null): val is T1 => err(() => val !== null, 'shr_1141'); // not null
 
 global.rs = (variable: t.CallbackVariadicString | string | undefined): string =>
-    err(() => (n(variable) ? shared.resolve_variable(variable) : ''), 'shr_1082'); // resolve string
+    err(() => (n(variable) ? shared.resolve_variable(variable) : ''), 'shr_1142'); // resolve string
 
 global.rn = (variable: t.CallbackVariadicNumber | number | undefined): number =>
-    err(() => (n(variable) ? shared.resolve_variable(variable) : Infinity), 'shr_1170'); // resolve number
+    err(() => (n(variable) ? shared.resolve_variable(variable) : Infinity), 'shr_1143'); // resolve number
 
 global.rb = (variable: t.CallbackVariadicBoolean | boolean | undefined): boolean =>
-    err(() => (n(variable) ? shared.resolve_variable(variable) : false), 'shr_1081'); // resolve boolean
+    err(() => (n(variable) ? shared.resolve_variable(variable) : false), 'shr_1144'); // resolve boolean
 
 global.ru = (variable: t.CallbackVariadicUndefined | undefined): undefined =>
-    err(() => (n(variable) ? shared.resolve_variable(variable) : undefined), 'shr_1080'); // resolve undefined
+    err(() => (n(variable) ? shared.resolve_variable(variable) : undefined), 'shr_1145'); // resolve undefined
 // < undefined/null check
 
 const shared: t.AnyRecord = {
@@ -53,7 +53,7 @@ const shared: t.AnyRecord = {
             }
 
             return undefined;
-        }, 'shr_1083'),
+        }, 'shr_1146'),
 
     resolve_variable: (variable: t.CallbackVariadicAny | t.AnyUndefined): t.AnyUndefined =>
         err(() => {
@@ -62,15 +62,15 @@ const shared: t.AnyRecord = {
             }
 
             return variable;
-        }, 'shr_1171'),
+        }, 'shr_1147'),
 };
 
 // > selecting elements
 global.s = <T1>(selector: string): T1 | undefined =>
-    err(() => shared.ensure_els(document.querySelector(selector)), 'shr_1084');
+    err(() => shared.ensure_els(document.querySelector(selector)), 'shr_1148');
 
 global.sa = <T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined =>
-    err(() => shared.ensure_els(document.querySelectorAll(selector)), 'shr_1085');
+    err(() => shared.ensure_els(document.querySelectorAll(selector)), 'shr_1149');
 
 global.sb = <T1>(base_el: t.BaseEl, selector: string): T1 | undefined =>
     err(() => {
@@ -79,7 +79,7 @@ global.sb = <T1>(base_el: t.BaseEl, selector: string): T1 | undefined =>
         }
 
         return undefined;
-    }, 'shr_1086');
+    }, 'shr_1150');
 
 global.sab = <T1 extends HTMLElement>(
     base_el: t.BaseEl,
@@ -91,7 +91,7 @@ global.sab = <T1 extends HTMLElement>(
             : undefined;
 
         return shared.ensure_els(els);
-    }, 'shr_1087');
+    }, 'shr_1151');
 // > selecting elements
 
 export class X {
@@ -127,7 +127,7 @@ export class X {
                     callback(els);
                 }
             }
-        }, 'shr_1088');
+        }, 'shr_1152');
 
     // > dom manipulation
     public create = <T1 extends keyof HTMLElementTagNameMap>(
@@ -139,14 +139,14 @@ export class X {
             el.className = cls;
 
             return el;
-        }, 'shr_1089');
+        }, 'shr_1153');
 
     public append = (parent: t.XEl, child: HTMLElement): void =>
         err(() => {
             if (n(parent) && [1, 11].includes(parent.nodeType)) {
                 parent.appendChild(child);
             }
-        }, 'shr_1090');
+        }, 'shr_1154');
 
     public as_first = (parent: t.XEl, child: HTMLElement | undefined): void =>
         err(() => {
@@ -158,7 +158,7 @@ export class X {
             ) {
                 parent.insertBefore(child, parent.firstElementChild);
             }
-        }, 'shr_1094');
+        }, 'shr_1155');
 
     public before = (el_to_insert_before: HTMLElement | undefined, child: t.XEl): void =>
         err(() => {
@@ -170,7 +170,7 @@ export class X {
             ) {
                 el_to_insert_before.parentNode.insertBefore(child, el_to_insert_before);
             }
-        }, 'shr_1092');
+        }, 'shr_1156');
 
     public after = (el_to_insert_after: HTMLElement | undefined, child: t.XEl): void =>
         err(() => {
@@ -185,7 +185,7 @@ export class X {
                     el_to_insert_after.nextElementSibling,
                 );
             }
-        }, 'shr_1093');
+        }, 'shr_1157');
 
     public remove = (els: t.XEls): void =>
         err(() => {
@@ -194,10 +194,10 @@ export class X {
                     if (n(el) && n(el.parentNode) && el.nodeType === 1) {
                         el.parentNode.removeChild(el);
                     }
-                }, 'shr_1162');
+                }, 'shr_1158');
 
             this.all(els, one);
-        }, 'shr_1091');
+        }, 'shr_1159');
     // < dom manipulation
 
     public matches = (el: HTMLElement | undefined, selector: string): boolean =>
@@ -207,7 +207,7 @@ export class X {
             }
 
             return false;
-        }, 'shr_1095');
+        }, 'shr_1160');
 
     public closest = <T1>(el: HTMLElement | undefined, selector: string): T1 | undefined =>
         err(() => {
@@ -216,7 +216,7 @@ export class X {
             }
 
             return undefined;
-        }, 'shr_1096');
+        }, 'shr_1161');
 
     public add_cls = (els: t.XEls, cls: string): void =>
         err(() => {
@@ -225,10 +225,10 @@ export class X {
                     if (n(el) && el.nodeType === 1) {
                         el.classList.add(cls);
                     }
-                }, 'shr_1167');
+                }, 'shr_1162');
 
             this.all(els, one);
-        }, 'shr_1097');
+        }, 'shr_1163');
 
     public remove_cls = (els: t.XEls, cls: string): void =>
         err(() => {
@@ -237,21 +237,21 @@ export class X {
                     if (n(el) && el.nodeType === 1) {
                         el.classList.remove(cls);
                     }
-                }, 'shr_1168');
+                }, 'shr_1164');
 
             this.all(els, one);
-        }, 'shr_1098');
+        }, 'shr_1165');
 
     // > array
     public move_item = (from: number, to: number, arr: t.AnyArray): void =>
         err(() => {
             arr.splice(to, 0, arr.splice(from, 1)[0] as t.AnyArray);
-        }, 'shr_1099');
+        }, 'shr_1166');
 
     public remove_item = (i: number, arr: t.AnyArray): void =>
         err(() => {
             arr.splice(i, 1);
-        }, 'shr_1100');
+        }, 'shr_1167');
     // < array
 
     // > add event listener to one or multiple elements t
@@ -266,10 +266,10 @@ export class X {
                     if (n(el.addEventListener)) {
                         el.addEventListener(event, f);
                     }
-                }, 'shr_1164');
+                }, 'shr_1168');
 
             this.all(els, one);
-        }, 'shr_1101');
+        }, 'shr_1169');
     // < add event listener to one or multiple elements t
 
     public css = (
@@ -307,7 +307,7 @@ export class X {
             }
 
             return undefined;
-        }, 'shr_1102');
+        }, 'shr_1170');
 
     public dynamic_css = (
         parent: HTMLHeadElement | ShadowRoot,
@@ -329,19 +329,19 @@ export class X {
             }
 
             return new_style;
-        }, 'shr_1103');
+        }, 'shr_1171');
 
     public get_css_val = (el: HTMLElement, key: string): string =>
-        err(() => window.getComputedStyle(el).getPropertyValue(key), 'shr_1088');
+        err(() => window.getComputedStyle(el).getPropertyValue(key), 'shr_1172');
 
     public get_numeric_css_val = (el: HTMLElement, key: string): number =>
-        err(() => parseInt(window.getComputedStyle(el).getPropertyValue(key), 10), 'shr_1088');
+        err(() => parseInt(window.getComputedStyle(el).getPropertyValue(key), 10), 'shr_1173');
 
     public get_float_css_val = (el: HTMLElement, key: string): number =>
-        err(() => parseFloat(window.getComputedStyle(el).getPropertyValue(key)), 'shr_1088');
+        err(() => parseFloat(window.getComputedStyle(el).getPropertyValue(key)), 'shr_1174');
 
     public str_is_number = (val: string): boolean =>
-        err(() => /^\d+$|^\d+\.\d+$/.test(val), 'shr_1088');
+        err(() => /^\d+$|^\d+\.\d+$/.test(val), 'shr_1175');
 
     public delay = (delay: number): Promise<void> =>
         new Promise((resolve): number =>
@@ -350,7 +350,7 @@ export class X {
                     window.setTimeout((): void => {
                         resolve();
                     }, delay),
-                'shr_1104',
+                'shr_1176',
             ),
         );
 
@@ -361,12 +361,12 @@ export class X {
             return Array.from(uint32.toString(16))
                 .map((char: string): string => (this.rand_bool() ? char.toUpperCase() : char))
                 .join('');
-        }, 'shr_1105');
+        }, 'shr_1177');
 
     public range = (min: number, max: number): number =>
-        err(() => Math.floor(Math.random() * (max - min + 1)) + min, 'shr_1088');
+        err(() => Math.floor(Math.random() * (max - min + 1)) + min, 'shr_1178');
 
-    public rand_bool = (): boolean => err(() => !Math.round(Math.random()), 'shr_1088');
+    public rand_bool = (): boolean => err(() => !Math.round(Math.random()), 'shr_1179');
 
     public cls = (classes: (string | undefined)[]): string =>
         err(
@@ -375,11 +375,11 @@ export class X {
                     classes,
                     (item: string | undefined): boolean => !n(item) || item === '',
                 ).join(' '),
-            'shr_1106',
+            'shr_1180',
         );
 
     public get_prop = <T1, T2 extends keyof T1>(obj: T1, key: T2): T1[T2] =>
-        err(() => obj[key], 'shr_1088');
+        err(() => obj[key], 'shr_1181');
 
     public set_prop = <T1, T2 extends keyof T1>(obj: T1, key: T2, val: T1[T2]): T1 =>
         err(() => {
@@ -388,10 +388,10 @@ export class X {
             updated_obj[key] = val;
 
             return updated_obj;
-        }, 'shr_1107');
+        }, 'shr_1182');
 
     public sanitize_filename = (filename: string, new_character: string = '_'): string =>
-        err(() => filename.replace(/[<>:"/\\|?]/g, new_character), 'shr_1088');
+        err(() => filename.replace(/[<>:"/\\|?]/g, new_character), 'shr_1183');
 
     public convert_blob_to_base64 = (blob: Blob): Promise<string> =>
         new Promise((resolve, reject) => {
@@ -402,7 +402,7 @@ export class X {
                     resolve(reader.result as string);
                 };
                 reader.readAsDataURL(blob);
-            }, 'shr_1108');
+            }, 'shr_1184');
         });
 
     public copy_text = (text: string): void =>
@@ -422,7 +422,7 @@ export class X {
             document.execCommand('copy');
 
             this.remove(input);
-        }, 'shr_1109');
+        }, 'shr_1185');
 
     public copy_img = (img_url: string): void =>
         err(() => {
@@ -451,9 +451,9 @@ export class X {
 
                 this.remove(img);
             }
-        }, 'shr_1110');
+        }, 'shr_1186');
 
-    public px = (val: string | number | undefined): string => err(() => `${val}px`, 'shr_1169');
+    public px = (val: string | number | undefined): string => err(() => `${val}px`, 'shr_1187');
 
     public insert_invisible_chars_in_title = (): void =>
         err(() => {

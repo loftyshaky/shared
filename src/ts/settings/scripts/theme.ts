@@ -17,5 +17,5 @@ export class Theme {
             if (input.name === 'options_page_theme') {
                 s_theme.Main.i().set({ name });
             }
-        }, 'shr_1047');
+        }, 'shr_1088');
 }

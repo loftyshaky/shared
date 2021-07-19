@@ -65,19 +65,19 @@ export class Color extends o_inputs.InputBase {
     }
 
     is_palette_color? = ({ i }: { i: i_color.I }): boolean =>
-        err(() => typeof i === 'number', 'shr_1145');
+        err(() => typeof i === 'number', 'shr_1030');
 
     visualization_cls? = ({ i }: { i: i_color.I }): string =>
-        err(() => (i === 'main' ? 'visualization' : ''), 'shr_1146');
+        err(() => (i === 'main' ? 'visualization' : ''), 'shr_1031');
 
     palette_visualization_cls? = ({ i }: { i: i_color.I }): string =>
-        err(() => (i === 'main' ? '' : 'palette_visualization'), 'shr_1147');
+        err(() => (i === 'main' ? '' : 'palette_visualization'), 'shr_1032');
 
     inset_border_cls? = ({ i }: { i: i_color.I }): string =>
-        err(() => (i === 'main' ? '' : 'inset_border'), 'shr_1148');
+        err(() => (i === 'main' ? '' : 'inset_border'), 'shr_1033');
 
     el_to_show_type? = ({ i }: { i: i_color.I }): string =>
-        err(() => (i === 'main' ? 'color_picker_or_palette' : 'color_picker'), 'shr_1149');
+        err(() => (i === 'main' ? 'color_picker_or_palette' : 'color_picker'), 'shr_1034');
 
     color_picker_is_visible? = computedFn(function (this: Color, { i }: { i: i_color.I }): boolean {
         return n(this.state) && this.state[i as keyof i_color.ColorPickerState].is_visible;

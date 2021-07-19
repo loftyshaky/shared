@@ -17,9 +17,9 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                         input.palette_width = palette_ref.current.offsetWidth.toString();
                         input.palette_height = palette_ref.current.offsetHeight.toString();
                     }
-                }, 'shr_1160'),
+                }, 'shr_1001'),
             );
-        }, 'shr_1161'),
+        }, 'shr_1002'),
     );
 
     // eslint-disable-next-line no-unused-expressions

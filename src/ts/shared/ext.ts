@@ -26,7 +26,7 @@ export const init_page = (): void =>
         } else {
             global.page = n(title) && n(title.dataset.page) ? title.dataset.page : 'background';
         }
-    }, 'shr_1011');
+    }, 'shr_1093');
 
 global.misplaced_dependency = (culprit_page: string): void =>
     err(() => {
@@ -43,7 +43,7 @@ global.misplaced_dependency = (culprit_page: string): void =>
                 alert(msg);
             }
         }
-    }, 'shr_1012');
+    }, 'shr_1094');
 
 export class Ext {
     private static i0: Ext;
@@ -65,7 +65,7 @@ export class Ext {
         try {
             return we.runtime.getManifest().version;
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1013');
+            this.log_error(error_obj, 'shr_1095');
         }
 
         return '';
@@ -88,7 +88,7 @@ export class Ext {
                 }
             });
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1179');
+            this.log_error(error_obj, 'shr_1096');
         }
     };
 
@@ -98,7 +98,7 @@ export class Ext {
 
             return n(msg_2) ? msg_2 : '';
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1014');
+            this.log_error(error_obj, 'shr_1097');
         }
 
         return '';
@@ -113,7 +113,7 @@ export class Ext {
 
             return tabs[0];
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1015');
+            this.log_error(error_obj, 'shr_1098');
         }
 
         return undefined;
@@ -123,7 +123,7 @@ export class Ext {
         try {
             await we.runtime.sendMessage(msg);
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1016');
+            this.log_error(error_obj, 'shr_1099');
         }
     };
 
@@ -133,7 +133,7 @@ export class Ext {
 
             return response;
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1017');
+            this.log_error(error_obj, 'shr_1100');
         }
 
         return undefined;
@@ -143,7 +143,7 @@ export class Ext {
         try {
             await we.tabs.sendMessage(id, msg);
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1018');
+            this.log_error(error_obj, 'shr_1101');
         }
     };
 
@@ -154,7 +154,7 @@ export class Ext {
 
             return response;
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1019');
+            this.log_error(error_obj, 'shr_1102');
         }
 
         return undefined;
@@ -168,7 +168,7 @@ export class Ext {
                 await this.send_msg_to_tab(tab.id, msg);
             }
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1020');
+            this.log_error(error_obj, 'shr_1103');
         }
     };
 
@@ -180,7 +180,7 @@ export class Ext {
                 return this.send_msg_to_tab(tab.id, msg);
             }
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1021');
+            this.log_error(error_obj, 'shr_1104');
         }
 
         return undefined;
@@ -194,11 +194,11 @@ export class Ext {
                         await this.send_msg_to_tab(tab.id, msg);
                     }
                 } catch (error_obj) {
-                    this.log_error(error_obj, 'shr_1180');
+                    this.log_error(error_obj, 'shr_1105');
                 }
             });
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1022');
+            this.log_error(error_obj, 'shr_1106');
         }
     };
 
@@ -214,7 +214,7 @@ export class Ext {
 
             return data_local;
         } catch (error_obj) {
-            this.log_error(error_obj, 'shr_1023');
+            this.log_error(error_obj, 'shr_1107');
         }
 
         return undefined;
@@ -272,7 +272,7 @@ export class Ext {
                                     files: [file_path],
                                 });
                             } catch (error_obj) {
-                                this.log_error(error_obj, 'shr_1186');
+                                this.log_error(error_obj, 'shr_1108');
                             }
                         });
 
@@ -283,13 +283,13 @@ export class Ext {
                                     files: [file_path],
                                 });
                             } catch (error_obj) {
-                                this.log_error(error_obj, 'shr_1187');
+                                this.log_error(error_obj, 'shr_1109');
                             }
                         });
                     }
                 }
             } catch (error_obj) {
-                this.log_error(error_obj, 'shr_1184');
+                this.log_error(error_obj, 'shr_1110');
             }
         });
     };

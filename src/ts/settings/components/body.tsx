@@ -22,7 +22,7 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
                     'keydown',
                     d_color.Visibility.i().hide_color_picker_or_palette_on_esc,
                 );
-            }, 'shr_1139'),
+            }, 'shr_1074'),
         [props, initial_section],
     );
 

@@ -53,7 +53,7 @@ export class Transition {
                         this.run_tr_end_callbacks({ tr_end_callbacks: tr_end_unactive }, e);
                     }
                 }
-            }, 'shr_1126'),
+            }, 'shr_1133'),
     );
     //< hide component when it faded out or show component when it starting fading in
 
@@ -69,7 +69,7 @@ export class Transition {
     }): string =>
         err(
             () => (state ? transitions[name].active_cls : transitions[name].unactive_cls),
-            'shr_1127',
+            'shr_1134',
         );
     //< choose component mode (shown or hidden)
 
@@ -85,5 +85,5 @@ export class Transition {
             tr_end_callbacks.forEach((callback): void => {
                 callback(e);
             });
-        }, 'shr_1128');
+        }, 'shr_1135');
 }

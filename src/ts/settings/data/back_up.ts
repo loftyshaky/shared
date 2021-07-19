@@ -29,7 +29,7 @@ export class BackUp {
             )} back up ${new Date().toLocaleString(ext.msg('@@ui_locale').replace(/_/, '-'))}.json`;
             a.click();
             x.remove(a);
-        }, 'shr_1048');
+        }, 'shr_1075');
 
     public open_file_browser = (): void =>
         err(() => {
@@ -38,7 +38,7 @@ export class BackUp {
             if (upload_back_up_input) {
                 upload_back_up_input.click();
             }
-        }, 'shr_1049');
+        }, 'shr_1076');
 
     public upload = (
         {
@@ -66,7 +66,7 @@ export class BackUp {
                     throw_err('Invalid file type');
                 }
             },
-            'shr_1050',
+            'shr_1077',
             { error_msg_key: 'invalid_file_type_back_up' },
         );
 
@@ -79,15 +79,15 @@ export class BackUp {
                     reader.onloadend = (): void =>
                         err(() => {
                             resolve(reader.result);
-                        }, 'shr_1135');
+                        }, 'shr_1078');
 
                     reader.onerror = (): void =>
                         err(() => {
                             reject();
-                        }, 'shr_1137');
+                        }, 'shr_1079');
 
                     reader.readAsText(blob);
-                }, 'shr_1136'),
+                }, 'shr_1080'),
             );
-        }, 'shr_1051');
+        }, 'shr_1081');
 }

@@ -15,6 +15,6 @@ export class Main {
                 dim === 'width'
                     ? document.documentElement.clientWidth
                     : document.documentElement.clientHeight,
-            'shr_1077',
+            'shr_1139',
         );
 }

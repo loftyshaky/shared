@@ -70,10 +70,10 @@ export class Color {
             }
 
             return data.settings.colors[i];
-        }, 'shr_1005');
+        }, 'shr_1006');
 
     public access_from_val = ({ val }: { val: i_color.Color }): string =>
-        err(() => (typeof val === 'number' ? data.settings.colors[val] : val), 'shr_1006');
+        err(() => (typeof val === 'number' ? data.settings.colors[val] : val), 'shr_1007');
 
     public set = ({
         input,
@@ -90,7 +90,7 @@ export class Color {
             } else {
                 data.settings.colors[i] = color;
             }
-        }, 'shr_1007');
+        }, 'shr_1008');
 
     public save = ({ input, i }: { input: o_color.Color; i: i_color.I }): void =>
         err(() => {
@@ -109,7 +109,7 @@ export class Color {
                 input,
                 i,
             });
-        }, 'shr_1008');
+        }, 'shr_1009');
 
     public restore_old_color = (): void =>
         err(() => {
@@ -134,7 +134,7 @@ export class Color {
                     color: this.previous_color,
                 });
             }
-        }, 'shr_1009');
+        }, 'shr_1010');
 
     public convert_pickr_color_to_rgb_string = ({
         pickr_color,
@@ -146,10 +146,10 @@ export class Color {
             const rgba = pickr_color.toRGBA();
 
             return `rgb(${round(rgba[0])} ${round(rgba[1])} ${round(rgba[2])})`;
-        }, 'shr_1010');
+        }, 'shr_1011');
 
     public filter_palette_colors = ({ obj }: { obj: i_color.ColorPickerState }): string[] =>
-        err(() => Object.keys(obj).filter((key: string): boolean => !_.isNaN(+key)), 'shr_1011');
+        err(() => Object.keys(obj).filter((key: string): boolean => !_.isNaN(+key)), 'shr_1012');
 
     public select_palette_color = (
         {
@@ -177,7 +177,7 @@ export class Color {
                     i,
                 });
             }
-        }, 'shr_1012');
+        }, 'shr_1013');
 
     public val_is_palette_color = ({ input }: { input: o_color.Color }): boolean =>
         err(() => {
@@ -185,7 +185,7 @@ export class Color {
             const val_is_palette_color: boolean = typeof val === 'number';
 
             return val_is_palette_color;
-        }, 'shr_1013');
+        }, 'shr_1014');
 
     public set_previous_color = ({ input, i }: { input: o_color.Color; i: i_color.I }): void =>
         err(() => {
@@ -196,7 +196,7 @@ export class Color {
                           input,
                           i,
                       });
-        }, 'shr_1014');
+        }, 'shr_1015');
 
     public remove_color = ({ input }: { input: o_color.Color }): void =>
         err(() => {
@@ -208,7 +208,7 @@ export class Color {
 
             this.reset_previous_vars();
             input.remove_color_callback({ input });
-        }, 'shr_1015');
+        }, 'shr_1016');
 
     public restore_default_palette = ({
         input,
@@ -229,12 +229,12 @@ export class Color {
                 this.reset_previous_vars();
                 input.restore_default_palette_callback({ default_colors: data.settings.colors });
             }
-        }, 'shr_1016');
+        }, 'shr_1017');
 
     public reset_previous_vars = (): void =>
         err(() => {
             d_color.Color.i().previous_color = '';
             d_color.Visibility.i().previously_visible_input = undefined;
             d_color.Visibility.i().previously_visible_color_picker_i = undefined;
-        }, 'shr_1017');
+        }, 'shr_1018');
 }

@@ -31,7 +31,7 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
                     i,
                 });
             }
-        }, 'shr_1159'),
+        }, 'shr_1003'),
     );
 
     const init = (): Promise<void> =>
@@ -48,7 +48,7 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
                     visualization: visualization_ref.current,
                 });
             }
-        }, 'shr_1001');
+        }, 'shr_1004');
 
     const { input, i } = props;
 

@@ -10,7 +10,7 @@ export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
         useEffect(() =>
             err(() => {
                 d_inputs.NestedInput.i().calculate_offset({ input });
-            }, 'shr_1138'),
+            }, 'shr_1044'),
         );
 
         return input.is_visible &&

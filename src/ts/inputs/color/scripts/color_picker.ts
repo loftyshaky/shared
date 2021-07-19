@@ -64,7 +64,7 @@ export class ColorPicker {
                             input,
                         });
                     }
-                }, 'shr_1143'),
+                }, 'shr_1035'),
             );
 
             pickr.on('change', (pickr_color: t.AnyRecord) =>
@@ -81,11 +81,11 @@ export class ColorPicker {
                             }),
                         });
                     }
-                }, 'shr_1144'),
+                }, 'shr_1036'),
             );
 
             return pickr;
-        }, 'shr_1002');
+        }, 'shr_1037');
 
     public update = ({
         pickr,
@@ -119,8 +119,8 @@ export class ColorPicker {
                     err(() => {
                         input.color_picker_width = color_picker.offsetWidth.toString();
                         input.color_picker_height = color_picker.offsetHeight.toString();
-                    }, 'shr_1153'),
+                    }, 'shr_1038'),
                 );
             }
-        }, 'shr_1003');
+        }, 'shr_1039');
 }

@@ -29,7 +29,7 @@ export class BaseTr extends React.Component<p_tr.BaseTr> {
                 tr_el_ref: this.tr_el_ref,
                 called_from_component_did_update: false,
             });
-        }, 'shr_1132');
+        }, 'shr_1130');
     }
 
     public componentDidUpdate(): void {
@@ -82,7 +82,7 @@ export class BaseTr extends React.Component<p_tr.BaseTr> {
                                 e,
                             );
                         }
-                    }, 'shr_1130')
+                    }, 'shr_1132')
                 }
             >
                 {children}

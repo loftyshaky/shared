@@ -31,7 +31,7 @@ export class Main {
             if (!this.inner_is_none) {
                 this.outer_is_visible = true;
             }
-        }, 'shr_1064');
+        }, 'shr_1116');
 
     public hide = (): Promise<void> =>
         err_async(async () => {
@@ -40,7 +40,7 @@ export class Main {
             runInAction(() =>
                 err(() => {
                     this.outer_is_visible = false;
-                }, 'shr_1156'),
+                }, 'shr_1117'),
             );
 
             await x.delay(+s_css_vars.Main.i().get({ name: 'transition_duration' }));
@@ -48,7 +48,7 @@ export class Main {
             runInAction(() =>
                 err(() => {
                     this.inner_is_none = true;
-                }, 'shr_1157'),
+                }, 'shr_1118'),
             );
-        }, 'shr_1065');
+        }, 'shr_1119');
 }
