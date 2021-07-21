@@ -14,7 +14,7 @@ class Manifest {
             icons: {
                 16: 'icon16.png',
             },
-            browser_action: {
+            action: {
                 default_icon: {
                     16: 'icon16.png',
                     32: 'icon32.png',
