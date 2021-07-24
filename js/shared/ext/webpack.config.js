@@ -7,7 +7,6 @@ const shared_config = ({
     env,
     MiniCssExtractPlugin,
     OptimizeCssAssetsPlugin,
-    // FixStyleOnlyEntriesPlugin,
     FixStyleOnlyEntriesPlugin,
     CopyWebpackPlugin,
     copy_patters,
@@ -75,7 +74,6 @@ const shared_config = ({
             new webpack.ProgressPlugin(),
             new MiniCssExtractPlugin(),
             new OptimizeCssAssetsPlugin(),
-            // new FixStyleOnlyEntriesPlugin(),
             new FixStyleOnlyEntriesPlugin(),
             new CopyWebpackPlugin({
                 patterns: [
