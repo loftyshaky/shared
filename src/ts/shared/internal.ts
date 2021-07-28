@@ -1,8 +1,8 @@
+import 'shared/app_ext_globals';
 import 'shared/globals';
 import 'shared/data/data';
 
 export * from 'shared/x';
-export * from 'shared/ext';
 
 export * from 'shared/svg';
 export * as svg_namespace from 'shared/svg';

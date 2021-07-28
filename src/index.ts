@@ -1,9 +1,7 @@
 import 'error_modules/error/scripts';
-import { init_page } from 'shared/internal';
 
 export { c_crash_handler, c_error, d_crash_handler } from 'error_modules/internal';
 export {
-    Ext,
     X,
     t,
     vars,
@@ -22,5 +20,3 @@ export {
     s_viewport,
     i_data,
 } from 'shared/internal';
-
-init_page(); // need to be here, otherwise error will happen

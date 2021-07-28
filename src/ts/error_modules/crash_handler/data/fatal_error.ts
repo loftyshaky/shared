@@ -14,16 +14,16 @@ export class Main {
     public catch_fatal_error = async (callback: t.CallbackVoid): Promise<void> => {
         if (page === 'background') {
             callback();
-        } else {
+        } else if (is_ext) {
             const background_page_is_available: boolean = await ext.send_msg_resp({
                 msg: 'check_if_background_page_is_available',
             });
 
             if (background_page_is_available) {
                 callback();
-            } else {
-                window.location.reload();
             }
+        } else {
+            callback();
         }
     };
 }

@@ -7,7 +7,7 @@ class Files {
     copy = () => {
         const src_stylelintrc_path = path.resolve('.stylelintrc.json');
         apps.forEach((app, i) => {
-            if (app_types[i] === 'ext') {
+            if (['app', 'ext'].includes(app_types[i])) {
                 fs.copySync(src_stylelintrc_path, paths.stylelintrc[i]);
             }
         });

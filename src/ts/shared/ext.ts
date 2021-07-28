@@ -1,8 +1,8 @@
 // Allowing send_msg functions to throw errors (red) makes extension freeze when sending message to tab without onMessage event listrener!
 // Not using err/err_async because it causes infinite loop in content script and freezing when you disable/reload extension!
 
-import { browser as browser_2 } from 'webextension-polyfill-ts';
 import _ from 'lodash';
+import { browser as browser_2 } from 'webextension-polyfill-ts';
 
 import { d_error } from 'error_modules/internal';
 import { t } from 'shared/internal';
@@ -11,8 +11,6 @@ declare const global: Global;
 
 declare global {
     const we: typeof browser;
-    const page: string;
-    const misplaced_dependency: (culprit_page: string) => void;
 }
 
 global.we = browser_2 as any;
@@ -20,7 +18,6 @@ global.we = browser_2 as any;
 export const init_page = (): void =>
     err(() => {
         const title = global.document ? document.querySelector('title') : undefined;
-
         if (['https:', 'http:'].includes(global.location.protocol)) {
             global.page = 'content_script';
         } else {

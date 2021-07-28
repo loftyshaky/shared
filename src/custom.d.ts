@@ -5,6 +5,7 @@ interface Global {
     crypto: Crypto;
     x: import('shared/x').X;
     ext: import('shared/ext').Ext;
+    app: import('shared/app').App;
     env: {
         browser: import('shared/t').Browser;
     };
@@ -23,6 +24,7 @@ interface Global {
         base_el: import('shared/t').BaseEl,
         selector: string,
     ) => NodeListOf<T1> | undefined;
+    is_ext: boolean;
     we: typeof browser;
     page: string;
     misplaced_dependency: import('shared/t').CallbackVariadicVoid;

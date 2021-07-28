@@ -17,7 +17,7 @@ const files = new Files();
 const terserInst = new Terser();
 
 const config = {
-    input: ['src/index.ts', 'src/inputs.ts', 'src/settings.ts'],
+    input: ['src/ext.ts', 'src/app.ts', 'src/index.ts', 'src/inputs.ts', 'src/settings.ts'],
     output: [
         {
             dir: 'dist',
@@ -57,6 +57,9 @@ const config = {
         replace({
             include: ['node_modules/@simonwep/pickr/**'],
             window: 'self',
+        }),
+        replace({
+            'ext.': process.env.env === 'app' ? 'app.' : 'ext.',
         }),
         copy({
             targets: [

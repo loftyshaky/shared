@@ -1,7 +1,9 @@
 {
     "scripts": {
-        "dev": "rollup -c --watch --environment mode:development",
-        "prod": "rollup -c --environment mode:production",
+        "dev": "rollup -c --watch --environment env:ext,mode:development",
+        "prod": "rollup -c --environment env:ext,mode:production",
+        "devapp": "rollup -c --watch --environment env:app,mode:development",
+        "prodapp": "rollup -c --environment env:app,mode:production",
         "format": "prettier --config .prettierrc.js rollup.config.js js/**/*.js src/**/*.ts src/scss/**/*.scss src/_locales/**/*.json --write"
     },
     "devDependencies": {
