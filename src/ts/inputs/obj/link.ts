@@ -39,7 +39,7 @@ export class Link {
             return (
                 link_is_cross_browser ||
                 !link_browser_is_the_same_as_env_browser ||
-                (n(this.force_resolve) && n(this.href_final) && n(this.href_final()))
+                (n(this.force_resolve) && this.force_resolve)
             );
         }, 'shr_1071');
 }
