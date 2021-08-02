@@ -145,7 +145,7 @@ export class Ext {
     };
 
     // eslint-disable-next-line @typescript-eslint/ban-types
-    public send_msg_to_tab_resp = async (id: number, msg: t.Msg): Promise<void | object> => {
+    public send_msg_to_tab_resp = async (id: number, msg: t.Msg): Promise<any> => {
         try {
             const response = await we.tabs.sendMessage(id, msg);
 

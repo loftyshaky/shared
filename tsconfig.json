@@ -11,30 +11,14 @@
         "esModuleInterop": true,
         "sourceMap": true,
         "experimentalDecorators": true,
-        "typeRoots": [
-            "node_modules/@types",
-            "node_modules/web-ext-types"
-        ],
+        "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"],
         "paths": {
-            "shared/*": [
-                "./ts/shared/*"
-            ],
-            "error_modules/*": [
-                "./ts/error_modules/*"
-            ],
-            "inputs/*": [
-                "./ts/inputs/*"
-            ],
-            "settings/*": [
-                "./ts/settings/*"
-            ],
-        },
+            "shared/*": ["./ts/shared/*"],
+            "error_modules/*": ["./ts/error_modules/*"],
+            "inputs/*": ["./ts/inputs/*"],
+            "settings/*": ["./ts/settings/*"]
+        }
     },
-    "include": [
-        "src"
-    ],
-    "exclude": [
-        "node_modules",
-        "dist"
-    ],
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"]
 }

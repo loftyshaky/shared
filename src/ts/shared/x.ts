@@ -368,6 +368,8 @@ export class X {
 
     public rand_bool = (): boolean => err(() => !Math.round(Math.random()), 'shr_1179');
 
+    public convert_string_bool = (bool: string): boolean => err(() => bool === 'true', 'shr_1194');
+
     public cls = (classes: (string | undefined)[]): string =>
         err(
             () =>
