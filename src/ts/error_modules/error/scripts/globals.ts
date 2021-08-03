@@ -51,7 +51,7 @@ global.err = <T1>(
         exit = false,
         hide_delay = d_error.Main.i().hide_delay,
     }: i_error.ShowError = {},
-): T1 => {
+): any => {
     try {
         return f();
     } catch (error_obj) {
@@ -64,7 +64,7 @@ global.err = <T1>(
         });
     }
 
-    return f();
+    return undefined;
 };
 
 global.err_async = async <T1>(
@@ -77,7 +77,7 @@ global.err_async = async <T1>(
         exit = false,
         hide_delay = d_error.Main.i().hide_delay,
     }: i_error.ShowError = {},
-): Promise<T1> => {
+): Promise<any> => {
     try {
         return await f();
     } catch (error_obj) {
@@ -90,7 +90,7 @@ global.err_async = async <T1>(
         });
     }
 
-    return f();
+    return undefined;
 };
 
 global.throw_err = (msg: string): void => {

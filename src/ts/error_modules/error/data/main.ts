@@ -38,46 +38,50 @@ export class Main {
         }: i_error.ShowError = {},
     ): void => {
         d_crash_handler.Main.i().catch_fatal_error(() => {
-            if (!x.in_service_worker && !silent && (!error_obj || !error_obj.silent)) {
-                if (is_notification) {
+            if (!silent && (!error_obj || !error_obj.silent)) {
+                if (!x.in_service_worker) {
+                    if (is_notification) {
+                        d_error.State.i().change_state({
+                            observable_key: 'is_notification',
+                            state: true,
+                        });
+
+                        d_error.Msg.i().notification_msg_key = notification_msg_key;
+                    } else {
+                        d_error.State.i().change_state({
+                            observable_key: 'is_notification',
+                            state: false,
+                        });
+                    }
+
                     d_error.State.i().change_state({
-                        observable_key: 'is_notification',
-                        state: true,
-                    });
-
-                    d_error.Msg.i().notification_msg_key = notification_msg_key;
-                } else {
-                    d_error.State.i().change_state({
-                        observable_key: 'is_notification',
-                        state: false,
-                    });
-                }
-
-                d_error.State.i().change_state({
-                    observable_key: 'is_visible',
-                    state: true,
-                }); // show error ribbon
-                d_error.State.i().change_state({
-                    observable_key: 'is_highlighted',
-                    state: true,
-                }); // highlight error ribbon
-
-                d_error.State.i().clear_all_reset_state_timeouts();
-
-                if ((!error_obj || !error_obj.persistent) && !persistent) {
-                    d_error.State.i().run_reset_state_timeout({
                         observable_key: 'is_visible',
-                        delay: hide_delay + this.highlight_time,
+                        state: true,
+                    }); // show error ribbon
+                    d_error.State.i().change_state({
+                        observable_key: 'is_highlighted',
+                        state: true,
+                    }); // highlight error ribbon
+
+                    d_error.State.i().clear_all_reset_state_timeouts();
+
+                    if ((!error_obj || !error_obj.persistent) && !persistent) {
+                        d_error.State.i().run_reset_state_timeout({
+                            observable_key: 'is_visible',
+                            delay: hide_delay + this.highlight_time,
+                        });
+                    }
+
+                    d_error.State.i().run_reset_state_timeout({
+                        observable_key: 'is_highlighted',
+                        delay: this.highlight_time,
                     });
                 }
-
-                d_error.State.i().run_reset_state_timeout({
-                    observable_key: 'is_highlighted',
-                    delay: this.highlight_time,
-                });
 
                 if (error_obj && error_code) {
-                    d_error.Msg.i().change_visibility_of_advanced_msg({ is_visible: false });
+                    if (!x.in_service_worker) {
+                        d_error.Msg.i().change_visibility_of_advanced_msg({ is_visible: false });
+                    }
 
                     const error_msg_pre = ext.msg(`${error_obj.error_msg || error_msg_key}_error`);
                     const error_msg_final = error_msg_pre ? ` ${error_msg_pre}` : '';
