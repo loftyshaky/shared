@@ -25,7 +25,7 @@ interface Global {
         selector: string,
     ) => NodeListOf<T1> | undefined;
     is_ext: boolean;
-    we: typeof browser;
+    we: any;
     page: string;
     misplaced_dependency: import('shared/t').CallbackVariadicVoid;
     show_err_ribbon: (

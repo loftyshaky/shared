@@ -2,7 +2,7 @@
 // Not using err/err_async because it causes infinite loop in content script and freezing when you disable/reload extension!
 
 import _ from 'lodash';
-import { browser as browser_2 } from 'webextension-polyfill-ts';
+import { browser, Windows, Tabs } from 'webextension-polyfill-ts';
 
 import { d_error } from 'error_modules/internal';
 import { t } from 'shared/internal';
@@ -13,7 +13,7 @@ declare global {
     const we: typeof browser;
 }
 
-global.we = browser_2 as any;
+global.we = browser;
 
 export const init_page = (): void =>
     err(() => {
@@ -70,14 +70,14 @@ export class Ext {
 
     public iterate_all_tabs = async (callback: t.CallbackVariadicVoid): Promise<void> => {
         try {
-            const windows: browser.windows.Window[] = await we.windows.getAll({
+            const windows: Windows.Window[] = await we.windows.getAll({
                 populate: true,
                 windowTypes: ['normal'],
             });
 
-            windows.forEach((window: browser.windows.Window): void => {
+            windows.forEach((window: Windows.Window): void => {
                 if (n(window.tabs)) {
-                    window.tabs.forEach((tab: browser.tabs.Tab): void => {
+                    window.tabs.forEach((tab: Tabs.Tab): void => {
                         if (n(tab.id)) {
                             callback(tab);
                         }
@@ -101,9 +101,9 @@ export class Ext {
         return '';
     };
 
-    public get_active_tab = async (): Promise<browser.tabs.Tab | undefined> => {
+    public get_active_tab = async (): Promise<Tabs.Tab | undefined> => {
         try {
-            const tabs: browser.tabs.Tab[] = await we.tabs.query({
+            const tabs: Tabs.Tab[] = await we.tabs.query({
                 active: true,
                 currentWindow: true,
             });
@@ -159,7 +159,7 @@ export class Ext {
 
     public send_msg_to_active_tab = async (msg: t.Msg): Promise<void> => {
         try {
-            const tab: browser.tabs.Tab | undefined = await this.get_active_tab();
+            const tab: Tabs.Tab | undefined = await this.get_active_tab();
 
             if (n(tab) && n(tab.id)) {
                 await this.send_msg_to_tab(tab.id, msg);
@@ -171,7 +171,7 @@ export class Ext {
 
     public send_msg_to_active_tab_resp = async (msg: t.Msg): Promise<any> => {
         try {
-            const tab: browser.tabs.Tab | undefined = await this.get_active_tab();
+            const tab: Tabs.Tab | undefined = await this.get_active_tab();
 
             if (n(tab) && n(tab.id)) {
                 return this.send_msg_to_tab(tab.id, msg);
