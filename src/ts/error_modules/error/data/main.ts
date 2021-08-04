@@ -1,4 +1,4 @@
-import { makeObservable, action } from 'mobx';
+import { makeObservable, action, runInAction } from 'mobx';
 
 import { d_crash_handler, d_error, i_error } from 'error_modules/internal';
 
@@ -86,14 +86,18 @@ export class Main {
                     const error_msg_pre = ext.msg(`${error_obj.error_msg || error_msg_key}_error`);
                     const error_msg_final = error_msg_pre ? ` ${error_msg_pre}` : '';
 
-                    d_error.Msg.i().basic_msg = `${
-                        ext.msg('an_error_occured_msg') + error_msg_final
-                    }`;
-                    d_error.Msg.i().advanced_msg = `${
-                        ext.msg('error_code_label') + (error_obj.error_code || error_code)
-                    }\n${ext.msg('error_type_label') + error_obj.name}\n${
-                        ext.msg('error_msg_label') + error_obj.message
-                    }`;
+                    runInAction(() =>
+                        err(() => {
+                            d_error.Msg.i().basic_msg = `${
+                                ext.msg('an_error_occured_msg') + error_msg_final
+                            }`;
+                            d_error.Msg.i().advanced_msg = `${
+                                ext.msg('error_code_label') + (error_obj.error_code || error_code)
+                            }\n${ext.msg('error_type_label') + error_obj.name}\n${
+                                ext.msg('error_msg_label') + error_obj.message
+                            }`;
+                        }, 'shr_1195'),
+                    );
 
                     if (error_obj.exit || exit) {
                         const updated_error_obj: i_error.ErrorObj = error_obj;
