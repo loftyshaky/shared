@@ -91,7 +91,7 @@ export class Ext {
 
     public msg = (msg: string): string => {
         try {
-            const msg_2: string | undefined = we.i18n.getMessage(msg);
+            const msg_2: string | undefined = n(we.i18n.getMessage) ? we.i18n.getMessage(msg) : '';
 
             return n(msg_2) ? msg_2 : '';
         } catch (error_obj) {
