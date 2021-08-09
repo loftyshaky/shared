@@ -347,7 +347,8 @@ export class X {
         new Promise((resolve): number =>
             err(
                 () =>
-                    window.setTimeout((): void => {
+                    // eslint-disable-next-line no-restricted-globals
+                    self.setTimeout((): void => {
                         resolve();
                     }, delay),
                 'shr_1176',
