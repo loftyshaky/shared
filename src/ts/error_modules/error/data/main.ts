@@ -153,8 +153,7 @@ export class Main {
     };
 
     public output_error = (error_obj: i_error.ErrorObj, error_code: string): void => {
-        const line =
-            '--------------------------------------------------------------------------------';
+        const line = '---------------------------';
         const separator_top = `${line}\n`;
         const separator_bottom = `\n${line}`;
         const error_code_and_msg = `${separator_top}Code: ${error_code}\nMessage: ${error_obj.message}`;
