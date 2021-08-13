@@ -124,10 +124,12 @@ textarea {
         }
 
         .input {
-            outline-color: $lpe;
-
             &::-webkit-slider-thumb {
                 background-color: $lpe;
+            }
+
+            &::-webkit-slider-runnable-track {
+                outline-color: $lpe;
             }
         }
     }

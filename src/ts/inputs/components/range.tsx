@@ -9,12 +9,7 @@ export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) =
     const input_w: JSX.Element = (
         <>
             <div className='displayed_val_w'>
-                <div
-                    className={x.cls([
-                        'input_w_and_help_btn',
-                        d_inputs.Val.i().focus_state({ input }),
-                    ])}
-                >
+                <div className='input_w_and_help_btn'>
                     <span
                         className={x.cls(['input_w', 'range', input.name, 'calculate_width'])}
                         style={{
@@ -24,7 +19,7 @@ export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) =
                     >
                         <input
                             id={input.name}
-                            className='input'
+                            className={x.cls(['input', d_inputs.Val.i().focus_state({ input })])}
                             type='range'
                             value={d_inputs.Val.i().access({ input }) as string}
                             autoComplete='off'

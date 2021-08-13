@@ -1,30 +1,33 @@
-$range_height: 12px;
+$range_track_height: 12px;
+$lower_fill_offset_top: 8px;
 
-.input_item.range {
-    .input_w_and_help_btn {
-        height: $input_height;
-    }
-
+.input_item {
     .range {
         .input {
-            @include outline_solid;
-
             appearance: none;
-            height: $range_height;
             padding: 0;
+            background-color: transparent;
             cursor: pointer;
-            outline-offset: -1px;
 
             &::-webkit-slider-thumb {
                 appearance: none;
-                width: $range_height;
+                width: $range_track_height;
                 height: $input_height;
+                margin-top: -$lower_fill_offset_top;
+            }
+
+            &::-webkit-slider-runnable-track {
+                @include outline_solid;
+
+                height: $range_track_height;
+                outline-offset: -1px;
             }
         }
 
         .lower_fill {
             position: absolute;
-            height: $range_height;
+            height: $range_track_height;
+            top: $lower_fill_offset_top;
             pointer-events: none;
         }
     }
@@ -33,6 +36,7 @@ $range_height: 12px;
         font-size: $font_small;
         width: max-content;
         margin-left: auto;
+        margin-top: $gap_small;
 
         &.help_is_present {
             margin-right: $input_height;
