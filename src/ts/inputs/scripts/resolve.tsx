@@ -14,6 +14,8 @@ export const resolve = ({ input }: { input: i_inputs.Input | o_inputs.Link }): J
             input_el = <c_inputs.Textarea input={input as o_inputs.Textarea} />;
         } else if (input.type === 'select') {
             input_el = <c_inputs.Select input={input as o_inputs.Select} />;
+        } else if (input.type === 'range') {
+            input_el = <c_inputs.Range input={input as o_inputs.Range} />;
         } else if (input.type === 'checkbox') {
             input_el = <c_inputs.Checkbox input={input as o_inputs.Checkbox} />;
         } else if (input.type === 'link') {

@@ -34,7 +34,8 @@ input[type='file'] {
 
     &.text .label,
     &.textarea .label,
-    &.select .label {
+    &.select .label,
+    &.range .label {
         margin-bottom: $gap_small;
     }
 

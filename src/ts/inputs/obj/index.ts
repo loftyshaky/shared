@@ -4,6 +4,7 @@ export * from 'inputs/obj/checkbox';
 export * from 'inputs/obj/file';
 export * from 'inputs/obj/link';
 export * from 'inputs/obj/option';
+export * from 'inputs/obj/range';
 export * from 'inputs/obj/section';
 export * from 'inputs/obj/select';
 export * from 'inputs/obj/text';

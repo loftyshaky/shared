@@ -7,6 +7,7 @@ export * from 'inputs/components/prop_types/input_item';
 export * from 'inputs/components/prop_types/label';
 export * from 'inputs/components/prop_types/link_btn';
 export * from 'inputs/components/prop_types/link';
+export * from 'inputs/components/prop_types/range';
 export * from 'inputs/components/prop_types/section_btn';
 export * from 'inputs/components/prop_types/section_content';
 export * from 'inputs/components/prop_types/section';

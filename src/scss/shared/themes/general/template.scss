@@ -118,6 +118,20 @@ textarea {
             linear-gradient(to right, $lpe, $lpe);
     }
 
+    .range {
+        .lower_fill {
+            background-color: $lpe;
+        }
+
+        .input {
+            outline-color: $lpe;
+
+            &::-webkit-slider-thumb {
+                background-color: $lpe;
+            }
+        }
+    }
+
     .checkbox .box {
         background-color: $gaq;
 
