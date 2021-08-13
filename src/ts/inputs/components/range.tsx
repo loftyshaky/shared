@@ -9,7 +9,12 @@ export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) =
     const input_w: JSX.Element = (
         <>
             <div className='displayed_val_w'>
-                <div className='input_w_and_help_btn'>
+                <div
+                    className={x.cls([
+                        'input_w_and_help_btn',
+                        d_inputs.Val.i().focus_state({ input }),
+                    ])}
+                >
                     <span
                         className={x.cls(['input_w', 'range', input.name, 'calculate_width'])}
                         style={{
@@ -33,6 +38,18 @@ export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) =
                                     },
                                     e,
                                 );
+                            }}
+                            onFocus={(): void => {
+                                d_inputs.Val.i().set_focus_state({
+                                    input,
+                                    state: true,
+                                });
+                            }}
+                            onBlur={(): void => {
+                                d_inputs.Val.i().set_focus_state({
+                                    input,
+                                    state: false,
+                                });
                             }}
                         />
                         <span

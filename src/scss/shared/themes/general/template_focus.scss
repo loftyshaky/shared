@@ -31,6 +31,7 @@ body.keyboard .btn.text:focus,
 .keyboard .link:focus,
 .keyboard .input_item .link_btn:focus,
 .keyboard .input_item .input_w:not(.text):not(.textarea).is_in_focus_state::before,
+.keyboard .input_item.range .input_w_and_help_btn.is_in_focus_state,
 .keyboard .input_item .visualization_w .visualization:focus,
 .keyboard .input_item .palette_visualization_w .palette_visualization:focus {
     outline-color: $uzf;
