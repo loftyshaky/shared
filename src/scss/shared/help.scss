@@ -53,4 +53,14 @@
     &:not(.textarea) .help_btn {
         align-self: center;
     }
+
+    &.textarea {
+        .input_w_and_help_btn {
+            align-items: normal;
+        }
+
+        .help_btn {
+            margin-top: 5px;
+        }
+    }
 }
