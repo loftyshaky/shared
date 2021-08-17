@@ -10,7 +10,7 @@ const apps = [
     'Advanced Extension Reloader Watch 2',
     'Browservery',
     'Advanced Extension Reloader',
-    'Google Enhancement Suite',
+    'Search Enhancer for Google',
     'Base64 font-face',
 ];
 
