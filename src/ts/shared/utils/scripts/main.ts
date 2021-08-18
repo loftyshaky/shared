@@ -39,11 +39,4 @@ export class Main {
 
             return obj_final;
         }, 'shr_1137');
-
-    public reload_ext = ({ msg }: { msg: string }): void =>
-        err(() => {
-            if (msg === 'reload_ext') {
-                we.runtime.reload();
-            }
-        }, 'shr_1138');
 }
