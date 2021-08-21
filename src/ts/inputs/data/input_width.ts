@@ -47,7 +47,7 @@ export class InputWidth {
     });
 
     public calculate_for_section = ({ section_name }: { section_name: string }): void => {
-        window.requestAnimationFrame(
+        self.requestAnimationFrame(
             (): Promise<void> =>
                 err_async(async () => {
                     const input_ws = sa<HTMLSpanElement>(
@@ -70,7 +70,7 @@ export class InputWidth {
                             return input_w_with_max_width;
                         }, 'shr_1047');
 
-                    window.requestAnimationFrame(
+                    self.requestAnimationFrame(
                         (): Promise<void> =>
                             err_async(async () => {
                                 await x.delay(0);

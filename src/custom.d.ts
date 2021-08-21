@@ -1,5 +1,5 @@
 interface Global {
-    window: Window;
+    self: Window;
     document: Document;
     location: Location;
     crypto: Crypto;

@@ -75,9 +75,9 @@ export class Ext {
                 windowTypes: ['normal'],
             });
 
-            windows.forEach((window: Windows.Window): void => {
-                if (n(window.tabs)) {
-                    window.tabs.forEach((tab: Tabs.Tab): void => {
+            windows.forEach((self: Windows.Window): void => {
+                if (n(self.tabs)) {
+                    self.tabs.forEach((tab: Tabs.Tab): void => {
                         if (n(tab.id)) {
                             callback(tab);
                         }

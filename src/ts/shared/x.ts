@@ -332,13 +332,13 @@ export class X {
         }, 'shr_1171');
 
     public get_css_val = (el: HTMLElement, key: string): string =>
-        err(() => window.getComputedStyle(el).getPropertyValue(key), 'shr_1172');
+        err(() => self.getComputedStyle(el).getPropertyValue(key), 'shr_1172');
 
     public get_numeric_css_val = (el: HTMLElement, key: string): number =>
-        err(() => parseInt(window.getComputedStyle(el).getPropertyValue(key), 10), 'shr_1173');
+        err(() => parseInt(self.getComputedStyle(el).getPropertyValue(key), 10), 'shr_1173');
 
     public get_float_css_val = (el: HTMLElement, key: string): number =>
-        err(() => parseFloat(window.getComputedStyle(el).getPropertyValue(key)), 'shr_1174');
+        err(() => parseFloat(self.getComputedStyle(el).getPropertyValue(key)), 'shr_1174');
 
     public str_is_number = (val: string): boolean =>
         err(() => /^\d+$|^\d+\.\d+$/.test(val), 'shr_1175');
@@ -347,7 +347,6 @@ export class X {
         new Promise((resolve): number =>
             err(
                 () =>
-                    // eslint-disable-next-line no-restricted-globals
                     self.setTimeout((): void => {
                         resolve();
                     }, delay),
@@ -429,7 +428,7 @@ export class X {
 
     public copy_img = (img_url: string): void =>
         err(() => {
-            const selection = window.getSelection();
+            const selection = self.getSelection();
 
             if (n(selection)) {
                 selection.removeAllRanges();
