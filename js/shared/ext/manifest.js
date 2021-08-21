@@ -37,9 +37,6 @@ class Manifest {
 
         if (browser === 'firefox') {
             shared_manifest.icons[96] = 'icon96.png';
-        }
-
-        if (browser === 'firefox' || mode === 'development') {
             shared_manifest.applications = {
                 gecko: {
                     id: `${process.env.npm_package_name}@loftyshaky`,
