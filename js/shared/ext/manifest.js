@@ -6,7 +6,7 @@ class Manifest {
         this.app_root = app_root;
     }
 
-    generate = ({ manifest, mode, browser }) => {
+    generate = ({ manifest, browser }) => {
         const shared_manifest = {
             manifest_version: 2,
             version: process.env.npm_package_version,
