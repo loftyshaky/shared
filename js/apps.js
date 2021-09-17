@@ -11,6 +11,7 @@ const apps = [
     'Browservery',
     'Advanced Extension Reloader',
     'Search Enhancer for Google',
+    'Clear New Tab',
     'Base64 font-face',
 ];
 
