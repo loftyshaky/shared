@@ -23,7 +23,7 @@ export class InputWidth {
     }
 
     public width: Record<string, string | undefined> = {};
-    private max_width: string = '0';
+    private max_width: string = '';
     private min_width: string = '298';
     private old_max_width: Record<string, string> = {};
 
@@ -40,7 +40,13 @@ export class InputWidth {
         },
     ): number | string | undefined {
         if (n(input.section)) {
-            return x.px(this.width[input.section]);
+            if (n(this.width[input.section])) {
+                return x.px(this.width[input.section]);
+            }
+
+            if (n(this.width.all_sections)) {
+                return x.px(this.width.all_sections);
+            }
         }
 
         return undefined;
@@ -51,9 +57,11 @@ export class InputWidth {
             (): Promise<void> =>
                 err_async(async () => {
                     const input_ws = sa<HTMLSpanElement>(
-                        `.section.${section_name} .input_item .input_w.calculate_width`,
+                        `.section${
+                            section_name === 'all_sections' ? '' : `.${section_name}`
+                        } .input_item .input_w.calculate_width`,
                     );
-
+                    l(input_ws);
                     runInAction(() =>
                         err(() => {
                             this.width[section_name] = undefined;
@@ -102,13 +110,23 @@ export class InputWidth {
         );
     };
 
-    public calculate_for_all_sections = ({ sections }: { sections: i_inputs.Sections }): void =>
+    public calculate_for_all_sections = ({
+        sections,
+        all_sections_inputs_equal_width = false,
+    }: {
+        sections: i_inputs.Sections;
+        all_sections_inputs_equal_width?: boolean;
+    }): void =>
         err(() => {
-            Object.values(sections).forEach((section: o_inputs.Section): void =>
-                err(() => {
-                    this.calculate_for_section({ section_name: section.name });
-                }, 'shr_1051'),
-            );
+            if (all_sections_inputs_equal_width) {
+                this.calculate_for_section({ section_name: 'all_sections' });
+            } else {
+                Object.values(sections).forEach((section: o_inputs.Section): void =>
+                    err(() => {
+                        this.calculate_for_section({ section_name: section.name });
+                    }, 'shr_1051'),
+                );
+            }
         }, 'shr_1052');
 
     public set_max_width = (): void =>
