@@ -79,12 +79,14 @@ export class Sections {
         restore_defaults_callback,
         input_change_val_callback,
         admin_inputs = [],
+        restore_inputs = [],
     }: {
         download_back_up_callback: t.CallbackAnyObj;
         upload_back_up_callback: t.CallbackVariadicVoid;
         restore_defaults_callback: t.CallbackVoid;
         input_change_val_callback: t.CallbackVariadicVoid;
         admin_inputs?: i_inputs.Input[];
+        restore_inputs?: i_inputs.Input[];
     }): o_inputs.Section[] =>
         err(
             () => [
@@ -118,6 +120,7 @@ export class Sections {
                             name: 'restore_defaults',
                             event_callback: restore_defaults_callback,
                         }),
+                        ...restore_inputs,
                     ],
                 }),
                 new o_inputs.Section({
