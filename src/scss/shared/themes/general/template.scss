@@ -7,21 +7,22 @@
     color: white !important;
 }
 
+::-webkit-scrollbar-thumb {
+    background-color: $uvi;
+}
+
+::-webkit-scrollbar-track {
+    background-color: $gaq;
+    border-color: $lpe;
+}
+
+::-webkit-scrollbar-corner,
+::-webkit-resizer {
+    background-color: $lpe;
+}
+
 .main {
     border-color: $lpe;
-
-    ::-webkit-scrollbar-thumb {
-        background-color: $uvi;
-    }
-
-    ::-webkit-scrollbar-track {
-        background-color: $gaq;
-    }
-
-    ::-webkit-scrollbar-corner,
-    ::-webkit-resizer {
-        background-color: $lpe;
-    }
 }
 
 .loading_screen {

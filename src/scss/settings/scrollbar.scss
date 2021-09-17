@@ -1,5 +1,12 @@
-.section_btns::-webkit-scrollbar-track:vertical {
-    @include border_right;
+.main {
+    ::-webkit-scrollbar-track:vertical {
+        border-color: unset;
+    }
 
-    border-left: 0;
+    .section_btns::-webkit-scrollbar-track:vertical {
+        @include border_right;
+
+        border-left: 0;
+        border-color: unset;
+    }
 }
