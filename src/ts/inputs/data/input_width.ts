@@ -61,7 +61,7 @@ export class InputWidth {
                             section_name === 'all_sections' ? '' : `.${section_name}`
                         } .input_item .input_w.calculate_width`,
                     );
-                    l(input_ws);
+
                     runInAction(() =>
                         err(() => {
                             this.width[section_name] = undefined;
