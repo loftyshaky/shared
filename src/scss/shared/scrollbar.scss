@@ -1,6 +1,6 @@
 $thumb_border: 5px solid transparent;
 
-:not(select) {
+:not(html):not(body):not(select) {
     &::-webkit-scrollbar {
         width: 17px;
     }
