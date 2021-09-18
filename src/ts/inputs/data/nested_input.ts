@@ -37,57 +37,84 @@ export class NestedInput {
     public set_parent_disbled_vals = ({
         input,
         sections,
+        set_to_all_sections = false,
     }: {
         input: i_inputs.Input;
         sections: i_inputs.Sections;
+        set_to_all_sections?: boolean;
     }): void =>
         err(() => {
-            if (d_settings.Sections.i().current_section !== '') {
-                const section = sections[d_settings.Sections.i().current_section];
+            const set_parent_disbled_vals_inner = ({
+                section,
+            }: {
+                section: o_inputs.Section;
+            }): void =>
+                err(() => {
+                    Object.values(section.inputs).forEach((input_2: i_inputs.Input): void =>
+                        err(() => {
+                            let parent_input: i_inputs.Input = input_2;
+                            const parents: string[] = [];
 
-                Object.values(section.inputs).forEach((input_2: i_inputs.Input): void =>
-                    err(() => {
-                        let parent_input: i_inputs.Input = input_2;
-                        const parents: string[] = [];
-
-                        const get_parent = (): void =>
-                            err(() => {
-                                if (n(parent_input)) {
-                                    const parent_2: i_inputs.Input = Object.values(
-                                        section.inputs,
-                                    ).find((input_3: i_inputs.Input) =>
-                                        err(() => input_3.name === parent_input.parent, 'shr_1055'),
-                                    );
-
-                                    if (n(parent_2)) {
-                                        parent_input = parent_2;
-                                        parents.push(parent_input.name);
-
-                                        get_parent();
-                                    } else {
-                                        const new_parent_disabled: boolean = !parents.every(
-                                            (parent: string) =>
-                                                err(() => data.settings[parent], 'shr_1056'),
+                            const get_parent = (): void =>
+                                err(() => {
+                                    if (n(parent_input)) {
+                                        const parent_2: i_inputs.Input = Object.values(
+                                            section.inputs,
+                                        ).find((input_3: i_inputs.Input) =>
+                                            err(
+                                                () => input_3.name === parent_input.parent,
+                                                'shr_1055',
+                                            ),
                                         );
 
-                                        input_2.parent_disabled =
-                                            input.section ===
-                                            d_settings.Sections.i().current_section
-                                                ? new_parent_disabled
-                                                : input_2.parent_disabled;
-                                    }
-                                }
-                            }, 'shr_1057');
+                                        if (n(parent_2)) {
+                                            parent_input = parent_2;
+                                            parents.push(parent_input.name);
 
-                        if (n(parent_input.parent)) {
-                            get_parent();
-                        }
-                    }, 'shr_1058'),
+                                            get_parent();
+                                        } else {
+                                            const new_parent_disabled: boolean = !parents.every(
+                                                (parent: string) =>
+                                                    err(() => data.settings[parent], 'shr_1056'),
+                                            );
+
+                                            input_2.parent_disabled =
+                                                input.section ===
+                                                    d_settings.Sections.i().current_section ||
+                                                set_to_all_sections
+                                                    ? new_parent_disabled
+                                                    : input_2.parent_disabled;
+                                        }
+                                    }
+                                }, 'shr_1057');
+
+                            if (n(parent_input.parent)) {
+                                get_parent();
+                            }
+                        }, 'shr_1058'),
+                    );
+                }, 'shr_1196');
+
+            if (set_to_all_sections) {
+                Object.values(sections).forEach((section: o_inputs.Section): void =>
+                    err(() => {
+                        set_parent_disbled_vals_inner({ section });
+                    }, 'shr_1197'),
                 );
+            } else if (d_settings.Sections.i().current_section !== '') {
+                const section = sections[d_settings.Sections.i().current_section];
+
+                set_parent_disbled_vals_inner({ section });
             }
         }, 'shr_1059');
 
-    public set_all_parents_disbled_vals = ({ sections }: { sections: i_inputs.Sections }): void =>
+    public set_all_parents_disbled_vals = ({
+        sections,
+        set_to_all_sections = false,
+    }: {
+        sections: i_inputs.Sections;
+        set_to_all_sections?: boolean;
+    }): void =>
         err(() => {
             Object.values(sections).forEach((section: o_inputs.Section): void =>
                 err(() => {
@@ -96,6 +123,7 @@ export class NestedInput {
                             this.set_parent_disbled_vals({
                                 input,
                                 sections,
+                                set_to_all_sections,
                             });
                         }, 'shr_1060'),
                     );
