@@ -1,4 +1,4 @@
-import { s_no_tr } from 'shared/internal';
+import { t, s_no_tr } from 'shared/internal';
 
 export class Main {
     private static i0: Main;
@@ -11,7 +11,15 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public set = ({ name, el = document.head }: { name: string; el?: HTMLElement }): void =>
+    public set = ({
+        name,
+        el = document.head,
+        additional_theme_callback,
+    }: {
+        name: string;
+        el?: HTMLElement;
+        additional_theme_callback?: t.CallbackVariadicVoid;
+    }): void =>
         err(() => {
             s_no_tr.Main.i().enable({ el });
 
@@ -23,6 +31,10 @@ export class Main {
 
             if (n(loading_screen_root_el) && n(loading_screen_root_el.shadowRoot)) {
                 x.css(name_final, loading_screen_root_el.shadowRoot, 'theme_link');
+            }
+
+            if (n(additional_theme_callback)) {
+                additional_theme_callback({ name, el });
             }
 
             s_no_tr.Main.i().disable({ el });
