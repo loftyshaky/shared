@@ -36,7 +36,11 @@ export class Help {
         const is_input: boolean = n(section_name);
 
         if (n(section_name)) {
-            return is_input ? x.px(d_inputs.InputWidth.i().width[section_name]) : '';
+            return is_input
+                ? d_inputs.InputWidth.i().min_width_style!({
+                      input: section_or_input as i_inputs.Input,
+                  })
+                : '';
         }
 
         return undefined;
