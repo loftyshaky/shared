@@ -52,10 +52,10 @@ export class InputWidth {
         return undefined;
     });
 
-    public calculate_for_section = ({ section_name }: { section_name: string }): void => {
-        self.requestAnimationFrame(
-            (): Promise<void> =>
-                err_async(async () => {
+    public calculate_for_section = ({ section_name }: { section_name: string }): Promise<void> =>
+        new Promise((reslove) =>
+            self.requestAnimationFrame((): void =>
+                err(() => {
                     const input_ws = sa<HTMLSpanElement>(
                         `.section${
                             section_name === 'all_sections' ? '' : `.${section_name}`
@@ -101,14 +101,16 @@ export class InputWidth {
                                     } else {
                                         this.old_max_width[section_name] = input_w_max_width;
 
-                                        this.calculate_for_section({ section_name });
+                                        await this.calculate_for_section({ section_name });
                                     }
                                 }
+
+                                reslove();
                             }, 'shr_1049'),
                     );
                 }, 'shr_1050'),
+            ),
         );
-    };
 
     public calculate_for_all_sections = ({
         sections,
@@ -116,15 +118,17 @@ export class InputWidth {
     }: {
         sections: i_inputs.Sections;
         all_sections_inputs_equal_width?: boolean;
-    }): void =>
-        err(() => {
+    }): Promise<void> =>
+        err(async () => {
             if (all_sections_inputs_equal_width) {
-                this.calculate_for_section({ section_name: 'all_sections' });
+                await this.calculate_for_section({ section_name: 'all_sections' });
             } else {
-                Object.values(sections).forEach((section: o_inputs.Section): void =>
-                    err(() => {
-                        this.calculate_for_section({ section_name: section.name });
-                    }, 'shr_1051'),
+                await Promise.all(
+                    Object.values(sections).map((section: o_inputs.Section): void =>
+                        err(() => {
+                            this.calculate_for_section({ section_name: section.name });
+                        }, 'shr_1051'),
+                    ),
                 );
             }
         }, 'shr_1052');
