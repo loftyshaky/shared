@@ -23,7 +23,7 @@ $text_input_outline_size: 20px;
 body.keyboard .btn.text:focus,
 .keyboard .input_item .checkbox .box:focus,
 .keyboard .link:focus,
-.keyboard .input_item .link_btn:focus,
+.keyboard .link_btn:focus,
 .keyboard .input_item .help_btn:focus,
 .keyboard .input_item .input_w:not(.text):not(.textarea).is_in_focus_state::before,
 .keyboard .input_item.range .input.is_in_focus_state {
@@ -33,7 +33,7 @@ body.keyboard .btn.text:focus,
 .keyboard .input_item .pcr-palette:focus,
 .keyboard .input_item .pcr-slider:focus,
 .keyboard .link:focus,
-.keyboard .input_item .link_btn:focus,
+.keyboard .link_btn:focus,
 .keyboard .input_item .help_btn:focus,
 .keyboard .input_item.range .input.is_in_focus_state {
     outline-offset: $outline_offset;
