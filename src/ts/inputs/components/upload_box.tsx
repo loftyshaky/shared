@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { observer } from 'mobx-react';
 
-import { d_inputs, c_inputs, s_inputs, p_inputs } from 'inputs/internal';
+import { c_inputs, o_inputs, d_inputs, s_inputs, p_inputs } from 'inputs/internal';
 
 export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((props) => {
     const file_input_ref = useRef<HTMLInputElement>(null);
@@ -34,10 +34,13 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                     />
                     <div className='what_to_do_msg'>
                         <c_inputs.LinkBtn
-                            name='browse'
-                            on_click={() =>
-                                s_inputs.UploadBox.i().trigger_click_on_file_input({
-                                    file_input: file_input_ref.current,
+                            input={
+                                new o_inputs.LinkBtn({
+                                    name: 'browse',
+                                    event_callback: () =>
+                                        s_inputs.UploadBox.i().trigger_click_on_file_input({
+                                            file_input: file_input_ref.current,
+                                        }),
                                 })
                             }
                         />

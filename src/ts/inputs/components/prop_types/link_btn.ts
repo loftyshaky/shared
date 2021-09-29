@@ -1,6 +1,5 @@
-import { t } from 'shared/internal';
+import { o_inputs } from 'inputs/internal';
 
 export interface LinkBtn {
-    name: string;
-    on_click: t.CallbackVoid;
+    input: o_inputs.LinkBtn;
 }

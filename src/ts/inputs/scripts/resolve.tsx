@@ -24,6 +24,8 @@ export const resolve = ({ input }: { input: i_inputs.Input | o_inputs.Link }): J
             // input_el = <c_inputs.BtnsGroup btn_group={input} />;
         } else if (input.type === 'btn') {
             input_el = <c_inputs.Btn input={input as o_inputs.Btn} />;
+        } else if (input.type === 'link_btn') {
+            input_el = <c_inputs.LinkBtn input={input as o_inputs.LinkBtn} />;
         } else if (input.type === 'file') {
             input_el = <c_inputs.File input={input as o_inputs.File} />;
         } else if (input.type === 'upload_box') {

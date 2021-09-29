@@ -3,7 +3,7 @@ import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 
 import { c_tr } from 'shared/internal';
-import { c_inputs, c_color, d_color, p_color } from 'inputs/internal';
+import { c_inputs, c_color, o_inputs, d_color, p_color } from 'inputs/internal';
 
 export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
     const { input } = props;
@@ -65,24 +65,38 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                             >
                                 <p className='color_help'>{ext.msg('color_help_text')}</p>
                                 <c_inputs.LinkBtn
-                                    name='hide'
-                                    on_click={(): void => {
-                                        d_color.Visibility.i().hide_color_help({ input });
-                                    }}
+                                    input={
+                                        new o_inputs.LinkBtn({
+                                            name: 'hide',
+                                            event_callback: (): void => {
+                                                d_color.Visibility.i().hide_color_help({ input });
+                                            },
+                                        })
+                                    }
                                 />
                             </c_tr.BaseTr>
                             <div className='palette_link_btns'>
                                 <c_inputs.LinkBtn
-                                    name='remove_color'
-                                    on_click={(): void => {
-                                        d_color.Color.i().remove_color({ input });
-                                    }}
+                                    input={
+                                        new o_inputs.LinkBtn({
+                                            name: 'remove_color',
+                                            event_callback: (): void => {
+                                                d_color.Color.i().remove_color({ input });
+                                            },
+                                        })
+                                    }
                                 />
                                 <c_inputs.LinkBtn
-                                    name='restore_default_palette'
-                                    on_click={(): void => {
-                                        d_color.Color.i().restore_default_palette({ input });
-                                    }}
+                                    input={
+                                        new o_inputs.LinkBtn({
+                                            name: 'restore_default_palette',
+                                            event_callback: (): void => {
+                                                d_color.Color.i().restore_default_palette({
+                                                    input,
+                                                });
+                                            },
+                                        })
+                                    }
                                 />
                             </div>
                             <div className='palette_colors'>
