@@ -32,6 +32,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         className={x.cls(['input', input.text_type])}
                         type={input.text_type}
                         value={d_inputs.Val.i().access({ input }) as string}
+                        placeholder={input.placeholder}
                         autoComplete='off'
                         spellCheck='false'
                         ref={input_ref}
