@@ -143,6 +143,22 @@ textarea {
         }
     }
 
+    .upload_box {
+        border-color: $lpe;
+
+        .background {
+            background-color: $nrf;
+
+            &.loading {
+                background-image: repeating-linear-gradient(-45deg,
+                $nrf,
+                $nrf 14px,
+                $gaq 14px,
+                $gaq 28px);
+            }
+        }
+    }
+
     .color_picker_w {
         *:not(.pcr-last-color):not(.pcr-current-color) {
             color: $lpe !important;

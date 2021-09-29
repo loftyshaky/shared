@@ -15,3 +15,4 @@ export * from 'inputs/components/select';
 export * from 'inputs/components/text_btn';
 export * from 'inputs/components/text';
 export * from 'inputs/components/textarea';
+export * from 'inputs/components/upload_box';

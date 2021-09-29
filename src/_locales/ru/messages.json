@@ -20,6 +20,15 @@
     "cant_render_ui_error": {
         "message": "Не удалось отобразить пользовательский интерфейс."
     },
+    "browse_link_btn_text": {
+        "message": "Выберите"
+    },
+    "drag_files_msg_text": {
+        "message": "файлы или перетащите их сюда"
+    },
+    "loading_msg_text": {
+        "message": "Идёт загрузка..."
+    },
     "settings_title_text": {
         "message": "Настройки"
     },

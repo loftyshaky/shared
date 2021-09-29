@@ -9,3 +9,4 @@ export * from 'inputs/obj/section';
 export * from 'inputs/obj/select';
 export * from 'inputs/obj/text';
 export * from 'inputs/obj/textarea';
+export * from 'inputs/obj/upload_box';

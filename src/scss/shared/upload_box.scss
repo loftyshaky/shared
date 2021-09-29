@@ -1,0 +1,58 @@
+$upload_box_text_z_index: 2;
+$upload_box_loading_animation_size: 40px;
+
+.input_item {
+    .upload_box {
+        position: relative;
+        height: 100px;
+        text-align: center;
+        border-width: 3px;
+        border-style: dashed;
+        display: flex;
+        align-items: end;
+
+        .what_to_do_msg {
+            @include center_translate;
+
+            position: absolute;
+            padding-right: $gap;
+            padding-left: $gap;
+            z-index: $upload_box_text_z_index;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .browse {
+            display: inline;
+            font-size: $font_main;
+        }
+
+        .status_msg {
+            width: 100%;
+            font-size: $font_small;
+            margin-bottom: 5px;
+            z-index: $upload_box_text_z_index;
+        }
+
+        .background {
+            @include full_dims;
+
+            position: absolute;
+
+            &.loading {
+                animation: move 450ms linear infinite;
+                background-size: $upload_box_loading_animation_size $upload_box_loading_animation_size;
+            }
+        }
+    }
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 40px 0;
+    }
+}
