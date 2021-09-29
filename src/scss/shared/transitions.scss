@@ -9,7 +9,7 @@
     transition-property: opacity;
 }
 
-.btn:not(.reload_ui) {
+.btn:not(.link_btn):not(.reload_ui) {
     transition: var(--transition);
     transition-property: background-color;
 }
