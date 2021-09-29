@@ -75,15 +75,18 @@ export class Position {
                             const remove_double_minus = ({ val }: { val: string }): string =>
                                 val.replace(/--/, '');
 
-                            const scroll_container = s<HTMLDivElement>('.sections');
+                            const scroll_container = s<HTMLDivElement>('.sections:not(.custom)');
+                            const scroll_container_final: HTMLElement = n(scroll_container)
+                                ? scroll_container
+                                : document.documentElement;
 
-                            if (n(scroll_container)) {
+                            if (n(scroll_container_final)) {
                                 const fill_shadow_w_rect = fill_shadow_w[i].getBoundingClientRect();
                                 const fill_shadow_rect = fill_shadows[i].getBoundingClientRect();
                                 const visualization_height: number = visualization.offsetHeight;
                                 const visualization_width: number = visualization.offsetWidth;
-                                const scroll_top: number = scroll_container.scrollTop;
-                                const scroll_left: number = scroll_container.scrollLeft;
+                                const scroll_top: number = scroll_container_final.scrollTop;
+                                const scroll_left: number = scroll_container_final.scrollLeft;
                                 const viewport_width: number = s_viewport.Main.i().get_dim({
                                     dim: 'width',
                                 });
@@ -91,8 +94,8 @@ export class Position {
                                     dim: 'height',
                                 });
 
-                                scroll_container.scrollTop = scroll_top;
-                                scroll_container.scrollLeft = scroll_left;
+                                scroll_container_final.scrollTop = scroll_top;
+                                scroll_container_final.scrollLeft = scroll_left;
 
                                 const target_fit_to_display_below_visualization: boolean =
                                     Math.ceil(
