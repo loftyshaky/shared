@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { observer } from 'mobx-react';
 
-import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
+import { svg } from 'shared/internal';
+import { d_inputs, c_inputs, p_inputs, i_inputs } from 'inputs/internal';
 
 export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => {
     const input_ref = useRef<HTMLInputElement>(null);
@@ -57,14 +58,40 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                             });
                         }}
                     />
-                    <c_inputs.TextBtn
-                        name='remove_val'
-                        svg_name='Close'
-                        input={input}
-                        on_click={() =>
-                            d_inputs.Val.i().remove_val({ input, input_el: input_ref.current })
-                        }
-                    />
+                    {n(input.text_btns)
+                        ? input.text_btns.map(
+                              (text_btn: i_inputs.TextBtn, i: number): JSX.Element =>
+                                  n(text_btn.visibility_cond) &&
+                                  text_btn.visibility_cond({ input }) ? (
+                                      <c_inputs.TextBtn
+                                          key={i}
+                                          name={text_btn.name}
+                                          Svg={text_btn.Svg}
+                                          input={input}
+                                          on_click={() =>
+                                              text_btn.event_callback({
+                                                  input,
+                                              })
+                                          }
+                                      />
+                                  ) : (
+                                      <></>
+                                  ),
+                          )
+                        : undefined}
+                    {input.remove_val_btn_is_visible!({ input }) ? (
+                        <c_inputs.TextBtn
+                            name='remove_val'
+                            Svg={svg.Close}
+                            input={input}
+                            on_click={() =>
+                                d_inputs.Val.i().remove_val({
+                                    input,
+                                    input_el: input_ref.current,
+                                })
+                            }
+                        />
+                    ) : undefined}
                 </span>
                 {input.include_help ? <c_inputs.HelpBtn section_or_input={input} /> : undefined}
             </div>
