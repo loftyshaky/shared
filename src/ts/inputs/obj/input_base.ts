@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
@@ -9,6 +10,7 @@ export class InputBase {
     public is_cut?: boolean = false;
     public is_visible_key?: string; // settings object key
     public is_visible?: boolean = true;
+    public visiblity_conds?: i_inputs.VisiblityCond[] = [];
     public is_in_focus_state?: boolean = false;
     public is_in_warn_state?: boolean = false;
     public val_accessor?: string; // a.b.c
@@ -28,6 +30,7 @@ export class InputBase {
         makeObservable(this, {
             is_cut: observable,
             is_visible: observable,
+            is_visible_visiblity_conds: observable,
             is_in_focus_state: observable,
             is_in_warn_state: observable,
             help_is_visible: observable,
@@ -41,6 +44,28 @@ export class InputBase {
     }
 
     parent_disabled_cls? = computedFn(function (this: InputBase): string {
-        return this.parent_disabled ? 'parent_disabled' : '';
+        return this.parent_disabled && this.is_visible_visiblity_conds!() ? 'parent_disabled' : '';
+    });
+
+    is_visible_visiblity_conds? = computedFn(function (this: InputBase): boolean {
+        const visibility_conds_provided: boolean = !_.isEmpty(this.visiblity_conds);
+
+        if (n(this.visiblity_conds) && visibility_conds_provided) {
+            return this.visiblity_conds.every((visiblity_cond: i_inputs.VisiblityCond): boolean =>
+                err(
+                    () =>
+                        visiblity_cond.pass_values.some(
+                            (pass_value: boolean | string | number): boolean =>
+                                err(
+                                    () => data.settings[visiblity_cond.input_name] === pass_value,
+                                    'shr_1207',
+                                ),
+                        ),
+                    'shr_1206',
+                ),
+            );
+        }
+
+        return true;
     });
 }

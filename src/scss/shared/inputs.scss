@@ -12,7 +12,7 @@ input[type='file'] {
     width: auto;
 
     &.parent_disabled {
-        opacity: 0.3;
+        opacity: 0.3 !important;
         pointer-events: none;
     }
 
