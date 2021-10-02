@@ -62,6 +62,9 @@ export class ColorPicker {
                         d_color.Color.i().save({
                             i,
                             input,
+                            callback: (): void => {
+                                input.conditional_event_callback!({ input, i });
+                            },
                         });
                     }
                 }, 'shr_1035'),
@@ -109,20 +112,18 @@ export class ColorPicker {
                     i,
                 });
 
-                if (n(color)) {
-                    pickr.setColor(color === '' ? '#fff' : color);
+                pickr.setColor(!n(color) || color === '' ? '#fff' : color);
 
-                    this.setting_color = false;
+                this.setting_color = false;
 
-                    pickr.setColorRepresentation('HSVA');
+                pickr.setColorRepresentation('HSVA');
 
-                    runInAction(() =>
-                        err(() => {
-                            input.color_picker_width = color_picker.offsetWidth.toString();
-                            input.color_picker_height = color_picker.offsetHeight.toString();
-                        }, 'shr_1038'),
-                    );
-                }
+                runInAction(() =>
+                    err(() => {
+                        input.color_picker_width = color_picker.offsetWidth.toString();
+                        input.color_picker_height = color_picker.offsetHeight.toString();
+                    }, 'shr_1038'),
+                );
             }
         }, 'shr_1039');
 }

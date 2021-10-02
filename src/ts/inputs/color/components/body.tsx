@@ -113,6 +113,22 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                       )
                                     : undefined}
                             </div>
+                            {input.include_ok_btn ? (
+                                <c_inputs.Btn
+                                    input={{
+                                        name: 'color_ok_btn',
+                                        alt_msg: 'OK',
+                                        event_callback: (): void =>
+                                            d_color.Color.i().save({
+                                                i: 'main',
+                                                input,
+                                                callback: (): void => {
+                                                    input.event_callback({ input, i: 'main' });
+                                                },
+                                            }),
+                                    }}
+                                />
+                            ) : undefined}
                         </div>
                     </c_tr.BaseTr>
                     {input.include_visualization ? (

@@ -92,7 +92,15 @@ export class Color {
             }
         }, 'shr_1008');
 
-    public save = ({ input, i }: { input: o_color.Color; i: i_color.I }): void =>
+    public save = ({
+        input,
+        i,
+        callback,
+    }: {
+        input: o_color.Color;
+        i: i_color.I;
+        callback: t.CallbackVariadicVoid;
+    }): void =>
         err(() => {
             this.set_previous_color({
                 input,
@@ -105,7 +113,7 @@ export class Color {
                 d_color.Visibility.i().hide_palette_color_pickers({ input });
             }
 
-            input.event_callback({
+            callback({
                 input,
                 i,
             });

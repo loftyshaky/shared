@@ -8,11 +8,11 @@ export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
 
     return (
         <button
-            className={x.cls(['btn', 'text', 'inset_border'])}
+            className={x.cls(['btn', 'text', 'inset_border', input.name])}
             type='button'
             onClick={input.event_callback}
         >
-            {ext.msg(`${input.name}_btn_text`)}
+            {ext.msg(`${input.name}_btn_text`) || input.alt_msg}
         </button>
     );
 });

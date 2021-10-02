@@ -20,6 +20,7 @@ export class Color extends o_inputs.InputBase {
     public palette_height?: string = '0';
     public color_picker_width?: string = '0';
     public color_picker_height?: string = '0';
+    public include_ok_btn?: boolean = false;
     public state?: i_color.ColorPickerState = {
         main: color_picker_state,
         ...Array(d_color.Color.i().palette_color_amount)
@@ -63,6 +64,13 @@ export class Color extends o_inputs.InputBase {
         this.restore_default_palette_callback = obj.restore_default_palette_callback;
         this.hide_color_help_callback = obj.hide_color_help_callback;
     }
+
+    conditional_event_callback? = ({ input, i }: { input: Color; i: i_color.I }): void =>
+        err(() => {
+            if (!input.include_ok_btn) {
+                input.event_callback({ input, i });
+            }
+        }, 'shr_1209');
 
     is_palette_color? = ({ i }: { i: i_color.I }): boolean =>
         err(() => typeof i === 'number', 'shr_1030');
