@@ -1,5 +1,5 @@
 import { MouseEvent, FocusEvent, KeyboardEvent } from 'react';
-import { makeObservable, action, runInAction } from 'mobx';
+import { makeObservable, action, runInAction, observable } from 'mobx';
 
 import { o_color, d_color, i_color } from 'inputs/internal';
 
@@ -13,6 +13,7 @@ export class Visibility {
 
     private constructor() {
         makeObservable(this, {
+            color_help_is_visible: observable,
             mark_color_picker_as_closed: action,
             mark_palette_as_closed: action,
             hide_main_and_palette: action,
@@ -24,6 +25,7 @@ export class Visibility {
     public previously_visible_input: o_color.Color | undefined;
     public previously_visible_color_picker_i: i_color.I | undefined;
     private visualization_of_visible_input: HTMLButtonElement | undefined;
+    public color_help_is_visible: boolean = true;
 
     public mark_color_picker_as_closed = ({
         input,
@@ -262,4 +264,9 @@ export class Visibility {
 
             input.hide_color_help_callback();
         }, 'shr_1029');
+
+    public hide_color_help_tr_end = (): void =>
+        err(() => {
+            this.color_help_is_visible = false;
+        }, 'shr_1210');
 }

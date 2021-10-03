@@ -135,4 +135,8 @@ export class Color extends o_inputs.InputBase {
     palette_is_closed_visibility_cls? = computedFn(function (this: Color): string {
         return this.palette_is_closed ? 'none' : '';
     });
+
+    color_help_visibility_cls? = computedFn(function (this: Color): string {
+        return d_color.Visibility.i().color_help_is_visible ? '' : 'none';
+    });
 }
