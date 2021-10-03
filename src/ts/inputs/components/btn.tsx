@@ -8,8 +8,16 @@ export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
 
     return (
         <button
-            className={x.cls(['btn', 'text', 'inset_border', input.name])}
+            className={x.cls([
+                'btn',
+                'text',
+                'inset_border',
+                ,
+                input.parent_disabled_cls!(),
+                input.name,
+            ])}
             type='button'
+            disabled={input.parent_disabled}
             onClick={input.event_callback}
         >
             {ext.msg(`${input.name}_btn_text`) || input.alt_msg}

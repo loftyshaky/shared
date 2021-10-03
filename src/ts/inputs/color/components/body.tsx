@@ -115,18 +115,20 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                             </div>
                             {input.include_ok_btn ? (
                                 <c_inputs.Btn
-                                    input={{
-                                        name: 'color_ok_btn',
-                                        alt_msg: 'OK',
-                                        event_callback: (): void =>
-                                            d_color.Color.i().save({
-                                                i: 'main',
-                                                input,
-                                                callback: (): void => {
-                                                    input.event_callback({ input, i: 'main' });
-                                                },
-                                            }),
-                                    }}
+                                    input={
+                                        new o_inputs.Btn({
+                                            name: 'color_ok_btn',
+                                            alt_msg: 'OK',
+                                            event_callback: (): void =>
+                                                d_color.Color.i().save({
+                                                    i: 'main',
+                                                    input,
+                                                    callback: (): void => {
+                                                        input.event_callback({ input, i: 'main' });
+                                                    },
+                                                }),
+                                        })
+                                    }
                                 />
                             ) : undefined}
                         </div>

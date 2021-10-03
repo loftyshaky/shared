@@ -47,6 +47,10 @@ export class InputBase {
         return this.parent_disabled && this.is_visible_visiblity_conds!() ? 'parent_disabled' : '';
     });
 
+    tab_index? = computedFn(function (this: InputBase): number {
+        return this.parent_disabled && this.is_visible_visiblity_conds!() ? -1 : 0;
+    });
+
     is_visible_visiblity_conds? = computedFn(function (this: InputBase): boolean {
         const visibility_conds_provided: boolean = !_.isEmpty(this.visiblity_conds);
 

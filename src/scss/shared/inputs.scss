@@ -11,11 +11,6 @@ input[type='file'] {
     display: table;
     width: auto;
 
-    &.parent_disabled {
-        opacity: 0.3 !important;
-        pointer-events: none;
-    }
-
     &.child {
         margin-left: 28px;
     }
@@ -42,6 +37,7 @@ input[type='file'] {
     .input {
         @include input_basic;
 
+        opacity: 1; // needed to keep default color when element is disabled
         height: $input_height;
         padding: 0 $input_inner_padding 0 $input_inner_padding;
         flex-grow: 1;

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import React, { useRef } from 'react';
 import { observer } from 'mobx-react';
 
@@ -34,15 +36,14 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                     />
                     <div className='what_to_do_msg'>
                         <c_inputs.LinkBtn
-                            input={
-                                new o_inputs.LinkBtn({
-                                    name: 'browse',
-                                    event_callback: () =>
-                                        s_inputs.UploadBox.i().trigger_click_on_file_input({
-                                            file_input: file_input_ref.current,
-                                        }),
-                                })
-                            }
+                            input={_.merge({}, input, {
+                                name: 'browse',
+                                type: 'link_btn',
+                                event_callback: () =>
+                                    s_inputs.UploadBox.i().trigger_click_on_file_input({
+                                        file_input: file_input_ref.current,
+                                    }),
+                            } as o_inputs.LinkBtn)}
                         />
                         <span>{` ${ext.msg('drag_files_msg_text')}`}</span>
                     </div>

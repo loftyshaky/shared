@@ -26,6 +26,7 @@ export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) =
                             min={input.min}
                             max={input.max}
                             step={input.step}
+                            disabled={input.parent_disabled}
                             onInput={(e): void => {
                                 d_inputs.Val.i().change(
                                     {

@@ -20,3 +20,8 @@
     border-width: 1px !important;
     border-style: solid !important;
 }
+
+.parent_disabled {
+    opacity: 0.3 !important;
+    pointer-events: none;
+}

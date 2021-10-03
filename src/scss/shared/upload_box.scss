@@ -25,6 +25,7 @@ $upload_box_loading_animation_size: 40px;
         .browse {
             display: inline;
             font-size: $font_main;
+            opacity: 1 !important; // needed to keep default color when element is disabled
         }
 
         .status_msg {
