@@ -38,10 +38,10 @@ export class Main {
         }: i_error.ShowError = {},
     ): void => {
         d_crash_handler.Main.i().catch_fatal_error(() => {
-            const show_error_ui: boolean =
+            const error_ui_is_visible: boolean =
                 !x.in_service_worker && !silent && (!error_obj || !error_obj.silent);
 
-            if (show_error_ui) {
+            if (error_ui_is_visible) {
                 if (is_notification) {
                     d_error.State.i().change_state({
                         observable_key: 'is_notification',
@@ -81,7 +81,7 @@ export class Main {
             }
 
             if (error_obj && error_code) {
-                if (show_error_ui) {
+                if (error_ui_is_visible) {
                     d_error.Msg.i().change_visibility_of_advanced_msg({ is_visible: false });
                 }
 

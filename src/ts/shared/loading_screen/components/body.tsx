@@ -1,9 +1,9 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { svg, c_tr, d_loading_screen, p_loading_screen } from 'shared/internal';
+import { svg, c_tr, d_loading_screen } from 'shared/internal';
 
-export const Body: React.FunctionComponent<p_loading_screen.Body> = observer(() => (
+export const Body = observer(() => (
     <c_tr.BaseTr
         tag='div'
         name='fade'

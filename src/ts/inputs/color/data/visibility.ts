@@ -260,7 +260,7 @@ export class Visibility {
 
     public hide_color_help = ({ input }: { input: o_color.Color }): void =>
         err(() => {
-            data.settings.show_color_help = false;
+            data.settings.color_help_is_visible = false;
 
             input.hide_color_help_callback();
         }, 'shr_1029');

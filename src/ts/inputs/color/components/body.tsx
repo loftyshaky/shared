@@ -61,7 +61,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                 tag='div'
                                 name='fade'
                                 cls={x.cls(['color_help_w', input.color_help_visibility_cls!()])}
-                                state={data.settings.show_color_help}
+                                state={data.settings.color_help_is_visible}
                                 tr_end_unactive={[d_color.Visibility.i().hide_color_help_tr_end]}
                             >
                                 <p className='color_help'>{ext.msg('color_help_text')}</p>
