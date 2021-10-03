@@ -76,7 +76,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                                           }
                                       />
                                   ) : (
-                                      <></>
+                                      <React.Fragment key={i} />
                                   ),
                           )
                         : undefined}
