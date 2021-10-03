@@ -20,6 +20,7 @@ export class Color extends o_inputs.InputBase {
     public palette_height?: string = '0';
     public color_picker_width?: string = '0';
     public color_picker_height?: string = '0';
+    public include_remove_color_btn?: boolean = true;
     public include_ok_btn?: boolean = false;
     public state?: i_color.ColorPickerState = {
         main: color_picker_state,

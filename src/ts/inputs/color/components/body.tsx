@@ -77,16 +77,18 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                 />
                             </c_tr.BaseTr>
                             <div className='palette_link_btns'>
-                                <c_inputs.LinkBtn
-                                    input={
-                                        new o_inputs.LinkBtn({
-                                            name: 'remove_color',
-                                            event_callback: (): void => {
-                                                d_color.Color.i().remove_color({ input });
-                                            },
-                                        })
-                                    }
-                                />
+                                {input.include_remove_color_btn ? (
+                                    <c_inputs.LinkBtn
+                                        input={
+                                            new o_inputs.LinkBtn({
+                                                name: 'remove_color',
+                                                event_callback: (): void => {
+                                                    d_color.Color.i().remove_color({ input });
+                                                },
+                                            })
+                                        }
+                                    />
+                                ) : undefined}
                                 <c_inputs.LinkBtn
                                     input={
                                         new o_inputs.LinkBtn({
