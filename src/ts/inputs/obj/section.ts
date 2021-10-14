@@ -8,6 +8,7 @@ export class Section {
     public name: string;
     public include_help?: boolean = false;
     public help_is_visible?: boolean = false;
+    public alt_msg?: string;
     public alt_help_msg?: string;
     public inputs: i_inputs.Inputs | i_inputs.Links;
     public subsections?: {

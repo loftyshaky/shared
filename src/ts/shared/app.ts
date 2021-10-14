@@ -54,7 +54,7 @@ export class App {
 
     public msg = (/* msg: string */): string => {
         try {
-            const msg_2: string | undefined = 'PLCHLDR';
+            const msg_2: string | undefined = '';
 
             return n(msg_2) ? msg_2 : '';
         } catch (error_obj) {
