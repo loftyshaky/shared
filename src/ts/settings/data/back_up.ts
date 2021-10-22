@@ -61,7 +61,9 @@ export class BackUp {
                 if (blob.type === 'application/json') {
                     const data_string: string = (await this.read({ blob })) as string;
 
-                    input.event_callback({ data_obj: JSON.parse(data_string) });
+                    if (n(input.save_callback)) {
+                        input.save_callback({ data_obj: JSON.parse(data_string) });
+                    }
                 } else {
                     throw_err('Invalid file type');
                 }

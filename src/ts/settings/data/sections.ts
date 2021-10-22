@@ -109,7 +109,8 @@ export class Sections {
                         new o_inputs.File({
                             name: 'back_up',
                             accept: '.json',
-                            event_callback: upload_back_up_callback,
+                            event_callback: d_settings.BackUp.i().upload,
+                            save_callback: upload_back_up_callback,
                         }),
                     ],
                 }),

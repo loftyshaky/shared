@@ -3,8 +3,6 @@ import { observer } from 'mobx-react';
 
 import { p_inputs } from 'inputs/internal';
 
-import { d_settings } from 'settings/internal';
-
 export const File: React.FunctionComponent<p_inputs.File> = observer((props) => {
     const { input } = props;
 
@@ -15,7 +13,7 @@ export const File: React.FunctionComponent<p_inputs.File> = observer((props) => 
             accept={input.accept}
             value=''
             onChange={(e): void => {
-                d_settings.BackUp.i().upload(
+                input.event_callback(
                     {
                         input,
                     },
