@@ -56,7 +56,7 @@ const config = {
         watcher({ mode: process.env.mode }),
         replace({
             include: ['node_modules/@simonwep/pickr/**'],
-            window: 'self',
+            window: process.env.env === 'app' ? 'global' : 'self',
         }),
         replace({
             'ext.': process.env.env === 'app' ? 'app.' : 'ext.',
