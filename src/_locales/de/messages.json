@@ -1,0 +1,128 @@
+{
+    "an_error_occured_msg": {
+        "message": "Ein Fehler ist aufgetreten."
+    },
+    "error_code_label": {
+        "message": "Fehlercode: "
+    },
+    "error_type_label": {
+        "message": "Fehlertyp: "
+    },
+    "error_msg_label": {
+        "message": "Fehlermeldung: "
+    },
+    "error_more_info_btn_text": {
+        "message": "Weitere Informationen"
+    },
+    "reload_ui_btn_text": {
+        "message": "Neu laden"
+    },
+    "cant_render_ui_error": {
+        "message": "Benutzeroberfläche konnte nicht angezeigt werden."
+    },
+    "dependencicies_from_other_page_loaded_into_this_page_alert": {
+        "message": "Abhängigkeiten der anderen Seite wurden versehentlich in diese Seite geladen!\nVerursachende Seite: "
+    },
+    "browse_link_btn_text": {
+        "message": "Durchsuchen"
+    },
+    "drag_files_msg_text": {
+        "message": "oder Dateien hierhin ziehen"
+    },
+    "loading_msg_text": {
+        "message": "Wird geladen..."
+    },
+    "settings_title_text": {
+        "message": "Einstellungen"
+    },
+    "settings_section_text": {
+        "message": "Einstellungen"
+    },
+    "links_section_text": {
+        "message": "Links"
+    },
+    "back_up_section_text": {
+        "message": "Sicherungskopie"
+    },
+    "restore_section_text": {
+        "message": "Rücksetzen"
+    },
+    "admin_section_text": {
+        "message": "Admin"
+    },
+    "download_back_up_btn_text": {
+        "message": "Sicherung herunterladen"
+    },
+    "upload_back_up_btn_text": {
+        "message": "Sicherung wiederherstellen"
+    },
+    "restore_defaults_btn_text": {
+        "message": "Standardeinstellungen wiederherstellen"
+    },
+    "reload_ext_btn_text": {
+        "message": "Erweiterung neu laden"
+    },
+    "options_page_theme_label_text": {
+        "message": "Farbschema der Optionsseite"
+    },
+    "transition_duration_label_text": {
+        "message": "Dauer der Animationen (ms)"
+    },
+    "enable_cut_features_label_text": {
+        "message": "Schnittfunktionen aktivieren"
+    },
+    "light_option_text": {
+        "message": "Hell"
+    },
+    "dark_option_text": {
+        "message": "Dunkel"
+    },
+    "very_dark_option_text": {
+        "message": "Sehr dunkel"
+    },
+    "admin_help_text": {
+        "message": "Entwickler-/Experimentelle Funktionen."
+    },
+    "help_btn_title": {
+        "message": "Hilfe"
+    },
+    "remove_val_text_btn_title": {
+        "message": "Wert entfernen"
+    },
+    "hide_link_btn_text": {
+        "message": "Ausblenden"
+    },
+    "remove_color_link_btn_text": {
+        "message": "Farbe entfernen"
+    },
+    "restore_default_palette_link_btn_text": {
+        "message": "Standard-Palette wiederherstellen"
+    },
+    "color_help_text": {
+        "message": "Klicken Sie mit der rechten Maustaste auf die Haupt- oder Palettenfarb-Schaltflächen, um eine benutzerdefinierte Farbe auszuwählen. (Tab: Ctrl/Shift/Alt + Enter)."
+    },
+    "privacy_policy_link_text": {
+        "message": "📜 Datenschutzbestimmungen"
+    },
+    "rate_link_text": {
+        "message": "⭐️ Bewerten Sie diese Erweiterung, wenn Sie sie mögen"
+    },
+    "help_translating_link_text": {
+        "message": "🈯 Helfen Sie bei der Übersetzung dieser Erweiterung in Ihre Sprache."
+    },
+    "facebook_page_link_text": {
+        "message": "🖼️ Folge meiner Facebook-Seite"
+    },
+    "support_page_link_text": {
+        "message": "📢 Support-Seite"
+    },
+    "restore_defaults_confirm": {
+        "message": "Standardeinstellungen wiederherstellen?"
+    },
+    "restore_default_palette_confirm": {
+        "message": "Standard-Palette wiederherstellen?"
+    },
+    "invalid_file_type_back_up_error": {
+        "message": "Ungültiger Dateityp. Laden Sie eine Sicherungskopie der json-Datei hoch."
+    }
+}
