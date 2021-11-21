@@ -15,6 +15,7 @@ declare global {
         obj?: i_error.ShowError,
     ): Promise<T1>;
     function throw_err(msg: string): void;
+    function throw_err_obj(msg: string): void;
     function err_obj(msg: string): Error;
 }
 
@@ -95,6 +96,10 @@ global.err_async = async <T1>(
 
 global.throw_err = (msg: string): void => {
     throw new Error(msg);
+};
+
+global.throw_err_obj = (error_obj: Error): void => {
+    throw error_obj;
 };
 
 global.err_obj = (msg: string): Error => new Error(msg);

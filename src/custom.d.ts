@@ -44,6 +44,7 @@ interface Global {
         obj?: import('error_modules/error/interfaces/show_error').ShowError,
     ) => Promise<T1>;
     throw_err(msg: string): void;
+    throw_err_obj(error_obj: Error): void;
     err_obj(msg: string): Error;
 }
 
