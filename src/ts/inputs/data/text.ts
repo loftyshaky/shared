@@ -1,6 +1,6 @@
 import { action } from 'mobx';
 
-import { o_inputs } from 'inputs/internal';
+import { o_inputs, i_inputs } from 'inputs/internal';
 
 export class Text {
     private static i0: Text;
@@ -20,6 +20,12 @@ export class Text {
             }, 'shr_1203'),
     );
 
+    public clear_placeholder_text = action(({ input }: { input: o_inputs.Text }): void =>
+        err(() => {
+            input.placeholder = '';
+        }, 'shr_1213'),
+    );
+
     public set_loading_placeholder_text = action(({ input }: { input: o_inputs.Text }): void =>
         err(() => {
             this.set_placeholder_text({ input, msg_key: 'loading_msg_text' });
@@ -31,4 +37,21 @@ export class Text {
             this.set_placeholder_text({ input, msg_key: 'an_error_occured_msg' });
         }, 'shr_1205'),
     );
+
+    public run_text_btn_action = ({
+        input,
+        text_btn,
+        input_el,
+    }: {
+        input: i_inputs.Input;
+        text_btn: i_inputs.TextBtn;
+        input_el: HTMLInputElement | undefined;
+    }): Promise<void> =>
+        err_async(async () => {
+            if (n(input_el)) {
+                input_el.focus();
+            }
+
+            text_btn.event_callback({ input });
+        }, 'shr_1214');
 }

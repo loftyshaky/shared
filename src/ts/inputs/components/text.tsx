@@ -46,6 +46,14 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                                 e,
                             );
                         }}
+                        onPaste={(e): void => {
+                            input.paste_callback!(
+                                {
+                                    input,
+                                },
+                                e,
+                            );
+                        }}
                         onFocus={(): void => {
                             d_inputs.Val.i().set_focus_state({
                                 input,
@@ -69,11 +77,15 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                                           name={text_btn.name}
                                           Svg={text_btn.Svg}
                                           input={input}
-                                          on_click={() =>
-                                              text_btn.event_callback({
+                                          on_click={(): void => {
+                                              d_inputs.Text.i().run_text_btn_action({
                                                   input,
-                                              })
-                                          }
+                                                  text_btn,
+                                                  input_el: n(input_ref.current)
+                                                      ? input_ref.current
+                                                      : undefined,
+                                              });
+                                          }}
                                       />
                                   ) : (
                                       <React.Fragment key={i} />

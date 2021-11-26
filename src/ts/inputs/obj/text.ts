@@ -1,6 +1,7 @@
 import { makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
+import { t } from 'shared/internal';
 import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
 
 export class Text extends o_inputs.InputBase {
@@ -10,6 +11,7 @@ export class Text extends o_inputs.InputBase {
     public placeholder?: string = '';
     public text_btns?: i_inputs.TextBtn[] = [];
     public remove_val_callback?: ({ input }: { input: i_inputs.Input }) => void;
+    public paste_callback?: t.CallbackVariadicVoid = () => undefined;
 
     public constructor(obj: Text) {
         super(obj);
