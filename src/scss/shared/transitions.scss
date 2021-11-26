@@ -9,7 +9,8 @@
     transition-property: opacity;
 }
 
-.btn:not(.link_btn):not(.reload_ui) {
+.btn:not(.link_btn):not(.reload_ui),
+.upload_box .background {
     transition: var(--transition);
     transition-property: background-color;
 }

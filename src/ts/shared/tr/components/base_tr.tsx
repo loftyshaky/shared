@@ -17,6 +17,10 @@ export class BaseTr extends React.Component<p_tr.BaseTr> {
             unactive_cls: 'opacity_0',
             active_cls: 'opacity_1',
         }),
+        upload_box: new o_tr.Transition({
+            unactive_cls: 'upload_box_idle',
+            active_cls: 'upload_box_hover',
+        }),
     };
 
     public componentDidMount(): void {

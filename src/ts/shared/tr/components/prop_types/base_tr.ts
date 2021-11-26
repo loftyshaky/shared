@@ -5,7 +5,7 @@ export interface BaseTr {
     tag: any;
     cls: string;
     state: boolean;
-    attr?: Record<string, string>;
+    attr?: Record<string, any>;
     style?: Record<string, string | number | undefined>;
     tr_end_unactive?: t.CallbackVoid[];
     tr_end_active?: t.CallbackVoid[];

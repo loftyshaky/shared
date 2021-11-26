@@ -147,7 +147,13 @@ textarea {
         border-color: $lpe;
 
         .background {
-            background-color: $nrf;
+            &.upload_box_idle {
+                background-color: $nrf;
+            }
+
+            &.upload_box_hover {
+                background-color: $qhv;
+            }
 
             &.loading {
                 background-image: repeating-linear-gradient(-45deg,

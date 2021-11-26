@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { action, runInAction } from 'mobx';
+import { makeObservable, action, runInAction } from 'mobx';
 
 import { o_inputs } from 'inputs/internal';
 
@@ -11,8 +11,12 @@ export class UploadBox {
         return this.i0 || (this.i0 = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
-    private constructor() {}
+    public constructor() {
+        makeObservable(this, {
+            highlight: action,
+            unhighlight: action,
+        });
+    }
 
     public trigger_click_on_file_input = ({
         file_input,
@@ -27,18 +31,26 @@ export class UploadBox {
 
     public upload_files = action(
         (
-            e: ChangeEvent,
+            e: ChangeEvent | DragEvent,
             {
                 input,
                 file_input,
-            }: { input: o_inputs.UploadBox; file_input: HTMLInputElement | null },
+            }: { input: o_inputs.UploadBox; file_input?: HTMLInputElement | null },
         ): Promise<void> =>
             err_async(async () => {
+                e.preventDefault();
+
                 input.error_msg_is_visible = false;
                 input.loading_msg_is_visible = true;
+                input.drag_counter = 0;
+                input.is_in_hover_state = false;
 
                 try {
-                    await input.event_callback({ files: (<HTMLInputElement>e.target).files });
+                    await input.event_callback({
+                        files: n((e as DragEvent).dataTransfer)
+                            ? (e as DragEvent).dataTransfer!.files
+                            : (<HTMLInputElement>e.target).files,
+                    });
                 } catch (error_obj) {
                     show_err_ribbon(error_obj, 'shr_1202', { silent: true });
 
@@ -60,4 +72,23 @@ export class UploadBox {
                 }
             }, 'shr_1199'),
     );
+
+    public highlight = ({ input }: { input: o_inputs.UploadBox }): void =>
+        err(() => {
+            if (n(input.drag_counter)) {
+                input.drag_counter += 1;
+                input.is_in_hover_state = true;
+            }
+        }, 'shr_1211');
+
+    public unhighlight = ({ input }: { input: o_inputs.UploadBox }): void =>
+        err(() => {
+            if (n(input.drag_counter)) {
+                input.drag_counter -= 1;
+
+                if (input.drag_counter === 0) {
+                    input.is_in_hover_state = false;
+                }
+            }
+        }, 'shr_1212');
 }

@@ -8,8 +8,6 @@ $upload_box_loading_animation_size: 40px;
         text-align: center;
         border-width: 3px;
         border-style: dashed;
-        display: flex;
-        align-items: end;
 
         .what_to_do_msg {
             @include center_translate;
@@ -39,6 +37,8 @@ $upload_box_loading_animation_size: 40px;
             @include full_dims;
 
             position: absolute;
+            display: flex;
+            align-items: end;
 
             &.loading {
                 animation: move 450ms linear infinite;
