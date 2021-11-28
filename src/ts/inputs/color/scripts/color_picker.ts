@@ -63,7 +63,7 @@ export class ColorPicker {
                             i,
                             input,
                             callback: (): void => {
-                                input.conditional_event_callback!({ input, i });
+                                input.event_callback!({ input, i });
                             },
                         });
                     }
