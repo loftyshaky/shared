@@ -363,6 +363,8 @@ export class X {
                 .join('');
         }, 'shr_1177');
 
+    public unique_id = (): string => err(() => new Date().getTime() + this.id(), 'shr_1215');
+
     public range = (min: number, max: number): number =>
         err(() => Math.floor(Math.random() * (max - min + 1)) + min, 'shr_1178');
 
