@@ -6,6 +6,7 @@ export {
     t,
     vars,
     prevent_default,
+    stop_propagation,
     init_shared,
     s_keep_alive,
     c_loading_screen,
