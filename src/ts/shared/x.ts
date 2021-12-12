@@ -248,6 +248,9 @@ export class X {
             arr.splice(to, 0, arr.splice(from, 1)[0] as t.AnyArray);
         }, 'shr_1166');
 
+    public insert_item = (position: number, items: t.AnyArray, arr: t.AnyArray): any[] =>
+        err(() => [...arr.slice(0, position), ...items, ...arr.slice(position)], 'shr_1216');
+
     public remove_item = (i: number, arr: t.AnyArray): void =>
         err(() => {
             arr.splice(i, 1);
@@ -371,6 +374,17 @@ export class X {
     public rand_bool = (): boolean => err(() => !Math.round(Math.random()), 'shr_1179');
 
     public convert_string_bool = (bool: string): boolean => err(() => bool === 'true', 'shr_1194');
+
+    public range_arr = (start: number = 0, end: number): number[] =>
+        err(() => {
+            const arr = [];
+
+            for (let i = start; i <= end; i += 1) {
+                arr.push(i);
+            }
+
+            return arr;
+        }, 'shr_1217');
 
     public cls = (classes: (string | undefined)[]): string =>
         err(
