@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
@@ -103,7 +104,10 @@ export class Color extends o_inputs.InputBase {
         this: Color,
         { i }: { i: i_color.I },
     ): string {
-        if (this.is_palette_color!({ i }) && i === data.settings[this.name]) {
+        if (
+            this.is_palette_color!({ i }) &&
+            i === (n(this.val_accessor) ? _.get(data, this.val_accessor) : data.settings[this.name])
+        ) {
             return 'selected';
         }
 

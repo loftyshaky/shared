@@ -60,7 +60,9 @@ export class Color {
     public access = ({ input, i }: { input: o_color.Color; i: i_color.I }): string =>
         err(() => {
             if (i === 'main') {
-                const val: i_color.Color = data.settings[input.name];
+                const val: i_color.Color = n(input.val_accessor)
+                    ? _.get(data, input.val_accessor)
+                    : data.settings[input.name];
 
                 if (this.val_is_palette_color({ input })) {
                     return data.settings.colors[val];
@@ -86,7 +88,11 @@ export class Color {
     }): void =>
         err(() => {
             if (i === 'main') {
-                data.settings[input.name] = color;
+                if (n(input.val_accessor)) {
+                    _.set(data, input.val_accessor, color);
+                } else {
+                    data.settings[input.name] = color;
+                }
             } else {
                 data.settings.colors[i] = color;
             }
@@ -173,7 +179,11 @@ export class Color {
             const called_by_enter_key: boolean = e.detail === 0;
 
             if (!called_by_enter_key && input.is_palette_color!({ i })) {
-                data.settings[input.name] = i;
+                if (n(input.val_accessor)) {
+                    _.set(data, input.val_accessor, i);
+                } else {
+                    data.settings[input.name] = i;
+                }
 
                 this.previous_color = i;
 
@@ -189,7 +199,9 @@ export class Color {
 
     public val_is_palette_color = ({ input }: { input: o_color.Color }): boolean =>
         err(() => {
-            const val: i_color.Color = data.settings[input.name];
+            const val: i_color.Color = n(input.val_accessor)
+                ? _.get(data, input.val_accessor)
+                : data.settings[input.name];
             const val_is_palette_color: boolean = typeof val === 'number';
 
             return val_is_palette_color;
@@ -197,9 +209,13 @@ export class Color {
 
     public set_previous_color = ({ input, i }: { input: o_color.Color; i: i_color.I }): void =>
         err(() => {
+            const color: i_color.Color = n(input.val_accessor)
+                ? _.get(data, input.val_accessor)
+                : data.settings[input.name];
+
             this.previous_color =
                 i === 'main'
-                    ? data.settings[input.name]
+                    ? color
                     : d_color.Color.i().access({
                           input,
                           i,

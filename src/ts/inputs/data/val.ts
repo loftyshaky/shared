@@ -96,7 +96,11 @@ export class Val {
                     });
                 }
 
-                data.settings[input.name] = '';
+                if (n(input.val_accessor)) {
+                    _.set(data, input.val_accessor, '');
+                } else {
+                    data.settings[input.name] = '';
+                }
 
                 if (n((input as o_inputs.Text).remove_val_callback)) {
                     (input as o_inputs.Text).remove_val_callback!({ input });
