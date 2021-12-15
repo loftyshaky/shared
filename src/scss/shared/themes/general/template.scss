@@ -144,7 +144,7 @@ textarea {
     }
 
     .upload_box {
-        border-color: $lpe;
+        outline-color: $lpe;
 
         .background {
             &.upload_box_idle {

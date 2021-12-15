@@ -1,13 +1,19 @@
 $upload_box_text_z_index: 2;
 $upload_box_loading_animation_size: 40px;
 
+$backgrond_margin: 2px;
+$backgrond_dim_offset: 2px * 2;
+
 .input_item {
     .upload_box {
+        @include border_transparent;
+
         position: relative;
-        height: 100px;
+        height: 104px;
         text-align: center;
-        border-width: 3px;
-        border-style: dashed;
+        outline-width: 3px;
+        outline-style: dashed;
+        outline-offset: -3px;
 
         .what_to_do_msg {
             @include center_translate;
@@ -34,11 +40,13 @@ $upload_box_loading_animation_size: 40px;
         }
 
         .background {
-            @include full_dims;
-
             position: absolute;
+            width: calc(100% - #{$backgrond_dim_offset});
+            height: calc(100% - #{$backgrond_dim_offset});
             display: flex;
             align-items: end;
+            box-sizing: border-box;
+            margin: $backgrond_margin;
 
             &.loading {
                 animation: move 450ms linear infinite;

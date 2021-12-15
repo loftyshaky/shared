@@ -87,10 +87,17 @@ export class InputWidth {
                                     get_input_w_with_max_width();
 
                                 if (n(input_w_with_max_width)) {
+                                    const input_w_max_offset_width_minus_border: number =
+                                        input_w_with_max_width.offsetWidth -
+                                        x.get_numeric_css_val(
+                                            input_w_with_max_width,
+                                            'border-width',
+                                        ) *
+                                            2;
                                     const input_w_max_width =
-                                        input_w_with_max_width.offsetWidth < +this.min_width
+                                        input_w_max_offset_width_minus_border < +this.min_width
                                             ? this.min_width
-                                            : input_w_with_max_width.offsetWidth.toString();
+                                            : input_w_max_offset_width_minus_border.toString();
 
                                     if (input_w_max_width === this.old_max_width[section_name]) {
                                         runInAction(() =>
