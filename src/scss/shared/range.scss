@@ -4,6 +4,7 @@ $lower_fill_offset_top: 8px;
 .input_item {
     .range {
         .input {
+            min-width: inherit;
             appearance: none;
             padding: 0;
             background-color: transparent;

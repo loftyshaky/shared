@@ -36,7 +36,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         placeholder={input.placeholder}
                         autoComplete='off'
                         spellCheck='false'
-                        disabled={input.parent_disabled}
+                        tabIndex={input.tab_index!()}
                         ref={input_ref}
                         onInput={(e): void => {
                             d_inputs.Val.i().change(

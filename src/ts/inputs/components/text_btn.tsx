@@ -12,7 +12,7 @@ export const TextBtn: React.FunctionComponent<p_inputs.TextBtn> = observer((prop
                 className={x.cls(['btn', 'text_input', d_inputs.Val.i().warn_state({ input })])}
                 type='button'
                 title={ext.msg(`${name}_text_btn_title`)}
-                disabled={input.parent_disabled}
+                tabIndex={input.tab_index!()}
                 onClick={on_click}
             >
                 <Svg />

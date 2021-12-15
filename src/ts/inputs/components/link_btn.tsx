@@ -8,9 +8,9 @@ export const LinkBtn: React.FunctionComponent<p_inputs.LinkBtn> = observer((prop
 
     return (
         <button
-            className={x.cls(['btn', 'link_btn', input.parent_disabled_cls!(), input.name])}
+            className={x.cls(['btn', 'link_btn', input.is_enabled_cls!(), input.name])}
             type='button'
-            disabled={input.parent_disabled}
+            tabIndex={input.tab_index!()}
             onClick={input.event_callback}
         >
             {ext.msg(`${input.name}_link_btn_text`)}

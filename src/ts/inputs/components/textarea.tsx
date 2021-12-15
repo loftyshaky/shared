@@ -29,7 +29,7 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
                         className='input'
                         value={d_inputs.Val.i().access({ input }) as string}
                         spellCheck='false'
-                        disabled={input.parent_disabled}
+                        tabIndex={input.tab_index!()}
                         onInput={(e): void => {
                             d_inputs.Val.i().change(
                                 {

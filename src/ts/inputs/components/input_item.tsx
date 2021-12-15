@@ -18,10 +18,9 @@ export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
             <c_tr.BaseTr
                 tag='div'
                 name='fade'
-                cls={x.cls(['input_item', input.type, input.name, input.parent_disabled_cls!()])}
+                cls={x.cls(['input_item', input.type, input.name, input.is_enabled_cls!()])}
                 state={
-                    input.is_visible &&
-                    input.is_visible_visiblity_conds!() &&
+                    input.is_visible_computed!() &&
                     ((input.is_cut && data.settings.enable_cut_features) || !input.is_cut)
                 }
                 style={{ marginLeft: x.px(input.offset) }}

@@ -10,7 +10,10 @@ export class InputBase {
     public is_cut?: boolean = false;
     public is_visible_key?: string; // settings object key
     public is_visible?: boolean = true;
-    public visiblity_conds?: i_inputs.VisiblityCond[] = [];
+    public is_visible_conds?: i_inputs.StateCond[] = [];
+    public is_enabled?: boolean = true;
+    public is_enabled_conds?: i_inputs.StateCond[] = [];
+    public parent_disabled?: boolean = false;
     public is_in_focus_state?: boolean = false;
     public is_in_warn_state?: boolean = false;
     public val_accessor?: string; // a.b.c
@@ -19,7 +22,6 @@ export class InputBase {
     public include_help?: boolean = false;
     public help_is_visible?: boolean = false;
     public parent?: string;
-    public parent_disabled?: boolean = false;
     public offset?: string = '0';
     public section?: string;
     public subsection?: string;
@@ -30,12 +32,14 @@ export class InputBase {
         makeObservable(this, {
             is_cut: observable,
             is_visible: observable,
-            is_visible_visiblity_conds: observable,
+            is_visible_conds: observable,
+            is_enabled: observable,
+            is_enabled_conds: observable,
+            parent_disabled: observable,
             is_in_focus_state: observable,
             is_in_warn_state: observable,
             help_is_visible: observable,
             offset: observable,
-            parent_disabled: observable,
         });
 
         Object.assign(this, obj);
@@ -43,33 +47,74 @@ export class InputBase {
         this.event_callback = obj.event_callback;
     }
 
-    parent_disabled_cls? = computedFn(function (this: InputBase): string {
-        return this.parent_disabled && this.is_visible_visiblity_conds!() ? 'parent_disabled' : '';
+    is_visible_computed? = computedFn(function (this: InputBase): boolean {
+        return this.check_state!({ state_type: 'is_visible' });
+    });
+
+    is_enabled_computed? = computedFn(function (this: InputBase): boolean {
+        return this.check_state!({ state_type: 'is_enabled' });
+    });
+
+    is_enabled_cls? = computedFn(function (this: InputBase): string {
+        return !this.is_visible_computed!() ||
+            (!this.parent_disabled_computed!() && this.is_enabled_computed!())
+            ? ''
+            : 'is_disabled';
     });
 
     tab_index? = computedFn(function (this: InputBase): number {
-        return this.parent_disabled && this.is_visible_visiblity_conds!() ? -1 : 0;
+        return this.is_enabled_computed!() ? 0 : -1;
     });
 
-    is_visible_visiblity_conds? = computedFn(function (this: InputBase): boolean {
-        const visibility_conds_provided: boolean = !_.isEmpty(this.visiblity_conds);
-
-        if (n(this.visiblity_conds) && visibility_conds_provided) {
-            return this.visiblity_conds.every((visiblity_cond: i_inputs.VisiblityCond): boolean =>
-                err(
-                    () =>
-                        visiblity_cond.pass_values.some(
-                            (pass_value: boolean | string | number): boolean =>
-                                err(
-                                    () => data.settings[visiblity_cond.input_name] === pass_value,
-                                    'shr_1207',
-                                ),
-                        ),
-                    'shr_1206',
-                ),
-            );
+    parent_disabled_computed? = computedFn(function (this: InputBase): boolean {
+        if (this.parent_disabled) {
+            return this.parent_disabled;
         }
 
-        return true;
+        return false;
     });
+
+    private check_state? = ({ state_type }: { state_type: 'is_visible' | 'is_enabled' }): boolean =>
+        err(() => {
+            const conds_state: boolean = this.check_state_conds!({
+                state_conds: (this as any)[`${state_type}_conds`],
+            });
+
+            if (conds_state) {
+                return false;
+            }
+
+            if (!this[state_type]) {
+                return false;
+            }
+
+            return true;
+        }, 'shr_1220');
+
+    private check_state_conds? = ({
+        state_conds,
+    }: {
+        state_conds: i_inputs.StateCond[] | undefined;
+    }): boolean =>
+        err(() => {
+            const conds_provided: boolean = !_.isEmpty(state_conds);
+
+            if (n(state_conds) && conds_provided) {
+                return !state_conds.every((cond: i_inputs.StateCond): boolean =>
+                    err(
+                        () =>
+                            cond.pass_values.some(
+                                (pass_value: boolean | string | number): boolean =>
+                                    err(
+                                        () => data.settings[cond.input_name] === pass_value,
+                                        'shr_1207',
+                                    ),
+                            ),
+                        'shr_1206',
+                    ),
+                );
+            }
+
+            return false;
+        }, 'shr_1219');
 }

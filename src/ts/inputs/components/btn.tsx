@@ -13,11 +13,11 @@ export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
                 'text',
                 'inset_border',
                 ,
-                input.parent_disabled_cls!(),
+                input.is_enabled_cls!(),
                 input.name,
             ])}
             type='button'
-            disabled={input.parent_disabled}
+            tabIndex={input.tab_index!()}
             onClick={input.event_callback}
         >
             {ext.msg(`${input.name}_btn_text`) || input.alt_msg}

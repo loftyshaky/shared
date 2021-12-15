@@ -39,7 +39,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                 ])}
                 type='button'
                 aria-label={aria_label}
-                disabled={input.parent_disabled}
+                tabIndex={input.tab_index!()}
                 style={{
                     backgroundColor: d_color.Color.i().access({
                         input,

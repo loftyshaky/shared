@@ -28,7 +28,7 @@ export const Select: React.FunctionComponent<p_inputs.Select> = observer((props)
                         id={input.name}
                         className='input'
                         value={d_inputs.Val.i().access({ input }) as string}
-                        disabled={input.parent_disabled}
+                        tabIndex={input.tab_index!()}
                         onChange={(e): void => {
                             d_inputs.Val.i().change(
                                 {
