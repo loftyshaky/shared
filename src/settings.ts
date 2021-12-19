@@ -1,3 +1,9 @@
 import 'shared/internal';
 
-export { c_settings, d_settings, s_settings } from 'settings/internal';
+export {
+    c_settings,
+    d_settings,
+    d_optional_permissions,
+    s_settings,
+    i_optional_permissions,
+} from 'settings/internal';
