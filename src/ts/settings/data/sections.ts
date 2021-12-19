@@ -34,6 +34,28 @@ export class Sections {
             };
         }, 'shr_1082');
 
+    public get_shared_input = ({
+        input_change_val_callback,
+    }: {
+        input_change_val_callback: t.CallbackVariadicVoid;
+    }): { [index: string]: i_inputs.Input } =>
+        err(
+            () => ({
+                options_page_theme: new o_inputs.Select({
+                    name: 'options_page_theme',
+                    options: this.options,
+                    event_callback: input_change_val_callback,
+                }),
+                transition_duration: new o_inputs.Text({
+                    name: 'transition_duration',
+                    text_type: 'number',
+                    event_callback: input_change_val_callback,
+                    warn_state_checker: d_inputs.Val.i().validate_input,
+                }),
+            }),
+            'shr_1223',
+        );
+
     public selected_cls = computedFn(function (
         this: Sections,
         { section_name }: { section_name: string },
@@ -132,17 +154,8 @@ export class Sections {
                             name: 'reload_ext',
                             event_callback: this.reload_ext,
                         }),
-                        new o_inputs.Select({
-                            name: 'options_page_theme',
-                            options: this.options,
-                            event_callback: input_change_val_callback,
-                        }),
-                        new o_inputs.Text({
-                            name: 'transition_duration',
-                            text_type: 'number',
-                            event_callback: input_change_val_callback,
-                            warn_state_checker: d_inputs.Val.i().validate_input,
-                        }),
+                        this.get_shared_input({ input_change_val_callback }).options_page_theme,
+                        this.get_shared_input({ input_change_val_callback }).transition_duration,
                         new o_inputs.Checkbox({
                             name: 'enable_cut_features',
                             event_callback: input_change_val_callback,
