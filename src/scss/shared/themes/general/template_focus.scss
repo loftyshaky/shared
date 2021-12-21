@@ -1,11 +1,5 @@
 /* stylelint-disable selector-class-pattern */
 
-.btn.text,
-.input_item .checkbox .box {
-    outline-color: $lpe;
-    background-color: $gaq;
-}
-
 .input_item {
     .input_w {
         &.is_in_focus_state:not(.select)::before {

@@ -39,6 +39,7 @@ body {
     background-color: $gaq;
 
     .btn.text {
+        outline-color: $lpe;
         background-color: $gaq;
 
         &:hover {
@@ -140,6 +141,7 @@ hr {
     }
 
     .checkbox .box {
+        outline-color: $lpe;
         background-color: $gaq;
 
         svg {
