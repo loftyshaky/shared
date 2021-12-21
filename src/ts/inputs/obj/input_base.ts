@@ -55,15 +55,20 @@ export class InputBase {
         return this.check_state!({ state_type: 'is_enabled' });
     });
 
+    private is_enabled_final? = (): boolean =>
+        err(
+            () =>
+                !this.is_visible_computed!() ||
+                (!this.parent_disabled_computed!() && this.is_enabled_computed!()),
+            'shr_1224',
+        );
+
     is_enabled_cls? = computedFn(function (this: InputBase): string {
-        return !this.is_visible_computed!() ||
-            (!this.parent_disabled_computed!() && this.is_enabled_computed!())
-            ? ''
-            : 'is_disabled';
+        return this.is_enabled_final!() ? '' : 'is_disabled';
     });
 
     tab_index? = computedFn(function (this: InputBase): number {
-        return this.is_enabled_computed!() ? 0 : -1;
+        return this.is_enabled_final!() ? 0 : -1;
     });
 
     parent_disabled_computed? = computedFn(function (this: InputBase): boolean {
