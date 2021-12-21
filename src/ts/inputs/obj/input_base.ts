@@ -108,12 +108,8 @@ export class InputBase {
                 return !state_conds.every((cond: i_inputs.StateCond): boolean =>
                     err(
                         () =>
-                            cond.pass_values.some(
-                                (pass_value: boolean | string | number): boolean =>
-                                    err(
-                                        () => data.settings[cond.input_name] === pass_value,
-                                        'shr_1207',
-                                    ),
+                            cond.pass_vals.some((pass_val: boolean | string | number): boolean =>
+                                err(() => data.settings[cond.input_name] === pass_val, 'shr_1207'),
                             ),
                         'shr_1206',
                     ),

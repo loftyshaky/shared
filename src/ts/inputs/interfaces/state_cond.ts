@@ -1,4 +1,4 @@
 export interface StateCond {
     input_name: string;
-    pass_values: (boolean | string | number)[];
+    pass_vals: (boolean | string | number)[];
 }
