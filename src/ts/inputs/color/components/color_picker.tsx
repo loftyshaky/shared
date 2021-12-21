@@ -57,7 +57,7 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
             {n(input.state) &&
             (input.state[i as keyof i_color.ColorPickerState].is_initialized ||
                 input.state[i as keyof i_color.ColorPickerState].is_visible) ? (
-                <>
+                <span className='inner_w'>
                     <c_color.FillShadow
                         is_visible={input.state[i as keyof i_color.ColorPickerState].is_visible}
                         width={x.px(input.color_picker_width)}
@@ -91,7 +91,7 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
                             ref={color_picker_ref}
                         />
                     </c_tr.BaseTr>
-                </>
+                </span>
             ) : undefined}
         </>
     );

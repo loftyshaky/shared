@@ -3,6 +3,13 @@
         align-self: normal;
     }
 
+    .inner_w {
+        position: absolute;
+        height: $color_input_height;
+        align-self: center;
+        order: -1;
+    }
+
     .visualization_w {
         display: flex;
         align-items: center;
@@ -20,7 +27,7 @@
     }
 
     .palette_visualization_w {
-        display: inline-block;
+        display: inline-flex;
         padding: 0;
         margin-right: $gap;
         margin-bottom: $gap;

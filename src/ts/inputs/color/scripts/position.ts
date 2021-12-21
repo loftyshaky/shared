@@ -25,8 +25,16 @@ export class Position {
             if (ws.length !== 0) {
                 const fill_shadow_w = ws.map(
                     (item): HTMLSpanElement =>
-                        err(() => item.previousElementSibling as HTMLSpanElement, 'shr_1040'),
+                        err(
+                            () =>
+                                sb(
+                                    item.parentElement as HTMLSpanElement,
+                                    '.fill_shadow_w',
+                                ) as HTMLSpanElement,
+                            'shr_1040',
+                        ),
                 );
+
                 const fill_shadows = fill_shadow_w.map((item) =>
                     err(
                         () => sb<HTMLSpanElement>(item, '.fill_shadow') as HTMLSpanElement,
