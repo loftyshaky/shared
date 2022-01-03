@@ -14,11 +14,14 @@ export class BackUp {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public download = ({ data_obj }: { data_obj: t.AnyRecord }): void =>
+    public download = ({ data_obj }: { data_obj: t.AnyRecord | string }): void =>
         err(() => {
-            const blob: Blob = new Blob([JSON.stringify(data_obj)], {
-                type: 'application/octet-stream',
-            });
+            const blob: Blob = new Blob(
+                [typeof data_obj === 'string' ? data_obj : JSON.stringify(data_obj)],
+                {
+                    type: 'application/octet-stream',
+                },
+            );
 
             const a = document.createElement('a');
             x.append(document.body, a);
