@@ -423,6 +423,15 @@ export class X {
             }, 'shr_1184');
         });
 
+    public convert_base64_to_blob = (base64: string): Promise<Blob> =>
+        err_async(async () => {
+            const response = await fetch(base64);
+
+            const blob: Blob = await response.blob();
+
+            return blob;
+        }, 'shr_1225');
+
     public copy_text = (text: string): void =>
         err(() => {
             const input = this.create('input', '');
