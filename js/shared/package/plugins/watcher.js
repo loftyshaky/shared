@@ -8,6 +8,8 @@ const { TaskScheduler } = require('../../task_scheduler');
 
 const task_scheduler = new TaskScheduler();
 
+let initial_run_completed = false;
+
 const generate_watch_files = async () => {
     let watch_files = [];
 
@@ -33,10 +35,14 @@ const generate_watch_files = async () => {
 module.exports = function watcher({ mode }) {
     return {
         async buildStart() {
-            await task_scheduler.unlock_dist({
-                package_name: 'Shared',
-                remove_dist: mode === 'production',
-            });
+            if (!initial_run_completed) {
+                await task_scheduler.unlock_dist({
+                    package_name: 'Shared',
+                    remove_dist: mode === 'production',
+                });
+
+                initial_run_completed = true;
+            }
 
             const watch_files = await generate_watch_files();
 
