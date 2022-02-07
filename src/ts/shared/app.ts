@@ -45,7 +45,7 @@ export class App {
     public get_ext_version = (): string => {
         try {
             return '9.9.9';
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1191');
         }
 
@@ -57,7 +57,7 @@ export class App {
             const msg_2: string | undefined = '';
 
             return n(msg_2) ? msg_2 : '';
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1192');
         }
 

@@ -55,7 +55,7 @@ global.err = <T1>(
 ): any => {
     try {
         return f();
-    } catch (error_obj) {
+    } catch (error_obj: any) {
         d_error.Main.i().show_error(error_obj, error_code, {
             error_msg_key,
             silent,
@@ -81,7 +81,7 @@ global.err_async = async <T1>(
 ): Promise<any> => {
     try {
         return await f();
-    } catch (error_obj) {
+    } catch (error_obj: any) {
         d_error.Main.i().show_error(error_obj, error_code, {
             error_msg_key,
             silent,

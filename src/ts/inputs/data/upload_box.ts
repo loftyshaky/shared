@@ -51,7 +51,7 @@ export class UploadBox {
                             ? (e as DragEvent).dataTransfer!.files
                             : (<HTMLInputElement>e.target).files,
                     });
-                } catch (error_obj) {
+                } catch (error_obj: any) {
                     show_err_ribbon(error_obj, 'shr_1202', { silent: true });
 
                     runInAction(() =>

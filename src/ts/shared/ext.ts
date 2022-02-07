@@ -61,7 +61,7 @@ export class Ext {
     public get_ext_version = (): string => {
         try {
             return we.runtime.getManifest().version;
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1095');
         }
 
@@ -84,7 +84,7 @@ export class Ext {
                     });
                 }
             });
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1096');
         }
     };
@@ -94,7 +94,7 @@ export class Ext {
             const msg_2: string | undefined = n(we.i18n.getMessage) ? we.i18n.getMessage(msg) : '';
 
             return n(msg_2) ? msg_2 : '';
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1097');
         }
 
@@ -109,7 +109,7 @@ export class Ext {
             });
 
             return tabs[0];
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1098');
         }
 
@@ -119,7 +119,7 @@ export class Ext {
     public send_msg = async (msg: t.Msg): Promise<void> => {
         try {
             await we.runtime.sendMessage(msg);
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1099');
         }
     };
@@ -129,7 +129,7 @@ export class Ext {
             const response = await we.runtime.sendMessage(msg);
 
             return response;
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1100');
         }
 
@@ -139,7 +139,7 @@ export class Ext {
     public send_msg_to_tab = async (id: number, msg: t.Msg): Promise<void> => {
         try {
             await we.tabs.sendMessage(id, msg);
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1101');
         }
     };
@@ -150,7 +150,7 @@ export class Ext {
             const response = await we.tabs.sendMessage(id, msg);
 
             return response;
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1102');
         }
 
@@ -164,7 +164,7 @@ export class Ext {
             if (n(tab) && n(tab.id)) {
                 await this.send_msg_to_tab(tab.id, msg);
             }
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1103');
         }
     };
@@ -176,7 +176,7 @@ export class Ext {
             if (n(tab) && n(tab.id)) {
                 return this.send_msg_to_tab(tab.id, msg);
             }
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1104');
         }
 
@@ -190,11 +190,11 @@ export class Ext {
                     if (n(tab.id)) {
                         await this.send_msg_to_tab(tab.id, msg);
                     }
-                } catch (error_obj) {
+                } catch (error_obj: any) {
                     this.log_error(error_obj, 'shr_1105');
                 }
             });
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1106');
         }
     };
@@ -210,7 +210,7 @@ export class Ext {
             const data_local: t.AnyRecord = await we.storage.local.get(keys);
 
             return data_local;
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1107');
         }
 
@@ -230,7 +230,7 @@ export class Ext {
             }
 
             await we.storage.local.clear();
-        } catch (error_obj) {
+        } catch (error_obj: any) {
             const data_sync: t.AnyRecord = await we.storage.sync.get();
 
             if (n(data_sync)) {
@@ -268,7 +268,7 @@ export class Ext {
                                     target: { tabId: tab.id },
                                     files: [file_path],
                                 });
-                            } catch (error_obj) {
+                            } catch (error_obj: any) {
                                 this.log_error(error_obj, 'shr_1108');
                             }
                         });
@@ -279,13 +279,13 @@ export class Ext {
                                     target: { tabId: tab.id },
                                     files: [file_path],
                                 });
-                            } catch (error_obj) {
+                            } catch (error_obj: any) {
                                 this.log_error(error_obj, 'shr_1109');
                             }
                         });
                     }
                 }
-            } catch (error_obj) {
+            } catch (error_obj: any) {
                 this.log_error(error_obj, 'shr_1110');
             }
         });
