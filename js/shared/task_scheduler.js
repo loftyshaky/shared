@@ -8,8 +8,16 @@ const project_name = new ProjectName();
 
 class TaskScheduler {
     unlock_dist = async ({ package_name, remove_dist }) => {
-        if (fs.existsSync(path.join('C:', 'Program Files', 'LockHunter', 'LockHunter.exe'))) {
-            childProcess.execSync(`SCHTASKS.EXE /RUN /TN "Unlock ${package_name} dist dir"`);
+        const is_windows = process.os === 'win32';
+
+        if (
+            (is_windows &&
+                fs.existsSync(path.join('C:', 'Program Files', 'LockHunter', 'LockHunter.exe'))) ||
+            !is_windows
+        ) {
+            if (is_windows) {
+                childProcess.execSync(`SCHTASKS.EXE /RUN /TN "Unlock ${package_name} dist dir"`);
+            }
 
             if (remove_dist) {
                 // eslint-disable-next-line global-require
