@@ -217,12 +217,12 @@ export class Ext {
         return undefined;
     };
 
-    public storage_set = async (obj: t.AnyRecord): Promise<void> => {
+    public storage_set = async (obj: t.AnyRecord, replace?: boolean): Promise<void> => {
         try {
             const data_local: t.AnyRecord = await we.storage.local.get();
 
             if (n(data_local)) {
-                const merged_data: t.AnyRecord = _.merge(data_local, obj);
+                const merged_data: t.AnyRecord = n(replace) ? obj : _.merge(data_local, obj);
 
                 await we.storage.sync.set(merged_data);
             } else {
@@ -239,6 +239,14 @@ export class Ext {
             }
 
             await we.storage.local.set(obj);
+        }
+    };
+
+    public storage_remove = async (keys: string[]): Promise<void> => {
+        try {
+            await we.storage.sync.remove(keys);
+        } catch (error_obj: any) {
+            await we.storage.local.remove(keys);
         }
     };
 
