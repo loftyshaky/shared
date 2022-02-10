@@ -7,22 +7,30 @@
     color: white !important;
 }
 
-::-webkit-scrollbar-thumb {
-    background-color: $lpe;
-}
+:not(html):not(body):not(select) {
+    &::-webkit-scrollbar-corner,
+    &::-webkit-resizer {
+        background-color: $hev;
+        border-color: $hev;
+    }
 
-::-webkit-scrollbar-track {
-    background-color: $gaq;
-    border-color: $lpe;
-}
+    &::-webkit-scrollbar-track {
+        background-color: $gaq;
+        border-color: $gaq;
+    }
 
-::-webkit-scrollbar-corner,
-::-webkit-resizer {
-    background-color: $lpe;
-}
+    &::-webkit-scrollbar-thumb {
+        background-color: $hev;
+    }
 
-.main {
-    border-color: $lpe;
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: $lpe;
+    }
+
+    &::-webkit-scrollbar-track:horizontal,
+    &::-webkit-scrollbar-track:vertical {
+        border-color: $hev;
+    }
 }
 
 .loading_screen {
@@ -39,11 +47,11 @@ body {
     background-color: $gaq;
 
     .btn.text {
-        outline-color: $lpe;
+        outline-color: $hev;
         background-color: $gaq;
 
         &:hover {
-            background-color: $yos;
+            background-color: $qgp;
         }
     }
 }
@@ -57,7 +65,7 @@ textarea {
 }
 
 hr {
-    background-color: $lpe;
+    background-color: $hev;
 }
 
 .sections {
@@ -65,27 +73,18 @@ hr {
 }
 
 .section_btns {
-    background-color: $nrf;
+    background-color: $gaq;
 
-    .filler::after {
-        background-color: $lpe;
-    }
-}
+    .section_btn {
+        background-color: $gaq;
 
-.section_btn {
-    border-color: $lpe;
-    background-color: $nrf;
+        &.selected::before {
+            background-color: $ycp;
+        }
 
-    &.selected {
-        background-color: $htc;
-    }
-
-    &:not(.selected):hover {
-        background-color: $cop;
-    }
-
-    &::after {
-        background-color: $lpe;
+        &:not(.selected):hover::before {
+            background-color: $cop;
+        }
     }
 }
 
@@ -94,6 +93,10 @@ hr {
 }
 
 .input_item {
+    .inset_border::before {
+        outline-color: $hev;
+    }
+
     .input {
         background-color: $gaq;
     }
@@ -113,7 +116,7 @@ hr {
     .input_w {
         .visualization,
         .palette_visualization {
-            border-color: $lpe;
+            border-color: $hev;
             background-color: $gaq;
         }
     }
@@ -135,13 +138,13 @@ hr {
             }
 
             &::-webkit-slider-runnable-track {
-                outline-color: $lpe;
+                outline-color: $hev;
             }
         }
     }
 
     .checkbox .box {
-        outline-color: $lpe;
+        outline-color: $hev;
         background-color: $gaq;
 
         svg {
@@ -150,23 +153,23 @@ hr {
     }
 
     .upload_box {
-        outline-color: $lpe;
+        outline-color: $hev;
 
         .background {
             &.upload_box_idle {
-                background-color: $nrf;
+                background-color: $gaq;
             }
 
             &.upload_box_hover {
-                background-color: $qhv;
+                background-color: $qgp;
             }
 
             &.loading {
                 background-image: repeating-linear-gradient(-45deg,
-                $nrf,
-                $nrf 14px,
+                $gaq,
                 $gaq 14px,
-                $gaq 28px);
+                $qgp 14px,
+                $qgp 28px);
             }
         }
     }
@@ -178,16 +181,15 @@ hr {
 
         input {
             background-color: $gaq !important;
-            border-color: $lpe !important;
+            outline-color: $hev !important;
 
             &:hover:not(.pcr-result):not(.active) {
-                background-color: $yos !important;
+                background-color: $qgp !important;
             }
         }
     }
 
     .pcr-app {
-        border-color: $lpe !important;
         background-color: $htc !important;
     }
 
@@ -196,43 +198,43 @@ hr {
     .pcr-slider,
     .pcr-picker,
     .pcr-result {
-        border-color: $lpe !important;
+        border-color: $hev !important;
     }
 
     .pcr-type.active {
-        background-color: $nrf !important;
+        background-color: $yos !important;
     }
 }
 
 .link {
-    color: $pdv;
+    color: $ycp;
 
     &:visited {
-        color: $pec;
+        color: $ptn;
     }
 
     &:hover {
-        color: $bvs;
+        color: $cop;
     }
 
     &:active {
-        color: $nmy;
+        color: $uzf;
     }
 }
 
 .link_btn {
-    color: $pdv;
+    color: $ycp;
 
     &:visited {
-        color: $pec;
+        color: $ptn;
     }
 
     &:hover {
-        color: $bvs;
+        color: $cop;
     }
 
     &:active {
-        color: $nmy;
+        color: $uzf;
     }
 }
 

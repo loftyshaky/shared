@@ -1,11 +1,11 @@
 .input_item,
 .input_w,
-.help {
+.help, {
     transition: var(--transition);
     transition-property: opacity;
 }
 
-.section_btn {
+.section_btns .section_btn::before {
     transition: var(--transition);
     transition-property: background-color;
 }
