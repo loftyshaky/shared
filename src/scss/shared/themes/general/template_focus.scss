@@ -34,9 +34,12 @@ body.keyboard .btn.text:focus,
 .keyboard .input_item .pcr-palette:focus,
 .keyboard .input_item .pcr-slider:focus,
 .keyboard .input_item .pcr-picker:focus,
-.input_item .pcr-result:focus,
 .keyboard .input_item .color_picker_w input:not(.pcr-result):focus {
     outline-color: $uzf !important;
+}
+
+.input_item .pcr-result:focus {
+    outline-color: $cop !important;
 }
 
 .input_item .pcr-result:focus {
