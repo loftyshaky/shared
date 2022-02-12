@@ -18,10 +18,7 @@ $lower_fill_offset_top: 8px;
             }
 
             &::-webkit-slider-runnable-track {
-                @include outline_solid;
-
                 height: $range_track_height;
-                outline-offset: -1px;
             }
         }
 
