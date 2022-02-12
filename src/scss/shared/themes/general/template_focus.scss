@@ -42,8 +42,8 @@ body.keyboard .btn.text:focus,
     outline-color: $cop !important;
 }
 
-.input_item .pcr-result:focus {
-    border-color: $uzf !important;
+.keyboard .input_item .pcr-result:focus {
+    outline-color: $uzf !important;
 }
 
 .keyboard .section_btn:not(.selected):focus {
