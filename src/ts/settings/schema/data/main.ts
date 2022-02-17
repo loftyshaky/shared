@@ -28,7 +28,14 @@ export class Main {
 
             transform_items.forEach((transform_item: o_schema.TransformItem): void =>
                 err(() => {
-                    if (!n(settings[transform_item.new_key])) {
+                    if (
+                        n(transform_item.new_key) &&
+                        !n(settings[transform_item.new_key]) &&
+                        (transform_item.create_property_if_it_doesnt_exist ||
+                            (!transform_item.create_property_if_it_doesnt_exist &&
+                                n(transform_item.old_key) &&
+                                n(settings[transform_item.old_key])))
+                    ) {
                         if (n(transform_item.new_val)) {
                             settings[transform_item.new_key] = transform_item.new_val;
                         } else if (n(transform_item.old_key)) {
