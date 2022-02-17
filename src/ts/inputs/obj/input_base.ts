@@ -47,8 +47,12 @@ export class InputBase {
         this.event_callback = obj.event_callback;
     }
 
+    is_cut_computed? = computedFn(function (this: InputBase): boolean {
+        return (this.is_cut && data.settings.enable_cut_features) || !this.is_cut;
+    });
+
     is_visible_computed? = computedFn(function (this: InputBase): boolean {
-        return this.check_state!({ state_type: 'is_visible' });
+        return this.check_state!({ state_type: 'is_visible' }) && this.is_cut_computed!();
     });
 
     is_enabled_computed? = computedFn(function (this: InputBase): boolean {
