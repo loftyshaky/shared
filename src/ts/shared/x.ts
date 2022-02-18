@@ -347,15 +347,13 @@ export class X {
         err(() => /^\d+$|^\d+\.\d+$/.test(val), 'shr_1175');
 
     public delay = (delay: number): Promise<void> =>
-        new Promise((resolve): number =>
-            err(
-                () =>
-                    self.setTimeout((): void => {
-                        resolve();
-                    }, delay),
-                'shr_1176',
-            ),
-        );
+        new Promise((resolve): void => {
+            err(() => {
+                self.setTimeout((): void => {
+                    resolve();
+                }, delay);
+            }, 'shr_1176');
+        });
 
     public id = (): string =>
         err(() => {
