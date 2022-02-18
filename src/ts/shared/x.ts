@@ -373,7 +373,7 @@ export class X {
 
     public convert_string_bool = (bool: string): boolean => err(() => bool === 'true', 'shr_1194');
 
-    public range_arr = (start: number = 0, end: number): number[] =>
+    public range_arr = (end: number, start: number = 0): number[] =>
         err(() => {
             const arr = [];
 
