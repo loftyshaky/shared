@@ -9,6 +9,5 @@ export class TransformItem {
         this.old_key = obj.old_key;
         this.new_key = obj.new_key;
         this.new_val = obj.new_val;
-        this.create_property_if_it_doesnt_exist = obj.create_property_if_it_doesnt_exist;
     }
 }
