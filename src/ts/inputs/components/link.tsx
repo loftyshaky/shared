@@ -15,7 +15,5 @@ export const Link: React.FunctionComponent<p_inputs.Link> = observer((props) => 
         >
             {rs(link.text)}
         </a>
-    ) : (
-        <></>
-    );
+    ) : null;
 });

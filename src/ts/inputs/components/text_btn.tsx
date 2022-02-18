@@ -7,16 +7,14 @@ export const TextBtn: React.FunctionComponent<p_inputs.TextBtn> = observer((prop
     const { input, name, Svg, on_click } = props;
 
     return (
-        <>
-            <button
-                className={x.cls(['btn', 'text_input', d_inputs.Val.i().warn_state({ input })])}
-                type='button'
-                title={ext.msg(`${name}_text_btn_title`)}
-                tabIndex={input.tab_index!()}
-                onClick={on_click}
-            >
-                <Svg />
-            </button>
-        </>
+        <button
+            className={x.cls(['btn', 'text_input', d_inputs.Val.i().warn_state({ input })])}
+            type='button'
+            title={ext.msg(`${name}_text_btn_title`)}
+            tabIndex={input.tab_index!()}
+            onClick={on_click}
+        >
+            <Svg />
+        </button>
     );
 });

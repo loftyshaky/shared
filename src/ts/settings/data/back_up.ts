@@ -79,7 +79,7 @@ export class BackUp {
         err_async(async () => {
             const reader = new FileReader();
 
-            return new Promise((resolve, reject): void =>
+            return new Promise((resolve, reject): void => {
                 err(() => {
                     reader.onloadend = (): void =>
                         err(() => {
@@ -92,7 +92,7 @@ export class BackUp {
                         }, 'shr_1079');
 
                     reader.readAsText(blob);
-                }, 'shr_1080'),
-            );
+                }, 'shr_1080');
+            });
         }, 'shr_1081');
 }

@@ -6,8 +6,7 @@ const shared_config = ({
     argv,
     env,
     MiniCssExtractPlugin,
-    OptimizeCssAssetsPlugin,
-    FixStyleOnlyEntriesPlugin,
+    CssMinimizerPlugin,
     CopyWebpackPlugin,
     copy_patters,
     callback_begin,
@@ -73,8 +72,6 @@ const shared_config = ({
         plugins: [
             new webpack.ProgressPlugin(),
             new MiniCssExtractPlugin(),
-            new OptimizeCssAssetsPlugin(),
-            new FixStyleOnlyEntriesPlugin(),
             new CopyWebpackPlugin({
                 patterns: [
                     ...[
@@ -101,6 +98,7 @@ const shared_config = ({
         target: 'web',
         devtool: false,
         optimization: {
+            minimizer: [new CssMinimizerPlugin()],
             sideEffects: argv.mode === 'production',
         },
         performance: {

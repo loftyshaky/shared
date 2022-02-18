@@ -51,7 +51,7 @@ $border_width_thick: 2px;
     outline: none;
 }
 
-$box_shadow_for_mixin: rgba(0, 0, 0, 0.3) 0 0 2px, rgba(0, 0, 0, 0.3) 0 4px 8px;
+$box_shadow_for_mixin: rgb(0 0 0 / 30%) 0 0 2px, rgb(0 0 0 / 30%) 0 4px 8px;
 
 @mixin box_shadow {
     box-shadow: $box_shadow_for_mixin;

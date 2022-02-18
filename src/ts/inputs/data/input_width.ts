@@ -53,7 +53,7 @@ export class InputWidth {
     });
 
     public calculate_for_section = ({ section_name }: { section_name: string }): Promise<void> =>
-        new Promise((reslove) =>
+        new Promise((reslove) => {
             self.requestAnimationFrame((): void =>
                 err(() => {
                     const input_ws = sa<HTMLSpanElement>(
@@ -116,8 +116,8 @@ export class InputWidth {
                             }, 'shr_1049'),
                     );
                 }, 'shr_1050'),
-            ),
-        );
+            );
+        });
 
     public calculate_for_all_sections = ({
         sections,

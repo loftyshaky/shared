@@ -52,47 +52,43 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
 
     const { input, i } = props;
 
-    return (
-        <>
-            {n(input.state) &&
-            (input.state[i as keyof i_color.ColorPickerState].is_initialized ||
-                input.state[i as keyof i_color.ColorPickerState].is_visible) ? (
-                <span className='inner_w'>
-                    <c_color.FillShadow
-                        is_visible={input.state[i as keyof i_color.ColorPickerState].is_visible}
-                        width={x.px(input.color_picker_width)}
-                        height={x.px(input.color_picker_height)}
-                    />
-                    <c_tr.BaseTr
-                        tag='span'
-                        name='fade'
-                        cls='color_picker_w'
-                        state={input.state[i as keyof i_color.ColorPickerState].is_visible}
-                        tr_end_unactive={[
-                            (): void => {
-                                d_color.Visibility.i().mark_color_picker_as_closed({
-                                    input,
-                                    i,
-                                    is_closed: true,
-                                });
-                            },
-                        ]}
-                    >
-                        <span
-                            className={x.cls([
-                                'color_picker',
-                                input.color_picker_is_closed_visibility_cls!({
-                                    i,
-                                }),
-                            ])}
-                            onContextMenu={(e: MouseEvent): void => {
-                                e.stopPropagation();
-                            }}
-                            ref={color_picker_ref}
-                        />
-                    </c_tr.BaseTr>
-                </span>
-            ) : undefined}
-        </>
-    );
+    return n(input.state) &&
+        (input.state[i as keyof i_color.ColorPickerState].is_initialized ||
+            input.state[i as keyof i_color.ColorPickerState].is_visible) ? (
+        <span className='inner_w'>
+            <c_color.FillShadow
+                is_visible={input.state[i as keyof i_color.ColorPickerState].is_visible}
+                width={x.px(input.color_picker_width)}
+                height={x.px(input.color_picker_height)}
+            />
+            <c_tr.BaseTr
+                tag='span'
+                name='fade'
+                cls='color_picker_w'
+                state={input.state[i as keyof i_color.ColorPickerState].is_visible}
+                tr_end_unactive={[
+                    (): void => {
+                        d_color.Visibility.i().mark_color_picker_as_closed({
+                            input,
+                            i,
+                            is_closed: true,
+                        });
+                    },
+                ]}
+            >
+                <span
+                    className={x.cls([
+                        'color_picker',
+                        input.color_picker_is_closed_visibility_cls!({
+                            i,
+                        }),
+                    ])}
+                    onContextMenu={(e: MouseEvent): void => {
+                        e.stopPropagation();
+                    }}
+                    ref={color_picker_ref}
+                />
+            </c_tr.BaseTr>
+        </span>
+    ) : null;
 });

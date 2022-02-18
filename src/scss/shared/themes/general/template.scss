@@ -165,11 +165,12 @@ hr {
             }
 
             &.loading {
+                /* stylelint-disable-next-line function-parentheses-newline-inside */
                 background-image: repeating-linear-gradient(-45deg,
                 $gaq,
                 $gaq 14px,
                 $qgp 14px,
-                $qgp 28px);
+                $qgp 28px);  /* stylelint-disable-line function-parentheses-newline-inside */
             }
         }
     }
