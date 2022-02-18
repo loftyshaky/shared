@@ -168,7 +168,7 @@ export class X {
                 n(el_to_insert_before.parentNode) &&
                 [1, 11].includes(child.nodeType)
             ) {
-                el_to_insert_before.parentNode.insertBefore(child, el_to_insert_before);
+                el_to_insert_before.before(child);
             }
         }, 'shr_1156');
 
@@ -180,10 +180,7 @@ export class X {
                 n(el_to_insert_after.parentNode) &&
                 [1, 11].includes(child.nodeType)
             ) {
-                el_to_insert_after.parentNode.insertBefore(
-                    child,
-                    el_to_insert_after.nextElementSibling,
-                );
+                el_to_insert_after.after(child);
             }
         }, 'shr_1157');
 
