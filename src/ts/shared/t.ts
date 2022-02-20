@@ -1,4 +1,5 @@
-export type XEl = HTMLElement | ShadowRoot | undefined | null;
+export type XEl = HTMLElement | ShadowRoot | ChildNode | undefined | null;
+export type XElNoShadow = HTMLElement | ChildNode | undefined | null;
 export type XEls = HTMLElement[] | NodeList | HTMLElement | undefined;
 export type Browser = 'chrome' | 'edge' | 'opera' | 'firefox';
 export type BaseEl = Document | ShadowRoot | HTMLElement | undefined;

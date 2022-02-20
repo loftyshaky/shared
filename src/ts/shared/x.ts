@@ -141,14 +141,14 @@ export class X {
             return el;
         }, 'shr_1153');
 
-    public append = (parent: t.XEl, child: HTMLElement): void =>
+    public append = (parent: t.XEl, child: t.XElNoShadow): void =>
         err(() => {
-            if (n(parent) && [1, 11].includes(parent.nodeType)) {
+            if (n(parent) && n(child) && [1, 11].includes(parent.nodeType)) {
                 parent.appendChild(child);
             }
         }, 'shr_1154');
 
-    public as_first = (parent: t.XEl, child: HTMLElement | undefined): void =>
+    public as_first = (parent: t.XEl, child: t.XElNoShadow): void =>
         err(() => {
             if (
                 n(parent) &&
@@ -156,11 +156,11 @@ export class X {
                 n(parent.parentNode) &&
                 [1, 11].includes(parent.nodeType)
             ) {
-                parent.insertBefore(child, parent.firstElementChild);
+                parent.insertBefore(child, parent.firstChild);
             }
         }, 'shr_1155');
 
-    public before = (el_to_insert_before: HTMLElement | undefined, child: t.XEl): void =>
+    public before = (el_to_insert_before: t.XElNoShadow, child: t.XEl): void =>
         err(() => {
             if (
                 n(el_to_insert_before) &&
@@ -172,7 +172,7 @@ export class X {
             }
         }, 'shr_1156');
 
-    public after = (el_to_insert_after: HTMLElement | undefined, child: t.XEl): void =>
+    public after = (el_to_insert_after: t.XElNoShadow, child: t.XEl): void =>
         err(() => {
             if (
                 n(el_to_insert_after) &&
