@@ -8,7 +8,6 @@ export {
     prevent_default,
     stop_propagation,
     init_shared,
-    s_keep_alive,
     c_ext_version,
     c_loading_screen,
     c_tr,
