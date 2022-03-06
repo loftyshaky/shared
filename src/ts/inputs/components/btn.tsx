@@ -1,6 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
+import { stop_propagation } from 'shared/internal';
 import { p_inputs } from 'inputs/internal';
 
 export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
@@ -19,6 +20,7 @@ export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
             type='button'
             tabIndex={input.tab_index!()}
             onClick={input.event_callback}
+            onKeyDown={stop_propagation}
         >
             {ext.msg(`${input.name}_btn_text`) || input.alt_msg}
         </button>
