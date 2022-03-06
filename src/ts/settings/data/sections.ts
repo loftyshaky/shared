@@ -97,6 +97,7 @@ export class Sections {
 
     public make_shared_sections = ({
         download_back_up_callback,
+        download_back_up_final_callback,
         upload_back_up_callback,
         restore_defaults_callback,
         input_change_val_callback,
@@ -104,6 +105,7 @@ export class Sections {
         restore_inputs = [],
     }: {
         download_back_up_callback: t.CallbackAnyObj;
+        download_back_up_final_callback?: t.CallbackVoid;
         upload_back_up_callback: t.CallbackVariadicVoid;
         restore_defaults_callback: t.CallbackVoid;
         input_change_val_callback: t.CallbackVariadicVoid;
@@ -122,6 +124,10 @@ export class Sections {
                                     const data_obj = await download_back_up_callback();
 
                                     d_settings.BackUp.i().download({ data_obj });
+
+                                    if (n(download_back_up_final_callback)) {
+                                        download_back_up_final_callback();
+                                    }
                                 }, 'shr_1085'),
                         }),
                         new o_inputs.Btn({
