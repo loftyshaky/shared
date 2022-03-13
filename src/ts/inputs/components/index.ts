@@ -4,6 +4,7 @@ export * from 'inputs/components/file';
 export * from 'inputs/components/help_btn';
 export * from 'inputs/components/help';
 export * from 'inputs/components/hr';
+export * from 'inputs/components/icon_btn';
 export * from 'inputs/components/input_item';
 export * from 'inputs/components/label';
 export * from 'inputs/components/link_btn';

@@ -43,15 +43,34 @@
     }
 }
 
+.help_btn svg {
+    fill: $lpe;
+}
+
 body {
     background-color: $gaq;
 
-    .btn.text {
-        outline-color: $hev;
-        background-color: $gaq;
+    .btn {
+        &.text {
+            outline-color: $hev;
+            background-color: $gaq;
 
-        &:hover {
-            background-color: $qgp;
+            &:hover {
+                background-color: $qgp;
+            }
+        }
+
+        &.icon {
+            background-color: transparent;
+
+            &:not(:first-child) {
+                margin-left: $gap;
+            }
+
+            svg {
+                display: block;
+                fill: $lpe;
+            }
         }
     }
 }
@@ -86,10 +105,6 @@ hr {
             background-color: $cop;
         }
     }
-}
-
-.help_btn svg {
-    fill: $lpe;
 }
 
 .input_item {

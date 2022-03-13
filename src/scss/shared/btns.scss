@@ -1,3 +1,5 @@
+$icon_btn_size: 20px;
+
 .btn {
     @include btn;
 
@@ -26,5 +28,12 @@
 
     &.color_ok_btn {
         margin-left: auto;
+    }
+
+    &.icon {
+        svg {
+            width: $icon_btn_size;
+            height: $icon_btn_size;
+        }
     }
 }

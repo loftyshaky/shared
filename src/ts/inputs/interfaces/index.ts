@@ -1,3 +1,4 @@
+export * from 'inputs/interfaces/icon_btns';
 export * from 'inputs/interfaces/input';
 export * from 'inputs/interfaces/inputs';
 export * from 'inputs/interfaces/links';

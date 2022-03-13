@@ -9,5 +9,6 @@ export type Input =
     | o_inputs.Range
     | o_color.Color
     | o_inputs.Btn
+    | o_inputs.IconBtn
     | o_inputs.File
     | o_inputs.UploadBox;
