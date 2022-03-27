@@ -6,6 +6,6 @@ export class Option {
     public constructor(obj: Option) {
         Object.assign(this, obj);
         this.name = obj.name;
-        this.val = obj.val || obj.name;
+        this.val = n(obj.val) ? obj.val : obj.name;
     }
 }
