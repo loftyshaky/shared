@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { SyntheticEvent } from 'react';
-import { makeObservable, action } from 'mobx';
+import { makeObservable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
 import { i_data } from 'shared/internal';
@@ -15,8 +15,9 @@ export class Val {
     }
 
     private constructor() {
-        makeObservable(this, {
+        makeObservable<this, 'set_warn_state'>(this, {
             set_focus_state: action,
+            set_warn_state: action,
             remove_val: action,
         });
     }
@@ -27,13 +28,23 @@ export class Val {
             new_input.is_in_focus_state = state;
         }, 'shr_1063');
 
+    private set_warn_state = ({ input, state }: { input: i_inputs.Input; state: boolean }): void =>
+        err(() => {
+            const new_input = input;
+            new_input.is_in_warn_state = state;
+        }, 'shr_1063');
+
     public focus_state = computedFn(function ({ input }: { input: i_inputs.Input }): string {
         return input.is_in_focus_state ? 'is_in_focus_state' : '';
     });
 
     public warn_state = computedFn(function ({ input }: { input: i_inputs.Input }): string {
         if (n(input.warn_state_checker)) {
-            return input.warn_state_checker({ input }) ? 'is_in_warn_state' : '';
+            const state = input.warn_state_checker({ input });
+
+            Val.i().set_warn_state({ input, state });
+
+            return state ? 'is_in_warn_state' : '';
         }
 
         return '';
