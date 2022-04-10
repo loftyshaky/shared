@@ -19,8 +19,8 @@ export class Main {
         name: string;
         el?: HTMLElement;
         additional_theme_callback?: t.CallbackVariadicVoid;
-    }): void =>
-        err(() => {
+    }): Promise<void> =>
+        err_async(async () => {
             s_no_tr.Main.i().enable({ el });
 
             const name_final = `${name}_theme`;
@@ -37,6 +37,6 @@ export class Main {
                 additional_theme_callback({ name, el });
             }
 
-            s_no_tr.Main.i().disable({ el });
+            await s_no_tr.Main.i().disable({ el });
         }, 'shr_1129');
 }
