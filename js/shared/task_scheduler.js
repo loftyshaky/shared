@@ -8,7 +8,7 @@ const project_name = new ProjectName();
 
 class TaskScheduler {
     unlock_dist = async ({ package_name, remove_dist }) => {
-        const is_windows = process.os === 'win32';
+        const is_windows = process.platform === 'win32';
 
         if (
             (is_windows &&
