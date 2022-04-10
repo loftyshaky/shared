@@ -38,10 +38,10 @@ export class Text extends o_inputs.InputBase {
     }
 
     remove_val_btn_is_visible? = computedFn(function ({ input }: { input: Text }): boolean {
-        return !(
-            input.text_type === 'number' ||
-            !input.allow_removing_val ||
-            d_inputs.Val.i().access({ input }) === ''
+        return (
+            n(input.allow_removing_val) &&
+            input.allow_removing_val &&
+            d_inputs.Val.i().access({ input }) !== ''
         );
     });
 }

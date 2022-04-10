@@ -49,6 +49,7 @@ export class Sections {
                 transition_duration: new o_inputs.Text({
                     name: 'transition_duration',
                     text_type: 'number',
+                    allow_removing_val: false,
                     event_callback: input_change_val_callback,
                     warn_state_checker: d_inputs.Val.i().validate_input,
                 }),
