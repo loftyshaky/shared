@@ -16,6 +16,7 @@ const rules = {
         'func-names': 'off',
         'no-param-reassign': 'off',
         'class-methods-use-this': 'off',
+        'linebreak-style': 'off',
         'import/extensions': [
             'error',
             'ignorePackages',
@@ -43,7 +44,6 @@ const rules = {
         'max-depth': ['error', 4],
         'max-nested-callbacks': ['error', 8],
         'no-negated-condition': 'error',
-        'linebreak-style': ['error', 'unix'],
         'object-curly-newline': ['error', { consistent: true }],
         'padding-line-between-statements': [
             'error',
