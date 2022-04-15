@@ -60,7 +60,7 @@ const shared_config = ({
                     loader: 'ts-loader',
                 },
                 {
-                    test: /\.(scss)$/,
+                    test: /\.(scss|css)$/,
                     use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
                 },
                 {
