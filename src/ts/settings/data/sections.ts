@@ -104,6 +104,8 @@ export class Sections {
         input_change_val_callback,
         admin_inputs = [],
         restore_inputs = [],
+        include_back_up_help = false,
+        back_up_help_msg = undefined,
     }: {
         download_back_up_callback: t.CallbackAnyObj;
         download_back_up_final_callback?: t.CallbackVoid;
@@ -112,11 +114,15 @@ export class Sections {
         input_change_val_callback: t.CallbackVariadicVoid;
         admin_inputs?: i_inputs.Input[];
         restore_inputs?: i_inputs.Input[];
+        include_back_up_help?: boolean;
+        back_up_help_msg?: string | undefined;
     }): o_inputs.Section[] =>
         err(
             () => [
                 new o_inputs.Section({
                     name: 'back_up',
+                    include_help: include_back_up_help,
+                    alt_help_msg: back_up_help_msg,
                     inputs: [
                         new o_inputs.Btn({
                             name: 'download_back_up',
