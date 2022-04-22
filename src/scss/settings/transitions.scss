@@ -10,7 +10,8 @@
     transition-property: background-color;
 }
 
-.link {
+.link,
+.link_btn {
     transition: var(--transition);
     transition-property: color;
 }
