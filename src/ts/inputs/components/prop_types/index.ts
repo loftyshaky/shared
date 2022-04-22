@@ -14,6 +14,7 @@ export * from 'inputs/components/prop_types/section_btn';
 export * from 'inputs/components/prop_types/section_content';
 export * from 'inputs/components/prop_types/section';
 export * from 'inputs/components/prop_types/select';
+export * from 'inputs/components/prop_types/group';
 export * from 'inputs/components/prop_types/text_btn';
 export * from 'inputs/components/prop_types/text';
 export * from 'inputs/components/prop_types/textarea';

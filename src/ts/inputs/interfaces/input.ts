@@ -11,4 +11,5 @@ export type Input =
     | o_inputs.Btn
     | o_inputs.IconBtn
     | o_inputs.File
-    | o_inputs.UploadBox;
+    | o_inputs.UploadBox
+    | o_inputs.Group;
