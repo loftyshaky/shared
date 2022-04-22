@@ -94,10 +94,11 @@ export class InputWidth {
                                             'border-width',
                                         ) *
                                             2;
-                                    const input_w_max_width =
-                                        input_w_max_offset_width_minus_border < +this.min_width
+                                    const input_w_max_width = (
+                                        +(input_w_max_offset_width_minus_border < +this.min_width
                                             ? this.min_width
-                                            : input_w_max_offset_width_minus_border.toString();
+                                            : input_w_max_offset_width_minus_border) + 2
+                                    ).toString();
 
                                     if (input_w_max_width === this.old_max_width[section_name]) {
                                         runInAction(() =>
