@@ -18,13 +18,19 @@ class Locales {
         const locales = fs.readdirSync(app_locales_path);
 
         locales.forEach((locale) => {
+            const shared_messages_path = path.join(shared_locales_path, locale, 'messages.json');
+
             const app_messages = fs.readJSONSync(
                 path.join(app_locales_path, locale, 'messages.json'),
             );
 
-            const shared_messages = fs.readJSONSync(
-                path.join(shared_locales_path, locale, 'messages.json'),
-            );
+            let shared_messages = {};
+
+            if (fs.existsSync(shared_messages_path)) {
+                shared_messages = fs.readJSONSync(
+                    path.join(shared_locales_path, locale, 'messages.json'),
+                );
+            }
 
             const merged_messages = {
                 ...shared_messages,
