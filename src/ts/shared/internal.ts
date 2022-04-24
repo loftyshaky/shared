@@ -25,6 +25,7 @@ export * as s_css_vars from 'shared/css_vars/scripts';
 export * as s_no_tr from 'shared/no_tr/scripts';
 export * as s_tab_index from 'shared/tab_index/scripts';
 export * as s_theme from 'shared/theme/scripts';
+export * as s_title from 'shared/title/scripts';
 export * as s_utils from 'shared/utils/scripts';
 export * as s_viewport from 'shared/viewport/scripts';
 

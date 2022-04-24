@@ -17,6 +17,7 @@ export {
     s_no_tr,
     s_tab_index,
     s_theme,
+    s_title,
     s_utils,
     s_viewport,
     i_data,
