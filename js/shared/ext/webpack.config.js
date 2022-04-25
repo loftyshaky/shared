@@ -9,6 +9,7 @@ const shared_config = ({
     CssMinimizerPlugin,
     CopyWebpackPlugin,
     copy_patters,
+    enable_anouncement,
     callback_begin,
     callback_done,
 }) => {
@@ -30,11 +31,24 @@ const shared_config = ({
 
     return {
         entry: {
+            ...(enable_anouncement && {
+                announcement: path.join(paths.ts, 'announcement', 'announcement.ts'),
+            }),
             font_face: path.join(paths.embed, 'font_face.scss'),
             no_tr: path.join(paths.embed, 'no_tr.scss'),
             error: path.join(paths.embed, 'error.scss'),
             loading_screen: path.join(paths.embed, 'loading_screen.scss'),
-            announcement: path.join(paths.embed, 'announcement.scss'),
+            ...(enable_anouncement && {
+                announcement_css: path.join(
+                    app_root,
+                    'node_modules',
+                    '@loftyshaky',
+                    'shared',
+                    'scss',
+                    'announcement',
+                    'index.scss',
+                ),
+            }),
             light_theme: path.join(paths.themes, 'light_theme.scss'),
             dark_theme: path.join(paths.themes, 'dark_theme.scss'),
             very_dark_theme: path.join(paths.themes, 'very_dark_theme.scss'),
