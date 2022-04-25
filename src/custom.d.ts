@@ -7,7 +7,7 @@ interface Global {
     ext: import('shared/ext').Ext;
     app: import('shared/app').App;
     env: {
-        browser: import('shared/t').Browser;
+        browser: import('shared/t').Env;
     };
     l: CallableFunction;
     data: any;

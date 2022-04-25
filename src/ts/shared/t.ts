@@ -25,6 +25,11 @@ export type CallbackVariadicAnyObj = (...args: any[]) => AnyRecord;
 export type CallbackVariadicVoid = (...args: any[]) => void;
 export type CallbackVariadicAny = (...args: any[]) => any;
 export type Constructable<T1> = new (args?: T1) => T1;
+export interface Env {
+    browser: Browser;
+    mode: 'development' | 'production';
+}
+
 export interface Msg {
     [index: string]: any;
 }

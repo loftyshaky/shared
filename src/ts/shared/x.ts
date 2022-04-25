@@ -5,9 +5,7 @@ import { t } from 'shared/internal';
 declare const global: Global;
 
 declare global {
-    const env: {
-        browser: t.Browser;
-    };
+    const env: t.Env;
     const l: CallableFunction;
     function n<T1>(val: T1 | undefined | null): val is T1;
     function nn<T1>(val: T1 | null): val is T1;
