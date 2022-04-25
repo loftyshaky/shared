@@ -16,7 +16,8 @@
             "shared/*": ["./ts/shared/*"],
             "error_modules/*": ["./ts/error_modules/*"],
             "inputs/*": ["./ts/inputs/*"],
-            "settings/*": ["./ts/settings/*"]
+            "settings/*": ["./ts/settings/*"],
+            "announcement/*": ["./ts/announcement/*"]
         }
     },
     "include": ["src"],

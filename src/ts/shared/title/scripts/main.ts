@@ -14,9 +14,10 @@ export class Main {
             const title_el = s<HTMLTitleElement>('title');
 
             if (n(title_el)) {
+                const title = ext.msg(`${page}_title_text`);
+
                 title_el.textContent =
-                    ext.msg(`${page}_title_text`) +
-                    (page === 'announcement' ? ` ${we.runtime.getManifest().name}` : '');
+                    page === 'announcement' ? `${we.runtime.getManifest().name} - ${title}` : title;
             }
         }, 'shr_1229');
 }

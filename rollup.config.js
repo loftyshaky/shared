@@ -17,7 +17,14 @@ const files = new Files();
 const terserInst = new Terser();
 
 const config = {
-    input: ['src/ext.ts', 'src/app.ts', 'src/index.ts', 'src/inputs.ts', 'src/settings.ts'],
+    input: [
+        'src/ext.ts',
+        'src/app.ts',
+        'src/index.ts',
+        'src/inputs.ts',
+        'src/settings.ts',
+        'src/announcement.ts',
+    ],
     output: [
         {
             dir: 'dist',
@@ -66,6 +73,10 @@ const config = {
                 {
                     src: 'json/package.json',
                     dest: 'dist',
+                },
+                {
+                    src: 'src/html/*',
+                    dest: 'dist/html',
                 },
                 {
                     src: 'js/shared/*',

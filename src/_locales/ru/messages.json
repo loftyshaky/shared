@@ -23,6 +23,9 @@
     "browse_link_btn_text": {
         "message": "Выберите"
     },
+    "announcement_title_text": {
+        "message": "объявление"
+    },
     "drag_files_msg_text": {
         "message": "файлы или перетащите их сюда"
     },

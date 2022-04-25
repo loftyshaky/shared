@@ -19,6 +19,7 @@
     transition-property: opacity, background-color;
 }
 
+.link,
 .link_btn {
     transition: var(--transition);
     transition-property: color;

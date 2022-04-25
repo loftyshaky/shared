@@ -34,6 +34,7 @@ const shared_config = ({
             no_tr: path.join(paths.embed, 'no_tr.scss'),
             error: path.join(paths.embed, 'error.scss'),
             loading_screen: path.join(paths.embed, 'loading_screen.scss'),
+            announcement: path.join(paths.embed, 'announcement.scss'),
             light_theme: path.join(paths.themes, 'light_theme.scss'),
             dark_theme: path.join(paths.themes, 'dark_theme.scss'),
             very_dark_theme: path.join(paths.themes, 'very_dark_theme.scss'),
@@ -49,6 +50,7 @@ const shared_config = ({
                 shared: path.join(paths.ts, 'shared'),
                 background: path.join(paths.ts, 'background'),
                 settings: path.join(paths.ts, 'settings'),
+                announcement: path.join(paths.ts, 'announcement'),
                 content_script: path.join(paths.ts, 'content_script'),
             },
             extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -75,6 +77,15 @@ const shared_config = ({
             new CopyWebpackPlugin({
                 patterns: [
                     ...[
+                        {
+                            from: path.join(
+                                app_root,
+                                'node_modules',
+                                '@loftyshaky',
+                                'shared',
+                                'html',
+                            ),
+                        },
                         {
                             from: path.join(app_root, 'src', 'html'),
                         },
