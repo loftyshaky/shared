@@ -9,4 +9,5 @@ export interface BaseTr {
     style?: Record<string, string | number | undefined>;
     tr_end_unactive?: t.CallbackVoid[];
     tr_end_active?: t.CallbackVoid[];
+    children: React.ReactNode;
 }
