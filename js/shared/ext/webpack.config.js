@@ -5,6 +5,7 @@ const shared_config = ({
     webpack,
     argv,
     env,
+    TerserPlugin,
     MiniCssExtractPlugin,
     CssMinimizerPlugin,
     CopyWebpackPlugin,
@@ -123,7 +124,8 @@ const shared_config = ({
         target: 'web',
         devtool: false,
         optimization: {
-            minimizer: [new CssMinimizerPlugin()],
+            minimize: argv.mode === 'production',
+            minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
             sideEffects: argv.mode === 'production',
         },
         performance: {
