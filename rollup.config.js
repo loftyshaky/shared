@@ -91,6 +91,10 @@ const config = {
                     dest: 'dist',
                 },
                 {
+                    src: 'src/fonts',
+                    dest: 'dist',
+                },
+                {
                     src: '.eslintrc.js',
                     dest: paths.app,
                 },
