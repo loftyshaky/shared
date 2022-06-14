@@ -32,7 +32,6 @@
         "eslint-plugin-prettier": "^4.0.0",
         "eslint-plugin-react": "^7.29.4",
         "eslint-plugin-react-hooks": "^4.5.0",
-        "fs-extra": "^10.1.0",
         "prettier": "^2.6.2",
         "recursive-readdir": "^2.2.2",
         "rollup": "^2.70.2",
@@ -51,13 +50,14 @@
     "dependencies": {
         "@simonwep/pickr": "^1.8.2",
         "confusing-browser-globals": "^1.0.11",
+        "fs-extra": "^10.1.0",
         "lodash": "^4.17.21",
-        "mobx": "^6.5.0",
-        "mobx-react": "^7.3.0",
+        "mobx": "^6.6.0",
+        "mobx-react": "^7.5.0",
         "mobx-utils": "^6.0.5",
         "normalize.css": "^8.0.1",
-        "react": "^18.1.0",
-        "react-dom": "^18.1.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "webextension-polyfill-ts": "^0.26.0"
     }
 }
