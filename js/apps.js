@@ -9,6 +9,7 @@ const apps = [
     'Advanced Extension Reloader Watch 1',
     'Advanced Extension Reloader Watch 2',
     'Browservery',
+    'App Puppeteer',
     'Stock Screener',
     'Advanced Extension Reloader',
     'Search Enhancer for Google',
@@ -16,7 +17,7 @@ const apps = [
     'Base64 font-face',
 ];
 
-const app_types = ['package', 'package', 'app', 'app', 'ext', 'ext', 'ext'];
+const app_types = ['package', 'package', 'app', 'app', 'app', 'ext', 'ext', 'ext'];
 
 const create_app_paths = () =>
     apps.map((project) => path.join(projects_path.q, project, project_name.transform({ project })));
