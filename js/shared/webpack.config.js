@@ -104,8 +104,8 @@ const shared_config = ({
                 ...(enable_anouncement && {
                     announcement: path.join(paths.ts, 'announcement'),
                 }),
-                extensions: ['.js', '.jsx', '.ts', '.tsx'],
             },
+            extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
         module: {
             rules: [
