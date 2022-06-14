@@ -8,7 +8,9 @@ global.page = 'front_end';
 
 export const init_page = (): void =>
     err(() => {
-        global.page = 'front_end';
+        const title = global.document ? document.querySelector('title') : undefined;
+
+        global.page = n(title) && n(title.dataset.page) ? title.dataset.page : 'front_end';
     }, 'shr_1190');
 
 global.misplaced_dependency = (culprit_page: string): void =>
