@@ -1,6 +1,7 @@
 const path = require('path');
 
 const shared_config = ({
+    app_type,
     app_root,
     webpack,
     argv,
@@ -11,8 +12,8 @@ const shared_config = ({
     CopyWebpackPlugin,
     copy_patters,
     enable_anouncement,
-    callback_begin,
-    callback_done,
+    callback_begin = () => undefined,
+    callback_done = () => undefined,
 }) => {
     const shared_path = path.join(
         app_root,
@@ -28,7 +29,39 @@ const shared_config = ({
         themes: path.join(shared_path, 'themes', 'general'),
     };
 
-    const copy_patterns_final = copy_patters || [];
+    const external_copy_patterns = copy_patters || [];
+    const copy_patterns_final = [
+        ...external_copy_patterns,
+        ...[
+            {
+                from: path.join(app_root, 'node_modules', '@loftyshaky', 'shared', 'html'),
+                noErrorOnMissing: true,
+                globOptions: {
+                    ignore: enable_anouncement ? [] : ['**/announcement.html'],
+                },
+            },
+            {
+                from: path.join(app_root, 'src', 'html'),
+            },
+        ],
+    ];
+
+    if (app_type === 'app') {
+        copy_patterns_final.push({
+            from: path.join(app_root, 'src', 'icons'),
+        });
+    }
+
+    if (app_type === 'ext') {
+        copy_patterns_final.push(
+            {
+                from: path.join(app_root, 'src', 'icons', 'all'),
+            },
+            {
+                from: path.join(app_root, 'src', 'icons', env.browser),
+            },
+        );
+    }
 
     return {
         entry: {
@@ -63,12 +96,16 @@ const shared_config = ({
         resolve: {
             alias: {
                 shared: path.join(paths.ts, 'shared'),
-                background: path.join(paths.ts, 'background'),
-                settings: path.join(paths.ts, 'settings'),
-                announcement: path.join(paths.ts, 'announcement'),
-                content_script: path.join(paths.ts, 'content_script'),
+                ...(app_type === 'ext' && {
+                    background: path.join(paths.ts, 'background'),
+                    settings: path.join(paths.ts, 'settings'),
+                    content_script: path.join(paths.ts, 'content_script'),
+                }),
+                ...(enable_anouncement && {
+                    announcement: path.join(paths.ts, 'announcement'),
+                }),
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
             },
-            extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
         module: {
             rules: [
@@ -90,29 +127,7 @@ const shared_config = ({
             new webpack.ProgressPlugin(),
             new MiniCssExtractPlugin(),
             new CopyWebpackPlugin({
-                patterns: [
-                    ...[
-                        {
-                            from: path.join(
-                                app_root,
-                                'node_modules',
-                                '@loftyshaky',
-                                'shared',
-                                'html',
-                            ),
-                        },
-                        {
-                            from: path.join(app_root, 'src', 'html'),
-                        },
-                        {
-                            from: path.join(app_root, 'src', 'icons', 'all'),
-                        },
-                        {
-                            from: path.join(app_root, 'src', 'icons', env.browser),
-                        },
-                    ],
-                    ...copy_patterns_final,
-                ],
+                patterns: copy_patterns_final,
             }),
             {
                 apply: (compiler) => {
