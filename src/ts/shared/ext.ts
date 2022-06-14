@@ -18,6 +18,7 @@ global.we = browser;
 export const init_page = (): void =>
     err(() => {
         const title = global.document ? document.querySelector('title') : undefined;
+
         if (['https:', 'http:'].includes(global.location.protocol)) {
             global.page = 'content_script';
         } else {
