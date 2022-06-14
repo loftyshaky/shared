@@ -71,7 +71,14 @@ const rules = {
         'import/no-extraneous-dependencies': [
             'error',
             {
-                devDependencies: ['js/*', 'js/*/**', 'rollup.config.js', 'webpack.config.js'],
+                devDependencies: [
+                    'js/*',
+                    'js/*/**',
+                    'rollup.config.js',
+                    'webpack.config.js',
+                    'webpack.dev.js',
+                    'webpack.prod.js',
+                ],
             },
         ],
         'no-restricted-globals': [
