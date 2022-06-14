@@ -1,4 +1,4 @@
-import { App } from 'shared/app';
+import { init_page, App } from 'shared/app';
 
 export { App } from 'shared/app';
 
@@ -9,3 +9,5 @@ declare global {
 }
 
 global.app = App.i();
+
+init_page(); // need to be here, otherwise error will happen

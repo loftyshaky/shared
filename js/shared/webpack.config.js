@@ -50,6 +50,8 @@ const shared_config = ({
         copy_patterns_final.push({
             from: path.join(app_root, 'src', 'icons'),
         });
+
+        copy_patterns_final.push({ from: path.join(app_root, 'package.json') });
     }
 
     if (app_type === 'ext') {

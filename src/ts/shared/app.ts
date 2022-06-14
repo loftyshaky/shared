@@ -1,3 +1,5 @@
+import fs from 'fs-extra';
+
 import { d_error } from 'error_modules/internal';
 
 declare const global: Global;
@@ -44,7 +46,9 @@ export class App {
 
     public get_ext_version = (): string => {
         try {
-            return '9.9.9';
+            const { version } = fs.readJSONSync('package.json');
+
+            return version;
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1191');
         }
