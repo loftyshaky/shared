@@ -1,6 +1,6 @@
 const path = require('path');
 
-const appRoot = require('app-root-path').path;
+const appRoot = require('app-root-path');
 const recursiveReaddir = require('recursive-readdir');
 const _ = require('lodash');
 
@@ -8,15 +8,17 @@ const { TaskScheduler } = require('../../task_scheduler');
 
 const task_scheduler = new TaskScheduler();
 
+const app_root = appRoot.path;
+
 let initial_run_completed = false;
 
 const generate_watch_files = async () => {
     let watch_files = [];
 
-    const src_dir = path.join(appRoot, 'src');
+    const src_dir = path.join(app_root, 'src');
 
     const dirs = [
-        path.join(appRoot, 'js'),
+        path.join(app_root, 'js'),
         path.join(src_dir, '_locales'),
         path.join(src_dir, 'scss'),
     ];
