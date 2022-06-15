@@ -4,17 +4,13 @@ import { observer } from 'mobx-react';
 import { c_error, d_error, s_css, p_error } from 'error_modules/internal';
 
 export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
-    const { on_render } = props;
+    const { app_id, on_render } = props;
 
     useEffect(() => {
-        on_render();
-    }, [on_render]);
-
-    useEffect(() => {
-        const { app_id } = props;
-
         s_css.Main.i().load({ app_id });
-    }, [props]);
+
+        on_render();
+    }, [app_id, on_render]);
 
     return (
         <div
