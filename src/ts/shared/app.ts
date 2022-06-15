@@ -1,3 +1,4 @@
+import path from 'path';
 import fs from 'fs-extra';
 
 import { d_error } from 'error_modules/internal';
@@ -58,9 +59,43 @@ export class App {
         return '';
     };
 
-    public msg = (/* msg: string */): string => {
+    public msg = (msg: string): string => {
         try {
-            const msg_2: string | undefined = '';
+            const get_msgs = ({ user_language }: { user_language: string }): any => {
+                const messages_path: string = path.join(
+                    __dirname,
+                    '_locales',
+                    user_language,
+                    'messages.json',
+                );
+
+                if (fs.existsSync(messages_path)) {
+                    return fs.readJSONSync(path.join(messages_path));
+                }
+
+                return undefined;
+            };
+
+            let user_language = 'en';
+            const { locale } = Intl.DateTimeFormat().resolvedOptions();
+            const is_english = locale.includes('en-');
+
+            if (!is_english) {
+                user_language = locale;
+            }
+
+            const en_msgs: any = get_msgs({ user_language: 'en' });
+            const localized_msgs: any = is_english ? undefined : get_msgs({ user_language });
+
+            let msg_2: string | undefined =
+                n(en_msgs[msg]) && n(en_msgs[msg].message) ? en_msgs[msg].message : '';
+
+            if (!is_english) {
+                msg_2 =
+                    n(localized_msgs) && n(localized_msgs[msg]) && n(localized_msgs[msg].message)
+                        ? localized_msgs[msg].message
+                        : msg_2;
+            }
 
             return n(msg_2) ? msg_2 : '';
         } catch (error_obj: any) {
