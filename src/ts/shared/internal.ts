@@ -29,6 +29,7 @@ export * as s_title from 'shared/title/scripts';
 export * as s_utils from 'shared/utils/scripts';
 export * as s_viewport from 'shared/viewport/scripts';
 
+export * as p_loading_screen from 'shared/loading_screen/components/prop_types';
 export * as p_tr from 'shared/tr/components/prop_types';
 
 export * as i_data from 'shared/data/interfaces';
