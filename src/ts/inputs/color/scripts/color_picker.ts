@@ -1,5 +1,4 @@
 import { runInAction } from 'mobx';
-import Pickr from '@simonwep/pickr';
 
 import { t } from 'shared/internal';
 import { o_color, d_color, i_color } from 'inputs/internal';
@@ -28,7 +27,10 @@ export class ColorPicker {
         color_picker: HTMLSpanElement;
         visualization: HTMLButtonElement;
     }): t.AnyRecord =>
-        err(() => {
+        err_async(async () => {
+            const pickr_default = await import('@simonwep/pickr');
+            const Pickr = pickr_default.default;
+
             const pickr: t.AnyRecord = new Pickr({
                 container: color_picker,
                 el: visualization,
