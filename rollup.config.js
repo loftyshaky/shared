@@ -62,8 +62,8 @@ const config = {
         svgr(),
         watcher({ mode: process.env.mode }),
         replace({
-            include: ['node_modules/@simonwep/pickr/**'],
-            window: process.env.env === 'app' ? 'global' : 'self',
+            'self.': process.env.env === 'app' ? 'global.' : 'self.',
+            'window.': process.env.env === 'app' ? 'global.' : 'self.',
         }),
         replace({
             'ext.': process.env.env === 'app' ? 'app.' : 'ext.',
