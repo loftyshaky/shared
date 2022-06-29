@@ -7,7 +7,7 @@ class Env {
     }
 
     generate = ({ browser, mode }) => {
-        const env = `this.env = { browser: '${browser}', mode: '${mode}' }; // eslint-disable-line eol-last`;
+        const env = `this.env = { "browser": "${browser}", "mode": "${mode}" }`;
 
         fs.outputFileSync(path.join(this.app_root, 'dist', 'env.js'), env, 'utf-8');
     };

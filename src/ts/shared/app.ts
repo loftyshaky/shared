@@ -104,4 +104,16 @@ export class App {
 
         return '';
     };
+
+    public read_env_into_global_var = (): void => {
+        try {
+            const env_file_content: string = fs.readFileSync(path.join(__dirname, 'env.js'), {
+                encoding: 'utf8',
+            });
+
+            global.env = JSON.parse(env_file_content.replace('this.env = ', ''));
+        } catch (error_obj: any) {
+            this.log_error(error_obj, 'shr_1232');
+        }
+    };
 }
