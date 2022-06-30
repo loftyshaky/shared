@@ -11,6 +11,7 @@ const shared_config = ({
     CssMinimizerPlugin,
     CopyWebpackPlugin,
     copy_patters,
+    minimize = true,
     enable_anouncement,
     callback_begin = () => undefined,
     callback_done = () => undefined,
@@ -141,7 +142,7 @@ const shared_config = ({
         target: 'web',
         devtool: false,
         optimization: {
-            minimize: argv.mode === 'production',
+            minimize: minimize && argv.mode === 'production',
             minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
             sideEffects: argv.mode === 'production',
         },
