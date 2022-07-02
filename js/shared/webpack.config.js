@@ -1,5 +1,7 @@
 const path = require('path');
 
+const fs = require('fs-extra');
+
 const shared_config = ({
     app_type,
     app_root,
@@ -16,14 +18,18 @@ const shared_config = ({
     callback_begin = () => undefined,
     callback_done = () => undefined,
 }) => {
+    const package_json = fs.readJSONSync(path.join(app_root, 'package.json'));
+    const shared_app_is_added_as_dep = package_json.dependencies['@loftyshaky/shared-app'];
+
     const shared_path = path.join(
         app_root,
         'node_modules',
         '@loftyshaky',
-        'shared',
+        `shared${shared_app_is_added_as_dep ? '-app' : ''}`,
         'scss',
         'shared',
     );
+
     const paths = {
         ts: path.join(app_root, 'src', 'ts'),
         embed: path.join(shared_path, 'embed'),
