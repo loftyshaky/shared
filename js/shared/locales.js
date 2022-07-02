@@ -1,5 +1,8 @@
 const path = require('path');
+
 const fs = require('fs-extra');
+
+const { is_ext } = require('./apps');
 
 class Locales {
     constructor({ app_root }) {
@@ -12,7 +15,7 @@ class Locales {
             this.app_root,
             'node_modules',
             '@loftyshaky',
-            'shared',
+            `shared${is_ext({ app_root: this.app_root }) ? '' : '-app'}`,
             '_locales',
         );
         const locales = fs.readdirSync(app_locales_path);

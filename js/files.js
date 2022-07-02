@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 
-const { paths, apps, app_types } = require('./apps');
+const { paths, apps, app_types } = require('./shared/apps');
 
 class Files {
     copy = () => {

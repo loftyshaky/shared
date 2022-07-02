@@ -1,7 +1,7 @@
 const path = require('path');
 
-const { projects_path } = require('./shared/projects_path');
-const { ProjectName } = require('./shared/project_name');
+const { projects_path } = require('./projects_path');
+const { ProjectName } = require('./project_name');
 
 const project_name = new ProjectName();
 
@@ -37,6 +37,14 @@ const create_stylelintrc_paths = () =>
 
 const stylelintrc = create_stylelintrc_paths();
 
+const is_ext = ({ app_root }) => {
+    const current_app_name = path.basename(path.dirname(app_root));
+
+    const app_i = apps.findIndex((app_name) => app_name === current_app_name);
+
+    return app_types[app_i] === 'ext';
+};
+
 const paths = {
     app,
     eslintrc,
@@ -48,4 +56,5 @@ module.exports = {
     apps,
     app_types,
     paths,
+    is_ext,
 };

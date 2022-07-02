@@ -10,8 +10,8 @@ const copy = require('./js/shared/package/plugins/rollup-plugin-copy');
 const watcher = require('./js/shared/package/plugins/watcher');
 const { Terser } = require('./js/shared/package/terser');
 
-const { paths } = require('./js/apps');
 const { Files } = require('./js/files');
+const { paths } = require('./js/shared/apps');
 
 const files = new Files();
 const terserInst = new Terser();
