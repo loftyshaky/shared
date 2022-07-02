@@ -71,7 +71,7 @@ const config = {
         copy({
             targets: [
                 {
-                    src: 'json/package.json',
+                    src: `json/${process.env.env}/package.json`,
                     dest: 'dist',
                 },
                 {
