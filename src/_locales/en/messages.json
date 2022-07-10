@@ -102,7 +102,7 @@
         "message": "Restore default palette"
     },
     "color_help_text": {
-        "message": "Right-click on the main or palette color buttons to choose a custom color. (Tab: Ctrl/Shift/Alt + Enter)."
+        "message": "Right-click on the main or palette color buttons to choose a custom color. You can also do this by selecting the main or palette color buttons by Tab and then hitting Ctrl/Shift/Alt + Enter."
     },
     "privacy_policy_link_text": {
         "message": "📜 Privacy policy"
