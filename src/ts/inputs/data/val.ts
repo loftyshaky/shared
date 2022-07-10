@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { SyntheticEvent } from 'react';
-import { makeObservable, action, runInAction } from 'mobx';
+import { makeObservable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
 import { i_data } from 'shared/internal';
