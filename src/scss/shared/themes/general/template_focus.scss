@@ -25,7 +25,7 @@ body.keyboard .btn.text:focus,
 .keyboard .input_item .checkbox .box:focus,
 .keyboard .link:focus,
 .keyboard .link_btn:focus,
-.keyboard .input_item .input_w:not(.text):not(.textarea).is_in_focus_state::before,
+.keyboard .input_item .input_w:not(.text, .textarea).is_in_focus_state::before,
 .keyboard .input_item.range .input.is_in_focus_state,
 .keyboard .input_item .visualization_w .visualization:focus,
 .keyboard .input_item .palette_visualization_w .palette_visualization:focus {

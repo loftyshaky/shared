@@ -7,7 +7,7 @@
     color: white !important;
 }
 
-:not(html):not(body):not(select) {
+:not(html, body, select) {
     &::-webkit-scrollbar-corner,
     &::-webkit-resizer {
         background-color: $hev;
@@ -191,7 +191,7 @@ hr {
     }
 
     .color_picker_w {
-        *:not(.pcr-last-color):not(.pcr-current-color) {
+        *:not(.pcr-last-color, .pcr-current-color) {
             color: $lpe !important;
         }
 
@@ -199,7 +199,7 @@ hr {
             background-color: $gaq !important;
             outline-color: $hev !important;
 
-            &:hover:not(.pcr-result):not(.active) {
+            &:hover:not(.pcr-result, .active) {
                 background-color: $qgp !important;
             }
         }
