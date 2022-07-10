@@ -127,6 +127,13 @@ const shared_config = ({
                     test: /\.svg$/,
                     use: ['@svgr/webpack'],
                 },
+                {
+                    test: /\.woff2?$/,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: '[name][ext]',
+                    },
+                },
             ],
         },
         plugins: [
