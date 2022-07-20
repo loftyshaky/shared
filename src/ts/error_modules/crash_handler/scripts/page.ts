@@ -10,6 +10,6 @@ export class Page {
     private constructor() {}
 
     public reload = (): void => {
-        global.location.reload();
+        globalThis.location.reload();
     };
 }

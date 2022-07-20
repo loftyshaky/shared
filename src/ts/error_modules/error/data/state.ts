@@ -59,7 +59,7 @@ export class State {
         observable_key: i_error.ObservableKeys;
         delay: number;
     }): void => {
-        this[`${observable_key}_timeout` as i_error.TimeoutObservableKeys] = global.setTimeout(
+        this[`${observable_key}_timeout` as i_error.TimeoutObservableKeys] = globalThis.setTimeout(
             (): void => {
                 this.change_state({
                     observable_key,

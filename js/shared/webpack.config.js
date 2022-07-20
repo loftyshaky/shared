@@ -76,6 +76,7 @@ const shared_config = ({
             }),
             font_face: path.join(paths.embed, 'font_face.scss'),
             no_tr: path.join(paths.embed, 'no_tr.scss'),
+            hidden_roots: path.join(paths.embed, 'hidden_roots.scss'),
             error: path.join(paths.embed, 'error.scss'),
             loading_screen: path.join(paths.embed, 'loading_screen.scss'),
             ...(enable_anouncement && {

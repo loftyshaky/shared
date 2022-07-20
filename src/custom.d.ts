@@ -27,6 +27,7 @@ interface Global {
     is_ext: boolean;
     we: any;
     page: string;
+    is_node: boolean;
     misplaced_dependency: import('shared/t').CallbackVariadicVoid;
     show_err_ribbon: (
         error_obj: import('error_modules/error/interfaces/error_obj').ErrorObj,

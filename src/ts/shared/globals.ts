@@ -1,9 +1,9 @@
 import { X } from 'shared/x';
 
-declare const global: Global;
+declare const globalThis: Global;
 
 declare global {
     const x: X;
 }
 
-global.x = X.i();
+globalThis.x = X.i();

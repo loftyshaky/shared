@@ -33,7 +33,7 @@ export class Main {
             }
         }, 'shr_1116');
 
-    public hide = (): Promise<void> =>
+    public hide = ({ app_id }: { app_id: string }): Promise<void> =>
         err_async(async () => {
             await x.delay(300);
 
@@ -43,6 +43,8 @@ export class Main {
                 }, 'shr_1117'),
             );
 
+            this.show_roots({ app_id });
+
             await x.delay(+s_css_vars.Main.i().get({ name: 'transition_duration' }));
 
             runInAction(() =>
@@ -51,4 +53,14 @@ export class Main {
                 }, 'shr_1118'),
             );
         }, 'shr_1119');
+
+    public hide_roots = ({ app_id }: { app_id: string }): void =>
+        err(() => {
+            x.css('hidden_roots', document.head, `hidden_roots_link_${app_id}`);
+        }, 'shr_1235');
+
+    private show_roots = ({ app_id }: { app_id: string }): void =>
+        err(() => {
+            x.remove(s<HTMLLinkElement>(`.hidden_roots_link_${app_id}`));
+        }, 'shr_1235');
 }

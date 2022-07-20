@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import { t } from 'shared/internal';
 
-declare const global: Global;
+declare const globalThis: Global & Window;
 
 declare global {
     const env: t.Env;
@@ -23,23 +23,23 @@ declare global {
 }
 
 // eslint-disable-next-line no-console
-global.l = console.log.bind(console);
+globalThis.l = console.log.bind(console);
 
 // > undefined/null check
-global.n = <T1>(val: T1 | undefined | null): val is T1 => err(() => val != null, 'shr_1140'); // not nil (nil is undefined or null)
+globalThis.n = <T1>(val: T1 | undefined | null): val is T1 => err(() => val != null, 'shr_1140'); // not nil (nil is undefined or null)
 
-global.nn = <T1>(val: T1 | null): val is T1 => err(() => val !== null, 'shr_1141'); // not null
+globalThis.nn = <T1>(val: T1 | null): val is T1 => err(() => val !== null, 'shr_1141'); // not null
 
-global.rs = (variable: t.CallbackVariadicString | string | undefined): string =>
+globalThis.rs = (variable: t.CallbackVariadicString | string | undefined): string =>
     err(() => (n(variable) ? shared.resolve_variable(variable) : ''), 'shr_1142'); // resolve string
 
-global.rn = (variable: t.CallbackVariadicNumber | number | undefined): number =>
+globalThis.rn = (variable: t.CallbackVariadicNumber | number | undefined): number =>
     err(() => (n(variable) ? shared.resolve_variable(variable) : Infinity), 'shr_1143'); // resolve number
 
-global.rb = (variable: t.CallbackVariadicBoolean | boolean | undefined): boolean =>
+globalThis.rb = (variable: t.CallbackVariadicBoolean | boolean | undefined): boolean =>
     err(() => (n(variable) ? shared.resolve_variable(variable) : false), 'shr_1144'); // resolve boolean
 
-global.ru = (variable: t.CallbackVariadicUndefined | undefined): undefined =>
+globalThis.ru = (variable: t.CallbackVariadicUndefined | undefined): undefined =>
     err(() => (n(variable) ? shared.resolve_variable(variable) : undefined), 'shr_1145'); // resolve undefined
 // < undefined/null check
 
@@ -64,13 +64,13 @@ const shared: t.AnyRecord = {
 };
 
 // > selecting elements
-global.s = <T1>(selector: string): T1 | undefined =>
+globalThis.s = <T1>(selector: string): T1 | undefined =>
     err(() => shared.ensure_els(document.querySelector(selector)), 'shr_1148');
 
-global.sa = <T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined =>
+globalThis.sa = <T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined =>
     err(() => shared.ensure_els(document.querySelectorAll(selector)), 'shr_1149');
 
-global.sb = <T1>(base_el: t.BaseEl, selector: string): T1 | undefined =>
+globalThis.sb = <T1>(base_el: t.BaseEl, selector: string): T1 | undefined =>
     err(() => {
         if (n(base_el)) {
             return shared.ensure_els(base_el.querySelector(selector));
@@ -79,7 +79,7 @@ global.sb = <T1>(base_el: t.BaseEl, selector: string): T1 | undefined =>
         return undefined;
     }, 'shr_1150');
 
-global.sab = <T1 extends HTMLElement>(
+globalThis.sab = <T1 extends HTMLElement>(
     base_el: t.BaseEl,
     selector: string,
 ): NodeListOf<T1> | undefined =>
@@ -330,13 +330,13 @@ export class X {
         }, 'shr_1171');
 
     public get_css_val = (el: HTMLElement, key: string): string =>
-        err(() => self.getComputedStyle(el).getPropertyValue(key), 'shr_1172');
+        err(() => globalThis.getComputedStyle(el).getPropertyValue(key), 'shr_1172');
 
     public get_numeric_css_val = (el: HTMLElement, key: string): number =>
-        err(() => parseInt(self.getComputedStyle(el).getPropertyValue(key), 10), 'shr_1173');
+        err(() => parseInt(globalThis.getComputedStyle(el).getPropertyValue(key), 10), 'shr_1173');
 
     public get_float_css_val = (el: HTMLElement, key: string): number =>
-        err(() => parseFloat(self.getComputedStyle(el).getPropertyValue(key)), 'shr_1174');
+        err(() => parseFloat(globalThis.getComputedStyle(el).getPropertyValue(key)), 'shr_1174');
 
     public str_is_number = (val: string): boolean =>
         err(() => /^\d+$|^\d+\.\d+$/.test(val), 'shr_1175');
@@ -344,7 +344,7 @@ export class X {
     public delay = (delay: number): Promise<void> =>
         new Promise((resolve): void => {
             err(() => {
-                self.setTimeout((): void => {
+                globalThis.setTimeout((): void => {
                     resolve();
                 }, delay);
             }, 'shr_1176');
@@ -352,7 +352,7 @@ export class X {
 
     public id = (): string =>
         err(() => {
-            const uint32 = global.crypto.getRandomValues(new Uint32Array(1))[0];
+            const uint32 = globalThis.crypto.getRandomValues(new Uint32Array(1))[0];
 
             return Array.from(uint32.toString(16))
                 .map((char: string): string => (this.rand_bool() ? char.toUpperCase() : char))
@@ -446,7 +446,7 @@ export class X {
 
     public copy_img = (img_url: string): void =>
         err(() => {
-            const selection = self.getSelection();
+            const selection = globalThis.getSelection();
 
             if (n(selection)) {
                 selection.removeAllRanges();

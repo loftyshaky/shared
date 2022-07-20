@@ -12,7 +12,7 @@ export * as vars from 'shared/vars';
 export * from 'shared/functions';
 export * from 'shared/init';
 
-export * as c_ext_version from 'shared/ext_version/components';
+export * as c_app_version from 'shared/app_version/components';
 export * as c_loading_screen from 'shared/loading_screen/components';
 export * as c_tr from 'shared/tr/components';
 

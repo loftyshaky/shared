@@ -243,7 +243,7 @@ export class Color {
     }): void =>
         err(() => {
             // eslint-disable-next-line no-alert
-            const confirmed_restore: boolean = global.confirm(
+            const confirmed_restore: boolean = globalThis.confirm(
                 ext.msg('restore_default_palette_confirm'),
             );
 

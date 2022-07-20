@@ -30,7 +30,7 @@ const config = {
             dir: 'dist',
             entryFileNames: '[name].js',
             chunkFileNames: 'chunk-[name]-[hash].js',
-            format: 'es',
+            format: 'commonjs',
             sourcemap: false,
         },
     ],
@@ -61,10 +61,6 @@ const config = {
         }),
         svgr(),
         watcher({ mode: process.env.mode }),
-        replace({
-            'self.': process.env.env === 'app' ? 'global.' : 'self.',
-            'window.': process.env.env === 'app' ? 'global.' : 'self.',
-        }),
         replace({
             'ext.': process.env.env === 'app' ? 'app.' : 'ext.',
         }),

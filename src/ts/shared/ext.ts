@@ -7,26 +7,26 @@ import { browser, Windows, Tabs } from 'webextension-polyfill-ts';
 import { d_error } from 'error_modules/internal';
 import { t } from 'shared/internal';
 
-declare const global: Global;
+declare const globalThis: Global;
 
 declare global {
     const we: typeof browser;
 }
 
-global.we = browser;
+globalThis.we = browser;
 
 export const init_page = (): void =>
     err(() => {
-        const title = global.document ? document.querySelector('title') : undefined;
+        const title = globalThis.document ? document.querySelector('title') : undefined;
 
-        if (['https:', 'http:'].includes(global.location.protocol)) {
-            global.page = 'content_script';
+        if (['https:', 'http:'].includes(globalThis.location.protocol)) {
+            globalThis.page = 'content_script';
         } else {
-            global.page = n(title) && n(title.dataset.page) ? title.dataset.page : 'background';
+            globalThis.page = n(title) && n(title.dataset.page) ? title.dataset.page : 'background';
         }
     }, 'shr_1093');
 
-global.misplaced_dependency = (culprit_page: string): void =>
+globalThis.misplaced_dependency = (culprit_page: string): void =>
     err(() => {
         if (page !== culprit_page) {
             const msg: string =
@@ -59,7 +59,7 @@ export class Ext {
         d_error.Main.i().output_error(error_obj, error_code);
     };
 
-    public get_ext_version = (): string => {
+    public get_app_version = (): string => {
         try {
             return we.runtime.getManifest().version;
         } catch (error_obj: any) {
@@ -76,9 +76,9 @@ export class Ext {
                 windowTypes: ['normal'],
             });
 
-            windows.forEach((self: Windows.Window): void => {
-                if (n(self.tabs)) {
-                    self.tabs.forEach((tab: Tabs.Tab): void => {
+            windows.forEach((win: Windows.Window): void => {
+                if (n(win.tabs)) {
+                    win.tabs.forEach((tab: Tabs.Tab): void => {
                         if (n(tab.id)) {
                             callback(tab);
                         }

@@ -1,4 +1,4 @@
-declare const global: Global;
+declare const globalThis: Global;
 
 declare global {
     const is_ext: boolean;
@@ -6,7 +6,7 @@ declare global {
     const misplaced_dependency: (culprit_page: string) => void;
 }
 
-global.is_ext =
+globalThis.is_ext =
     typeof browser !== 'undefined' ||
     (typeof chrome !== 'undefined' && typeof chrome.runtime !== 'undefined');
 

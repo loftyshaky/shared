@@ -4,11 +4,13 @@ import { observer } from 'mobx-react';
 import { svg, c_tr, d_loading_screen, p_loading_screen } from 'shared/internal';
 
 export const Body: React.FunctionComponent<p_loading_screen.Body> = observer((props) => {
-    const { on_render } = props;
+    const { app_id, on_render } = props;
 
     useEffect(() => {
         on_render();
-    }, [on_render]);
+
+        d_loading_screen.Main.i().hide_roots({ app_id });
+    }, [app_id, on_render]);
 
     return (
         <c_tr.BaseTr

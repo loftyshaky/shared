@@ -1,6 +1,6 @@
 import { d_error, i_error } from 'error_modules/internal';
 
-declare const global: Global;
+declare const globalThis: Global;
 
 declare global {
     function show_err_ribbon(
@@ -19,7 +19,7 @@ declare global {
     function err_obj(msg: string): Error;
 }
 
-global.show_err_ribbon = (
+globalThis.show_err_ribbon = (
     error_obj: i_error.ErrorObj | undefined,
     error_code: string | undefined,
     {
@@ -42,7 +42,7 @@ global.show_err_ribbon = (
         notification_msg_key,
     });
 
-global.err = <T1>(
+globalThis.err = <T1>(
     f: () => T1,
     error_code: string,
     {
@@ -68,7 +68,7 @@ global.err = <T1>(
     return undefined;
 };
 
-global.err_async = async <T1>(
+globalThis.err_async = async <T1>(
     f: () => Promise<T1>,
     error_code: string,
     {
@@ -94,12 +94,12 @@ global.err_async = async <T1>(
     return undefined;
 };
 
-global.throw_err = (msg: string): void => {
+globalThis.throw_err = (msg: string): void => {
     throw new Error(msg);
 };
 
-global.throw_err_obj = (error_obj: Error): void => {
+globalThis.throw_err_obj = (error_obj: Error): void => {
     throw error_obj;
 };
 
-global.err_obj = (msg: string): Error => new Error(msg);
+globalThis.err_obj = (msg: string): Error => new Error(msg);

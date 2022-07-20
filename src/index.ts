@@ -8,7 +8,7 @@ export {
     prevent_default,
     stop_propagation,
     init_shared,
-    c_ext_version,
+    c_app_version,
     c_loading_screen,
     c_tr,
     o_tr,

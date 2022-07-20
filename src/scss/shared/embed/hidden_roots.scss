@@ -1,0 +1,3 @@
+body > [class^='root_']:not([class*='loading_screen_']) {
+    opacity: 0;
+}

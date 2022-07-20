@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
-import { c_ext_version } from 'shared/internal';
+import { c_app_version } from 'shared/internal';
 import { c_inputs, o_inputs, d_inputs, d_color, s_color } from 'inputs/internal';
 import { d_settings, p_settings } from 'settings/internal';
 
@@ -49,7 +49,7 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
                     )}
                 </div>
             </div>
-            <c_ext_version.Body />
+            <c_app_version.Body />
         </div>
     );
 });

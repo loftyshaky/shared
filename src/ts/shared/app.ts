@@ -1,27 +1,25 @@
-import path from 'path';
-import fs from 'fs-extra';
-
 import { d_error } from 'error_modules/internal';
+import { t } from 'shared/internal';
 
-declare const global: Global;
+declare const globalThis: Global;
 
-global.page = 'front_end';
+globalThis.page = 'front_end';
+
+globalThis.is_node = typeof process !== 'undefined' && process.release.name === 'node';
 
 export const init_page = (): void =>
     err(() => {
-        const title = global.document ? document.querySelector('title') : undefined;
+        const title = globalThis.document ? document.querySelector('title') : undefined;
 
-        global.page = n(title) && n(title.dataset.page) ? title.dataset.page : 'front_end';
+        globalThis.page = n(title) && n(title.dataset.page) ? title.dataset.page : 'back_end';
     }, 'shr_1190');
 
-global.misplaced_dependency = (culprit_page: string): void =>
+globalThis.misplaced_dependency = (culprit_page: string): void =>
     err(() => {
         if (page !== culprit_page) {
-            const msg: string =
-                we.i18n.getMessage('dependencicies_from_other_page_loaded_into_this_page_alert') +
-                culprit_page.toUpperCase();
+            const msg: string = `DEPENDENCIES FROM THE OTHER PAGE ACCIDENTALLY LOADED INTO THIS PAGE!!!\nCULPRIT PAGE: ${culprit_page.toUpperCase()}`;
 
-            if (page === 'background') {
+            if (page === 'back_end') {
                 // eslint-disable-next-line no-console
                 console.log(msg);
             } else {
@@ -47,11 +45,77 @@ export class App {
         d_error.Main.i().output_error(error_obj, error_code);
     };
 
-    public get_ext_version = (): string => {
-        try {
-            const { version } = fs.readJSONSync('package.json');
+    [index: string]: any;
 
-            return version;
+    private origin: string = globalThis.location ? globalThis.location.origin : '';
+    private package_json: undefined | t.AnyRecord;
+    private messages_en_json: undefined | t.AnyRecord;
+    private messages_ru_json: undefined | t.AnyRecord;
+    private messages_de_json: undefined | t.AnyRecord;
+
+    private resolve = (path_to_resolve: string): string => {
+        try {
+            // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+            const path = require('path');
+            // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+            const fs = require('fs-extra');
+
+            if (fs.existsSync(path.resolve('dist', path_to_resolve))) {
+                return path.resolve('dist', path_to_resolve);
+            }
+
+            return path.resolve(path_to_resolve);
+        } catch (error_obj: any) {
+            this.log_error(error_obj, 'shr_1234');
+        }
+
+        return '';
+    };
+
+    public read_data_into_vars = async (): Promise<string> => {
+        try {
+            const set_messages_json = async ({ locale }: { locale: string }): Promise<void> => {
+                try {
+                    const path: string = `${this.origin}/_locales/${locale}/messages.json`;
+                    const response_head = await fetch(path, { method: 'HEAD' });
+                    if (response_head.ok) {
+                        const response_messages_json = await fetch(path);
+
+                        this[`messages_${locale}_json`] = await response_messages_json.json();
+                    }
+                } catch (error_obj: any) {
+                    this.log_error(error_obj, 'shr_1233');
+                }
+            };
+
+            const response_package_json = await fetch(`${this.origin}/package.json`);
+
+            this.package_json = await response_package_json.json();
+
+            await set_messages_json({ locale: 'en' });
+            await set_messages_json({ locale: 'ru' });
+            await set_messages_json({ locale: 'de' });
+        } catch (error_obj: any) {
+            this.log_error(error_obj, 'shr_1191');
+        }
+
+        return '';
+    };
+
+    public get_app_version = (): string => {
+        try {
+            if (globalThis.is_node) {
+                // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                const fs = require('fs-extra');
+
+                const { version } = fs.readJSONSync(this.resolve('package.json'));
+
+                return version;
+            }
+
+            if (n(this.package_json)) {
+                return this.package_json.version;
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1191');
         }
@@ -61,19 +125,23 @@ export class App {
 
     public msg = (msg: string): string => {
         try {
-            const get_msgs = ({ user_language }: { user_language: string }): any => {
-                const messages_path: string = path.join(
-                    __dirname,
-                    '_locales',
-                    user_language,
-                    'messages.json',
-                );
+            const get_msgs = ({ user_language }: { user_language: string }): t.AnyRecord => {
+                if (globalThis.is_node) {
+                    // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                    const path = require('path');
+                    // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                    const fs = require('fs-extra');
 
-                if (fs.existsSync(messages_path)) {
-                    return fs.readJSONSync(path.join(messages_path));
+                    const messages_path: string = path.join(
+                        '_locales',
+                        user_language,
+                        'messages.json',
+                    );
+
+                    return fs.readJSONSync(this.resolve(messages_path));
                 }
 
-                return undefined;
+                return this[`messages_${user_language}_json`];
             };
 
             let user_language = 'en';
@@ -105,13 +173,24 @@ export class App {
         return '';
     };
 
-    public read_env_into_global_var = (): void => {
+    public read_env_into_global_var = async (): Promise<void> => {
         try {
-            const env_file_content: string = fs.readFileSync(path.join(__dirname, 'env.js'), {
-                encoding: 'utf8',
-            });
+            let env_file_text: string = '';
 
-            global.env = JSON.parse(env_file_content.replace('this.env = ', ''));
+            if (globalThis.is_node) {
+                // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                const fs = require('fs-extra');
+
+                env_file_text = fs.readFileSync(this.resolve('env.js'), {
+                    encoding: 'utf8',
+                });
+            } else {
+                const response = await fetch(`${this.origin}/env.js`);
+
+                env_file_text = await response.text();
+            }
+
+            globalThis.env = JSON.parse(env_file_text.replace('globalThis.env = ', ''));
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1232');
         }
