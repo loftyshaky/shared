@@ -15,7 +15,7 @@ class Locales {
             this.app_root,
             'node_modules',
             '@loftyshaky',
-            `shared${is_ext({ app_root: this.app_root }) ? '' : '-app'}`,
+            `shared${is_ext() ? '' : '-app'}`,
             '_locales',
         );
         const locales = fs.readdirSync(app_locales_path);

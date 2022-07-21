@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs-extra');
 
 const { projects_path } = require('./projects_path');
 const { ProjectName } = require('./project_name');
@@ -37,10 +38,12 @@ const create_stylelintrc_paths = () =>
 
 const stylelintrc = create_stylelintrc_paths();
 
-const is_ext = ({ app_root }) => {
-    const current_app_name = path.basename(path.dirname(app_root));
+const is_ext = () => {
+    const { name } = fs.readJSONSync(path.resolve('package.json'));
 
-    const app_i = apps.findIndex((app_name) => app_name === current_app_name);
+    const app_i = apps.findIndex(
+        (app_name) => project_name.transform({ project: app_name }) === name,
+    );
 
     return app_types[app_i] === 'ext';
 };

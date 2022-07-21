@@ -22,7 +22,7 @@ const shared_config = ({
         app_root,
         'node_modules',
         '@loftyshaky',
-        `shared${is_ext({ app_root }) ? '' : '-app'}`,
+        `shared${is_ext() ? '' : '-app'}`,
         'scss',
         'shared',
     );
