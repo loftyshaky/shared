@@ -29,14 +29,14 @@ body.keyboard .btn.text:focus,
 .keyboard .input_item.range .input.is_in_focus_state,
 .keyboard .input_item .visualization_w .visualization:focus,
 .keyboard .input_item .palette_visualization_w .palette_visualization:focus {
-    outline-color: $uzf;
+    outline-color: $ptn;
 }
 
 .keyboard .input_item .pcr-palette:focus,
 .keyboard .input_item .pcr-slider:focus,
 .keyboard .input_item .pcr-picker:focus,
 .keyboard .input_item .color_picker_w input:not(.pcr-result):focus {
-    outline-color: $uzf !important;
+    outline-color: $ptn !important;
 }
 
 .input_item .pcr-result:focus {
@@ -44,9 +44,9 @@ body.keyboard .btn.text:focus,
 }
 
 .keyboard .input_item .pcr-result:focus {
-    outline-color: $uzf !important;
+    outline-color: $ptn !important;
 }
 
 .keyboard .section_btn:not(.selected):focus {
-    box-shadow: inset 0 0 0 2px $uzf, inset -2px 0 0 0 $uzf;
+    box-shadow: inset 0 0 0 2px $ptn, inset -2px 0 0 0 $ptn;
 }
