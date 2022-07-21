@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
-import { svg, c_tr, d_loading_screen, p_loading_screen } from 'shared/internal';
+import { svg, c_tr, d_loading_screen, s_loading_screen, p_loading_screen } from 'shared/internal';
 
 export const Body: React.FunctionComponent<p_loading_screen.Body> = observer((props) => {
     const { app_id, on_render } = props;
@@ -9,7 +9,7 @@ export const Body: React.FunctionComponent<p_loading_screen.Body> = observer((pr
     useEffect(() => {
         on_render();
 
-        d_loading_screen.Main.i().hide_roots({ app_id });
+        s_loading_screen.Roots.i().hide_roots({ app_id });
     }, [app_id, on_render]);
 
     return (

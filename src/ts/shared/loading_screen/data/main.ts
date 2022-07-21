@@ -1,6 +1,6 @@
 import { makeObservable, observable, computed, action, runInAction } from 'mobx';
 
-import { s_css_vars } from 'shared/internal';
+import { s_css_vars, s_loading_screen } from 'shared/internal';
 
 export class Main {
     private static i0: Main;
@@ -29,12 +29,16 @@ export class Main {
     public show = (): Promise<void> =>
         err_async(async () => {
             if (!this.inner_is_none) {
+                s_loading_screen.Tr.i().enable_no_tr();
+
                 this.outer_is_visible = true;
             }
         }, 'shr_1116');
 
     public hide = ({ app_id }: { app_id: string }): Promise<void> =>
         err_async(async () => {
+            s_loading_screen.Tr.i().disable_no_tr();
+
             await x.delay(300);
 
             runInAction(() =>
@@ -43,7 +47,7 @@ export class Main {
                 }, 'shr_1117'),
             );
 
-            this.show_roots({ app_id });
+            s_loading_screen.Roots.i().show_roots({ app_id });
 
             await x.delay(+s_css_vars.Main.i().get({ name: 'transition_duration' }));
 
@@ -53,14 +57,4 @@ export class Main {
                 }, 'shr_1118'),
             );
         }, 'shr_1119');
-
-    public hide_roots = ({ app_id }: { app_id: string }): void =>
-        err(() => {
-            x.css('hidden_roots', document.head, `hidden_roots_link_${app_id}`);
-        }, 'shr_1235');
-
-    private show_roots = ({ app_id }: { app_id: string }): void =>
-        err(() => {
-            x.remove(s<HTMLLinkElement>(`.hidden_roots_link_${app_id}`));
-        }, 'shr_1235');
 }

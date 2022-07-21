@@ -14,6 +14,7 @@ export {
     o_tr,
     d_loading_screen,
     s_css_vars,
+    s_loading_screen,
     s_no_tr,
     s_tab_index,
     s_theme,
