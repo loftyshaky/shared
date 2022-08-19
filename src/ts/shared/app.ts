@@ -48,12 +48,23 @@ export class App {
     [index: string]: any;
 
     private origin: string = globalThis.location ? globalThis.location.origin : '';
-    private package_json: undefined | t.AnyRecord;
     private messages_en_json: undefined | t.AnyRecord;
     private messages_ru_json: undefined | t.AnyRecord;
     private messages_de_json: undefined | t.AnyRecord;
 
-    private resolve = (path_to_resolve: string): string => {
+    public get_app_version = (): string => {
+        try {
+            if (globalThis.is_node) {
+                return env.version;
+            }
+        } catch (error_obj: any) {
+            this.log_error(error_obj, 'shr_1238');
+        }
+
+        return '';
+    };
+
+    private resolve_path = (path_to_resolve: string): string => {
         try {
             // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
             const path = require('path');
@@ -64,9 +75,23 @@ export class App {
                 return path.resolve('dist', path_to_resolve);
             }
 
+            if (fs.existsSync(path.resolve('assets', path_to_resolve))) {
+                return path.resolve('assets', path_to_resolve);
+            }
+
             return path.resolve(path_to_resolve);
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1234');
+        }
+
+        return '';
+    };
+
+    private assets = (): string => {
+        try {
+            return env.env === 'adonis_app' ? `${this.origin}/assets/` : 'dist/';
+        } catch (error_obj: any) {
+            this.log_error(error_obj, 'shr_1237');
         }
 
         return '';
@@ -76,21 +101,35 @@ export class App {
         try {
             const set_messages_json = async ({ locale }: { locale: string }): Promise<void> => {
                 try {
-                    const path: string = `${this.origin}/_locales/${locale}/messages.json`;
-                    const response_head = await fetch(path, { method: 'HEAD' });
-                    if (response_head.ok) {
-                        const response_messages_json = await fetch(path);
+                    if (globalThis.is_node) {
+                        // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                        const path = require('path');
+                        // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                        const fs = require('fs-extra');
 
-                        this[`messages_${locale}_json`] = await response_messages_json.json();
+                        const messages_path: string = this.resolve_path(
+                            path.join(this.assets(), '_locales', locale, 'messages.json'),
+                        );
+
+                        if (fs.existsSync(messages_path)) {
+                            this[`messages_${locale}_json`] = fs.readJSONSync(
+                                this.resolve_path(messages_path),
+                            );
+                        }
+                    } else {
+                        const path: string = `${this.assets()}_locales/${locale}/messages.json`;
+                        const response_head = await fetch(path, { method: 'HEAD' });
+
+                        if (response_head.ok) {
+                            const response = await fetch(path);
+
+                            this[`messages_${locale}_json`] = await response.json();
+                        }
                     }
                 } catch (error_obj: any) {
                     this.log_error(error_obj, 'shr_1233');
                 }
             };
-
-            const response_package_json = await fetch(`${this.origin}/package.json`);
-
-            this.package_json = await response_package_json.json();
 
             await set_messages_json({ locale: 'en' });
             await set_messages_json({ locale: 'ru' });
@@ -102,47 +141,10 @@ export class App {
         return '';
     };
 
-    public get_app_version = (): string => {
-        try {
-            if (globalThis.is_node) {
-                // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
-                const fs = require('fs-extra');
-
-                const { version } = fs.readJSONSync(this.resolve('package.json'));
-
-                return version;
-            }
-
-            if (n(this.package_json)) {
-                return this.package_json.version;
-            }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1191');
-        }
-
-        return '';
-    };
-
     public msg = (msg: string): string => {
         try {
-            const get_msgs = ({ user_language }: { user_language: string }): t.AnyRecord => {
-                if (globalThis.is_node) {
-                    // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
-                    const path = require('path');
-                    // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
-                    const fs = require('fs-extra');
-
-                    const messages_path: string = path.join(
-                        '_locales',
-                        user_language,
-                        'messages.json',
-                    );
-
-                    return fs.readJSONSync(this.resolve(messages_path));
-                }
-
-                return this[`messages_${user_language}_json`];
-            };
+            const get_msgs = ({ user_language }: { user_language: string }): t.AnyRecord =>
+                this[`messages_${user_language}_json`] || {};
 
             let user_language = 'en';
             const { locale } = Intl.DateTimeFormat().resolvedOptions();
@@ -154,7 +156,6 @@ export class App {
 
             const en_msgs: any = get_msgs({ user_language: 'en' });
             const localized_msgs: any = is_english ? undefined : get_msgs({ user_language });
-
             let msg_2: string | undefined =
                 n(en_msgs[msg]) && n(en_msgs[msg].message) ? en_msgs[msg].message : '';
 
@@ -181,7 +182,7 @@ export class App {
                 // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
                 const fs = require('fs-extra');
 
-                env_file_text = fs.readFileSync(this.resolve('env.js'), {
+                env_file_text = fs.readFileSync(this.resolve_path('env.js'), {
                     encoding: 'utf8',
                 });
             } else {

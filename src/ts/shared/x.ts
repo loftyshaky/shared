@@ -105,8 +105,20 @@ export class X {
 
     public in_service_worker: boolean = typeof document === 'undefined';
     public invisible_chars: string = '\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b';
+    private manifest: t.StringRecord = {};
 
     // el.nodeType === 1 = not document
+
+    public get_asset_path = async (): Promise<void> => {
+        if (env.env === 'adonis_app') {
+            const manifest_path: string = `${globalThis.location.origin}/assets/manifest.json`;
+
+            const response = await fetch(manifest_path);
+            const manifest = await response.json();
+
+            this.manifest = manifest;
+        }
+    };
 
     private all = (
         els: Window | Document | ShadowRoot | null | t.XEls,
@@ -295,8 +307,12 @@ export class X {
                         }
                     }
                 });
+                const app_filename: string =
+                    env.env === 'adonis_app'
+                        ? this.manifest[`assets/${filename}.css`]
+                        : `${filename}.css`;
 
-                new_link.href = is_ext ? we.runtime.getURL(`${filename}.css`) : `${filename}.css`;
+                new_link.href = is_ext ? we.runtime.getURL(`${filename}.css`) : `${app_filename}`;
                 new_link.setAttribute('rel', 'stylesheet');
                 new_link.setAttribute('type', 'text/css');
                 parent.appendChild(new_link);

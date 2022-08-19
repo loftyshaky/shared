@@ -9,8 +9,12 @@ class Locales {
         this.app_root = app_root;
     }
 
-    merge = async () => {
-        const app_locales_path = path.join(this.app_root, 'src', '_locales');
+    merge = async ({ env }) => {
+        const app_locales_path = path.join(
+            this.app_root,
+            env === 'adonis_app' ? 'resources' : 'src',
+            '_locales',
+        );
         const shared_locales_path = path.join(
             this.app_root,
             'node_modules',
@@ -39,7 +43,12 @@ class Locales {
                 ...shared_messages,
                 ...app_messages,
             };
-            const locale_path = path.join(this.app_root, 'dist', '_locales', locale);
+            const locale_path = path.join(
+                this.app_root,
+                env === 'adonis_app' ? path.join('public', 'assets') : 'dist',
+                '_locales',
+                locale,
+            );
             const dest_messages = path.join(locale_path, 'messages.json');
 
             fs.ensureDirSync(locale_path);

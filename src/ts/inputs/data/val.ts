@@ -53,7 +53,9 @@ export class Val {
     public access = ({ input }: { input: i_inputs.Input }): i_data.Val =>
         err(() => {
             if (n(input.val_accessor)) {
-                return _.get(data, input.val_accessor);
+                const val = _.get(data, input.val_accessor);
+
+                return n(val) ? val : '';
             }
 
             return n(data.settings[input.name]) ? data.settings[input.name] : '';

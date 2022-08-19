@@ -6,10 +6,18 @@ class Env {
         this.app_root = app_root;
     }
 
-    generate = ({ browser, mode }) => {
-        const env = `globalThis.env = { "browser": "${browser}", "mode": "${mode}" }`;
+    generate = ({ browser, mode, env }) => {
+        const env_2 = `globalThis.env = {"version": "${process.env.npm_package_version}", "browser": "${browser}", "mode": "${mode}", "env": "${env}" }`;
 
-        fs.outputFileSync(path.join(this.app_root, 'dist', 'env.js'), env, 'utf-8');
+        fs.outputFileSync(
+            path.join(
+                this.app_root,
+                env === 'adonis_app' ? path.join('public', 'assets') : 'dist',
+                'env.js',
+            ),
+            env_2,
+            'utf-8',
+        );
     };
 }
 
