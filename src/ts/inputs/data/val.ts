@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { SyntheticEvent } from 'react';
-import { makeObservable, action } from 'mobx';
+import { makeObservable, observable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
 import { i_data } from 'shared/internal';
@@ -15,9 +15,9 @@ export class Val {
     }
 
     private constructor() {
-        makeObservable<this, 'set_warn_state'>(this, {
+        makeObservable(this, {
+            warn_state: observable,
             set_focus_state: action,
-            set_warn_state: action,
             remove_val: action,
         });
     }
@@ -28,10 +28,20 @@ export class Val {
             new_input.is_in_focus_state = state;
         }, 'shr_1063');
 
-    private set_warn_state = ({ input, state }: { input: i_inputs.Input; state: boolean }): void =>
-        err(() => {
+    public set_warn_state = ({ input }: { input: i_inputs.Input }): Promise<void> =>
+        err_async(async () => {
+            let state = false;
             const new_input = input;
-            new_input.is_in_warn_state = state;
+
+            if (n(input.warn_state_checker)) {
+                state = await input.warn_state_checker({ input });
+            }
+
+            runInAction(() =>
+                err(() => {
+                    new_input.is_in_warn_state = state;
+                }, 'shr_1240'),
+            );
         }, 'shr_1063');
 
     public focus_state = computedFn(function ({ input }: { input: i_inputs.Input }): string {
@@ -39,15 +49,7 @@ export class Val {
     });
 
     public warn_state = computedFn(function ({ input }: { input: i_inputs.Input }): string {
-        if (n(input.warn_state_checker)) {
-            const state = input.warn_state_checker({ input });
-
-            Val.i().set_warn_state({ input, state });
-
-            return state ? 'is_in_warn_state' : '';
-        }
-
-        return '';
+        return input.is_in_warn_state ? 'is_in_warn_state' : '';
     });
 
     public access = ({ input }: { input: i_inputs.Input }): i_data.Val =>

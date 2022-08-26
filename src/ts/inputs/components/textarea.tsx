@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
 import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((props) => {
     const { input } = props;
+
+    useEffect(() =>
+        err(() => {
+            d_inputs.Val.i().set_warn_state({ input });
+        }, 'shr_1044'),
+    );
 
     const input_w: JSX.Element = (
         <>

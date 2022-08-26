@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 
 import { svg } from 'shared/internal';
@@ -6,8 +6,13 @@ import { d_inputs, c_inputs, p_inputs, i_inputs } from 'inputs/internal';
 
 export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => {
     const input_ref = useRef<HTMLInputElement>(null);
-
     const { input } = props;
+
+    useEffect(() =>
+        err(() => {
+            d_inputs.Val.i().set_warn_state({ input });
+        }, 'shr_1044'),
+    );
 
     const input_w: JSX.Element = (
         <>

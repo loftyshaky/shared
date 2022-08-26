@@ -26,7 +26,11 @@ export class InputBase {
     public section?: string;
     public subsection?: string;
     public event_callback: t.CallbackVariadicVoid;
-    public warn_state_checker?: ({ input }: { input: i_inputs.Input }) => boolean;
+    public warn_state_checker?: ({
+        input,
+    }: {
+        input: i_inputs.Input;
+    }) => boolean | Promise<boolean>;
 
     public constructor(obj: InputBase) {
         makeObservable(this, {
