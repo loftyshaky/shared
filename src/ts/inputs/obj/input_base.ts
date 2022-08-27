@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { makeObservable, observable } from 'mobx';
+import { makeObservable, observable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
 import { t } from 'shared/internal';
@@ -16,6 +16,7 @@ export class InputBase {
     public parent_disabled?: boolean = false;
     public is_in_focus_state?: boolean = false;
     public is_in_warn_state?: boolean = false;
+    public input_errors?: string[] = [];
     public val_accessor?: string; // a.b.c
     public alt_msg?: string;
     public alt_help_msg?: string;
@@ -42,8 +43,10 @@ export class InputBase {
             parent_disabled: observable,
             is_in_focus_state: observable,
             is_in_warn_state: observable,
+            input_errors: observable,
             help_is_visible: observable,
             offset: observable,
+            set_input_errors: action,
         });
 
         Object.assign(this, obj);
@@ -126,4 +129,9 @@ export class InputBase {
 
             return false;
         }, 'shr_1219');
+
+    public set_input_errors? = ({ input_errors }: { input_errors: string[] }): void =>
+        err(() => {
+            this.input_errors = input_errors;
+        }, 'shr_1241');
 }

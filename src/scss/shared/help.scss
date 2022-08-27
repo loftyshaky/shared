@@ -1,10 +1,6 @@
 .help,
 .color_help {
-    max-width: 700px;
-    font-size: $font_small;
-    margin: 0;
-    margin-top: $gap_small;
-    white-space: pre-wrap;
+    @include folding_text;
 }
 
 .help_btn {

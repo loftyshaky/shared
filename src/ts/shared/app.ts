@@ -196,4 +196,46 @@ export class App {
             this.log_error(error_obj, 'shr_1232');
         }
     };
+
+    public get_input_errors = (
+        errors: any,
+        match_rules: {
+            field: string;
+            rule?: string;
+            rules_exclude?: string[];
+            input_error: string;
+        }[],
+    ): string[] => {
+        // adonisjs
+        try {
+            const input_errors: string[] = [];
+
+            if (!errors.success) {
+                errors.messages.errors.forEach((error: any) => {
+                    match_rules.forEach((match_rule) => {
+                        const exclusion_matched: boolean =
+                            n(match_rule.rules_exclude) &&
+                            match_rule.rules_exclude.some(
+                                (rule_exclude) => rule_exclude === match_rule.rule,
+                            );
+
+                        const error_matched =
+                            error.field === match_rule.field &&
+                            (n(match_rule.rule) ? error.rule === match_rule.rule : true) &&
+                            !exclusion_matched;
+
+                        if (error_matched) {
+                            input_errors.push(match_rule.input_error);
+                        }
+                    });
+                });
+
+                return input_errors;
+            }
+        } catch (error_obj: any) {
+            this.log_error(error_obj, 'shr_1242');
+        }
+
+        return [];
+    };
 }
