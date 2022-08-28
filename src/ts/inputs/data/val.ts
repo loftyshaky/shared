@@ -39,7 +39,7 @@ export class Val {
 
             runInAction(() =>
                 err(() => {
-                    new_input.is_in_warn_state = state;
+                    new_input.is_in_warn_state = input.warn_state_allowed && state;
                 }, 'shr_1240'),
             );
         }, 'shr_1063');
@@ -54,13 +54,35 @@ export class Val {
 
     public access = ({ input }: { input: i_inputs.Input }): i_data.Val =>
         err(() => {
+            const new_input = input;
+
             if (n(input.val_accessor)) {
                 const val = _.get(data, input.val_accessor);
 
-                return n(val) ? val : '';
+                const val_final: string = n(val) ? val : '';
+
+                runInAction(() =>
+                    err(() => {
+                        if (val_final !== '') {
+                            new_input.warn_state_allowed = true;
+                        }
+                    }, 'shr_1244'),
+                );
+
+                return val_final;
             }
 
-            return n(data.settings[input.name]) ? data.settings[input.name] : '';
+            const val: string = n(data.settings[input.name]) ? data.settings[input.name] : '';
+
+            runInAction(() =>
+                err(() => {
+                    if (val !== '') {
+                        new_input.warn_state_allowed = true;
+                    }
+                }, 'shr_1245'),
+            );
+
+            return val;
         }, 'shr_1064');
 
     public change = (

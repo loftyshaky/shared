@@ -17,6 +17,7 @@ export class InputBase {
     public is_in_focus_state?: boolean = false;
     public is_in_warn_state?: boolean = false;
     public input_errors?: string[] = [];
+    public warn_state_allowed?: boolean = false;
     public val_accessor?: string; // a.b.c
     public alt_msg?: string;
     public alt_help_msg?: string;
@@ -44,6 +45,7 @@ export class InputBase {
             is_in_focus_state: observable,
             is_in_warn_state: observable,
             input_errors: observable,
+            warn_state_allowed: observable,
             help_is_visible: observable,
             offset: observable,
             set_input_errors: action,
