@@ -9,6 +9,7 @@ export {
     stop_propagation,
     init_shared,
     c_app_version,
+    c_flash,
     c_loading_screen,
     c_tr,
     o_tr,

@@ -1,0 +1,18 @@
+.close_btn {
+    @include btn();
+
+    position: absolute;
+    top: $ext_name_offset;
+    right: $ext_name_offset;
+
+    &:focus {
+        outline-offset: $outline_offset;
+    }
+
+    svg {
+        display: block;
+        fill: white;
+        height: 20px;
+        width: 20px;
+    }
+}

@@ -5,8 +5,7 @@
 @import '../mods';
 @import '../text';
 @import '../crash_handler';
-
-$ext_name_offset: 7px;
+@import '../close_btn';
 
 body,
 button {
@@ -32,32 +31,13 @@ button {
         white-space: pre-wrap;
         text-align: center;
         padding: 10px;
-        padding-top: 40px;
+        padding-top: $error_msg_offset_top;
     }
 
     .ext_name {
         position: absolute;
         top: $ext_name_offset;
         left: $ext_name_offset;
-    }
-
-    .close_btn {
-        @include btn();
-
-        position: absolute;
-        top: $ext_name_offset;
-        right: $ext_name_offset;
-
-        &:focus {
-            outline-offset: $outline_offset;
-        }
-
-        svg {
-            display: block;
-            fill: white;
-            height: 20px;
-            width: 20px;
-        }
     }
 
     .more_info_btn {
