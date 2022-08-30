@@ -54,9 +54,7 @@ export class App {
 
     public get_app_version = (): string => {
         try {
-            if (globalThis.is_node) {
-                return env.version;
-            }
+            return env.version;
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1238');
         }

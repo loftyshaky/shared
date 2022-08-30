@@ -22,14 +22,19 @@ export class BackUp {
                     type: 'application/octet-stream',
                 },
             );
+            const app_name: string = env.env === 'ext' ? we.runtime.getManifest().name : 'App';
+            const locale: string =
+                env.env === 'ext'
+                    ? new Date().toLocaleString(ext.msg('@@ui_locale'))
+                    : Intl.DateTimeFormat().resolvedOptions().locale;
 
             const a = document.createElement('a');
             x.append(document.body, a);
 
             a.href = URL.createObjectURL(blob);
-            a.download = `${x.sanitize_filename(
-                we.runtime.getManifest().name,
-            )} back up ${new Date().toLocaleString(ext.msg('@@ui_locale').replace(/_/, '-'))}.json`;
+            a.download = `${x.sanitize_filename(app_name)} back up ${new Date().toLocaleString(
+                locale.replace(/_/, '-'),
+            )}.json`;
             a.click();
             x.remove(a);
         }, 'shr_1075');
