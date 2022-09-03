@@ -25,6 +25,7 @@ export class InputBase {
     public help_is_visible?: boolean = false;
     public parent?: string;
     public offset?: string = '0';
+    public form?: string;
     public section?: string;
     public subsection?: string;
     public event_callback: t.CallbackVariadicVoid;

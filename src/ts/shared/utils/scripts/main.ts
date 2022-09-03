@@ -34,6 +34,28 @@ export class Main {
                     if (subsection) {
                         obj_final[item.name].subsection = subsection;
                     }
+
+                    if (n(obj_final[item.name].inputs)) {
+                        const innner_inputs = [...obj_final[item.name].inputs];
+
+                        obj_final[item.name].inputs = [];
+
+                        innner_inputs.forEach((item_2: t.AnyRecord, i: number) => {
+                            obj_final[item.name].inputs[i] = item_2;
+
+                            if (section) {
+                                obj_final[item.name].inputs[i].section = section;
+                            }
+
+                            if (subsection) {
+                                obj_final[item.name].inputs[i].subsection = subsection;
+                            }
+
+                            if (item.type === 'form') {
+                                obj_final[item.name].inputs[i].form = item.name;
+                            }
+                        });
+                    }
                 }, 'shr_1136'),
             );
 

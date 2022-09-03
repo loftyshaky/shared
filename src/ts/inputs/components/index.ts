@@ -15,6 +15,7 @@ export * from 'inputs/components/section_btn';
 export * from 'inputs/components/section_content';
 export * from 'inputs/components/section';
 export * from 'inputs/components/select';
+export * from 'inputs/components/form';
 export * from 'inputs/components/group';
 export * from 'inputs/components/text_btn';
 export * from 'inputs/components/text';

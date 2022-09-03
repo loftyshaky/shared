@@ -32,6 +32,8 @@ export const resolve = ({ input }: { input: i_inputs.Input | o_inputs.Link }): J
             input_el = <c_inputs.File input={input as o_inputs.File} />;
         } else if (input.type === 'upload_box') {
             input_el = <c_inputs.UploadBox input={input as o_inputs.UploadBox} />;
+        } else if (input.type === 'form') {
+            input_el = <c_inputs.Form input={input as o_inputs.Form} />;
         } else if (input.type === 'group') {
             input_el = <c_inputs.Group input={input as o_inputs.Group} />;
         } else if (input.type === 'hr') {

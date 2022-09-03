@@ -10,6 +10,7 @@ export * from 'inputs/obj/option';
 export * from 'inputs/obj/range';
 export * from 'inputs/obj/section';
 export * from 'inputs/obj/select';
+export * from 'inputs/obj/form';
 export * from 'inputs/obj/group';
 export * from 'inputs/obj/text';
 export * from 'inputs/obj/textarea';
