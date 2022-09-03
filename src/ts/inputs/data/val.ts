@@ -39,7 +39,8 @@ export class Val {
 
             runInAction(() =>
                 err(() => {
-                    new_input.is_in_warn_state = input.warn_state_allowed && state;
+                    new_input.is_in_warn_state =
+                        new_input.warn_state_allowed_forced && input.warn_state_allowed && state;
                 }, 'shr_1240'),
             );
         }, 'shr_1063');
