@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
-import { c_app_version } from 'shared/internal';
+import { c_app_version, c_flash } from 'shared/internal';
 import { c_inputs, o_inputs, d_inputs, d_color, s_color } from 'inputs/internal';
 import { d_settings, p_settings } from 'settings/internal';
 
@@ -28,6 +28,7 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
 
     return (
         <div className='main'>
+            <c_flash.Body />
             <div className='main_2'>
                 <div className='section_btns'>
                     {Object.values(sections).map(
