@@ -8,11 +8,24 @@ export const Section: React.FunctionComponent<p_inputs.Section> = observer((prop
 
     return (
         <div className={x.cls(['section', section.name, section.visibility_cls!({ section })])}>
-            <div className='section_help'>
-                {section.include_help ? <c_inputs.HelpBtn section_or_input={section} /> : undefined}
-                {section.include_help ? <c_inputs.Help section_or_input={section} /> : undefined}
-            </div>
-            <c_inputs.SectionContent inputs={section.inputs} />
+            {section.available ? (
+                <>
+                    <div className='section_help'>
+                        {section.include_help ? (
+                            <c_inputs.HelpBtn section_or_input={section} />
+                        ) : undefined}
+                        {section.include_help ? (
+                            <c_inputs.Help section_or_input={section} />
+                        ) : undefined}
+                    </div>
+                    <c_inputs.SectionContent inputs={section.inputs} />
+                </>
+            ) : (
+                <div>
+                    {ext.msg(`${section.unavailable_msg}_section_unavailable_msg_text`) ||
+                        section.unavailable_msg}
+                </div>
+            )}
         </div>
     );
 });

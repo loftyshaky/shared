@@ -11,6 +11,8 @@ export class Section {
     public alt_msg?: string;
     public alt_help_msg?: string;
     public inputs: i_inputs.Inputs | i_inputs.Links;
+    public available?: boolean = true;
+    public unavailable_msg?: string = '';
     public subsections?: {
         name: string;
         inputs: i_inputs.Inputs | i_inputs.Links;
@@ -19,6 +21,7 @@ export class Section {
     public constructor(obj: Section) {
         makeObservable(this, {
             help_is_visible: observable,
+            available: observable,
         });
 
         Object.assign(this, obj);
