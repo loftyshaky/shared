@@ -26,6 +26,7 @@ export const Select: React.FunctionComponent<p_inputs.Select> = observer((props)
                 >
                     <select
                         id={input.name}
+                        name={input.name}
                         className='input'
                         value={d_inputs.Val.i().access({ input }) as string}
                         tabIndex={input.tab_index!()}

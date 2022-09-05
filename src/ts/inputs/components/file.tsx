@@ -9,6 +9,7 @@ export const File: React.FunctionComponent<p_inputs.File> = observer((props) => 
     return (
         <input
             className={x.cls(['file', input.name])}
+            name={input.name}
             type='file'
             accept={input.accept}
             value=''

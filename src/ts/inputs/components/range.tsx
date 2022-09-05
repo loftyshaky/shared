@@ -19,6 +19,7 @@ export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) =
                     >
                         <input
                             id={input.name}
+                            name={input.name}
                             className={x.cls(['input', d_inputs.Val.i().focus_state({ input })])}
                             type='range'
                             value={d_inputs.Val.i().access({ input }) as string}

@@ -47,6 +47,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                     >
                         <input
                             id={input.name}
+                            name={input.name}
                             className='input'
                             type='file'
                             accept={input.accept}
