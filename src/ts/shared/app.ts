@@ -47,6 +47,7 @@ export class App {
 
     [index: string]: any;
 
+    public browser_locale: string = Intl.DateTimeFormat().resolvedOptions().locale;
     private origin: string = globalThis.location ? globalThis.location.origin : '';
     private messages_en_json: undefined | t.AnyRecord;
     private messages_ru_json: undefined | t.AnyRecord;

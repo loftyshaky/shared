@@ -26,7 +26,7 @@ export class BackUp {
             const locale: string =
                 env.env === 'ext'
                     ? new Date().toLocaleString(ext.msg('@@ui_locale'))
-                    : Intl.DateTimeFormat().resolvedOptions().locale;
+                    : (ext as any).browser_locale;
 
             const a = document.createElement('a');
             x.append(document.body, a);
