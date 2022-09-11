@@ -47,7 +47,6 @@ export class App {
 
     [index: string]: any;
 
-    public browser_locale: string = Intl.DateTimeFormat().resolvedOptions().locale;
     private origin: string = globalThis.location ? globalThis.location.origin : '';
     private messages_en_json: undefined | t.AnyRecord;
     private messages_ru_json: undefined | t.AnyRecord;
@@ -62,6 +61,9 @@ export class App {
 
         return '';
     };
+
+    public get_language = (): string =>
+        n(data) && n(data.settings) && data.settings.language ? data.settings.language : 'en';
 
     private resolve_path = (path_to_resolve: string): string => {
         try {
@@ -145,13 +147,8 @@ export class App {
             const get_msgs = ({ user_language }: { user_language: string }): t.AnyRecord =>
                 this[`messages_${user_language}_json`] || {};
 
-            let user_language = 'en';
-            const { locale } = Intl.DateTimeFormat().resolvedOptions();
-            const is_english = locale.includes('en-');
-
-            if (!is_english) {
-                user_language = locale;
-            }
+            const user_language = this.get_language();
+            const is_english = user_language.includes('en');
 
             const en_msgs: any = get_msgs({ user_language: 'en' });
             const localized_msgs: any = is_english ? undefined : get_msgs({ user_language });
