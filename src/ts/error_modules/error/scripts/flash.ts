@@ -1,7 +1,9 @@
-export class Main {
-    private static i0: Main;
+import { i_error } from 'error_modules/internal';
 
-    public static i(): Main {
+export class Flash {
+    private static i0: Flash;
+
+    public static i(): Flash {
         // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
     }
@@ -49,7 +51,7 @@ export class Main {
             return undefined;
         }, 'shr_1250');
 
-    public get_flash_msg_key = (): string | undefined =>
+    private get_flash_msg_key = (): string | undefined =>
         err(() => {
             const flash_server_arr: string[] | undefined = this.turn_flash_server_text_into_arr();
 
@@ -60,16 +62,18 @@ export class Main {
             return undefined;
         }, 'shr_1249');
 
-    public get_flash_type = (): string =>
+    private get_flash_type = (): i_error.NotificationType =>
         err(() => {
             const flash_server_arr: string[] | undefined = this.turn_flash_server_text_into_arr();
 
-            return n(flash_server_arr) && n(flash_server_arr[1]) && flash_server_arr[1] !== '-'
-                ? flash_server_arr[1]
-                : 'neutral';
+            return (
+                n(flash_server_arr) && n(flash_server_arr[1]) && flash_server_arr[1] !== '-'
+                    ? flash_server_arr[1]
+                    : 'neutral'
+            ) as i_error.NotificationType;
         }, 'shr_1249');
 
-    public get_flash_hide_delay = (): number =>
+    private get_flash_hide_delay = (): number =>
         err(() => {
             const flash_server_arr: string[] | undefined = this.turn_flash_server_text_into_arr();
 
@@ -77,4 +81,21 @@ export class Main {
                 ? +flash_server_arr[2]
                 : 5000;
         }, 'shr_1249');
+
+    public show = (): void =>
+        err(() => {
+            const flash_msg_key: string | undefined = this.get_flash_msg_key();
+            const flash_type: i_error.NotificationType = this.get_flash_type();
+            const flash_hide_delay: number = this.get_flash_hide_delay();
+
+            const flash_found: boolean = n(flash_msg_key);
+
+            if (flash_found) {
+                show_err_ribbon(undefined, undefined, {
+                    error_msg_key: flash_msg_key,
+                    notification_type: flash_type,
+                    hide_delay: flash_hide_delay,
+                });
+            }
+        }, 'shr_1252');
 }

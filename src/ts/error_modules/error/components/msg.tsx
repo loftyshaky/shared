@@ -5,8 +5,8 @@ import { d_error } from 'error_modules/internal';
 
 export const Msg: React.FunctionComponent = observer(() => (
     <div className='msg'>
-        {d_error.Msg.i().main_msg}
-        {d_error.State.i().is_notification ? undefined : (
+        {d_error.Msg.i().basic_msg}
+        {d_error.State.i().notification_type === 'error' ? (
             <>
                 <button
                     type='button'
@@ -24,6 +24,6 @@ export const Msg: React.FunctionComponent = observer(() => (
                     {d_error.Msg.i().advanced_msg}
                 </div>
             </>
-        )}
+        ) : undefined}
     </div>
 ));

@@ -66,7 +66,11 @@ button {
         outline-color: $black;
     }
 
-    &.is_notification {
+    &.positive {
+        background-color: #40af49;
+    }
+
+    &.neutral {
         background-color: #4d94ea;
     }
 

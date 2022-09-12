@@ -29,30 +29,20 @@ export class Main {
         error_code: string | undefined,
         {
             error_msg_key = '',
+            notification_type = 'error',
+            hide_delay = this.hide_delay,
             silent = false,
             persistent = false,
             exit = false,
-            hide_delay = this.hide_delay,
-            is_notification = false,
-            notification_msg_key = '',
         }: i_error.ShowError = {},
     ): void => {
         const error_ui_is_visible: boolean =
             !x.in_service_worker && !silent && (!error_obj || !error_obj.silent);
 
         if (error_ui_is_visible) {
-            if (is_notification) {
-                d_error.State.i().change_state({
-                    observable_key: 'is_notification',
-                    state: true,
-                });
-
-                d_error.Msg.i().notification_msg_key = notification_msg_key;
-            } else {
-                d_error.State.i().change_state({
-                    observable_key: 'is_notification',
-                    state: false,
-                });
+            if (notification_type !== 'error') {
+                d_error.Msg.i().basic_msg = ext.msg(error_msg_key);
+                d_error.State.i().notification_type = notification_type;
             }
 
             d_error.State.i().change_state({

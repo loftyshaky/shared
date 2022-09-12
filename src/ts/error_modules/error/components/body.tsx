@@ -18,7 +18,7 @@ export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
                 'main',
                 'error',
                 d_error.State.i().is_highlighted_cls,
-                d_error.State.i().is_notification_cls,
+                d_error.State.i().notification_type,
             ])}
             role='none'
             style={{

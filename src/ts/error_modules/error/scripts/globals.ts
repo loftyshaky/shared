@@ -1,4 +1,4 @@
-import { d_error, i_error } from 'error_modules/internal';
+import { d_error, s_error, i_error } from 'error_modules/internal';
 
 declare const globalThis: Global;
 
@@ -8,6 +8,8 @@ declare global {
         error_code: string | undefined,
         obj?: i_error.ShowError,
     ): void;
+    function show_flash(): void;
+    function show_notification(obj?: i_error.ShowError): void;
     function err<T1>(f: () => T1, error_code: string, obj?: i_error.ShowError): T1;
     function err_async<T1>(
         f: () => Promise<T1>,
@@ -24,22 +26,35 @@ globalThis.show_err_ribbon = (
     error_code: string | undefined,
     {
         error_msg_key = '',
+        notification_type = 'error',
+        hide_delay = d_error.Main.i().hide_delay,
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = d_error.Main.i().hide_delay,
-        is_notification = false,
-        notification_msg_key = '',
     }: i_error.ShowError = {},
 ) =>
     d_error.Main.i().show_error(error_obj, error_code, {
         error_msg_key,
+        notification_type,
         silent,
         persistent,
         exit,
         hide_delay,
-        is_notification,
-        notification_msg_key,
+    });
+
+globalThis.show_flash = s_error.Flash.i().show;
+
+globalThis.show_notification = ({
+    error_msg_key = '',
+    notification_type = 'neutral',
+    hide_delay = d_error.Main.i().hide_delay,
+    persistent = false,
+}: i_error.ShowError = {}) =>
+    s_error.Notification.i().show({
+        error_msg_key,
+        notification_type,
+        hide_delay,
+        persistent,
     });
 
 globalThis.err = <T1>(

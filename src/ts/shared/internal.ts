@@ -13,18 +13,15 @@ export * from 'shared/functions';
 export * from 'shared/init';
 
 export * as c_app_version from 'shared/app_version/components';
-export * as c_flash from 'shared/flash/components';
 export * as c_loading_screen from 'shared/loading_screen/components';
 export * as c_tr from 'shared/tr/components';
 
 export * as o_tr from 'shared/tr/obj';
 
-export * as d_flash from 'shared/flash/data';
 export * as d_loading_screen from 'shared/loading_screen/data';
 export * as d_tr from 'shared/tr/data';
 
 export * as s_css_vars from 'shared/css_vars/scripts';
-export * as s_flash from 'shared/flash/scripts';
 export * as s_loading_screen from 'shared/loading_screen/scripts';
 export * as s_no_tr from 'shared/no_tr/scripts';
 export * as s_tab_index from 'shared/tab_index/scripts';
