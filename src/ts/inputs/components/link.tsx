@@ -10,7 +10,7 @@ export const Link: React.FunctionComponent<p_inputs.Link> = observer((props) => 
         <a
             className={x.cls(['link', link.name])}
             href={rs(link.href_final)}
-            target='_blank'
+            target={link.target}
             rel='noopener noreferrer'
         >
             {rs(link.text)}
