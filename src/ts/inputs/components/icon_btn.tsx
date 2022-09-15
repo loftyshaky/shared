@@ -11,7 +11,7 @@ export const IconBtn: React.FunctionComponent<p_inputs.IconBtn> = observer((prop
         <button
             className={x.cls(['btn', 'icon', input.is_enabled_cls!(), input.name])}
             type='button'
-            title={ext.msg(`${input.name}_btn_title`) || input.alt_msg}
+            title={input.alt_msg || ext.msg(`${input.name}_btn_title`)}
             tabIndex={input.tab_index!()}
             onClick={input.event_callback}
             onKeyDown={stop_propagation}

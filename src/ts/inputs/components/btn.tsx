@@ -24,7 +24,7 @@ export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
             }
             style={{ marginLeft: x.px(input.offset) }}
         >
-            {ext.msg(`${input.name}_btn_text`) || input.alt_msg}
+            {input.alt_msg || ext.msg(`${input.name}_btn_text`)}
         </c_tr.BaseTr>
     );
 });

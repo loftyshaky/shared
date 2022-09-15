@@ -13,6 +13,6 @@ export class Label {
     private constructor() {}
 
     msg? = computedFn(function ({ input }: { input: i_inputs.Input }): string | undefined {
-        return ext.msg(`${input.name}_label_text`) || input.alt_msg;
+        return input.alt_msg || ext.msg(`${input.name}_label_text`);
     });
 }
