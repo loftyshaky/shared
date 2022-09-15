@@ -9,6 +9,7 @@ export class Text extends o_inputs.InputBase {
     public text_type?: 'text' | 'number' | 'email' | 'password' = 'text';
     public allow_removing_val?: boolean = true;
     public placeholder?: string = '';
+    public autocomplete?: string = 'off';
     public text_btns?: i_inputs.TextBtn[] = [];
     public remove_val_callback?: ({ input }: { input: i_inputs.Input }) => void;
     public paste_callback?: t.CallbackVariadicVoid = () => undefined;

@@ -40,7 +40,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         type={input.text_type}
                         value={d_inputs.Val.i().access({ input }) as string}
                         placeholder={input.placeholder}
-                        autoComplete='off'
+                        autoComplete={input.autocomplete}
                         spellCheck='false'
                         tabIndex={input.tab_index!()}
                         ref={input_ref}
