@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, FormEvent } from 'react';
 import { makeObservable, observable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
@@ -156,4 +156,19 @@ export class Val {
 
             return false;
         }, 'shr_1068');
+
+    public text_and_textarea_on_input = (
+        { input }: { input: i_inputs.Input },
+        e: FormEvent,
+    ): Promise<void> =>
+        err_async(async () => {
+            await d_inputs.Val.i().change(
+                {
+                    input,
+                },
+                e,
+            );
+
+            await d_inputs.Val.i().set_warn_state({ input });
+        }, 'shr_1254');
 }

@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react';
 
 import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((props) => {
     const { input } = props;
-
-    useEffect(() =>
-        err(() => {
-            d_inputs.Val.i().set_warn_state({ input });
-        }, 'shr_1044'),
-    );
 
     const input_w: JSX.Element = (
         <>
@@ -37,13 +31,8 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
                         value={d_inputs.Val.i().access({ input }) as string}
                         spellCheck='false'
                         tabIndex={input.tab_index!()}
-                        onInput={(e): void => {
-                            d_inputs.Val.i().change(
-                                {
-                                    input,
-                                },
-                                e,
-                            );
+                        onInput={async (e): Promise<void> => {
+                            await d_inputs.Val.i().text_and_textarea_on_input({ input }, e);
                         }}
                         onFocus={(): void => {
                             d_inputs.Val.i().set_focus_state({
