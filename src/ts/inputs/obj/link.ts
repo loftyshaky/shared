@@ -6,6 +6,7 @@ export class Link {
     public browser?: t.Browser;
     public href?: string;
     public target?: string = '_blank';
+    public alt_msg?: string;
     public force_resolve?: boolean = false;
 
     public constructor(obj: Link) {

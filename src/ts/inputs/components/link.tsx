@@ -13,7 +13,7 @@ export const Link: React.FunctionComponent<p_inputs.Link> = observer((props) => 
             target={link.target}
             rel='noopener noreferrer'
         >
-            {rs(link.text)}
+            {link.alt_msg || rs(link.text)}
         </a>
     ) : null;
 });
