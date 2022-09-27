@@ -9,15 +9,23 @@ import { c_inputs, o_inputs, d_inputs, s_inputs, p_inputs } from 'inputs/interna
 export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((props) => {
     const file_input_ref = useRef<HTMLInputElement>(null);
 
-    const { input } = props;
+    const { input, calculate_width } = props;
 
     const input_w: JSX.Element = (
         <>
             <div className='input_w_and_help_btn'>
                 <span
-                    className={x.cls(['input_w', 'upload_box', input.name, 'calculate_width'])}
+                    className={x.cls([
+                        'input_w',
+                        'upload_box',
+                        input.name,
+                        d_inputs.InputWidth.i().calculate_width_cls({ calculate_width }),
+                    ])}
                     style={{
-                        minWidth: d_inputs.InputWidth.i().min_width_style!({ input }),
+                        minWidth: d_inputs.InputWidth.i().min_width_style!({
+                            input,
+                            calculate_width,
+                        }),
                         maxWidth: d_inputs.InputWidth.i().max_width_style!(),
                     }}
                 >

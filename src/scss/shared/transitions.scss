@@ -23,6 +23,10 @@
 .link_btn {
     transition: var(--transition);
     transition-property: color;
+
+    &:active {
+        transition: none;
+    }
 }
 
 .color_picker_w input {

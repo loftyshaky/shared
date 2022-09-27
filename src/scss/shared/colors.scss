@@ -1,3 +1,5 @@
+$palette_visualization_w_border_offset: 1 * 2;
+
 .input_item {
     &.color .label {
         align-self: normal;
@@ -10,16 +12,21 @@
         order: -1;
     }
 
+    .main_visualization_w {
+        height: fit-content;
+        display: flex;
+        align-self: center;
+    }
+
     .visualization_w {
         display: flex;
         align-items: center;
+        margin-right: $input_content_gap;
     }
 
     .visualization {
-        @include border;
-
+        border: 0;
         outline: none;
-        margin-right: $input_content_gap;
         min-width: $color_input_height;
         height: $color_input_height;
         cursor: pointer;
@@ -29,8 +36,8 @@
     .palette_visualization_w {
         display: inline-flex;
         padding: 0;
-        margin-right: $gap;
-        margin-bottom: $gap;
+        margin-right: $gap + $palette_visualization_w_border_offset;
+        margin-bottom: $gap + $palette_visualization_w_border_offset;
         cursor: pointer;
 
         &:nth-child(10),
@@ -45,8 +52,7 @@
     }
 
     .palette_visualization {
-        @include border;
-
+        border: 0;
         outline: none;
         width: $color_input_height;
         height: $color_input_height;

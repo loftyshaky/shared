@@ -4,16 +4,24 @@ import { observer } from 'mobx-react';
 import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) => {
-    const { input } = props;
+    const { input, calculate_width } = props;
 
     const input_w: JSX.Element = (
         <>
             <div className='displayed_val_w'>
                 <div className='input_w_and_help_btn'>
                     <span
-                        className={x.cls(['input_w', 'range', input.name, 'calculate_width'])}
+                        className={x.cls([
+                            'input_w',
+                            'range',
+                            input.name,
+                            d_inputs.InputWidth.i().calculate_width_cls({ calculate_width }),
+                        ])}
                         style={{
-                            minWidth: d_inputs.InputWidth.i().min_width_style!({ input }),
+                            minWidth: d_inputs.InputWidth.i().min_width_style!({
+                                input,
+                                calculate_width,
+                            }),
                             maxWidth: d_inputs.InputWidth.i().max_width_style!(),
                         }}
                     >

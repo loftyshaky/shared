@@ -27,6 +27,9 @@ export class InputWidth {
     private min_width: string = '298';
     private old_max_width: Record<string, string> = {};
 
+    public calculate_width_cls = ({ calculate_width }: { calculate_width: boolean }): string =>
+        err(() => (calculate_width ? 'calculate_width' : ''), 'shr_1255');
+
     max_width_style? = computedFn(function (this: InputWidth): number | string | undefined {
         return x.px(_.isNaN(this.max_width) ? '0' : this.max_width);
     });
@@ -35,11 +38,13 @@ export class InputWidth {
         this: InputWidth,
         {
             input,
+            calculate_width = true,
         }: {
             input: i_inputs.Input;
+            calculate_width?: boolean;
         },
     ): number | string | undefined {
-        if (n(input.section)) {
+        if (calculate_width && n(input.section)) {
             if (n(this.width[input.section])) {
                 return x.px(this.width[input.section]);
             }

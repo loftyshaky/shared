@@ -11,10 +11,13 @@
         }
     }
 
-    .visualization_w.opened .visualization,
+    .visualization_w.opened .visualization {
+        outline-color: $ycp;
+    }
+
     .palette_visualization_w.opened .palette_visualization,
     .palette_visualization_w.selected .palette_visualization {
-        outline-color: $ycp;
+        outline-color: $iub;
     }
 }
 
@@ -27,24 +30,31 @@ body.keyboard .btn.text:focus,
 .keyboard .link_btn:focus,
 .keyboard .input_item .input_w:not(.text, .textarea).is_in_focus_state::before,
 .keyboard .input_item.range .input.is_in_focus_state,
-.keyboard .input_item .visualization_w .visualization:focus,
-.keyboard .input_item .palette_visualization_w .palette_visualization:focus {
+.keyboard .input_item .visualization_w .visualization:focus {
     outline-color: $ptn;
+}
+
+.keyboard .input_item.color .btn.text:focus {
+    outline-color: $dwk;
+}
+
+.keyboard .input_item .palette_visualization_w .palette_visualization:focus {
+    outline-color: $dwk;
 }
 
 .keyboard .input_item .pcr-palette:focus,
 .keyboard .input_item .pcr-slider:focus,
 .keyboard .input_item .pcr-picker:focus,
 .keyboard .input_item .color_picker_w input:not(.pcr-result):focus {
-    outline-color: $ptn !important;
+    outline-color: $dwk !important;
 }
 
 .input_item .pcr-result:focus {
-    outline-color: $cop !important;
+    outline-color: $yun !important;
 }
 
 .keyboard .input_item .pcr-result:focus {
-    outline-color: $ptn !important;
+    outline-color: $dwk !important;
 }
 
 .keyboard .section_btn:not(.selected):focus {

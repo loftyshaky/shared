@@ -83,6 +83,12 @@
     "very_dark_option_text": {
         "message": "Very dark"
     },
+    "lavender_option_text": {
+        "message": "Lavender"
+    },
+    "aqua_option_text": {
+        "message": "Aqua"
+    },
     "admin_help_text": {
         "message": "Developer/experimental features."
     },

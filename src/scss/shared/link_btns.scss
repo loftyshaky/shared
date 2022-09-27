@@ -1,4 +1,6 @@
 .link_btn {
+    @include btn;
+
     display: block;
     font-size: $font_small;
 

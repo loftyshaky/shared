@@ -28,7 +28,7 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
 
     return (
         <div className='main'>
-            <div className='main_2'>
+            <div className='main_2 settings'>
                 <div className='section_btns'>
                     {Object.values(sections).map(
                         (section: o_inputs.Section, i: number): JSX.Element => (

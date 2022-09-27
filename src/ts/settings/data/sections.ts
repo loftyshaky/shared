@@ -30,6 +30,8 @@ export class Sections {
                     new o_inputs.Option({ name: 'light' }),
                     new o_inputs.Option({ name: 'dark' }),
                     new o_inputs.Option({ name: 'very_dark' }),
+                    new o_inputs.Option({ name: 'lavender' }),
+                    new o_inputs.Option({ name: 'aqua' }),
                 ],
             };
         }, 'shr_1082');

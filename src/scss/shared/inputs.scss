@@ -66,6 +66,10 @@ input[type='file'] {
             @include border_transparent;
         }
 
+        .main_visualization_w {
+            @include border_transparent;
+        }
+
         &.is_in_focus_state:not(.select)::before,
         &.is_in_warn_state:not(.select)::before {
             @include outline_solid_thick;

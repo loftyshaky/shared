@@ -11,17 +11,18 @@ export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
         <c_tr.BaseTr
             tag='button'
             name='fade'
-            cls={x.cls(['btn', 'text', 'inset_border', input.is_enabled_cls!(), input.name])}
-            attr={{
-                type: (input as o_inputs.Btn).btn_type,
-                tabIndex: input.tab_index!(),
-                onClick: input.event_callback,
-                onKeyDown: stop_propagation,
-            }}
+            cls={x.cls(['btn', 'text', input.is_enabled_cls!(), input.name])}
             state={
                 input.is_visible_computed!() &&
                 ((input.is_cut && data.settings.enable_cut_features) || !input.is_cut)
             }
+            attr={{
+                type: (input as o_inputs.Btn).btn_type,
+                tab_index: input.tab_index!(),
+                disabled: !input.is_enabled_final!(),
+                onClick: input.event_callback,
+                onKeyDown: stop_propagation,
+            }}
             style={{ marginLeft: x.px(input.offset) }}
         >
             {input.alt_msg || ext.msg(`${input.name}_btn_text`)}

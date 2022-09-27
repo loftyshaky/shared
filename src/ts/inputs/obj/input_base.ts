@@ -71,7 +71,7 @@ export class InputBase {
         return this.check_state!({ state_type: 'is_enabled' });
     });
 
-    private is_enabled_final? = (): boolean =>
+    public is_enabled_final? = (): boolean =>
         err(
             () =>
                 !this.is_visible_computed!() ||

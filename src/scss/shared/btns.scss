@@ -2,32 +2,35 @@ $icon_btn_size: 20px;
 
 .btn {
     @include btn;
+}
 
+.btn.icon {
     border-radius: 0;
     position: relative;
     vertical-align: bottom;
 
-    &.text {
-        @include btn;
-        @include border_transparent;
-        @include outline_solid;
+    svg {
+        width: $icon_btn_size;
+        height: $icon_btn_size;
+    }
+}
 
-        display: block;
-        height: $input_height + ($border_width * 2);
-        padding: 0 $input_inner_padding 0 $input_inner_padding;
-        outline-offset: -1px;
+.btn.text {
+    @include border_transparent;
+    @include outline_solid;
 
-        &:not(:first-child) {
-            margin-top: $gap;
-        }
+    border-radius: 0;
+    height: $input_height;
+    padding: 0 $input_inner_padding 0 $input_inner_padding;
+    display: table;
+    box-sizing: border-box;
 
-        &::before {
-            display: none;
-        }
+    &:not(:first-child) {
+        margin-top: $gap;
     }
 
     &.color_ok_btn {
-        margin-left: auto;
+        margin-left: auto !important;
     }
 
     &.icon {

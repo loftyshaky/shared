@@ -6,7 +6,7 @@ import { d_inputs, c_inputs, p_inputs, i_inputs } from 'inputs/internal';
 
 export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => {
     const input_ref = useRef<HTMLInputElement>(null);
-    const { input } = props;
+    const { input, calculate_width } = props;
 
     const input_w: JSX.Element = (
         <>
@@ -18,12 +18,17 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         input.text_type,
                         input.name,
                         'inset_border',
-                        'calculate_width',
+                        d_inputs.InputWidth.i().calculate_width_cls({
+                            calculate_width,
+                        }),
                         d_inputs.Val.i().focus_state({ input }),
                         d_inputs.Val.i().warn_state({ input }),
                     ])}
                     style={{
-                        minWidth: d_inputs.InputWidth.i().min_width_style!({ input }),
+                        minWidth: d_inputs.InputWidth.i().min_width_style!({
+                            input,
+                            calculate_width,
+                        }),
                         maxWidth: d_inputs.InputWidth.i().max_width_style!(),
                     }}
                 >

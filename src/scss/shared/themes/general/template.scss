@@ -2,6 +2,10 @@
 
 @import 'template_focus';
 
+@mixin link_colors_standard {
+    @include link_colors($ycp, $ptn, $cop, $uzf);
+}
+
 ::selection {
     background-color: $nqp !important;
     color: white !important;
@@ -10,17 +14,16 @@
 :not(html, body, select) {
     &::-webkit-scrollbar-corner,
     &::-webkit-resizer {
-        background-color: $hev;
-        border-color: $hev;
+        background-color: $hyn;
+        border-color: $hyn;
     }
 
     &::-webkit-scrollbar-track {
-        background-color: $gaq;
-        border-color: $gaq;
+        background-color: $npw;
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: $hev;
+        background-color: $fxm;
     }
 
     &::-webkit-scrollbar-thumb:hover {
@@ -29,7 +32,27 @@
 
     &::-webkit-scrollbar-track:horizontal,
     &::-webkit-scrollbar-track:vertical {
-        border-color: $hev;
+        border-color: $fxm;
+    }
+}
+
+.link {
+    @include link_colors_standard();
+}
+
+.link_btn {
+    @include link_colors_standard();
+}
+
+textarea {
+    &::-webkit-scrollbar-corner,
+    &::-webkit-resizer {
+        background-color: $nur;
+        border-color: $hcx;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: $hcx;
     }
 }
 
@@ -48,12 +71,18 @@
 }
 
 body {
-    background-color: $gaq;
+    background: $gqb;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    .main_2 {
+        background-color: $hfb;
+    }
 
     .btn {
         &.text {
-            outline-color: $hev;
-            background-color: $gaq;
+            background-color: $npw;
+            outline-color: $hyn;
 
             &:hover {
                 background-color: $qgp;
@@ -84,18 +113,22 @@ textarea {
 }
 
 hr {
-    background-color: $hev;
+    background-color: $hyn;
 }
 
 .sections {
-    background-color: $htc;
+    background-color: $tbn;
+
+    .section_name {
+        border-color: $hyn;
+    }
 }
 
 .section_btns {
-    background-color: $gaq;
+    background-color: $gvb;
 
     .section_btn {
-        background-color: $gaq;
+        background-color: $hfb;
 
         &.selected::before {
             background-color: $ycp;
@@ -109,15 +142,15 @@ hr {
 
 .input_item {
     .inset_border::before {
-        outline-color: $hev;
+        outline-color: $hyn;
     }
 
     .input {
-        background-color: $gaq;
+        background-color: $npw;
     }
 
     .btn.text_input {
-        background-color: $gaq;
+        background-color: $npw;
 
         svg {
             fill: $lpe;
@@ -126,13 +159,20 @@ hr {
 
     .palette {
         background-color: $htc;
+        color: $rbp;
     }
 
     .input_w {
-        .visualization,
+        .visualization {
+            background-color: $npw;
+        }
+
+        .palette_visualization_w.inset_border::before {
+            outline-color: $hev;
+        }
+
         .palette_visualization {
-            border-color: $hev;
-            background-color: $gaq;
+            background-color: $npw;
         }
     }
 
@@ -140,6 +180,10 @@ hr {
         background-image: linear-gradient(45deg, transparent 50%, $lpe 50%),
             linear-gradient(135deg, $lpe 50%, transparent 50%),
             linear-gradient(to right, $lpe, $lpe);
+
+        option {
+            color: $rbp;
+        }
     }
 
     .range {
@@ -153,14 +197,14 @@ hr {
             }
 
             &::-webkit-slider-runnable-track {
-                box-shadow: inset 0 0 0 1px $hev, inset -1px 0 0 0 $hev;
+                box-shadow: inset 0 0 0 1px $hyn;
             }
         }
     }
 
     .checkbox .box {
-        outline-color: $hev;
-        background-color: $gaq;
+        outline-color: $hyn;
+        background-color: $npw;
 
         svg {
             fill: $lpe;
@@ -168,11 +212,11 @@ hr {
     }
 
     .upload_box {
-        outline-color: $hev;
+        outline-color: $hyn;
 
         .background {
             &.upload_box_idle {
-                background-color: $gaq;
+                background-color: $npw;
             }
 
             &.upload_box_hover {
@@ -180,27 +224,32 @@ hr {
             }
 
             &.loading {
+                background-color: transparent;
                 /* stylelint-disable-next-line function-parentheses-newline-inside */
                 background-image: repeating-linear-gradient(-45deg,
-                $gaq,
-                $gaq 14px,
+                $npw,
+                $npw 14px,
                 $qgp 14px,
                 $qgp 28px);  /* stylelint-disable-line function-parentheses-newline-inside */
             }
         }
     }
 
+    &.color .link_btn {
+        @include link_colors($iub, $dwk, $yun, $hap);
+    }
+
     .color_picker_w {
         *:not(.pcr-last-color, .pcr-current-color) {
-            color: $lpe !important;
+            color: $rbp !important;
         }
 
         input {
-            background-color: $gaq !important;
+            background-color: $npw !important;
             outline-color: $hev !important;
 
             &:hover:not(.pcr-result, .active) {
-                background-color: $qgp !important;
+                background-color: $hyv !important;
             }
         }
     }
@@ -218,39 +267,7 @@ hr {
     }
 
     .pcr-type.active {
-        background-color: $yos !important;
-    }
-}
-
-.link {
-    color: $ycp;
-
-    &:visited {
-        color: $ptn;
-    }
-
-    &:hover {
-        color: $cop;
-    }
-
-    &:active {
-        color: $uzf;
-    }
-}
-
-.link_btn {
-    color: $ycp;
-
-    &:visited {
-        color: $ptn;
-    }
-
-    &:hover {
-        color: $cop;
-    }
-
-    &:active {
-        color: $uzf;
+        background-color: $nep !important;
     }
 }
 

@@ -19,7 +19,7 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
                     {Object.values(input.inputs).map(
                         (input_2: i_inputs.Input | o_inputs.Link, i: number): JSX.Element => (
                             <React.Fragment key={i}>
-                                {s_inputs.resolve({ input: input_2 })}
+                                {s_inputs.resolve({ input: input_2, calculate_width: false })}
                             </React.Fragment>
                         ),
                     )}

@@ -2,6 +2,7 @@
 @import '~@simonwep/pickr/dist/themes/monolith.min.css';
 @import 'vars';
 @import 'mixins';
+@import 'functions';
 @import 'themes/general/light_theme';
 @import 'all';
 @import 'btns';
@@ -21,6 +22,7 @@
 @import 'inset_border';
 @import 'link_btns';
 @import 'links';
+@import 'main';
 @import 'mods';
 @import 'range';
 @import 'scrollbar';

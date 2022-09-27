@@ -143,3 +143,24 @@ $box_shadow_for_mixin: rgb(0 0 0 / 30%) 0 0 2px, rgb(0 0 0 / 30%) 0 4px 8px;
     margin-top: $gap_small;
     white-space: pre-wrap;
 }
+
+@mixin glass {
+    border: 1px solid $yuv;
+    box-shadow: $black_shadow_2;
+}
+
+@mixin link_colors($main, $visited, $hover, $active) {
+    color: $main;
+
+    &:visited {
+        color: $visited;
+    }
+
+    &:hover {
+        color: $hover;
+    }
+
+    &:active {
+        color: $active;
+    }
+}

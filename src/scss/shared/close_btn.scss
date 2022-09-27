@@ -6,7 +6,7 @@
     right: $ext_name_offset;
 
     &:focus {
-        outline-offset: $outline_offset;
+        outline-offset: 2px;
     }
 
     svg {

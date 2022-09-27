@@ -93,6 +93,8 @@ const shared_config = ({
             light_theme: path.join(paths.themes, 'light_theme.scss'),
             dark_theme: path.join(paths.themes, 'dark_theme.scss'),
             very_dark_theme: path.join(paths.themes, 'very_dark_theme.scss'),
+            lavender_theme: path.join(paths.themes, 'lavender_theme.scss'),
+            aqua_theme: path.join(paths.themes, 'aqua_theme.scss'),
         },
         output: {
             filename: '[name].js',

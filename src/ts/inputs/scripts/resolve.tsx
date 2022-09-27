@@ -2,20 +2,40 @@ import React from 'react';
 
 import { c_inputs, c_color, o_inputs, o_color, i_inputs } from 'inputs/internal';
 
-export const resolve = ({ input }: { input: i_inputs.Input | o_inputs.Link }): JSX.Element =>
+export const resolve = ({
+    input,
+    calculate_width = true,
+}: {
+    input: i_inputs.Input | o_inputs.Link;
+    calculate_width?: boolean;
+}): JSX.Element =>
     err(() => {
         let input_el;
 
         if (input.type === 'color') {
             input_el = <c_color.Body input={input as o_color.Color} />;
         } else if (input.type === 'text') {
-            input_el = <c_inputs.Text input={input as o_inputs.Text} />;
+            input_el = (
+                <c_inputs.Text input={input as o_inputs.Text} calculate_width={calculate_width} />
+            );
         } else if (input.type === 'textarea') {
-            input_el = <c_inputs.Textarea input={input as o_inputs.Textarea} />;
+            input_el = (
+                <c_inputs.Textarea
+                    input={input as o_inputs.Textarea}
+                    calculate_width={calculate_width}
+                />
+            );
         } else if (input.type === 'select') {
-            input_el = <c_inputs.Select input={input as o_inputs.Select} />;
+            input_el = (
+                <c_inputs.Select
+                    input={input as o_inputs.Select}
+                    calculate_width={calculate_width}
+                />
+            );
         } else if (input.type === 'range') {
-            input_el = <c_inputs.Range input={input as o_inputs.Range} />;
+            input_el = (
+                <c_inputs.Range input={input as o_inputs.Range} calculate_width={calculate_width} />
+            );
         } else if (input.type === 'checkbox') {
             input_el = <c_inputs.Checkbox input={input as o_inputs.Checkbox} />;
         } else if (input.type === 'link') {
@@ -31,7 +51,12 @@ export const resolve = ({ input }: { input: i_inputs.Input | o_inputs.Link }): J
         } else if (input.type === 'file') {
             input_el = <c_inputs.File input={input as o_inputs.File} />;
         } else if (input.type === 'upload_box') {
-            input_el = <c_inputs.UploadBox input={input as o_inputs.UploadBox} />;
+            input_el = (
+                <c_inputs.UploadBox
+                    input={input as o_inputs.UploadBox}
+                    calculate_width={calculate_width}
+                />
+            );
         } else if (input.type === 'form') {
             input_el = <c_inputs.Form input={input as o_inputs.Form} />;
         } else if (input.type === 'group') {

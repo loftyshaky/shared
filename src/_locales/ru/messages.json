@@ -80,6 +80,12 @@
     "very_dark_option_text": {
         "message": "Очень тёмная"
     },
+    "lavender_option_text": {
+        "message": "Лаванда"
+    },
+    "aqua_option_text": {
+        "message": "Морская волна"
+    },
     "admin_help_text": {
         "message": "Функции для разработчиков/экспериментальные функции."
     },

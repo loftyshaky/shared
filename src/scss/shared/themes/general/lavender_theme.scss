@@ -1,9 +1,9 @@
 @import '../../vars';
 @import '../../mixins';
 @import '../../functions';
-@import '../colors/light';
+@import '../colors/lavender';
 @import 'template';
 
-.main_2 {
-    box-shadow: $black_shadow;
+body .main_2.settings {
+    @include glass;
 }
