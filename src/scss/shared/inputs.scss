@@ -31,11 +31,14 @@ input[type='file'] {
         white-space: normal;
     }
 
-    &.text .label,
-    &.textarea .label,
-    &.select .label,
-    &.range .label {
-        margin-bottom: $gap_small;
+    &.text,
+    &.textarea,
+    &.select,
+    &.range,
+    &.upload_box {
+        .label:not(:empty) {
+            margin-bottom: $gap_small;
+        }
     }
 
     .input {
