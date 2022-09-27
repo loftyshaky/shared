@@ -11,6 +11,8 @@ export class UploadBox extends o_inputs.InputBase {
     public error_msg_is_visible?: boolean = false;
     public is_in_hover_state?: boolean = false;
     public drag_counter?: number = 0;
+    public file_names_is_visible?: boolean = false;
+    public file_names?: string = '';
 
     public constructor(obj: UploadBox) {
         super(obj);
@@ -18,6 +20,7 @@ export class UploadBox extends o_inputs.InputBase {
             loading_msg_is_visible: observable,
             error_msg_is_visible: observable,
             is_in_hover_state: observable,
+            file_names: observable,
         });
 
         Object.assign(this, obj);
@@ -33,5 +36,9 @@ export class UploadBox extends o_inputs.InputBase {
 
     loading_cls? = computedFn(function (this: UploadBox): string {
         return this.loading_msg_is_visible ? 'loading' : '';
+    });
+
+    file_names_final? = computedFn(function (this: UploadBox): string {
+        return rb(this.file_names_is_visible) && n(this.file_names) ? this.file_names : '';
     });
 }

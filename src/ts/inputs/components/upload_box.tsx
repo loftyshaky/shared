@@ -68,6 +68,12 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                 });
                             }}
                         />
+                        <div
+                            title={input.file_names_final!()}
+                            className={x.cls(['status_msg', 'file_names'])}
+                        >
+                            {input.file_names_final!()}
+                        </div>
                         <div className='what_to_do_msg'>
                             <c_inputs.LinkBtn
                                 input={_.merge({}, input, {

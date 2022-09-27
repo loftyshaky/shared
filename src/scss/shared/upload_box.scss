@@ -4,6 +4,8 @@ $upload_box_loading_animation_size: 40px;
 $backgrond_margin: 2px;
 $backgrond_dim_offset: 2px * 2;
 
+$status_msg_offset: 5px;
+
 .input_item {
     .upload_box {
         @include border_transparent;
@@ -33,10 +35,22 @@ $backgrond_dim_offset: 2px * 2;
         }
 
         .status_msg {
+            position: absolute;
             width: 100%;
             font-size: $font_small;
-            margin-bottom: 5px;
+            margin-bottom: $status_msg_offset;
             z-index: $upload_box_text_z_index;
+
+            &.file_names {
+                align-self: start;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                margin-top: $status_msg_offset;
+                width: calc(100% - $status_msg_offset * 2);
+                padding-left: $status_msg_offset;
+                cursor: help;
+            }
         }
 
         .background {

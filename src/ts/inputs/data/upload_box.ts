@@ -15,6 +15,7 @@ export class UploadBox {
         makeObservable(this, {
             highlight: action,
             unhighlight: action,
+            set_file_names: action,
         });
     }
 
@@ -44,6 +45,11 @@ export class UploadBox {
                 input.loading_msg_is_visible = true;
                 input.drag_counter = 0;
                 input.is_in_hover_state = false;
+                const files = n((e as DragEvent).dataTransfer)
+                    ? (e as DragEvent).dataTransfer!.files
+                    : (<HTMLInputElement>e.target).files;
+
+                this.set_file_names({ input, files });
 
                 try {
                     await input.event_callback({
@@ -91,4 +97,23 @@ export class UploadBox {
                 }
             }
         }, 'shr_1212');
+
+    public set_file_names = ({
+        input,
+        files,
+    }: {
+        input: o_inputs.UploadBox;
+        files: FileList | null;
+    }): void =>
+        err(() => {
+            if (n(files)) {
+                input.file_names = input.file_names_is_visible
+                    ? [...files].reduce(
+                          (previous_val: string, file: File, i: number) =>
+                              `${i === 0 ? file.name : `${previous_val}, ${file.name}`}`,
+                          '',
+                      )
+                    : '';
+            }
+        }, 'shr_1256');
 }
