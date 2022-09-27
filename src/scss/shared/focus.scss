@@ -1,6 +1,7 @@
 /* stylelint-disable no-descending-specificity, selector-class-pattern */
 
 $text_input_outline_size: 20px;
+$text_input_outline_offset: 4px;
 $outline_offset_1: 2px;
 $outline_offset_2: 3px;
 
@@ -76,8 +77,8 @@ body.keyboard .btn.text:focus {
     position: absolute;
     width: $text_input_outline_size;
     height: $text_input_outline_size;
-    top: 4px;
-    left: -2px;
+    top: $text_input_outline_offset;
+    right: $text_input_outline_offset;
 }
 
 .reload_ui_btn_w .keyboard .btn:focus {

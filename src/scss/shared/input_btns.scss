@@ -2,6 +2,7 @@
     &.text_input {
         @include btn;
 
+        position: relative;
         padding: $input_content_gap_2 $input_content_gap_2 $input_content_gap_2 0;
 
         svg {
