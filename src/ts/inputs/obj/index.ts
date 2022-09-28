@@ -5,6 +5,7 @@ export * from 'inputs/obj/file';
 export * from 'inputs/obj/hr';
 export * from 'inputs/obj/icon_btn';
 export * from 'inputs/obj/link_btn';
+export * from 'inputs/obj/label';
 export * from 'inputs/obj/link';
 export * from 'inputs/obj/option';
 export * from 'inputs/obj/range';

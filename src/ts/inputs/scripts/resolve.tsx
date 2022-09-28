@@ -46,6 +46,8 @@ export const resolve = ({
             input_el = <c_inputs.Btn input={input as o_inputs.Btn} />;
         } else if (input.type === 'icon_btn') {
             input_el = <c_inputs.Btn input={input as o_inputs.IconBtn} />;
+        } else if (input.type === 'label') {
+            input_el = <c_inputs.Label input={input as o_inputs.Label} />;
         } else if (input.type === 'link_btn') {
             input_el = <c_inputs.LinkBtn input={input as o_inputs.LinkBtn} />;
         } else if (input.type === 'file') {

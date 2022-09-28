@@ -101,7 +101,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                 </button>
                 <c_color.ColorPicker input={input} i={i} visualization_ref={visualization_ref} />
             </span>
-            {i === 'main' ? <c_inputs.Label input={input} /> : undefined}
+            {i === 'main' ? <c_inputs.LabelInInputItem input={input} /> : undefined}
             {i === 'main' && input.include_help ? (
                 <c_inputs.HelpBtn section_or_input={input} />
             ) : undefined}

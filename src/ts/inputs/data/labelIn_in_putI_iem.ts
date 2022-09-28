@@ -1,10 +1,10 @@
 import { computedFn } from 'mobx-utils';
 import { i_inputs } from 'inputs/internal';
 
-export class Label {
-    private static i0: Label;
+export class LabelInInputItem {
+    private static i0: LabelInInputItem;
 
-    public static i(): Label {
+    public static i(): LabelInInputItem {
         // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
     }

@@ -6,6 +6,10 @@ input[type='file'] {
     margin-bottom: 0;
 }
 
+.label:not(:first-child) {
+    margin-top: $gap;
+}
+
 .input_item {
     padding-right: $main_margin;
     margin-left: unset;
@@ -23,7 +27,7 @@ input[type='file'] {
         margin-top: $gap;
     }
 
-    .label {
+    .label_in_input_item {
         display: flex;
         align-items: center;
         height: unset;
@@ -36,7 +40,7 @@ input[type='file'] {
     &.select,
     &.range,
     &.upload_box {
-        .label:not(:empty) {
+        .label_in_input_item:not(:empty) {
             margin-bottom: $gap_small;
         }
     }

@@ -38,7 +38,7 @@ export const Checkbox: React.FunctionComponent<p_inputs.Checkbox> = observer((pr
                         </span>
                     </label>
                 </span>
-                <c_inputs.Label input={input} />
+                <c_inputs.LabelInInputItem input={input} />
                 {input.include_help ? <c_inputs.HelpBtn section_or_input={input} /> : undefined}
             </div>
             {input.include_help ? <c_inputs.Help section_or_input={input} /> : undefined}

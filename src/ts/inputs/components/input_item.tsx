@@ -25,7 +25,7 @@ export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
                 }
                 style={{ marginLeft: x.px(input.offset) }}
             >
-                {include_label ? <c_inputs.Label input={input} /> : undefined}
+                {include_label ? <c_inputs.LabelInInputItem input={input} /> : undefined}
                 {input_w}
             </c_tr.BaseTr>
         );

@@ -1,5 +1,5 @@
-import { i_inputs } from 'inputs/internal';
+import { o_inputs } from 'inputs/internal';
 
 export interface Label {
-    input: i_inputs.Input;
+    input: o_inputs.Label;
 }

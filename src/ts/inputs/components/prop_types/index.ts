@@ -7,6 +7,7 @@ export * from 'inputs/components/prop_types/hr';
 export * from 'inputs/components/prop_types/icon_btn';
 export * from 'inputs/components/prop_types/input_error';
 export * from 'inputs/components/prop_types/input_item';
+export * from 'inputs/components/prop_types/label_in_input_item';
 export * from 'inputs/components/prop_types/label';
 export * from 'inputs/components/prop_types/link_btn';
 export * from 'inputs/components/prop_types/link';
