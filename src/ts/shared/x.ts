@@ -368,7 +368,11 @@ export class X {
 
     public id = (): string =>
         err(() => {
-            const uint32 = globalThis.crypto.getRandomValues(new Uint32Array(1))[0];
+            const crypto: Crypto = n(globalThis.crypto)
+                ? globalThis.crypto
+                : // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                  require('crypto').webcrypto;
+            const uint32 = crypto.getRandomValues(new Uint32Array(1))[0];
 
             return Array.from(uint32.toString(16))
                 .map((char: string): string => (this.rand_bool() ? char.toUpperCase() : char))
