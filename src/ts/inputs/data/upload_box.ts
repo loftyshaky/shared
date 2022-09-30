@@ -15,7 +15,7 @@ export class UploadBox {
         makeObservable(this, {
             highlight: action,
             unhighlight: action,
-            set_file_names: action,
+            set_filenames: action,
         });
     }
 
@@ -49,7 +49,7 @@ export class UploadBox {
                     ? (e as DragEvent).dataTransfer!.files
                     : (<HTMLInputElement>e.target).files;
 
-                this.set_file_names({ input, files });
+                this.set_filenames({ input, files });
 
                 try {
                     await input.event_callback({
@@ -73,7 +73,7 @@ export class UploadBox {
                     }, 'shr_1201'),
                 );
 
-                if (n(file_input)) {
+                if (input.clear_val_on_upload && n(file_input)) {
                     file_input.value = '';
                 }
             }, 'shr_1199'),
@@ -98,7 +98,7 @@ export class UploadBox {
             }
         }, 'shr_1212');
 
-    public set_file_names = ({
+    public set_filenames = ({
         input,
         files,
     }: {
@@ -107,7 +107,7 @@ export class UploadBox {
     }): void =>
         err(() => {
             if (n(files)) {
-                input.file_names = input.file_names_is_visible
+                input.filenames = input.filenames_are_visible
                     ? [...files].reduce(
                           (previous_val: string, file: File, i: number) =>
                               `${i === 0 ? file.name : `${previous_val}, ${file.name}`}`,

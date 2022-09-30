@@ -69,10 +69,10 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                             }}
                         />
                         <div
-                            title={input.file_names_final!()}
-                            className={x.cls(['status_msg', 'file_names'])}
+                            title={input.filenames_final!()}
+                            className={x.cls(['status_msg', 'filenames'])}
                         >
-                            {input.file_names_final!()}
+                            {input.filenames_final!()}
                         </div>
                         <div className='what_to_do_msg'>
                             <c_inputs.LinkBtn
