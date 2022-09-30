@@ -512,4 +512,14 @@ export class X {
                 debounced(resolve, reject, args);
             }) as ReturnType<F>;
     }
+
+    private gcd = (a: number, b: number): number =>
+        err(() => (b === 0 ? a : this.gcd(b, a % b)), 'shr_1257');
+
+    public get_aspect_ratio = (width: number, height: number): string =>
+        err(() => {
+            const gcd: number = this.gcd(width, height);
+
+            return `${width / gcd}:${height / gcd}`;
+        }, 'shr_1258');
 }
