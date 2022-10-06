@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import { makeObservable, action, runInAction } from 'mobx';
 
-import { o_inputs } from 'inputs/internal';
+import { o_inputs, d_inputs } from 'inputs/internal';
 
 export class UploadBox {
     private static i0: UploadBox;
@@ -49,6 +49,13 @@ export class UploadBox {
                     ? (e as DragEvent).dataTransfer!.files
                     : (<HTMLInputElement>e.target).files;
 
+                if (n(files)) {
+                    d_inputs.Val.i().set({
+                        val: files,
+                        input,
+                    });
+                }
+
                 this.set_filenames({ input, files });
 
                 try {
@@ -76,6 +83,8 @@ export class UploadBox {
                 if (input.clear_val_on_upload && n(file_input)) {
                     file_input.value = '';
                 }
+
+                await d_inputs.Val.i().set_warn_state({ input });
             }, 'shr_1199'),
     );
 

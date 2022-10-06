@@ -39,7 +39,8 @@ input[type='file'] {
     &.textarea,
     &.select,
     &.range,
-    &.upload_box {
+    &.upload_box,
+    &.group {
         .label_in_input_item:not(:empty) {
             margin-bottom: $gap_small;
         }

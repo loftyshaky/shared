@@ -59,7 +59,6 @@ export class Val {
 
             if (n(input.val_accessor)) {
                 const val = _.get(data, input.val_accessor);
-
                 const val_final: string = n(val) ? val : '';
 
                 runInAction(() =>
@@ -110,14 +109,15 @@ export class Val {
             input.event_callback({ input });
         }, 'shr_1065');
 
-    public set = action(({ val, input }: { val: i_data.Val; input: i_inputs.Input }): void =>
-        err(() => {
-            if (n(input.val_accessor)) {
-                _.set(data, input.val_accessor, val);
-            } else {
-                data.settings[input.name] = val;
-            }
-        }, 'shr_1066'),
+    public set = action(
+        ({ val, input }: { val: i_data.Val | FileList; input: i_inputs.Input }): void =>
+            err(() => {
+                if (n(input.val_accessor)) {
+                    _.set(data, input.val_accessor, val);
+                } else {
+                    data.settings[input.name] = val;
+                }
+            }, 'shr_1066'),
     );
 
     public remove_val = action(

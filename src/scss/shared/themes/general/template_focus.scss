@@ -6,7 +6,8 @@
             outline-color: $cop;
         }
 
-        &.is_in_warn_state:not(.select)::before {
+        &.is_in_warn_state:not(.select)::before,
+        &.is_in_warn_state.upload_box {
             outline-color: $rqb;
         }
     }

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 
 import { prevent_default, c_tr } from 'shared/internal';
@@ -11,6 +11,10 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
 
     const { input, calculate_width } = props;
 
+    useEffect(() => {
+        d_inputs.Val.i().access({ input });
+    });
+
     const input_w: JSX.Element = (
         <>
             <div className='input_w_and_help_btn'>
@@ -20,6 +24,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                         'upload_box',
                         input.name,
                         d_inputs.InputWidth.i().calculate_width_cls({ calculate_width }),
+                        d_inputs.Val.i().warn_state({ input }),
                     ])}
                     style={{
                         minWidth: d_inputs.InputWidth.i().min_width_style!({
@@ -109,6 +114,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                 </span>
                 {input.include_help ? <c_inputs.HelpBtn section_or_input={input} /> : undefined}
             </div>
+            <c_inputs.InputError input={input} />
             {input.include_help ? <c_inputs.Help section_or_input={input} /> : undefined}
         </>
     );
