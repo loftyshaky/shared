@@ -60,6 +60,7 @@ export class UploadBox {
 
                 try {
                     await input.event_callback({
+                        input,
                         files: n((e as DragEvent).dataTransfer)
                             ? (e as DragEvent).dataTransfer!.files
                             : (<HTMLInputElement>e.target).files,
