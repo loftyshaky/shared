@@ -29,6 +29,15 @@
     }
 }
 
+.btn.icon svg {
+    transition: var(--transition);
+    transition-property: fill;
+
+    &:active {
+        transition: none;
+    }
+}
+
 .color_picker_w input {
     transition: var(--transition) !important;
     transition-property: background-color !important;
