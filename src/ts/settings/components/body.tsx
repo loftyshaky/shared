@@ -27,7 +27,7 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
     );
 
     return (
-        <div className='main'>
+        <>
             <div className='main_2 settings'>
                 <div className='section_btns'>
                     {Object.values(sections).map(
@@ -50,6 +50,6 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
                 </div>
             </div>
             <c_app_version.Body />
-        </div>
+        </>
     );
 });
