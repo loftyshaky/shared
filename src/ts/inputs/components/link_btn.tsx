@@ -24,7 +24,7 @@ export const LinkBtn: React.FunctionComponent<p_inputs.LinkBtn> = observer((prop
             }
             style={{ marginLeft: x.px(input.offset) }}
         >
-            {ext.msg(`${input.name}_link_btn_text`)}
+            {input.alt_msg || ext.msg(`${input.name}_link_btn_text`)}
         </c_tr.BaseTr>
     );
 });
