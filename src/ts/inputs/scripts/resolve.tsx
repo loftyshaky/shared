@@ -45,7 +45,7 @@ export const resolve = ({
         } else if (input.type === 'btn') {
             input_el = <c_inputs.Btn input={input as o_inputs.Btn} />;
         } else if (input.type === 'icon_btn') {
-            input_el = <c_inputs.Btn input={input as o_inputs.IconBtn} />;
+            input_el = <c_inputs.IconBtn input={input as o_inputs.IconBtn} />;
         } else if (input.type === 'label') {
             input_el = <c_inputs.Label input={input as o_inputs.Label} />;
         } else if (input.type === 'link_btn') {
