@@ -46,6 +46,10 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
                 cls={x.cls(['btn', `${type}_btn`, input.is_enabled_cls!(), input.name])}
                 attr={{
                     type: 'button',
+                    title:
+                        input instanceof o_inputs.IconBtn
+                            ? input.alt_msg || ext.msg(`${input.name}_btn_title`)
+                            : '',
                     tabIndex: input.tab_index!(),
                     onClick: input.event_callback,
                     onKeyDown: stop_propagation,
