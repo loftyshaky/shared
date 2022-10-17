@@ -1,7 +1,8 @@
 $htc: white;
 $tbn: $glass_color;
 $gaq: #efefef;
-$gqb: two_color_gradient(#1f12e5, #f10d8d); /* two_color_gradient(#0575e6, #00f260) */
+/* stylelint-disable-next-line max-line-length */
+$gqb: linear-gradient(45deg, rgb(52 15 189) 0%, rgb(225 5 34 / 0%) 70%) repeat scroll 0% 0%, linear-gradient(135deg, rgb(241 22 168) 10%, rgb(49 5 209 / 0%) 80%) repeat scroll 0% 0%, linear-gradient(225deg, rgb(26 211 208) 10%, rgb(10 219 216 / 0%) 80%) repeat scroll 0% 0%, rgb(0 0 0 / 0%) linear-gradient(315deg, rgb(189 5 245) 100%, rgb(9 245 5 / 0%) 70%) repeat scroll 0% 0%;
 $hfb: transparent;
 $gvb: rgb(255 255 255 / 36%);
 $npw: rgb(255 255 255 / 20%);
