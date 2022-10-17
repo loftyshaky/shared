@@ -3,8 +3,10 @@ import { t } from 'shared/internal';
 export class Link {
     public name: string;
     public type?: string = 'link';
+    public label_type?: 'text' | 'svg' = 'text';
     public browser?: t.Browser;
     public href?: string;
+    public Svg?: string = '';
     public target?: string = '_blank';
     public alt_msg?: string;
     public force_resolve?: boolean = false;

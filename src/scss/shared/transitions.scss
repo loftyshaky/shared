@@ -4,17 +4,19 @@
 .checkbox .box svg,
 .color_picker_w,
 .palette_w,
-.color_help_w {
+.color_help_w,
+.btn_options {
     transition: var(--transition);
     transition-property: opacity;
 }
 
-.upload_box .background {
+.upload_box .background,
+.btn_options .btn_option {
     transition: var(--transition);
     transition-property: background-color;
 }
 
-.btn:not(.reload_ui, .link_btn) {
+.btn:not(.reload_ui, .link_btn), {
     transition: var(--transition);
     transition-property: opacity, background-color;
 }
@@ -29,12 +31,15 @@
     }
 }
 
-.btn.icon svg {
-    transition: var(--transition);
-    transition-property: fill;
+.btn.icon_btn,
+.link.svg {
+    svg {
+        transition: var(--transition);
+        transition-property: fill;
 
-    &:active {
-        transition: none;
+        &:active {
+            transition: none;
+        }
     }
 }
 

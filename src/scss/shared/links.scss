@@ -4,6 +4,13 @@
     border: 0;
     padding: 0;
     cursor: pointer;
+
+    &.svg {
+        svg {
+            width: $icon_btn_size;
+            height: $icon_btn_size;
+        }
+    }
 }
 
 .link:not(:first-child) {

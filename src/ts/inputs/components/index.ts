@@ -10,6 +10,7 @@ export * from 'inputs/components/input_item';
 export * from 'inputs/components/label_in_input_item';
 export * from 'inputs/components/label';
 export * from 'inputs/components/link_btn';
+export * from 'inputs/components/link_icon_btn';
 export * from 'inputs/components/link';
 export * from 'inputs/components/range';
 export * from 'inputs/components/section_btn';

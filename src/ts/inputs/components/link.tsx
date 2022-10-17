@@ -8,12 +8,16 @@ export const Link: React.FunctionComponent<p_inputs.Link> = observer((props) => 
 
     return rb(link.show_link) ? (
         <a
-            className={x.cls(['link', link.name])}
+            className={x.cls(['link', link.label_type, link.name])}
             href={rs(link.href_final)}
             target={link.target}
             rel='noopener noreferrer'
         >
-            {link.alt_msg || rs(link.text)}
+            {link.label_type === 'svg' && n(link.Svg) ? (
+                <link.Svg />
+            ) : (
+                link.alt_msg || rs(link.text)
+            )}
         </a>
     ) : null;
 });

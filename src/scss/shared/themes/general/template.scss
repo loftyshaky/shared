@@ -89,17 +89,20 @@ body {
             }
         }
 
-        &.icon {
+        &.icon_btn {
             background-color: transparent;
 
             &:not(:first-child) {
                 margin-left: $gap;
             }
+        }
+    }
 
-            svg {
-                display: block;
-                fill: $lpe;
-            }
+    .btn,
+    .link.svg {
+        svg {
+            display: block;
+            fill: $lpe;
         }
     }
 }
@@ -114,6 +117,21 @@ textarea {
 
 hr {
     background-color: $hyn;
+}
+
+.btn_options {
+    background-color: $npw;
+    border-color: $hyn;
+
+    .btn_option {
+        hr {
+            background-color: $hyn;
+        }
+
+        &:hover {
+            background-color: $qgp;
+        }
+    }
 }
 
 .sections {
