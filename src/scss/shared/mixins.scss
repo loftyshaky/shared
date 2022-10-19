@@ -164,3 +164,12 @@ $box_shadow_for_mixin: rgb(0 0 0 / 30%) 0 0 2px, rgb(0 0 0 / 30%) 0 4px 8px;
         color: $active;
     }
 }
+
+@mixin backdrop_filter_before {
+    @include full_spread;
+
+    content: '';
+    position: absolute;
+    z-index: -1;
+    backdrop-filter: $glass_blur;
+}
