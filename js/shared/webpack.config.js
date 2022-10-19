@@ -115,6 +115,9 @@ const shared_config = ({
                 }),
             },
             extensions: ['.js', '.jsx', '.ts', '.tsx'],
+            fallback: {
+                crypto: false,
+            },
         },
         module: {
             rules: [
