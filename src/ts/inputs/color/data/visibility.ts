@@ -95,7 +95,7 @@ export class Visibility {
 
                         if (color_picker_state === 'is_visible') {
                             if (is_palette_color) {
-                                if (this.previously_visible_color_picker_i) {
+                                if (n(this.previously_visible_color_picker_i)) {
                                     const i_key: i_color.I = this.previously_visible_color_picker_i;
                                     new_input.state[i_key as keyof i_color.ColorPickerState][
                                         color_picker_state
