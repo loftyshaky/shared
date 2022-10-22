@@ -1,6 +1,6 @@
 import { makeObservable, action } from 'mobx';
 
-import { o_schema } from 'settings/internal';
+import { o_schema } from 'shared/internal';
 
 export class Main {
     private static i0: Main;
