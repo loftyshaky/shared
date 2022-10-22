@@ -20,7 +20,7 @@ $btn_padding: 6px;
 
     .color_picker_w {
         position: absolute;
-        z-index: 2;
+        z-index: 3;
         top: $input_height + $input_content_gap;
         left: 0;
         user-select: none;

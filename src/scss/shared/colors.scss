@@ -73,7 +73,7 @@ $palette_visualization_w_border_offset: 1 * 2;
     }
 
     .palette_w {
-        z-index: 2;
+        z-index: 3;
         position: absolute;
         top: $input_content_gap + $input_content_gap;
         left: 0;
