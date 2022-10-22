@@ -7,8 +7,8 @@
     @include btn;
 
     margin-left: var(--help_btn_margin);
-    display: flex;
-    order: 1;
+    display: inline-block;
+    height: max-content;
 
     svg {
         display: block;
