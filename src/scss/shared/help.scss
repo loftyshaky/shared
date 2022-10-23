@@ -17,11 +17,6 @@
     }
 }
 
-.input_item.textarea .help_btn {
-    display: inline-block;
-    height: max-content;
-}
-
 .section_help {
     display: flex;
 
@@ -62,6 +57,8 @@
 
         .help_btn {
             margin-top: 5px;
+            display: inline-block;
+            height: max-content;
         }
     }
 }
