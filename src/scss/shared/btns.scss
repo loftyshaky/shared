@@ -10,12 +10,21 @@ $icon_btn_size: 20px;
 
         position: absolute;
     }
+
+    svg {
+        display: block;
+    }
 }
 
-.icon_btn {
+.btn.icon_btn {
     border-radius: 0;
     position: relative;
     vertical-align: bottom;
+    background-color: transparent;
+
+    &:not(:first-child) {
+        margin-left: $gap !important;
+    }
 
     svg {
         width: $icon_btn_size;

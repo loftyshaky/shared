@@ -88,20 +88,11 @@ body {
                 background-color: $qgp;
             }
         }
-
-        &.icon_btn {
-            background-color: transparent;
-
-            &:not(:first-child) {
-                margin-left: $gap;
-            }
-        }
     }
 
     .btn,
     .link.svg {
         svg {
-            display: block;
             fill: $lpe;
         }
     }
