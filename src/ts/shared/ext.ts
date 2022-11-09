@@ -203,12 +203,20 @@ export class Ext {
     public storage_get = async (keys?: string | string[]): Promise<any> => {
         try {
             const data_sync: t.AnyRecord = await we.storage.sync.get(keys);
+            const data_local: t.AnyRecord = await we.storage.local.get(keys);
 
-            if (n(data_sync)) {
-                return data_sync;
+            try {
+                if (!_.isEmpty(data_local)) {
+                    await we.storage.sync.set(data_local);
+                    await we.storage.local.clear();
+                }
+            } catch (error_obj: any) {
+                this.log_error(error_obj, 'shr_1259');
             }
 
-            const data_local: t.AnyRecord = await we.storage.local.get(keys);
+            if (!_.isEmpty(data_sync)) {
+                return data_sync;
+            }
 
             return data_local;
         } catch (error_obj: any) {
@@ -222,19 +230,18 @@ export class Ext {
         try {
             const data_local: t.AnyRecord = await we.storage.local.get();
 
-            if (n(data_local)) {
-                const merged_data: t.AnyRecord = n(replace) ? obj : _.merge(data_local, obj);
-
-                await we.storage.sync.set(merged_data);
-            } else {
+            if (_.isEmpty(data_local)) {
                 await we.storage.sync.set(obj);
+            } else {
+                const merged_data: t.AnyRecord = n(replace) ? obj : _.merge(data_local, obj);
+                await we.storage.sync.set(merged_data);
             }
 
             await we.storage.local.clear();
         } catch (error_obj: any) {
             const data_sync: t.AnyRecord = await we.storage.sync.get();
 
-            if (n(data_sync)) {
+            if (!_.isEmpty(data_sync)) {
                 await we.storage.local.set(data_sync);
                 await we.storage.sync.clear();
             }
