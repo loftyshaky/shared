@@ -5,9 +5,11 @@ import { c_inputs, c_color, o_inputs, o_color, i_inputs } from 'inputs/internal'
 export const resolve = ({
     input,
     calculate_width = true,
+    include_label = true,
 }: {
     input: i_inputs.Input | o_inputs.Link;
     calculate_width?: boolean;
+    include_label?: boolean;
 }): JSX.Element =>
     err(() => {
         let input_el;
@@ -16,13 +18,18 @@ export const resolve = ({
             input_el = <c_color.Body input={input as o_color.Color} />;
         } else if (input.type === 'text') {
             input_el = (
-                <c_inputs.Text input={input as o_inputs.Text} calculate_width={calculate_width} />
+                <c_inputs.Text
+                    input={input as o_inputs.Text}
+                    calculate_width={calculate_width}
+                    include_label={include_label}
+                />
             );
         } else if (input.type === 'textarea') {
             input_el = (
                 <c_inputs.Textarea
                     input={input as o_inputs.Textarea}
                     calculate_width={calculate_width}
+                    include_label={include_label}
                 />
             );
         } else if (input.type === 'select') {
@@ -30,11 +37,16 @@ export const resolve = ({
                 <c_inputs.Select
                     input={input as o_inputs.Select}
                     calculate_width={calculate_width}
+                    include_label={include_label}
                 />
             );
         } else if (input.type === 'range') {
             input_el = (
-                <c_inputs.Range input={input as o_inputs.Range} calculate_width={calculate_width} />
+                <c_inputs.Range
+                    input={input as o_inputs.Range}
+                    calculate_width={calculate_width}
+                    include_label={include_label}
+                />
             );
         } else if (input.type === 'checkbox') {
             input_el = <c_inputs.Checkbox input={input as o_inputs.Checkbox} />;

@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((props) => {
-    const { input, calculate_width } = props;
+    const { input, calculate_width, include_label } = props;
 
     const input_w: JSX.Element = (
         <>
@@ -57,5 +57,5 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
         </>
     );
 
-    return <c_inputs.InputItem input={input} input_w={input_w} include_label />;
+    return <c_inputs.InputItem input={input} input_w={input_w} include_label={include_label} />;
 });
