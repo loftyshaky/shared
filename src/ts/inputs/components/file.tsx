@@ -12,6 +12,7 @@ export const File: React.FunctionComponent<p_inputs.File> = observer((props) => 
             name={input.name}
             type='file'
             accept={input.accept}
+            multiple={input.multiple}
             value=''
             onChange={(e): void => {
                 input.event_callback(

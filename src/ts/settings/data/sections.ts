@@ -108,6 +108,8 @@ export class Sections {
         restore_inputs = [],
         include_back_up_help = false,
         back_up_help_msg = undefined,
+        download_backup = true,
+        allow_multiple_file_backup_upload = false,
     }: {
         download_back_up_callback: t.CallbackAnyObj;
         download_back_up_final_callback?: t.CallbackVoid;
@@ -118,6 +120,8 @@ export class Sections {
         restore_inputs?: i_inputs.Input[];
         include_back_up_help?: boolean;
         back_up_help_msg?: string | undefined;
+        download_backup?: boolean;
+        allow_multiple_file_backup_upload?: boolean;
     }): o_inputs.Section[] =>
         err(
             () => [
@@ -132,10 +136,12 @@ export class Sections {
                                 err_async(async () => {
                                     const data_obj = await download_back_up_callback();
 
-                                    d_settings.BackUp.i().download({ data_obj });
+                                    if (download_backup) {
+                                        d_settings.BackUp.i().download({ data_obj });
 
-                                    if (n(download_back_up_final_callback)) {
-                                        download_back_up_final_callback();
+                                        if (n(download_back_up_final_callback)) {
+                                            download_back_up_final_callback();
+                                        }
                                     }
                                 }, 'shr_1085'),
                         }),
@@ -146,6 +152,7 @@ export class Sections {
                         new o_inputs.File({
                             name: 'back_up',
                             accept: '.json',
+                            multiple: allow_multiple_file_backup_upload,
                             event_callback: d_settings.BackUp.i().upload,
                             save_callback: upload_back_up_callback,
                         }),

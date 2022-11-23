@@ -4,6 +4,7 @@ import { o_inputs } from 'inputs/internal';
 export class File extends o_inputs.InputBase {
     public type?: 'file' = 'file';
     public accept: string;
+    public multiple?: boolean = false;
     public save_callback?: t.CallbackVariadicVoid;
 
     public constructor(obj: File) {

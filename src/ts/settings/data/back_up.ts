@@ -14,7 +14,13 @@ export class BackUp {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public download = ({ data_obj }: { data_obj: t.AnyRecord | string }): void =>
+    public download = ({
+        data_obj,
+        part_i = 0,
+    }: {
+        data_obj: t.AnyRecord | string;
+        part_i?: number;
+    }): void =>
         err(() => {
             const blob: Blob = new Blob(
                 [typeof data_obj === 'string' ? data_obj : JSON.stringify(data_obj)],
@@ -32,7 +38,7 @@ export class BackUp {
             a.href = URL.createObjectURL(blob);
             a.download = `${x.sanitize_filename(app_name)} back up ${new Date().toLocaleString(
                 locale.replace(/_/, '-'),
-            )}.json`;
+            )} Part ${part_i + 1}.json`;
             a.click();
             x.remove(a);
         }, 'shr_1075');
@@ -56,22 +62,26 @@ export class BackUp {
     ): Promise<void> =>
         err_async(
             async () => {
-                const blob: Blob = (e.target as HTMLInputElement).files![0];
+                const data_objs: t.AnyRecord[] = [];
+                // eslint-disable-next-line no-restricted-syntax
+                for await (const blob of Array.from((e.target as HTMLInputElement).files!)) {
+                    const back_up_file_input = s<HTMLInputElement>('.file.back_up');
 
-                const back_up_file_input = s<HTMLInputElement>('.file.back_up');
+                    if (n(back_up_file_input)) {
+                        back_up_file_input.value = '';
+                    }
 
-                if (n(back_up_file_input)) {
-                    back_up_file_input.value = '';
+                    if (blob.type === 'application/json') {
+                        const data_string: string = (await this.read({ blob })) as string;
+
+                        data_objs.push(JSON.parse(data_string));
+                    } else {
+                        throw_err('Invalid file type');
+                    }
                 }
 
-                if (blob.type === 'application/json') {
-                    const data_string: string = (await this.read({ blob })) as string;
-
-                    if (n(input.save_callback)) {
-                        input.save_callback({ data_obj: JSON.parse(data_string) });
-                    }
-                } else {
-                    throw_err('Invalid file type');
+                if (n(input.save_callback)) {
+                    await input.save_callback({ data_objs });
                 }
             },
             'shr_1077',
