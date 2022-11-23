@@ -17,11 +17,13 @@ export class Main {
     }
 
     public transform = ({
-        settings,
+        data,
         transform_items,
+        remove_from_storage = true,
     }: {
-        settings: any;
+        data: any;
         transform_items: o_schema.TransformItem[];
+        remove_from_storage?: boolean;
     }): Promise<any> =>
         err_async(async () => {
             const properties_to_remove: string[] = [];
@@ -30,16 +32,16 @@ export class Main {
                 err(() => {
                     if (
                         n(transform_item.new_key) &&
-                        !n(settings[transform_item.new_key]) &&
+                        !n(data[transform_item.new_key]) &&
                         (transform_item.create_property_if_it_doesnt_exist ||
                             (!transform_item.create_property_if_it_doesnt_exist &&
                                 n(transform_item.old_key) &&
-                                n(settings[transform_item.old_key])))
+                                n(data[transform_item.old_key])))
                     ) {
                         if (n(transform_item.new_val)) {
-                            settings[transform_item.new_key] = transform_item.new_val;
+                            data[transform_item.new_key] = transform_item.new_val;
                         } else if (n(transform_item.old_key)) {
-                            settings[transform_item.new_key] = settings[transform_item.old_key];
+                            data[transform_item.new_key] = data[transform_item.old_key];
                         }
                     }
 
@@ -54,12 +56,14 @@ export class Main {
 
             properties_to_remove.forEach((property_to_remove: string): void =>
                 err(() => {
-                    delete settings[property_to_remove];
+                    delete data[property_to_remove];
                 }, 'shr_1228'),
             );
 
-            await ext.storage_remove(properties_to_remove);
+            if (remove_from_storage) {
+                await ext.storage_remove(properties_to_remove);
+            }
 
-            return settings;
+            return data;
         }, 'shr_1226');
 }
