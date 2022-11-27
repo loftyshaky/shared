@@ -121,8 +121,14 @@ export class Val {
     );
 
     public remove_val = action(
-        ({ input, input_el }: { input: i_inputs.Input; input_el: HTMLInputElement | null }): void =>
-            err(() => {
+        ({
+            input,
+            input_el,
+        }: {
+            input: i_inputs.Input;
+            input_el: HTMLInputElement | null;
+        }): Promise<void> =>
+            err_async(async () => {
                 if (n(input_el)) {
                     input_el.focus();
                 }
@@ -141,8 +147,10 @@ export class Val {
                 }
 
                 if (n((input as o_inputs.Text).remove_val_callback)) {
-                    (input as o_inputs.Text).remove_val_callback!({ input });
+                    await (input as o_inputs.Text).remove_val_callback!({ input });
                 }
+
+                await d_inputs.Val.i().set_warn_state({ input });
             }, 'shr_1067'),
     );
 
