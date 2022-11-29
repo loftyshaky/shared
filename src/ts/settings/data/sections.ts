@@ -109,6 +109,7 @@ export class Sections {
         include_back_up_help = false,
         back_up_help_msg = undefined,
         download_backup = true,
+        include_part_i_in_back_up_name = false,
         allow_multiple_file_backup_upload = false,
     }: {
         download_back_up_callback: t.CallbackAnyObj;
@@ -121,6 +122,7 @@ export class Sections {
         include_back_up_help?: boolean;
         back_up_help_msg?: string | undefined;
         download_backup?: boolean;
+        include_part_i_in_back_up_name?: boolean;
         allow_multiple_file_backup_upload?: boolean;
     }): o_inputs.Section[] =>
         err(
@@ -137,7 +139,10 @@ export class Sections {
                                     const data_obj = await download_back_up_callback();
 
                                     if (download_backup) {
-                                        d_settings.BackUp.i().download({ data_obj });
+                                        d_settings.BackUp.i().download({
+                                            data_obj,
+                                            part_i: include_part_i_in_back_up_name ? 0 : 'none',
+                                        });
 
                                         if (n(download_back_up_final_callback)) {
                                             download_back_up_final_callback();

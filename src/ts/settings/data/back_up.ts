@@ -19,7 +19,7 @@ export class BackUp {
         part_i = 0,
     }: {
         data_obj: t.AnyRecord | string;
-        part_i?: number;
+        part_i: number | 'none';
     }): void =>
         err(() => {
             const blob: Blob = new Blob(
@@ -38,7 +38,8 @@ export class BackUp {
             a.href = URL.createObjectURL(blob);
             a.download = `${x.sanitize_filename(app_name)} back up ${new Date().toLocaleString(
                 locale.replace(/_/, '-'),
-            )} Part ${part_i + 1}.json`;
+                { hour12: locale === 'en_US' },
+            )}${part_i === 'none' ? '' : ` Part ${part_i + 1}`}.json`;
             a.click();
             x.remove(a);
         }, 'shr_1075');
