@@ -38,11 +38,11 @@ export class Main {
             );
         }, 'cnt_1365');
 
-    public change = ({ key, val }: { key: string; val: t.AnyUndefined }): void =>
-        err(() => {
+    public change = ({ key, val }: { key: string; val: t.AnyUndefined }): Promise<void> =>
+        err_async(async () => {
             data.settings[key] = val;
 
-            ext.send_msg_resp({
+            await ext.send_msg_resp({
                 msg: 'update_settings_background',
                 settings: { [key]: val },
             });
