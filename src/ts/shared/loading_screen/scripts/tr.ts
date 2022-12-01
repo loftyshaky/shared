@@ -18,7 +18,7 @@ export class Tr {
             if (n(loading_screen_root_el) && n(loading_screen_root_el.shadowRoot)) {
                 x.css('no_tr', loading_screen_root_el.shadowRoot, 'no_tr');
             }
-        }, 'cnt_1236');
+        }, 'shr_1236');
 
     public disable_no_tr = (): void =>
         err(() => {
@@ -27,5 +27,5 @@ export class Tr {
             if (n(loading_screen_root_el) && n(loading_screen_root_el.shadowRoot)) {
                 x.remove(sb<HTMLLinkElement>(loading_screen_root_el.shadowRoot, '.no_tr'));
             }
-        }, 'cnt_1236');
+        }, 'shr_1236');
 }

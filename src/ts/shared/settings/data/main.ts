@@ -34,9 +34,9 @@ export class Main {
             runInAction(() =>
                 err(() => {
                     data.settings = settings_final;
-                }, 'cnt_1364'),
+                }, 'shr_1364'),
             );
-        }, 'cnt_1365');
+        }, 'shr_1365');
 
     public change = ({ key, val }: { key: string; val: t.AnyUndefined }): Promise<void> =>
         err_async(async () => {
@@ -46,7 +46,7 @@ export class Main {
                 msg: 'update_settings_background',
                 settings: { [key]: val },
             });
-        }, 'cnt_1366');
+        }, 'shr_1366');
 
     public set_from_storage = (): Promise<void> =>
         err_async(async () => {
@@ -63,5 +63,5 @@ export class Main {
             if (!_.isEqual(toJS(data.settings), settings) && !settings_are_corrupt) {
                 await this.set({ settings });
             }
-        }, 'cnt_1367');
+        }, 'shr_1367');
 }
