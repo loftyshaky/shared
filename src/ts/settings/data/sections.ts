@@ -105,6 +105,7 @@ export class Sections {
         restore_defaults_callback,
         input_change_val_callback,
         admin_inputs = [],
+        back_up_inputs = [],
         restore_inputs = [],
         include_back_up_help = false,
         back_up_help_msg = undefined,
@@ -118,6 +119,7 @@ export class Sections {
         restore_defaults_callback: t.CallbackVoid;
         input_change_val_callback: t.CallbackVariadicVoid;
         admin_inputs?: i_inputs.Input[];
+        back_up_inputs?: i_inputs.Input[];
         restore_inputs?: i_inputs.Input[];
         include_back_up_help?: boolean;
         back_up_help_msg?: string | undefined;
@@ -161,6 +163,7 @@ export class Sections {
                             event_callback: d_settings.BackUp.i().upload,
                             save_callback: upload_back_up_callback,
                         }),
+                        ...back_up_inputs,
                     ],
                 }),
                 new o_inputs.Section({
