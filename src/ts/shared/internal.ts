@@ -21,6 +21,7 @@ export * as o_tr from 'shared/tr/obj';
 
 export * as d_loading_screen from 'shared/loading_screen/data';
 export * as d_schema from 'shared/schema/data';
+export * as d_settings from 'shared/settings/data';
 export * as d_tr from 'shared/tr/data';
 
 export * as s_css_vars from 'shared/css_vars/scripts';

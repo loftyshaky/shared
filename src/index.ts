@@ -15,6 +15,7 @@ export {
     o_tr,
     d_loading_screen,
     d_schema,
+    d_settings,
     s_css_vars,
     s_loading_screen,
     s_no_tr,
