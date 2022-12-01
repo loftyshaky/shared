@@ -14,7 +14,7 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    private set = ({
+    public set = ({
         settings,
         settings_are_corrupt = false,
     }: { settings?: any; settings_are_corrupt?: boolean } = {}): Promise<void> =>
