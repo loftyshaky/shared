@@ -18,6 +18,7 @@ export class Main {
 
     public hide_delay: number = 5000;
     private highlight_time: number = 300;
+    private prevent_subsequent_errors: boolean = false;
     /*
     error_msg_key = a key to access to localized version of error message in [locale] messages.json file
     silent = don't show (true) / show (false) error ribbon
@@ -34,10 +35,18 @@ export class Main {
             silent = false,
             persistent = false,
             exit = false,
+            is_fullscreen = false,
+            prevent_subsequent_errors = false,
         }: i_error.ShowError = {},
     ): void => {
+        const prevent_subsequent_errors_final =
+            prevent_subsequent_errors || this.prevent_subsequent_errors;
+        const silent_final: boolean = prevent_subsequent_errors_final
+            ? this.prevent_subsequent_errors
+            : silent;
+        const persistent_final: boolean = prevent_subsequent_errors_final ? true : persistent;
         const error_ui_is_visible: boolean =
-            !x.in_service_worker && !silent && (!error_obj || !error_obj.silent);
+            !x.in_service_worker && !silent_final && (!error_obj || !error_obj.silent);
 
         if (error_ui_is_visible) {
             if (notification_type !== 'error') {
@@ -45,18 +54,26 @@ export class Main {
                 d_error.State.i().notification_type = notification_type;
             }
 
+            if (is_fullscreen) {
+                d_error.State.i().change_state({
+                    observable_key: 'is_fullscreen',
+                    state: true,
+                }); // show error ribbon
+            }
             d_error.State.i().change_state({
                 observable_key: 'is_visible',
                 state: true,
             }); // show error ribbon
-            d_error.State.i().change_state({
-                observable_key: 'is_highlighted',
-                state: true,
-            }); // highlight error ribbon
+            if (!is_fullscreen) {
+                d_error.State.i().change_state({
+                    observable_key: 'is_highlighted',
+                    state: true,
+                }); // highlight error ribbon
+            }
 
             d_error.State.i().clear_all_reset_state_timeouts();
 
-            if ((!error_obj || !error_obj.persistent) && !persistent) {
+            if ((!error_obj || !error_obj.persistent) && !persistent_final) {
                 d_error.State.i().run_reset_state_timeout({
                     observable_key: 'is_visible',
                     delay: hide_delay + this.highlight_time,
@@ -79,14 +96,16 @@ export class Main {
 
             runInAction(() =>
                 err(() => {
-                    d_error.Msg.i().basic_msg = `${
-                        ext.msg('an_error_occured_msg') + error_msg_final
-                    }`;
-                    d_error.Msg.i().advanced_msg = `${
-                        ext.msg('error_code_label') + (error_obj.error_code || error_code)
-                    }\n${ext.msg('error_type_label') + error_obj.name}\n${
-                        ext.msg('error_msg_label') + error_obj.message
-                    }`;
+                    if (!silent_final) {
+                        d_error.Msg.i().basic_msg = `${
+                            ext.msg('an_error_occured_msg') + error_msg_final
+                        }`;
+                        d_error.Msg.i().advanced_msg = `${
+                            ext.msg('error_code_label') + (error_obj.error_code || error_code)
+                        }\n${ext.msg('error_type_label') + error_obj.name}\n${
+                            ext.msg('error_msg_label') + error_obj.message
+                        }`;
+                    }
                 }, 'shr_1195'),
             );
 
@@ -119,11 +138,11 @@ export class Main {
                 });
                 set_updated_error_obj_propery({
                     key: 'silent',
-                    undefined_property: silent,
+                    undefined_property: silent_final,
                 });
                 set_updated_error_obj_propery({
                     key: 'persistent',
-                    undefined_property: persistent,
+                    undefined_property: persistent_final,
                 });
                 set_updated_error_obj_propery({
                     key: 'exit',
@@ -138,6 +157,10 @@ export class Main {
             } else {
                 this.output_error(error_obj, error_code);
             }
+        }
+
+        if (prevent_subsequent_errors) {
+            this.prevent_subsequent_errors = true;
         }
     };
 

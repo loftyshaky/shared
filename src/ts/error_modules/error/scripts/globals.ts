@@ -10,6 +10,9 @@ declare global {
     ): void;
     function show_flash(): void;
     function show_notification(obj?: i_error.ShowError): void;
+    function show_unable_to_access_settings_error(
+        obj: import('error_modules/error/interfaces/show_unable_to_access_settings_error').ShowUnableToAccessSettingsError,
+    ): void;
     function err<T1>(f: () => T1, error_code: string, obj?: i_error.ShowError): T1;
     function err_async<T1>(
         f: () => Promise<T1>,
@@ -31,6 +34,8 @@ globalThis.show_err_ribbon = (
         silent = false,
         persistent = false,
         exit = false,
+        is_fullscreen = false,
+        prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
 ) =>
     d_error.Main.i().show_error(error_obj, error_code, {
@@ -40,6 +45,8 @@ globalThis.show_err_ribbon = (
         persistent,
         exit,
         hide_delay,
+        is_fullscreen,
+        prevent_subsequent_errors,
     });
 
 globalThis.show_flash = s_error.Flash.i().show;
@@ -49,13 +56,24 @@ globalThis.show_notification = ({
     notification_type = 'neutral',
     hide_delay = d_error.Main.i().hide_delay,
     persistent = false,
-}: i_error.ShowError = {}) =>
+    is_fullscreen = false,
+    prevent_subsequent_errors = false,
+}: i_error.ShowError = {}) => {
     s_error.Notification.i().show({
         error_msg_key,
         notification_type,
         hide_delay,
         persistent,
+        is_fullscreen,
+        prevent_subsequent_errors,
     });
+};
+
+globalThis.show_unable_to_access_settings_error = ({
+    is_fullscreen = true,
+}: i_error.ShowUnableToAccessSettingsError = {}) => {
+    s_error.Notification.i().show_unable_to_access_settings_error({ is_fullscreen });
+};
 
 globalThis.err = <T1>(
     f: () => T1,
@@ -66,6 +84,8 @@ globalThis.err = <T1>(
         persistent = false,
         exit = false,
         hide_delay = d_error.Main.i().hide_delay,
+        is_fullscreen = false,
+        prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
 ): any => {
     try {
@@ -77,6 +97,8 @@ globalThis.err = <T1>(
             persistent,
             exit,
             hide_delay,
+            is_fullscreen,
+            prevent_subsequent_errors,
         });
     }
 
@@ -92,6 +114,8 @@ globalThis.err_async = async <T1>(
         persistent = false,
         exit = false,
         hide_delay = d_error.Main.i().hide_delay,
+        is_fullscreen = false,
+        prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
 ): Promise<any> => {
     try {
@@ -103,6 +127,8 @@ globalThis.err_async = async <T1>(
             persistent,
             exit,
             hide_delay,
+            is_fullscreen,
+            prevent_subsequent_errors,
         });
     }
 

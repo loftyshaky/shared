@@ -133,5 +133,8 @@
     },
     "invalid_file_type_back_up_error": {
         "message": "Invalid file type. Upload a backed up json file."
+    },
+    "unable_to_access_settings_error": {
+        "message": "Fatal error. Unable to access settings."
     }
 }

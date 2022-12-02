@@ -19,6 +19,7 @@ export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
                 'error',
                 d_error.State.i().is_highlighted_cls,
                 d_error.State.i().notification_type,
+                d_error.State.i().is_fullscreen_cls,
             ])}
             role='none'
             style={{
@@ -28,7 +29,7 @@ export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
         >
             <c_error.ExtName />
             <c_error.Msg />
-            <c_error.CloseBtn />
+            {d_error.State.i().is_fullscreen ? undefined : <c_error.CloseBtn />}
         </div>
     );
 });

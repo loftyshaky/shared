@@ -7,4 +7,6 @@ export interface ShowError extends i_error.Error {
     silent?: boolean;
     persistent?: boolean;
     exit?: boolean;
+    is_fullscreen?: boolean;
+    prevent_subsequent_errors?: boolean;
 }
