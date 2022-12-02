@@ -71,8 +71,14 @@ globalThis.show_notification = ({
 
 globalThis.show_unable_to_access_settings_error = ({
     is_fullscreen = true,
+    settings = undefined,
+    provided_settings = false,
 }: i_error.ShowUnableToAccessSettingsError = {}) => {
-    s_error.Notification.i().show_unable_to_access_settings_error({ is_fullscreen });
+    s_error.Notification.i().show_unable_to_access_settings_error({
+        is_fullscreen,
+        settings,
+        provided_settings,
+    });
 };
 
 globalThis.err = <T1>(
