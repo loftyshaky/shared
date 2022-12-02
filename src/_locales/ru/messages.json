@@ -11,6 +11,9 @@
     "error_msg_label": {
         "message": "Сообщение ошибки: "
     },
+    "error_keep_visible_msg_text": {
+        "message": "Нажмите в любое место чтобы отменить скрытие этого сообщения."
+    },
     "error_more_info_btn_text": {
         "message": "Больше информации"
     },

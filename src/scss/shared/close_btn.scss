@@ -1,9 +1,9 @@
 .close_btn {
     @include btn();
 
-    position: absolute;
-    top: $ext_name_offset;
-    right: $ext_name_offset;
+    margin-top: $ext_name_offset;
+    margin-right: $ext_name_offset;
+    margin-left: $gap;
 
     &:focus {
         outline-offset: 2px;

@@ -27,17 +27,50 @@ button {
 }
 
 .error {
+    .body {
+        position: relative;
+
+        .top_stuff {
+            display: flex;
+            align-items: start;
+
+            .ext_name_and_keep_visible_msg {
+                flex-grow: 1;
+            }
+        }
+    }
+
+    .progress {
+        appearance: none;
+        display: block;
+        width: 100%;
+        height: 8px;
+
+        &::-webkit-progress-bar {
+            background-color: transparent;
+        }
+
+        &::-webkit-progress-value {
+            background-color: #ffe81a;
+        }
+    }
+
+    .keep_visible_msg {
+        font-size: $font_small;
+        margin-left: $ext_name_offset;
+        margin-top: 2px;
+    }
+
     .msg {
         white-space: pre-wrap;
         text-align: center;
         padding: 10px;
-        padding-top: $error_msg_offset_top;
+        padding-top: 12px;
     }
 
     .ext_name {
-        position: absolute;
-        top: $ext_name_offset;
-        left: $ext_name_offset;
+        margin-top: $ext_name_offset;
+        margin-left: $ext_name_offset;
     }
 
     .more_info_btn {

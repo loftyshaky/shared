@@ -11,6 +11,9 @@
     "error_msg_label": {
         "message": "Error message: "
     },
+    "error_keep_visible_msg_text": {
+        "message": "Click anywhere to keep this message visible."
+    },
     "error_more_info_btn_text": {
         "message": "More info"
     },

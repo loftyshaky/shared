@@ -27,9 +27,17 @@ export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
             }}
             onMouseDown={d_error.State.i().clear_all_reset_state_timeouts}
         >
-            <c_error.ExtName />
-            <c_error.Msg />
-            {d_error.State.i().is_fullscreen ? undefined : <c_error.CloseBtn />}
+            <c_error.Progress />
+            <div className='body'>
+                <div className='top_stuff'>
+                    <span className='ext_name_and_keep_visible_msg'>
+                        <c_error.ExtName />
+                        <c_error.KeepVisibleMsg />
+                    </span>
+                    {d_error.State.i().is_fullscreen ? undefined : <c_error.CloseBtn />}
+                </div>
+                <c_error.Msg />
+            </div>
         </div>
     );
 });

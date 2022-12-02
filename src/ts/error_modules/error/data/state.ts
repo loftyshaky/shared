@@ -1,6 +1,6 @@
 import { makeObservable, observable, computed, action } from 'mobx';
 
-import { i_error } from 'error_modules/internal';
+import { d_error, i_error } from 'error_modules/internal';
 
 export class State {
     private static i0: State;
@@ -20,6 +20,7 @@ export class State {
             is_visible_style: computed,
             is_highlighted_cls: computed,
             change_state: action,
+            run_reset_state_timeout: action,
         });
     }
 
@@ -70,12 +71,18 @@ export class State {
             },
             delay,
         );
+
+        if (observable_key === 'is_visible') {
+            d_error.Progress.i().begin_progress({ error_hide_delay: delay });
+        }
     };
 
     public clear_all_reset_state_timeouts = (): void => {
         if (n(this.is_visible_timeout) && n(this.is_highlighted_timeout)) {
             clearTimeout(this.is_visible_timeout);
             clearTimeout(this.is_highlighted_timeout);
+
+            d_error.Progress.i().hide_progress();
         }
     };
 }
