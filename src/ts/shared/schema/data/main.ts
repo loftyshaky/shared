@@ -20,10 +20,12 @@ export class Main {
         data,
         transform_items,
         remove_from_storage = true,
+        keys_to_remove = [],
     }: {
         data: any;
         transform_items: o_schema.TransformItem[];
         remove_from_storage?: boolean;
+        keys_to_remove?: string[];
     }): Promise<any> =>
         err_async(async () => {
             const properties_to_remove: string[] = [];
@@ -63,6 +65,14 @@ export class Main {
             if (remove_from_storage) {
                 await ext.storage_remove(properties_to_remove);
             }
+
+            await ext.storage_remove(keys_to_remove);
+
+            keys_to_remove.forEach((key_to_remove: string): void =>
+                err(() => {
+                    delete data[key_to_remove];
+                }, 'shr_1260'),
+            );
 
             return data;
         }, 'shr_1226');
