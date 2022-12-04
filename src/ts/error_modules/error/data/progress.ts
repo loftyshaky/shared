@@ -35,8 +35,10 @@ export class Progress {
     };
 
     private increment_progress = (): void => {
-        const progress_percentage: number =
-            (100 * (Date.now() - this.timestamp_progress_begin)) / this.error_hide_delay;
+        const progress_percentage: number = x.percentage(
+            Date.now() - this.timestamp_progress_begin,
+            this.error_hide_delay,
+        );
 
         this.progress_val = progress_percentage;
     };

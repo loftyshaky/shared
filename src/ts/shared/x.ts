@@ -522,4 +522,15 @@ export class X {
 
             return `${width / gcd}:${height / gcd}`;
         }, 'shr_1258');
+
+    public percentage = (
+        partial_val: number,
+        total_val: number,
+        round_down: boolean = false,
+    ): number =>
+        err(() => {
+            const percentage_raw: number = (100 * partial_val) / total_val;
+
+            return round_down ? Math.floor(percentage_raw) : percentage_raw;
+        }, 'shr_1261');
 }
