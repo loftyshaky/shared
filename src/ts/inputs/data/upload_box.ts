@@ -49,13 +49,6 @@ export class UploadBox {
                     ? (e as DragEvent).dataTransfer!.files
                     : (<HTMLInputElement>e.target).files;
 
-                if (n(files)) {
-                    d_inputs.Val.i().set({
-                        val: files,
-                        input,
-                    });
-                }
-
                 this.set_filenames({ input, files });
 
                 try {
