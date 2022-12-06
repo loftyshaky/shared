@@ -533,4 +533,8 @@ export class X {
 
             return round_down ? Math.floor(percentage_raw) : percentage_raw;
         }, 'shr_1261');
+
+    public pastel_color = (): string =>
+        // eslint-disable-next-line no-bitwise
+        err(() => `hsl(${~~(360 * Math.random())} 70% 80%)`, 'shr_1262');
 }
