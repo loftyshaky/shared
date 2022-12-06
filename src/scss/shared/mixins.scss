@@ -173,3 +173,8 @@ $box_shadow_for_mixin: rgb(0 0 0 / 30%) 0 0 2px, rgb(0 0 0 / 30%) 0 4px 8px;
     z-index: -1;
     backdrop-filter: $glass_blur;
 }
+
+@mixin is_disabled {
+    opacity: 0.3 !important;
+    pointer-events: none !important;
+}

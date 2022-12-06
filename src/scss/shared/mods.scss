@@ -30,8 +30,7 @@
 }
 
 .is_disabled {
-    opacity: 0.3 !important;
-    pointer-events: none !important;
+    @include is_disabled;
 }
 
 .pointer_events_none {
