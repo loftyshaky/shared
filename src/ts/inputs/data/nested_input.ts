@@ -77,7 +77,6 @@ export class NestedInput {
                                                 (parent: string) =>
                                                     err(() => data.settings[parent], 'shr_1056'),
                                             );
-
                                             input_2.parent_disabled =
                                                 input.section ===
                                                     d_settings.Sections.i().current_section ||
@@ -90,6 +89,15 @@ export class NestedInput {
 
                             if (n(parent_input.parent)) {
                                 get_parent();
+                            }
+
+                            if (input_2.type === 'group' && n(input_2.inputs)) {
+                                (input_2.inputs as i_inputs.Input[]).forEach(
+                                    (input_3: i_inputs.Input): void =>
+                                        err(() => {
+                                            input_3.parent_disabled = !input_2.is_enabled;
+                                        }, 'shr_1263'),
+                                );
                             }
                         }, 'shr_1058'),
                     );

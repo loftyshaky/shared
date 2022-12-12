@@ -29,7 +29,7 @@
     border-style: solid !important;
 }
 
-.is_disabled {
+.is_disabled:not(.input_item.group) {
     @include is_disabled;
 }
 
