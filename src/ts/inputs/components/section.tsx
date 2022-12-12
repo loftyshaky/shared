@@ -18,7 +18,7 @@ export const Section: React.FunctionComponent<p_inputs.Section> = observer((prop
                             <c_inputs.Help section_or_input={section} />
                         ) : undefined}
                     </div>
-                    <c_inputs.SectionContent inputs={section.inputs} />
+                    <c_inputs.SectionContent section={section} inputs={section.inputs} />
                 </>
             ) : (
                 <div>

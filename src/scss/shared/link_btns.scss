@@ -7,6 +7,12 @@
     &.hide {
         margin-top: 4px;
     }
+
+    &.show_content,
+    &.hide_content {
+        margin-bottom: $gap;
+        font-size: $font_main;
+    }
 }
 
 .palette_link_btns .link_btn {

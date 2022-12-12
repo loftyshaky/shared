@@ -110,6 +110,12 @@
     "restore_default_palette_link_btn_text": {
         "message": "Restore default palette"
     },
+    "show_content_link_btn_text": {
+        "message": "Show these settings ⯆"
+    },
+    "hide_content_link_btn_text": {
+        "message": "Hide these settings ⯅"
+    },
     "color_help_text": {
         "message": "Right-click on the main or palette color buttons to choose a custom color. You can also do this by selecting the main or palette color buttons by Tab and then hitting Ctrl/Shift/Alt + Enter."
     },

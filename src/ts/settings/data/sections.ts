@@ -112,6 +112,8 @@ export class Sections {
         download_backup = true,
         include_part_i_in_back_up_name = false,
         allow_multiple_file_backup_upload = false,
+        admin_content_is_hideable = false,
+        admin_change_visibility_of_content_save_callback,
     }: {
         download_back_up_callback: t.CallbackAnyObj;
         download_back_up_final_callback?: t.CallbackVoid;
@@ -126,6 +128,8 @@ export class Sections {
         download_backup?: boolean;
         include_part_i_in_back_up_name?: boolean;
         allow_multiple_file_backup_upload?: boolean;
+        admin_content_is_hideable?: boolean;
+        admin_change_visibility_of_content_save_callback?: t.CallbackVariadicVoid;
     }): o_inputs.Section[] =>
         err(
             () => [
@@ -179,6 +183,9 @@ export class Sections {
                 new o_inputs.Section({
                     name: 'admin',
                     include_help: true,
+                    content_is_hideable: admin_content_is_hideable,
+                    change_visibility_of_content_save_callback:
+                        admin_change_visibility_of_content_save_callback,
                     inputs: [
                         new o_inputs.Btn({
                             name: 'reload_ext',
