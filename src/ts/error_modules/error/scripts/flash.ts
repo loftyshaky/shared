@@ -14,7 +14,6 @@ export class Flash {
     private get_flash_server_text = (): string | undefined =>
         err(() => {
             const flash_server_els = sa<HTMLDivElement>('.flash_server');
-
             if (n(flash_server_els)) {
                 const defined_flash_server_el: HTMLDivElement | undefined = [
                     ...flash_server_els,
@@ -91,7 +90,7 @@ export class Flash {
             const flash_found: boolean = n(flash_msg_key);
 
             if (flash_found) {
-                show_err_ribbon(undefined, undefined, {
+                show_notification({
                     error_msg_key: flash_msg_key,
                     notification_type: flash_type,
                     hide_delay: flash_hide_delay,
