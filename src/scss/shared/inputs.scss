@@ -49,6 +49,7 @@ input[type='file'] {
     .input {
         @include input_basic;
 
+        width: inherit;
         opacity: 1; // needed to keep default color when element is is_enabled
         height: $input_height;
         padding: 0 $input_inner_padding 0 $input_inner_padding;
