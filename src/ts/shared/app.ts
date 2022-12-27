@@ -48,6 +48,7 @@ export class App {
     [index: string]: any;
 
     private origin: string = globalThis.location ? globalThis.location.origin : '';
+    public app_root = '';
     private messages_en_json: undefined | t.AnyRecord;
     private messages_ru_json: undefined | t.AnyRecord;
     private messages_de_json: undefined | t.AnyRecord;
@@ -65,32 +66,20 @@ export class App {
     public get_language = (): string =>
         n(data) && n(data.settings) && data.settings.language ? data.settings.language : 'en';
 
-    private resolve_path = (path_to_resolve: string): string => {
+    private content_dir = (): string => {
         try {
-            // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
-            const path = require('path');
-            // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
-            const fs = require('fs-extra');
+            if (globalThis.is_node) {
+                // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                const path = require('path');
 
-            if (fs.existsSync(path.resolve('dist', path_to_resolve))) {
-                return path.resolve('dist', path_to_resolve);
+                return path.join(this.app_root, 'public', 'assets');
             }
 
-            if (fs.existsSync(path.resolve('assets', path_to_resolve))) {
-                return path.resolve('assets', path_to_resolve);
+            if (n(env) && env.env === 'adonis_app') {
+                return `${this.origin}/assets/`;
             }
 
-            return path.resolve(path_to_resolve);
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1234');
-        }
-
-        return '';
-    };
-
-    private assets = (): string => {
-        try {
-            return env.env === 'adonis_app' ? `${this.origin}/assets/` : 'dist/';
+            return 'dist/';
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1237');
         }
@@ -108,17 +97,18 @@ export class App {
                         // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
                         const fs = require('fs-extra');
 
-                        const messages_path: string = this.resolve_path(
-                            path.join(this.assets(), '_locales', locale, 'messages.json'),
+                        const messages_path: string = path.join(
+                            this.content_dir(),
+                            '_locales',
+                            locale,
+                            'messages.json',
                         );
 
                         if (fs.existsSync(messages_path)) {
-                            this[`messages_${locale}_json`] = fs.readJSONSync(
-                                this.resolve_path(messages_path),
-                            );
+                            this[`messages_${locale}_json`] = fs.readJSONSync(messages_path);
                         }
                     } else {
-                        const path: string = `${this.assets()}_locales/${locale}/messages.json`;
+                        const path: string = `${this.content_dir()}_locales/${locale}/messages.json`;
                         const response_head = await fetch(path, { method: 'HEAD' });
 
                         if (response_head.ok) {
@@ -176,9 +166,11 @@ export class App {
 
             if (globalThis.is_node) {
                 // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                const path = require('path');
+                // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
                 const fs = require('fs-extra');
 
-                env_file_text = fs.readFileSync(this.resolve_path('env.js'), {
+                env_file_text = fs.readFileSync(path.join(this.content_dir(), 'env.js'), {
                     encoding: 'utf8',
                 });
             } else {
