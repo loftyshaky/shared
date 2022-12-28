@@ -74,8 +74,12 @@ export class UploadBox {
                     }, 'shr_1201'),
                 );
 
-                if (input.clear_val_on_upload && n(file_input)) {
-                    file_input.value = '';
+                if (n(file_input)) {
+                    if (input.clear_val_on_upload) {
+                        file_input.value = '';
+                    } else if (n(files)) {
+                        d_inputs.Val.i().set({ val: files, input });
+                    }
                 }
 
                 await d_inputs.Val.i().set_warn_state({ input });
