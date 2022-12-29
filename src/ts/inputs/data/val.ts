@@ -30,17 +30,23 @@ export class Val {
 
     public set_warn_state = ({ input }: { input: i_inputs.Input }): Promise<void> =>
         err_async(async () => {
-            let state = false;
+            let state: boolean | undefined = false;
             const new_input = input;
 
             if (n(input.warn_state_checker)) {
                 state = await input.warn_state_checker({ input });
             }
 
+            const returned_warn_state_val: boolean | undefined = n(state);
+
             runInAction(() =>
                 err(() => {
-                    new_input.is_in_warn_state =
-                        new_input.warn_state_allowed_forced && input.warn_state_allowed && state;
+                    if (returned_warn_state_val) {
+                        new_input.is_in_warn_state =
+                            new_input.warn_state_allowed_forced &&
+                            input.warn_state_allowed &&
+                            state;
+                    }
                 }, 'shr_1240'),
             );
         }, 'shr_1063');

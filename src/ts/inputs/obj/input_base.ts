@@ -34,7 +34,7 @@ export class InputBase {
         input,
     }: {
         input: i_inputs.Input;
-    }) => boolean | Promise<boolean>;
+    }) => boolean | Promise<boolean | undefined>;
 
     public constructor(obj: InputBase) {
         makeObservable(this, {
