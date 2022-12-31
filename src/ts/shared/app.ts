@@ -64,7 +64,7 @@ export class App {
     };
 
     public get_language = (): string =>
-        n(data) && n(data.settings) && data.settings.language ? data.settings.language : 'en';
+        n(data) && n(data.settings) && data.settings.locale ? data.settings.locale : 'en';
 
     private content_dir = (): string => {
         try {
