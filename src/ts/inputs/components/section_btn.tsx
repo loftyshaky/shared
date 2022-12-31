@@ -5,7 +5,7 @@ import { p_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
 export const SectionBtn: React.FunctionComponent<p_inputs.SectionBtn> = observer((props) => {
-    const { section, change_section_callback } = props;
+    const { section, change_section_callback, enable_developer_mode_callback } = props;
 
     return (
         <button
@@ -16,12 +16,16 @@ export const SectionBtn: React.FunctionComponent<p_inputs.SectionBtn> = observer
             ])}
             type='button'
             tabIndex={d_settings.Sections.i().tab_index({ section_name: section.name })}
-            onClick={() =>
+            onClick={() => {
                 d_settings.Sections.i().change({
                     section_name: section.name,
                     callback: change_section_callback,
-                })
-            }
+                });
+
+                if (n(enable_developer_mode_callback)) {
+                    enable_developer_mode_callback();
+                }
+            }}
         >
             {ext.msg(`${section.name}_section_text`)}
         </button>

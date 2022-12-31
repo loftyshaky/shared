@@ -29,6 +29,7 @@ export class InputBase {
     public form?: string;
     public section?: string;
     public subsection?: string;
+    public developer_mode_setting?: boolean = false;
     public event_callback: t.CallbackVariadicVoid;
     public warn_state_checker?: ({
         input,
@@ -64,7 +65,12 @@ export class InputBase {
     });
 
     is_visible_computed? = computedFn(function (this: InputBase): boolean {
-        return this.check_state!({ state_type: 'is_visible' }) && this.is_cut_computed!();
+        return (
+            this.check_state!({ state_type: 'is_visible' }) &&
+            this.is_cut_computed!() &&
+            (!this.developer_mode_setting ||
+                (this.developer_mode_setting && data.settings.developer_mode))
+        );
     });
 
     is_enabled_computed? = computedFn(function (this: InputBase): boolean {

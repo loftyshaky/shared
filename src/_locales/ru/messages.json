@@ -74,6 +74,9 @@
     "enable_cut_features_label_text": {
         "message": "Включить вырезанные функции"
     },
+    "developer_mode_label_text": {
+        "message": "Показывать скрытые настройки для разработчиков"
+    },
     "light_option_text": {
         "message": "Светлая"
     },
@@ -136,6 +139,9 @@
     },
     "restore_default_palette_confirm": {
         "message": "Восстановить палитру по-умолчанию?"
+    },
+    "youre_now_a_developer_notification": {
+        "message": "Вы стали разработчиком!"
     },
     "invalid_file_type_back_up_error": {
         "message": "Недопустимый тип файла. Загрузите ранее скачаный json файл резервной копии."

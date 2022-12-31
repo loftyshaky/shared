@@ -77,6 +77,9 @@
     "enable_cut_features_label_text": {
         "message": "Enable cut features"
     },
+    "developer_mode_label_text": {
+        "message": "Show hidden developer settings"
+    },
     "light_option_text": {
         "message": "Light"
     },
@@ -139,6 +142,9 @@
     },
     "restore_default_palette_confirm": {
         "message": "Restore default palette?"
+    },
+    "youre_now_a_developer_notification": {
+        "message": "You're now a developer!"
     },
     "invalid_file_type_back_up_error": {
         "message": "Invalid file type. Upload a backed up json file."

@@ -197,6 +197,11 @@ export class Sections {
                             name: 'enable_cut_features',
                             event_callback: input_change_val_callback,
                         }),
+                        new o_inputs.Checkbox({
+                            name: 'developer_mode',
+                            developer_mode_setting: true,
+                            event_callback: input_change_val_callback,
+                        }),
                         ...admin_inputs,
                     ],
                 }),

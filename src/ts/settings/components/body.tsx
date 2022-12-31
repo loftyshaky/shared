@@ -6,7 +6,8 @@ import { c_inputs, o_inputs, d_inputs, d_color, s_color } from 'inputs/internal'
 import { d_settings, p_settings } from 'settings/internal';
 
 export const Body: React.FunctionComponent<p_settings.Body> = observer((props) => {
-    const { sections, initial_section, change_section_callback } = props;
+    const { sections, initial_section, change_section_callback, enable_developer_mode_callback } =
+        props;
 
     useEffect(
         () =>
@@ -36,6 +37,7 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
                                 key={i}
                                 section={section}
                                 change_section_callback={change_section_callback}
+                                enable_developer_mode_callback={enable_developer_mode_callback}
                             />
                         ),
                     )}
