@@ -239,6 +239,8 @@ export class Ext {
 
             await we.storage.local.clear();
         } catch (error_obj: any) {
+            this.log_error(error_obj, 'shr_1268');
+
             const data_sync: t.AnyRecord = await we.storage.sync.get();
 
             if (!_.isEmpty(data_sync)) {
