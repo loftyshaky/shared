@@ -1,3 +1,9 @@
+.sections_and_offers {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .sections {
     flex-grow: 1;
     height: 100%;
@@ -6,6 +12,21 @@
 
 .section {
     margin: $main_margin;
+}
+
+.offers {
+    @include border_top;
+
+    order: 1;
+
+    .offers_inner {
+        margin: $main_margin;
+        margin-top: $gap;
+    }
+
+    + .sections .section {
+        margin-bottom: $gap;
+    }
 }
 
 .subsection {

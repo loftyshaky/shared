@@ -15,6 +15,7 @@ export class Section {
     public inputs: i_inputs.Inputs | i_inputs.Links;
     public available?: boolean = true;
     public unavailable_msg?: string = '';
+    public include_offers?: boolean = false;
     public subsections?: {
         name: string;
         inputs: i_inputs.Inputs | i_inputs.Links;
@@ -27,6 +28,7 @@ export class Section {
             help_is_visible: observable,
             content_is_visible: observable,
             available: observable,
+            set_content_is_visible: action,
             change_visibility_of_content: action,
         });
 

@@ -202,6 +202,11 @@ export class Sections {
                             developer_mode_setting: true,
                             event_callback: input_change_val_callback,
                         }),
+                        new o_inputs.Checkbox({
+                            name: 'offers_are_visible',
+                            developer_mode_setting: true,
+                            event_callback: input_change_val_callback,
+                        }),
                         ...admin_inputs,
                     ],
                 }),

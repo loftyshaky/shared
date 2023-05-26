@@ -20,6 +20,7 @@ export {
     s_css_vars,
     s_loading_screen,
     s_no_tr,
+    d_offers,
     s_tab_index,
     s_theme,
     s_title,

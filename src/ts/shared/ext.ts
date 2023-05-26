@@ -69,6 +69,16 @@ export class Ext {
         return '';
     };
 
+    public get_app_name = (): string => {
+        try {
+            return we.runtime.getManifest().name;
+        } catch (error_obj: any) {
+            this.log_error(error_obj, 'shr_1277');
+        }
+
+        return '';
+    };
+
     public iterate_all_tabs = async (callback: t.CallbackVariadicVoid): Promise<void> => {
         try {
             const windows: Windows.Window[] = await we.windows.getAll({

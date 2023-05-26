@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
-import { c_tr } from 'shared/internal';
+import { c_offers, c_tr } from 'shared/internal';
 import { c_inputs, s_inputs, o_inputs, p_inputs, i_inputs } from 'inputs/internal';
 
 export const SectionContent: React.FunctionComponent<p_inputs.SectionContent> = observer(
@@ -39,15 +39,32 @@ export const SectionContent: React.FunctionComponent<p_inputs.SectionContent> = 
             </>
         );
 
-        const Inputs = (): JSX.Element => (
-            <>
-                {Object.values(inputs).map(
-                    (input: i_inputs.Input | o_inputs.Link, i: number): JSX.Element => (
-                        <React.Fragment key={i}>{s_inputs.resolve({ input })}</React.Fragment>
-                    ),
-                )}
-            </>
-        );
+        const Offers = (): JSX.Element =>
+            n(section) && section.include_offers ? (
+                <c_offers.Body is_visible />
+            ) : (
+                // eslint-disable-next-line react/jsx-no-useless-fragment
+                <></>
+            );
+
+        const InputsAndOffers = (): JSX.Element =>
+            inputs.length === 0 ? (
+                // eslint-disable-next-line react/jsx-no-useless-fragment
+                <Offers />
+            ) : (
+                <>
+                    <div className='inputs'>
+                        {Object.values(inputs).map(
+                            (input: i_inputs.Input | o_inputs.Link, i: number): JSX.Element => (
+                                <React.Fragment key={i}>
+                                    {s_inputs.resolve({ input })}
+                                </React.Fragment>
+                            ),
+                        )}
+                    </div>
+                    <Offers />
+                </>
+            );
 
         return n(section) && section.content_is_hideable ? (
             <>
@@ -58,11 +75,11 @@ export const SectionContent: React.FunctionComponent<p_inputs.SectionContent> = 
                     cls='section_inner'
                     state={n(section.content_is_visible) && section.content_is_visible}
                 >
-                    <Inputs />
+                    <InputsAndOffers />
                 </c_tr.BaseTr>
             </>
         ) : (
-            <Inputs />
+            <InputsAndOffers />
         );
     },
 );

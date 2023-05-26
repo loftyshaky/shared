@@ -5,6 +5,10 @@
     padding: 0;
     cursor: pointer;
 
+    &.offer {
+        display: unset;
+    }
+
     &.svg {
         svg {
             display: block;

@@ -56,6 +56,9 @@
     "admin_section_text": {
         "message": "Admin"
     },
+    "offers_section_text": {
+        "message": "Offers"
+    },
     "download_back_up_btn_text": {
         "message": "Download back up"
     },
@@ -79,6 +82,9 @@
     },
     "developer_mode_label_text": {
         "message": "Show hidden developer settings"
+    },
+    "offers_are_visible_label_text": {
+        "message": "Show offers"
     },
     "light_option_text": {
         "message": "Light"
@@ -106,6 +112,12 @@
     },
     "hide_link_btn_text": {
         "message": "Hide"
+    },
+    "previous_offer_btn_title": {
+        "message": "Previous offer"
+    },
+    "next_offer_btn_title": {
+        "message": "Next offer"
     },
     "remove_color_link_btn_text": {
         "message": "Remove color"
@@ -136,6 +148,78 @@
     },
     "support_page_link_text": {
         "message": "📢 Support page"
+    },
+    "offer_one_drive_text": {
+        "message": "Sign up for OneDrive using @this link@ and get an extra 0.5 GB of free storage."
+    },
+    "offer_tinkoff_black_text": {
+        "message": "Get a Tinkoff Black card using @this link@ and get free service forever."
+    },
+    "offer_tinkoff_investments_brokerage_account_text": {
+        "message": "Open a brokerage account with Tinkoff Investments using @this link@ and get a share of up to 20,000 rubles."
+    },
+    "offer_clear_new_tab_text": {
+        "message": "Install the @Clear New Tab@ extension to remove everything from the new tab page and display any image, gif or video in it as a wallpaper."
+    },
+    "offer_empty_new_tab_page_text": {
+        "message": "Install the @Empty New Tab Page@ extension to replace the default new tab page with a blank page."
+    },
+    "offer_search_enhancer_for_google_text": {
+        "message": "Install the @Search Enhancer for Google™@ extension to add infinite scroll, favicons, server locations, \"View image\" button, \"Download image\" button and more to Google search."
+    },
+    "offer_scroll_to_top_text": {
+        "message": "Install the @Scroll to Top@ extension to quickly scroll to top or bottom of the page and then return to the previous position."
+    },
+    "offer_close_other_tabs_text": {
+        "message": "Install the @Close Other Tabs@ extension to close other tabs with one click on the extension icon, via context menu or with keyboard shortcuts."
+    },
+    "offer_advanced_extension_reloader_text": {
+        "message": "Install the @Advanced Extension Reloader@ extension to reload an unpacked extension with one click, hotkey or automatically (extension for developers)."
+    },
+    "offer_one_drive_link_href": {
+        "message": "https://onedrive.live.com?invref=63a30ba2a2df7c04&invscr=90"
+    },
+    "offer_tinkoff_black_link_href": {
+        "message": "https://www.tinkoff.ru/baf/9Bjo1sl0nlM"
+    },
+    "offer_tinkoff_investments_brokerage_account_link_href": {
+        "message": "https://www.tinkoff.ru/baf/1RHsegUwU3Y"
+    },
+    "offer_clear_new_tab_chrome_link_href": {
+        "message": "https://bit.ly/clear-new-tab"
+    },
+    "offer_clear_new_tab_edge_link_href": {
+        "message": "https://bit.ly/clear-new-tab-edge"
+    },
+    "offer_clear_new_tab_firefox_link_href": {
+        "message": "https://bit.ly/clear-new-tab-firefox"
+    },
+    "offer_empty_new_tab_page_chrome_link_href": {
+        "message": "https://bit.ly/empty-new-tab-page"
+    },
+    "offer_empty_new_tab_page_edge_link_href": {
+        "message": "https://bit.ly/empty-new-tab-page-edge"
+    },
+    "offer_search_enhancer_for_google_chrome_link_href": {
+        "message": "https://bit.ly/search-enhancer-for-google"
+    },
+    "offer_search_enhancer_for_google_edge_link_href": {
+        "message": "https://bit.ly/search-enhancer-for-google-edge"
+    },
+    "offer_scroll_to_top_chrome_link_href": {
+        "message": "https://bit.ly/scroll-to-top"
+    },
+    "offer_scroll_to_top_edge_link_href": {
+        "message": "https://bit.ly/scroll-to-top-edge"
+    },
+    "offer_close_other_tabs_chrome_link_href": {
+        "message": "https://bit.ly/close-other-tabs"
+    },
+    "offer_advanced_extension_reloader_chrome_link_href": {
+        "message": "https://bit.ly/advanced-extension-reloader"
+    },
+    "offer_advanced_extension_reloader_edge_link_href": {
+        "message": "https://bit.ly/advanced-extension-reloader-edge"
     },
     "restore_defaults_confirm": {
         "message": "Restore default settings?"

@@ -125,12 +125,16 @@ hr {
     }
 }
 
-.sections {
+.sections_and_offers {
     background-color: $tbn;
 
-    .section_name {
+    .offers {
         border-color: $hyn;
     }
+}
+
+.sections .section_name {
+    border-color: $hyn;
 }
 
 .section_btns {
