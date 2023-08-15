@@ -87,6 +87,10 @@ const config = {
                     dest: 'dist',
                 },
                 {
+                    src: 'src/imgs',
+                    dest: 'dist',
+                },
+                {
                     src: 'src/fonts',
                     dest: 'dist',
                 },

@@ -10,7 +10,7 @@ export const Body: React.FunctionComponent<p_offers.Body> = observer((props) => 
         <c_tr.BaseTr tag='div' name='fade' cls='offers' state={is_visible}>
             <div className='offers_inner'>
                 <c_offers.TopBar />
-                <c_offers.Text />
+                <c_offers.Offer />
             </div>
         </c_tr.BaseTr>
     ) : (

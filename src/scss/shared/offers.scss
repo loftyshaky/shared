@@ -1,7 +1,35 @@
 .offers {
+    overflow: auto;
+    flex-shrink: 0;
+
     .top_bar {
         display: flex;
         justify-content: end;
         margin-bottom: $gap;
+
+        .visible {
+            position: absolute;
+        }
+
+        .shadow {
+            visibility: hidden;
+        }
+    }
+
+    .offer {
+        img {
+            @include border;
+
+            display: block;
+        }
+
+        p {
+            margin: 0;
+
+            + a {
+                margin-top: $gap_small;
+                display: block;
+            }
+        }
     }
 }

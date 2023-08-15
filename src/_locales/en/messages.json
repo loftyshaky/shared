@@ -74,6 +74,9 @@
     "options_page_theme_label_text": {
         "message": "Settings page theme"
     },
+    "offer_banner_type_label_text": {
+        "message": "Main offer banner type"
+    },
     "transition_duration_label_text": {
         "message": "Animation duration (ms)"
     },
@@ -100,6 +103,12 @@
     },
     "aqua_option_text": {
         "message": "Aqua"
+    },
+    "horizontal_option_text": {
+        "message": "Horizontal"
+    },
+    "vertical_option_text": {
+        "message": "Vertical"
     },
     "admin_help_text": {
         "message": "Developer/experimental features."
@@ -149,6 +158,9 @@
     "support_page_link_text": {
         "message": "📢 Support page"
     },
+    "offer_floral_pattern_text": {
+        "message": "Main @offer@ text. \u2193 \u2193 \u2193"
+    },
     "offer_one_drive_text": {
         "message": "Sign up for OneDrive using @this link@ and get an extra 0.5 GB of free storage."
     },
@@ -175,6 +187,9 @@
     },
     "offer_advanced_extension_reloader_text": {
         "message": "Install the @Advanced Extension Reloader@ extension to reload an unpacked extension with one click, hotkey or automatically (extension for developers)."
+    },
+    "offer_floral_pattern_link_href": {
+        "message": "https://www.reddit.com"
     },
     "offer_one_drive_link_href": {
         "message": "https://onedrive.live.com?invref=63a30ba2a2df7c04&invscr=90"

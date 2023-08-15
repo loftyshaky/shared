@@ -33,6 +33,10 @@ export class Sections {
                     new o_inputs.Option({ name: 'lavender' }),
                     new o_inputs.Option({ name: 'aqua' }),
                 ],
+                offer_banner_type: [
+                    new o_inputs.Option({ name: 'horizontal' }),
+                    new o_inputs.Option({ name: 'vertical' }),
+                ],
             };
         }, 'shr_1082');
 
@@ -198,12 +202,22 @@ export class Sections {
                             event_callback: input_change_val_callback,
                         }),
                         new o_inputs.Checkbox({
+                            name: 'offers_are_visible',
+                            event_callback: input_change_val_callback,
+                        }),
+                        new o_inputs.Checkbox({
                             name: 'developer_mode',
                             developer_mode_setting: true,
                             event_callback: input_change_val_callback,
                         }),
                         new o_inputs.Checkbox({
-                            name: 'offers_are_visible',
+                            name: 'developer_mode',
+                            developer_mode_setting: true,
+                            event_callback: input_change_val_callback,
+                        }),
+                        new o_inputs.Select({
+                            name: 'offer_banner_type',
+                            options: this.options,
                             developer_mode_setting: true,
                             event_callback: input_change_val_callback,
                         }),

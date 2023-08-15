@@ -44,6 +44,7 @@ const shared_config = ({
                     ignore: enable_anouncement ? [] : ['**/announcement.html'],
                 },
             },
+            { from: path.join(app_root, 'node_modules', '@loftyshaky', 'shared', 'imgs') },
             {
                 from: path.join(app_root, 'src', 'html'),
             },

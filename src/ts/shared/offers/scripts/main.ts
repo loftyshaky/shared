@@ -13,12 +13,19 @@ export class Main {
 
     public offers: o_offers.Offer[] = [
         new o_offers.Offer({
+            name: 'floral_pattern',
+            prominent: true,
+            has_banner: true,
+        }),
+        new o_offers.Offer({
             name: 'tinkoff_black',
-            countries: ['ru'],
+            prominent: true,
+            countries_whitelist: ['ru'],
         }),
         new o_offers.Offer({
             name: 'tinkoff_investments_brokerage_account',
-            countries: ['ru'],
+            prominent: true,
+            countries_whitelist: ['ru'],
         }),
         new o_offers.Offer({ name: 'one_drive' }),
         new o_offers.Offer({ name: 'clear_new_tab' }),

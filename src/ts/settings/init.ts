@@ -5,5 +5,5 @@ export const init_settings = (): void =>
     err(() => {
         d_settings.Sections.i().init_options();
 
-        d_offers.Main.i().choose_random_offer();
+        d_offers.Main.i().set_offers();
     }, 'shr_1087');

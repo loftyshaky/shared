@@ -12,11 +12,11 @@ export class Main {
     }
 
     private constructor() {
-        makeObservable<this, 'current_offer_i'>(this, {
+        makeObservable<this, 'current_offer_i' | 'choose_random_prominent_offer'>(this, {
             current_offer_text: computed,
             current_offer_no: computed,
             current_offer_i: observable,
-            choose_random_offer: action,
+            choose_random_prominent_offer: action,
             show_next_offer: action,
         });
     }
@@ -24,7 +24,25 @@ export class Main {
     public offers_of_type: o_offers.Offer[] = [];
     public current_offer_i: number = 0;
 
-    public choose_random_offer = (): void =>
+    public set_offers = (): void =>
+        err(() => {
+            this.set_offers_of_type();
+            this.choose_random_prominent_offer();
+        }, 'shr_1280');
+
+    public choose_random_prominent_offer = (): void =>
+        err(() => {
+            const prominent_offers: o_offers.Offer[] = this.offers_of_type.filter(
+                (offer: o_offers.Offer): boolean =>
+                    err(() => (n(offer.prominent) ? offer.prominent : false), 'shr_1282'),
+            );
+
+            this.current_offer_i = x.range(0, prominent_offers.length - 1);
+
+            this.offers_of_type = _.union(prominent_offers, this.offers_of_type);
+        }, 'shr_1281');
+
+    public set_offers_of_type = (): void =>
         err(() => {
             const ext_name: string = ext.get_app_name();
 
@@ -37,20 +55,15 @@ export class Main {
                                     name: offer.name,
                                 });
                                 const is_all_or_current_type_offer =
-                                    (offer.countries === 'all' ||
-                                        (offer.countries as string[]).some(
-                                            (country: string): boolean =>
-                                                err(() => country === ui_language, 'shr_1272'),
-                                        )) &&
-                                    (offer.browsers === 'all' ||
-                                        (offer.browsers as string[]).some(
-                                            (browser: string): boolean =>
-                                                err(() => browser === env.browser, 'shr_1276'),
-                                        ));
+                                    this.check_if_is_all_or_current_type_offer({ offer });
                                 const offer_is_current_ext: boolean =
                                     offer_text_raw.includes(ext_name);
 
-                                if (is_all_or_current_type_offer && !offer_is_current_ext) {
+                                if (
+                                    offer.is_enabled &&
+                                    is_all_or_current_type_offer &&
+                                    !offer_is_current_ext
+                                ) {
                                     return [offer];
                                 }
 
@@ -61,12 +74,38 @@ export class Main {
                     return offers_of_type;
                 }, 'shr_1270');
 
+            this.offers_of_type = get_offers_of_type();
+        }, 'shr_1269');
+
+    private check_if_is_all_or_current_type_offer = ({
+        offer,
+    }: {
+        offer: o_offers.Offer;
+    }): boolean =>
+        err(() => {
             const ui_language = we.i18n.getUILanguage();
 
-            this.offers_of_type = get_offers_of_type();
+            const this_offer_is_whitelisted_for_this_ui_language: boolean =
+                offer.countries_whitelist === 'all' ||
+                (offer.countries_whitelist as string[]).some((country: string): boolean =>
+                    err(() => country === ui_language, 'shr_1272'),
+                );
+            const this_offer_is_not_blacklisted_for_this_ui_language: boolean = (
+                offer.countries_blacklist as string[]
+            ).every((country: string): boolean => err(() => country !== ui_language, 'shr_1272'));
+            const this_offer_is_allowed_for_this_browser: boolean =
+                offer.browsers === 'all' ||
+                (offer.browsers as string[]).some((browser: string): boolean =>
+                    err(() => browser === env.browser, 'shr_1276'),
+                );
 
-            this.current_offer_i = x.range(0, this.offers_of_type.length - 1);
-        }, 'shr_1269');
+            const is_all_or_current_type_offer =
+                this_offer_is_whitelisted_for_this_ui_language &&
+                this_offer_is_not_blacklisted_for_this_ui_language &&
+                this_offer_is_allowed_for_this_browser;
+
+            return is_all_or_current_type_offer;
+        }, 'shr_1279');
 
     public found_offers_for_current_locale = (): boolean =>
         err(() => !_.isEmpty(this.offers_of_type), 'shr_1273');
@@ -87,7 +126,7 @@ export class Main {
                     : this.current_offer_i + 1;
         }, 'shr_1274');
 
-    private get_offer_text_raw = ({ name }: { name: string }): string =>
+    private get_offer_text_raw = ({ name }: { name: string | undefined }): string =>
         err(() => {
             const offer_text_raw: string = ext.msg(`offer_${name}_text`);
 
@@ -117,6 +156,22 @@ export class Main {
         }
 
         return '';
+    }
+
+    public get current_offer_banner(): string | undefined {
+        const offer: o_offers.Offer = this.offers_of_type[this.current_offer_i];
+
+        if (offer.has_banner) {
+            return `offer_${offer.name}_${data.settings.offer_banner_type}.png`;
+        }
+
+        return undefined;
+    }
+
+    public get current_offer_banner_link(): string {
+        const offer: o_offers.Offer = this.offers_of_type[this.current_offer_i];
+
+        return ext.msg(`offer_${offer.name}_link_href`);
     }
 
     public get current_offer_no(): number {

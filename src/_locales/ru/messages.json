@@ -71,6 +71,9 @@
     "options_page_theme_label_text": {
         "message": "Тема страницы насроек"
     },
+    "offer_banner_type_label_text": {
+        "message": "Тип баннера основного предложения"
+    },
     "transition_duration_label_text": {
         "message": "Продолжительность анимации (мс)"
     },
@@ -97,6 +100,12 @@
     },
     "aqua_option_text": {
         "message": "Морская волна"
+    },
+    "horizontal_option_text": {
+        "message": "Горизонтальный"
+    },
+    "vertical_option_text": {
+        "message": "Вертикальный"
     },
     "admin_help_text": {
         "message": "Функции для разработчиков/экспериментальные функции."

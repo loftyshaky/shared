@@ -6,9 +6,16 @@ import { c_offers, d_offers } from 'shared/internal';
 export const TopBar: React.FunctionComponent = observer(() =>
     d_offers.Main.i().offers_of_type.length > 1 ? (
         <div className='top_bar'>
-            <c_offers.Counter />
-            <c_offers.PreviousOfferBtn />
-            <c_offers.NextOfferBtn />
+            <div className='visible'>
+                <c_offers.Counter />
+                <c_offers.PreviousOfferBtn />
+                <c_offers.NextOfferBtn />
+            </div>
+            <div className='shadow'>
+                <c_offers.Counter />
+                <c_offers.PreviousOfferBtn />
+                <c_offers.NextOfferBtn />
+            </div>
         </div>
     ) : (
         // eslint-disable-next-line react/jsx-no-useless-fragment

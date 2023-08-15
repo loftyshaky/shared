@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { c_inputs, o_inputs } from 'inputs/internal';
 import { svg, d_offers } from 'shared/internal';
 
-export const NextOfferBtn: React.FunctionComponent<any> = observer(() => (
+export const NextOfferBtn: React.FunctionComponent = observer(() => (
     <c_inputs.IconBtn
         input={
             new o_inputs.IconBtn({
