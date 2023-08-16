@@ -56,7 +56,7 @@ export class Main {
             if (_.isEmpty(settings) || settings_are_corrupt) {
                 const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
 
-                await ext.storage_set(default_settings);
+                await ext.storage_set(default_settings, false);
                 await this.set({ settings: default_settings, settings_are_corrupt });
             }
 

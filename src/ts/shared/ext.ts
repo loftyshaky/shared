@@ -54,6 +54,8 @@ export class Ext {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
+    private force_local_storage: boolean = false;
+
     private log_error = (error_obj: Error, error_code: string): void => {
         // eslint-disable-next-line no-console
         d_error.Main.i().output_error(error_obj, error_code);
@@ -210,13 +212,23 @@ export class Ext {
         }
     };
 
+    public force_local_storage_f = () => {
+        try {
+            this.force_local_storage = true;
+        } catch (error_obj: any) {
+            this.log_error(error_obj, 'shr_1283');
+        }
+    };
+
     public storage_get = async (keys?: string | string[]): Promise<any> => {
         try {
-            const data_sync: t.AnyRecord = await we.storage.sync.get(keys);
+            const data_sync: t.AnyRecord = await (this.force_local_storage
+                ? {}
+                : we.storage.sync.get(keys));
             const data_local: t.AnyRecord = await we.storage.local.get(keys);
 
             try {
-                if (!_.isEmpty(data_local)) {
+                if (!_.isEmpty(data_local) && !this.force_local_storage) {
                     await we.storage.sync.set(data_local);
                     await we.storage.local.clear();
                 }
@@ -237,20 +249,7 @@ export class Ext {
     };
 
     public storage_set = async (obj: t.AnyRecord, replace?: boolean): Promise<void> => {
-        try {
-            const data_local: t.AnyRecord = await we.storage.local.get();
-
-            if (_.isEmpty(data_local)) {
-                await we.storage.sync.set(obj);
-            } else {
-                const merged_data: t.AnyRecord = n(replace) ? obj : _.merge(data_local, obj);
-                await we.storage.sync.set(merged_data);
-            }
-
-            await we.storage.local.clear();
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1268');
-
+        const set_local = async (): Promise<void> => {
             const data_sync: t.AnyRecord = await we.storage.sync.get();
 
             if (!_.isEmpty(data_sync)) {
@@ -259,6 +258,27 @@ export class Ext {
             }
 
             await we.storage.local.set(obj);
+        };
+
+        if (this.force_local_storage) {
+            await set_local();
+        } else {
+            try {
+                const data_local: t.AnyRecord = await we.storage.local.get();
+
+                if (_.isEmpty(data_local)) {
+                    await we.storage.sync.set(obj);
+                } else {
+                    const merged_data: t.AnyRecord = n(replace) ? obj : _.merge(data_local, obj);
+                    await we.storage.sync.set(merged_data);
+                }
+
+                await we.storage.local.clear();
+            } catch (error_obj: any) {
+                this.log_error(error_obj, 'shr_1268');
+
+                await set_local();
+            }
         }
     };
 
