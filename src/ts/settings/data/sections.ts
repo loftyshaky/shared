@@ -1,7 +1,7 @@
 import { makeObservable, observable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t } from 'shared/internal';
+import { t, d_offers } from 'shared/internal';
 import { o_inputs, d_inputs, d_color, i_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
@@ -201,10 +201,14 @@ export class Sections {
                             name: 'enable_cut_features',
                             event_callback: input_change_val_callback,
                         }),
-                        new o_inputs.Checkbox({
-                            name: 'offers_are_visible',
-                            event_callback: input_change_val_callback,
-                        }),
+                        ...(d_offers.Main.i().found_offers_for_current_locale()
+                            ? [
+                                  new o_inputs.Checkbox({
+                                      name: 'offers_are_visible',
+                                      event_callback: input_change_val_callback,
+                                  }),
+                              ]
+                            : []),
                         new o_inputs.Checkbox({
                             name: 'developer_mode',
                             developer_mode_setting: true,
@@ -215,12 +219,16 @@ export class Sections {
                             developer_mode_setting: true,
                             event_callback: input_change_val_callback,
                         }),
-                        new o_inputs.Select({
-                            name: 'offer_banner_type',
-                            options: this.options,
-                            developer_mode_setting: true,
-                            event_callback: input_change_val_callback,
-                        }),
+                        ...(d_offers.Main.i().found_offers_for_current_locale()
+                            ? [
+                                  new o_inputs.Select({
+                                      name: 'offer_banner_type',
+                                      options: this.options,
+                                      developer_mode_setting: true,
+                                      event_callback: input_change_val_callback,
+                                  }),
+                              ]
+                            : []),
                         ...admin_inputs,
                     ],
                 }),
