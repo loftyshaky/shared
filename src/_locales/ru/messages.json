@@ -80,6 +80,9 @@
     "enable_cut_features_label_text": {
         "message": "Включить вырезанные функции"
     },
+    "persistent_service_worker_label_text": {
+        "message": "Персистентный service worker"
+    },
     "developer_mode_label_text": {
         "message": "Показывать скрытые настройки для разработчиков"
     },

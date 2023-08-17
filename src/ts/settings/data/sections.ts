@@ -201,6 +201,10 @@ export class Sections {
                             name: 'enable_cut_features',
                             event_callback: input_change_val_callback,
                         }),
+                        new o_inputs.Checkbox({
+                            name: 'persistent_service_worker',
+                            event_callback: input_change_val_callback,
+                        }),
                         ...(d_offers.Main.i().found_offers_for_current_locale()
                             ? [
                                   new o_inputs.Checkbox({

@@ -83,6 +83,9 @@
     "enable_cut_features_label_text": {
         "message": "Enable cut features"
     },
+    "persistent_service_worker_label_text": {
+        "message": "Persistent service worker"
+    },
     "developer_mode_label_text": {
         "message": "Show hidden developer settings"
     },
