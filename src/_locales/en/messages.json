@@ -74,9 +74,6 @@
     "options_page_theme_label_text": {
         "message": "Settings page theme"
     },
-    "offer_banner_type_label_text": {
-        "message": "Main offer banner type"
-    },
     "transition_duration_label_text": {
         "message": "Animation duration (ms)"
     },
@@ -106,12 +103,6 @@
     },
     "aqua_option_text": {
         "message": "Aqua"
-    },
-    "horizontal_option_text": {
-        "message": "Horizontal"
-    },
-    "vertical_option_text": {
-        "message": "Vertical"
     },
     "admin_help_text": {
         "message": "Developer/experimental features."

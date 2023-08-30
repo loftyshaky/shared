@@ -41,7 +41,7 @@ export const SectionContent: React.FunctionComponent<p_inputs.SectionContent> = 
 
         const Offers = (): JSX.Element =>
             n(section) && section.include_offers ? (
-                <c_offers.Body is_visible />
+                <c_offers.Body is_visible offer_banner_type={section.offer_banner_type} />
             ) : (
                 // eslint-disable-next-line react/jsx-no-useless-fragment
                 <></>

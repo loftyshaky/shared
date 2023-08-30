@@ -33,10 +33,6 @@ export class Sections {
                     new o_inputs.Option({ name: 'lavender' }),
                     new o_inputs.Option({ name: 'aqua' }),
                 ],
-                offer_banner_type: [
-                    new o_inputs.Option({ name: 'horizontal' }),
-                    new o_inputs.Option({ name: 'vertical' }),
-                ],
             };
         }, 'shr_1082');
 
@@ -224,16 +220,6 @@ export class Sections {
                             developer_mode_setting: true,
                             event_callback: input_change_val_callback,
                         }),
-                        ...(d_offers.Main.i().found_offers_for_current_locale()
-                            ? [
-                                  new o_inputs.Select({
-                                      name: 'offer_banner_type',
-                                      options: this.options,
-                                      developer_mode_setting: true,
-                                      event_callback: input_change_val_callback,
-                                  }),
-                              ]
-                            : []),
                         ...admin_inputs,
                     ],
                 }),

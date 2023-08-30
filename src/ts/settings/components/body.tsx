@@ -53,7 +53,10 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
                 </div>
                 <div className='sections_and_offers'>
                     {d_offers.Main.i().found_offers_for_current_locale() ? (
-                        <c_offers.Body is_visible={data.settings.offers_are_visible} />
+                        <c_offers.Body
+                            is_visible={data.settings.offers_are_visible}
+                            offer_banner_type='horizontal'
+                        />
                     ) : undefined}
                     <div className='sections' onScroll={s_color.Position.i().set}>
                         {Object.values(sections).map(

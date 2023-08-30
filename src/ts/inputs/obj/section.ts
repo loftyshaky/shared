@@ -1,6 +1,7 @@
 import { makeObservable, observable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
+import { i_offers } from 'shared/internal';
 import { i_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
@@ -16,6 +17,7 @@ export class Section {
     public available?: boolean = true;
     public unavailable_msg?: string = '';
     public include_offers?: boolean = false;
+    public offer_banner_type?: i_offers.OfferBannerType = 'horizontal';
     public subsections?: {
         name: string;
         inputs: i_inputs.Inputs | i_inputs.Links;

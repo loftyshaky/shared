@@ -43,5 +43,6 @@ export * as p_offers from 'shared/offers/components/prop_types';
 export * as p_tr from 'shared/tr/components/prop_types';
 
 export * as i_data from 'shared/data/interfaces';
+export * as i_offers from 'shared/offers/interfaces';
 export * as i_tab_index from 'shared/tab_index/interfaces';
 export * as i_tr from 'shared/tr/interfaces';

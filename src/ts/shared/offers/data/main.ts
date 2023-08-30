@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { makeObservable, observable, computed, action } from 'mobx';
 
-import { o_offers, s_offers } from 'shared/internal';
+import { o_offers, s_offers, i_offers } from 'shared/internal';
 
 export class Main {
     private static i0: Main;
@@ -158,15 +158,19 @@ export class Main {
         return '';
     }
 
-    public get current_offer_banner(): string | undefined {
+    public get_current_offer_banner = ({
+        offer_banner_type,
+    }: {
+        offer_banner_type: i_offers.OfferBannerType;
+    }): string | undefined => {
         const offer: o_offers.Offer = this.offers_of_type[this.current_offer_i];
 
         if (offer.has_banner) {
-            return `offer_${offer.name}_${data.settings.offer_banner_type}.png`;
+            return `offer_${offer.name}_${offer_banner_type}.png`;
         }
 
         return undefined;
-    }
+    };
 
     public get current_offer_banner_link(): string {
         const offer: o_offers.Offer = this.offers_of_type[this.current_offer_i];
