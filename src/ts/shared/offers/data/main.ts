@@ -94,8 +94,8 @@ export class Main {
                 offer.countries_blacklist as string[]
             ).every((country: string): boolean => err(() => country !== ui_language, 'shr_1272'));
             const this_offer_is_allowed_for_this_browser: boolean =
-                offer.browsers === 'all' ||
-                (offer.browsers as string[]).some((browser: string): boolean =>
+                offer.browsers_whitelist === 'all' ||
+                (offer.browsers_whitelist as string[]).some((browser: string): boolean =>
                     err(() => browser === env.browser, 'shr_1276'),
                 );
 

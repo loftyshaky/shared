@@ -21,7 +21,7 @@ export class Main {
               new o_offers.Offer({ name: 'scroll_to_top', prominent: true }),
               new o_offers.Offer({
                   name: 'close_other_tabs',
-                  browsers: ['chrome'],
+                  browsers_whitelist: ['chrome'],
                   prominent: true,
               }),
               new o_offers.Offer({ name: 'advanced_extension_reloader', prominent: true }),
