@@ -152,18 +152,6 @@
     "support_page_link_text": {
         "message": "📢 Support page"
     },
-    "offer_floral_pattern_text": {
-        "message": "Main @offer@ text. \u2193 \u2193 \u2193"
-    },
-    "offer_one_drive_text": {
-        "message": "Sign up for OneDrive using @this link@ and get an extra 0.5 GB of free storage."
-    },
-    "offer_tinkoff_black_text": {
-        "message": "Get a Tinkoff Black card using @this link@ and get free service forever."
-    },
-    "offer_tinkoff_investments_brokerage_account_text": {
-        "message": "Open a brokerage account with Tinkoff Investments using @this link@ and get a share of up to 20,000 rubles."
-    },
     "offer_clear_new_tab_text": {
         "message": "Install the @Clear New Tab@ extension to remove everything from the new tab page and display any image, gif or video in it as a wallpaper."
     },
@@ -181,18 +169,6 @@
     },
     "offer_advanced_extension_reloader_text": {
         "message": "Install the @Advanced Extension Reloader@ extension to reload an unpacked extension with one click, hotkey or automatically (extension for developers)."
-    },
-    "offer_floral_pattern_link_href": {
-        "message": "https://www.reddit.com"
-    },
-    "offer_one_drive_link_href": {
-        "message": "https://onedrive.live.com?invref=63a30ba2a2df7c04&invscr=90"
-    },
-    "offer_tinkoff_black_link_href": {
-        "message": "https://www.tinkoff.ru/baf/9Bjo1sl0nlM"
-    },
-    "offer_tinkoff_investments_brokerage_account_link_href": {
-        "message": "https://www.tinkoff.ru/baf/1RHsegUwU3Y"
     },
     "offer_clear_new_tab_chrome_link_href": {
         "message": "https://bit.ly/clear-new-tab"

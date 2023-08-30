@@ -15,28 +15,16 @@ export class Main {
 
     public offers: o_offers.Offer[] = this.enable_offers
         ? [
+              new o_offers.Offer({ name: 'clear_new_tab', prominent: true }),
+              new o_offers.Offer({ name: 'empty_new_tab_page', prominent: true }),
+              new o_offers.Offer({ name: 'search_enhancer_for_google', prominent: true }),
+              new o_offers.Offer({ name: 'scroll_to_top', prominent: true }),
               new o_offers.Offer({
-                  name: 'floral_pattern',
+                  name: 'close_other_tabs',
+                  browsers: ['chrome'],
                   prominent: true,
-                  has_banner: true,
               }),
-              new o_offers.Offer({
-                  name: 'tinkoff_black',
-                  prominent: true,
-                  countries_whitelist: ['ru'],
-              }),
-              new o_offers.Offer({
-                  name: 'tinkoff_investments_brokerage_account',
-                  prominent: true,
-                  countries_whitelist: ['ru'],
-              }),
-              new o_offers.Offer({ name: 'one_drive' }),
-              new o_offers.Offer({ name: 'clear_new_tab' }),
-              new o_offers.Offer({ name: 'empty_new_tab_page' }),
-              new o_offers.Offer({ name: 'search_enhancer_for_google' }),
-              new o_offers.Offer({ name: 'scroll_to_top' }),
-              new o_offers.Offer({ name: 'close_other_tabs', browsers: ['chrome'] }),
-              new o_offers.Offer({ name: 'advanced_extension_reloader' }),
+              new o_offers.Offer({ name: 'advanced_extension_reloader', prominent: true }),
           ]
         : [];
 }
