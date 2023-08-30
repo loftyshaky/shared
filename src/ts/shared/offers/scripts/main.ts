@@ -11,7 +11,7 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    private enable_offers: boolean = env.browser === 'chrome';
+    private enable_offers: boolean = true;
 
     public offers: o_offers.Offer[] = this.enable_offers
         ? [
