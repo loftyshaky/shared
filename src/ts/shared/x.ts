@@ -445,6 +445,23 @@ export class X {
             return blob;
         }, 'shr_1225');
 
+    public chunk_str = (str: string, len: number): string[] =>
+        err(() => {
+            const size = Math.ceil(str.length / len);
+            const chunks = Array(size);
+            let offset = 0;
+
+            for (let i = 0; i < size; i += 1) {
+                chunks[i] = str[n(str.substr) ? 'substr' : 'substring'](offset, len);
+                offset += len;
+            }
+
+            return chunks;
+        }, 'shr_1288');
+
+    public bytes_to_base64 = (bytes: number): number =>
+        err(() => Math.ceil((bytes * 4) / 3), 'shr_1289');
+
     public copy_text = (text: string): void =>
         err(() => {
             const input = this.create('input', '');
