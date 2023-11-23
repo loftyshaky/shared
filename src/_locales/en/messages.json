@@ -152,6 +152,21 @@
     "support_page_link_text": {
         "message": "📢 Support page"
     },
+    "theme_path_link_text": {
+        "message": "🛠️ Create your own Chrome theme with the ThemePath app"
+    },
+    "privacy_policy_link_href": {
+        "message": "https://github.com/loftyshaky/extensions-privacy-policy/blob/main/extensions-privacy-policy.md"
+    },
+    "facebook_page_link_href": {
+        "message": "https://www.facebook.com/browservery"
+    },
+    "support_page_link_href": {
+        "message": "https://groups.google.com/g/browservery"
+    },
+    "theme_path_link_href": {
+        "message": "https://apps.microsoft.com/detail/9NMBWGHTQMPD"
+    },
     "offer_clear_new_tab_text": {
         "message": "Install the @Clear New Tab@ extension to remove everything from the new tab page and display any image, gif or video in it as a wallpaper."
     },
@@ -171,40 +186,40 @@
         "message": "Install the @Advanced Extension Reloader@ extension to reload an unpacked extension with one click, hotkey or automatically (extension for developers)."
     },
     "offer_clear_new_tab_chrome_link_href": {
-        "message": "https://bit.ly/clear-new-tab"
+        "message": "https://chromewebstore.google.com/detail/felphkbfjadmcejnibcmcncimlappdde"
     },
     "offer_clear_new_tab_edge_link_href": {
-        "message": "https://bit.ly/clear-new-tab-edge"
+        "message": "https://microsoftedge.microsoft.com/addons/detail/ifphophaconbhfmkpdlfldelkjpjmlbj"
     },
     "offer_clear_new_tab_firefox_link_href": {
-        "message": "https://bit.ly/clear-new-tab-firefox"
-    },
-    "offer_empty_new_tab_page_chrome_link_href": {
-        "message": "https://bit.ly/empty-new-tab-page"
-    },
-    "offer_empty_new_tab_page_edge_link_href": {
-        "message": "https://bit.ly/empty-new-tab-page-edge"
+        "message": "https://addons.mozilla.org/firefox/addon/clear-new-tab"
     },
     "offer_search_enhancer_for_google_chrome_link_href": {
-        "message": "https://bit.ly/search-enhancer-for-google"
+        "message": "https://chromewebstore.google.com/detail/pipbbdfondfipmjmdkmggihiknhmcfhd"
     },
     "offer_search_enhancer_for_google_edge_link_href": {
-        "message": "https://bit.ly/search-enhancer-for-google-edge"
-    },
-    "offer_scroll_to_top_chrome_link_href": {
-        "message": "https://bit.ly/scroll-to-top"
-    },
-    "offer_scroll_to_top_edge_link_href": {
-        "message": "https://bit.ly/scroll-to-top-edge"
-    },
-    "offer_close_other_tabs_chrome_link_href": {
-        "message": "https://bit.ly/close-other-tabs"
+        "message": "https://microsoftedge.microsoft.com/addons/detail/hfbafhkogonfgpkdopodhajncnodbbhd"
     },
     "offer_advanced_extension_reloader_chrome_link_href": {
-        "message": "https://bit.ly/advanced-extension-reloader"
+        "message": "https://chromewebstore.google.com/detail/hagknokdofkmojolcpbddjfdjhnjdkae"
     },
     "offer_advanced_extension_reloader_edge_link_href": {
-        "message": "https://bit.ly/advanced-extension-reloader-edge"
+        "message": "https://microsoftedge.microsoft.com/addons/detail/bcpgohifjmmcoiemghdamamlkbcbgifg"
+    },
+    "offer_empty_new_tab_page_chrome_link_href": {
+        "message": "https://chromewebstore.google.com/detail/odjfoclbnmllekbhpbgopiiaelcpeimb"
+    },
+    "offer_empty_new_tab_page_edge_link_href": {
+        "message": "https://microsoftedge.microsoft.com/addons/detail/cbdaoffmmppingmciephekphbcfngkkk"
+    },
+    "offer_scroll_to_top_chrome_link_href": {
+        "message": "https://chromewebstore.google.com/detail/obebfhocibioiakindbigklnhhknkcdc"
+    },
+    "offer_scroll_to_top_edge_link_href": {
+        "message": "https://microsoftedge.microsoft.com/addons/detail/cjmbcpckfanombcljcmgnhbdobjblbkk"
+    },
+    "offer_close_other_tabs_chrome_link_href": {
+        "message": "https://chromewebstore.google.com/detail/higiahnfphokonkjalljdfgjhafdjbil"
     },
     "restore_defaults_confirm": {
         "message": "Restore default settings?"

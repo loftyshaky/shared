@@ -149,6 +149,9 @@
     "support_page_link_text": {
         "message": "📢 Страница поддержки"
     },
+    "theme_path_link_text": {
+        "message": "🛠️ Создайте свою собственную тему для Chrome с помощью приложения ThemePath"
+    },
     "offer_clear_new_tab_text": {
         "message": "Установите расширение @Clear New Tab@ позволяющее убрать все со страницы новой вкладки и отображать любое изображение, гифку или видео в качестве обоев."
     },
@@ -166,24 +169,6 @@
     },
     "offer_advanced_extension_reloader_text": {
         "message": "Установите расширение @Advanced Extension Reloader@ позволяющее перезагрузагружать распакованное расширение в один клик, горячей клавишей или автоматически (расширение для разработчиков)."
-    },
-    "offer_clear_new_tab_chrome_link_href": {
-        "message": "https://bit.ly/clear-new-tab-ru"
-    },
-    "offer_empty_new_tab_page_chrome_link_href": {
-        "message": "https://bit.ly/empty-new-tab-page-ru"
-    },
-    "offer_search_enhancer_for_google_chrome_link_href": {
-        "message": "https://bit.ly/search-enhancer-for-google-ru"
-    },
-    "offer_scroll_to_top_chrome_link_href": {
-        "message": "https://bit.ly/scroll-to-top-ru"
-    },
-    "offer_close_other_tabs_chrome_link_href": {
-        "message": "https://bit.ly/close-other-tabs-ru"
-    },
-    "offer_advanced_extension_reloader_chrome_link_href": {
-        "message": "https://bit.ly/advanced-extension-reloader-ru"
     },
     "restore_defaults_confirm": {
         "message": "Восстановить настройки по умолчанию?"

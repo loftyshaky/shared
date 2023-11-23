@@ -2,6 +2,7 @@ import { t } from 'shared/internal';
 
 export class Link {
     public name: string;
+    public name_clean?: string;
     public type?: string = 'link';
     public label_type?: 'text' | 'svg' = 'text';
     public browser?: t.Browser;
@@ -14,13 +15,14 @@ export class Link {
     public constructor(obj: Link) {
         Object.assign(this, obj);
         this.name = obj.name;
+        this.name_clean = obj.name.replace(/i\d+i/, '');
     }
 
     public text? = (): string =>
         err(() => {
             const text: string =
-                ext.msg(`${this.name}_link_text`) ||
-                ext.msg(`${this.name}_${this.browser}_link_text`);
+                ext.msg(`${this.name_clean}_link_text`) ||
+                ext.msg(`${this.name_clean}_${this.browser}_link_text`);
 
             return text;
         }, 'shr_1069');
@@ -29,8 +31,9 @@ export class Link {
         err(() => {
             const href: string | undefined = n(this.href)
                 ? this.href
-                : ext.msg(`${this.name}_link_href`) ||
-                  ext.msg(`${this.name}_${this.browser}_link_href`);
+                : ext.msg(`${this.name_clean}_link_href`) ||
+                  ext.msg(`${this.name_clean}_${this.browser}_link_href`) ||
+                  ext.msg(`offer_${this.name_clean}_${this.browser}_link_href`);
 
             return href;
         }, 'shr_1070');
