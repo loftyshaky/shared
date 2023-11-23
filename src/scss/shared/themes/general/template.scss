@@ -144,11 +144,11 @@ hr {
         background-color: $hfb;
 
         &.selected::before {
-            background-color: $ycp;
+            background-color: $pxd;
         }
 
         &:not(.selected):hover::before {
-            background-color: $cop;
+            background-color: $ksu;
         }
     }
 }
