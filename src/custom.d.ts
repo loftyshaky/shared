@@ -13,10 +13,10 @@ interface Global {
     data: any;
     n: <T1>(val: T1 | undefined | null) => val is T1;
     nn: <T1>(val: T1 | null) => val is T1;
-    rs(variable: import('shared/t').CallbackVariadicString | string | undefined): string;
-    rn(variable: import('shared/t').CallbackVariadicNumber | number | undefined): number;
-    rb(variable: import('shared/t').CallbackVariadicBoolean | boolean | undefined): boolean;
-    ru(variable: import('shared/t').CallbackVariadicUndefined | undefined): undefined;
+    rs: <T1>(variable: T1) => string;
+    rn: <T1>(variable: T1) => number;
+    rb: <T1>(variable: T1) => boolean;
+    ru: <T1>(variable: T1) => any | undefined;
     s: <T1>(selector: string) => T1 | undefined;
     sa: <T1 extends HTMLElement>(selector: string) => NodeListOf<T1> | undefined;
     sb: <T1>(base_el: import('shared/t').BaseEl, selector: string) => T1 | undefined;

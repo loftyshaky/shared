@@ -9,10 +9,10 @@ declare global {
     const l: CallableFunction;
     function n<T1>(val: T1 | undefined | null): val is T1;
     function nn<T1>(val: T1 | null): val is T1;
-    function rs(variable: t.CallbackVariadicString | string | undefined): string;
-    function rn(variable: t.CallbackVariadicNumber | number | undefined): number;
-    function rb(variable: t.CallbackVariadicBoolean | boolean | undefined): boolean;
-    function ru(variable: t.CallbackVariadicUndefined): undefined;
+    function rs<T1>(variable: T1): string;
+    function rn<T1>(variable: T1): number;
+    function rb<T1>(variable: T1): boolean;
+    function ru<T1>(variable: T1): any | undefined;
     function s<T1>(selector: string): T1 | undefined;
     function sa<T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined;
     function sb<T1>(base_el: t.BaseEl, selector: string): T1 | undefined;
@@ -30,21 +30,39 @@ globalThis.n = <T1>(val: T1 | undefined | null): val is T1 => err(() => val != n
 
 globalThis.nn = <T1>(val: T1 | null): val is T1 => err(() => val !== null, 'shr_1141'); // not null
 
-globalThis.rs = (variable: t.CallbackVariadicString | string | undefined): string =>
-    err(() => (n(variable) ? shared.resolve_variable(variable) : ''), 'shr_1142'); // resolve string
+globalThis.rs = <T1>(variable: T1): string =>
+    err(
+        () =>
+            n(variable) && typeof variable === 'string' ? shared.resolve_variable(variable) : '',
+        'shr_1142',
+    ); // resolve string
 
-globalThis.rn = (variable: t.CallbackVariadicNumber | number | undefined): number =>
-    err(() => (n(variable) ? shared.resolve_variable(variable) : Infinity), 'shr_1143'); // resolve number
+globalThis.rn = <T1>(variable: T1): number =>
+    err(
+        () =>
+            n(variable) && typeof variable === 'number'
+                ? shared.resolve_variable(variable)
+                : Infinity,
+        'shr_1143',
+    ); // resolve number
 
-globalThis.rb = (variable: t.CallbackVariadicBoolean | boolean | undefined): boolean =>
-    err(() => (n(variable) ? shared.resolve_variable(variable) : false), 'shr_1144'); // resolve boolean
+globalThis.rb = <T1>(variable: T1): boolean =>
+    err(
+        () =>
+            n(variable) && typeof variable === 'boolean'
+                ? shared.resolve_variable(variable)
+                : false,
+        'shr_1144',
+    ); // resolve boolean
 
-globalThis.ru = (variable: t.CallbackVariadicUndefined | undefined): undefined =>
+globalThis.ru = <T1>(variable: T1): any | undefined =>
     err(() => (n(variable) ? shared.resolve_variable(variable) : undefined), 'shr_1145'); // resolve undefined
 // < undefined/null check
 
 const shared: t.AnyRecord = {
-    ensure_els: <T1 extends HTMLElement>(els: T1 | undefined): T1 | NodeListOf<T1> | undefined =>
+    ensure_els: <T1 extends HTMLElement>(
+        els: T1 | undefined | null,
+    ): T1 | NodeListOf<T1> | undefined =>
         err(() => {
             if (n(els)) {
                 return els;
@@ -53,7 +71,7 @@ const shared: t.AnyRecord = {
             return undefined;
         }, 'shr_1146'),
 
-    resolve_variable: (variable: t.CallbackVariadicAny | t.AnyUndefined): t.AnyUndefined =>
+    resolve_variable: <T1>(variable: T1): T1 =>
         err(() => {
             if (typeof variable === 'function') {
                 return variable();
