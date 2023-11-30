@@ -33,14 +33,16 @@ globalThis.nn = <T1>(val: T1 | null): val is T1 => err(() => val !== null, 'shr_
 globalThis.rs = <T1>(variable: T1): string =>
     err(
         () =>
-            n(variable) && typeof variable === 'string' ? shared.resolve_variable(variable) : '',
+            n(variable) && (typeof variable === 'function' || typeof variable === 'string')
+                ? shared.resolve_variable(variable)
+                : '',
         'shr_1142',
     ); // resolve string
 
 globalThis.rn = <T1>(variable: T1): number =>
     err(
         () =>
-            n(variable) && typeof variable === 'number'
+            n(variable) && (typeof variable === 'function' || typeof variable === 'number')
                 ? shared.resolve_variable(variable)
                 : Infinity,
         'shr_1143',
@@ -49,7 +51,7 @@ globalThis.rn = <T1>(variable: T1): number =>
 globalThis.rb = <T1>(variable: T1): boolean =>
     err(
         () =>
-            n(variable) && typeof variable === 'boolean'
+            n(variable) && (typeof variable === 'function' || typeof variable === 'boolean')
                 ? shared.resolve_variable(variable)
                 : false,
         'shr_1144',
