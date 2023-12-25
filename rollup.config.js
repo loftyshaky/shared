@@ -1,3 +1,5 @@
+import path from 'path';
+
 import typescript2 from 'rollup-plugin-typescript2';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
@@ -5,6 +7,7 @@ import transformPaths from 'ts-transform-paths';
 import svgr from '@svgr/rollup';
 import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
+import license from 'rollup-plugin-license';
 
 const copy = require('./js/shared/package/plugins/rollup-plugin-copy');
 const watcher = require('./js/shared/package/plugins/watcher');
@@ -24,6 +27,7 @@ const config = {
         'src/inputs.ts',
         'src/settings.ts',
         'src/announcement.ts',
+        'src/dependencies.ts',
     ],
     output: [
         {
@@ -109,6 +113,15 @@ const config = {
             },
         }),
         process.env.mode === 'production' ? terser(terserInst.config) : undefined,
+        license({
+            banner: "Copyright <%= moment().format('YYYY') %>",
+            thirdParty: {
+                includePrivate: true,
+                output: {
+                    file: path.join(__dirname, 'dist', 'dependencies.txt'),
+                },
+            },
+        }),
     ],
 };
 

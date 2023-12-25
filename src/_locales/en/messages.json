@@ -29,6 +29,9 @@
     "announcement_title_text": {
         "message": "Announcement"
     },
+    "dependencies_title_text": {
+        "message": "Dependencies"
+    },
     "browse_link_btn_text": {
         "message": "Browse"
     },
@@ -155,6 +158,9 @@
     "theme_path_link_text": {
         "message": "🛠️ Create your own Chrome theme with the ThemePath app"
     },
+    "dependencies_link_text": {
+        "message": "🧩 Dependencies"
+    },
     "privacy_policy_link_href": {
         "message": "https://github.com/loftyshaky/extensions-privacy-policy/blob/main/extensions-privacy-policy.md"
     },
@@ -166,6 +172,9 @@
     },
     "theme_path_link_href": {
         "message": "https://apps.microsoft.com/detail/9NMBWGHTQMPD"
+    },
+    "dependencies_link_href": {
+        "message": "dependencies.html"
     },
     "offer_clear_new_tab_text": {
         "message": "Install the @Clear New Tab@ extension to remove everything from the new tab page and display any image, gif or video in it as a wallpaper."

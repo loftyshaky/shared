@@ -12,6 +12,7 @@ const shared_config = ({
     MiniCssExtractPlugin,
     CssMinimizerPlugin,
     CopyWebpackPlugin,
+    LicensePlugin,
     copy_patters,
     minimize = true,
     enable_anouncement,
@@ -78,6 +79,7 @@ const shared_config = ({
             ...(enable_anouncement && {
                 announcement: path.join(paths.ts, 'announcement', 'announcement.ts'),
             }),
+            dependencies: path.join(paths.ts, 'dependencies', 'dependencies.ts'),
             font_face: path.join(paths.embed, 'font_face.scss'),
             no_tr: path.join(paths.embed, 'no_tr.scss'),
             hidden_roots: path.join(paths.embed, 'hidden_roots.scss'),
@@ -94,6 +96,15 @@ const shared_config = ({
                     'index.scss',
                 ),
             }),
+            dependencies_css: path.join(
+                app_root,
+                'node_modules',
+                '@loftyshaky',
+                'shared',
+                'scss',
+                'dependencies',
+                'index.scss',
+            ),
             light_theme: path.join(paths.themes, 'light_theme.scss'),
             dark_theme: path.join(paths.themes, 'dark_theme.scss'),
             very_dark_theme: path.join(paths.themes, 'very_dark_theme.scss'),
@@ -117,6 +128,7 @@ const shared_config = ({
                 ...(enable_anouncement && {
                     announcement: path.join(paths.ts, 'announcement'),
                 }),
+                dependencies: path.join(paths.ts, 'dependencies'),
             },
             extensions: ['.js', '.jsx', '.ts', '.tsx'],
             fallback: {
@@ -138,10 +150,10 @@ const shared_config = ({
                     use: ['@svgr/webpack'],
                 },
                 {
-                    test: /\.woff2?$/,
+                    test: /\.ttf?$/,
                     type: 'asset/resource',
                     generator: {
-                        filename: '[name][ext]',
+                        filename: './[name][ext]',
                     },
                 },
             ],
@@ -158,6 +170,10 @@ const shared_config = ({
                     compiler.hooks.done.tap('done', callback_done);
                 },
             },
+            new LicensePlugin({
+                outputFilename: 'dependencies.json',
+                replenishDefaultLicenseTexts: true,
+            }),
         ],
         target: 'web',
         devtool: false,

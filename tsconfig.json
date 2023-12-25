@@ -16,7 +16,8 @@
             "error_modules/*": ["./ts/error_modules/*"],
             "inputs/*": ["./ts/inputs/*"],
             "settings/*": ["./ts/settings/*"],
-            "announcement/*": ["./ts/announcement/*"]
+            "announcement/*": ["./ts/announcement/*"],
+            "dependencies/*": ["./ts/dependencies/*"]
         }
     },
     "include": ["src"],

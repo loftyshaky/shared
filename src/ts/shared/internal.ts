@@ -28,6 +28,7 @@ export * as d_settings from 'shared/settings/data';
 export * as d_tr from 'shared/tr/data';
 
 export * as s_css_vars from 'shared/css_vars/scripts';
+export * as s_header from 'shared/header/scripts';
 export * as s_loading_screen from 'shared/loading_screen/scripts';
 export * as s_no_tr from 'shared/no_tr/scripts';
 export * as s_offers from 'shared/offers/scripts';

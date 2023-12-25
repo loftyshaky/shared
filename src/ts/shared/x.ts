@@ -571,6 +571,30 @@ export class X {
             return round_down ? Math.floor(percentage_raw) : percentage_raw;
         }, 'shr_1261');
 
+    public wrap_link_in_a = (text: string): string =>
+        err(() => {
+            const url_regex =
+                /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?/gi;
+            const text_angle_bracket_left_escaped: string = text.replace(
+                /</gi,
+                '$ANGLE_BRACKET_LEFT',
+            );
+            const text_angle_bracket_right_escaped: string =
+                text_angle_bracket_left_escaped.replace(/>/gi, '$ANGLE_BRACKET_RIGHT');
+            const text_links_wrapped: string = text_angle_bracket_right_escaped.replace(
+                url_regex,
+                '<a class="link" href="$&" target="_blank" rel="noopener noreferrer">$&</a>',
+            );
+            const text_angle_bracket_left_returned: string = text_links_wrapped.replace(
+                /\$ANGLE_BRACKET_LEFT/gi,
+                '&#60',
+            );
+            const text_angle_bracket_right_returned: string =
+                text_angle_bracket_left_returned.replace(/\$ANGLE_BRACKET_RIGHT/gi, '&#62');
+
+            return text_angle_bracket_right_returned;
+        }, 'shr_1294');
+
     public pastel_color = (): string =>
         // eslint-disable-next-line no-bitwise
         err(() => `hsl(${~~(360 * Math.random())} 70% 80%)`, 'shr_1262');
