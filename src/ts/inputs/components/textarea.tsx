@@ -53,6 +53,7 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
                 </span>
                 {input.include_help ? <c_inputs.HelpBtn section_or_input={input} /> : undefined}
             </div>
+            <c_inputs.InputError input={input} />
             {input.include_help ? <c_inputs.Help section_or_input={input} /> : undefined}
         </>
     );
