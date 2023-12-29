@@ -12,6 +12,9 @@ export const InputError: React.FunctionComponent<p_inputs.InputError> = observer
                 'input_error',
                 d_inputs.InputError.i().input_error_visibility_cls!({ input }),
             ])}
+            style={{
+                width: d_inputs.Help.i().width_style!({ section_or_input: input }),
+            }}
         >
             {d_inputs.InputError.i().input_error!({ input })}
         </p>
