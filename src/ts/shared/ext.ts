@@ -56,6 +56,8 @@ export class Ext {
 
     private force_local_storage: boolean = false;
 
+    public ext_context_invalidated = () => !chrome.runtime?.id;
+
     private log_error = (error_obj: Error, error_code: string): void => {
         // eslint-disable-next-line no-console
         d_error.Main.i().output_error(error_obj, error_code);
@@ -63,7 +65,9 @@ export class Ext {
 
     public get_app_version = (): string => {
         try {
-            return we.runtime.getManifest().version;
+            if (!this.ext_context_invalidated()) {
+                return we.runtime.getManifest().version;
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1095');
         }
@@ -73,7 +77,9 @@ export class Ext {
 
     public get_app_name = (): string => {
         try {
-            return we.runtime.getManifest().name;
+            if (!this.ext_context_invalidated()) {
+                return we.runtime.getManifest().name;
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1277');
         }
@@ -83,20 +89,22 @@ export class Ext {
 
     public iterate_all_tabs = async (callback: t.CallbackVariadicVoid): Promise<void> => {
         try {
-            const windows: Windows.Window[] = await we.windows.getAll({
-                populate: true,
-                windowTypes: ['normal'],
-            });
+            if (!this.ext_context_invalidated()) {
+                const windows: Windows.Window[] = await we.windows.getAll({
+                    populate: true,
+                    windowTypes: ['normal'],
+                });
 
-            windows.forEach((win: Windows.Window): void => {
-                if (n(win.tabs)) {
-                    win.tabs.forEach((tab: Tabs.Tab): void => {
-                        if (n(tab.id)) {
-                            callback(tab);
-                        }
-                    });
-                }
-            });
+                windows.forEach((win: Windows.Window): void => {
+                    if (n(win.tabs)) {
+                        win.tabs.forEach((tab: Tabs.Tab): void => {
+                            if (n(tab.id)) {
+                                callback(tab);
+                            }
+                        });
+                    }
+                });
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1096');
         }
@@ -104,10 +112,12 @@ export class Ext {
 
     public msg = (msg: string): string => {
         try {
-            const msg_2: string | undefined =
-                n(we.i18n) && n(we.i18n.getMessage) ? we.i18n.getMessage(msg) : '';
+            if (!this.ext_context_invalidated()) {
+                const msg_2: string | undefined =
+                    n(we.i18n) && n(we.i18n.getMessage) ? we.i18n.getMessage(msg) : '';
 
-            return n(msg_2) ? msg_2 : '';
+                return n(msg_2) ? msg_2 : '';
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1097');
         }
@@ -117,12 +127,14 @@ export class Ext {
 
     public get_active_tab = async (): Promise<Tabs.Tab | undefined> => {
         try {
-            const tabs: Tabs.Tab[] = await we.tabs.query({
-                active: true,
-                currentWindow: true,
-            });
+            if (!this.ext_context_invalidated()) {
+                const tabs: Tabs.Tab[] = await we.tabs.query({
+                    active: true,
+                    currentWindow: true,
+                });
 
-            return tabs[0];
+                return tabs[0];
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1098');
         }
@@ -132,7 +144,9 @@ export class Ext {
 
     public send_msg = async (msg: t.Msg): Promise<void> => {
         try {
-            await we.runtime.sendMessage(msg);
+            if (!this.ext_context_invalidated()) {
+                await we.runtime.sendMessage(msg);
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1099');
         }
@@ -140,9 +154,11 @@ export class Ext {
 
     public send_msg_resp = async (msg: t.Msg): Promise<any> => {
         try {
-            const response = await we.runtime.sendMessage(msg);
+            if (!this.ext_context_invalidated()) {
+                const response = await we.runtime.sendMessage(msg);
 
-            return response;
+                return response;
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1100');
         }
@@ -152,7 +168,9 @@ export class Ext {
 
     public send_msg_to_tab = async (id: number, msg: t.Msg): Promise<void> => {
         try {
-            await we.tabs.sendMessage(id, msg);
+            if (!this.ext_context_invalidated()) {
+                await we.tabs.sendMessage(id, msg);
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1101');
         }
@@ -161,9 +179,11 @@ export class Ext {
     // eslint-disable-next-line @typescript-eslint/ban-types
     public send_msg_to_tab_resp = async (id: number, msg: t.Msg): Promise<any> => {
         try {
-            const response = await we.tabs.sendMessage(id, msg);
+            if (!this.ext_context_invalidated()) {
+                const response = await we.tabs.sendMessage(id, msg);
 
-            return response;
+                return response;
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1102');
         }
@@ -173,10 +193,12 @@ export class Ext {
 
     public send_msg_to_active_tab = async (msg: t.Msg): Promise<void> => {
         try {
-            const tab: Tabs.Tab | undefined = await this.get_active_tab();
+            if (!this.ext_context_invalidated()) {
+                const tab: Tabs.Tab | undefined = await this.get_active_tab();
 
-            if (n(tab) && n(tab.id)) {
-                await this.send_msg_to_tab(tab.id, msg);
+                if (n(tab) && n(tab.id)) {
+                    await this.send_msg_to_tab(tab.id, msg);
+                }
             }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1103');
@@ -185,10 +207,12 @@ export class Ext {
 
     public send_msg_to_active_tab_resp = async (msg: t.Msg): Promise<any> => {
         try {
-            const tab: Tabs.Tab | undefined = await this.get_active_tab();
+            if (!this.ext_context_invalidated()) {
+                const tab: Tabs.Tab | undefined = await this.get_active_tab();
 
-            if (n(tab) && n(tab.id)) {
-                return this.send_msg_to_tab(tab.id, msg);
+                if (n(tab) && n(tab.id)) {
+                    return this.send_msg_to_tab(tab.id, msg);
+                }
             }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1104');
@@ -199,15 +223,17 @@ export class Ext {
 
     public send_msg_to_all_tabs = async (msg: t.Msg): Promise<void> => {
         try {
-            await this.iterate_all_tabs(async (tab: browser.tabs.Tab) => {
-                try {
-                    if (n(tab.id)) {
-                        await this.send_msg_to_tab(tab.id, msg);
+            if (!this.ext_context_invalidated()) {
+                await this.iterate_all_tabs(async (tab: browser.tabs.Tab) => {
+                    try {
+                        if (n(tab.id)) {
+                            await this.send_msg_to_tab(tab.id, msg);
+                        }
+                    } catch (error_obj: any) {
+                        this.log_error(error_obj, 'shr_1105');
                     }
-                } catch (error_obj: any) {
-                    this.log_error(error_obj, 'shr_1105');
-                }
-            });
+                });
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1106');
         }
@@ -223,25 +249,27 @@ export class Ext {
 
     public storage_get = async (keys?: string | string[]): Promise<any> => {
         try {
-            const data_sync: t.AnyRecord = await (this.force_local_storage
-                ? {}
-                : we.storage.sync.get(keys));
-            const data_local: t.AnyRecord = await we.storage.local.get(keys);
+            if (!this.ext_context_invalidated()) {
+                const data_sync: t.AnyRecord = await (this.force_local_storage
+                    ? {}
+                    : we.storage.sync.get(keys));
+                const data_local: t.AnyRecord = await we.storage.local.get(keys);
 
-            try {
-                if (!_.isEmpty(data_local) && !this.force_local_storage) {
-                    await we.storage.sync.set(data_local);
-                    await we.storage.local.clear();
+                try {
+                    if (!_.isEmpty(data_local) && !this.force_local_storage) {
+                        await we.storage.sync.set(data_local);
+                        await we.storage.local.clear();
+                    }
+                } catch (error_obj: any) {
+                    this.log_error(error_obj, 'shr_1259');
                 }
-            } catch (error_obj: any) {
-                this.log_error(error_obj, 'shr_1259');
-            }
 
-            if (!_.isEmpty(data_sync)) {
-                return data_sync;
-            }
+                if (!_.isEmpty(data_sync)) {
+                    return data_sync;
+                }
 
-            return data_local;
+                return data_local;
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1107');
         }
@@ -250,44 +278,50 @@ export class Ext {
     };
 
     public storage_set = async (obj: t.AnyRecord, replace?: boolean): Promise<void> => {
-        const set_local = async (): Promise<void> => {
-            const data_sync: t.AnyRecord = await we.storage.sync.get();
+        if (!this.ext_context_invalidated()) {
+            const set_local = async (): Promise<void> => {
+                const data_sync: t.AnyRecord = await we.storage.sync.get();
 
-            if (!_.isEmpty(data_sync)) {
-                await we.storage.local.set(data_sync);
-                await we.storage.sync.clear();
-            }
-
-            await we.storage.local.set(obj);
-        };
-
-        if (this.force_local_storage) {
-            await set_local();
-        } else {
-            try {
-                const data_local: t.AnyRecord = await we.storage.local.get();
-
-                if (_.isEmpty(data_local)) {
-                    await we.storage.sync.set(obj);
-                } else {
-                    const merged_data: t.AnyRecord = n(replace) ? obj : _.merge(data_local, obj);
-                    await we.storage.sync.set(merged_data);
+                if (!_.isEmpty(data_sync)) {
+                    await we.storage.local.set(data_sync);
+                    await we.storage.sync.clear();
                 }
 
-                await we.storage.local.clear();
-            } catch (error_obj: any) {
-                this.log_error(error_obj, 'shr_1268');
+                await we.storage.local.set(obj);
+            };
 
+            if (this.force_local_storage) {
                 await set_local();
+            } else {
+                try {
+                    const data_local: t.AnyRecord = await we.storage.local.get();
+
+                    if (_.isEmpty(data_local)) {
+                        await we.storage.sync.set(obj);
+                    } else {
+                        const merged_data: t.AnyRecord = n(replace)
+                            ? obj
+                            : _.merge(data_local, obj);
+                        await we.storage.sync.set(merged_data);
+                    }
+
+                    await we.storage.local.clear();
+                } catch (error_obj: any) {
+                    this.log_error(error_obj, 'shr_1268');
+
+                    await set_local();
+                }
             }
         }
     };
 
     public storage_remove = async (keys: string[]): Promise<void> => {
-        try {
-            await we.storage.sync.remove(keys);
-        } catch (error_obj: any) {
-            await we.storage.local.remove(keys);
+        if (!this.ext_context_invalidated()) {
+            try {
+                await we.storage.sync.remove(keys);
+            } catch (error_obj: any) {
+                await we.storage.local.remove(keys);
+            }
         }
     };
 
@@ -297,41 +331,43 @@ export class Ext {
     ): Promise<void> => {
         await this.iterate_all_tabs(async (tab: browser.tabs.Tab) => {
             try {
-                if (n(tab.id)) {
-                    const already_injected_script_func = () =>
-                        document.title.includes(
-                            '\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b',
-                        );
+                if (!this.ext_context_invalidated()) {
+                    if (n(tab.id)) {
+                        const already_injected_script_func = () =>
+                            document.title.includes(
+                                '\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b',
+                            );
 
-                    const result = await (we as any).scripting.executeScript({
-                        function: already_injected_script_func,
-                        target: { tabId: tab.id },
-                    });
-
-                    const already_injected_script: boolean = result[0].result;
-
-                    if (!already_injected_script) {
-                        js_file_paths.forEach((file_path: string): void => {
-                            try {
-                                (we as any).scripting.executeScript({
-                                    target: { tabId: tab.id },
-                                    files: [file_path],
-                                });
-                            } catch (error_obj: any) {
-                                this.log_error(error_obj, 'shr_1108');
-                            }
+                        const result = await (we as any).scripting.executeScript({
+                            function: already_injected_script_func,
+                            target: { tabId: tab.id },
                         });
 
-                        css_file_paths.forEach((file_path: string): void => {
-                            try {
-                                (we as any).scripting.insertCSS({
-                                    target: { tabId: tab.id },
-                                    files: [file_path],
-                                });
-                            } catch (error_obj: any) {
-                                this.log_error(error_obj, 'shr_1109');
-                            }
-                        });
+                        const already_injected_script: boolean = result[0].result;
+
+                        if (!already_injected_script) {
+                            js_file_paths.forEach((file_path: string): void => {
+                                try {
+                                    (we as any).scripting.executeScript({
+                                        target: { tabId: tab.id },
+                                        files: [file_path],
+                                    });
+                                } catch (error_obj: any) {
+                                    this.log_error(error_obj, 'shr_1108');
+                                }
+                            });
+
+                            css_file_paths.forEach((file_path: string): void => {
+                                try {
+                                    (we as any).scripting.insertCSS({
+                                        target: { tabId: tab.id },
+                                        files: [file_path],
+                                    });
+                                } catch (error_obj: any) {
+                                    this.log_error(error_obj, 'shr_1109');
+                                }
+                            });
+                        }
                     }
                 }
             } catch (error_obj: any) {

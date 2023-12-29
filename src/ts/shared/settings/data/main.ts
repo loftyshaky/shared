@@ -50,18 +50,20 @@ export class Main {
 
     public set_from_storage = (): Promise<void> =>
         err_async(async () => {
-            const settings = await ext.storage_get();
-            const settings_are_corrupt: boolean = !n(settings.enable_cut_features);
+            if (!ext.ext_context_invalidated()) {
+                const settings = await ext.storage_get();
+                const settings_are_corrupt: boolean = !n(settings.enable_cut_features);
 
-            if (_.isEmpty(settings) || settings_are_corrupt) {
-                const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
+                if (_.isEmpty(settings) || settings_are_corrupt) {
+                    const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
 
-                await ext.storage_set(default_settings, false);
-                await this.set({ settings: default_settings, settings_are_corrupt });
-            }
+                    await ext.storage_set(default_settings, false);
+                    await this.set({ settings: default_settings, settings_are_corrupt });
+                }
 
-            if (!_.isEqual(toJS(data.settings), settings) && !settings_are_corrupt) {
-                await this.set({ settings });
+                if (!_.isEqual(toJS(data.settings), settings) && !settings_are_corrupt) {
+                    await this.set({ settings });
+                }
             }
         }, 'shr_1367');
 }
