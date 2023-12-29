@@ -11,9 +11,7 @@
 }
 
 .hidden {
-    position: fixed !important;
-    visibility: hidden !important;
-    top: -99999px !important;
+    @include hidden;
 }
 
 .visibility_hidden {
