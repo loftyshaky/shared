@@ -75,6 +75,10 @@ const config = {
                     dest: 'dist',
                 },
                 {
+                    src: 'LICENSE.md',
+                    dest: 'dist',
+                },
+                {
                     src: 'src/html/*',
                     dest: 'dist/html',
                 },
