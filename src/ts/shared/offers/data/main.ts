@@ -56,13 +56,15 @@ export class Main {
                                 });
                                 const is_all_or_current_type_offer =
                                     this.check_if_is_all_or_current_type_offer({ offer });
+                                l(offer.name, offer.force_offer_despite_extension_name_in_its_text);
                                 const offer_is_current_ext: boolean =
                                     offer_text_raw.includes(ext_name);
 
                                 if (
                                     offer.is_enabled &&
                                     is_all_or_current_type_offer &&
-                                    !offer_is_current_ext
+                                    (!offer_is_current_ext ||
+                                        offer.force_offer_despite_extension_name_in_its_text)
                                 ) {
                                     return [offer];
                                 }
@@ -98,11 +100,17 @@ export class Main {
                 (offer.browsers_whitelist as string[]).some((browser: string): boolean =>
                     err(() => browser === env.browser, 'shr_1276'),
                 );
+            const this_offer_is_allowed_for_this_ext: boolean =
+                offer.exts_whitelist === 'all' ||
+                (offer.exts_whitelist as string[]).some((id: string): boolean =>
+                    err(() => id === we.runtime.id, 'shr_1296'),
+                );
 
             const is_all_or_current_type_offer =
                 this_offer_is_whitelisted_for_this_ui_language &&
                 this_offer_is_not_blacklisted_for_this_ui_language &&
-                this_offer_is_allowed_for_this_browser;
+                this_offer_is_allowed_for_this_browser &&
+                this_offer_is_allowed_for_this_ext;
 
             return is_all_or_current_type_offer;
         }, 'shr_1279');

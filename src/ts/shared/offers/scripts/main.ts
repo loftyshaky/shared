@@ -15,6 +15,16 @@ export class Main {
 
     public offers: o_offers.Offer[] = this.enable_offers
         ? [
+              new o_offers.Offer({
+                  name: 'animated_themes',
+                  exts_whitelist: [
+                      'nnmhbhoglljdlhbllfgkemgenlplalie',
+                      'felphkbfjadmcejnibcmcncimlappdde',
+                  ], // Clear New Tab
+                  browsers_whitelist: ['chrome'],
+                  prominent: true,
+                  force_offer_despite_extension_name_in_its_text: true,
+              }),
               new o_offers.Offer({ name: 'clear_new_tab', prominent: true }),
               new o_offers.Offer({ name: 'empty_new_tab_page', prominent: true }),
               new o_offers.Offer({ name: 'search_enhancer_for_google', prominent: true }),
