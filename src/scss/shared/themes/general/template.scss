@@ -37,11 +37,11 @@
 }
 
 .link {
-    @include link_colors_standard();
+    @include link_colors_standard;
 }
 
 .link_btn {
-    @include link_colors_standard();
+    @include link_colors_standard;
 }
 
 textarea {
@@ -247,11 +247,13 @@ hr {
             &.loading {
                 background-color: transparent;
                 /* stylelint-disable-next-line function-parentheses-newline-inside */
-                background-image: repeating-linear-gradient(-45deg,
-                $npw,
-                $npw 14px,
-                $qgp 14px,
-                $qgp 28px);  /* stylelint-disable-line function-parentheses-newline-inside */
+                background-image: repeating-linear-gradient(
+                    -45deg,
+                    $npw,
+                    $npw 14px,
+                    $qgp 14px,
+                    $qgp 28px
+                ); /* stylelint-disable-line function-parentheses-newline-inside */
             }
         }
     }

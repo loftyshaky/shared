@@ -135,7 +135,7 @@ module.exports = function copy(options = {}) {
                         } else {
                             try {
                                 await fs.copy(src, dest, restPluginOptions);
-                            } catch (error_obj)  {}
+                            } catch (error_obj) {}
                         }
 
                         if (verbose) {

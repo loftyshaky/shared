@@ -38,7 +38,8 @@ $border_width_thick: 2px;
     transform: translate(-50%, -50%);
 }
 
-@mixin center_horizontal_variable_width { // max-width should be set
+@mixin center_horizontal_variable_width {
+    // max-width should be set
     left: calc(-50vw + 50%);
     right: calc(-50vw + 50%);
     margin-left: auto;
@@ -64,7 +65,9 @@ $border_width_thick: 2px;
     outline: none;
 }
 
-$box_shadow_for_mixin: rgb(0 0 0 / 30%) 0 0 2px, rgb(0 0 0 / 30%) 0 4px 8px;
+$box_shadow_for_mixin:
+    rgb(0 0 0 / 30%) 0 0 2px,
+    rgb(0 0 0 / 30%) 0 4px 8px;
 
 @mixin box_shadow {
     box-shadow: $box_shadow_for_mixin;
@@ -115,11 +118,6 @@ $box_shadow_for_mixin: rgb(0 0 0 / 30%) 0 0 2px, rgb(0 0 0 / 30%) 0 4px 8px;
 
 @mixin blue_border {
     border: $border_width solid $blue;
-}
-
-@mixin border_bottom {
-    border-bottom-width: $border_width;
-    border-bottom-style: solid;
 }
 
 @mixin outline_solid {

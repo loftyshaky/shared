@@ -1,7 +1,7 @@
 import { o_inputs, i_inputs } from 'inputs/internal';
 
 export class Select extends o_inputs.InputBase {
-    public type?: 'select' = 'select';
+    public type? = 'select' as const;
     public options: i_inputs.Options = {};
 
     public constructor(obj: Select) {

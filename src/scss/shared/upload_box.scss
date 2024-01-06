@@ -1,9 +1,7 @@
 $upload_box_text_z_index: 2;
 $upload_box_loading_animation_size: 40px;
-
 $backgrond_margin: 2px;
 $backgrond_dim_offset: 2px * 2;
-
 $status_msg_offset: 5px;
 
 .input_item {
@@ -64,7 +62,8 @@ $status_msg_offset: 5px;
 
             &.loading {
                 animation: move 450ms linear infinite;
-                background-size: $upload_box_loading_animation_size $upload_box_loading_animation_size;
+                background-size: $upload_box_loading_animation_size
+                    $upload_box_loading_animation_size;
             }
         }
     }

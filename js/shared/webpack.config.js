@@ -42,7 +42,10 @@ const shared_config = ({
                 from: path.join(app_root, 'node_modules', '@loftyshaky', 'shared', 'html'),
                 noErrorOnMissing: true,
                 globOptions: {
-                    ignore: enable_anouncement ? [] : ['**/announcement.html'],
+                    ignore: [
+                        ...(enable_anouncement ? [] : ['**/announcement.html']),
+                        ...(env.browser === 'edge' ? ['**/dependencies.html'] : []),
+                    ],
                 },
             },
             {
@@ -79,7 +82,9 @@ const shared_config = ({
             ...(enable_anouncement && {
                 announcement: path.join(paths.ts, 'announcement', 'announcement.ts'),
             }),
-            dependencies: path.join(paths.ts, 'dependencies', 'dependencies.ts'),
+            ...(env.browser !== 'edge' && {
+                dependencies: path.join(paths.ts, 'dependencies', 'dependencies.ts'),
+            }),
             font_face: path.join(paths.embed, 'font_face.scss'),
             no_tr: path.join(paths.embed, 'no_tr.scss'),
             hidden_roots: path.join(paths.embed, 'hidden_roots.scss'),
@@ -96,15 +101,17 @@ const shared_config = ({
                     'index.scss',
                 ),
             }),
-            dependencies_css: path.join(
-                app_root,
-                'node_modules',
-                '@loftyshaky',
-                'shared',
-                'scss',
-                'dependencies',
-                'index.scss',
-            ),
+            ...(env.browser !== 'edge' && {
+                dependencies_css: path.join(
+                    app_root,
+                    'node_modules',
+                    '@loftyshaky',
+                    'shared',
+                    'scss',
+                    'dependencies',
+                    'index.scss',
+                ),
+            }),
             light_theme: path.join(paths.themes, 'light_theme.scss'),
             dark_theme: path.join(paths.themes, 'dark_theme.scss'),
             very_dark_theme: path.join(paths.themes, 'very_dark_theme.scss'),

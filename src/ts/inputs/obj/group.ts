@@ -1,7 +1,7 @@
 import { o_inputs, i_inputs } from 'inputs/internal';
 
 export class Group extends o_inputs.InputBase {
-    public type?: 'group' = 'group';
+    public type? = 'group' as const;
     public inputs?: i_inputs.Inputs;
 
     public constructor(obj: Group) {

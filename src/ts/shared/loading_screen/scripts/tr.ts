@@ -6,7 +6,7 @@ export class Tr {
         return this.i0 || (this.i0 = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     private loading_screen_root_selector: string = 'div[class^="root"][class*="loading_screen"]';

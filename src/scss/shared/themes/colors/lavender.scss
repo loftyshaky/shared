@@ -3,12 +3,16 @@ $theme_color_udj: #19f4ff;
 $theme_color_kvo: #4bff1f;
 $theme_color_ftp: #fbff12;
 $theme_color_oyq: #ff8400;
-
 $htc: white;
 $tbn: $glass_color;
 $gaq: #efefef;
 /* stylelint-disable-next-line max-line-length */
-$gqb: linear-gradient(45deg, rgb(52 15 189) 0%, rgb(225 5 34 / 0%) 70%) repeat scroll 0% 0%, linear-gradient(135deg, rgb(241 22 168) 10%, rgb(49 5 209 / 0%) 80%) repeat scroll 0% 0%, linear-gradient(190deg, rgb(26 211 208) 10%, rgb(10 219 216 / 0%) 80%) repeat scroll 0% 0%, rgb(0 0 0 / 0%) linear-gradient(315deg, rgb(163 34 203) 100%, rgb(9 245 5 / 0%) 70%) repeat scroll 0% 0%;
+$gqb:
+    linear-gradient(45deg, rgb(52 15 189) 0%, rgb(225 5 34 / 0%) 70%) repeat scroll 0% 0%,
+    linear-gradient(135deg, rgb(241 22 168) 10%, rgb(49 5 209 / 0%) 80%) repeat scroll 0% 0%,
+    linear-gradient(190deg, rgb(26 211 208) 10%, rgb(10 219 216 / 0%) 80%) repeat scroll 0% 0%,
+    rgb(0 0 0 / 0%) linear-gradient(315deg, rgb(163 34 203) 100%, rgb(9 245 5 / 0%) 70%) repeat
+        scroll 0% 0%;
 $hfb: transparent;
 $gvb: rgb(255 255 255 / 36%);
 $npw: rgb(255 255 255 / 20%);

@@ -12,7 +12,7 @@ const color_picker_state: i_color.ColorPickerStateOne = {
 };
 
 export class Color extends o_inputs.InputBase {
-    public type?: 'color' = 'color';
+    public type? = 'color' as const;
     public include_visualization?: boolean = true;
     public include_palette_label?: boolean = false;
     public palette_is_visible?: boolean = false;

@@ -74,8 +74,8 @@ button {
     }
 
     .more_info_btn {
-        @include btn();
-        @include outline_solid();
+        @include btn;
+        @include outline_solid;
 
         outline-color: white;
         background-color: transparent;

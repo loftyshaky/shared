@@ -60,5 +60,7 @@ body.keyboard .btn.text:focus,
 }
 
 .keyboard .section_btn:not(.selected):focus {
-    box-shadow: inset 0 0 0 2px $upd, inset -2px 0 0 0 $upd;
+    box-shadow:
+        inset 0 0 0 2px $upd,
+        inset -2px 0 0 0 $upd;
 }

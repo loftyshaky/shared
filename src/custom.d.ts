@@ -6,9 +6,7 @@ interface Global {
     x: import('shared/x').X;
     ext: import('shared/ext').Ext;
     app: import('shared/app').App;
-    env: {
-        browser: import('shared/t').Env;
-    };
+    env: import('shared/t').Env;
     l: CallableFunction;
     data: any;
     n: <T1>(val: T1 | undefined | null) => val is T1;

@@ -1,14 +1,14 @@
-import path from 'path';
+const path = require('path');
 
-import typescript2 from 'rollup-plugin-typescript2';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
-import transformPaths from 'ts-transform-paths';
-import svgr from '@svgr/rollup';
-import replace from '@rollup/plugin-replace';
-import { terser } from 'rollup-plugin-terser';
-import license from 'rollup-plugin-license';
+const typescript = require('@rollup/plugin-typescript');
+const commonjs = require('@rollup/plugin-commonjs');
+const resolve = require('@rollup/plugin-node-resolve');
+const svgr = require('@svgr/rollup');
+const replace = require('@rollup/plugin-replace');
+const terser = require('@rollup/plugin-terser');
+const license = require('rollup-plugin-license');
 
+const { TscAlias } = require('./js/shared/tsc_alias');
 const copy = require('./js/shared/package/plugins/rollup-plugin-copy');
 const watcher = require('./js/shared/package/plugins/watcher');
 const { Terser } = require('./js/shared/package/terser');
@@ -16,6 +16,7 @@ const { Terser } = require('./js/shared/package/terser');
 const { Files } = require('./js/files');
 const { paths } = require('./js/shared/apps');
 
+const tsc_alias = new TscAlias();
 const files = new Files();
 const terserInst = new Terser();
 
@@ -33,7 +34,7 @@ const config = {
         {
             dir: 'dist',
             entryFileNames: '[name].js',
-            chunkFileNames: 'chunk-[name]-[hash].js',
+            chunkFileNames: 'chunk-[name].js',
             format: 'commonjs',
             sourcemap: false,
         },
@@ -53,16 +54,13 @@ const config = {
         }
     },
     plugins: [
-        typescript2({
-            rollupCommonJSResolveHack: true,
-            clean: true,
-            transformers: [transformPaths],
-        }),
         commonjs(),
         resolve({
             browser: true,
             preferBuiltins: false,
         }),
+        typescript({ tsconfig: './tsconfig.json' }),
+        tsc_alias.transform_aliases_to_relative_paths(),
         svgr(),
         watcher({ mode: process.env.mode }),
         replace({
@@ -72,6 +70,10 @@ const config = {
             targets: [
                 {
                     src: `json/${process.env.env}/package.json`,
+                    dest: 'dist',
+                },
+                {
+                    src: 'src/globals.d.ts',
                     dest: 'dist',
                 },
                 {
@@ -129,4 +131,4 @@ const config = {
     ],
 };
 
-export default config;
+module.exports = config;

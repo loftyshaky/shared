@@ -1,5 +1,5 @@
 .close_btn {
-    @include btn();
+    @include btn;
 
     margin-top: $ext_name_offset;
     margin-right: $ext_name_offset;

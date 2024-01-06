@@ -5,7 +5,7 @@ import { t } from 'shared/internal';
 import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
 
 export class Text extends o_inputs.InputBase {
-    public type?: 'text' = 'text';
+    public type? = 'text' as const;
     public text_type?: 'text' | 'number' | 'email' | 'password' = 'text';
     public allow_removing_val?: boolean = true;
     public placeholder?: string = '';

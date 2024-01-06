@@ -2,28 +2,6 @@ import { d_error, s_error, i_error } from 'error_modules/internal';
 
 declare const globalThis: Global;
 
-declare global {
-    function show_err_ribbon(
-        error_obj: i_error.ErrorObj | undefined,
-        error_code: string | undefined,
-        obj?: i_error.ShowError,
-    ): void;
-    function show_flash(): void;
-    function show_notification(obj?: i_error.ShowError): void;
-    function show_unable_to_access_settings_error(
-        obj: import('error_modules/error/interfaces/show_unable_to_access_settings_error').ShowUnableToAccessSettingsError,
-    ): void;
-    function err<T1>(f: () => T1, error_code: string, obj?: i_error.ShowError): T1;
-    function err_async<T1>(
-        f: () => Promise<T1>,
-        error_code: string,
-        obj?: i_error.ShowError,
-    ): Promise<T1>;
-    function throw_err(msg: string): void;
-    function throw_err_obj(msg: string): void;
-    function err_obj(msg: string): Error;
-}
-
 globalThis.show_err_ribbon = (
     error_obj: i_error.ErrorObj | undefined,
     error_code: string | undefined,

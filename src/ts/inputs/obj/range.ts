@@ -3,7 +3,7 @@ import { computedFn } from 'mobx-utils';
 import { o_inputs, d_inputs } from 'inputs/internal';
 
 export class Range extends o_inputs.InputBase {
-    public type?: 'range' = 'range';
+    public type? = 'range' as const;
     public min?: number = 0;
     public max?: number = 100;
     public step?: number = 1;

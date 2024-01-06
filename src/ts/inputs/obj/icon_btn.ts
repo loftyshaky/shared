@@ -1,7 +1,7 @@
 import { o_inputs, i_inputs } from 'inputs/internal';
 
 export class IconBtn extends o_inputs.InputBase {
-    public type?: 'icon_btn' = 'icon_btn';
+    public type? = 'icon_btn' as const;
     public Svg: string = '';
     public btn_options?: i_inputs.BtnOption[];
 

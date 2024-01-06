@@ -1,6 +1,6 @@
 export class Hr {
     public name: string;
-    public type?: 'hr' = 'hr';
+    public type? = 'hr' as const;
 
     public constructor(obj: Hr) {
         Object.assign(this, obj);

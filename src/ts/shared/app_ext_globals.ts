@@ -1,13 +1,9 @@
 declare const globalThis: Global;
 
-declare global {
-    const is_ext: boolean;
-    const page: string;
-    const misplaced_dependency: (culprit_page: string) => void;
-}
-
 globalThis.is_ext =
+    // @ts-expect-error no types
     typeof browser !== 'undefined' ||
+    // @ts-expect-error no types
     (typeof chrome !== 'undefined' && typeof chrome.runtime !== 'undefined');
 
 export {}; // need to be here, otherwise there will be error in this file

@@ -2,16 +2,12 @@
 // Not using err/err_async because it causes infinite loop in content script and freezing when you disable/reload extension!
 
 import _ from 'lodash';
-import { browser, Windows, Tabs } from 'webextension-polyfill-ts';
+import browser, { Windows, Tabs } from 'webextension-polyfill';
 
 import { d_error } from 'error_modules/internal';
 import { t } from 'shared/internal';
 
 declare const globalThis: Global;
-
-declare global {
-    const we: typeof browser;
-}
 
 globalThis.we = browser;
 
@@ -51,12 +47,12 @@ export class Ext {
         return this.i0 || (this.i0 = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     private force_local_storage: boolean = false;
 
-    public ext_context_invalidated = () => !chrome.runtime?.id;
+    public ext_context_invalidated = () => !we.runtime?.id;
 
     private log_error = (error_obj: Error, error_code: string): void => {
         // eslint-disable-next-line no-console
@@ -224,7 +220,7 @@ export class Ext {
     public send_msg_to_all_tabs = async (msg: t.Msg): Promise<void> => {
         try {
             if (!this.ext_context_invalidated()) {
-                await this.iterate_all_tabs(async (tab: browser.tabs.Tab) => {
+                await this.iterate_all_tabs(async (tab: Tabs.Tab) => {
                     try {
                         if (n(tab.id)) {
                             await this.send_msg_to_tab(tab.id, msg);
@@ -247,22 +243,29 @@ export class Ext {
         }
     };
 
-    public storage_get = async (keys?: string | string[]): Promise<any> => {
+    public storage_get = async (keys?: string | string[], set: boolean = false): Promise<any> => {
         try {
             if (!this.ext_context_invalidated()) {
                 const data_sync: t.AnyRecord = await we.storage.sync.get(keys);
                 const data_local: t.AnyRecord = await we.storage.local.get(keys);
 
-                try {
-                    if (!_.isEmpty(data_local) && this.force_local_storage) {
-                        await we.storage.local.set(data_sync);
-                        await we.storage.sync.clear();
-                    } else if (!_.isEmpty(data_sync) && !this.force_local_storage) {
-                        await we.storage.sync.set(data_local);
-                        await we.storage.local.clear();
-                    }
-                } catch (error_obj: any) {
-                    this.log_error(error_obj, 'shr_1259');
+                const set_f = (): Promise<void> =>
+                    err_async(async () => {
+                        try {
+                            if (!_.isEmpty(data_local) && this.force_local_storage) {
+                                await we.storage.local.set(data_sync);
+                                await we.storage.sync.clear();
+                            } else if (!_.isEmpty(data_sync) && !this.force_local_storage) {
+                                await we.storage.sync.set(data_local);
+                                await we.storage.local.clear();
+                            }
+                        } catch (error_obj: any) {
+                            this.log_error(error_obj, 'shr_1259');
+                        }
+                    }, 'shr_1295');
+
+                if (set) {
+                    await set_f();
                 }
 
                 if (!_.isEmpty(data_sync)) {
@@ -321,7 +324,7 @@ export class Ext {
         js_file_paths: string[],
         css_file_paths: string[],
     ): Promise<void> => {
-        await this.iterate_all_tabs(async (tab: browser.tabs.Tab) => {
+        await this.iterate_all_tabs(async (tab: Tabs.Tab) => {
             try {
                 if (!this.ext_context_invalidated()) {
                     if (n(tab.id)) {

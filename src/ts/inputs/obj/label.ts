@@ -1,6 +1,6 @@
 export class Label {
     public name: string;
-    public type?: 'label' = 'label';
+    public type? = 'label' as const;
 
     public constructor(obj: Label) {
         Object.assign(this, obj);

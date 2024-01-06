@@ -1,5 +1,3 @@
-$select_padding: 4px;
-
 input[type='file'] {
     display: none;
 }
@@ -58,11 +56,10 @@ input[type='file'] {
         flex-grow: 1;
         border-radius: 0;
         box-sizing: border-box;
-    }
 
-    select.input {
-        padding-top: $select_padding;
-        padding-bottom: $select_padding - 1px;
+        &.text {
+            line-height: $input_height;
+        }
     }
 
     .input_w_and_help_btn {

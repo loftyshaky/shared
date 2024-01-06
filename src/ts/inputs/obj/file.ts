@@ -2,7 +2,7 @@ import { t } from 'shared/internal';
 import { o_inputs } from 'inputs/internal';
 
 export class File extends o_inputs.InputBase {
-    public type?: 'file' = 'file';
+    public type? = 'file' as const;
     public accept: string;
     public multiple?: boolean = false;
     public save_callback?: t.CallbackVariadicVoid;

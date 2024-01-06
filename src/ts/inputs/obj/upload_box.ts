@@ -4,7 +4,7 @@ import { computedFn } from 'mobx-utils';
 import { o_inputs } from 'inputs/internal';
 
 export class UploadBox extends o_inputs.InputBase {
-    public type?: 'upload_box' = 'upload_box';
+    public type? = 'upload_box' as const;
     public multiple?: boolean = false;
     public accept?: string = '.png,.jpg,.jpeg,.gif';
     public loading_msg_is_visible?: boolean = false;

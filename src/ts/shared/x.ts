@@ -4,24 +4,6 @@ import { t } from 'shared/internal';
 
 declare const globalThis: Global & Window;
 
-declare global {
-    const env: t.Env;
-    const l: CallableFunction;
-    function n<T1>(val: T1 | undefined | null): val is T1;
-    function nn<T1>(val: T1 | null): val is T1;
-    function rs<T1>(variable: T1): string;
-    function rn<T1>(variable: T1): number;
-    function rb<T1>(variable: T1): boolean;
-    function ru<T1>(variable: T1): any | undefined;
-    function s<T1>(selector: string): T1 | undefined;
-    function sa<T1 extends HTMLElement>(selector: string): NodeListOf<T1> | undefined;
-    function sb<T1>(base_el: t.BaseEl, selector: string): T1 | undefined;
-    function sab<T1 extends HTMLElement>(
-        base_el: t.BaseEl,
-        selector: string,
-    ): NodeListOf<T1> | undefined;
-}
-
 // eslint-disable-next-line no-console
 globalThis.l = console.log.bind(console);
 
@@ -120,7 +102,7 @@ export class X {
         return this.i0 || (this.i0 = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public in_service_worker: boolean = typeof document === 'undefined';

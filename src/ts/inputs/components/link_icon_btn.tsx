@@ -9,7 +9,7 @@ import {
     shift,
     autoUpdate,
     useDismiss,
-} from '@floating-ui/react-dom-interactions';
+} from '@floating-ui/react';
 
 import { c_tr, stop_propagation } from 'shared/internal';
 import { o_inputs, p_inputs, i_inputs } from 'inputs/internal';
@@ -20,8 +20,7 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
     const {
         x: xx,
         y,
-        reference,
-        floating,
+        refs,
         context,
         strategy,
     } = useFloating({
@@ -67,14 +66,14 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
                 )}
                 {n(input.btn_options) && (
                     // eslint-disable-next-line react/jsx-props-no-spreading
-                    <span className='shadow' ref={reference} {...getReferenceProps()} />
+                    <span className='shadow' ref={refs.setReference} {...getReferenceProps()} />
                 )}
             </c_tr.BaseTr>
             {n(input.btn_options) && (
                 // eslint-disable-next-line react/jsx-no-useless-fragment, jsx-a11y/no-static-element-interactions
                 <div
                     className='btn_options_w'
-                    ref={floating}
+                    ref={refs.setFloating}
                     style={{
                         position: strategy,
                         top: y ?? 0,
