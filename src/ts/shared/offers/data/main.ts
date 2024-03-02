@@ -56,7 +56,7 @@ export class Main {
                                 });
                                 const is_all_or_current_type_offer =
                                     this.check_if_is_all_or_current_type_offer({ offer });
-                                l(offer.name, offer.force_offer_despite_extension_name_in_its_text);
+
                                 const offer_is_current_ext: boolean =
                                     offer_text_raw.includes(ext_name);
 
