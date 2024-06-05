@@ -32,9 +32,19 @@ export class Main {
 
     public choose_random_prominent_offer = (): void =>
         err(() => {
+            const found_at_least_one_prominent_offer: boolean = this.offers_of_type.some(
+                (offer: o_offers.Offer): boolean =>
+                    err(() => (n(offer.prominent) ? offer.prominent : false), 'shr_1297'),
+            );
             const prominent_offers: o_offers.Offer[] = this.offers_of_type.filter(
                 (offer: o_offers.Offer): boolean =>
-                    err(() => (n(offer.prominent) ? offer.prominent : false), 'shr_1282'),
+                    err(() => {
+                        const this_offer_is_prominent: boolean = n(offer.prominent)
+                            ? offer.prominent
+                            : false;
+
+                        return found_at_least_one_prominent_offer ? this_offer_is_prominent : true;
+                    }, 'shr_1282'),
             );
 
             this.current_offer_i = x.range(0, prominent_offers.length - 1);
