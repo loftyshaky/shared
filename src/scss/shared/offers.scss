@@ -34,4 +34,16 @@
             }
         }
     }
+
+    .ad_label {
+        flex-grow: 1;
+
+        div {
+            @include outline_solid;
+
+            display: inline-block;
+            outline-offset: -1px;
+            padding: 0 7px;
+        }
+    }
 }

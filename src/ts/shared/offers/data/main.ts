@@ -180,6 +180,12 @@ export class Main {
         return undefined;
     };
 
+    public get_ad_label_visibility_state = (): boolean => {
+        const offer: o_offers.Offer = this.offers_of_type[this.current_offer_i];
+
+        return n(offer.has_ad_label) ? offer.has_ad_label : false;
+    };
+
     public get current_offer_banner_link(): string {
         const offer: o_offers.Offer = this.offers_of_type[this.current_offer_i];
 

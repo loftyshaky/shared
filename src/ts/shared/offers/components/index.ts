@@ -1,3 +1,4 @@
+export * from 'shared/offers/components/ad_label';
 export * from 'shared/offers/components/body';
 export * from 'shared/offers/components/counter';
 export * from 'shared/offers/components/next_offer_btn';

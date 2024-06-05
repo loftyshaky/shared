@@ -7,6 +7,7 @@ export class Offer {
     public is_enabled?: boolean = true;
     public prominent?: boolean = false;
     public has_banner?: boolean = false;
+    public has_ad_label?: boolean = false;
     public force_offer_despite_extension_name_in_its_text?: boolean = false;
 
     public constructor(obj: Offer) {
