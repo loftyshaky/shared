@@ -161,6 +161,12 @@
     "dependencies_link_text": {
         "message": "🧩 Dependencies"
     },
+    "offer_tinkoff_black_text": {
+        "message": "Get a Tinkoff Black card using @this link@ and get 500 rubles."
+    },
+    "offer_tinkoff_investments_brokerage_account_text": {
+        "message": "Open a brokerage account with Tinkoff Investments using @this link@ and get a share of up to 20,000 rubles."
+    },
     "privacy_policy_link_href": {
         "message": "https://github.com/loftyshaky/extensions-privacy-policy/blob/main/extensions-privacy-policy.md"
     },
@@ -229,6 +235,12 @@
     },
     "offer_close_other_tabs_chrome_link_href": {
         "message": "https://chromewebstore.google.com/detail/higiahnfphokonkjalljdfgjhafdjbil"
+    },
+    "offer_tinkoff_black_link_href": {
+        "message": "https://www.tinkoff.ru/baf/5eSsfQ8bbpj"
+    },
+    "offer_tinkoff_investments_brokerage_account_link_href": {
+        "message": "https://www.tinkoff.ru/baf/ArBqfsNc8o9"
     },
     "restore_defaults_confirm": {
         "message": "Restore default settings?"

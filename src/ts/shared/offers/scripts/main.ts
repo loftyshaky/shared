@@ -13,28 +13,49 @@ export class Main {
 
     private enable_offers: boolean = true;
 
+    private clear_new_tab: string[] = [
+        'nnmhbhoglljdlhbllfgkemgenlplalie',
+        'felphkbfjadmcejnibcmcncimlappdde',
+    ];
+
+    private search_enhancer_for_google: string[] = [
+        'mfihhepjphokhfnlioficodoomlnhlbd',
+        'pipbbdfondfipmjmdkmggihiknhmcfhd',
+    ];
+
     public offers: o_offers.Offer[] = this.enable_offers
         ? [
               new o_offers.Offer({
-                  name: 'animated_themes',
-                  exts_whitelist: [
-                      'nnmhbhoglljdlhbllfgkemgenlplalie',
-                      'felphkbfjadmcejnibcmcncimlappdde',
-                  ], // Clear New Tab
-                  browsers_whitelist: ['chrome'],
+                  name: 'tinkoff_black',
                   prominent: true,
+                  has_ad_label: true,
+                  browsers_whitelist: ['chrome'],
+                  countries_whitelist: ['ru'],
+                  exts_whitelist: [...this.search_enhancer_for_google],
+              }),
+              new o_offers.Offer({
+                  name: 'tinkoff_investments_brokerage_account',
+                  prominent: true,
+                  has_ad_label: true,
+                  browsers_whitelist: ['chrome'],
+                  countries_whitelist: ['ru'],
+                  exts_whitelist: [...this.search_enhancer_for_google],
+              }),
+              new o_offers.Offer({
+                  name: 'animated_themes',
+                  exts_whitelist: [...this.clear_new_tab],
+                  browsers_whitelist: ['chrome'],
                   force_offer_despite_extension_name_in_its_text: true,
               }),
-              new o_offers.Offer({ name: 'clear_new_tab', prominent: true }),
-              new o_offers.Offer({ name: 'empty_new_tab_page', prominent: true }),
-              new o_offers.Offer({ name: 'search_enhancer_for_google', prominent: true }),
-              new o_offers.Offer({ name: 'scroll_to_top', prominent: true }),
+              new o_offers.Offer({ name: 'clear_new_tab' }),
+              new o_offers.Offer({ name: 'empty_new_tab_page' }),
+              new o_offers.Offer({ name: 'search_enhancer_for_google' }),
+              new o_offers.Offer({ name: 'scroll_to_top' }),
               new o_offers.Offer({
                   name: 'close_other_tabs',
                   browsers_whitelist: ['chrome'],
-                  prominent: true,
               }),
-              new o_offers.Offer({ name: 'advanced_extension_reloader', prominent: true }),
+              new o_offers.Offer({ name: 'advanced_extension_reloader' }),
           ]
         : [];
 }
