@@ -23,6 +23,11 @@ export class Main {
         'pipbbdfondfipmjmdkmggihiknhmcfhd',
     ];
 
+    private advanced_extension_reloader: string[] = [
+        'hmhmmmajoblhmohkmfjeoamhdpodihlg',
+        'hagknokdofkmojolcpbddjfdjhnjdkae',
+    ];
+
     public offers: o_offers.Offer[] = this.enable_offers
         ? [
               new o_offers.Offer({
@@ -31,7 +36,6 @@ export class Main {
                   has_ad_label: true,
                   browsers_whitelist: ['chrome'],
                   countries_whitelist: ['ru'],
-                  exts_whitelist: [...this.search_enhancer_for_google],
               }),
               new o_offers.Offer({
                   name: 'tinkoff_investments_brokerage_account',
@@ -39,7 +43,6 @@ export class Main {
                   has_ad_label: true,
                   browsers_whitelist: ['chrome'],
                   countries_whitelist: ['ru'],
-                  exts_whitelist: [...this.search_enhancer_for_google],
               }),
               new o_offers.Offer({
                   name: 'animated_themes',
