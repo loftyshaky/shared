@@ -16,7 +16,13 @@ class TaskScheduler {
             !is_windows
         ) {
             if (is_windows) {
-                childProcess.execSync(`SCHTASKS.EXE /RUN /TN "Unlock ${package_name} dist dir"`);
+                try {
+                    childProcess.execSync(
+                        `SCHTASKS.EXE /RUN /TN "Unlock ${package_name} dist dir"`,
+                    );
+                } catch {
+                    /* empty */
+                }
             }
 
             if (remove_dist) {
