@@ -19,6 +19,7 @@
 
 .section_help {
     display: flex;
+    margin-bottom: $gap;
 
     + .subsection {
         margin-top: $gap;
