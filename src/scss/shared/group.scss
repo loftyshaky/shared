@@ -14,5 +14,13 @@
         .input_w.range {
             width: 100%;
         }
+
+        & > * {
+            margin-top: 0;
+        }
+
+        & > *:not(:last-child) {
+            margin-right: $gap;
+        }
     }
 }
