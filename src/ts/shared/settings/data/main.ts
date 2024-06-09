@@ -33,7 +33,9 @@ export class Main {
 
             runInAction(() =>
                 err(() => {
-                    data.settings = settings_final;
+                    data.settings = n(settings_final.settings)
+                        ? settings_final.settings
+                        : settings_final;
                 }, 'shr_1364'),
             );
         }, 'shr_1365');
@@ -52,7 +54,9 @@ export class Main {
         err_async(async () => {
             if (!ext.ext_context_invalidated()) {
                 const settings = await ext.storage_get();
-                const settings_are_corrupt: boolean = !n(settings.enable_cut_features);
+                const settings_are_corrupt: boolean = n(settings.settings)
+                    ? !n(settings.settings.enable_cut_features)
+                    : !n(settings.enable_cut_features);
 
                 if (_.isEmpty(settings) || settings_are_corrupt) {
                     const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });

@@ -17,7 +17,9 @@ export class ServiceWorker {
             this.clear_make_persistent_intervals();
 
             const settings = await ext.storage_get();
-            this.persistent_service_worker = settings.persistent_service_worker;
+            this.persistent_service_worker = n(settings.settings)
+                ? settings.settings.persistent_service_worker
+                : settings.persistent_service_worker;
 
             this.make_persistent_intervals.push(
                 setInterval(() => {
