@@ -2,10 +2,16 @@
     overflow: auto;
     flex-shrink: 0;
 
+    .offers_inner {
+        display: flex;
+        flex-flow: column;
+    }
+
     .top_bar {
         display: flex;
         justify-content: end;
-        margin-bottom: $gap;
+        order: 1;
+        margin-top: $gap;
 
         .visible {
             position: absolute;
