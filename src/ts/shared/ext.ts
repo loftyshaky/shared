@@ -286,6 +286,10 @@ export class Ext {
             const set_data = async (set_local: boolean): Promise<void> => {
                 const data: t.AnyRecord = await we.storage[set_local ? 'sync' : 'local'].get();
 
+                if (replace) {
+                    await we.storage[set_local ? 'local' : 'sync'].clear();
+                }
+
                 if (_.isEmpty(data)) {
                     await we.storage[set_local ? 'local' : 'sync'].set(obj);
                 } else {
