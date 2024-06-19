@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { makeObservable, action } from 'mobx';
 
 import { o_inputs, i_inputs } from 'inputs/internal';
@@ -75,8 +76,20 @@ export class NestedInput {
                                         } else {
                                             const new_parent_disabled: boolean = !parents.every(
                                                 (parent: string) =>
-                                                    err(() => data.settings[parent], 'shr_1056'),
+                                                    err(() => {
+                                                        if (n(parent_input.val_accessor)) {
+                                                            const val = _.get(
+                                                                data,
+                                                                parent_input.val_accessor,
+                                                            );
+
+                                                            return val;
+                                                        }
+
+                                                        return data.settings[parent];
+                                                    }, 'shr_1056'),
                                             );
+
                                             input_2.parent_disabled =
                                                 input.section ===
                                                     d_settings.Sections.i().current_section ||

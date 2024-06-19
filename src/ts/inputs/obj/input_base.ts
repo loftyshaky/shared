@@ -131,7 +131,16 @@ export class InputBase {
                     err(
                         () =>
                             cond.pass_vals.some((pass_val: boolean | string | number): boolean =>
-                                err(() => data.settings[cond.input_name] === pass_val, 'shr_1207'),
+                                err(() => {
+                                    if (n(cond.val_accessor)) {
+                                        const val = _.get(data, cond.val_accessor);
+                                        const val_final: string = n(val) ? val : '';
+
+                                        return val_final === pass_val;
+                                    }
+
+                                    return data.settings[cond.input_name] === pass_val;
+                                }, 'shr_1207'),
                             ),
                         'shr_1206',
                     ),
