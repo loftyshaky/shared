@@ -30,10 +30,10 @@ export class Main {
 
             const contains_permission: boolean = await we.permissions.contains(permissions);
 
-            if (set_checkbox_val && contains_permission) {
+            if (contains_permission) {
                 const removed: boolean = await we.permissions.remove(permissions);
 
-                if (removed) {
+                if (set_checkbox_val && removed) {
                     this.set_checkbox_val({ name, val: false });
                 }
             } else {
