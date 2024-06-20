@@ -19,16 +19,18 @@ export class Main {
     public set_permission = ({
         name,
         optional_permission_checkbox_dict,
+        set_checkbox_val = true,
     }: {
         name: string;
         optional_permission_checkbox_dict: i_optional_permissions.OptionalPermissionCheckboxDict;
-    }): Promise<void> =>
+        set_checkbox_val?: boolean;
+    }): Promise<boolean> =>
         err_async(async () => {
             const permissions = optional_permission_checkbox_dict[name];
 
             const contains_permission: boolean = await we.permissions.contains(permissions);
 
-            if (contains_permission) {
+            if (set_checkbox_val && contains_permission) {
                 const removed: boolean = await we.permissions.remove(permissions);
 
                 if (removed) {
@@ -37,10 +39,14 @@ export class Main {
             } else {
                 const granted: boolean = await we.permissions.request(permissions);
 
-                if (granted) {
+                if (set_checkbox_val && granted) {
                     this.set_checkbox_val({ name, val: true });
                 }
+
+                return granted;
             }
+
+            return false;
         }, 'shr_1221');
 
     private set_checkbox_val = ({ name, val }: { name: string; val: boolean }): void =>
