@@ -66,6 +66,9 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                                 state: false,
                             });
                         }}
+                        onWheel={() => {
+                            input.prevent_number_val_changeon_scroll!({ input });
+                        }}
                     />
                     {n(input.text_btns)
                         ? input.text_btns.map(

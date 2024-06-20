@@ -45,4 +45,15 @@ export class Text extends o_inputs.InputBase {
             d_inputs.Val.i().access({ input }) !== ''
         );
     });
+
+    public prevent_number_val_changeon_scroll? = ({ input }: { input: Text }): Promise<void> =>
+        err_async(async () => {
+            if (n(document.activeElement) && input.text_type === 'number') {
+                const active_element = document.activeElement as HTMLInputElement;
+
+                active_element.blur();
+                await x.delay(0);
+                active_element.focus();
+            }
+        }, 'shr_1298');
 }
