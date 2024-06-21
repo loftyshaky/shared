@@ -1,3 +1,4 @@
+import { makeObservable, observable } from 'mobx';
 import { o_inputs, i_inputs } from 'inputs/internal';
 
 export class Select extends o_inputs.InputBase {
@@ -6,6 +7,11 @@ export class Select extends o_inputs.InputBase {
 
     public constructor(obj: Select) {
         super(obj);
+
+        makeObservable(this, {
+            options: observable,
+        });
+
         Object.assign(this, obj);
         this.options = obj.options;
     }
