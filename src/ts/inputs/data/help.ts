@@ -51,6 +51,8 @@ export class Help {
     }: {
         section_or_input: o_inputs.Section | i_inputs.Input;
     }): string | undefined {
-        return ext.msg(`${section_or_input.name}_help_text`) || section_or_input.alt_help_msg;
+        return n(section_or_input.alt_help_msg)
+            ? ext.msg(section_or_input.alt_help_msg) || section_or_input.alt_help_msg
+            : ext.msg(`${section_or_input.name}_help_text`);
     });
 }
