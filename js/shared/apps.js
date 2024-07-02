@@ -14,7 +14,7 @@ const apps = [
     'Stock Screener',
     'Advanced Extension Reloader',
     'Search Enhancer for Google',
-    'Close Other Tabs+',
+    'Close Other Tabs Plus',
     'Clear New Tab',
     'Base64 font-face',
 ];

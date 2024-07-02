@@ -194,7 +194,7 @@
     "offer_scroll_to_top_text": {
         "message": "Install the @Scroll to Top@ extension to quickly scroll to top or bottom of the page and then return to the previous position."
     },
-    "offer_close_other_tabs_text": {
+    "offer_close_other_tabs_plus_text": {
         "message": "Install the @Close Other Tabs+@ extension to close/pin/unpin multiple tabs at once, filtering them by a window, pin/group state or hostname."
     },
     "offer_advanced_extension_reloader_text": {
@@ -233,7 +233,7 @@
     "offer_scroll_to_top_edge_link_href": {
         "message": "https://microsoftedge.microsoft.com/addons/detail/cjmbcpckfanombcljcmgnhbdobjblbkk"
     },
-    "offer_close_other_tabs_chrome_link_href": {
+    "offer_close_other_tabs_plus_chrome_link_href": {
         "message": "https://chromewebstore.google.com/detail/higiahnfphokonkjalljdfgjhafdjbil"
     },
     "offer_tinkoff_black_link_href": {
