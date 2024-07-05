@@ -236,6 +236,9 @@
     "offer_close_other_tabs_plus_chrome_link_href": {
         "message": "https://chromewebstore.google.com/detail/higiahnfphokonkjalljdfgjhafdjbil"
     },
+    "offer_close_other_tabs_plus_edge_link_href": {
+        "message": "https://microsoftedge.microsoft.com/addons/detail/hlgemamghlognmbmipcoapjgkngbbjko"
+    },
     "offer_tinkoff_black_link_href": {
         "message": "https://www.tinkoff.ru/baf/5eSsfQ8bbpj"
     },
