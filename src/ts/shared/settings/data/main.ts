@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { runInAction, toJS } from 'mobx';
 
-import { t } from 'shared/internal';
+import { t, s_data } from 'shared/internal';
 
 export class Main {
     private static i0: Main;
@@ -50,10 +50,10 @@ export class Main {
             });
         }, 'shr_1366');
 
-    public set_from_storage = (): Promise<void> =>
+    public set_from_storage = (): Promise<any> =>
         err_async(async () => {
             if (!ext.ext_context_invalidated()) {
-                const settings = await ext.storage_get();
+                const settings = await s_data.Cache.i().get_data();
                 const settings_are_corrupt: boolean = n(settings.settings)
                     ? !n(settings.settings.enable_cut_features)
                     : !n(settings.enable_cut_features);
@@ -68,6 +68,10 @@ export class Main {
                 if (!_.isEqual(toJS(data.settings), settings) && !settings_are_corrupt) {
                     await this.set({ settings });
                 }
+
+                return settings;
             }
+
+            return undefined;
         }, 'shr_1367');
 }
