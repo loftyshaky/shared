@@ -12,13 +12,13 @@ export class ServiceWorker {
     private make_persistent_intervals: ReturnType<typeof setInterval>[] = [];
     private persistent_service_worker: boolean = false;
 
-    public make_persistent = async (): Promise<void> =>
+    public make_persistent = async ({ settings }: { settings?: any } = {}): Promise<void> =>
         err_async(async () => {
             this.clear_make_persistent_intervals();
 
-            const settings = await ext.storage_get();
+            const settings_2 = n(settings) ? settings : await ext.storage_get();
             this.persistent_service_worker = n(settings.settings)
-                ? settings.settings.persistent_service_worker
+                ? settings_2.settings.persistent_service_worker
                 : settings.persistent_service_worker;
 
             this.make_persistent_intervals.push(

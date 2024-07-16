@@ -18,6 +18,7 @@ export {
     d_schema,
     d_settings,
     s_css_vars,
+    s_data,
     s_loading_screen,
     s_no_tr,
     d_offers,
