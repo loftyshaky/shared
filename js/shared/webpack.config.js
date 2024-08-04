@@ -127,6 +127,7 @@ const shared_config = ({
         resolve: {
             alias: {
                 shared: path.join(paths.ts, 'shared'),
+                shared_clean: path.join(paths.ts, 'shared_clean'),
                 ...(app_type === 'ext' && {
                     background: path.join(paths.ts, 'background'),
                     settings: path.join(paths.ts, 'settings'),
@@ -188,6 +189,7 @@ const shared_config = ({
             minimize: minimize && argv.mode === 'production',
             minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
             sideEffects: argv.mode === 'production',
+            usedExports: true,
         },
         performance: {
             maxEntrypointSize: 52428800,

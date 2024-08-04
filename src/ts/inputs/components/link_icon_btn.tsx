@@ -11,7 +11,8 @@ import {
     useDismiss,
 } from '@floating-ui/react';
 
-import { c_tr, stop_propagation } from 'shared/internal';
+import { stop_propagation } from 'shared_clean/internal';
+import { c_tr } from 'shared/internal';
 import { o_inputs, p_inputs, i_inputs } from 'inputs/internal';
 
 export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observer((props) => {

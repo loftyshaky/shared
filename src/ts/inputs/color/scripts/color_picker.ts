@@ -1,6 +1,6 @@
 import { runInAction } from 'mobx';
 
-import { t } from 'shared/internal';
+import { t } from 'shared_clean/internal';
 import { o_color, d_color, i_color } from 'inputs/internal';
 
 export class ColorPicker {

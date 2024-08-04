@@ -12,6 +12,7 @@ export const TextBtn: React.FunctionComponent<p_inputs.TextBtn> = observer((prop
             type='button'
             title={ext.msg(`${name}_text_btn_title`)}
             tabIndex={input.tab_index!()}
+            aria-label='Text button'
             onClick={on_click}
         >
             <Svg />

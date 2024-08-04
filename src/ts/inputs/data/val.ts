@@ -1,9 +1,10 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+import set from 'lodash/set';
 import { SyntheticEvent, FormEvent } from 'react';
 import { makeObservable, observable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { i_data } from 'shared/internal';
+import { i_data } from 'shared_clean/internal';
 import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
 
 export class Val {
@@ -64,7 +65,7 @@ export class Val {
             const new_input = input;
 
             if (n(input.val_accessor)) {
-                const val = _.get(data, input.val_accessor);
+                const val = get(data, input.val_accessor);
                 const val_final: string = n(val) ? val : '';
 
                 runInAction(() =>
@@ -119,7 +120,7 @@ export class Val {
         ({ val, input }: { val: i_data.Val | FileList; input: i_inputs.Input }): void =>
             err(() => {
                 if (n(input.val_accessor)) {
-                    _.set(data, input.val_accessor, val);
+                    set(data, input.val_accessor, val);
                 } else {
                     data.settings[input.name] = val;
                 }
@@ -147,7 +148,7 @@ export class Val {
                 }
 
                 if (n(input.val_accessor)) {
-                    _.set(data, input.val_accessor, '');
+                    set(data, input.val_accessor, '');
                 } else {
                     data.settings[input.name] = '';
                 }

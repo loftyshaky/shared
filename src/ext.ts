@@ -1,6 +1,6 @@
-import { init_page, Ext } from 'shared/ext';
+import { init_page, Ext } from 'shared_clean/ext';
 
-export { Ext } from 'shared/ext';
+export { Ext } from 'shared_clean/ext';
 
 declare const globalThis: Global;
 

@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import union from 'lodash/union';
 import { makeObservable, observable, computed, action } from 'mobx';
 
 import { o_offers, s_offers, i_offers } from 'shared/internal';
@@ -49,7 +50,7 @@ export class Main {
 
             this.current_offer_i = x.range(0, prominent_offers.length - 1);
 
-            this.offers_of_type = _.union(prominent_offers, this.offers_of_type);
+            this.offers_of_type = union(prominent_offers, this.offers_of_type);
         }, 'shr_1281');
 
     public set_offers_of_type = (): void =>
@@ -126,7 +127,7 @@ export class Main {
         }, 'shr_1279');
 
     public found_offers_for_current_locale = (): boolean =>
-        err(() => !_.isEmpty(this.offers_of_type), 'shr_1273');
+        err(() => !isEmpty(this.offers_of_type), 'shr_1273');
 
     public show_previous_offer = (): void =>
         err(() => {

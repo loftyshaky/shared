@@ -1,7 +1,8 @@
 import React, { useRef, MouseEvent, FocusEvent, KeyboardEvent } from 'react';
 import { observer } from 'mobx-react';
 
-import { prevent_default, s_tab_index } from 'shared/internal';
+import { prevent_default } from 'shared_clean/internal';
+import { s_tab_index } from 'shared/internal';
 import { c_inputs, c_color, d_color, p_color } from 'inputs/internal';
 
 export const Visualization: React.FunctionComponent<p_color.Visualization> = observer((props) => {

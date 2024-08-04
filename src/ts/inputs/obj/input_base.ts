@@ -1,8 +1,9 @@
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import get from 'lodash/get';
 import { makeObservable, observable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t } from 'shared/internal';
+import { t } from 'shared_clean/internal';
 import { i_inputs } from 'inputs/internal';
 
 export class InputBase {
@@ -124,7 +125,7 @@ export class InputBase {
         state_conds: i_inputs.StateCond[] | undefined;
     }): boolean =>
         err(() => {
-            const conds_provided: boolean = !_.isEmpty(state_conds);
+            const conds_provided: boolean = !isEmpty(state_conds);
 
             if (n(state_conds) && conds_provided) {
                 return !state_conds.every((cond: i_inputs.StateCond): boolean =>
@@ -133,7 +134,7 @@ export class InputBase {
                             cond.pass_vals.some((pass_val: boolean | string | number): boolean =>
                                 err(() => {
                                     if (n(cond.val_accessor)) {
-                                        const val = _.get(data, cond.val_accessor);
+                                        const val = get(data, cond.val_accessor);
                                         const val_final: string = n(val) ? val : '';
 
                                         return val_final === pass_val;

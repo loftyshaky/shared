@@ -1,6 +1,6 @@
-import { init_page, App } from 'shared/app';
+import { init_page, App } from 'shared_clean/app';
 
-export { App } from 'shared/app';
+export { App } from 'shared_clean/app';
 
 declare const globalThis: Global;
 

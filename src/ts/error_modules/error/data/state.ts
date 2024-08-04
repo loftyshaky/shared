@@ -1,6 +1,7 @@
 import { makeObservable, observable, computed, action } from 'mobx';
 
-import { d_error, i_error } from 'error_modules/internal';
+import { i_error } from 'error_modules_clean/internal';
+import { d_error } from 'error_modules/internal';
 
 export class State {
     private static i0: State;

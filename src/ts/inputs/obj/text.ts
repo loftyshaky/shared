@@ -1,7 +1,7 @@
 import { makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t } from 'shared/internal';
+import { t } from 'shared_clean/internal';
 import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
 
 export class Text extends o_inputs.InputBase {

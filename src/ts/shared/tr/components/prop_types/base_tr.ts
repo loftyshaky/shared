@@ -1,4 +1,4 @@
-import { t } from 'shared/internal';
+import { t } from 'shared_clean/internal';
 
 export interface BaseTr {
     name: string; // effect name ex: fade

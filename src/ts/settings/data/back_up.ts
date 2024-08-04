@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-import { t } from 'shared/internal';
+import { t } from 'shared_clean/internal';
 import { o_inputs } from 'inputs/internal';
 
 export class BackUp {

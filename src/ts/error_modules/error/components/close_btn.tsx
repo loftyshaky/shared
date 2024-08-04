@@ -8,6 +8,7 @@ export const CloseBtn: React.FunctionComponent = observer(() => (
     <button
         className='close_btn'
         type='button'
+        aria-label='Close'
         onMouseDown={(): void =>
             d_error.State.i().change_state({
                 observable_key: 'is_visible',

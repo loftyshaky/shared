@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
-import { s_header } from 'shared/internal';
+import { s_header } from 'shared_clean/internal';
 import { s_dependencies } from 'dependencies/internal';
 
 export const Body: React.FunctionComponent = observer(() => {

@@ -1,4 +1,4 @@
-import { t, s_theme } from 'shared/internal';
+import { t, s_theme } from 'shared_clean/internal';
 import { i_inputs } from 'inputs/internal';
 
 export class Theme {

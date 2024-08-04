@@ -1,4 +1,4 @@
-import { i_error } from 'error_modules/internal';
+import { i_error } from 'error_modules_clean/internal';
 
 export class Flash {
     private static i0: Flash;

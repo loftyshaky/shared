@@ -1,4 +1,5 @@
-import { d_error, s_error, i_error } from 'error_modules/internal';
+import { d_error as d_error_clean, i_error } from 'error_modules_clean/internal';
+import { s_error, d_error } from 'error_modules/internal';
 
 declare const globalThis: Global;
 
@@ -8,7 +9,7 @@ globalThis.show_err_ribbon = (
     {
         error_msg_key = '',
         notification_type = 'error',
-        hide_delay = d_error.Main.i().hide_delay,
+        hide_delay = d_error_clean.Main.i().hide_delay,
         silent = false,
         persistent = false,
         exit = false,
@@ -32,7 +33,7 @@ globalThis.show_flash = s_error.Flash.i().show;
 globalThis.show_notification = ({
     error_msg_key = '',
     notification_type = 'neutral',
-    hide_delay = d_error.Main.i().hide_delay,
+    hide_delay = d_error_clean.Main.i().hide_delay,
     persistent = false,
     is_fullscreen = false,
     prevent_subsequent_errors = false,
@@ -67,7 +68,7 @@ globalThis.err = <T1>(
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = d_error.Main.i().hide_delay,
+        hide_delay = d_error_clean.Main.i().hide_delay,
         is_fullscreen = false,
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
@@ -97,7 +98,7 @@ globalThis.err_async = async <T1>(
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = d_error.Main.i().hide_delay,
+        hide_delay = d_error_clean.Main.i().hide_delay,
         is_fullscreen = false,
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
@@ -118,13 +119,3 @@ globalThis.err_async = async <T1>(
 
     return undefined;
 };
-
-globalThis.throw_err = (msg: string): void => {
-    throw new Error(msg);
-};
-
-globalThis.throw_err_obj = (error_obj: Error): void => {
-    throw error_obj;
-};
-
-globalThis.err_obj = (msg: string): Error => new Error(msg);

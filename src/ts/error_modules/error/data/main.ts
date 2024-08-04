@@ -1,6 +1,7 @@
 import { makeObservable, action, runInAction } from 'mobx';
 
-import { d_error, i_error } from 'error_modules/internal';
+import { d_error as d_error_clean, i_error } from 'error_modules_clean/internal';
+import { d_error } from 'error_modules/internal';
 
 export class Main {
     private static i0: Main;
@@ -16,22 +17,21 @@ export class Main {
         });
     }
 
-    public hide_delay: number = 5000;
     private highlight_time: number = 300;
-    private prevent_subsequent_errors: boolean = false;
     /*
     error_msg_key = a key to access to localized version of error message in [locale] messages.json file
     silent = don't show (true) / show (false) error ribbon
     persistent = don't hide (true) / hide (false) error ribbon after 5 seconds
     exit = terminate code execution (true) / show error message; don't terminate code execution (false)
     */
+
     public show_error = (
         error_obj: i_error.ErrorObj | undefined,
         error_code: string | undefined,
         {
             error_msg_key = '',
             notification_type = 'error',
-            hide_delay = this.hide_delay,
+            hide_delay = d_error_clean.Main.i().hide_delay,
             silent = false,
             persistent = false,
             exit = false,
@@ -39,15 +39,31 @@ export class Main {
             prevent_subsequent_errors = false,
         }: i_error.ShowError = {},
     ): void => {
-        const prevent_subsequent_errors_final =
-            prevent_subsequent_errors || this.prevent_subsequent_errors;
-        const silent_final: boolean = prevent_subsequent_errors_final
-            ? this.prevent_subsequent_errors
-            : silent;
-        const persistent_final: boolean = prevent_subsequent_errors_final ? true : persistent;
-        const error_ui_is_visible: boolean =
-            !x.in_service_worker && !silent_final && (!error_obj || !error_obj.silent);
+        d_error_clean.Main.i().show_error(error_obj, error_code, {
+            error_msg_key,
+            notification_type,
+            hide_delay,
+            silent,
+            persistent,
+            exit,
+            is_fullscreen,
+            prevent_subsequent_errors,
+            show_error_state_1: this.show_error_state_1,
+            show_error_state_2: this.show_error_state_2,
+        });
+    };
 
+    private show_error_state_1 = (
+        error_obj: i_error.ErrorObj | undefined,
+        {
+            error_msg_key,
+            notification_type,
+            hide_delay,
+            is_fullscreen,
+            error_ui_is_visible,
+            persistent_final,
+        }: i_error.ShowErrorState1,
+    ): void => {
         if (error_ui_is_visible) {
             if (notification_type !== 'error') {
                 d_error.Msg.i().basic_msg = ext.msg(error_msg_key);
@@ -85,7 +101,13 @@ export class Main {
                 delay: this.highlight_time,
             });
         }
+    };
 
+    private show_error_state_2 = (
+        error_obj: i_error.ErrorObj | undefined,
+        error_code: string | undefined,
+        { error_msg_key, error_ui_is_visible, silent_final }: i_error.ShowErrorState2,
+    ): void => {
         if (error_obj && error_code) {
             if (error_ui_is_visible) {
                 d_error.Msg.i().change_visibility_of_advanced_msg({ is_visible: false });
@@ -108,59 +130,6 @@ export class Main {
                     }
                 }, 'shr_1195'),
             );
-
-            if (error_obj.exit || exit) {
-                const updated_error_obj: i_error.ErrorObj = error_obj;
-
-                const set_updated_error_obj_propery = ({
-                    key,
-                    undefined_property,
-                }: {
-                    key: string;
-                    undefined_property: boolean | string | number;
-                }): void => {
-                    (updated_error_obj[key as keyof i_error.ErrorObj] as
-                        | string
-                        | number
-                        | boolean
-                        | undefined) = n(error_obj[key as keyof i_error.ErrorObj])
-                        ? error_obj[key as keyof i_error.ErrorObj]
-                        : undefined_property;
-                };
-
-                set_updated_error_obj_propery({
-                    key: 'error_code',
-                    undefined_property: error_code,
-                });
-                set_updated_error_obj_propery({
-                    key: 'error_msg',
-                    undefined_property: error_msg_key,
-                });
-                set_updated_error_obj_propery({
-                    key: 'silent',
-                    undefined_property: silent_final,
-                });
-                set_updated_error_obj_propery({
-                    key: 'persistent',
-                    undefined_property: persistent_final,
-                });
-                set_updated_error_obj_propery({
-                    key: 'exit',
-                    undefined_property: exit,
-                });
-                set_updated_error_obj_propery({
-                    key: 'hide_delay',
-                    undefined_property: hide_delay,
-                });
-
-                throw updated_error_obj;
-            } else {
-                this.output_error(error_obj, error_code);
-            }
-        }
-
-        if (prevent_subsequent_errors) {
-            this.prevent_subsequent_errors = true;
         }
     };
 

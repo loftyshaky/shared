@@ -1,7 +1,6 @@
-import _ from 'lodash';
 import { runInAction, toJS } from 'mobx';
 
-import { t, s_data } from 'shared/internal';
+import { d_settings } from 'shared_clean/internal';
 
 export class Main {
     private static i0: Main;
@@ -17,61 +16,24 @@ export class Main {
     public set = ({
         settings,
         settings_are_corrupt = false,
-    }: { settings?: any; settings_are_corrupt?: boolean } = {}): Promise<void> =>
-        err_async(async () => {
-            let settings_final: any;
-
-            if (n(settings)) {
-                if (_.isEmpty(settings) || settings_are_corrupt) {
-                    const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
-
-                    settings_final = default_settings;
-                } else {
-                    settings_final = settings;
-                }
-            }
-
-            runInAction(() =>
-                err(() => {
-                    data.settings = n(settings_final.settings)
-                        ? settings_final.settings
-                        : settings_final;
-                }, 'shr_1364'),
-            );
-        }, 'shr_1365');
-
-    public change = ({ key, val }: { key: string; val: t.AnyUndefined }): Promise<void> =>
-        err_async(async () => {
-            data.settings[key] = val;
-
-            await ext.send_msg_resp({
-                msg: 'update_settings_background',
-                settings: { [key]: val },
-            });
-        }, 'shr_1366');
+    }: {
+        settings?: any;
+        settings_are_corrupt?: boolean;
+    }): Promise<void> =>
+        err_async(
+            async () =>
+                d_settings.Main.i().set({
+                    settings,
+                    settings_are_corrupt,
+                    run_in_action: runInAction,
+                }),
+            'shr_1365',
+        );
 
     public set_from_storage = (): Promise<any> =>
-        err_async(async () => {
-            if (!ext.ext_context_invalidated()) {
-                const settings = await s_data.Cache.i().get_data();
-                const settings_are_corrupt: boolean = n(settings.settings)
-                    ? !n(settings.settings.enable_cut_features)
-                    : !n(settings.enable_cut_features);
-
-                if (_.isEmpty(settings) || settings_are_corrupt) {
-                    const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
-
-                    await ext.storage_set(default_settings, false);
-                    await this.set({ settings: default_settings, settings_are_corrupt });
-                }
-
-                if (!_.isEqual(toJS(data.settings), settings) && !settings_are_corrupt) {
-                    await this.set({ settings });
-                }
-
-                return settings;
-            }
-
-            return undefined;
-        }, 'shr_1367');
+        err_async(
+            async () =>
+                d_settings.Main.i().set_from_storage({ to_js: toJS, run_in_action: runInAction }),
+            'shr_1235',
+        );
 }

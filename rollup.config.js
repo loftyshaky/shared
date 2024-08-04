@@ -24,7 +24,8 @@ const config = {
     input: [
         'src/ext.ts',
         'src/app.ts',
-        'src/index.ts',
+        'src/shared.ts',
+        'src/shared_clean.ts',
         'src/inputs.ts',
         'src/settings.ts',
         'src/announcement.ts',
@@ -40,7 +41,7 @@ const config = {
         },
     ],
     external: ['react', 'react-dom'],
-    treeshake: process.env.mode === 'production',
+    treeshake: true,
     watch: {
         clearScreen: false,
     },

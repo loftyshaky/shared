@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import get from 'lodash/get';
 import { makeObservable, action } from 'mobx';
 
 import { o_inputs, i_inputs } from 'inputs/internal';
@@ -78,7 +78,7 @@ export class NestedInput {
                                                 (parent: string) =>
                                                     err(() => {
                                                         if (n(parent_input.val_accessor)) {
-                                                            const val = _.get(
+                                                            const val = get(
                                                                 data,
                                                                 parent_input.val_accessor,
                                                             );

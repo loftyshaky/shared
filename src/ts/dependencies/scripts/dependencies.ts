@@ -1,6 +1,6 @@
 import { makeObservable, observable, runInAction } from 'mobx';
 
-import { t } from 'shared/internal';
+import { t } from 'shared_clean/internal';
 
 export class Dependencies {
     private static i0: Dependencies;
@@ -35,13 +35,13 @@ export class Dependencies {
                                                 ? `${key}: ${x.wrap_link_in_a(val)}`
                                                 : ''
                                         }</div>`,
-                                    'ges_1293',
+                                    'shr_1293',
                                 ),
                             '',
                         );
 
                         return `${accumulator}<br><hr><br><div>${entry}</div>`;
-                    }, 'ges_1292'),
+                    }, 'shr_1292'),
                 '',
             );
 
@@ -50,5 +50,5 @@ export class Dependencies {
                     this.dependencies_text = dependencies_json_text.replace(/\n/gm, '<br>');
                 }, 'shr_1291'),
             );
-        }, 'ges_1290');
+        }, 'shr_1290');
 }

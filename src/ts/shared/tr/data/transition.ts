@@ -1,7 +1,8 @@
 import React from 'react';
 import { action } from 'mobx';
 
-import { t, i_tr } from 'shared/internal';
+import { t } from 'shared_clean/internal';
+import { i_tr } from 'shared/internal';
 
 export class Transition {
     private static i0: Transition;

@@ -1,6 +1,7 @@
 import { makeObservable, observable, computed, action, runInAction } from 'mobx';
 
-import { s_css_vars, s_loading_screen } from 'shared/internal';
+import { s_css_vars } from 'shared_clean/internal';
+import { s_loading_screen } from 'shared/internal';
 
 export class Main {
     private static i0: Main;

@@ -1,8 +1,9 @@
-import _ from 'lodash';
+import isNaN from 'lodash/isNaN';
+import maxBy from 'lodash/maxBy';
 import { makeObservable, observable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { s_css_vars } from 'shared/internal';
+import { s_css_vars } from 'shared_clean/internal';
 import { o_inputs, i_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
@@ -31,7 +32,7 @@ export class InputWidth {
         err(() => (calculate_width ? 'calculate_width' : ''), 'shr_1255');
 
     max_width_style? = computedFn(function (this: InputWidth): number | string | undefined {
-        return x.px(_.isNaN(this.max_width) ? '0' : this.max_width);
+        return x.px(isNaN(this.max_width) ? '0' : this.max_width);
     });
 
     min_width_style? = computedFn(function (
@@ -75,7 +76,7 @@ export class InputWidth {
 
                     const get_input_w_with_max_width = (): HTMLSpanElement | undefined =>
                         err(() => {
-                            const input_w_with_max_width = _.maxBy(
+                            const input_w_with_max_width = maxBy(
                                 input_ws,
                                 (input_w): number => input_w.offsetWidth,
                             );

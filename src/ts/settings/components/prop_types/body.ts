@@ -1,4 +1,4 @@
-import { t } from 'shared/internal';
+import { t } from 'shared_clean/internal';
 import { i_inputs } from 'inputs/internal';
 
 export interface Body {

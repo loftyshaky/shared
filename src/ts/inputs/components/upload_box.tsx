@@ -1,9 +1,9 @@
-import _ from 'lodash';
-
+import merge from 'lodash/merge';
 import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 
-import { prevent_default, c_tr } from 'shared/internal';
+import { prevent_default } from 'shared_clean/internal';
+import { c_tr } from 'shared/internal';
 import { c_inputs, o_inputs, d_inputs, s_inputs, p_inputs } from 'inputs/internal';
 
 export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((props) => {
@@ -81,7 +81,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                         </div>
                         <div className='what_to_do_msg'>
                             <c_inputs.LinkBtn
-                                input={_.merge({}, input, {
+                                input={merge({}, input, {
                                     name: 'browse',
                                     type: 'link_btn',
                                     event_callback: () =>

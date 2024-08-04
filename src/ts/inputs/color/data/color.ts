@@ -1,8 +1,10 @@
 import { MouseEvent } from 'react';
-import _ from 'lodash';
+import get from 'lodash/get';
+import set from 'lodash/set';
+import isNaN from 'lodash/isNaN';
 import { makeObservable, action } from 'mobx';
 
-import { t } from 'shared/internal';
+import { t, s_color, i_color as i_color_shared_clean } from 'shared_clean/internal';
 import { o_color, d_color, i_color } from 'inputs/internal';
 
 export class Color {
@@ -21,47 +23,14 @@ export class Color {
         });
     }
 
-    public default_colors: i_color.Color[] = [
-        'rgb(255 255 255)',
-        'rgb(0 0 0)',
-        'rgb(255 0 0)',
-        'rgb(183 28 28)',
-        'rgb(244 67 54)',
-        'rgb(245 0 87)',
-        'rgb(136 14 79)',
-        'rgb(240 98 146)',
-        'rgb(170 0 255)',
-        'rgb(74 20 140)',
-        'rgb(156 39 176)',
-        'rgb(98 0 234)',
-        'rgb(103 58 183)',
-        'rgb(48 79 254)',
-        'rgb(63 81 181)',
-        'rgb(0 176 255)',
-        'rgb(24 255 255)',
-        'rgb(29 233 182)',
-        'rgb(0 150 136)',
-        'rgb(0 200 83)',
-        'rgb(27 94 32)',
-        'rgb(100 221 23)',
-        'rgb(174 234 0)',
-        'rgb(255 214 0)',
-        'rgb(255 235 59)',
-        'rgb(255 111 0)',
-        'rgb(255 213 79)',
-        'rgb(255 152 0)',
-        'rgb(221 44 0)',
-        'rgb(191 54 12)',
-    ];
-
-    public palette_color_amount: number = Object.keys(this.default_colors).length;
-    public previous_color: i_color.Color = '';
+    public palette_color_amount: number = Object.keys(s_color.Color.i().default_colors).length;
+    public previous_color: i_color_shared_clean.Color = '';
 
     public access = ({ input, i }: { input: o_color.Color; i: i_color.I }): string =>
         err(() => {
             if (i === 'main') {
-                const val: i_color.Color = n(input.val_accessor)
-                    ? _.get(data, input.val_accessor)
+                const val: i_color_shared_clean.Color = n(input.val_accessor)
+                    ? get(data, input.val_accessor)
                     : data.settings[input.name];
 
                 if (this.val_is_palette_color({ input })) {
@@ -74,7 +43,7 @@ export class Color {
             return data.settings.colors[i];
         }, 'shr_1006');
 
-    public access_from_val = ({ val }: { val: i_color.Color }): string =>
+    public access_from_val = ({ val }: { val: i_color_shared_clean.Color }): string =>
         err(() => (typeof val === 'number' ? data.settings.colors[val] : val), 'shr_1007');
 
     public set = ({
@@ -84,12 +53,12 @@ export class Color {
     }: {
         input: o_color.Color;
         i: i_color.I;
-        color: i_color.Color;
+        color: i_color_shared_clean.Color;
     }): void =>
         err(() => {
             if (i === 'main') {
                 if (n(input.val_accessor)) {
-                    _.set(data, input.val_accessor, color);
+                    set(data, input.val_accessor, color);
                 } else {
                     data.settings[input.name] = color;
                 }
@@ -130,7 +99,7 @@ export class Color {
             const inst = d_color.Visibility.i();
 
             if (n(inst.previously_visible_input) && n(inst.previously_visible_color_picker_i)) {
-                const color: i_color.Color =
+                const color: i_color_shared_clean.Color =
                     inst.previously_visible_color_picker_i !== 'main' &&
                     typeof this.previous_color === 'number'
                         ? data.settings.colors[this.previous_color]
@@ -163,7 +132,7 @@ export class Color {
         }, 'shr_1011');
 
     public filter_palette_colors = ({ obj }: { obj: i_color.ColorPickerState }): string[] =>
-        err(() => Object.keys(obj).filter((key: string): boolean => !_.isNaN(+key)), 'shr_1012');
+        err(() => Object.keys(obj).filter((key: string): boolean => !isNaN(+key)), 'shr_1012');
 
     public select_palette_color = (
         {
@@ -180,7 +149,7 @@ export class Color {
 
             if (!called_by_enter_key && input.is_palette_color!({ i })) {
                 if (n(input.val_accessor)) {
-                    _.set(data, input.val_accessor, i);
+                    set(data, input.val_accessor, i);
                 } else {
                     data.settings[input.name] = i;
                 }
@@ -199,8 +168,8 @@ export class Color {
 
     public val_is_palette_color = ({ input }: { input: o_color.Color }): boolean =>
         err(() => {
-            const val: i_color.Color = n(input.val_accessor)
-                ? _.get(data, input.val_accessor)
+            const val: i_color_shared_clean.Color = n(input.val_accessor)
+                ? get(data, input.val_accessor)
                 : data.settings[input.name];
             const val_is_palette_color: boolean = typeof val === 'number';
 
@@ -209,8 +178,8 @@ export class Color {
 
     public set_previous_color = ({ input, i }: { input: o_color.Color; i: i_color.I }): void =>
         err(() => {
-            const color: i_color.Color = n(input.val_accessor)
-                ? _.get(data, input.val_accessor)
+            const color: i_color_shared_clean.Color = n(input.val_accessor)
+                ? get(data, input.val_accessor)
                 : data.settings[input.name];
 
             this.previous_color =
@@ -239,7 +208,7 @@ export class Color {
         default_colors,
     }: {
         input: o_color.Color;
-        default_colors?: i_color.Color[];
+        default_colors?: i_color_shared_clean.Color[];
     }): void =>
         err(() => {
             // eslint-disable-next-line no-alert
@@ -248,7 +217,9 @@ export class Color {
             );
 
             if (confirmed_restore) {
-                data.settings.colors = n(default_colors) ? default_colors : this.default_colors;
+                data.settings.colors = n(default_colors)
+                    ? default_colors
+                    : s_color.Color.i().default_colors;
 
                 this.reset_previous_vars();
                 input.restore_default_palette_callback({ default_colors: data.settings.colors });

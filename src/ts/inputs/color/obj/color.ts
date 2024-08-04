@@ -1,8 +1,8 @@
-import _ from 'lodash';
+import get from 'lodash/get';
 import { makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t } from 'shared/internal';
+import { t } from 'shared_clean/internal';
 import { o_inputs, d_color, i_color } from 'inputs/internal';
 
 const color_picker_state: i_color.ColorPickerStateOne = {
@@ -106,7 +106,7 @@ export class Color extends o_inputs.InputBase {
     ): string {
         if (
             this.is_palette_color!({ i }) &&
-            i === (n(this.val_accessor) ? _.get(data, this.val_accessor) : data.settings[this.name])
+            i === (n(this.val_accessor) ? get(data, this.val_accessor) : data.settings[this.name])
         ) {
             return 'selected';
         }

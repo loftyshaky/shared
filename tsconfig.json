@@ -12,8 +12,10 @@
         "sourceMap": true,
         "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"],
         "paths": {
+            "shared_clean/*": ["./ts/shared_clean/*"],
             "shared/*": ["./ts/shared/*"],
             "error_modules/*": ["./ts/error_modules/*"],
+            "error_modules_clean/*": ["./ts/error_modules_clean/*"],
             "inputs/*": ["./ts/inputs/*"],
             "settings/*": ["./ts/settings/*"],
             "announcement/*": ["./ts/announcement/*"],

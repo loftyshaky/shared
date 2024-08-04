@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { s_header } from 'shared/internal';
+import { s_header } from 'shared_clean/internal';
 
 export const Body: React.FunctionComponent = observer(() => (
     <div className='main'>

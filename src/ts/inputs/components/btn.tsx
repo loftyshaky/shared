@@ -1,7 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { c_tr, stop_propagation } from 'shared/internal';
+import { stop_propagation } from 'shared_clean/internal';
+import { c_tr } from 'shared/internal';
 import { o_inputs, p_inputs } from 'inputs/internal';
 
 export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {

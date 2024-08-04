@@ -1,4 +1,5 @@
 import { computedFn } from 'mobx-utils';
+
 import { i_inputs } from 'inputs/internal';
 
 export class LabelInInputItem {

@@ -32,6 +32,7 @@ export const Checkbox: React.FunctionComponent<p_inputs.Checkbox> = observer((pr
                             className='box'
                             role='button'
                             tabIndex={input.tab_index!()}
+                            aria-label='Checkbox'
                             onKeyDown={s_tab_index.Main.i().simulate_click_on_enter}
                         >
                             <svg.Check />

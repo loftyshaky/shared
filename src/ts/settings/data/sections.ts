@@ -1,7 +1,8 @@
 import { makeObservable, observable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t, d_offers } from 'shared/internal';
+import { t } from 'shared_clean/internal';
+import { d_offers } from 'shared/internal';
 import { o_inputs, d_inputs, d_color, i_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 

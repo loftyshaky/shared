@@ -1,4 +1,4 @@
-import { s_viewport } from 'shared/internal';
+import { s_viewport } from 'shared_clean/internal';
 
 export class Position {
     private static i0: Position;
