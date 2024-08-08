@@ -1,11 +1,10 @@
 import { run_in_action_placeholder, o_schema } from 'shared_clean/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     public transform = ({
@@ -95,3 +94,5 @@ export class Main {
             return data;
         }, 'shr_1226');
 }
+
+export const Schema = Class.get_instance();

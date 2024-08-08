@@ -2,12 +2,11 @@ import { computedFn } from 'mobx-utils';
 
 import { i_inputs } from 'inputs/internal';
 
-export class LabelInInputItem {
-    private static i0: LabelInInputItem;
+class Class {
+    private static instance: Class;
 
-    public static i(): LabelInInputItem {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -17,3 +16,5 @@ export class LabelInInputItem {
         return input.alt_msg || ext.msg(`${input.name}_label_text`);
     });
 }
+
+export const LabelInInputItem = Class.get_instance();

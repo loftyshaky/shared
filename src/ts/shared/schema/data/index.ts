@@ -1,1 +1,1 @@
-export * from 'shared/schema/data/main';
+export * from 'shared/schema/data/schema';

@@ -9,7 +9,7 @@ export const FillShadow: React.FunctionComponent<p_color.FillShadow> = observer(
             const { is_visible } = props;
 
             if (is_visible) {
-                s_color.Position.i().set();
+                s_color.Position.set();
             }
         }, 'shr_1005'),
     );

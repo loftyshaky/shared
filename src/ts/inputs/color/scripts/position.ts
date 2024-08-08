@@ -1,11 +1,10 @@
 import { s_viewport } from 'shared_clean/internal';
 
-export class Position {
-    private static i0: Position;
+class Class {
+    private static instance: Class;
 
-    public static i(): Position {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -95,10 +94,10 @@ export class Position {
                                 const visualization_width: number = visualization.offsetWidth;
                                 const scroll_top: number = scroll_container_final.scrollTop;
                                 const scroll_left: number = scroll_container_final.scrollLeft;
-                                const viewport_width: number = s_viewport.Main.i().get_dim({
+                                const viewport_width: number = s_viewport.Viewport.get_dim({
                                     dim: 'width',
                                 });
-                                const viewport_height: number = s_viewport.Main.i().get_dim({
+                                const viewport_height: number = s_viewport.Viewport.get_dim({
                                     dim: 'height',
                                 });
 
@@ -176,3 +175,5 @@ export class Position {
             }
         }, 'shr_1043');
 }
+
+export const Position = Class.get_instance();

@@ -3,12 +3,11 @@ import { MouseEvent, KeyboardEvent } from 'react';
 import { i_tab_index } from 'shared/internal';
 import { o_color, d_color, i_color } from 'inputs/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     public outer_is_visible: boolean = false;
@@ -107,7 +106,7 @@ export class Main {
 
             const call_change_visibility = (): void =>
                 err(() => {
-                    d_color.Visibility.i().change_visibility(
+                    d_color.Visibility.change_visibility(
                         {
                             input,
                             i,
@@ -130,7 +129,7 @@ export class Main {
                     !e.shiftKey &&
                     !e.altKey
                 ) {
-                    d_color.Color.i().select_palette_color(
+                    d_color.Color.select_palette_color(
                         {
                             input,
                             i,
@@ -150,3 +149,5 @@ export class Main {
             }
         }, 'shr_1128');
 }
+
+export const TabIndex = Class.get_instance();

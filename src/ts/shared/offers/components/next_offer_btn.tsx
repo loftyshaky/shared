@@ -10,7 +10,7 @@ export const NextOfferBtn: React.FunctionComponent = observer(() => (
             new o_inputs.IconBtn({
                 name: 'next_offer',
                 Svg: svg.NavigateNext,
-                event_callback: d_offers.Main.i().show_next_offer,
+                event_callback: d_offers.Offers.show_next_offer,
             })
         }
     />

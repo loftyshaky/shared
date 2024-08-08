@@ -12,7 +12,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
     const { input, calculate_width } = props;
 
     useEffect(() => {
-        d_inputs.Val.i().access({ input });
+        d_inputs.Val.access({ input });
     });
 
     const input_w: JSX.Element = (
@@ -23,15 +23,15 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                         'input_w',
                         'upload_box',
                         input.name,
-                        d_inputs.InputWidth.i().calculate_width_cls({ calculate_width }),
-                        d_inputs.Val.i().warn_state({ input }),
+                        d_inputs.InputWidth.calculate_width_cls({ calculate_width }),
+                        d_inputs.Val.warn_state({ input }),
                     ])}
                     style={{
-                        minWidth: d_inputs.InputWidth.i().min_width_style!({
+                        minWidth: d_inputs.InputWidth.min_width_style!({
                             input,
                             calculate_width,
                         }),
-                        maxWidth: d_inputs.InputWidth.i().max_width_style!(),
+                        maxWidth: d_inputs.InputWidth.max_width_style!(),
                     }}
                 >
                     <c_tr.BaseTr
@@ -41,17 +41,17 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                         attr={{
                             onDragOver: prevent_default,
                             onDragEnter: (): void => {
-                                d_inputs.UploadBox.i().highlight({
+                                d_inputs.UploadBox.highlight({
                                     input,
                                 });
                             },
                             onDragLeave: (): void => {
-                                d_inputs.UploadBox.i().unhighlight({
+                                d_inputs.UploadBox.unhighlight({
                                     input,
                                 });
                             },
                             onDrop: (e: DragEvent): void => {
-                                d_inputs.UploadBox.i().upload_files(e, {
+                                d_inputs.UploadBox.upload_files(e, {
                                     input,
                                 });
                             },
@@ -67,7 +67,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                             multiple={input.multiple}
                             ref={file_input_ref}
                             onChange={(e): void => {
-                                d_inputs.UploadBox.i().upload_files(e, {
+                                d_inputs.UploadBox.upload_files(e, {
                                     input,
                                     file_input: file_input_ref.current,
                                 });
@@ -85,7 +85,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                     name: 'browse',
                                     type: 'link_btn',
                                     event_callback: () =>
-                                        s_inputs.UploadBox.i().trigger_click_on_file_input({
+                                        s_inputs.UploadBox.trigger_click_on_file_input({
                                             file_input: file_input_ref.current,
                                         }),
                                 } as o_inputs.LinkBtn)}

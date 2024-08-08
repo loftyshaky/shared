@@ -1,11 +1,10 @@
 import { i_color } from 'shared_clean/internal';
 
-export class Color {
-    private static i0: Color;
+class Class {
+    private static instance: Class;
 
-    public static i(): Color {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -44,3 +43,5 @@ export class Color {
         'rgb(191 54 12)',
     ];
 }
+
+export const Colors = Class.get_instance();

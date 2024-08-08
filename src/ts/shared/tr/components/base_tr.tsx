@@ -27,7 +27,7 @@ export class BaseTr extends React.Component<p_tr.BaseTr> {
         err(() => {
             const { name, state } = this.props;
 
-            d_tr.Transition.i().handle_transition({
+            d_tr.Transition.handle_transition({
                 name,
                 state,
                 tr_el_ref: this.tr_el_ref,
@@ -40,7 +40,7 @@ export class BaseTr extends React.Component<p_tr.BaseTr> {
         err(() => {
             const { name, state } = this.props;
 
-            d_tr.Transition.i().handle_transition({
+            d_tr.Transition.handle_transition({
                 name,
                 state,
                 tr_el_ref: this.tr_el_ref,
@@ -55,7 +55,7 @@ export class BaseTr extends React.Component<p_tr.BaseTr> {
 
         const cls_final = x.cls([
             cls,
-            d_tr.Transition.i().transit({
+            d_tr.Transition.transit({
                 transitions: this.transitions,
                 name,
                 state,
@@ -74,7 +74,7 @@ export class BaseTr extends React.Component<p_tr.BaseTr> {
                         const tr_end_el_cls = (e.target as HTMLElement).className;
 
                         if (typeof tr_end_el_cls === 'string' && tr_end_el_cls.includes(cls)) {
-                            d_tr.Transition.i().handle_transition(
+                            d_tr.Transition.handle_transition(
                                 {
                                     name,
                                     state,

@@ -17,10 +17,10 @@ export const Checkbox: React.FunctionComponent<p_inputs.Checkbox> = observer((pr
                             id={input.name}
                             name={input.name}
                             type='checkbox'
-                            checked={d_inputs.Val.i().access({ input }) as boolean}
-                            value={(d_inputs.Val.i().access({ input }) as boolean).toString()}
+                            checked={d_inputs.Val.access({ input }) as boolean}
+                            value={(d_inputs.Val.access({ input }) as boolean).toString()}
                             onChange={(e): void => {
-                                d_inputs.Val.i().change(
+                                d_inputs.Val.change(
                                     {
                                         input,
                                     },
@@ -33,7 +33,7 @@ export const Checkbox: React.FunctionComponent<p_inputs.Checkbox> = observer((pr
                             role='button'
                             tabIndex={input.tab_index!()}
                             aria-label='Checkbox'
-                            onKeyDown={s_tab_index.Main.i().simulate_click_on_enter}
+                            onKeyDown={s_tab_index.TabIndex.simulate_click_on_enter}
                         >
                             <svg.Check />
                         </span>

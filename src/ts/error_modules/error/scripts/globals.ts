@@ -9,7 +9,7 @@ globalThis.show_err_ribbon = (
     {
         error_msg_key = '',
         notification_type = 'error',
-        hide_delay = d_error_clean.Main.i().hide_delay,
+        hide_delay = d_error_clean.Error.hide_delay,
         silent = false,
         persistent = false,
         exit = false,
@@ -17,7 +17,7 @@ globalThis.show_err_ribbon = (
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
 ) =>
-    d_error.Main.i().show_error(error_obj, error_code, {
+    d_error.Error.show(error_obj, error_code, {
         error_msg_key,
         notification_type,
         silent,
@@ -28,17 +28,17 @@ globalThis.show_err_ribbon = (
         prevent_subsequent_errors,
     });
 
-globalThis.show_flash = s_error.Flash.i().show;
+globalThis.show_flash = s_error.Flash.show;
 
 globalThis.show_notification = ({
     error_msg_key = '',
     notification_type = 'neutral',
-    hide_delay = d_error_clean.Main.i().hide_delay,
+    hide_delay = d_error_clean.Error.hide_delay,
     persistent = false,
     is_fullscreen = false,
     prevent_subsequent_errors = false,
 }: i_error.ShowError = {}) => {
-    s_error.Notification.i().show({
+    s_error.Notification.show({
         error_msg_key,
         notification_type,
         hide_delay,
@@ -53,7 +53,7 @@ globalThis.show_unable_to_access_settings_error = ({
     settings = undefined,
     provided_settings = false,
 }: i_error.ShowUnableToAccessSettingsError = {}) => {
-    s_error.Notification.i().show_unable_to_access_settings_error({
+    s_error.Notification.show_unable_to_access_settings_error({
         is_fullscreen,
         settings,
         provided_settings,
@@ -68,7 +68,7 @@ globalThis.err = <T1>(
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = d_error_clean.Main.i().hide_delay,
+        hide_delay = d_error_clean.Error.hide_delay,
         is_fullscreen = false,
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
@@ -76,7 +76,7 @@ globalThis.err = <T1>(
     try {
         return f();
     } catch (error_obj: any) {
-        d_error.Main.i().show_error(error_obj, error_code, {
+        d_error.Error.show(error_obj, error_code, {
             error_msg_key,
             silent,
             persistent,
@@ -98,7 +98,7 @@ globalThis.err_async = async <T1>(
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = d_error_clean.Main.i().hide_delay,
+        hide_delay = d_error_clean.Error.hide_delay,
         is_fullscreen = false,
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
@@ -106,7 +106,7 @@ globalThis.err_async = async <T1>(
     try {
         return await f();
     } catch (error_obj: any) {
-        d_error.Main.i().show_error(error_obj, error_code, {
+        d_error.Error.show(error_obj, error_code, {
             error_msg_key,
             silent,
             persistent,

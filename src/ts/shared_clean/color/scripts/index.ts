@@ -1,1 +1,1 @@
-export * from 'shared_clean/color/scripts/main';
+export * from 'shared_clean/color/scripts/colors';

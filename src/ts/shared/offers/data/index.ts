@@ -1,1 +1,1 @@
-export * from 'shared/offers/data/main';
+export * from 'shared/offers/data/offers';

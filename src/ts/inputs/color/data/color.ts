@@ -7,12 +7,11 @@ import { makeObservable, action } from 'mobx';
 import { t, s_color, i_color as i_color_shared_clean } from 'shared_clean/internal';
 import { o_color, d_color, i_color } from 'inputs/internal';
 
-export class Color {
-    private static i0: Color;
+class Class {
+    private static instance: Class;
 
-    public static i(): Color {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -23,7 +22,7 @@ export class Color {
         });
     }
 
-    public palette_color_amount: number = Object.keys(s_color.Color.i().default_colors).length;
+    public palette_color_amount: number = Object.keys(s_color.Colors.default_colors).length;
     public previous_color: i_color_shared_clean.Color = '';
 
     public access = ({ input, i }: { input: o_color.Color; i: i_color.I }): string =>
@@ -83,9 +82,9 @@ export class Color {
             });
 
             if (i === 'main') {
-                d_color.Visibility.i().hide_main_and_palette({ input });
+                d_color.Visibility.hide_main_and_palette({ input });
             } else {
-                d_color.Visibility.i().hide_palette_color_pickers({ input });
+                d_color.Visibility.hide_palette_color_pickers({ input });
             }
 
             callback({
@@ -96,7 +95,7 @@ export class Color {
 
     public restore_old_color = (): void =>
         err(() => {
-            const inst = d_color.Visibility.i();
+            const inst = d_color.Visibility;
 
             if (n(inst.previously_visible_input) && n(inst.previously_visible_color_picker_i)) {
                 const color: i_color_shared_clean.Color =
@@ -156,8 +155,8 @@ export class Color {
 
                 this.previous_color = i;
 
-                d_color.Visibility.i().previously_visible_input = input;
-                d_color.Visibility.i().previously_visible_color_picker_i = i;
+                d_color.Visibility.previously_visible_input = input;
+                d_color.Visibility.previously_visible_color_picker_i = i;
 
                 input.select_palette_color_callback({
                     input,
@@ -185,7 +184,7 @@ export class Color {
             this.previous_color =
                 i === 'main'
                     ? color
-                    : d_color.Color.i().access({
+                    : d_color.Color.access({
                           input,
                           i,
                       });
@@ -193,7 +192,7 @@ export class Color {
 
     public remove_color = ({ input }: { input: o_color.Color }): void =>
         err(() => {
-            d_color.Color.i().set({
+            d_color.Color.set({
                 input,
                 i: 'main',
                 color: '',
@@ -219,7 +218,7 @@ export class Color {
             if (confirmed_restore) {
                 data.settings.colors = n(default_colors)
                     ? default_colors
-                    : s_color.Color.i().default_colors;
+                    : s_color.Colors.default_colors;
 
                 this.reset_previous_vars();
                 input.restore_default_palette_callback({ default_colors: data.settings.colors });
@@ -228,8 +227,10 @@ export class Color {
 
     public reset_previous_vars = (): void =>
         err(() => {
-            d_color.Color.i().previous_color = '';
-            d_color.Visibility.i().previously_visible_input = undefined;
-            d_color.Visibility.i().previously_visible_color_picker_i = undefined;
+            d_color.Color.previous_color = '';
+            d_color.Visibility.previously_visible_input = undefined;
+            d_color.Visibility.previously_visible_color_picker_i = undefined;
         }, 'shr_1018');
 }
+
+export const Color = Class.get_instance();

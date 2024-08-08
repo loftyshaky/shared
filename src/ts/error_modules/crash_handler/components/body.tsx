@@ -6,7 +6,7 @@ import { d_crash_handler, s_crash_handler, p_crash_handler } from 'error_modules
 export const Body = observer(
     class Body extends React.Component<p_crash_handler.Body> {
         public static getDerivedStateFromError(): any {
-            d_crash_handler.Visibility.i().show_reload_ui_screen();
+            d_crash_handler.Visibility.show_reload_ui_screen();
         }
 
         public componentDidCatch(err_obj: Error): void {
@@ -14,13 +14,13 @@ export const Body = observer(
         }
 
         public render(): JSX.Element | ReactNode {
-            if (d_crash_handler.Visibility.i().page_is_crashed) {
+            if (d_crash_handler.Visibility.page_is_crashed) {
                 return (
                     <div className='reload_ui_btn_w'>
                         <button
                             className={x.cls(['btn', 'reload_ui'])}
                             type='button'
-                            onClick={s_crash_handler.Page.i().reload}
+                            onClick={s_crash_handler.Page.reload}
                         >
                             {ext.msg('reload_ui_btn_text')}
                         </button>

@@ -2,12 +2,11 @@ import { computedFn } from 'mobx-utils';
 
 import { i_inputs } from 'inputs/internal';
 
-export class InputError {
-    private static i0: InputError;
+class Class {
+    private static instance: Class;
 
-    public static i(): InputError {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private input_error_is_visible = computedFn(function ({
@@ -24,7 +23,7 @@ export class InputError {
     });
 
     public input_error_visibility_cls = computedFn(function (
-        this: InputError,
+        this: Class,
         {
             input,
         }: {
@@ -46,3 +45,5 @@ export class InputError {
             : '';
     });
 }
+
+export const InputError = Class.get_instance();

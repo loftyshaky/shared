@@ -1,11 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { s_header } from 'shared_clean/internal';
+import { s_title } from 'shared_clean/internal';
 
 export const Body: React.FunctionComponent = observer(() => (
     <div className='main'>
-        <h1 className='header'>{s_header.Header.i().get()}</h1>
+        <h1 className='header'>{s_title.Title.get()}</h1>
         <div
             className='msg_to_user'
             // eslint-disable-next-line react/no-danger

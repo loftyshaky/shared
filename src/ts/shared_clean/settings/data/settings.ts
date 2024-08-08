@@ -3,12 +3,11 @@ import isEqual from 'lodash/isEqual';
 
 import { t, run_in_action_placeholder, s_data } from 'shared_clean/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -66,7 +65,7 @@ export class Main {
     } = {}): Promise<any> =>
         err_async(async () => {
             if (!ext.ext_context_invalidated()) {
-                const settings = await s_data.Cache.i().get_data();
+                const settings = await s_data.Cache.get_data();
                 const settings_are_corrupt: boolean = n(settings.settings)
                     ? !n(settings.settings.enable_cut_features)
                     : !n(settings.enable_cut_features);
@@ -95,3 +94,5 @@ export class Main {
             return undefined;
         }, 'shr_1367');
 }
+
+export const Settings = Class.get_instance();

@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { c_offers, d_offers } from 'shared/internal';
 
 export const TopBar: React.FunctionComponent = observer(() =>
-    d_offers.Main.i().offers_of_type.length > 1 ? (
+    d_offers.Offers.offers_of_type.length > 1 ? (
         <div className='top_bar'>
             <c_offers.AdLabel />
 

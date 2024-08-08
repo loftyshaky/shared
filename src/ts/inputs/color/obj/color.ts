@@ -25,7 +25,7 @@ export class Color extends o_inputs.InputBase {
     public include_ok_btn?: boolean = false;
     public state?: i_color.ColorPickerState = {
         main: color_picker_state,
-        ...Array(d_color.Color.i().palette_color_amount)
+        ...Array(d_color.Color.palette_color_amount)
             .fill(color_picker_state)
             .reduce(
                 (
@@ -135,6 +135,6 @@ export class Color extends o_inputs.InputBase {
     });
 
     color_help_visibility_cls? = computedFn(function (this: Color): string {
-        return d_color.Visibility.i().color_help_is_visible ? '' : 'none';
+        return d_color.Visibility.color_help_is_visible ? '' : 'none';
     });
 }

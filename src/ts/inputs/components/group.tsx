@@ -12,8 +12,8 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
                 <span
                     className={x.cls(['input_w', 'group', input.name, 'calculate_width'])}
                     style={{
-                        minWidth: d_inputs.InputWidth.i().min_width_style!({ input }),
-                        maxWidth: d_inputs.InputWidth.i().max_width_style!(),
+                        minWidth: d_inputs.InputWidth.min_width_style!({ input }),
+                        maxWidth: d_inputs.InputWidth.max_width_style!(),
                     }}
                 >
                     {Object.values(input.inputs).map(

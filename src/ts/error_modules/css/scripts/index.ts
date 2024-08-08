@@ -1,1 +1,1 @@
-export * from 'error_modules/css/scripts/main';
+export * from 'error_modules/css/scripts/css';

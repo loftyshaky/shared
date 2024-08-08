@@ -42,7 +42,7 @@ export class Text extends o_inputs.InputBase {
         return (
             n(input.allow_removing_val) &&
             input.allow_removing_val &&
-            d_inputs.Val.i().access({ input }) !== ''
+            d_inputs.Val.access({ input }) !== ''
         );
     });
 

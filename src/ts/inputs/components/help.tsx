@@ -14,10 +14,10 @@ export const Help: React.FunctionComponent<p_inputs.Help> = observer((props) => 
             cls='help'
             state={section_or_input.help_is_visible as boolean}
             style={{
-                width: d_inputs.Help.i().width_style!({ section_or_input }),
+                width: d_inputs.Help.width_style!({ section_or_input }),
             }}
         >
-            {d_inputs.Help.i().msg!({ section_or_input })}
+            {d_inputs.Help.msg!({ section_or_input })}
         </c_tr.BaseTr>
     );
 });

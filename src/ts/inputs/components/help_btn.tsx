@@ -17,7 +17,7 @@ export const HelpBtn: React.FunctionComponent<p_inputs.HelpBtn> = observer((prop
             }
             aria-label='Help button'
             onClick={(): void => {
-                d_inputs.Help.i().change_visibility({ section_or_input });
+                d_inputs.Help.change_visibility({ section_or_input });
             }}
         >
             <svg.Help />

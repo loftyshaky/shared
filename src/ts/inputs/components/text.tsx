@@ -18,18 +18,18 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         input.text_type,
                         input.name,
                         'inset_border',
-                        d_inputs.InputWidth.i().calculate_width_cls({
+                        d_inputs.InputWidth.calculate_width_cls({
                             calculate_width,
                         }),
-                        d_inputs.Val.i().focus_state({ input }),
-                        d_inputs.Val.i().warn_state({ input }),
+                        d_inputs.Val.focus_state({ input }),
+                        d_inputs.Val.warn_state({ input }),
                     ])}
                     style={{
-                        minWidth: d_inputs.InputWidth.i().min_width_style!({
+                        minWidth: d_inputs.InputWidth.min_width_style!({
                             input,
                             calculate_width,
                         }),
-                        maxWidth: d_inputs.InputWidth.i().max_width_style!(),
+                        maxWidth: d_inputs.InputWidth.max_width_style!(),
                     }}
                 >
                     <input
@@ -37,14 +37,14 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         name={input.name}
                         className={x.cls(['input', input.text_type])}
                         type={input.text_type}
-                        value={d_inputs.Val.i().access({ input }) as string}
+                        value={d_inputs.Val.access({ input }) as string}
                         placeholder={input.placeholder}
                         autoComplete={input.autocomplete}
                         spellCheck='false'
                         tabIndex={input.tab_index!()}
                         ref={input_ref}
                         onInput={async (e): Promise<void> => {
-                            await d_inputs.Val.i().text_and_textarea_on_input({ input }, e);
+                            await d_inputs.Val.text_and_textarea_on_input({ input }, e);
                         }}
                         onPaste={(e): void => {
                             input.paste_callback!(
@@ -55,13 +55,13 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                             );
                         }}
                         onFocus={(): void => {
-                            d_inputs.Val.i().set_focus_state({
+                            d_inputs.Val.set_focus_state({
                                 input,
                                 state: true,
                             });
                         }}
                         onBlur={(): void => {
-                            d_inputs.Val.i().set_focus_state({
+                            d_inputs.Val.set_focus_state({
                                 input,
                                 state: false,
                             });
@@ -81,7 +81,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                                           Svg={text_btn.Svg}
                                           input={input}
                                           on_click={(): void => {
-                                              d_inputs.Text.i().run_text_btn_action({
+                                              d_inputs.Text.run_text_btn_action({
                                                   input,
                                                   text_btn,
                                                   input_el: n(input_ref.current)
@@ -101,7 +101,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                             Svg={svg.Close}
                             input={input}
                             on_click={() =>
-                                d_inputs.Val.i().remove_val({
+                                d_inputs.Val.remove_val({
                                     input,
                                     input_el: input_ref.current,
                                 })

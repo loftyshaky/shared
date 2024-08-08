@@ -15,29 +15,29 @@ export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) =
                             'input_w',
                             'range',
                             input.name,
-                            d_inputs.InputWidth.i().calculate_width_cls({ calculate_width }),
+                            d_inputs.InputWidth.calculate_width_cls({ calculate_width }),
                         ])}
                         style={{
-                            minWidth: d_inputs.InputWidth.i().min_width_style!({
+                            minWidth: d_inputs.InputWidth.min_width_style!({
                                 input,
                                 calculate_width,
                             }),
-                            maxWidth: d_inputs.InputWidth.i().max_width_style!(),
+                            maxWidth: d_inputs.InputWidth.max_width_style!(),
                         }}
                     >
                         <input
                             id={input.name}
                             name={input.name}
-                            className={x.cls(['input', d_inputs.Val.i().focus_state({ input })])}
+                            className={x.cls(['input', d_inputs.Val.focus_state({ input })])}
                             type='range'
-                            value={d_inputs.Val.i().access({ input }) as string}
+                            value={d_inputs.Val.access({ input }) as string}
                             autoComplete='off'
                             min={input.min}
                             max={input.max}
                             step={input.step}
                             tabIndex={input.tab_index!()}
                             onInput={(e): void => {
-                                d_inputs.Val.i().change(
+                                d_inputs.Val.change(
                                     {
                                         input,
                                     },
@@ -45,13 +45,13 @@ export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) =
                                 );
                             }}
                             onFocus={(): void => {
-                                d_inputs.Val.i().set_focus_state({
+                                d_inputs.Val.set_focus_state({
                                     input,
                                     state: true,
                                 });
                             }}
                             onBlur={(): void => {
-                                d_inputs.Val.i().set_focus_state({
+                                d_inputs.Val.set_focus_state({
                                     input,
                                     state: false,
                                 });

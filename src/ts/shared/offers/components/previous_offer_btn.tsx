@@ -10,7 +10,7 @@ export const PreviousOfferBtn: React.FunctionComponent = observer(() => (
             new o_inputs.IconBtn({
                 name: 'previous_offer',
                 Svg: svg.NavigateBefore,
-                event_callback: d_offers.Main.i().show_previous_offer,
+                event_callback: d_offers.Offers.show_previous_offer,
             })
         }
     />

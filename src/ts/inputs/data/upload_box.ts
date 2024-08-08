@@ -3,12 +3,11 @@ import { makeObservable, action, runInAction } from 'mobx';
 
 import { o_inputs, d_inputs } from 'inputs/internal';
 
-export class UploadBox {
-    private static i0: UploadBox;
+class Class {
+    private static instance: Class;
 
-    public static i(): UploadBox {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     public constructor() {
@@ -78,11 +77,11 @@ export class UploadBox {
                     if (input.clear_val_on_upload) {
                         file_input.value = '';
                     } else if (n(files)) {
-                        d_inputs.Val.i().set({ val: files, input });
+                        d_inputs.Val.set({ val: files, input });
                     }
                 }
 
-                await d_inputs.Val.i().set_warn_state({ input });
+                await d_inputs.Val.set_warn_state({ input });
             }, 'shr_1199'),
     );
 
@@ -124,3 +123,5 @@ export class UploadBox {
             }
         }, 'shr_1256');
 }
+
+export const UploadBox = Class.get_instance();

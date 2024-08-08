@@ -6,12 +6,11 @@ import { d_offers } from 'shared/internal';
 import { o_inputs, d_inputs, d_color, i_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
-export class Sections {
-    private static i0: Sections;
+class Class {
+    private static instance: Class;
 
-    public static i(): Sections {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -54,21 +53,21 @@ export class Sections {
                     text_type: 'number',
                     allow_removing_val: false,
                     event_callback: input_change_val_callback,
-                    warn_state_checker: d_inputs.Val.i().validate_input,
+                    warn_state_checker: d_inputs.Val.validate_input,
                 }),
             }),
             'shr_1223',
         );
 
     public selected_cls = computedFn(function (
-        this: Sections,
+        this: Class,
         { section_name }: { section_name: string },
     ): string {
         return this.current_section === section_name ? 'selected' : '';
     });
 
     public tab_index = computedFn(function (
-        this: Sections,
+        this: Class,
         { section_name }: { section_name: string },
     ): number | undefined {
         return this.current_section === section_name ? -1 : undefined;
@@ -83,8 +82,8 @@ export class Sections {
     }): void =>
         err(() => {
             if (this.current_section !== section_name) {
-                d_color.Visibility.i().previously_visible_color_picker_i = undefined;
-                d_color.Visibility.i().previously_visible_input = undefined;
+                d_color.Visibility.previously_visible_color_picker_i = undefined;
+                d_color.Visibility.previously_visible_input = undefined;
 
                 this.current_section = section_name;
 
@@ -146,7 +145,7 @@ export class Sections {
                                     const data_obj = await download_back_up_callback();
 
                                     if (download_backup) {
-                                        d_settings.BackUp.i().download({
+                                        d_settings.BackUp.download({
                                             data_obj,
                                             part_i: include_part_i_in_back_up_name ? 0 : 'none',
                                         });
@@ -159,13 +158,13 @@ export class Sections {
                         }),
                         new o_inputs.Btn({
                             name: 'upload_back_up',
-                            event_callback: d_settings.BackUp.i().open_file_browser,
+                            event_callback: d_settings.BackUp.open_file_browser,
                         }),
                         new o_inputs.File({
                             name: 'back_up',
                             accept: '.json',
                             multiple: allow_multiple_file_backup_upload,
-                            event_callback: d_settings.BackUp.i().upload,
+                            event_callback: d_settings.BackUp.upload,
                             save_callback: upload_back_up_callback,
                         }),
                         ...back_up_inputs,
@@ -202,7 +201,7 @@ export class Sections {
                             name: 'persistent_service_worker',
                             event_callback: input_change_val_callback,
                         }),
-                        ...(d_offers.Main.i().found_offers_for_current_locale()
+                        ...(d_offers.Offers.found_offers_for_current_locale()
                             ? [
                                   new o_inputs.Checkbox({
                                       name: 'offers_are_visible',
@@ -228,3 +227,5 @@ export class Sections {
             'shr_1086',
         );
 }
+
+export const Sections = Class.get_instance();

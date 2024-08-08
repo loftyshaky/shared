@@ -3,9 +3,9 @@ interface Global {
     document: Document;
     location: Location;
     crypto: Crypto;
-    x: import('shared_clean/x').X;
-    ext: import('shared_clean/ext').Ext;
-    app: import('shared_clean/app').App;
+    x: import('shared_clean/x').Class;
+    ext: import('shared_clean/ext').Class;
+    app: import('shared_clean/app').Class;
     env: import('shared_clean/t').Env;
     l: CallableFunction;
     data: any;

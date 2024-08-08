@@ -1,1 +1,1 @@
-export * from 'shared_clean/viewport/scripts/main';
+export * from 'shared_clean/viewport/scripts/viewport';

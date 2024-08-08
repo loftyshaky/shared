@@ -1,1 +1,1 @@
-export * from 'shared_clean/schema/data/main';
+export * from 'shared_clean/schema/data/schema';

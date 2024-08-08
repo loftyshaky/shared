@@ -2,28 +2,23 @@ import { t } from 'shared_clean/internal';
 
 import { makeObservable, action } from 'mobx';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
         makeObservable(this, {
-            enable_developer_mode: action,
+            enable: action,
         });
     }
 
     private click_count: number = 0;
     private click_timeout: number = 0;
 
-    public enable_developer_mode = ({
-        save_callback,
-    }: {
-        save_callback: t.CallbackVoid;
-    }): Promise<void> =>
+    public enable = ({ save_callback }: { save_callback: t.CallbackVoid }): Promise<void> =>
         err_async(async () => {
             clearTimeout(this.click_timeout);
 
@@ -52,3 +47,5 @@ export class Main {
             this.click_count = 0;
         }, 'shr_1267');
 }
+
+export const DeveloperMode = Class.get_instance();

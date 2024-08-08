@@ -4,12 +4,11 @@ import { makeObservable, observable, computed, action } from 'mobx';
 
 import { o_offers, s_offers, i_offers } from 'shared/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -59,7 +58,7 @@ export class Main {
 
             const get_offers_of_type = (): o_offers.Offer[] =>
                 err(() => {
-                    const offers_of_type: o_offers.Offer[] = s_offers.Main.i().offers.flatMap(
+                    const offers_of_type: o_offers.Offer[] = s_offers.Offers.offers.flatMap(
                         (offer: o_offers.Offer): o_offers.Offer[] =>
                             err(() => {
                                 const offer_text_raw: string = this.get_offer_text_raw({
@@ -207,3 +206,5 @@ export class Main {
         return this.current_offer_i + 1;
     }
 }
+
+export const Offers = Class.get_instance();

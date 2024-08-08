@@ -8,7 +8,7 @@ globalThis.show_err_ribbon = (
     {
         error_msg_key = '',
         notification_type = 'error',
-        hide_delay = d_error.Main.i().hide_delay,
+        hide_delay = d_error.Error.hide_delay,
         silent = false,
         persistent = false,
         exit = false,
@@ -16,7 +16,7 @@ globalThis.show_err_ribbon = (
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
 ) =>
-    d_error.Main.i().show_error(error_obj, error_code, {
+    d_error.Error.show(error_obj, error_code, {
         error_msg_key,
         notification_type,
         silent,
@@ -35,7 +35,7 @@ globalThis.err = <T1>(
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = d_error.Main.i().hide_delay,
+        hide_delay = d_error.Error.hide_delay,
         is_fullscreen = false,
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
@@ -43,7 +43,7 @@ globalThis.err = <T1>(
     try {
         return f();
     } catch (error_obj: any) {
-        d_error.Main.i().show_error(error_obj, error_code, {
+        d_error.Error.show(error_obj, error_code, {
             error_msg_key,
             silent,
             persistent,
@@ -65,7 +65,7 @@ globalThis.err_async = async <T1>(
         silent = false,
         persistent = false,
         exit = false,
-        hide_delay = d_error.Main.i().hide_delay,
+        hide_delay = d_error.Error.hide_delay,
         is_fullscreen = false,
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
@@ -73,7 +73,7 @@ globalThis.err_async = async <T1>(
     try {
         return await f();
     } catch (error_obj: any) {
-        d_error.Main.i().show_error(error_obj, error_code, {
+        d_error.Error.show(error_obj, error_code, {
             error_msg_key,
             silent,
             persistent,

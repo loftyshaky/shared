@@ -9,7 +9,7 @@ export const Body: React.FunctionComponent<p_loading_screen.Body> = observer((pr
     useEffect(() => {
         on_render();
 
-        s_loading_screen.Roots.i().hide_roots({ app_id });
+        s_loading_screen.Roots.hide_roots({ app_id });
     }, [app_id, on_render]);
 
     return (
@@ -20,9 +20,9 @@ export const Body: React.FunctionComponent<p_loading_screen.Body> = observer((pr
                 'main',
                 'tr_w',
                 'loading_screen',
-                d_loading_screen.Main.i().inner_visibility_cls,
+                d_loading_screen.Visibility.inner_visibility_cls,
             ])}
-            state={d_loading_screen.Main.i().outer_is_visible}
+            state={d_loading_screen.Visibility.outer_is_visible}
             style={{
                 left: '0',
                 top: '0',

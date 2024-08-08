@@ -1,1 +1,1 @@
-export * from 'shared/loading_screen/data/main';
+export * from 'shared/loading_screen/data/visibility';

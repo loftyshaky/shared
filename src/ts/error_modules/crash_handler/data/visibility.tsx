@@ -1,11 +1,10 @@
 import { makeObservable, observable, action } from 'mobx';
 
-export class Visibility {
-    private static i0: Visibility;
+class Class {
+    private static instance: Class;
 
-    public static i(): Visibility {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -21,3 +20,5 @@ export class Visibility {
         this.page_is_crashed = true;
     };
 }
+
+export const Visibility = Class.get_instance();

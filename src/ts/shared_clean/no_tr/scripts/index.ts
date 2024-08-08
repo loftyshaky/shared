@@ -1,1 +1,1 @@
-export * from 'shared_clean/no_tr/scripts/main';
+export * from 'shared_clean/no_tr/scripts/state';

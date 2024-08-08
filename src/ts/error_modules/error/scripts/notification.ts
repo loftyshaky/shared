@@ -2,12 +2,11 @@ import isEmpty from 'lodash/isEmpty';
 
 import { d_error, i_error } from 'error_modules_clean/internal';
 
-export class Notification {
-    private static i0: Notification;
+class Class {
+    private static instance: Class;
 
-    public static i(): Notification {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -16,7 +15,7 @@ export class Notification {
     public show = ({
         error_msg_key = '',
         notification_type = 'neutral',
-        hide_delay = d_error.Main.i().hide_delay,
+        hide_delay = d_error.Error.hide_delay,
         persistent = false,
         is_fullscreen = false,
         prevent_subsequent_errors = false,
@@ -49,3 +48,5 @@ export class Notification {
         }
     };
 }
+
+export const Notification = Class.get_instance();

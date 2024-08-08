@@ -43,14 +43,14 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                     aria-label={aria_label}
                     tabIndex={input.tab_index!()}
                     style={{
-                        backgroundColor: d_color.Color.i().access({
+                        backgroundColor: d_color.Color.access({
                             input,
                             i,
                         }),
                     }}
                     ref={visualization_ref}
                     onClick={(e: MouseEvent): void => {
-                        d_color.Color.i().select_palette_color(
+                        d_color.Color.select_palette_color(
                             {
                                 input,
                                 i,
@@ -59,7 +59,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         );
                     }}
                     onMouseDown={(e: MouseEvent): void => {
-                        d_color.Visibility.i().change_visibility(
+                        d_color.Visibility.change_visibility(
                             {
                                 input,
                                 i,
@@ -69,7 +69,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         );
                     }}
                     onMouseEnter={(e: MouseEvent): void => {
-                        d_color.Visibility.i().change_visibility(
+                        d_color.Visibility.change_visibility(
                             {
                                 input,
                                 i,
@@ -79,7 +79,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         );
                     }}
                     onFocus={(e: FocusEvent): void => {
-                        d_color.Visibility.i().change_visibility(
+                        d_color.Visibility.change_visibility(
                             {
                                 input,
                                 i,
@@ -89,7 +89,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         );
                     }}
                     onKeyDown={(e: KeyboardEvent) => {
-                        s_tab_index.Main.i().simulate_color_visualization_click_on_enter(
+                        s_tab_index.TabIndex.simulate_color_visualization_click_on_enter(
                             {
                                 input,
                                 i,

@@ -10,7 +10,7 @@ export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
 
         useEffect(() =>
             err(() => {
-                d_inputs.NestedInput.i().calculate_offset({ input });
+                d_inputs.NestedInput.calculate_offset({ input });
             }, 'shr_1044'),
         );
 

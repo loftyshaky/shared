@@ -2,21 +2,20 @@ import { makeObservable, action } from 'mobx';
 
 import { i_optional_permissions } from 'settings/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
-        makeObservable<Main, 'set_checkbox_val'>(this, {
+        makeObservable<Class, 'set_checkbox_val'>(this, {
             set_checkbox_val: action,
         });
     }
 
-    public set_permission = ({
+    public set = ({
         name,
         optional_permission_checkbox_dict,
         set_checkbox_val = true,
@@ -54,3 +53,5 @@ export class Main {
             data.ui[name] = val;
         }, 'shr_1222');
 }
+
+export const Permission = Class.get_instance();

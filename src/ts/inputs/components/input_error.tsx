@@ -10,13 +10,13 @@ export const InputError: React.FunctionComponent<p_inputs.InputError> = observer
         <p
             className={x.cls([
                 'input_error',
-                d_inputs.InputError.i().input_error_visibility_cls!({ input }),
+                d_inputs.InputError.input_error_visibility_cls!({ input }),
             ])}
             style={{
-                width: d_inputs.Help.i().width_style!({ section_or_input: input }),
+                width: d_inputs.Help.width_style!({ section_or_input: input }),
             }}
         >
-            {d_inputs.InputError.i().input_error!({ input })}
+            {d_inputs.InputError.input_error!({ input })}
         </p>
     );
 });

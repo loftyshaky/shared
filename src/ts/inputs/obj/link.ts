@@ -35,7 +35,7 @@ export class Link {
                   ext.msg(`${this.name_clean}_${this.browser}_link_href`) ||
                   ext.msg(`offer_${this.name_clean}_${this.browser}_link_href`);
 
-            return href;
+            return n(href) ? href : '';
         }, 'shr_1070');
 
     public show_link? = (): boolean =>

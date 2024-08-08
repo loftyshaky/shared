@@ -2,12 +2,11 @@ import { runInAction, toJS } from 'mobx';
 
 import { d_settings } from 'shared_clean/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -22,7 +21,7 @@ export class Main {
     }): Promise<void> =>
         err_async(
             async () =>
-                d_settings.Main.i().set({
+                d_settings.Settings.set({
                     settings,
                     settings_are_corrupt,
                     run_in_action: runInAction,
@@ -33,7 +32,9 @@ export class Main {
     public set_from_storage = (): Promise<any> =>
         err_async(
             async () =>
-                d_settings.Main.i().set_from_storage({ to_js: toJS, run_in_action: runInAction }),
+                d_settings.Settings.set_from_storage({ to_js: toJS, run_in_action: runInAction }),
             'shr_1235',
         );
 }
+
+export const Settings = Class.get_instance();

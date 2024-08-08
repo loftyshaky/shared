@@ -1,1 +1,1 @@
-export * from 'shared/tab_index/scripts/main';
+export * from 'shared/tab_index/scripts/tab_index';

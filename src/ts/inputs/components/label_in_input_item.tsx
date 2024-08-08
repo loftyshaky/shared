@@ -9,7 +9,7 @@ export const LabelInInputItem: React.FunctionComponent<p_inputs.LabelInInputItem
 
         return (
             <label className='label_in_input_item' htmlFor={input.name}>
-                {d_inputs.LabelInInputItem.i().msg!({ input })}
+                {d_inputs.LabelInInputItem.msg!({ input })}
             </label>
         );
     },

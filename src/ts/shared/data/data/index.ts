@@ -1,1 +1,1 @@
-import 'shared/data/data/main';
+import 'shared/data/data/data';

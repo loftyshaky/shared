@@ -1,1 +1,1 @@
-export * from 'shared_clean/title/scripts/main';
+export * from 'shared_clean/title/scripts/title';

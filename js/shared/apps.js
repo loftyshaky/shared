@@ -30,6 +30,11 @@ const create_eslintrc_paths = () => app.map((app_dir) => path.join(app_dir, '.es
 
 const eslintrc = create_eslintrc_paths();
 
+const create_eslint_local_rules_paths = () =>
+    app.map((app_dir) => path.join(app_dir, 'eslint-local-rules.js'));
+
+const eslint_local_rules = create_eslint_local_rules_paths();
+
 const create_prettierrc_paths = () => app.map((app_dir) => path.join(app_dir, '.prettierrc.js'));
 
 const prettierrc = create_prettierrc_paths();
@@ -52,6 +57,7 @@ const is_ext = () => {
 const paths = {
     app,
     eslintrc,
+    eslint_local_rules,
     prettierrc,
     stylelintrc,
 };

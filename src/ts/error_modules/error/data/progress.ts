@@ -1,11 +1,10 @@
 import { makeObservable, observable, computed, action, autorun } from 'mobx';
 
-export class Progress {
-    private static i0: Progress;
+class Class {
+    private static instance: Class;
 
-    public static i(): Progress {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -61,3 +60,5 @@ export class Progress {
         });
     };
 }
+
+export const Progress = Class.get_instance();

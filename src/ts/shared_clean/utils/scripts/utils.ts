@@ -1,11 +1,10 @@
 import { t } from 'shared_clean/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -62,3 +61,5 @@ export class Main {
             return obj_final;
         }, 'shr_1137');
 }
+
+export const Utils = Class.get_instance();

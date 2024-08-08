@@ -1,12 +1,11 @@
 import { t, s_theme } from 'shared_clean/internal';
 import { i_inputs } from 'inputs/internal';
 
-export class Theme {
-    private static i0: Theme;
+class Class {
+    private static instance: Class;
 
-    public static i(): Theme {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -23,7 +22,9 @@ export class Theme {
     }): void =>
         err(() => {
             if (input.name === 'options_page_theme') {
-                s_theme.Main.i().set({ name, additional_theme_callback });
+                s_theme.Theme.set({ name, additional_theme_callback });
             }
         }, 'shr_1088');
 }
+
+export const Theme = Class.get_instance();

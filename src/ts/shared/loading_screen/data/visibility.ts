@@ -3,16 +3,15 @@ import { makeObservable, observable, computed, action, runInAction } from 'mobx'
 import { s_css_vars } from 'shared_clean/internal';
 import { s_loading_screen } from 'shared/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
-        makeObservable<Main, 'inner_is_none'>(this, {
+        makeObservable<Class, 'inner_is_none'>(this, {
             outer_is_visible: observable,
             inner_is_none: observable,
             inner_visibility_cls: computed,
@@ -30,7 +29,7 @@ export class Main {
     public show = (): Promise<void> =>
         err_async(async () => {
             if (!this.inner_is_none) {
-                s_loading_screen.Tr.i().enable_no_tr();
+                s_loading_screen.Tr.enable_no_tr();
 
                 this.outer_is_visible = true;
             }
@@ -38,7 +37,7 @@ export class Main {
 
     public hide = ({ app_id }: { app_id: string }): Promise<void> =>
         err_async(async () => {
-            s_loading_screen.Tr.i().disable_no_tr();
+            s_loading_screen.Tr.disable_no_tr();
 
             await x.delay(300);
 
@@ -48,9 +47,9 @@ export class Main {
                 }, 'shr_1117'),
             );
 
-            s_loading_screen.Roots.i().show_roots({ app_id });
+            s_loading_screen.Roots.show_roots({ app_id });
 
-            await x.delay(+s_css_vars.Main.i().get({ name: 'transition_duration' }));
+            await x.delay(+s_css_vars.CssVars.get({ name: 'transition_duration' }));
 
             runInAction(() =>
                 err(() => {
@@ -59,3 +58,4 @@ export class Main {
             );
         }, 'shr_1119');
 }
+export const Visibility = Class.get_instance();

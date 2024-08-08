@@ -3,12 +3,11 @@ import { computedFn } from 'mobx-utils';
 
 import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
 
-export class Help {
-    private static i0: Help;
+class Class {
+    private static instance: Class;
 
-    public static i(): Help {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -38,7 +37,7 @@ export class Help {
 
         if (n(section_name)) {
             return is_input
-                ? d_inputs.InputWidth.i().min_width_style!({
+                ? d_inputs.InputWidth.min_width_style!({
                       input: section_or_input as i_inputs.Input,
                   })
                 : '';
@@ -57,3 +56,5 @@ export class Help {
             : ext.msg(`${section_or_input.name}_help_text`);
     });
 }
+
+export const Help = Class.get_instance();

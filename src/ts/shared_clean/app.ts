@@ -29,12 +29,11 @@ globalThis.misplaced_dependency = (culprit_page: string): void =>
         }
     }, 'shr_1193');
 
-export class App {
-    private static i0: App;
+class Class {
+    private static instance: Class;
 
-    public static i(): App {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -42,7 +41,7 @@ export class App {
 
     private log_error = (error_obj: Error, error_code: string): void => {
         // eslint-disable-next-line no-console
-        d_error.Main.i().output_error(error_obj, error_code);
+        d_error.Error.output(error_obj, error_code);
     };
 
     [index: string]: any;
@@ -227,3 +226,5 @@ export class App {
         return [];
     };
 }
+
+export const App = Class.get_instance();

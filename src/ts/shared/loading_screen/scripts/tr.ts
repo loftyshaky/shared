@@ -1,9 +1,8 @@
-export class Tr {
-    private static i0: Tr;
+class Class {
+    private static instance: Class;
 
-    public static i(): Tr {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -29,3 +28,5 @@ export class Tr {
             }
         }, 'shr_1236');
 }
+
+export const Tr = Class.get_instance();

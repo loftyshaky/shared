@@ -24,7 +24,7 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
             }
 
             if (n(color_picker_ref.current)) {
-                s_color.ColorPicker.i().update({
+                s_color.ColorPicker.update({
                     pickr: pickr_ref.current,
                     color_picker: color_picker_ref.current,
                     input,
@@ -41,7 +41,7 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
             if (n(color_picker_ref.current) && n(visualization_ref.current)) {
                 const { input, i } = props;
 
-                pickr_ref.current = await s_color.ColorPicker.i().init({
+                pickr_ref.current = await s_color.ColorPicker.init({
                     input,
                     i,
                     color_picker: color_picker_ref.current,
@@ -68,7 +68,7 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
                 state={input.state[i as keyof i_color.ColorPickerState].is_visible}
                 tr_end_unactive={[
                     (): void => {
-                        d_color.Visibility.i().mark_color_picker_as_closed({
+                        d_color.Visibility.mark_color_picker_as_closed({
                             input,
                             i,
                             is_closed: true,

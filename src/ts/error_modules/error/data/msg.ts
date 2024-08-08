@@ -1,15 +1,14 @@
 import { makeObservable, observable, computed, action } from 'mobx';
 
-export class Msg {
-    private static i0: Msg;
+class Class {
+    private static instance: Class;
 
-    public static i(): Msg {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
-        makeObservable<Msg, 'advanced_msg_is_visible'>(this, {
+        makeObservable<Class, 'advanced_msg_is_visible'>(this, {
             advanced_msg_is_visible: observable,
             basic_msg: observable,
             advanced_msg: observable,
@@ -35,3 +34,5 @@ export class Msg {
         this.advanced_msg_is_visible = is_visible;
     };
 }
+
+export const Msg = Class.get_instance();

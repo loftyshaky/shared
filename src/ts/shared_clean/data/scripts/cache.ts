@@ -2,12 +2,11 @@ import merge from 'lodash/merge';
 
 import { t } from 'shared_clean/internal';
 
-export class Cache {
-    private static i0: Cache;
+class Class {
+    private static instance: Class;
 
-    public static i(): Cache {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -49,3 +48,5 @@ export class Cache {
             await we.storage.session.set(merge(non_replaceable_keys_session_data, data));
         }, 'shr_1124');
 }
+
+export const Cache = Class.get_instance();

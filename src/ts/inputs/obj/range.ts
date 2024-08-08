@@ -15,7 +15,7 @@ export class Range extends o_inputs.InputBase {
 
     displayed_val? = computedFn(function ({ input }: { input: Range }): number {
         return n(input.step)
-            ? Math.round((d_inputs.Val.i().access({ input }) as number) / input.step)
+            ? Math.round((d_inputs.Val.access({ input }) as number) / input.step)
             : 0;
     });
 

@@ -7,7 +7,7 @@ export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
     const { app_id, on_render } = props;
 
     useEffect(() => {
-        s_css.Main.i().load({ app_id });
+        s_css.Css.load({ app_id });
 
         on_render();
     }, [app_id, on_render]);
@@ -17,15 +17,15 @@ export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
             className={x.cls([
                 'main',
                 'error',
-                d_error.State.i().is_highlighted_cls,
-                d_error.State.i().notification_type,
-                d_error.State.i().is_fullscreen_cls,
+                d_error.State.is_highlighted_cls,
+                d_error.State.notification_type,
+                d_error.State.is_fullscreen_cls,
             ])}
             role='none'
             style={{
-                display: d_error.State.i().is_visible_style,
+                display: d_error.State.is_visible_style,
             }}
-            onMouseDown={d_error.State.i().clear_all_reset_state_timeouts}
+            onMouseDown={d_error.State.clear_all_reset_state_timeouts}
         >
             <c_error.Progress />
             <div className='body'>
@@ -34,7 +34,7 @@ export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
                         <c_error.ExtName />
                         <c_error.KeepVisibleMsg />
                     </span>
-                    {d_error.State.i().is_fullscreen ? undefined : <c_error.CloseBtn />}
+                    {d_error.State.is_fullscreen ? undefined : <c_error.CloseBtn />}
                 </div>
                 <c_error.Msg />
             </div>

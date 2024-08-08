@@ -2,12 +2,11 @@ import { action } from 'mobx';
 
 import { o_inputs, i_inputs } from 'inputs/internal';
 
-export class Text {
-    private static i0: Text;
+class Class {
+    private static instance: Class;
 
-    public static i(): Text {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -55,3 +54,5 @@ export class Text {
             text_btn.event_callback({ input });
         }, 'shr_1214');
 }
+
+export const Text = Class.get_instance();

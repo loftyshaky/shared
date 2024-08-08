@@ -1,11 +1,10 @@
 import { t, s_no_tr } from 'shared_clean/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -21,7 +20,7 @@ export class Main {
         additional_theme_callback?: t.CallbackVariadicVoid;
     }): Promise<void> =>
         err_async(async () => {
-            s_no_tr.Main.i().enable({ el });
+            s_no_tr.State.enable({ el });
 
             const name_final = `${name}_theme`;
             const loading_screen_root_el = <HTMLDivElement>(
@@ -37,6 +36,8 @@ export class Main {
                 additional_theme_callback({ name, el });
             }
 
-            await s_no_tr.Main.i().disable({ el });
+            await s_no_tr.State.disable({ el });
         }, 'shr_1129');
 }
+
+export const Theme = Class.get_instance();

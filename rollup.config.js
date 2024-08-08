@@ -110,6 +110,10 @@ const config = {
                     dest: paths.app,
                 },
                 {
+                    src: 'eslint-local-rules.js',
+                    dest: paths.app,
+                },
+                {
                     src: '.prettierrc.js',
                     dest: paths.app,
                 },

@@ -1,11 +1,10 @@
 import { i_error } from 'error_modules_clean/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     public hide_delay: number = 5000;
@@ -16,7 +15,7 @@ export class Main {
     persistent = don't hide (true) / hide (false) error ribbon after 5 seconds
     exit = terminate code execution (true) / show error message; don't terminate code execution (false)
     */
-    public show_error = (
+    public show = (
         error_obj: i_error.ErrorObj | undefined,
         error_code: string | undefined,
         {
@@ -108,7 +107,7 @@ export class Main {
 
                 throw updated_error_obj;
             } else {
-                this.output_error(error_obj, error_code);
+                this.output(error_obj, error_code);
             }
         }
 
@@ -117,7 +116,7 @@ export class Main {
         }
     };
 
-    public output_error = (error_obj: i_error.ErrorObj, error_code: string): void => {
+    public output = (error_obj: i_error.ErrorObj, error_code: string): void => {
         const line = '---------------------------';
         const separator_top = `${line}\n`;
         const separator_bottom = `\n${line}`;
@@ -131,3 +130,5 @@ export class Main {
         console.error(console_output);
     };
 }
+
+export const Error = Class.get_instance();

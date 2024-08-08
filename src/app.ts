@@ -4,6 +4,6 @@ export { App } from 'shared_clean/app';
 
 declare const globalThis: Global;
 
-globalThis.app = App.i();
+globalThis.app = App;
 
 init_page(); // need to be here, otherwise error will happen

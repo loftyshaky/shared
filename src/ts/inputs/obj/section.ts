@@ -44,7 +44,7 @@ export class Section {
     }
 
     public visibility_cls? = computedFn(function ({ section }: { section: Section }): string {
-        return section.name === d_settings.Sections.i().current_section ? '' : 'hidden';
+        return section.name === d_settings.Sections.current_section ? '' : 'hidden';
     });
 
     public show_content_link_btn_is_visible? = computedFn(function (this: Section): boolean {

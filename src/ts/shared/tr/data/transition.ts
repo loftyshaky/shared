@@ -4,12 +4,11 @@ import { action } from 'mobx';
 import { t } from 'shared_clean/internal';
 import { i_tr } from 'shared/internal';
 
-export class Transition {
-    private static i0: Transition;
+class Class {
+    private static instance: Class;
 
-    public static i(): Transition {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -88,3 +87,5 @@ export class Transition {
             });
         }, 'shr_1135');
 }
+
+export const Transition = Class.get_instance();

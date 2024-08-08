@@ -44,7 +44,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                             state={input.palette_w_is_visible!()}
                             tr_end_unactive={[
                                 (): void => {
-                                    d_color.Visibility.i().mark_palette_as_closed({
+                                    d_color.Visibility.mark_palette_as_closed({
                                         input,
                                         is_closed: true,
                                     });
@@ -67,7 +67,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                     ])}
                                     state={data.settings.color_help_is_visible}
                                     tr_end_unactive={[
-                                        d_color.Visibility.i().hide_color_help_tr_end,
+                                        d_color.Visibility.hide_color_help_tr_end,
                                     ]}
                                 >
                                     <p className='color_help'>{ext.msg('color_help_text')}</p>
@@ -76,7 +76,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                             new o_inputs.LinkBtn({
                                                 name: 'hide',
                                                 event_callback: (): void => {
-                                                    d_color.Visibility.i().hide_color_help({
+                                                    d_color.Visibility.hide_color_help({
                                                         input,
                                                     });
                                                 },
@@ -91,7 +91,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                                 new o_inputs.LinkBtn({
                                                     name: 'remove_color',
                                                     event_callback: (): void => {
-                                                        d_color.Color.i().remove_color({ input });
+                                                        d_color.Color.remove_color({ input });
                                                     },
                                                 })
                                             }
@@ -102,7 +102,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                             new o_inputs.LinkBtn({
                                                 name: 'restore_default_palette',
                                                 event_callback: (): void => {
-                                                    d_color.Color.i().restore_default_palette({
+                                                    d_color.Color.restore_default_palette({
                                                         input,
                                                     });
                                                 },
@@ -131,7 +131,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                                 name: 'color_ok_btn',
                                                 alt_msg: 'OK',
                                                 event_callback: (): void =>
-                                                    d_color.Color.i().save({
+                                                    d_color.Color.save({
                                                         i: 'main',
                                                         input,
                                                         callback: (): void => {

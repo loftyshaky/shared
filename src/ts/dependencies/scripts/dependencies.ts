@@ -2,12 +2,11 @@ import { makeObservable, observable, runInAction } from 'mobx';
 
 import { t } from 'shared_clean/internal';
 
-export class Dependencies {
-    private static i0: Dependencies;
+class Class {
+    private static instance: Class;
 
-    public static i(): Dependencies {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -52,3 +51,5 @@ export class Dependencies {
             );
         }, 'shr_1290');
 }
+
+export const Dependencies = Class.get_instance();

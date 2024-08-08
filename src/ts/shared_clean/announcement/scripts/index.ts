@@ -1,1 +1,1 @@
-export * from 'shared_clean/announcement/scripts/display';
+export * from 'shared_clean/announcement/scripts/visibility';

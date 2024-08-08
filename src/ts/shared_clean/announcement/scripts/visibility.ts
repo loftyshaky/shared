@@ -8,9 +8,10 @@ class Class {
     // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
-    public reload = (): void => {
-        globalThis.location.reload();
-    };
+    public display = (): Promise<void> =>
+        err_async(async () => {
+            we.tabs.create({ url: we.runtime.getURL('announcement.html') });
+        }, 'shr_1231');
 }
 
-export const Page = Class.get_instance();
+export const Visibility = Class.get_instance();

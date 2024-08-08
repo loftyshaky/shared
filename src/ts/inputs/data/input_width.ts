@@ -7,16 +7,15 @@ import { s_css_vars } from 'shared_clean/internal';
 import { o_inputs, i_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
-export class InputWidth {
-    private static i0: InputWidth;
+class Class {
+    private static instance: Class;
 
-    public static i(): InputWidth {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
-        makeObservable<InputWidth, 'max_width'>(this, {
+        makeObservable<Class, 'max_width'>(this, {
             width: observable,
             max_width: observable,
             set_max_width: action,
@@ -31,12 +30,12 @@ export class InputWidth {
     public calculate_width_cls = ({ calculate_width }: { calculate_width: boolean }): string =>
         err(() => (calculate_width ? 'calculate_width' : ''), 'shr_1255');
 
-    max_width_style? = computedFn(function (this: InputWidth): number | string | undefined {
+    max_width_style? = computedFn(function (this: Class): number | string | undefined {
         return x.px(isNaN(this.max_width) ? '0' : this.max_width);
     });
 
     min_width_style? = computedFn(function (
-        this: InputWidth,
+        this: Class,
         {
             input,
             calculate_width = true,
@@ -150,8 +149,8 @@ export class InputWidth {
         err(() => {
             const current_section = s<HTMLDivElement>(
                 `.section.${
-                    d_settings.Sections.i().current_section
-                        ? d_settings.Sections.i().current_section
+                    d_settings.Sections.current_section
+                        ? d_settings.Sections.current_section
                         : 'all'
                 }`,
             );
@@ -159,10 +158,12 @@ export class InputWidth {
             if (current_section) {
                 this.max_width = Math.max(
                     current_section.offsetWidth -
-                        parseInt(s_css_vars.Main.i().get({ name: 'help_btn_size' }), 10) -
-                        parseInt(s_css_vars.Main.i().get({ name: 'help_btn_margin' }), 10),
+                        parseInt(s_css_vars.CssVars.get({ name: 'help_btn_size' }), 10) -
+                        parseInt(s_css_vars.CssVars.get({ name: 'help_btn_margin' }), 10),
                     +this.min_width,
                 ).toString();
             }
         }, 'shr_1053');
 }
+
+export const InputWidth = Class.get_instance();

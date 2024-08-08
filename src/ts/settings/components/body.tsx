@@ -16,17 +16,13 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
     useEffect(
         () =>
             err(() => {
-                d_settings.Sections.i().change({ section_name: initial_section });
+                d_settings.Sections.change({ section_name: initial_section });
 
-                x.bind(self, 'resize', d_inputs.InputWidth.i().set_max_width);
-                x.bind(self, 'mousemove', d_inputs.InputWidth.i().set_max_width);
-                x.bind(document, 'mousedown', d_color.Visibility.i().hide_all);
-                x.bind(self, 'resize', s_color.Position.i().set);
-                x.bind(
-                    document,
-                    'keydown',
-                    d_color.Visibility.i().hide_color_picker_or_palette_on_esc,
-                );
+                x.bind(self, 'resize', d_inputs.InputWidth.set_max_width);
+                x.bind(self, 'mousemove', d_inputs.InputWidth.set_max_width);
+                x.bind(document, 'mousedown', d_color.Visibility.hide_all);
+                x.bind(self, 'resize', s_color.Position.set);
+                x.bind(document, 'keydown', d_color.Visibility.hide_color_picker_or_palette_on_esc);
             }, 'shr_1074'),
         [props, initial_section],
     );
@@ -52,13 +48,13 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
                     <div className='filler' />
                 </div>
                 <div className='sections_and_offers'>
-                    {d_offers.Main.i().found_offers_for_current_locale() ? (
+                    {d_offers.Offers.found_offers_for_current_locale() ? (
                         <c_offers.Body
                             is_visible={data.settings.offers_are_visible}
                             offer_banner_type='horizontal'
                         />
                     ) : undefined}
-                    <div className='sections' onScroll={s_color.Position.i().set}>
+                    <div className='sections' onScroll={s_color.Position.set}>
                         {Object.values(sections).map(
                             (section: o_inputs.Section, i: number): JSX.Element => (
                                 <c_inputs.Section key={i} section={section} />

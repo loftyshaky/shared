@@ -15,36 +15,36 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
                         'textarea',
                         input.name,
                         'inset_border',
-                        d_inputs.InputWidth.i().calculate_width_cls({ calculate_width }),
-                        d_inputs.Val.i().focus_state({ input }),
-                        d_inputs.Val.i().warn_state({ input }),
+                        d_inputs.InputWidth.calculate_width_cls({ calculate_width }),
+                        d_inputs.Val.focus_state({ input }),
+                        d_inputs.Val.warn_state({ input }),
                     ])}
                     style={{
-                        minWidth: d_inputs.InputWidth.i().min_width_style!({
+                        minWidth: d_inputs.InputWidth.min_width_style!({
                             input,
                             calculate_width,
                         }),
-                        maxWidth: d_inputs.InputWidth.i().max_width_style!(),
+                        maxWidth: d_inputs.InputWidth.max_width_style!(),
                     }}
                 >
                     <textarea
                         id={input.name}
                         name={input.name}
                         className='input'
-                        value={d_inputs.Val.i().access({ input }) as string}
+                        value={d_inputs.Val.access({ input }) as string}
                         spellCheck='false'
                         tabIndex={input.tab_index!()}
                         onInput={async (e): Promise<void> => {
-                            await d_inputs.Val.i().text_and_textarea_on_input({ input }, e);
+                            await d_inputs.Val.text_and_textarea_on_input({ input }, e);
                         }}
                         onFocus={(): void => {
-                            d_inputs.Val.i().set_focus_state({
+                            d_inputs.Val.set_focus_state({
                                 input,
                                 state: true,
                             });
                         }}
                         onBlur={(): void => {
-                            d_inputs.Val.i().set_focus_state({
+                            d_inputs.Val.set_focus_state({
                                 input,
                                 state: false,
                             });

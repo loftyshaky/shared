@@ -5,7 +5,7 @@ import { d_offers, p_offers } from 'shared/internal';
 
 export const Offer: React.FunctionComponent<p_offers.Offer> = observer((props) => {
     const { offer_banner_type } = props;
-    const current_offer_banner = d_offers.Main.i().get_current_offer_banner({
+    const current_offer_banner = d_offers.Offers.get_current_offer_banner({
         offer_banner_type,
     });
 
@@ -13,11 +13,11 @@ export const Offer: React.FunctionComponent<p_offers.Offer> = observer((props) =
         <div className='offer'>
             <p
                 // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: d_offers.Main.i().current_offer_text }}
+                dangerouslySetInnerHTML={{ __html: d_offers.Offers.current_offer_text }}
             />
             {n(current_offer_banner) ? (
                 <a
-                    href={d_offers.Main.i().current_offer_banner_link}
+                    href={d_offers.Offers.current_offer_banner_link}
                     target='_blank'
                     rel='noreferrer'
                 >

@@ -3,12 +3,11 @@ import { makeObservable, action, runInAction, observable } from 'mobx';
 
 import { o_color, d_color, i_color } from 'inputs/internal';
 
-export class Visibility {
-    private static i0: Visibility;
+class Class {
+    private static instance: Class;
 
-    public static i(): Visibility {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -111,7 +110,7 @@ export class Visibility {
                                 n(this.previously_visible_input) &&
                                 n(this.previously_visible_color_picker_i)
                             ) {
-                                d_color.Color.i().restore_old_color();
+                                d_color.Color.restore_old_color();
                             }
                         }
 
@@ -131,7 +130,7 @@ export class Visibility {
                                 ] = color_picker_state_bool;
 
                                 if (color_picker_state === 'is_visible') {
-                                    d_color.Color.i().set_previous_color({
+                                    d_color.Color.set_previous_color({
                                         input,
                                         i,
                                     });
@@ -174,16 +173,15 @@ export class Visibility {
             const new_input: o_color.Color = input;
 
             if (n(new_input.state)) {
-                d_color.Color.i()
-                    .filter_palette_colors({ obj: new_input.state })
-                    .forEach((item, i: number): void =>
+                d_color.Color.filter_palette_colors({ obj: new_input.state }).forEach(
+                    (item, i: number): void =>
                         err(() => {
                             if (n(new_input.state) && item !== 'main') {
                                 new_input.state[i as keyof i_color.ColorPickerState].is_visible =
                                     false;
                             }
                         }, 'shr_1024'),
-                    );
+                );
             }
         }, 'shr_1025');
 
@@ -222,7 +220,7 @@ export class Visibility {
                     n(this.previously_visible_color_picker_i) &&
                     (!clicked_visualization || e.button === 0)
                 ) {
-                    d_color.Color.i().restore_old_color();
+                    d_color.Color.restore_old_color();
                 }
             }
         }, 'shr_1026');
@@ -230,21 +228,22 @@ export class Visibility {
     public hide_color_picker_or_palette_on_esc = (e: KeyboardEvent): void =>
         err(() => {
             if (n(this.visible_input) && n(this.visible_input.state) && e.code === 'Escape') {
-                const at_least_one_palette_color_picker_opened: boolean = d_color.Color.i()
-                    .filter_palette_colors({ obj: this.visible_input.state })
-                    .some((item, i: number): boolean =>
-                        err(() => {
-                            if (
-                                this.visible_input &&
-                                n(this.visible_input.state) &&
-                                item !== 'main'
-                            ) {
-                                return this.visible_input.state[i as keyof i_color.ColorPickerState]
-                                    .is_visible;
-                            }
+                const at_least_one_palette_color_picker_opened: boolean =
+                    d_color.Color.filter_palette_colors({ obj: this.visible_input.state }).some(
+                        (item, i: number): boolean =>
+                            err(() => {
+                                if (
+                                    this.visible_input &&
+                                    n(this.visible_input.state) &&
+                                    item !== 'main'
+                                ) {
+                                    return this.visible_input.state[
+                                        i as keyof i_color.ColorPickerState
+                                    ].is_visible;
+                                }
 
-                            return false;
-                        }, 'shr_1027'),
+                                return false;
+                            }, 'shr_1027'),
                     );
 
                 if (
@@ -270,3 +269,5 @@ export class Visibility {
             this.color_help_is_visible = false;
         }, 'shr_1210');
 }
+
+export const Visibility = Class.get_instance();

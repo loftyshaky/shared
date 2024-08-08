@@ -3,12 +3,11 @@ import { runInAction } from 'mobx';
 import { t } from 'shared_clean/internal';
 import { o_color, d_color, i_color } from 'inputs/internal';
 
-export class ColorPicker {
-    private static i0: ColorPicker;
+class Class {
+    private static instance: Class;
 
-    public static i(): ColorPicker {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -61,7 +60,7 @@ export class ColorPicker {
             pickr.on('save', () =>
                 err(() => {
                     if (!this.setting_color) {
-                        d_color.Color.i().save({
+                        d_color.Color.save({
                             i,
                             input,
                             callback: (): void => {
@@ -78,10 +77,10 @@ export class ColorPicker {
                         n(input.state) &&
                         input.state[i as keyof i_color.ColorPickerState].is_visible
                     ) {
-                        d_color.Color.i().set({
+                        d_color.Color.set({
                             input,
                             i,
-                            color: d_color.Color.i().convert_pickr_color_to_rgb_string({
+                            color: d_color.Color.convert_pickr_color_to_rgb_string({
                                 pickr_color,
                             }),
                         });
@@ -109,7 +108,7 @@ export class ColorPicker {
 
                 this.setting_color = true;
 
-                const color: string = d_color.Color.i().access({
+                const color: string = d_color.Color.access({
                     input,
                     i,
                 });
@@ -129,3 +128,5 @@ export class ColorPicker {
             }
         }, 'shr_1039');
 }
+
+export const ColorPicker = Class.get_instance();

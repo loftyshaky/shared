@@ -95,12 +95,11 @@ globalThis.sab = <T1 extends HTMLElement>(
     }, 'shr_1151');
 // > selecting elements
 
-export class X {
-    private static i0: X;
+class Class {
+    private static instance: Class;
 
-    public static i(): X {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -582,3 +581,5 @@ export class X {
         // eslint-disable-next-line no-bitwise
         err(() => `hsl(${~~(360 * Math.random())} 70% 80%)`, 'shr_1262');
 }
+
+export const X = Class.get_instance();

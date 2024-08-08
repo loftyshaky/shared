@@ -7,12 +7,11 @@ import { computedFn } from 'mobx-utils';
 import { i_data } from 'shared_clean/internal';
 import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
 
-export class Val {
-    private static i0: Val;
+class Class {
+    private static instance: Class;
 
-    public static i(): Val {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -157,13 +156,13 @@ export class Val {
                     await (input as o_inputs.Text).remove_val_callback!({ input });
                 }
 
-                await d_inputs.Val.i().set_warn_state({ input });
+                await d_inputs.Val.set_warn_state({ input });
             }, 'shr_1067'),
     );
 
     public validate_input = ({ input }: { input: i_inputs.Input }): boolean =>
         err(() => {
-            const val: i_data.Val = d_inputs.Val.i().access({ input });
+            const val: i_data.Val = d_inputs.Val.access({ input });
 
             if (input.name === 'transition_duration' && typeof val === 'string') {
                 return !/^(?!0)[1-9][0-9]*$/.test(val);
@@ -177,13 +176,15 @@ export class Val {
         e: FormEvent,
     ): Promise<void> =>
         err_async(async () => {
-            await d_inputs.Val.i().change(
+            await d_inputs.Val.change(
                 {
                     input,
                 },
                 e,
             );
 
-            await d_inputs.Val.i().set_warn_state({ input });
+            await d_inputs.Val.set_warn_state({ input });
         }, 'shr_1254');
 }
+
+export const Val = Class.get_instance();

@@ -4,12 +4,11 @@ import { makeObservable, action } from 'mobx';
 import { o_inputs, i_inputs } from 'inputs/internal';
 import { d_settings } from 'settings/internal';
 
-export class NestedInput {
-    private static i0: NestedInput;
+class Class {
+    private static instance: Class;
 
-    public static i(): NestedInput {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     public constructor() {
@@ -92,7 +91,7 @@ export class NestedInput {
 
                                             input_2.parent_disabled =
                                                 input.section ===
-                                                    d_settings.Sections.i().current_section ||
+                                                    d_settings.Sections.current_section ||
                                                 set_to_all_sections
                                                     ? new_parent_disabled
                                                     : input_2.parent_disabled;
@@ -122,8 +121,8 @@ export class NestedInput {
                         set_parent_disbled_vals_inner({ section });
                     }, 'shr_1197'),
                 );
-            } else if (d_settings.Sections.i().current_section !== '') {
-                const section = sections[d_settings.Sections.i().current_section];
+            } else if (d_settings.Sections.current_section !== '') {
+                const section = sections[d_settings.Sections.current_section];
 
                 set_parent_disbled_vals_inner({ section });
             }
@@ -152,3 +151,5 @@ export class NestedInput {
             );
         }, 'shr_1062');
 }
+
+export const NestedInput = Class.get_instance();

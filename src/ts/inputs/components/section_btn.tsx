@@ -12,18 +12,18 @@ export const SectionBtn: React.FunctionComponent<p_inputs.SectionBtn> = observer
             className={x.cls([
                 'section_btn',
                 section.name,
-                d_settings.Sections.i().selected_cls({ section_name: section.name }),
+                d_settings.Sections.selected_cls({ section_name: section.name }),
             ])}
             type='button'
-            tabIndex={d_settings.Sections.i().tab_index({ section_name: section.name })}
+            tabIndex={d_settings.Sections.tab_index({ section_name: section.name })}
             onClick={() => {
-                d_settings.Sections.i().change({
+                d_settings.Sections.change({
                     section_name: section.name,
                     callback: change_section_callback,
                 });
 
                 if (n(enable_developer_mode_save_callback)) {
-                    d_developer_mode.Main.i().enable_developer_mode({
+                    d_developer_mode.DeveloperMode.enable({
                         save_callback: enable_developer_mode_save_callback,
                     });
                 }

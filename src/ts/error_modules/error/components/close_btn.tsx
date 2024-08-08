@@ -10,18 +10,18 @@ export const CloseBtn: React.FunctionComponent = observer(() => (
         type='button'
         aria-label='Close'
         onMouseDown={(): void =>
-            d_error.State.i().change_state({
+            d_error.State.change_state({
                 observable_key: 'is_visible',
                 state: false,
             })
         }
         onClick={(): void =>
-            d_error.State.i().change_state({
+            d_error.State.change_state({
                 observable_key: 'is_visible',
                 state: false,
             })
         }
-        onKeyDown={s_tab_index.Main.i().simulate_click_on_enter}
+        onKeyDown={s_tab_index.TabIndex.simulate_click_on_enter}
     >
         <svg.Close />
     </button>

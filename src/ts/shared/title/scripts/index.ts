@@ -1,1 +1,1 @@
-export * from 'shared/title/scripts/main';
+export * from 'shared/title/scripts/title';

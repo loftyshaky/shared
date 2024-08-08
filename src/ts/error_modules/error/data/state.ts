@@ -3,16 +3,15 @@ import { makeObservable, observable, computed, action } from 'mobx';
 import { i_error } from 'error_modules_clean/internal';
 import { d_error } from 'error_modules/internal';
 
-export class State {
-    private static i0: State;
+class Class {
+    private static instance: Class;
 
-    public static i(): State {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
-        makeObservable<State, 'is_loaded' | 'is_visible' | 'is_highlighted'>(this, {
+        makeObservable<Class, 'is_loaded' | 'is_visible' | 'is_highlighted'>(this, {
             is_loaded: observable,
             is_visible: observable,
             is_highlighted: observable,
@@ -74,7 +73,7 @@ export class State {
         );
 
         if (observable_key === 'is_visible') {
-            d_error.Progress.i().begin_progress({ error_hide_delay: delay });
+            d_error.Progress.begin_progress({ error_hide_delay: delay });
         }
     };
 
@@ -83,7 +82,9 @@ export class State {
             clearTimeout(this.is_visible_timeout);
             clearTimeout(this.is_highlighted_timeout);
 
-            d_error.Progress.i().hide_progress();
+            d_error.Progress.hide_progress();
         }
     };
 }
+
+export const State = Class.get_instance();
