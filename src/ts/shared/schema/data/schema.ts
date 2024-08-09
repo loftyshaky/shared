@@ -12,12 +12,10 @@ class Class {
     public transform = ({
         data,
         transform_items,
-        remove_from_storage = true,
         keys_to_remove = [],
     }: {
         data: any;
         transform_items: o_schema.TransformItem[];
-        remove_from_storage?: boolean;
         keys_to_remove?: string[];
     }): Promise<any> =>
         err_async(
@@ -25,7 +23,6 @@ class Class {
                 d_schema.Schema.transform({
                     data,
                     transform_items,
-                    remove_from_storage,
                     keys_to_remove,
                     run_in_action: runInAction,
                 }),
