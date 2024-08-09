@@ -317,6 +317,7 @@ class Class {
     public storage_remove = async (keys: string[]): Promise<void> => {
         if (!this.ext_context_invalidated()) {
             try {
+                await we.storage.local.remove(keys);
                 await we.storage.sync.remove(keys);
             } catch (error_obj: any) {
                 await we.storage.local.remove(keys);
