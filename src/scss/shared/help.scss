@@ -21,6 +21,10 @@
     display: flex;
     margin-bottom: $gap;
 
+    &:empty {
+        display: none;
+    }
+
     + .subsection {
         margin-top: $gap;
     }
