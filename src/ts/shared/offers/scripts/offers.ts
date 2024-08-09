@@ -41,12 +41,11 @@ class Class {
               }),
               new o_offers.Offer({ name: 'clear_new_tab' }),
               new o_offers.Offer({ name: 'empty_new_tab_page' }),
-              new o_offers.Offer({ name: 'search_enhancer_for_google' }),
-              new o_offers.Offer({ name: 'scroll_to_top' }),
               new o_offers.Offer({
                   name: 'close_other_tabs_plus',
-                  browsers_whitelist: ['chrome'],
               }),
+              new o_offers.Offer({ name: 'search_enhancer_for_google' }),
+              new o_offers.Offer({ name: 'scroll_to_top' }),
               new o_offers.Offer({ name: 'advanced_extension_reloader' }),
           ]
         : [];

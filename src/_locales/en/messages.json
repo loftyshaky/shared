@@ -183,22 +183,22 @@
         "message": "dependencies.html"
     },
     "offer_clear_new_tab_text": {
-        "message": "Install the @Clear New Tab@ extension to remove everything from the new tab page and display any image, gif or video in it as a wallpaper."
+        "message": "Install the @Clear New Tab@ extension to remove everything from the new tab page while keeping your theme background, or use any image, GIF, or video as a custom wallpaper."
     },
     "offer_empty_new_tab_page_text": {
-        "message": "Install the @Empty New Tab Page@ extension to replace the default new tab page with a blank page."
+        "message": "Install the @Empty New Tab Page@ extension to replace the default new tab page with a blank page while keeping the default favicon. Supports dark mode."
     },
     "offer_search_enhancer_for_google_text": {
-        "message": "Install the @Search Enhancer for Google™@ extension to add infinite scroll, favicons, server locations, \"View image\" button, \"Download image\" button and more to Google search."
+        "message": "Install the @Search Enhancer for Google™@ extension to enhance Google™ search with infinite scroll, server country icons, \"View Image\" and \"Download Image\" buttons, and more."
     },
     "offer_scroll_to_top_text": {
-        "message": "Install the @Scroll to Top@ extension to quickly scroll to top or bottom of the page and then return to the previous position."
+        "message": "Install the @Scroll to Top@ extension to scroll to the top or bottom of any page with a click on the left border of the screen, and then return to your previous position."
     },
     "offer_close_other_tabs_plus_text": {
-        "message": "Install the @Close Other Tabs+@ extension to close/pin/unpin multiple tabs at once, filtering them by a window, pin/group state or hostname."
+        "message": "Install the @Close Other Tabs+@ extension to close/pin/unpin/group/ungroup multiple tabs at once, filtering them by a window, pin/group state or URL."
     },
     "offer_advanced_extension_reloader_text": {
-        "message": "Install the @Advanced Extension Reloader@ extension to reload an unpacked extension with one click, hotkey or automatically (extension for developers)."
+        "message": "Install the @Advanced Extension Reloader@ extension to reload an unpacked extension with one click, a hotkey or automatically (extension for developers)."
     },
     "offer_clear_new_tab_chrome_link_href": {
         "message": "https://chromewebstore.google.com/detail/felphkbfjadmcejnibcmcncimlappdde"
