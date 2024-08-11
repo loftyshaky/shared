@@ -16,7 +16,7 @@ class Class {
     public show_roots = ({ app_id }: { app_id: string }): void =>
         err(() => {
             x.remove(s<HTMLLinkElement>(`.hidden_roots_link_${app_id}`));
-        }, 'shr_1235');
+        }, 'shr_1236');
 }
 
 export const Roots = Class.get_instance();
