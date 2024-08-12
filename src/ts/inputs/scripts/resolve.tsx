@@ -49,7 +49,12 @@ export const resolve = ({
                 />
             );
         } else if (input.type === 'checkbox') {
-            input_el = <c_inputs.Checkbox input={input as o_inputs.Checkbox} />;
+            input_el = (
+                <c_inputs.Checkbox
+                    input={input as o_inputs.Checkbox}
+                    calculate_width={calculate_width}
+                />
+            );
         } else if (input.type === 'link') {
             input_el = <c_inputs.Link link={input as o_inputs.Link} />;
         } else if (input.type === 'btn_group') {

@@ -18,11 +18,10 @@ export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) =
                             d_inputs.InputWidth.calculate_width_cls({ calculate_width }),
                         ])}
                         style={{
-                            minWidth: d_inputs.InputWidth.min_width_style!({
+                            width: d_inputs.InputWidth.width_style!({
                                 input,
                                 calculate_width,
                             }),
-                            maxWidth: d_inputs.InputWidth.max_width_style!(),
                         }}
                     >
                         <input

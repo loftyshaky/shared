@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 
 import { c_app_version, c_offers, d_offers } from 'shared/internal';
-import { c_inputs, o_inputs, d_inputs, d_color, s_color } from 'inputs/internal';
+import { c_inputs, o_inputs, d_color, s_color } from 'inputs/internal';
 import { d_settings, p_settings } from 'settings/internal';
 
 export const Body: React.FunctionComponent<p_settings.Body> = observer((props) => {
@@ -18,8 +18,6 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
             err(() => {
                 d_settings.Sections.change({ section_name: initial_section });
 
-                x.bind(self, 'resize', d_inputs.InputWidth.set_max_width);
-                x.bind(self, 'mousemove', d_inputs.InputWidth.set_max_width);
                 x.bind(document, 'mousedown', d_color.Visibility.hide_all);
                 x.bind(self, 'resize', s_color.Position.set);
                 x.bind(document, 'keydown', d_color.Visibility.hide_color_picker_or_palette_on_esc);

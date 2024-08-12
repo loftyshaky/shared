@@ -1,4 +1,10 @@
 {
+    "input_min_width_css": {
+        "message": "300"
+    },
+    "input_max_width_css": {
+        "message": "600"
+    },
     "an_error_occured_msg": {
         "message": "An error occured."
     },

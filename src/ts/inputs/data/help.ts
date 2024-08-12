@@ -37,7 +37,7 @@ class Class {
 
         if (n(section_name)) {
             return is_input
-                ? d_inputs.InputWidth.min_width_style!({
+                ? d_inputs.InputWidth.width_style!({
                       input: section_or_input as i_inputs.Input,
                   })
                 : '';

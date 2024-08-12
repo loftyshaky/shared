@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 
 import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((props) => {
+    const textarea_ref = useRef<HTMLTextAreaElement>(null);
     const { input, calculate_width, include_label } = props;
+    const width = d_inputs.InputWidth.width_style!({
+        input,
+        calculate_width,
+    });
+
+    useEffect(() => {
+        if (n(textarea_ref.current)) {
+            window.addEventListener('resize', () =>
+                d_inputs.InputWidth.resize_textarea_with_resize_handle({
+                    input,
+                    textarea: textarea_ref.current,
+                }),
+            );
+            new ResizeObserver(() => {
+                d_inputs.InputWidth.resize_textarea_with_resize_handle({
+                    input,
+                    textarea: textarea_ref.current,
+                });
+            }).observe(textarea_ref.current);
+        }
+    }, [input]);
 
     const input_w: JSX.Element = (
         <>
@@ -20,11 +42,8 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
                         d_inputs.Val.warn_state({ input }),
                     ])}
                     style={{
-                        minWidth: d_inputs.InputWidth.min_width_style!({
-                            input,
-                            calculate_width,
-                        }),
-                        maxWidth: d_inputs.InputWidth.max_width_style!(),
+                        minWidth: width,
+                        maxWidth: d_inputs.InputWidth.max_width_ob[input.name],
                     }}
                 >
                     <textarea
@@ -34,6 +53,7 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
                         value={d_inputs.Val.access({ input }) as string}
                         spellCheck='false'
                         tabIndex={input.tab_index!()}
+                        ref={textarea_ref}
                         onInput={async (e): Promise<void> => {
                             await d_inputs.Val.text_and_textarea_on_input({ input }, e);
                         }}

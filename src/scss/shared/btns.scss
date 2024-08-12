@@ -58,6 +58,20 @@ $icon_btn_size: 20px;
     }
 }
 
+.btn_w {
+    @include border_transparent;
+
+    display: table;
+
+    &:not(:first-child) {
+        margin-top: $gap;
+    }
+
+    .btn.text {
+        border: none;
+    }
+}
+
 .btn_options {
     @include border;
 

@@ -28,8 +28,7 @@ input[type='file'] {
     }
 
     .label_in_input_item {
-        display: flex;
-        align-items: center;
+        display: table;
         height: unset;
         margin-right: 0;
         white-space: normal;

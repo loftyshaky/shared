@@ -25,11 +25,10 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         d_inputs.Val.warn_state({ input }),
                     ])}
                     style={{
-                        minWidth: d_inputs.InputWidth.min_width_style!({
+                        width: d_inputs.InputWidth.width_style!({
                             input,
                             calculate_width,
                         }),
-                        maxWidth: d_inputs.InputWidth.max_width_style!(),
                     }}
                 >
                     <input

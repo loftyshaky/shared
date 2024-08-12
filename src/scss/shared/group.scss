@@ -15,11 +15,20 @@
             width: 100%;
         }
 
+        .btn_w {
+            display: flex;
+            flex-grow: 1;
+
+            .btn {
+                width: 100%;
+            }
+        }
+
         & > * {
             margin-top: 0;
         }
 
-        & > *:not(:last-child) {
+        & > .btn_w:not(:last-child) {
             margin-right: $gap;
         }
     }

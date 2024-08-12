@@ -8,6 +8,7 @@ $checkmark_size: 18px;
         }
 
         .wrap_label {
+            @include center_flex;
             @include border_transparent;
 
             margin-right: $input_content_gap;
