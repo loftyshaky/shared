@@ -27,25 +27,16 @@
         "message": "Reload"
     },
     "cant_render_ui_error": {
-        "message": "Can't render user interface."
+        "message": "Unable to render the user interface."
     },
     "dependencicies_from_other_page_loaded_into_this_page_alert": {
-        "message": "DEPENDENCIES FROM THE OTHER PAGE ACCIDENTALLY LOADED INTO THIS PAGE!!!\nCULPRIT PAGE: "
+        "message": "DEPENDENCIES FROM ANOTHER PAGE ACCIDENTALLY LOADED INTO THIS PAGE!!!\n\nCULPRIT PAGE: "
     },
     "announcement_title_text": {
         "message": "Announcement"
     },
     "dependencies_title_text": {
         "message": "Dependencies"
-    },
-    "browse_link_btn_text": {
-        "message": "Browse"
-    },
-    "drag_files_msg_text": {
-        "message": "or drag files here"
-    },
-    "loading_msg_text": {
-        "message": "Loading..."
     },
     "settings_title_text": {
         "message": "Settings"
@@ -56,9 +47,6 @@
     "links_section_text": {
         "message": "Links"
     },
-    "back_up_section_text": {
-        "message": "Back up"
-    },
     "restore_section_text": {
         "message": "Restore"
     },
@@ -67,6 +55,15 @@
     },
     "offers_section_text": {
         "message": "Offers"
+    },
+    "browse_link_btn_text": {
+        "message": "Browse"
+    },
+    "drag_files_msg_text": {
+        "message": "or drag files here"
+    },
+    "loading_msg_text": {
+        "message": "Loading..."
     },
     "download_back_up_btn_text": {
         "message": "Download back up"
@@ -138,22 +135,22 @@
         "message": "Restore default palette"
     },
     "show_content_link_btn_text": {
-        "message": "Show these settings ⯆"
+        "message": "Reveal these settings ⯆"
     },
     "hide_content_link_btn_text": {
         "message": "Hide these settings ⯅"
     },
     "color_help_text": {
-        "message": "Right-click on the main or palette color buttons to choose a custom color. You can also do this by selecting the main or palette color buttons by Tab and then hitting Ctrl/Shift/Alt + Enter."
+        "message": "Right-click the main or palette color buttons to select a custom color. Alternatively, you can use the Tab key to navigate to the main or palette color buttons, then press Ctrl/Shift/Alt + Enter to choose a custom color."
     },
     "privacy_policy_link_text": {
         "message": "📜 Privacy policy"
     },
     "rate_link_text": {
-        "message": "⭐️ Rate this extension if you like it"
+        "message": "⭐️ Enjoying this extension? Please rate it!"
     },
     "help_translating_link_text": {
-        "message": "🈯 Help translating this extension into the language you know"
+        "message": "🈯 Help translate this extension into your language"
     },
     "facebook_page_link_text": {
         "message": "🖼️ Follow my Facebook page"
@@ -168,7 +165,7 @@
         "message": "🧩 Dependencies"
     },
     "offer_tinkoff_black_text": {
-        "message": "Get a Tinkoff Black card using @this link@ and get 500 rubles."
+        "message": "Sign up for a Tinkoff Black card using @this link@ and receive 500 rubles."
     },
     "offer_tinkoff_investments_brokerage_account_text": {
         "message": "Open a brokerage account with Tinkoff Investments using @this link@ and get a share of up to 20,000 rubles."
@@ -261,9 +258,9 @@
         "message": "You're now a developer!"
     },
     "invalid_file_type_back_up_error": {
-        "message": "Invalid file type. Upload a backed up json file."
+        "message": "Invalid file type. Upload the previously downloaded JSON backup file."
     },
     "unable_to_access_settings_error": {
-        "message": "Fatal error. Unable to access settings."
+        "message": "Fatal error: Unable to access settings."
     }
 }
