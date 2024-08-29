@@ -1,4 +1,4 @@
-import { run_in_action_placeholder, s_data, o_schema } from 'shared_clean/internal';
+import { run_in_action_placeholder, o_schema } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -8,25 +8,22 @@ class Class {
     }
 
     public transform = ({
-        data,
+        data_obj,
+        version,
         transform_items,
         keys_to_remove = [],
         force = false,
         run_in_action = run_in_action_placeholder,
     }: {
-        data: any;
+        data_obj: any;
+        version: number;
         transform_items: o_schema.TransformItem[];
         keys_to_remove?: string[];
-        force?: boolean;
+        force: boolean;
         run_in_action?: any;
     }): Promise<any> =>
         err_async(async () => {
-            const settings = await s_data.Cache.get_data();
-            const stored_version: number = n(settings.settings)
-                ? settings.settings.version
-                : settings.version;
-
-            if (stored_version !== ext.get_app_version() || force) {
+            if (version !== ext.get_app_version() || force) {
                 const properties_to_remove: string[] = [];
 
                 transform_items.forEach((transform_item: o_schema.TransformItem): void =>
@@ -34,17 +31,18 @@ class Class {
                         if (
                             !transform_item.update_existing_val &&
                             n(transform_item.new_key) &&
-                            !n(data[transform_item.new_key]) &&
+                            !n(data_obj[transform_item.new_key]) &&
                             (transform_item.create_property_if_it_doesnt_exist ||
                                 (!transform_item.create_property_if_it_doesnt_exist &&
                                     n(transform_item.old_key) &&
-                                    n(data[transform_item.old_key])))
+                                    n(data_obj[transform_item.old_key])))
                         ) {
                             if (n(transform_item.new_val)) {
                                 run_in_action(() =>
                                     err(() => {
                                         if (n(transform_item) && n(transform_item.new_key)) {
-                                            data[transform_item.new_key] = transform_item.new_val;
+                                            data_obj[transform_item.new_key] =
+                                                transform_item.new_val;
                                         }
                                     }, 'shr_1229'),
                                 );
@@ -56,8 +54,8 @@ class Class {
                                             n(transform_item.new_key) &&
                                             n(transform_item.old_key)
                                         ) {
-                                            data[transform_item.new_key] =
-                                                data[transform_item.old_key];
+                                            data_obj[transform_item.new_key] =
+                                                data_obj[transform_item.old_key];
                                         }
                                     }, 'shr_1230'),
                                 );
@@ -69,7 +67,7 @@ class Class {
                             n(transform_item.old_key) &&
                             n(transform_item.new_val)
                         ) {
-                            data[transform_item.old_key] = transform_item.new_val;
+                            data_obj[transform_item.old_key] = transform_item.new_val;
                         }
 
                         if (
@@ -86,7 +84,7 @@ class Class {
                     err(() => {
                         run_in_action(() =>
                             err(() => {
-                                delete data[property_to_remove];
+                                delete data_obj[property_to_remove];
                             }, 'shr_1231'),
                         );
                     }, 'shr_1228'),
@@ -96,22 +94,25 @@ class Class {
                     err(() => {
                         run_in_action(() =>
                             err(() => {
-                                delete data[key_to_remove];
+                                delete data_obj[key_to_remove];
                             }, 'shr_1231'),
                         );
                     }, 'shr_1260'),
                 );
 
-                return data;
+                return data_obj;
             }
 
-            return data;
-        }, 'shr_1226');
+            return data_obj;
+        }, 'shr_1299');
 
-    public replace = ({ data }: { data: any }): Promise<void> =>
+    public replace = ({ settings }: { settings: any }): Promise<void> =>
         err_async(async () => {
-            await ext.storage_set(data, true);
+            await ext.storage_set(settings, true);
         }, 'shr_1236');
+
+    public get_version_legacy = ({ settings }: { settings: any }): number =>
+        err(() => (n(settings.prefs) ? settings.prefs.version : settings.version), 'shr_1300');
 }
 
 export const Schema = Class.get_instance();

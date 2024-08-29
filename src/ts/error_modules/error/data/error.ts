@@ -64,10 +64,8 @@ class Class {
         }: i_error.ShowErrorState1,
     ): void => {
         if (error_ui_is_visible) {
-            if (notification_type !== 'error') {
-                d_error.Msg.basic_msg = ext.msg(error_msg_key);
-                d_error.State.notification_type = notification_type;
-            }
+            d_error.Msg.basic_msg = ext.msg(error_msg_key);
+            d_error.State.notification_type = notification_type;
 
             if (is_fullscreen) {
                 d_error.State.change_state({

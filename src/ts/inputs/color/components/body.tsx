@@ -65,10 +65,8 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                         'color_help_w',
                                         input.color_help_visibility_cls!(),
                                     ])}
-                                    state={data.settings.color_help_is_visible}
-                                    tr_end_unactive={[
-                                        d_color.Visibility.hide_color_help_tr_end,
-                                    ]}
+                                    state={data.settings.prefs.color_help_is_visible}
+                                    tr_end_unactive={[d_color.Visibility.hide_color_help_tr_end]}
                                 >
                                     <p className='color_help'>{ext.msg('color_help_text')}</p>
                                     <c_inputs.LinkBtn
@@ -111,8 +109,8 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                     />
                                 </div>
                                 <div className='palette_colors'>
-                                    {n(data.settings.colors)
-                                        ? data.settings.colors.map(
+                                    {n(data.settings.prefs.colors)
+                                        ? data.settings.prefs.colors.map(
                                               (color: string, i: number): JSX.Element => (
                                                   <c_color.Visualization
                                                       key={i}

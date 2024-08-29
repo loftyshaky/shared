@@ -4,7 +4,7 @@ import { computedFn } from 'mobx-utils';
 import { t } from 'shared_clean/internal';
 import { d_offers } from 'shared/internal';
 import { o_inputs, d_inputs, d_color, i_inputs } from 'inputs/internal';
-import { d_settings } from 'settings/internal';
+import { d_sections } from 'settings/internal';
 
 class Class {
     private static instance: Class;
@@ -108,7 +108,7 @@ class Class {
         back_up_inputs = [],
         restore_inputs = [],
         include_back_up_help = false,
-        back_up_help_msg = undefined,
+        restore_help_msg = undefined,
         download_backup = true,
         include_part_i_in_back_up_name = false,
         allow_multiple_file_backup_upload = false,
@@ -124,7 +124,7 @@ class Class {
         back_up_inputs?: i_inputs.Input[];
         restore_inputs?: i_inputs.Input[];
         include_back_up_help?: boolean;
-        back_up_help_msg?: string | undefined;
+        restore_help_msg?: string | undefined;
         download_backup?: boolean;
         include_part_i_in_back_up_name?: boolean;
         allow_multiple_file_backup_upload?: boolean;
@@ -134,10 +134,15 @@ class Class {
         err(
             () => [
                 new o_inputs.Section({
-                    name: 'back_up',
+                    name: 'restore',
                     include_help: include_back_up_help,
-                    alt_help_msg: back_up_help_msg,
+                    alt_help_msg: restore_help_msg,
                     inputs: [
+                        new o_inputs.Btn({
+                            name: 'restore_defaults',
+                            event_callback: restore_defaults_callback,
+                        }),
+                        ...restore_inputs,
                         new o_inputs.Btn({
                             name: 'download_back_up',
                             event_callback: (): Promise<void> =>
@@ -145,7 +150,7 @@ class Class {
                                     const data_obj = await download_back_up_callback();
 
                                     if (download_backup) {
-                                        d_settings.BackUp.download({
+                                        d_sections.BackUp.download({
                                             data_obj,
                                             part_i: include_part_i_in_back_up_name ? 0 : 'none',
                                         });
@@ -158,26 +163,16 @@ class Class {
                         }),
                         new o_inputs.Btn({
                             name: 'upload_back_up',
-                            event_callback: d_settings.BackUp.open_file_browser,
+                            event_callback: d_sections.BackUp.open_file_browser,
                         }),
                         new o_inputs.File({
                             name: 'back_up',
                             accept: '.json',
                             multiple: allow_multiple_file_backup_upload,
-                            event_callback: d_settings.BackUp.upload,
+                            event_callback: d_sections.BackUp.upload,
                             save_callback: upload_back_up_callback,
                         }),
                         ...back_up_inputs,
-                    ],
-                }),
-                new o_inputs.Section({
-                    name: 'restore',
-                    inputs: [
-                        new o_inputs.Btn({
-                            name: 'restore_defaults',
-                            event_callback: restore_defaults_callback,
-                        }),
-                        ...restore_inputs,
                     ],
                 }),
                 new o_inputs.Section({

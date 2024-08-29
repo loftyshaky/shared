@@ -12,10 +12,10 @@ export * as c_tr from 'shared/tr/components';
 export * as o_offers from 'shared/offers/obj';
 export * as o_tr from 'shared/tr/obj';
 
+export * as d_data from 'shared/data/data';
 export * as d_loading_screen from 'shared/loading_screen/data';
 export * as d_offers from 'shared/offers/data';
 export * as d_schema from 'shared/schema/data';
-export * as d_settings from 'shared/settings/data';
 export * as d_tr from 'shared/tr/data';
 
 export * as s_loading_screen from 'shared/loading_screen/scripts';

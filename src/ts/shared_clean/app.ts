@@ -63,7 +63,9 @@ class Class {
     };
 
     public get_language = (): string =>
-        n(data) && n(data.settings) && data.settings.locale ? data.settings.locale : 'en';
+        n(data) && n(data.settings.prefs) && data.settings.prefs.locale
+            ? data.settings.prefs.locale
+            : 'en';
 
     private content_dir = (): string => {
         try {

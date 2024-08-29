@@ -21,7 +21,7 @@ export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
                 cls={x.cls(['input_item', input.type, input.name, input.is_enabled_cls!()])}
                 state={
                     input.is_visible_computed!() &&
-                    ((input.is_cut && data.settings.enable_cut_features) || !input.is_cut)
+                    ((input.is_cut && data.settings.prefs.enable_cut_features) || !input.is_cut)
                 }
                 style={{ marginLeft: x.px(input.offset) }}
             >

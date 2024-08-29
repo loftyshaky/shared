@@ -29,7 +29,7 @@ class Class {
             if (this.click_count >= 10) {
                 this.reset_click_count();
 
-                data.settings.developer_mode = true;
+                data.settings.prefs.developer_mode = true;
 
                 show_notification({ error_msg_key: 'youre_now_a_developer_notification' });
 

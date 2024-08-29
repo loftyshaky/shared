@@ -106,7 +106,7 @@ export class Color extends o_inputs.InputBase {
     ): string {
         if (
             this.is_palette_color!({ i }) &&
-            i === (n(this.val_accessor) ? get(data, this.val_accessor) : data.settings[this.name])
+            i === (n(this.val_accessor) ? get(data, this.val_accessor) : data.settings.prefs[this.name])
         ) {
             return 'selected';
         }
@@ -118,7 +118,7 @@ export class Color extends o_inputs.InputBase {
         this: Color,
         { i }: { i: i_color.I },
     ): string {
-        return i === data.settings.selected_palette_color ? 'selected' : '';
+        return i === data.settings.prefs.selected_palette_color ? 'selected' : '';
     });
 
     color_picker_is_closed_visibility_cls? = computedFn(function (

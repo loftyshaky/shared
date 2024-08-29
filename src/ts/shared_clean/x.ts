@@ -1,4 +1,5 @@
 import reject_lodash from 'lodash/reject';
+import isEmpty from 'lodash/isEmpty';
 import debounce from 'lodash/debounce';
 
 import { t } from 'shared_clean/internal';
@@ -580,6 +581,18 @@ class Class {
     public pastel_color = (): string =>
         // eslint-disable-next-line no-bitwise
         err(() => `hsl(${~~(360 * Math.random())} 70% 80%)`, 'shr_1262');
+
+    public settings_are_filled = (): boolean => err(() => !isEmpty(n(data.settings)), 'shr_1252');
+
+    public prefs_are_filled = (): boolean =>
+        err(
+            () =>
+                n(data.settings) &&
+                n(data.settings.prefs) &&
+                'prefs' in data.settings &&
+                n(data.settings.prefs.enable_cut_features),
+            'shr_1241',
+        );
 }
 
 export const X = Class.get_instance();

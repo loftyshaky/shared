@@ -3,7 +3,7 @@ import { computedFn } from 'mobx-utils';
 
 import { i_offers } from 'shared/internal';
 import { i_inputs } from 'inputs/internal';
-import { d_settings } from 'settings/internal';
+import { d_sections } from 'settings/internal';
 
 export class Section {
     public name: string;
@@ -44,7 +44,7 @@ export class Section {
     }
 
     public visibility_cls? = computedFn(function ({ section }: { section: Section }): string {
-        return section.name === d_settings.Sections.current_section ? '' : 'hidden';
+        return section.name === d_sections.Sections.current_section ? '' : 'hidden';
     });
 
     public show_content_link_btn_is_visible? = computedFn(function (this: Section): boolean {
@@ -57,7 +57,8 @@ export class Section {
 
     public set_content_is_visible? = (): Promise<void> =>
         err_async(async () => {
-            this.content_is_visible = data.settings[`${this.name}_section_content_is_visible`];
+            this.content_is_visible =
+                data.settings.prefs[`${this.name}_section_content_is_visible`];
         }, 'shr_1265');
 
     public change_visibility_of_content? = (): Promise<void> =>

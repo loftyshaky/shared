@@ -3,6 +3,7 @@
 
 import isEmpty from 'lodash/isEmpty';
 import merge from 'lodash/merge';
+import unset from 'lodash/unset';
 import browser, { Windows, Tabs } from 'webextension-polyfill';
 
 import { d_error } from 'error_modules_clean/internal';
@@ -51,6 +52,15 @@ class Class {
     private constructor() {}
 
     private force_local_storage: boolean = false;
+    public updating_storage: boolean = false;
+
+    public only_cache = [];
+
+    private remove_only_cache = (data: any): void => {
+        this.only_cache.forEach((item: string): void => {
+            unset(data, item);
+        });
+    };
 
     public ext_context_invalidated = () => !we.runtime?.id;
 
@@ -246,8 +256,13 @@ class Class {
     public storage_get = async (keys?: string | string[], set: boolean = false): Promise<any> => {
         try {
             if (!this.ext_context_invalidated()) {
+                this.updating_storage = true;
+
                 const data_sync: t.AnyRecord = await we.storage.sync.get(keys);
                 const data_local: t.AnyRecord = await we.storage.local.get(keys);
+
+                this.remove_only_cache(data_sync);
+                this.remove_only_cache(data_local);
 
                 const set_f = (): Promise<void> =>
                     err_async(async () => {
@@ -283,8 +298,11 @@ class Class {
 
     public storage_set = async (obj: t.AnyRecord, replace?: boolean): Promise<void> => {
         if (!this.ext_context_invalidated()) {
+            this.updating_storage = true;
+
             const set_data = async (set_local: boolean): Promise<void> => {
                 const data: t.AnyRecord = await we.storage[set_local ? 'sync' : 'local'].get();
+                this.remove_only_cache(data);
 
                 if (replace) {
                     await we.storage[set_local ? 'local' : 'sync'].clear();
@@ -316,6 +334,8 @@ class Class {
 
     public storage_remove = async (keys: string[]): Promise<void> => {
         if (!this.ext_context_invalidated()) {
+            this.updating_storage = true;
+
             try {
                 await we.storage.local.remove(keys);
                 await we.storage.sync.remove(keys);

@@ -11,8 +11,8 @@ export * from 'shared_clean/functions';
 
 export * as o_schema from 'shared_clean/schema/obj';
 
+export * as d_data from 'shared_clean/data/data';
 export * as d_schema from 'shared_clean/schema/data';
-export * as d_settings from 'shared_clean/settings/data';
 
 export * as s_announcement from 'shared_clean/announcement/scripts';
 export * as s_color from 'shared_clean/color/scripts';

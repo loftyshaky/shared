@@ -62,7 +62,7 @@ export class InputBase {
     }
 
     is_cut_computed? = computedFn(function (this: InputBase): boolean {
-        return (this.is_cut && data.settings.enable_cut_features) || !this.is_cut;
+        return (this.is_cut && data.settings.prefs.enable_cut_features) || !this.is_cut;
     });
 
     is_visible_computed? = computedFn(function (this: InputBase): boolean {
@@ -70,7 +70,7 @@ export class InputBase {
             this.check_state!({ state_type: 'is_visible' }) &&
             this.is_cut_computed!() &&
             (!this.developer_mode_setting ||
-                (this.developer_mode_setting && data.settings.developer_mode))
+                (this.developer_mode_setting && data.settings.prefs.developer_mode))
         );
     });
 
@@ -140,7 +140,7 @@ export class InputBase {
                                         return val_final === pass_val;
                                     }
 
-                                    return data.settings[cond.input_name] === pass_val;
+                                    return data.settings.prefs[cond.input_name] === pass_val;
                                 }, 'shr_1207'),
                             ),
                         'shr_1206',

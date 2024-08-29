@@ -10,20 +10,26 @@ class Class {
     }
 
     public transform = ({
-        data,
+        data_obj,
+        version,
         transform_items,
         keys_to_remove = [],
+        force = false,
     }: {
-        data: any;
+        data_obj: any;
+        version: number;
         transform_items: o_schema.TransformItem[];
         keys_to_remove?: string[];
+        force?: boolean;
     }): Promise<any> =>
         err_async(
             async () =>
                 d_schema.Schema.transform({
-                    data,
+                    data_obj,
+                    version,
                     transform_items,
                     keys_to_remove,
+                    force,
                     run_in_action: runInAction,
                 }),
             'shr_1226',

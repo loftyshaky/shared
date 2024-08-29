@@ -78,7 +78,9 @@ class Class {
                 return val_final;
             }
 
-            const val: string = n(data.settings[input.name]) ? data.settings[input.name] : '';
+            const val: string = n(data.settings.prefs[input.name])
+                ? data.settings.prefs[input.name]
+                : '';
 
             runInAction(() =>
                 err(() => {
@@ -121,7 +123,7 @@ class Class {
                 if (n(input.val_accessor)) {
                     set(data, input.val_accessor, val);
                 } else {
-                    data.settings[input.name] = val;
+                    data.settings.prefs[input.name] = val;
                 }
             }, 'shr_1066'),
     );
@@ -149,7 +151,7 @@ class Class {
                 if (n(input.val_accessor)) {
                     set(data, input.val_accessor, '');
                 } else {
-                    data.settings[input.name] = '';
+                    data.settings.prefs[input.name] = '';
                 }
 
                 if (n((input as o_inputs.Text).remove_val_callback)) {

@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import { makeObservable, action } from 'mobx';
 
 import { o_inputs, i_inputs } from 'inputs/internal';
-import { d_settings } from 'settings/internal';
+import { d_sections } from 'settings/internal';
 
 class Class {
     private static instance: Class;
@@ -85,13 +85,13 @@ class Class {
                                                             return val;
                                                         }
 
-                                                        return data.settings[parent];
+                                                        return data.settings.prefs[parent];
                                                     }, 'shr_1056'),
                                             );
 
                                             input_2.parent_disabled =
                                                 input.section ===
-                                                    d_settings.Sections.current_section ||
+                                                    d_sections.Sections.current_section ||
                                                 set_to_all_sections
                                                     ? new_parent_disabled
                                                     : input_2.parent_disabled;
@@ -121,8 +121,8 @@ class Class {
                         set_parent_disbled_vals_inner({ section });
                     }, 'shr_1197'),
                 );
-            } else if (d_settings.Sections.current_section !== '') {
-                const section = sections[d_settings.Sections.current_section];
+            } else if (d_sections.Sections.current_section !== '') {
+                const section = sections[d_sections.Sections.current_section];
 
                 set_parent_disbled_vals_inner({ section });
             }

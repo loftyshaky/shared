@@ -1,6 +1,7 @@
 import { runInAction, toJS } from 'mobx';
 
-import { d_settings } from 'shared_clean/internal';
+import { d_data as d_data_shared_clean } from 'shared_clean/internal';
+import { d_data } from 'shared/internal';
 
 class Class {
     private static instance: Class;
@@ -12,18 +13,11 @@ class Class {
     // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
-    public set = ({
-        settings,
-        settings_are_corrupt = false,
-    }: {
-        settings?: any;
-        settings_are_corrupt?: boolean;
-    }): Promise<void> =>
+    public set = ({ settings }: { settings?: any }): Promise<void> =>
         err_async(
             async () =>
-                d_settings.Settings.set({
+                d_data_shared_clean.Settings.set({
                     settings,
-                    settings_are_corrupt,
                     run_in_action: runInAction,
                 }),
             'shr_1365',
@@ -32,7 +26,11 @@ class Class {
     public set_from_storage = (): Promise<any> =>
         err_async(
             async () =>
-                d_settings.Settings.set_from_storage({ to_js: toJS, run_in_action: runInAction }),
+                d_data_shared_clean.Settings.set_from_storage({
+                    to_js: toJS,
+                    run_in_action: runInAction,
+                    set_data: d_data.Cache.set_data,
+                }),
             'shr_1235',
         );
 }

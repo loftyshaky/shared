@@ -56,7 +56,7 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
                 }}
                 state={
                     input.is_visible_computed!() &&
-                    ((input.is_cut && data.settings.enable_cut_features) || !input.is_cut)
+                    ((input.is_cut && data.settings.prefs.enable_cut_features) || !input.is_cut)
                 }
                 style={{ marginLeft: x.px(input.offset) }}
             >

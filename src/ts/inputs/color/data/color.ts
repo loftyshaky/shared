@@ -30,20 +30,20 @@ class Class {
             if (i === 'main') {
                 const val: i_color_shared_clean.Color = n(input.val_accessor)
                     ? get(data, input.val_accessor)
-                    : data.settings[input.name];
+                    : data.settings.prefs[input.name];
 
                 if (this.val_is_palette_color({ input })) {
-                    return data.settings.colors[val];
+                    return data.settings.prefs.colors[val];
                 }
 
                 return val;
             }
 
-            return data.settings.colors[i];
+            return data.settings.prefs.colors[i];
         }, 'shr_1006');
 
     public access_from_val = ({ val }: { val: i_color_shared_clean.Color }): string =>
-        err(() => (typeof val === 'number' ? data.settings.colors[val] : val), 'shr_1007');
+        err(() => (typeof val === 'number' ? data.settings.prefs.colors[val] : val), 'shr_1007');
 
     public set = ({
         input,
@@ -59,10 +59,10 @@ class Class {
                 if (n(input.val_accessor)) {
                     set(data, input.val_accessor, color);
                 } else {
-                    data.settings[input.name] = color;
+                    data.settings.prefs[input.name] = color;
                 }
             } else {
-                data.settings.colors[i] = color;
+                data.settings.prefs.colors[i] = color;
             }
         }, 'shr_1008');
 
@@ -101,7 +101,7 @@ class Class {
                 const color: i_color_shared_clean.Color =
                     inst.previously_visible_color_picker_i !== 'main' &&
                     typeof this.previous_color === 'number'
-                        ? data.settings.colors[this.previous_color]
+                        ? data.settings.prefs.colors[this.previous_color]
                         : this.previous_color;
 
                 this.set({
@@ -150,7 +150,7 @@ class Class {
                 if (n(input.val_accessor)) {
                     set(data, input.val_accessor, i);
                 } else {
-                    data.settings[input.name] = i;
+                    data.settings.prefs[input.name] = i;
                 }
 
                 this.previous_color = i;
@@ -169,7 +169,7 @@ class Class {
         err(() => {
             const val: i_color_shared_clean.Color = n(input.val_accessor)
                 ? get(data, input.val_accessor)
-                : data.settings[input.name];
+                : data.settings.prefs[input.name];
             const val_is_palette_color: boolean = typeof val === 'number';
 
             return val_is_palette_color;
@@ -179,7 +179,7 @@ class Class {
         err(() => {
             const color: i_color_shared_clean.Color = n(input.val_accessor)
                 ? get(data, input.val_accessor)
-                : data.settings[input.name];
+                : data.settings.prefs[input.name];
 
             this.previous_color =
                 i === 'main'
@@ -216,12 +216,14 @@ class Class {
             );
 
             if (confirmed_restore) {
-                data.settings.colors = n(default_colors)
+                data.settings.prefs.colors = n(default_colors)
                     ? default_colors
                     : s_color.Colors.default_colors;
 
                 this.reset_previous_vars();
-                input.restore_default_palette_callback({ default_colors: data.settings.colors });
+                input.restore_default_palette_callback({
+                    default_colors: data.settings.prefs.colors,
+                });
             }
         }, 'shr_1017');
 

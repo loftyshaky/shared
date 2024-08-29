@@ -15,7 +15,7 @@ export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
             cls={x.cls(['btn_w', 'text', input.is_enabled_cls!(), input.name])}
             state={
                 input.is_visible_computed!() &&
-                ((input.is_cut && data.settings.enable_cut_features) || !input.is_cut)
+                ((input.is_cut && data.settings.prefs.enable_cut_features) || !input.is_cut)
             }
             attr={{
                 tab_index: input.tab_index!(),

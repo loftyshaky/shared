@@ -1,4 +1,3 @@
-import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 
 import { t, run_in_action_placeholder, s_data } from 'shared_clean/internal';
@@ -15,33 +14,28 @@ class Class {
 
     public set = ({
         settings,
-        settings_are_corrupt = false,
         run_in_action = run_in_action_placeholder,
     }: {
         settings?: any;
-        settings_are_corrupt?: boolean;
         run_in_action?: any;
     }): Promise<void> =>
         err_async(async () => {
             let settings_final: any;
+            const prefs_are_filled: boolean = x.prefs_are_filled();
 
-            if (n(settings)) {
-                if (isEmpty(settings) || settings_are_corrupt) {
-                    const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
+            if (prefs_are_filled && n(settings)) {
+                settings_final = settings;
+            } else {
+                const default_settings = await ext.send_msg_resp({
+                    msg: 'get_defaults',
+                });
 
-                    settings_final = default_settings;
-                } else {
-                    settings_final = settings;
-                }
+                settings_final = default_settings;
             }
-
-            const new_settings = n(settings_final.settings)
-                ? settings_final.settings
-                : settings_final;
 
             run_in_action(() =>
                 err(() => {
-                    data.settings = new_settings;
+                    data.settings = settings_final;
                 }, 'shr_1364'),
             );
         }, 'shr_1365');
@@ -59,36 +53,29 @@ class Class {
     public set_from_storage = ({
         to_js,
         run_in_action = run_in_action_placeholder,
+        set_data = s_data.Cache.set_data,
     }: {
         to_js?: any;
         run_in_action?: any;
+        set_data?: any;
     } = {}): Promise<any> =>
         err_async(async () => {
             if (!ext.ext_context_invalidated()) {
-                const settings = await s_data.Cache.get_data();
-                const settings_are_corrupt: boolean = n(settings.settings)
-                    ? !n(settings.settings.enable_cut_features)
-                    : !n(settings.enable_cut_features);
+                await set_data();
 
-                if (isEmpty(settings) || settings_are_corrupt) {
-                    const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
+                const prefs_are_filled: boolean = x.prefs_are_filled();
 
-                    await ext.storage_set(default_settings, false);
+                if (prefs_are_filled) {
+                    if (!isEqual(n(to_js) ? to_js(data.settings) : data.settings, data.settings)) {
+                        await this.set({ settings: data.settings, run_in_action });
+                    }
+                } else {
                     await this.set({
-                        settings: default_settings,
-                        settings_are_corrupt,
                         run_in_action,
                     });
                 }
 
-                if (
-                    !isEqual(n(to_js) ? to_js(data.settings) : data.settings, settings) &&
-                    !settings_are_corrupt
-                ) {
-                    await this.set({ settings, run_in_action });
-                }
-
-                return settings;
+                return data.settings;
             }
 
             return undefined;

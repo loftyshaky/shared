@@ -8,7 +8,7 @@ export {
     stop_propagation,
     run_in_action_placeholder,
     o_schema,
-    d_settings,
+    d_data,
     s_announcement,
     s_color,
     s_css_vars,

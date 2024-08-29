@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { c_app_version, c_offers, d_offers } from 'shared/internal';
 import { c_inputs, o_inputs, d_color, s_color } from 'inputs/internal';
-import { d_settings, p_settings } from 'settings/internal';
+import { d_sections, p_settings } from 'settings/internal';
 
 export const Body: React.FunctionComponent<p_settings.Body> = observer((props) => {
     const {
@@ -16,7 +16,7 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
     useEffect(
         () =>
             err(() => {
-                d_settings.Sections.change({ section_name: initial_section });
+                d_sections.Sections.change({ section_name: initial_section });
 
                 x.bind(document, 'mousedown', d_color.Visibility.hide_all);
                 x.bind(self, 'resize', s_color.Position.set);
@@ -48,7 +48,7 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
                 <div className='sections_and_offers'>
                     {d_offers.Offers.found_offers_for_current_locale() ? (
                         <c_offers.Body
-                            is_visible={data.settings.offers_are_visible}
+                            is_visible={data.settings.prefs.offers_are_visible}
                             offer_banner_type='horizontal'
                         />
                     ) : undefined}
