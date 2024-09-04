@@ -261,6 +261,6 @@
         "message": "Invalid file type. Upload the previously downloaded JSON backup file."
     },
     "unable_to_access_settings_error": {
-        "message": "Fatal error: Unable to access settings."
+        "message": "Fatal error: Unable to access settings. Please try to re-enable or reinstall the extension."
     }
 }
