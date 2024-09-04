@@ -68,9 +68,9 @@ class Class {
     public calculate_width_cls = ({ calculate_width }: { calculate_width: boolean }): string =>
         err(() => (calculate_width ? 'calculate_width' : ''), 'shr_1255');
 
-    public set_min_and_max_width = (): void =>
+    public set_min_and_max_width = ({ min_width }: { min_width?: number } = {}): void =>
         err(() => {
-            this.min_width = +ext.msg('input_min_width_css');
+            this.min_width = n(min_width) ? min_width : +ext.msg('input_min_width_css');
             this.max_width = +ext.msg('input_max_width_css');
         }, 'shr_1239');
 
