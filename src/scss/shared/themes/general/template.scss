@@ -70,34 +70,6 @@ textarea {
     fill: $lpe;
 }
 
-body {
-    background: $gqb;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
-    .main_2 {
-        background-color: $hfb;
-    }
-
-    .btn {
-        &.text {
-            background-color: $npw;
-            outline-color: $hyn;
-
-            &:hover {
-                background-color: $qgp;
-            }
-        }
-    }
-
-    .btn,
-    .link.svg {
-        svg {
-            fill: $lpe;
-        }
-    }
-}
-
 .main,
 button,
 select,
@@ -291,6 +263,34 @@ hr {
 
     .pcr-type.active {
         background-color: $nep !important;
+    }
+}
+
+.main:not(.loading_screen) {
+    background: $gqb;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    .main_2 {
+        background-color: $hfb;
+    }
+
+    .btn {
+        &.text {
+            background-color: $npw;
+            outline-color: $hyn;
+
+            &:hover {
+                background-color: $qgp;
+            }
+        }
+    }
+
+    .btn,
+    .link.svg {
+        svg {
+            fill: $lpe;
+        }
     }
 }
 
