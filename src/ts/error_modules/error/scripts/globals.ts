@@ -8,6 +8,7 @@ globalThis.show_err_ribbon = (
     error_code: string | undefined,
     {
         error_msg_key = '',
+        alt_msg = '',
         notification_type = 'error',
         hide_delay = d_error_clean.Error.hide_delay,
         silent = false,
@@ -19,6 +20,7 @@ globalThis.show_err_ribbon = (
 ) =>
     d_error.Error.show(error_obj, error_code, {
         error_msg_key,
+        alt_msg,
         notification_type,
         silent,
         persistent,
@@ -32,6 +34,7 @@ globalThis.show_flash = s_error.Flash.show;
 
 globalThis.show_notification = ({
     error_msg_key = '',
+    alt_msg = '',
     notification_type = 'neutral',
     hide_delay = d_error_clean.Error.hide_delay,
     persistent = false,
@@ -40,6 +43,7 @@ globalThis.show_notification = ({
 }: i_error.ShowError = {}) => {
     s_error.Notification.show({
         error_msg_key,
+        alt_msg,
         notification_type,
         hide_delay,
         persistent,
@@ -65,6 +69,7 @@ globalThis.err = <T1>(
     error_code: string,
     {
         error_msg_key = '',
+        alt_msg = '',
         silent = false,
         persistent = false,
         exit = false,
@@ -78,6 +83,7 @@ globalThis.err = <T1>(
     } catch (error_obj: any) {
         d_error.Error.show(error_obj, error_code, {
             error_msg_key,
+            alt_msg,
             silent,
             persistent,
             exit,
@@ -95,6 +101,7 @@ globalThis.err_async = async <T1>(
     error_code: string,
     {
         error_msg_key = '',
+        alt_msg = '',
         silent = false,
         persistent = false,
         exit = false,
@@ -108,6 +115,7 @@ globalThis.err_async = async <T1>(
     } catch (error_obj: any) {
         d_error.Error.show(error_obj, error_code, {
             error_msg_key,
+            alt_msg,
             silent,
             persistent,
             exit,

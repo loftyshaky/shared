@@ -14,6 +14,7 @@ class Class {
 
     public show = ({
         error_msg_key = '',
+        alt_msg = '',
         notification_type = 'neutral',
         hide_delay = d_error.Error.hide_delay,
         persistent = false,
@@ -23,6 +24,7 @@ class Class {
         err(() => {
             show_err_ribbon(undefined, undefined, {
                 error_msg_key,
+                alt_msg,
                 notification_type,
                 hide_delay,
                 persistent,

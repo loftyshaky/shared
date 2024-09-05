@@ -29,6 +29,7 @@ class Class {
         error_code: string | undefined,
         {
             error_msg_key = '',
+            alt_msg = '',
             notification_type = 'error',
             hide_delay = d_error_clean.Error.hide_delay,
             silent = false,
@@ -40,6 +41,7 @@ class Class {
     ): void => {
         d_error_clean.Error.show(error_obj, error_code, {
             error_msg_key,
+            alt_msg,
             notification_type,
             hide_delay,
             silent,
@@ -56,6 +58,7 @@ class Class {
         error_obj: i_error.ErrorObj | undefined,
         {
             error_msg_key,
+            alt_msg,
             notification_type,
             hide_delay,
             is_fullscreen,
@@ -64,7 +67,7 @@ class Class {
         }: i_error.ShowErrorState1,
     ): void => {
         if (error_ui_is_visible) {
-            d_error.Msg.basic_msg = ext.msg(error_msg_key);
+            d_error.Msg.basic_msg = ext.msg(error_msg_key) || alt_msg;
             d_error.State.notification_type = notification_type;
 
             if (is_fullscreen) {
@@ -103,14 +106,15 @@ class Class {
     private show_error_state_2 = (
         error_obj: i_error.ErrorObj | undefined,
         error_code: string | undefined,
-        { error_msg_key, error_ui_is_visible, silent_final }: i_error.ShowErrorState2,
+        { error_msg_key, alt_msg, error_ui_is_visible, silent_final }: i_error.ShowErrorState2,
     ): void => {
         if (error_obj && error_code) {
             if (error_ui_is_visible) {
                 d_error.Msg.change_visibility_of_advanced_msg({ is_visible: false });
             }
 
-            const error_msg_pre = ext.msg(`${error_obj.error_msg || error_msg_key}_error`);
+            const error_msg_pre =
+                ext.msg(`${error_obj.error_msg || error_msg_key}_error`) || alt_msg;
             const error_msg_final = error_msg_pre ? ` ${error_msg_pre}` : '';
 
             runInAction(() =>

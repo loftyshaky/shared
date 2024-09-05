@@ -20,6 +20,7 @@ class Class {
         error_code: string | undefined,
         {
             error_msg_key = '',
+            alt_msg = '',
             notification_type = 'error',
             hide_delay = this.hide_delay,
             silent = false,
@@ -43,6 +44,7 @@ class Class {
         if (n(show_error_state_1)) {
             show_error_state_1(error_obj, {
                 error_msg_key,
+                alt_msg,
                 notification_type,
                 hide_delay,
                 is_fullscreen,
@@ -56,6 +58,7 @@ class Class {
             if (n(show_error_state_2)) {
                 show_error_state_2(error_obj, error_code, {
                     error_msg_key,
+                    alt_msg,
                     error_ui_is_visible,
                     silent_final,
                 });
@@ -86,7 +89,7 @@ class Class {
                 });
                 set_updated_error_obj_propery({
                     key: 'error_msg',
-                    undefined_property: error_msg_key,
+                    undefined_property: error_msg_key || alt_msg,
                 });
                 set_updated_error_obj_propery({
                     key: 'silent',

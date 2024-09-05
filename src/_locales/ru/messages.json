@@ -41,6 +41,9 @@
     "links_section_text": {
         "message": "Ссылки"
     },
+    "permissions_section_text": {
+        "message": "Разрешения"
+    },
     "restore_section_text": {
         "message": "Восстановление"
     },
@@ -58,6 +61,12 @@
     },
     "loading_msg_text": {
         "message": "Идёт загрузка..."
+    },
+    "tabs_permission_chrome_label_text": {
+        "message": "[tabs] Чтение истории просмотров"
+    },
+    "tabs_permission_edge_label_text": {
+        "message": "[tabs] Чтение вашего журнала браузера"
     },
     "download_back_up_btn_text": {
         "message": "Скачать резорвную копию"
@@ -190,6 +199,12 @@
     },
     "youre_now_a_developer_notification": {
         "message": "Вы стали разработчиком!"
+    },
+    "backup_permissions_start_notification": {
+        "message": "Расширение обнаружило следующие разрешения в вашей резервной копии: "
+    },
+    "backup_permissions_end_notification": {
+        "message": ". Пожалуйста, перейдите в раздел «Разрешения» и включите все необходимые разрешения, чтобы расширение работало правильно."
     },
     "invalid_file_type_back_up_error": {
         "message": "Недопустимый тип файла. Загрузите ранее загруженный файл резервной копии JSON."

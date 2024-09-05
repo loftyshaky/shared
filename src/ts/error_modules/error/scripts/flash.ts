@@ -91,6 +91,7 @@ class Class {
             if (flash_found) {
                 show_notification({
                     error_msg_key: flash_msg_key,
+                    alt_msg: flash_msg_key,
                     notification_type: flash_type,
                     hide_delay: flash_hide_delay,
                 });

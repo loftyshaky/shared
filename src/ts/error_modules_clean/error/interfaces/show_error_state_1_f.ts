@@ -4,6 +4,7 @@ export type ShowErrorState1F = (
     error_obj: i_error.ErrorObj | undefined,
     {
         error_msg_key,
+        alt_msg,
         notification_type,
         hide_delay,
         is_fullscreen,

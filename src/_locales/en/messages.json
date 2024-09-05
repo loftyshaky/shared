@@ -47,6 +47,9 @@
     "links_section_text": {
         "message": "Links"
     },
+    "permissions_section_text": {
+        "message": "Permissions"
+    },
     "restore_section_text": {
         "message": "Restore"
     },
@@ -64,6 +67,12 @@
     },
     "loading_msg_text": {
         "message": "Loading..."
+    },
+    "tabs_permission_chrome_label_text": {
+        "message": "[tabs] Read your browsing history"
+    },
+    "tabs_permission_edge_label_text": {
+        "message": "[tabs] Read your browsing history"
     },
     "download_back_up_btn_text": {
         "message": "Download back up"
@@ -256,6 +265,12 @@
     },
     "youre_now_a_developer_notification": {
         "message": "You're now a developer!"
+    },
+    "backup_permissions_start_notification": {
+        "message": "The extension has detected the following permission in your backup: "
+    },
+    "backup_permissions_end_notification": {
+        "message": ". Please navigate to the \"Permissions\" section and enable all required permissions to ensure the extension functions correctly."
     },
     "invalid_file_type_back_up_error": {
         "message": "Invalid file type. Upload the previously downloaded JSON backup file."

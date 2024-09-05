@@ -52,6 +52,43 @@ class Class {
         err(() => {
             data.ui[name] = val;
         }, 'shr_1222');
+
+    public show_enable_permissions_notification = ({
+        permissions,
+    }: {
+        permissions: i_optional_permissions.ShowEnablePermissionsNotificationPermission[];
+    }): Promise<void> =>
+        err_async(async () => {
+            const permissions_text = await permissions.reduce(
+                async (
+                    previous_val_promise: Promise<string>,
+                    permission: i_optional_permissions.ShowEnablePermissionsNotificationPermission,
+                    i: number,
+                ): Promise<string> => {
+                    const previous_val = await previous_val_promise;
+                    const contains_permission: boolean = await we.permissions.contains(
+                        permission.permission,
+                    );
+                    const permission_text: string =
+                        !contains_permission && data.settings.prefs[`${permission.name}_permission`]
+                            ? permission.name
+                            : '';
+
+                    return i === 0
+                        ? `[${permission_text}]`
+                        : `${previous_val}, [${permission_text}]`;
+                },
+                Promise.resolve(''),
+            );
+            const at_least_one_permission_need_to_be_enabled: boolean = permissions_text !== '[]';
+
+            if (at_least_one_permission_need_to_be_enabled) {
+                show_notification({
+                    alt_msg: `${ext.msg('backup_permissions_start_notification')}${permissions_text}${ext.msg('backup_permissions_end_notification')}`,
+                    hide_delay: 30000,
+                });
+            }
+        }, 'shr_1301');
 }
 
 export const Permission = Class.get_instance();
