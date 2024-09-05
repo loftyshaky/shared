@@ -70,7 +70,7 @@ class Class {
     private content_dir = (): string => {
         try {
             if (globalThis.is_node) {
-                // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
                 const path = require('path');
 
                 return path.join(this.app_root, 'public', 'assets');
@@ -93,9 +93,9 @@ class Class {
             const set_messages_json = async ({ locale }: { locale: string }): Promise<void> => {
                 try {
                     if (globalThis.is_node) {
-                        // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                        // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
                         const path = require('path');
-                        // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                        // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
                         const fs = require('fs-extra');
 
                         const messages_path: string = path.join(
@@ -166,9 +166,9 @@ class Class {
             let env_file_text: string = '';
 
             if (globalThis.is_node) {
-                // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
                 const path = require('path');
-                // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
                 const fs = require('fs-extra');
 
                 env_file_text = fs.readFileSync(path.join(this.content_dir(), 'env.js'), {

@@ -106,7 +106,10 @@ export class Color extends o_inputs.InputBase {
     ): string {
         if (
             this.is_palette_color!({ i }) &&
-            i === (n(this.val_accessor) ? get(data, this.val_accessor) : data.settings.prefs[this.name])
+            i ===
+                (n(this.val_accessor)
+                    ? get(data, this.val_accessor)
+                    : data.settings.prefs[this.name])
         ) {
             return 'selected';
         }

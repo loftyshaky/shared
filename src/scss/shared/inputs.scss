@@ -51,7 +51,7 @@ input[type='file'] {
         width: inherit;
         opacity: 1; // needed to keep default color when element is is_enabled
         height: $input_height;
-        padding: 0 $input_inner_padding 0 $input_inner_padding;
+        padding: 0 $input_inner_padding;
         flex-grow: 1;
         border-radius: 0;
         box-sizing: border-box;

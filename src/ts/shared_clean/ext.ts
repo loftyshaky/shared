@@ -182,7 +182,6 @@ class Class {
         }
     };
 
-    // eslint-disable-next-line @typescript-eslint/ban-types
     public send_msg_to_tab_resp = async (id: number, msg: t.Msg): Promise<any> => {
         try {
             if (!this.ext_context_invalidated()) {
@@ -339,7 +338,7 @@ class Class {
             try {
                 await we.storage.local.remove(keys);
                 await we.storage.sync.remove(keys);
-            } catch (error_obj: any) {
+            } catch {
                 await we.storage.local.remove(keys);
             }
         }

@@ -373,7 +373,7 @@ class Class {
         err(() => {
             const crypto: Crypto = n(globalThis.crypto)
                 ? globalThis.crypto
-                : // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+                : // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
                   require('crypto').webcrypto;
             const uint32 = crypto.getRandomValues(new Uint32Array(1))[0];
 
