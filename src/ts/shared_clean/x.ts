@@ -1,6 +1,7 @@
 import reject_lodash from 'lodash/reject';
 import isEmpty from 'lodash/isEmpty';
 import debounce from 'lodash/debounce';
+import throttle from 'lodash/throttle';
 
 import { t } from 'shared_clean/internal';
 
@@ -520,17 +521,61 @@ class Class {
             document.title += this.invisible_chars;
         }, 'shr_1188');
 
-    public async_debounce<F extends (...args: any[]) => Promise<any>>(f: F, wait?: number) {
-        const debounced = debounce((resolve, reject, args: Parameters<F>) => {
-            f(...args)
-                .then(resolve)
-                .catch(reject);
-        }, wait);
+    public async_debounce<T extends (...args: any[]) => Promise<any>>(
+        f: T,
+        wait: number,
+        options: {
+            leading?: boolean;
+            trailing?: boolean;
+            maxWait?: number;
+        } = {},
+    ): (...args: Parameters<T>) => Promise<ReturnType<T>> {
+        const resolve_list: Array<(value: ReturnType<T> | PromiseLike<ReturnType<T>>) => void> = [];
+        let reject_list: Array<(reason?: any) => void> = [];
 
-        return (...args: Parameters<F>): ReturnType<F> =>
+        const debounced = debounce(
+            (...args: Parameters<T>) => {
+                f(...args)
+                    .then((result) => {
+                        resolve_list.forEach((resolve) => resolve(result));
+                        reject_list = [];
+                    })
+                    .catch((error) => {
+                        resolve_list.forEach((reject) => reject(error));
+                        reject_list = [];
+                    });
+            },
+            wait,
+            options,
+        );
+
+        return (...args: Parameters<T>): Promise<ReturnType<T>> =>
             new Promise((resolve, reject) => {
-                debounced(resolve, reject, args);
-            }) as ReturnType<F>;
+                resolve_list.push(resolve);
+                reject_list.push(reject);
+                debounced(...args);
+            });
+    }
+
+    public async_throttle<F extends (...args: any[]) => Promise<any>>(
+        f: F,
+        wait: number,
+        options: { leading?: boolean; trailing?: boolean } = {},
+    ): (...args: Parameters<F>) => Promise<ReturnType<F>> {
+        const throttled_f = throttle(
+            (resolve, reject, ...args: Parameters<F>) => {
+                f(...args)
+                    .then(resolve)
+                    .catch(reject);
+            },
+            wait,
+            options,
+        );
+
+        return (...args: Parameters<F>): Promise<ReturnType<F>> =>
+            new Promise((resolve, reject) => {
+                throttled_f(resolve, reject, ...args);
+            });
     }
 
     private gcd = (a: number, b: number): number =>
