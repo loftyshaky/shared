@@ -70,6 +70,10 @@ textarea {
     fill: $lpe;
 }
 
+body::before {
+    background: $gqb;
+}
+
 .main,
 button,
 select,
@@ -267,10 +271,6 @@ hr {
 }
 
 .main:not(.loading_screen) {
-    background: $gqb;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
     .main_2 {
         background-color: $hfb;
     }
