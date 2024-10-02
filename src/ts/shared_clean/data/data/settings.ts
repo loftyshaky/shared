@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import isEqual from 'lodash/isEqual';
 
 import { t, run_in_action_placeholder, s_data } from 'shared_clean/internal';
@@ -35,7 +36,8 @@ class Class {
 
             run_in_action(() =>
                 err(() => {
-                    data.settings = settings_final;
+                    data.settings.prefs.home_btn_is_visible =
+                        settings_final.prefs.home_btn_is_visible;
                 }, 'shr_1364'),
             );
         }, 'shr_1365');
@@ -61,12 +63,18 @@ class Class {
     } = {}): Promise<any> =>
         err_async(async () => {
             if (!ext.ext_context_invalidated()) {
+                const old_settings = cloneDeep(data.settings);
                 await set_data();
 
                 const prefs_are_filled: boolean = x.prefs_are_filled();
 
                 if (prefs_are_filled) {
-                    if (!isEqual(n(to_js) ? to_js(data.settings) : data.settings, data.settings)) {
+                    if (
+                        !isEqual(
+                            n(to_js) ? to_js(data.settings) : data.settings,
+                            n(to_js) ? to_js(old_settings) : old_settings,
+                        )
+                    ) {
                         await this.set({ settings: data.settings, run_in_action });
                     }
                 } else {
