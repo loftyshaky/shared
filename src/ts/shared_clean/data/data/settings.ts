@@ -1,7 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 import isEqual from 'lodash/isEqual';
 
-import { t, run_in_action_placeholder, s_data } from 'shared_clean/internal';
+import { run_in_action_placeholder, s_data } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -41,16 +41,6 @@ class Class {
                 }, 'shr_1364'),
             );
         }, 'shr_1365');
-
-    public change = ({ key, val }: { key: string; val: t.AnyUndefined }): Promise<void> =>
-        err_async(async () => {
-            data.settings[key] = val;
-
-            await ext.send_msg_resp({
-                msg: 'update_settings_background',
-                settings: { [key]: val },
-            });
-        }, 'shr_1366');
 
     public set_from_storage = ({
         to_js,
