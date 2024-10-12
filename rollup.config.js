@@ -106,15 +106,15 @@ const config = {
                     dest: 'dist',
                 },
                 {
-                    src: '.eslintrc.js',
+                    src: '.eslintrc.cjs',
                     dest: paths.app,
                 },
                 {
-                    src: 'eslint-local-rules.js',
+                    src: 'eslint-local-rules.cjs',
                     dest: paths.app,
                 },
                 {
-                    src: '.prettierrc.js',
+                    src: '.prettierrc.cjs',
                     dest: paths.app,
                 },
             ],

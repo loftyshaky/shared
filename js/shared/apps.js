@@ -17,25 +17,38 @@ const apps = [
     'Close Other Tabs Plus',
     'Clear New Tab',
     'Base64 font-face',
+    'Advanced Extension Reloader Examples',
 ];
 
-const app_types = ['package', 'package', 'app', 'app', 'app', 'ext', 'ext', 'ext', 'ext', 'ext'];
+const app_types = [
+    'package',
+    'package',
+    'app',
+    'app',
+    'app',
+    'ext',
+    'ext',
+    'ext',
+    'ext',
+    'ext',
+    'ext',
+];
 
 const create_app_paths = () =>
     apps.map((project) => path.join(projects_path.q, project, project_name.transform({ project })));
 
 const app = create_app_paths();
 
-const create_eslintrc_paths = () => app.map((app_dir) => path.join(app_dir, '.eslintrc.js'));
+const create_eslintrc_paths = () => app.map((app_dir) => path.join(app_dir, '.eslintrc.cjs'));
 
 const eslintrc = create_eslintrc_paths();
 
 const create_eslint_local_rules_paths = () =>
-    app.map((app_dir) => path.join(app_dir, 'eslint-local-rules.js'));
+    app.map((app_dir) => path.join(app_dir, 'eslint-local-rules.cjs'));
 
 const eslint_local_rules = create_eslint_local_rules_paths();
 
-const create_prettierrc_paths = () => app.map((app_dir) => path.join(app_dir, '.prettierrc.js'));
+const create_prettierrc_paths = () => app.map((app_dir) => path.join(app_dir, '.prettierrc.cjs'));
 
 const prettierrc = create_prettierrc_paths();
 
