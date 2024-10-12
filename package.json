@@ -4,7 +4,7 @@
         "prod": "rollup -c --environment env:ext,mode:production",
         "devapp": "rollup -c --watch --environment env:app,mode:development",
         "prodapp": "rollup -c --environment env:app,mode:production",
-        "fix": "prettier --config .prettierrc.js rollup.config.js **/*.js **/*.ts **/*.scss **/*.json --write & eslint **/*.js **/*.ts --fix & stylelint **/*.scss --fix"
+        "fix": "prettier --config .prettierrc.cjs rollup.config.cjs **/*.js **/*.ts **/*.scss **/*.json --write & eslint **/*.js **/*.ts --fix & stylelint **/*.scss --fix"
     },
     "devDependencies": {
         "@babel/eslint-parser": "^7.25.1",
