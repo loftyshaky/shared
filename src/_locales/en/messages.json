@@ -207,10 +207,10 @@
         "message": "Install the @Scroll to Top@ extension to scroll to the top or bottom of any page with a click on the left border of the screen, and then return to your previous position."
     },
     "offer_close_other_tabs_plus_text": {
-        "message": "Install the @Close Other Tabs+@ extension to close/pin/unpin/group/ungroup multiple tabs at once, filtering them by a window, pin/group state or URL."
+        "message": "Install the @Close Other Tabs+@ extension to close/pin/unpin/group/ungroup multiple tabs at once, filtering them by a window, pin/group state, or URL."
     },
     "offer_advanced_extension_reloader_text": {
-        "message": "Install the @Advanced Extension Reloader@ extension to reload an unpacked extension with one click, a hotkey or automatically (extension for developers)."
+        "message": "Install the @Advanced Extension Reloader@ extension to reload an unpacked extension with one click, a hotkey, or automatically (extension for developers)."
     },
     "offer_clear_new_tab_chrome_link_href": {
         "message": "https://chromewebstore.google.com/detail/felphkbfjadmcejnibcmcncimlappdde"
