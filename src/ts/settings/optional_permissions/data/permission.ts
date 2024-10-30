@@ -70,7 +70,8 @@ class Class {
                         permission.permission,
                     );
                     const permission_text: string =
-                        !contains_permission && data.settings.prefs[`${permission.name}_permission`]
+                        !contains_permission &&
+                        data.settings.prefs[`${x.camel_to_underscore(permission.name)}_permission`]
                             ? permission.name
                             : '';
 
