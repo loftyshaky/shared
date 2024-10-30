@@ -27,7 +27,7 @@ class Class {
     }
 
     public get more_info_btn_is_visible_cls(): string {
-        return this.advanced_msg_is_visible ? 'none' : '';
+        return this.advanced_msg_is_visible || this.advanced_msg === '' ? 'none' : '';
     }
 
     public change_visibility_of_advanced_msg = ({ is_visible }: { is_visible: boolean }): void => {
