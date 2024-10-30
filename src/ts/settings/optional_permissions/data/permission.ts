@@ -80,6 +80,7 @@ class Class {
                 },
                 Promise.resolve(''),
             );
+
             const at_least_one_permission_need_to_be_enabled: boolean = permissions_text !== '[]';
 
             if (at_least_one_permission_need_to_be_enabled) {
