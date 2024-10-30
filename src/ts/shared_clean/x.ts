@@ -638,6 +638,9 @@ class Class {
                 n(data.settings.prefs.enable_cut_features),
             'shr_1241',
         );
+
+    public camel_to_underscore = (string: string): string =>
+        err(() => string.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase(), 'shr_1304');
 }
 
 export const X = Class.get_instance();
