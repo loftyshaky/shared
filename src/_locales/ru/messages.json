@@ -68,6 +68,12 @@
     "tabs_permission_edge_label_text": {
         "message": "[tabs] Чтение вашего журнала браузера"
     },
+    "clipboard_read_permission_chrome_label_text": {
+        "message": "[clipboardRead] Доступ к копируемым и вставляемым данным"
+    },
+    "clipboard_read_permission_edge_label_text": {
+        "message": "[clipboardRead] Чтение данных, которые вы копируете и вставляете"
+    },
     "download_back_up_btn_text": {
         "message": "Скачать резервную копию"
     },
@@ -211,5 +217,8 @@
     },
     "unable_to_access_settings_error": {
         "message": "Фатальная ошибка: доступ к настройкам невозможен. Пожалуйста, попробуйте отключить и снова включить расширение или переустановить его."
+    },
+    "permissions_are_missing_error": {
+        "message": "Отсутствуют необходимые разрешения для использования этой функции. Пожалуйста, перейдите в раздел «Разрешения» и включите все необходимые разрешения, чтобы расширение работало правильно."
     }
 }

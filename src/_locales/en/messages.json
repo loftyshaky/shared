@@ -74,6 +74,12 @@
     "tabs_permission_edge_label_text": {
         "message": "[tabs] Read your browsing history"
     },
+    "clipboard_read_permission_chrome_label_text": {
+        "message": "[clipboardRead] Read data you copy and paste"
+    },
+    "clipboard_read_permission_edge_label_text": {
+        "message": "[clipboardRead] Read data you copy and paste"
+    },
     "download_back_up_btn_text": {
         "message": "Download back up"
     },
@@ -277,5 +283,8 @@
     },
     "unable_to_access_settings_error": {
         "message": "Fatal error: Unable to access settings. Please try to re-enable or reinstall the extension."
+    },
+    "permissions_are_missing_error": {
+        "message": "The necessary permissions are missing to use this feature. Please navigate to the \"Permissions\" section and enable all required permissions."
     }
 }
