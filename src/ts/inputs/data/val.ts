@@ -4,7 +4,7 @@ import { SyntheticEvent, FormEvent } from 'react';
 import { makeObservable, observable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { i_data } from 'shared_clean/internal';
+import { t, i_data } from 'shared_clean/internal';
 import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
 
 class Class {
@@ -21,6 +21,8 @@ class Class {
             remove_val: action,
         });
     }
+
+    public previous_val: t.AnyUndefined;
 
     public set_focus_state = ({ input, state }: { input: i_inputs.Input; state: boolean }): void =>
         err(() => {
@@ -102,6 +104,8 @@ class Class {
         e: SyntheticEvent,
     ): void =>
         err(() => {
+            this.previous_val = this.access({ input });
+
             if (input.type === 'checkbox') {
                 this.set({
                     val: (e.target as HTMLInputElement).checked,
