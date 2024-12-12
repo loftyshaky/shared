@@ -1,5 +1,4 @@
 import reject_lodash from 'lodash/reject';
-import isEmpty from 'lodash/isEmpty';
 import debounce from 'lodash/debounce';
 import throttle from 'lodash/throttle';
 
@@ -627,7 +626,7 @@ class Class {
         // eslint-disable-next-line no-bitwise
         err(() => `hsl(${~~(360 * Math.random())} 70% 80%)`, 'shr_1262');
 
-    public settings_are_filled = (): boolean => err(() => !isEmpty(n(data.settings)), 'shr_1252');
+    public settings_are_filled = (): boolean => err(() => n(data.settings), 'shr_1252');
 
     public prefs_are_filled = (): boolean =>
         err(
