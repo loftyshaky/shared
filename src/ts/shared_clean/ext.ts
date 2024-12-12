@@ -262,7 +262,7 @@ class Class {
                 const data_local: t.AnyRecord = await we.storage.local.get(keys);
 
                 if (isEmpty(data_sync) && isEmpty(data_local)) {
-                    this.storage_get_attempts +=1;
+                    this.storage_get_attempts += 1;
 
                     if (this.storage_get_attempts <= 100) {
                         await x.delay(100);
