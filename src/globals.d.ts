@@ -35,7 +35,7 @@ declare const show_notification: (
     obj?: import('./ts/error_modules_clean/error/interfaces/show_error').ShowError,
 ) => void;
 declare const show_unable_to_access_settings_error: (
-    obj: import('./ts/error_modules_clean/error/interfaces/show_unable_to_access_settings_error').ShowUnableToAccessSettingsError,
+    obj?: import('./ts/error_modules_clean/error/interfaces/show_unable_to_access_settings_error').ShowUnableToAccessSettingsError,
 ) => void;
 declare const err: <T1>(
     f: () => T1,

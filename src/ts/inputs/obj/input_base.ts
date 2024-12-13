@@ -9,7 +9,7 @@ import { i_inputs } from 'inputs/internal';
 export class InputBase {
     public name: string;
     public is_cut?: boolean = false;
-    public is_visible_key?: string; // settings object key
+    public is_visible_key?: string; // prefs object key
     public is_visible?: boolean = true;
     public is_visible_conds?: i_inputs.StateCond[] = [];
     public is_enabled?: boolean = true;

@@ -37,7 +37,7 @@ interface Global {
         obj?: import('error_modules_clean/error/interfaces/show_error').ShowError,
     ) => void;
     show_unable_to_access_settings_error: (
-        obj: import('error_modules_clean/error/interfaces/show_unable_to_access_settings_error').ShowUnableToAccessSettingsError,
+        obj?: import('error_modules_clean/error/interfaces/show_unable_to_access_settings_error').ShowUnableToAccessSettingsError,
     ) => void;
     err: <T1>(
         f: () => T1,

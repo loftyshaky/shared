@@ -626,14 +626,14 @@ class Class {
         // eslint-disable-next-line no-bitwise
         err(() => `hsl(${~~(360 * Math.random())} 70% 80%)`, 'shr_1262');
 
-    public settings_are_filled = (): boolean => err(() => n(data.settings), 'shr_1252');
+    public found_old_settings = (): boolean =>
+        err(() => n(data.settings.enable_cut_features), 'shr_1252');
 
     public prefs_are_filled = (): boolean =>
         err(
             () =>
                 n(data.settings) &&
                 n(data.settings.prefs) &&
-                'prefs' in data.settings &&
                 n(data.settings.prefs.enable_cut_features),
             'shr_1241',
         );
