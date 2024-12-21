@@ -119,11 +119,17 @@
     "very_dark_option_text": {
         "message": "Very dark"
     },
-    "lavender_option_text": {
-        "message": "Lavender"
+    "clover_option_text": {
+        "message": "Clover"
     },
     "aqua_option_text": {
         "message": "Aqua"
+    },
+    "lavender_option_text": {
+        "message": "Lavender"
+    },
+    "ruby_option_text": {
+        "message": "Ruby"
     },
     "admin_help_text": {
         "message": "Developer/experimental features."

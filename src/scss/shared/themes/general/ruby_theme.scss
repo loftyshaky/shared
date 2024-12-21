@@ -1,0 +1,9 @@
+@import '../../vars';
+@import '../../mixins';
+@import '../../functions';
+@import '../colors/ruby';
+@import 'template';
+
+body .main_2.settings {
+    @include glass;
+}

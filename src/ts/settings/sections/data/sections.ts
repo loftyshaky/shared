@@ -30,8 +30,10 @@ class Class {
                     new o_inputs.Option({ name: 'light' }),
                     new o_inputs.Option({ name: 'dark' }),
                     new o_inputs.Option({ name: 'very_dark' }),
-                    new o_inputs.Option({ name: 'lavender' }),
+                    new o_inputs.Option({ name: 'clover' }),
                     new o_inputs.Option({ name: 'aqua' }),
+                    new o_inputs.Option({ name: 'lavender' }),
+                    new o_inputs.Option({ name: 'ruby' }),
                 ],
             };
         }, 'shr_1082');

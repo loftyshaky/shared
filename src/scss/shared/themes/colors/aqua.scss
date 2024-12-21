@@ -1,14 +1,11 @@
+$theme_color_ynq: white;
 $theme_color_jqv: rgb(255 255 255 / 0.1%);
-$htc: white;
+$theme_color_tdh: #67ff5f;
+$theme_color_udj: #ff7eee;
+$htc: $theme_color_ynq;
 $tbn: $glass_color;
 $gaq: #efefef;
-/* stylelint-disable-next-line max-line-length */
-$gqb:
-    linear-gradient(45deg, rgb(39 61 213) 0%, rgb(225 5 34 / 0%) 70%) repeat scroll 0% 0%,
-    linear-gradient(135deg, rgb(12 255 7) 10%, rgb(49 5 209 / 0%) 80%) repeat scroll 0% 0%,
-    linear-gradient(190deg, rgb(135 23 255) 10%, rgb(10 219 216 / 0%) 80%) repeat scroll 0% 0%,
-    rgb(0 0 0 / 0%) linear-gradient(315deg, rgb(51 205 196) 100%, rgb(9 245 5 / 0%) 70%) repeat
-        scroll 0% 0%;
+$gqb: linear-gradient(128deg, #1072d1 0%, #17909b 100%);
 $hfb: transparent;
 $gvb: rgb(255 255 255 / 36%);
 $npw: rgb(255 255 255 / 20%);
@@ -19,30 +16,31 @@ $fxm: rgb(255 255 255 / 37.5%);
 $nur: rgb(255 255 255 / 20.8%);
 $yuv: rgb(255 255 255 / 60%);
 $vqo: $theme_color_jqv;
-$lpe: white;
+$lpe: $theme_color_ynq;
 $rbp: $black;
-$mdc: #d9d9d9;
-$yos: #16d3f5;
-$nep: #90efff;
-$htm: #ffa96c;
-$qgp: #28dd57;
-$hyv: #66ff8e;
-$ycp: #000da1;
-$iub: #2e8cff;
-$cop: #303f00;
-$yun: #14bf0a;
-$ptn: #62008f;
-$dwk: #d046e9;
-$uzf: #572b00;
-$hap: #f17442;
-$rqb: #e7121c;
-$thm: #6f0005;
-$suc: #d0111a;
-$pxd: #0014ff;
-$ksu: #be1;
-$upd: #ae00ff;
-$fpw: #ff8f1f;
-$dfp: #0cbea4;
-$nqp: rgb(57 124 249 / 99%);
-$hgb: rgb(255 77 85 / 99%);
-$beu: rgb(255 255 255 / 75%);
+$tgp: $theme_color_ynq;
+$mdc: #d9d9d9; // Input placeholder
+$yos: #9e61ef; // Pagination button
+$nep: #90efff; // Button active (color picker)
+$htm: #ff974d; // Task (scheduler)
+$qgp: #49b344; // Button hover
+$hyv: #89ff84; // Button hover (color picker; scheduler; custom HTML/CSS/JS)
+$ycp: #fbff12; // Link normal
+$iub: #2e8cff; // Link normal (color picker) / Drop zone (scheduler)
+$cop: $theme_color_tdh; // Link hover
+$yun: #14bf0a; // Link hover (color picker) / text input data is valid (color picker)
+$ptn: #ff98f1; // Link visited
+$dwk: #d046e9; // Input focus (color picker)
+$uzf: #ffae9e; // Link click
+$hap: #f15f41; // Link click (color picker; scheduler; custom HTML/CSS/JS)
+$rqb: #ff5f66; // Text input data is in a warn state (outline)
+$thm: #ff9ea3; // Text input data is in warn state (error message)
+$suc: #d0111a; // [Clear New Tab] Text input data is in a warn state (outline; scheduler)
+$pxd: #fff900; // Section button selected indicator selected / [Clear New Tab] Background outline
+$ksu: $theme_color_tdh; // Section button selected indicator hover / Text input data is valid
+$upd: $theme_color_udj; // Tab key input outline
+$fpw: $theme_color_udj; // [Clear New Tab] Background focus outline
+$dfp: #0079ef; // Loading screen
+$nqp: rgb(255 84 169 / 99%); // Text selection
+$hgb: rgb(255 77 85 / 99%); // [Clear New Tab] Screen help text selection (custom HTML/CSS/JS)
+$beu: rgb(255 255 255 / 75%); // upload screen background

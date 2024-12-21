@@ -113,11 +113,17 @@
     "very_dark_option_text": {
         "message": "Очень тёмная"
     },
-    "lavender_option_text": {
-        "message": "Лаванда"
+    "clover_option_text": {
+        "message": "Клевер"
     },
     "aqua_option_text": {
         "message": "Морская волна"
+    },
+    "lavender_option_text": {
+        "message": "Лаванда"
+    },
+    "ruby_option_text": {
+        "message": "Рубин"
     },
     "admin_help_text": {
         "message": "Функции для разработчиков/экспериментальные функции."
