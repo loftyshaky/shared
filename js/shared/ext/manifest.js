@@ -9,6 +9,7 @@ class Manifest {
     generate = ({ manifest, browser, add_colored_icon = false }) => {
         const colored_icon_filename = ({ size }) =>
             add_colored_icon ? `icon_colored${size}.png` : `icon${size}.png`;
+
         const shared_manifest = {
             manifest_version: 2,
             version: process.env.npm_package_version,
