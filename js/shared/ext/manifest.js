@@ -6,13 +6,13 @@ class Manifest {
         this.app_root = app_root;
     }
 
-    generate = ({ manifest, browser, monochrome_new_tab_icon = false }) => {
+    generate = ({ manifest, browser }) => {
         const shared_manifest = {
             manifest_version: 2,
             version: process.env.npm_package_version,
             default_locale: 'en',
             icons: {
-                16: `icon16${monochrome_new_tab_icon ? '_monochrome' : ''}.png`,
+                16: 'icon16.png',
             },
             action: {
                 default_icon: {
