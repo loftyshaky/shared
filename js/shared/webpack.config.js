@@ -67,14 +67,9 @@ const shared_config = ({
     }
 
     if (app_type === 'ext') {
-        copy_patterns_final.push(
-            {
-                from: path.join(app_root, 'src', 'icons', 'all'),
-            },
-            {
-                from: path.join(app_root, 'src', 'icons', env.browser),
-            },
-        );
+        copy_patterns_final.push({
+            from: path.join(app_root, 'src', 'icons'),
+        });
     }
 
     return {
