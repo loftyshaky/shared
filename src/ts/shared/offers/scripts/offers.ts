@@ -37,6 +37,10 @@ class Class {
                   browsers_whitelist: ['chrome'],
                   force_offer_despite_extension_name_in_its_text: true,
               }),
+              new o_offers.Offer({
+                  name: 'keymeleon',
+                  prominent: true,
+              }),
               new o_offers.Offer({ name: 'clear_new_tab' }),
               new o_offers.Offer({ name: 'empty_new_tab_page' }),
               new o_offers.Offer({

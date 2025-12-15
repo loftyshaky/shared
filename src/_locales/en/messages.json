@@ -206,6 +206,9 @@
     "dependencies_link_href": {
         "message": "dependencies.html"
     },
+    "offer_keymeleon_text": {
+        "message": "Download the @Keymeleon@ AutoHotkey script to switch keyboard layouts instantly with dedicated hotkeys, hear unique sounds for each layout switch and for typing on each layout, or automate everything with intelligent app-aware layout switching and context-sensitive hotkeys."
+    },
     "offer_clear_new_tab_text": {
         "message": "Install the @Clear New Tab@ extension to remove everything from the new tab page while keeping your theme background, or use any image, GIF, or video as a custom wallpaper."
     },
@@ -223,6 +226,9 @@
     },
     "offer_advanced_extension_reloader_text": {
         "message": "Install the @Advanced Extension Reloader@ extension to reload an unpacked extension with one click, a hotkey, or automatically (extension for developers)."
+    },
+    "offer_keymeleon_link_href": {
+        "message": "https://github.com/loftyshaky/keymeleon"
     },
     "offer_clear_new_tab_chrome_link_href": {
         "message": "https://chromewebstore.google.com/detail/felphkbfjadmcejnibcmcncimlappdde"
