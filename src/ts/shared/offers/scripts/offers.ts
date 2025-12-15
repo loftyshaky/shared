@@ -21,14 +21,12 @@ class Class {
         ? [
               new o_offers.Offer({
                   name: 'tinkoff_black',
-                  prominent: true,
                   has_ad_label: true,
                   browsers_whitelist: ['chrome'],
                   countries_whitelist: ['ru'],
               }),
               new o_offers.Offer({
                   name: 'tinkoff_investments_brokerage_account',
-                  prominent: true,
                   has_ad_label: true,
                   browsers_whitelist: ['chrome'],
                   countries_whitelist: ['ru'],
