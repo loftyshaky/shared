@@ -15,7 +15,9 @@ class Class {
     private set_placeholder_text = action(
         ({ input, msg_key }: { input: o_inputs.Text; msg_key: string }): void =>
             err(() => {
-                input.placeholder = ext.msg(msg_key);
+                input.placeholder = (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                    msg_key,
+                );
             }, 'shr_1203'),
     );
 

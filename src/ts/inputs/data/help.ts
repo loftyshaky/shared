@@ -52,8 +52,12 @@ class Class {
         section_or_input: o_inputs.Section | i_inputs.Input;
     }): string | undefined {
         return n(section_or_input.alt_help_msg)
-            ? ext.msg(section_or_input.alt_help_msg) || section_or_input.alt_help_msg
-            : ext.msg(`${section_or_input.name}_help_text`);
+            ? (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                  section_or_input.alt_help_msg,
+              ) || section_or_input.alt_help_msg
+            : (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                  `${section_or_input.name}_help_text`,
+              );
     });
 }
 

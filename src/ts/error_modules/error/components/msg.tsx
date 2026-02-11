@@ -15,7 +15,9 @@ export const Msg: React.FunctionComponent = observer(() => (
                         d_error.Msg.change_visibility_of_advanced_msg({ is_visible: true })
                     }
                 >
-                    {ext.msg('error_more_info_btn_text')}
+                    {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                        'error_more_info_btn_text',
+                    )}
                 </button>
                 <div className={d_error.Msg.advanced_msg_is_visible_cls}>
                     {d_error.Msg.advanced_msg}

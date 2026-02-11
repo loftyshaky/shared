@@ -68,7 +68,11 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                     state={data.settings.prefs.color_help_is_visible}
                                     tr_end_unactive={[d_color.Visibility.hide_color_help_tr_end]}
                                 >
-                                    <p className='color_help'>{ext.msg('color_help_text')}</p>
+                                    <p className='color_help'>
+                                        {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                                            'color_help_text',
+                                        )}
+                                    </p>
                                     <c_inputs.LinkBtn
                                         input={
                                             new o_inputs.LinkBtn({

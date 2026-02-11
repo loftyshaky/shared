@@ -29,7 +29,9 @@ export const SectionBtn: React.FunctionComponent<p_inputs.SectionBtn> = observer
                 }
             }}
         >
-            {ext.msg(`${section.name}_section_text`)}
+            {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                `${section.name}_section_text`,
+            )}
         </button>
     );
 });

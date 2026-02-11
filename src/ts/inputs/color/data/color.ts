@@ -212,7 +212,9 @@ class Class {
         err(() => {
             // eslint-disable-next-line no-alert
             const confirmed_restore: boolean = globalThis.confirm(
-                ext.msg('restore_default_palette_confirm'),
+                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                    'restore_default_palette_confirm',
+                ),
             );
 
             if (confirmed_restore) {

@@ -89,7 +89,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                         }),
                                 } as o_inputs.LinkBtn)}
                             />
-                            <span>{` ${ext.msg('drag_files_msg_text')}`}</span>
+                            <span>{` ${(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg('drag_files_msg_text')}`}</span>
                         </div>
                         <div
                             className={x.cls([
@@ -98,7 +98,9 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                 input.loading_msg_visibility_cls!(),
                             ])}
                         >
-                            {ext.msg('loading_msg_text')}
+                            {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                                'loading_msg_text',
+                            )}
                         </div>
                         <div
                             className={x.cls([
@@ -107,7 +109,9 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                 input.error_msg_visibility_cls!(),
                             ])}
                         >
-                            {ext.msg('an_error_occured_msg')}
+                            {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                                'an_error_occured_msg',
+                            )}
                         </div>
                     </c_tr.BaseTr>
                 </span>

@@ -48,7 +48,10 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
                     type: 'button',
                     title:
                         input instanceof o_inputs.IconBtn
-                            ? input.alt_msg || ext.msg(`${input.name}_btn_title`)
+                            ? input.alt_msg ||
+                              (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                                  `${input.name}_btn_title`,
+                              )
                             : '',
                     tabIndex: input.tab_index!(),
                     onClick: input.event_callback,
@@ -63,7 +66,12 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
                 {input instanceof o_inputs.IconBtn ? (
                     <input.Svg />
                 ) : (
-                    <span>{input.alt_msg || ext.msg(`${input.name}_link_btn_text`)}</span>
+                    <span>
+                        {input.alt_msg ||
+                            (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                                `${input.name}_link_btn_text`,
+                            )}
+                    </span>
                 )}
                 {n(input.btn_options) && (
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -92,7 +100,9 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
                             (btn_option: i_inputs.BtnOption, i: number): JSX.Element => {
                                 const msg =
                                     btn_option.alt_msg ||
-                                    ext.msg(`${btn_option.name}_btn_option_text`) ||
+                                    (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                                        `${btn_option.name}_btn_option_text`,
+                                    ) ||
                                     btn_option.name;
 
                                 return (

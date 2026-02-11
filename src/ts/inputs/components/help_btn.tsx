@@ -11,7 +11,7 @@ export const HelpBtn: React.FunctionComponent<p_inputs.HelpBtn> = observer((prop
         <button
             className='help_btn'
             type='button'
-            title={ext.msg('help_btn_title')}
+            title={(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg('help_btn_title')}
             tabIndex={
                 n((section_or_input as any).type) ? (section_or_input as any).tab_index!() : 0
             }

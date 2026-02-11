@@ -9,6 +9,7 @@ const project_name = new ProjectName();
 const apps = [
     'Advanced Extension Reloader Watch 1',
     'Advanced Extension Reloader Watch 2',
+    'Keymeleon',
     'Browservery',
     'App Puppeteer',
     'Stock Screener',
@@ -23,6 +24,7 @@ const apps = [
 const app_types = [
     'package',
     'package',
+    'app',
     'app',
     'app',
     'app',

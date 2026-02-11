@@ -22,8 +22,9 @@ export const Section: React.FunctionComponent<p_inputs.Section> = observer((prop
                 </>
             ) : (
                 <div>
-                    {ext.msg(`${section.unavailable_msg}_section_unavailable_msg_text`) ||
-                        section.unavailable_msg}
+                    {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                        `${section.unavailable_msg}_section_unavailable_msg_text`,
+                    ) || section.unavailable_msg}
                 </div>
             )}
         </div>

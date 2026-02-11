@@ -22,7 +22,9 @@ export const Body = observer(
                             type='button'
                             onClick={s_crash_handler.Page.reload}
                         >
-                            {ext.msg('reload_ui_btn_text')}
+                            {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                                'reload_ui_btn_text',
+                            )}
                         </button>
                     </div>
                 );

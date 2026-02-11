@@ -20,6 +20,12 @@ export class Select extends o_inputs.InputBase {
         err(() => {
             const option: o_inputs.Option = this.options[this.name][i];
 
-            return option.alt_msg || ext.msg(`${option.name}_option_text`) || option.name;
+            return (
+                option.alt_msg ||
+                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                    `${option.name}_option_text`,
+                ) ||
+                option.name
+            );
         }, 'shr_1072');
 }

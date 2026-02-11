@@ -98,7 +98,9 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         );
                     }}
                 >
-                    {ext.msg(`${i}_color_btn_text`)}
+                    {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                        `${i}_color_btn_text`,
+                    )}
                 </button>
                 <c_color.ColorPicker input={input} i={i} visualization_ref={visualization_ref} />
             </span>

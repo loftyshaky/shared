@@ -54,7 +54,7 @@ class Class {
 
     public set_offers_of_type = (): void =>
         err(() => {
-            const ext_name: string = ext.get_app_name();
+            const ext_name: string = env.env === 'ext' ? ext.get_app_name() : 'App';
 
             const get_offers_of_type = (): o_offers.Offer[] =>
                 err(() => {
@@ -95,7 +95,7 @@ class Class {
         offer: o_offers.Offer;
     }): boolean =>
         err(() => {
-            const ui_language = we.i18n.getUILanguage();
+            const ui_language = env.env === 'ext' ? we.i18n.getUILanguage() : 'en';
 
             const this_offer_is_whitelisted_for_this_ui_language: boolean =
                 offer.countries_whitelist === 'all' ||
@@ -113,7 +113,7 @@ class Class {
             const this_offer_is_allowed_for_this_ext: boolean =
                 offer.exts_whitelist === 'all' ||
                 (offer.exts_whitelist as string[]).some((id: string): boolean =>
-                    err(() => id === we.runtime.id, 'shr_1296'),
+                    err(() => (env.env === 'ext' ? id === we.runtime.id : true), 'shr_1296'),
                 );
 
             const is_all_or_current_type_offer =
@@ -146,7 +146,9 @@ class Class {
 
     private get_offer_text_raw = ({ name }: { name: string | undefined }): string =>
         err(() => {
-            const offer_text_raw: string = ext.msg(`offer_${name}_text`);
+            const offer_text_raw: string = (globalThis as any)[
+                env.env === 'ext' ? 'ext' : 'app'
+            ].msg(`offer_${name}_text`);
 
             return offer_text_raw;
         }, 'shr_1278');
@@ -156,10 +158,12 @@ class Class {
             const offer_text_raw: string = this.get_offer_text_raw({
                 name: this.offers_of_type[this.current_offer_i].name,
             });
-            const offer_link: string = ext.msg(
+            const offer_link: string = (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
                 `offer_${this.offers_of_type[this.current_offer_i].name}_link_href`,
             );
-            const offer_link_browser: string = ext.msg(
+            const offer_link_browser: string = (globalThis as any)[
+                env.env === 'ext' ? 'ext' : 'app'
+            ].msg(
                 `offer_${this.offers_of_type[this.current_offer_i].name}_${env.browser}_link_href`,
             );
             const offer_link_final: string =
@@ -199,7 +203,9 @@ class Class {
     public get current_offer_banner_link(): string {
         const offer: o_offers.Offer = this.offers_of_type[this.current_offer_i];
 
-        return ext.msg(`offer_${offer.name}_link_href`);
+        return (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+            `offer_${offer.name}_link_href`,
+        );
     }
 
     public get current_offer_no(): number {

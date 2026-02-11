@@ -67,7 +67,9 @@ class Class {
         }: i_error.ShowErrorState1,
     ): void => {
         if (error_ui_is_visible) {
-            d_error.Msg.basic_msg = ext.msg(error_msg_key) || alt_msg;
+            d_error.Msg.basic_msg =
+                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(error_msg_key) ||
+                alt_msg;
             d_error.State.notification_type = notification_type;
 
             if (is_fullscreen) {
@@ -114,19 +116,27 @@ class Class {
             }
 
             const error_msg_pre =
-                ext.msg(`${error_obj.error_msg || error_msg_key}_error`) || alt_msg;
+                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                    `${error_obj.error_msg || error_msg_key}_error`,
+                ) || alt_msg;
             const error_msg_final = error_msg_pre ? ` ${error_msg_pre}` : '';
 
             runInAction(() =>
                 err(() => {
                     if (!silent_final) {
                         d_error.Msg.basic_msg = `${
-                            ext.msg('an_error_occured_msg') + error_msg_final
+                            (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                                'an_error_occured_msg',
+                            ) + error_msg_final
                         }`;
                         d_error.Msg.advanced_msg = `${
-                            ext.msg('error_code_label') + (error_obj.error_code || error_code)
-                        }\n${ext.msg('error_type_label') + error_obj.name}\n${
-                            ext.msg('error_msg_label') + error_obj.message
+                            (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                                'error_code_label',
+                            ) + (error_obj.error_code || error_code)
+                        }\n${(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg('error_type_label') + error_obj.name}\n${
+                            (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                                'error_msg_label',
+                            ) + error_obj.message
                         }`;
                     }
                 }, 'shr_1195'),

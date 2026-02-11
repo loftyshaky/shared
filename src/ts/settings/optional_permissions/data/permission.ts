@@ -86,7 +86,7 @@ class Class {
 
             if (at_least_one_permission_need_to_be_enabled) {
                 show_notification({
-                    alt_msg: `${ext.msg('backup_permissions_start_notification')}${permissions_text}${ext.msg('backup_permissions_end_notification')}`,
+                    alt_msg: `${(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg('backup_permissions_start_notification')}${permissions_text}${(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg('backup_permissions_end_notification')}`,
                     hide_delay: 30000,
                 });
             }

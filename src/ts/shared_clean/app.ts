@@ -51,6 +51,7 @@ class Class {
     private messages_en_json: undefined | t.AnyRecord;
     private messages_ru_json: undefined | t.AnyRecord;
     private messages_de_json: undefined | t.AnyRecord;
+    private already_set_messages: boolean = false;
 
     public get_app_version = (): string => {
         try {
@@ -77,10 +78,10 @@ class Class {
             }
 
             if (n(env) && env.env === 'adonis_app') {
-                return `${this.origin}/assets/`;
+                return `${this.origin}/assets`;
             }
 
-            return 'dist/';
+            return '';
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1237');
         }
@@ -90,42 +91,46 @@ class Class {
 
     public read_data_into_vars = async (): Promise<string> => {
         try {
-            const set_messages_json = async ({ locale }: { locale: string }): Promise<void> => {
-                try {
-                    if (globalThis.is_node) {
-                        // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
-                        const path = require('path');
-                        // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
-                        const fs = require('fs-extra');
+            if (!this.already_set_messages) {
+                this.already_set_messages = true;
 
-                        const messages_path: string = path.join(
-                            this.content_dir(),
-                            '_locales',
-                            locale,
-                            'messages.json',
-                        );
+                const set_messages_json = async ({ locale }: { locale: string }): Promise<void> => {
+                    try {
+                        if (globalThis.is_node) {
+                            // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
+                            const path = require('path');
+                            // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
+                            const fs = require('fs-extra');
 
-                        if (fs.existsSync(messages_path)) {
-                            this[`messages_${locale}_json`] = fs.readJSONSync(messages_path);
+                            const messages_path: string = path.join(
+                                this.content_dir(),
+                                '_locales',
+                                locale,
+                                'messages.json',
+                            );
+
+                            if (fs.existsSync(messages_path)) {
+                                this[`messages_${locale}_json`] = fs.readJSONSync(messages_path);
+                            }
+                        } else {
+                            const path: string = `${this.content_dir()}/_locales/${locale}/messages.json`;
+                            const response_head = await fetch(path, { method: 'HEAD' });
+
+                            if (response_head.ok) {
+                                const response = await fetch(path);
+
+                                this[`messages_${locale}_json`] = await response.json();
+                            }
                         }
-                    } else {
-                        const path: string = `${this.content_dir()}_locales/${locale}/messages.json`;
-                        const response_head = await fetch(path, { method: 'HEAD' });
-
-                        if (response_head.ok) {
-                            const response = await fetch(path);
-
-                            this[`messages_${locale}_json`] = await response.json();
-                        }
+                    } catch (error_obj: any) {
+                        this.log_error(error_obj, 'shr_1233');
                     }
-                } catch (error_obj: any) {
-                    this.log_error(error_obj, 'shr_1233');
-                }
-            };
+                };
 
-            await set_messages_json({ locale: 'en' });
-            await set_messages_json({ locale: 'ru' });
-            await set_messages_json({ locale: 'de' });
+                await set_messages_json({ locale: 'en' });
+                await set_messages_json({ locale: 'ru' });
+                await set_messages_json({ locale: 'de' });
+            }
         } catch (error_obj: any) {
             this.log_error(error_obj, 'shr_1191');
         }
@@ -136,13 +141,16 @@ class Class {
     public msg = (msg: string): string => {
         try {
             const get_msgs = ({ user_language }: { user_language: string }): t.AnyRecord =>
-                this[`messages_${user_language}_json`] || {};
+                n(this[`messages_${user_language}_json`])
+                    ? this[`messages_${user_language}_json`]
+                    : {};
 
             const user_language = this.get_language();
             const is_english = user_language.includes('en');
 
             const en_msgs: any = get_msgs({ user_language: 'en' });
             const localized_msgs: any = is_english ? undefined : get_msgs({ user_language });
+
             let msg_2: string | undefined =
                 n(en_msgs[msg]) && n(en_msgs[msg].message) ? en_msgs[msg].message : '';
 

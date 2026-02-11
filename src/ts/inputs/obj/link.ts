@@ -21,8 +21,12 @@ export class Link {
     public text? = (): string =>
         err(() => {
             const text: string =
-                ext.msg(`${this.name_clean}_link_text`) ||
-                ext.msg(`${this.name_clean}_${this.browser}_link_text`);
+                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                    `${this.name_clean}_link_text`,
+                ) ||
+                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                    `${this.name_clean}_${this.browser}_link_text`,
+                );
 
             return text;
         }, 'shr_1069');
@@ -31,9 +35,15 @@ export class Link {
         err(() => {
             const href: string | undefined = n(this.href)
                 ? this.href
-                : ext.msg(`${this.name_clean}_link_href`) ||
-                  ext.msg(`${this.name_clean}_${this.browser}_link_href`) ||
-                  ext.msg(`offer_${this.name_clean}_${this.browser}_link_href`);
+                : (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                      `${this.name_clean}_link_href`,
+                  ) ||
+                  (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                      `${this.name_clean}_${this.browser}_link_href`,
+                  ) ||
+                  (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                      `offer_${this.name_clean}_${this.browser}_link_href`,
+                  );
 
             return n(href) ? href : '';
         }, 'shr_1070');

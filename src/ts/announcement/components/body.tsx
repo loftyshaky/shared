@@ -9,7 +9,11 @@ export const Body: React.FunctionComponent = observer(() => (
         <div
             className='msg_to_user'
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: ext.msg(`msg_to_user_${env.browser}_text`) }}
+            dangerouslySetInnerHTML={{
+                __html: (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                    `msg_to_user_${env.browser}_text`,
+                ),
+            }}
         />
     </div>
 ));

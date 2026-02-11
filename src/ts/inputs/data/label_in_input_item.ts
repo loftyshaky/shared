@@ -13,7 +13,10 @@ class Class {
     private constructor() {}
 
     msg? = computedFn(function ({ input }: { input: i_inputs.Input }): string | undefined {
-        return input.alt_msg || ext.msg(`${input.name}_label_text`);
+        return (
+            input.alt_msg ||
+            (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(`${input.name}_label_text`)
+        );
     });
 }
 

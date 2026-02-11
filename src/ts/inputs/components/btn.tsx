@@ -26,7 +26,10 @@ export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
             style={{ marginLeft: x.px(input.offset) }}
         >
             <button className={x.cls(['btn', 'text'])} type='button'>
-                {input.alt_msg || ext.msg(`${input.name}_btn_text`)}
+                {input.alt_msg ||
+                    (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                        `${input.name}_btn_text`,
+                    )}
             </button>
         </c_tr.BaseTr>
     );

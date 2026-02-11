@@ -38,7 +38,7 @@ class Class {
             ? input.input_errors
                   .reduce(
                       (previous_val, current_val) =>
-                          `${previous_val}\r\n${ext.msg(`${current_val}_input_error_text`)}`,
+                          `${previous_val}\r\n${(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(`${current_val}_input_error_text`)}`,
                       '',
                   )
                   .substring(2)

@@ -7,6 +7,8 @@ export const Label: React.FunctionComponent<p_inputs.Label> = observer((props) =
     const { input } = props;
 
     return (
-        <div className={x.cls(['label', input.name])}>{ext.msg(`${input.name}_label_text`)}</div>
+        <div className={x.cls(['label', input.name])}>
+            {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(`${input.name}_label_text`)}
+        </div>
     );
 });
