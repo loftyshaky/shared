@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { p_inputs } from 'inputs/internal';
+import { d_inputs, p_inputs } from 'inputs/internal';
 import { d_developer_mode, d_sections } from 'settings/internal';
 
 export const SectionBtn: React.FunctionComponent<p_inputs.SectionBtn> = observer((props) => {
@@ -29,9 +29,7 @@ export const SectionBtn: React.FunctionComponent<p_inputs.SectionBtn> = observer
                 }
             }}
         >
-            {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                `${section.name}_section_text`,
-            )}
+            {d_inputs.SectionBtn.msg!({ section })}
         </button>
     );
 });

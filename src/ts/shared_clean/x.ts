@@ -640,6 +640,16 @@ class Class {
 
     public camel_to_underscore = (string: string): string =>
         err(() => string.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase(), 'shr_1304');
+
+    public underscore_to_readable = (underscored_text: string) =>
+        err(() => {
+            const underscores_replaced_with_spaces: string = underscored_text.replace(/_/g, ' ');
+            const first_letter_uppercase: string =
+                underscores_replaced_with_spaces.charAt(0).toUpperCase() +
+                underscores_replaced_with_spaces.slice(1);
+
+            return first_letter_uppercase;
+        }, 'shr_1305');
 }
 
 export const X = Class.get_instance();

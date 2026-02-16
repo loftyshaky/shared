@@ -21,6 +21,7 @@ export class InputBase {
     public warn_state_allowed?: boolean = false;
     public warn_state_allowed_forced?: boolean = true;
     public val_accessor?: string; // a.b.c
+    public default_val?: string | number | boolean;
     public alt_msg?: string;
     public alt_help_msg?: string;
     public include_help?: boolean = false;

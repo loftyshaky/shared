@@ -1,6 +1,6 @@
 import { computedFn } from 'mobx-utils';
 
-import { i_inputs } from 'inputs/internal';
+import { o_inputs } from 'inputs/internal';
 
 class Class {
     private static instance: Class;
@@ -12,15 +12,13 @@ class Class {
     // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
-    msg? = computedFn(function ({ input }: { input: i_inputs.Input }): string | undefined {
+    msg? = computedFn(function ({ section }: { section: o_inputs.Section }): string | undefined {
         return (
-            input.alt_msg ||
             (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                `${input.name}_label_text`,
-            ) ||
-            x.underscore_to_readable(input.name)
+                `${section.name}_section_text`,
+            ) || x.underscore_to_readable(section.name)
         );
     });
 }
 
-export const LabelInInputItem = Class.get_instance();
+export const SectionBtn = Class.get_instance();

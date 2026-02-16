@@ -64,6 +64,9 @@ class Class {
     public access = ({ input }: { input: i_inputs.Input }): i_data.Val =>
         err(() => {
             const new_input = input;
+            const defalt_val: string | number | boolean = input.default_val
+                ? input.default_val
+                : '';
 
             if (n(input.val_accessor)) {
                 const val = get(data, input.val_accessor);
@@ -77,7 +80,7 @@ class Class {
                     }, 'shr_1244'),
                 );
 
-                return val_final;
+                return val_final === '' ? defalt_val : val_final;
             }
 
             const val: string = n(data.settings.prefs[input.name])
@@ -92,7 +95,7 @@ class Class {
                 }, 'shr_1245'),
             );
 
-            return val;
+            return val === '' ? defalt_val : val;
         }, 'shr_1064');
 
     public change = (
