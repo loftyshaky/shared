@@ -10,4 +10,6 @@ export class Group extends o_inputs.InputBase {
 
         this.inputs = obj.inputs;
     }
+
+    public is_column_layout_cond? = () => (this.is_column_layout ? 'is_column_layout' : '');
 }

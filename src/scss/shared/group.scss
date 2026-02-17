@@ -1,4 +1,4 @@
-.input_item.group {
+.input_item.group:not(.is_column_layout) {
     .input_item {
         margin-top: 0;
 
@@ -32,4 +32,9 @@
             margin-right: $gap;
         }
     }
+}
+
+.input_item.group.is_column_layout > .input_w_and_help_btn > .input_w {
+    display: flex;
+    flex-direction: column;
 }

@@ -18,7 +18,13 @@ export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
             <c_tr.BaseTr
                 tag='div'
                 name='fade'
-                cls={x.cls(['input_item', input.type, input.name, input.is_enabled_cls!()])}
+                cls={x.cls([
+                    'input_item',
+                    input.type,
+                    input.name,
+                    input.is_enabled_cls!(),
+                    input.is_column_layout_cond!(),
+                ])}
                 state={
                     input.is_visible_computed!() &&
                     ((input.is_cut && data.settings.prefs.enable_cut_features) || !input.is_cut)

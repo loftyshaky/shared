@@ -22,6 +22,7 @@ export class InputBase {
     public warn_state_allowed_forced?: boolean = true;
     public val_accessor?: string; // a.b.c
     public default_val?: string | number | boolean;
+    public is_column_layout?: boolean = false; // for group inputs
     public alt_msg?: string;
     public alt_help_msg?: string;
     public include_help?: boolean = false;
@@ -156,4 +157,7 @@ export class InputBase {
         err(() => {
             this.input_errors = input_errors;
         }, 'shr_1241');
+
+    public is_column_layout_cond? = () =>
+        err(() => (this.is_column_layout ? 'is_column_layout' : ''), 'shr_1306');
 }

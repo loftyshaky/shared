@@ -20,8 +20,8 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
                             <React.Fragment key={i}>
                                 {s_inputs.resolve({
                                     input: input_2,
-                                    calculate_width: false,
-                                    include_label: false,
+                                    calculate_width: input.is_column_layout,
+                                    include_label: input.is_column_layout,
                                 })}
                             </React.Fragment>
                         ),
