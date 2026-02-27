@@ -64,7 +64,7 @@ class Class {
     public access = ({ input }: { input: i_inputs.Input }): i_data.Val =>
         err(() => {
             const new_input = input;
-            const defalt_val: string | number | boolean = input.default_val
+            const defalt_val: string | number | boolean = n(input.default_val)
                 ? input.default_val
                 : '';
 

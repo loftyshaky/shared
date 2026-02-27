@@ -8,6 +8,7 @@ import { i_inputs } from 'inputs/internal';
 
 export class InputBase {
     public name: string;
+    public id?: string = x.unique_id();
     public is_cut?: boolean = false;
     public is_visible_key?: string; // prefs object key
     public is_visible?: boolean = true;
@@ -27,6 +28,7 @@ export class InputBase {
     public alt_help_msg?: string;
     public include_help?: boolean = false;
     public help_is_visible?: boolean = false;
+    public side_btns?: i_inputs.SideBtn[] = [];
     public parent?: string;
     public offset?: string = '0';
     public form?: string;

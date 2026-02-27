@@ -55,8 +55,8 @@ export const SectionContent: React.FunctionComponent<p_inputs.SectionContent> = 
                 <>
                     <div className='inputs'>
                         {Object.values(inputs).map(
-                            (input: i_inputs.Input | o_inputs.Link, i: number): JSX.Element => (
-                                <React.Fragment key={i}>
+                            (input: i_inputs.Input | o_inputs.Link): JSX.Element => (
+                                <React.Fragment key={input.id}>
                                     {s_inputs.resolve({ input })}
                                 </React.Fragment>
                             ),

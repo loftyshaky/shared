@@ -27,7 +27,7 @@
     border-style: solid !important;
 }
 
-.is_disabled:not(.input_item.group) {
+.is_disabled:not(.input_item.group, .side_btn) {
     @include is_disabled;
 }
 
@@ -42,4 +42,8 @@
 .fullscreen {
     width: 100vw;
     height: 100vh;
+}
+
+.margin_bottom_0 {
+    margin-bottom: 0 !important;
 }

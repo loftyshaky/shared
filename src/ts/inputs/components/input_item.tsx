@@ -31,8 +31,11 @@ export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
                 }
                 style={{ marginLeft: x.px(input.offset) }}
             >
-                {include_label ? <c_inputs.LabelInInputItem input={input} /> : undefined}
-                {input_w}
+                {input.type === 'group' ? undefined : <c_inputs.SideBtns input={input} />}
+                <div className='input_item_inner'>
+                    {include_label ? <c_inputs.LabelInInputItem input={input} /> : undefined}
+                    {input_w}
+                </div>
             </c_tr.BaseTr>
         );
     },

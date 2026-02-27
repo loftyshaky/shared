@@ -1,0 +1,14 @@
+$side_btn_height: $input_height + ($border_width * 2);
+
+.side_btns {
+    display: flex;
+
+    .side_btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $side_btn_height;
+        height: $side_btn_height;
+        margin-right: $gap;
+    }
+}

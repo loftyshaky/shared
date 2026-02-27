@@ -104,7 +104,7 @@ class Class {
                             }
 
                             if (input_2.type === 'group' && n(input_2.inputs)) {
-                                (input_2.inputs as i_inputs.Input[]).forEach(
+                                Object.values(input_2.inputs as i_inputs.Input[]).forEach(
                                     (input_3: i_inputs.Input): void =>
                                         err(() => {
                                             input_3.parent_disabled = !input_2.is_enabled;

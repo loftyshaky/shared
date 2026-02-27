@@ -14,10 +14,17 @@ input[type='file'] {
     padding-right: $main_margin;
     margin-left: unset;
     justify-content: unset;
-    align-items: center;
-    flex-direction: column;
-    display: table;
+    align-items: end;
+    display: flex;
     width: auto;
+
+    &.checkbox {
+        align-items: center;
+    }
+
+    .input_item_inner {
+        width: 100%;
+    }
 
     &.child {
         margin-left: 28px;
@@ -27,8 +34,9 @@ input[type='file'] {
         margin-top: $gap;
     }
 
-    .label_in_input_item {
-        display: table;
+    .label_in_input_item_w {
+        display: flex;
+        align-items: center;
         height: unset;
         margin-right: 0;
         white-space: normal;
@@ -40,7 +48,7 @@ input[type='file'] {
     &.range,
     &.upload_box,
     &.group {
-        .label_in_input_item:not(:empty) {
+        .label_in_input_item_w:not(:empty) {
             margin-bottom: $gap_small;
         }
     }

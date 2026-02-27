@@ -146,11 +146,13 @@ hr {
         }
     }
 
-    .btn.text_input {
-        background-color: $npw;
+    .btn {
+        &.text_input {
+            background-color: $npw;
 
-        svg {
-            fill: $lpe;
+            svg {
+                fill: $lpe;
+            }
         }
     }
 
@@ -290,6 +292,18 @@ hr {
     .link.svg {
         svg {
             fill: $lpe;
+        }
+    }
+
+    .input_item .side_btn {
+        background-color: $hyp;
+
+        &.is_disabled {
+            background-color: $tdu;
+        }
+
+        svg {
+            fill: $pgs;
         }
     }
 }

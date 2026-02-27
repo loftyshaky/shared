@@ -2,6 +2,7 @@ import { t } from 'shared_clean/internal';
 
 export class Link {
     public name: string;
+    public id?: string = x.unique_id();
     public name_clean?: string;
     public type?: string = 'link';
     public label_type?: 'text' | 'svg' = 'text';

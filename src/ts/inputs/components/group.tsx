@@ -10,14 +10,20 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
         <>
             <div className='input_w_and_help_btn'>
                 <span
-                    className={x.cls(['input_w', 'group', input.name, 'calculate_width'])}
+                    className={x.cls([
+                        'input_w',
+                        'group',
+                        input.name,
+                        'calculate_width',
+                        input.content_is_visible_cls!(),
+                    ])}
                     style={{
                         width: d_inputs.InputWidth.width_style!({ input }),
                     }}
                 >
                     {Object.values(input.inputs).map(
-                        (input_2: i_inputs.Input | o_inputs.Link, i: number): JSX.Element => (
-                            <React.Fragment key={i}>
+                        (input_2: i_inputs.Input | o_inputs.Link): JSX.Element => (
+                            <React.Fragment key={input_2.id}>
                                 {s_inputs.resolve({
                                     input: input_2,
                                     calculate_width: input.is_column_layout,

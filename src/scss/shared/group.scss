@@ -34,7 +34,7 @@
     }
 }
 
-.input_item.group.is_column_layout > .input_w_and_help_btn > .input_w {
+.input_item.group.is_column_layout > .input_item_inner > .input_w_and_help_btn > .input_w {
     display: flex;
     flex-direction: column;
 }

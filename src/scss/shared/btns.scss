@@ -14,21 +14,27 @@ $icon_btn_size: 20px;
     svg {
         display: block;
     }
-}
 
-.btn.icon_btn {
-    border-radius: 0;
-    position: relative;
-    vertical-align: bottom;
-    background-color: transparent;
-
-    &:not(:first-child) {
-        margin-left: $gap !important;
+    &.side_btn {
+        svg {
+            @include text_btn_svg;
+        }
     }
 
-    svg {
-        width: $icon_btn_size;
-        height: $icon_btn_size;
+    &.icon_btn {
+        border-radius: 0;
+        position: relative;
+        vertical-align: bottom;
+        background-color: transparent;
+
+        &:not(:first-child) {
+            margin-left: $gap !important;
+        }
+
+        svg {
+            width: $icon_btn_size;
+            height: $icon_btn_size;
+        }
     }
 }
 
