@@ -6,7 +6,7 @@ import { d_inputs, c_inputs, p_inputs, i_inputs } from 'inputs/internal';
 
 export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => {
     const input_ref = useRef<HTMLInputElement>(null);
-    const { input, calculate_width, include_label } = props;
+    const { input, calculate_width, include_label, parent_input } = props;
 
     const input_w: JSX.Element = (
         <>
@@ -36,14 +36,17 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         name={input.name}
                         className={x.cls(['input', input.text_type])}
                         type={input.text_type}
-                        value={d_inputs.Val.access({ input }) as string}
+                        value={input.val_computed!({ input, parent_input })}
                         placeholder={input.placeholder}
                         autoComplete={input.autocomplete}
                         spellCheck='false'
                         tabIndex={input.tab_index!()}
                         ref={input_ref}
                         onInput={async (e): Promise<void> => {
-                            await d_inputs.Val.text_and_textarea_on_input({ input }, e);
+                            await d_inputs.Val.text_and_textarea_on_input(
+                                { input, parent_input },
+                                e,
+                            );
                         }}
                         onPaste={(e): void => {
                             input.paste_callback!(
@@ -102,6 +105,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                             on_click={() =>
                                 d_inputs.Val.remove_val({
                                     input,
+                                    parent_input,
                                     input_el: input_ref.current,
                                 })
                             }

@@ -6,6 +6,14 @@ import { c_inputs, d_inputs, o_inputs, p_inputs } from 'inputs/internal';
 export const LabelInInputItem: React.FunctionComponent<p_inputs.LabelInInputItem> = observer(
     (props) => {
         const { input } = props;
+        const edit_label_input =
+            input.type === 'group'
+                ? new o_inputs.Text({
+                      name: `${input.name}_edit_label_input`,
+                      val_accessor: input.val_accessor,
+                      event_callback: input.edit_label_val!,
+                  })
+                : undefined;
 
         return (
             <div
@@ -17,9 +25,18 @@ export const LabelInInputItem: React.FunctionComponent<p_inputs.LabelInInputItem
                 ])}
             >
                 {input.type === 'group' ? <c_inputs.SideBtns input={input} /> : undefined}
-                <label className='label_in_input_item' htmlFor={input.name}>
-                    {d_inputs.LabelInInputItem.msg!({ input })}
-                </label>
+                {input.type === 'group' && input.editing_label && n(edit_label_input) ? (
+                    <c_inputs.Text
+                        input={edit_label_input}
+                        calculate_width
+                        include_label={false}
+                        parent_input={input}
+                    />
+                ) : (
+                    <label className='label_in_input_item' htmlFor={input.name}>
+                        {d_inputs.LabelInInputItem.label_text_computed!({ input })}
+                    </label>
+                )}
             </div>
         );
     },

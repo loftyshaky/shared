@@ -138,34 +138,40 @@ class Class {
     public remove_val = action(
         ({
             input,
+            parent_input,
             input_el,
         }: {
             input: i_inputs.Input;
+            parent_input: o_inputs.Group;
             input_el: HTMLInputElement | null;
         }): Promise<void> =>
             err_async(async () => {
-                if (n(input_el)) {
-                    input_el.focus();
-                }
+                if (!n(parent_input) || !n(parent_input.label_val)) {
+                    if (n(input_el)) {
+                        input_el.focus();
+                    }
 
-                if (n(input.val_accessor)) {
-                    this.set({
-                        val: '',
-                        input,
-                    });
-                }
+                    if (n(input.val_accessor)) {
+                        this.set({
+                            val: '',
+                            input,
+                        });
+                    }
 
-                if (n(input.val_accessor)) {
-                    set(data, input.val_accessor, '');
+                    if (n(input.val_accessor)) {
+                        set(data, input.val_accessor, '');
+                    } else {
+                        data.settings.prefs[input.name] = '';
+                    }
+
+                    if (n((input as o_inputs.Text).remove_val_callback)) {
+                        await (input as o_inputs.Text).remove_val_callback!({ input });
+                    }
+
+                    await d_inputs.Val.set_warn_state({ input });
                 } else {
-                    data.settings.prefs[input.name] = '';
+                    parent_input.label_val = '';
                 }
-
-                if (n((input as o_inputs.Text).remove_val_callback)) {
-                    await (input as o_inputs.Text).remove_val_callback!({ input });
-                }
-
-                await d_inputs.Val.set_warn_state({ input });
             }, 'shr_1067'),
     );
 
@@ -181,18 +187,25 @@ class Class {
         }, 'shr_1068');
 
     public text_and_textarea_on_input = (
-        { input }: { input: i_inputs.Input },
+        {
+            input,
+            parent_input,
+        }: { input: i_inputs.Input; parent_input: i_inputs.Input | undefined },
         e: FormEvent,
     ): Promise<void> =>
         err_async(async () => {
-            await d_inputs.Val.change(
-                {
-                    input,
-                },
-                e,
-            );
+            if (!n(parent_input) || (n(parent_input) && !n(parent_input.label_val))) {
+                await d_inputs.Val.change(
+                    {
+                        input,
+                    },
+                    e,
+                );
 
-            await d_inputs.Val.set_warn_state({ input });
+                await d_inputs.Val.set_warn_state({ input });
+            } else if (n(input.edit_label_val)) {
+                input.edit_label_val({ parent_input }, e as any);
+            }
         }, 'shr_1254');
 }
 

@@ -4,4 +4,5 @@ export interface Text {
     input: o_inputs.Text;
     calculate_width: boolean;
     include_label: boolean;
+    parent_input?: o_inputs.Group;
 }

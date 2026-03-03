@@ -1,5 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import get from 'lodash/get';
+import { FormEvent } from 'react';
 import { makeObservable, observable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
@@ -28,6 +29,7 @@ export class InputBase {
     public alt_help_msg?: string;
     public include_help?: boolean = false;
     public help_is_visible?: boolean = false;
+    public label_val?: string | undefined = undefined;
     public side_btns?: i_inputs.SideBtn[] = [];
     public parent?: string;
     public offset?: string = '0';
@@ -56,8 +58,10 @@ export class InputBase {
             warn_state_allowed: observable,
             warn_state_allowed_forced: observable,
             help_is_visible: observable,
+            label_val: observable,
             offset: observable,
             set_input_errors: action,
+            edit_label_val: action,
         });
 
         Object.assign(this, obj);
@@ -162,4 +166,16 @@ export class InputBase {
 
     public is_column_layout_cond? = () =>
         err(() => (this.is_column_layout ? 'is_column_layout' : ''), 'shr_1306');
+
+    public edit_label_val? = (
+        { parent_input }: { parent_input: i_inputs.Input },
+        e: FormEvent,
+    ): void =>
+        err(() => {
+            const val = (e.target as HTMLInputElement).value;
+
+            if (n(val)) {
+                parent_input.label_val = val;
+            }
+        }, 'shr_1307');
 }

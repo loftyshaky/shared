@@ -38,6 +38,18 @@ export class Text extends o_inputs.InputBase {
         this.remove_val_callback = obj.remove_val_callback;
     }
 
+    val_computed? = computedFn(function ({
+        input,
+        parent_input,
+    }: {
+        input: Text;
+        parent_input: o_inputs.Group | undefined;
+    }): string {
+        return n(parent_input) && n(parent_input.label_val)
+            ? parent_input.label_val
+            : (d_inputs.Val.access({ input }) as string);
+    });
+
     remove_val_btn_is_visible? = computedFn(function ({ input }: { input: Text }): boolean {
         return (
             n(input.allow_removing_val) &&
