@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
 import { o_inputs, i_inputs } from 'inputs/internal';
@@ -12,6 +13,10 @@ export class Group extends o_inputs.InputBase {
 
     public constructor(obj: Group) {
         super(obj);
+
+        makeObservable(this, {
+            editing_label: observable,
+        });
 
         Object.assign(this, obj);
 
