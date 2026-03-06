@@ -14,6 +14,7 @@ interface Global {
     rs: <T1>(variable: T1) => string;
     rn: <T1>(variable: T1) => number;
     rb: <T1>(variable: T1) => boolean;
+    rnb: <T1>(variable: T1) => number;
     ru: <T1>(variable: T1) => any | undefined;
     s: <T1>(selector: string) => T1 | undefined;
     sa: <T1 extends HTMLElement>(selector: string) => NodeListOf<T1> | undefined;

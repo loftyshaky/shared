@@ -41,6 +41,15 @@ globalThis.rb = <T1>(variable: T1): boolean =>
         'shr_1144',
     ); // resolve boolean
 
+globalThis.rnb = <T1>(variable: T1): number =>
+    err(
+        () =>
+            n(variable) && (typeof variable === 'function' || typeof variable === 'number')
+                ? shared.resolve_variable(variable)
+                : 0,
+        'shr_1144',
+    ); // resolve number boolean
+
 globalThis.ru = <T1>(variable: T1): any | undefined =>
     err(() => (n(variable) ? shared.resolve_variable(variable) : undefined), 'shr_1145'); // resolve undefined
 // < undefined/null check
