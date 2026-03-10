@@ -122,5 +122,11 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
         </>
     );
 
-    return <c_inputs.InputItem input={input} input_w={input_w} include_label />;
+    return (
+        <c_inputs.InputItem
+            input={input}
+            input_w={input_w}
+            include_label={input.label_is_visible_computed!({ include_label: true })}
+        />
+    );
 });

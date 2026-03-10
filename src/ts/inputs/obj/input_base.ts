@@ -16,6 +16,7 @@ export class InputBase {
     public is_visible_conds?: i_inputs.StateCond[] = [];
     public is_enabled?: boolean = true;
     public is_enabled_conds?: i_inputs.StateCond[] = [];
+    public label_is_visible?: boolean | undefined = undefined;
     public parent_disabled?: boolean = false;
     public is_in_focus_state?: boolean = false;
     public is_in_warn_state?: boolean = false;
@@ -51,6 +52,7 @@ export class InputBase {
             is_visible_conds: observable,
             is_enabled: observable,
             is_enabled_conds: observable,
+            label_is_visible: observable,
             parent_disabled: observable,
             is_in_focus_state: observable,
             is_in_warn_state: observable,
@@ -68,6 +70,13 @@ export class InputBase {
         this.name = obj.name;
         this.event_callback = obj.event_callback;
     }
+
+    public label_is_visible_computed? = computedFn(function (
+        this: InputBase,
+        { include_label }: { include_label: boolean },
+    ): boolean {
+        return n(this.label_is_visible) ? this.label_is_visible : include_label;
+    });
 
     is_cut_computed? = computedFn(function (this: InputBase): boolean {
         return (this.is_cut && data.settings.prefs.enable_cut_features) || !this.is_cut;

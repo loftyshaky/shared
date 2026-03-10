@@ -78,5 +78,11 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
         </>
     );
 
-    return <c_inputs.InputItem input={input} input_w={input_w} include_label={include_label} />;
+    return (
+        <c_inputs.InputItem
+            input={input}
+            input_w={input_w}
+            include_label={input.label_is_visible_computed!({ include_label })}
+        />
+    );
 });
