@@ -39,30 +39,31 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
     ]);
 
     return (
-        <>
-            <c_tr.BaseTr
-                tag='button'
-                name='fade'
-                cls={x.cls(['btn', `${type}_btn`, input.is_enabled_cls!(), input.name])}
-                attr={{
-                    type: 'button',
-                    title:
-                        input instanceof o_inputs.IconBtn
-                            ? input.alt_msg ||
-                              (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                                  `${input.name}_btn_title`,
-                              )
-                            : '',
-                    tabIndex: input.tab_index!(),
-                    onClick: input.event_callback,
-                    onKeyDown: stop_propagation,
-                }}
-                state={
-                    input.is_visible_computed!() &&
-                    ((input.is_cut && data.settings.prefs.enable_cut_features) || !input.is_cut)
-                }
-                style={{ marginLeft: x.px(input.offset) }}
-            >
+        <c_tr.BaseTr
+            tag='span'
+            name='fade'
+            cls={x.cls(['btn_w', `${type}_btn`, input.is_enabled_cls!(), input.name])}
+            attr={{
+                title:
+                    input instanceof o_inputs.IconBtn
+                        ? input.alt_msg ||
+                          (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                              `${input.name}_btn_title`,
+                          )
+                        : '',
+                tabIndex: input.tab_index!(),
+                onClick: () => {
+                    input.event_callback({ input });
+                },
+                onKeyDown: stop_propagation,
+            }}
+            state={
+                input.is_visible_computed!() &&
+                ((input.is_cut && data.settings.prefs.enable_cut_features) || !input.is_cut)
+            }
+            style={{ marginLeft: x.px(input.offset) }}
+        >
+            <button className={x.cls(['btn'])} type='button'>
                 {input instanceof o_inputs.IconBtn ? (
                     <input.Svg />
                 ) : (
@@ -77,7 +78,7 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     <span className='shadow' ref={refs.setReference} {...getReferenceProps()} />
                 )}
-            </c_tr.BaseTr>
+            </button>
             {n(input.btn_options) && (
                 // eslint-disable-next-line react/jsx-no-useless-fragment, jsx-a11y/no-static-element-interactions
                 <div
@@ -135,6 +136,6 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
                     </c_tr.BaseTr>
                 </div>
             )}
-        </>
+        </c_tr.BaseTr>
     );
 });

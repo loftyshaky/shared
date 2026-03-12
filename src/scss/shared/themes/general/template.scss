@@ -295,6 +295,14 @@ hr {
         }
     }
 
+    .icon_btn .btn {
+        background-color: $dlf;
+
+        svg {
+            fill: $pgs;
+        }
+    }
+
     .input_item .side_btn {
         background-color: $hyp;
 
