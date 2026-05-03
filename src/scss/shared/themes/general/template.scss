@@ -110,6 +110,10 @@ hr {
 
     .offers {
         border-color: $hyn;
+
+        .top_bar .btn_w.icon_btn svg {
+            fill: $lpe;
+        }
     }
 }
 
