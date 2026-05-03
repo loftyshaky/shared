@@ -114,7 +114,7 @@ class Class {
             const this_offer_is_allowed_for_this_ext: boolean =
                 offer.exts_whitelist === 'all' ||
                 (offer.exts_whitelist as string[]).some((id: string): boolean =>
-                    err(() => (env.env === 'ext' ? id === we.runtime.id : true), 'shr_1296'),
+                    err(() => (env.env === 'ext' ? id === we.runtime.id : false), 'shr_1296'),
                 );
 
             const is_all_or_current_type_offer =
