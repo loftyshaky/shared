@@ -63,6 +63,16 @@ class Class {
         return '';
     };
 
+    public get_app_name = (): string => {
+        try {
+            return env.name;
+        } catch (error_obj: any) {
+            this.log_error(error_obj, 'shr_1309');
+        }
+
+        return '';
+    };
+
     public get_language = (): string =>
         n(data) && n(data.settings.prefs) && data.settings.prefs.locale
             ? data.settings.prefs.locale

@@ -27,6 +27,7 @@ export type CallbackVariadicAny = (...args: any[]) => any;
 export type Constructable<T1> = new (args?: T1) => T1;
 export interface Env {
     version: string;
+    name: string;
     browser: Browser;
     mode: 'development' | 'production';
     env: 'ext' | 'app' | 'adonis_app';
