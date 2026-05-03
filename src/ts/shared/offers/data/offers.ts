@@ -54,7 +54,7 @@ class Class {
 
     public set_offers_of_type = (): void =>
         err(() => {
-            const ext_name: string = env.env === 'ext' ? ext.get_app_name() : 'App';
+            const ext_name: string = env.env === 'ext' ? ext.get_app_name() : app.get_app_name();
 
             const get_offers_of_type = (): o_offers.Offer[] =>
                 err(() => {
@@ -67,8 +67,9 @@ class Class {
                                 const is_all_or_current_type_offer =
                                     this.check_if_is_all_or_current_type_offer({ offer });
 
-                                const offer_is_current_ext: boolean =
-                                    offer_text_raw.includes(ext_name);
+                                const offer_is_current_ext: boolean = offer_text_raw
+                                    .toLocaleLowerCase()
+                                    .includes(ext_name);
 
                                 if (
                                     offer.is_enabled &&

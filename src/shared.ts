@@ -24,6 +24,7 @@ export {
     init_shared,
     c_app_version,
     c_loading_screen,
+    c_offers,
     c_tr,
     o_tr,
     d_data,

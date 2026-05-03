@@ -1,4 +1,4 @@
-.offers {
+.main:not(.loading_screen) .offers {
     overflow: auto;
     flex-shrink: 0;
 
@@ -19,6 +19,21 @@
 
         .shadow {
             visibility: hidden;
+        }
+
+        .btn_w {
+            border-width: 0;
+            display: inline-block;
+
+            &:not(:first-child) {
+                margin-top: 0;
+            }
+
+            &.icon_btn .btn {
+                width: unset;
+                height: unset;
+                background-color: transparent;
+            }
         }
     }
 
