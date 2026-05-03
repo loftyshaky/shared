@@ -7,7 +7,7 @@ class Env {
     }
 
     generate = ({ browser, mode, env }) => {
-        const env_2 = `globalThis.env = {"version": "${process.env.npm_package_version}", "browser": "${browser}", "mode": "${mode}", "env": "${env}" }`;
+        const env_2 = `globalThis.env = {"version": "${process.env.npm_package_version}", "name": "${process.env.npm_package_name}", "browser": "${browser}", "mode": "${mode}", "env": "${env}" }`;
 
         fs.outputFileSync(
             path.join(
