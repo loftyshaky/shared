@@ -79,7 +79,9 @@ export const resolve = ({
         } else if (input.type === 'form') {
             input_el = <c_inputs.Form input={input as o_inputs.Form} />;
         } else if (input.type === 'group') {
-            input_el = <c_inputs.Group input={input as o_inputs.Group} />;
+            input_el = (
+                <c_inputs.Group input={input as o_inputs.Group} calculate_width={calculate_width} />
+            );
         } else if (input.type === 'hr') {
             input_el = <c_inputs.Hr input={input as o_inputs.Hr} />;
         }

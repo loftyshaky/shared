@@ -10,6 +10,7 @@ export const LabelInInputItem: React.FunctionComponent<p_inputs.LabelInInputItem
             input.type === 'group'
                 ? new o_inputs.Text({
                       name: `${input.name}_edit_label_input`,
+                      section: input.section,
                       val_accessor: input.val_accessor,
                       event_callback: input.edit_label_val!,
                   })

@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { c_inputs, d_inputs, s_inputs, o_inputs, p_inputs, i_inputs } from 'inputs/internal';
 
 export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) => {
-    const { input } = props;
+    const { input, calculate_width } = props;
 
     const input_w: JSX.Element = n(input.inputs) ? (
         <>
@@ -14,7 +14,7 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
                         'input_w',
                         'group',
                         input.name,
-                        'calculate_width',
+                        calculate_width,
                         input.content_is_visible_cls!(),
                     ])}
                     style={{

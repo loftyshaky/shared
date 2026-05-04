@@ -21,7 +21,7 @@ class Class {
     }
 
     public width: number = 0;
-    private min_width: number = 0;
+    public min_width: number = 0;
     private max_width: number = 0;
     public max_width_ob: Record<string, string | undefined> = {};
     private old_width: number = 0;
