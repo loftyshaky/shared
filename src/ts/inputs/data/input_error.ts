@@ -30,11 +30,11 @@ class Class {
             input: i_inputs.Input;
         },
     ): string {
-        return this.input_error_is_visible!({ input }) ? '' : 'none';
+        return this.input_error_is_visible!({ input }) ? '' : 'hidden';
     });
 
     public input_error = computedFn(function ({ input }: { input: i_inputs.Input }): string {
-        return input.is_in_warn_state && n(input.input_errors)
+        return n(input.input_errors)
             ? input.input_errors
                   .reduce(
                       (previous_val, current_val) =>

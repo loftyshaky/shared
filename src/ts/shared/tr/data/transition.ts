@@ -27,8 +27,8 @@ class Class {
             }: {
                 name: string;
                 state: boolean;
-                tr_end_unactive?: t.CallbackVoid[];
-                tr_end_active?: t.CallbackVoid[];
+                tr_end_unactive?: t.CallbackVariadicVoid[];
+                tr_end_active?: t.CallbackVariadicVoid[];
                 tr_el_ref: React.RefObject<HTMLElement>;
                 called_from_component_did_update: boolean;
             },

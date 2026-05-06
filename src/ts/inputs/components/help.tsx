@@ -16,6 +16,16 @@ export const Help: React.FunctionComponent<p_inputs.Help> = observer((props) => 
             style={{
                 width: d_inputs.Help.width_style!({ section_or_input }),
             }}
+            tr_end_unactive={[
+                (e) => {
+                    d_inputs.SideBtn.set_side_btns_offset_bottom_val_help_tr_end(
+                        {
+                            section_or_input,
+                        },
+                        e,
+                    );
+                },
+            ]}
         >
             {d_inputs.Help.msg!({ section_or_input })}
         </c_tr.BaseTr>

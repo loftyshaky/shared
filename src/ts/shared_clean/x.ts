@@ -27,7 +27,7 @@ globalThis.rn = <T1>(variable: T1): number =>
     err(
         () =>
             n(variable) && (typeof variable === 'function' || typeof variable === 'number')
-                ? shared.resolve_variable(variable)
+                ? shared.resolve_variable(variable) || 0
                 : Infinity,
         'shr_1143',
     ); // resolve number

@@ -34,6 +34,7 @@ export class InputBase {
     public side_btns?: i_inputs.SideBtn[] = [];
     public parent?: string;
     public offset?: string = '0';
+    public side_btns_offset_bottom?: string = '0';
     public form?: string;
     public section?: string;
     public subsection?: string;
@@ -62,6 +63,7 @@ export class InputBase {
             help_is_visible: observable,
             label_val: observable,
             offset: observable,
+            side_btns_offset_bottom: observable,
             set_input_errors: action,
             edit_label_val: action,
         });

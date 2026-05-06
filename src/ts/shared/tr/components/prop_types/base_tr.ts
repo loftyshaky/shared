@@ -7,7 +7,7 @@ export interface BaseTr {
     state: boolean;
     attr?: Record<string, any>;
     style?: Record<string, string | number | undefined>;
-    tr_end_unactive?: t.CallbackVoid[];
-    tr_end_active?: t.CallbackVoid[];
+    tr_end_unactive?: t.CallbackVariadicVoid[];
+    tr_end_active?: t.CallbackVariadicVoid[];
     children: React.ReactNode;
 }
