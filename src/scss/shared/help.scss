@@ -51,7 +51,7 @@
         line-height: initial;
     }
 
-    &:not(.textarea) .help_btn {
+    .help_btn {
         align-self: center;
     }
 
@@ -64,6 +64,7 @@
             margin-top: 5px;
             display: inline-block;
             height: max-content;
+            align-self: flex-end;
         }
     }
 }
