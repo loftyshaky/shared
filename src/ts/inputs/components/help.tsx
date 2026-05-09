@@ -29,7 +29,7 @@ export const Help: React.FunctionComponent<p_inputs.Help> = observer((props) => 
             ]}
         >
             {/* eslint-disable-next-line react/no-danger */}
-            <span dangerouslySetInnerHTML={{ __html: n(msg) ? msg : '' }} />
+            <div dangerouslySetInnerHTML={{ __html: n(msg) ? msg : '' }} />
         </c_tr.BaseTr>
     );
 });
