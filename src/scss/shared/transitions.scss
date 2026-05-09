@@ -26,7 +26,8 @@
 }
 
 .link,
-.link_btn {
+.link_btn,
+.help .link {
     transition: var(--transition);
     transition-property: color;
 

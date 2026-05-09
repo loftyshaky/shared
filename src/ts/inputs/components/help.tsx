@@ -6,6 +6,7 @@ import { d_inputs, p_inputs } from 'inputs/internal';
 
 export const Help: React.FunctionComponent<p_inputs.Help> = observer((props) => {
     const { section_or_input } = props;
+    const msg: string | undefined = d_inputs.Help.msg!({ section_or_input });
 
     return (
         <c_tr.BaseTr
@@ -27,7 +28,8 @@ export const Help: React.FunctionComponent<p_inputs.Help> = observer((props) => 
                 },
             ]}
         >
-            {d_inputs.Help.msg!({ section_or_input })}
+            {/* eslint-disable-next-line react/no-danger */}
+            <span dangerouslySetInnerHTML={{ __html: n(msg) ? msg : '' }} />
         </c_tr.BaseTr>
     );
 });

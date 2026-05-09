@@ -51,13 +51,32 @@ class Class {
     }: {
         section_or_input: o_inputs.Section | i_inputs.Input;
     }): string | undefined {
-        return n(section_or_input.alt_help_msg)
-            ? (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                  section_or_input.alt_help_msg,
-              ) || section_or_input.alt_help_msg
-            : (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                  `${section_or_input.name}_help_text`,
-              );
+        const msg_env: string = env.env === 'ext' ? 'ext' : 'app';
+        const msg: string = n(section_or_input.alt_help_msg)
+            ? (globalThis as any)[msg_env].msg(section_or_input.alt_help_msg) ||
+              section_or_input.alt_help_msg
+            : (globalThis as any)[msg_env].msg(`${section_or_input.name}_help_text`);
+        const regex: RegExp = /@(.*?)@/gm;
+        const link_items: RegExpExecArray[] = Array.from(msg.matchAll(regex));
+        const links: string[] = link_items.map((link_item: RegExpExecArray): string =>
+            err(
+                () =>
+                    `<a class='link help' href='${(globalThis as any)[msg_env].msg(`${link_item[1]}_help_link_href`)}' target='_blank' rel='noopener noreferrer'>${(globalThis as any)[msg_env].msg(`${link_item[1]}_help_link_text`)}</a>`,
+                'shr_1313',
+            ),
+        );
+        let link_i = 0;
+        const msg_with_links = msg.replace(regex, (): string =>
+            err(() => {
+                const link: string = links[link_i];
+
+                link_i += 1;
+
+                return link;
+            }, 'shr_1314'),
+        );
+
+        return msg_with_links;
     });
 }
 
