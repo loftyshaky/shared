@@ -1,0 +1,15 @@
+.btn_w.icon_btn {
+    @include btn;
+
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .label_in_input_item_w {
+        margin-left: $gap;
+
+        .label_in_input_item {
+            cursor: pointer;
+        }
+    }
+}

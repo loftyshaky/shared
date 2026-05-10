@@ -4,6 +4,7 @@ export class IconBtn extends o_inputs.InputBase {
     public type? = 'icon_btn' as const;
     public Svg: string = '';
     public btn_options?: i_inputs.BtnOption[];
+    public include_label?: boolean = false;
 
     public constructor(obj: IconBtn) {
         super(obj);
