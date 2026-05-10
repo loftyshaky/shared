@@ -10,9 +10,13 @@ export const TextBtn: React.FunctionComponent<p_inputs.TextBtn> = observer((prop
         <button
             className={x.cls(['btn', 'text_input', d_inputs.Val.warn_state({ input })])}
             type='button'
-            title={(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                `${name}_text_btn_title`,
-            )}
+            title={
+                n(input.alt_title)
+                    ? input.alt_title
+                    : (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                          `${name}_text_btn_title`,
+                      )
+            }
             tabIndex={input.tab_index!()}
             aria-label='Text button'
             onClick={on_click}

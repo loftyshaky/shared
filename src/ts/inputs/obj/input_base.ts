@@ -28,6 +28,7 @@ export class InputBase {
     public is_column_layout?: boolean = false; // for group inputs
     public alt_msg?: string;
     public alt_help_msg?: string;
+    public alt_title?: string;
     public include_help?: boolean = false;
     public help_is_visible?: boolean = false;
     public label_val?: string | undefined = undefined;

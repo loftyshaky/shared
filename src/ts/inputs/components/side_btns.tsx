@@ -29,6 +29,7 @@ export const SideBtns: React.FunctionComponent<p_inputs.SideBtns> = observer((pr
                     <c_inputs.SideBtn
                         key={i}
                         name={side_btn.name}
+                        alt_title={side_btn.alt_title}
                         Svg={side_btn.Svg}
                         input={input}
                         on_click={(): void => {
