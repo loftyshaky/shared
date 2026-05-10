@@ -11,12 +11,15 @@ input[type='file'] {
 }
 
 .input_item {
-    padding-right: $main_margin;
     margin-left: unset;
     justify-content: unset;
     align-items: end;
     display: flex;
     width: auto;
+
+    .input_item_inner {
+        padding-right: $main_margin;
+    }
 
     &.checkbox {
         align-items: center;
