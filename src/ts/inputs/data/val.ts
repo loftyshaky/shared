@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
-import { SyntheticEvent, FormEvent } from 'react';
+import { SyntheticEvent, FormEvent, KeyboardEvent } from 'react';
 import { makeObservable, observable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
@@ -207,6 +207,16 @@ class Class {
                 input.edit_label_val({ parent_input }, e as any);
             }
         }, 'shr_1254');
+
+    public on_keydown = (
+        { input, parent_input }: { input: i_inputs.Input; parent_input: i_inputs.Input },
+        e: KeyboardEvent,
+    ): Promise<void> =>
+        err_async(async () => {
+            if (n(input.keydown_callback)) {
+                input.keydown_callback({ input, parent_input }, e);
+            }
+        }, 'shr_1315');
 }
 
 export const Val = Class.get_instance();

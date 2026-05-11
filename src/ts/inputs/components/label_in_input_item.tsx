@@ -13,6 +13,7 @@ export const LabelInInputItem: React.FunctionComponent<p_inputs.LabelInInputItem
                       section: input.section,
                       val_accessor: input.val_accessor,
                       event_callback: input.edit_label_val!,
+                      keydown_callback: input.keydown_callback,
                   })
                 : undefined;
 

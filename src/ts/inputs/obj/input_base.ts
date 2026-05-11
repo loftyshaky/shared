@@ -41,6 +41,7 @@ export class InputBase {
     public subsection?: string;
     public developer_mode_setting?: boolean = false;
     public event_callback: t.CallbackVariadicVoid;
+    public keydown_callback?: t.CallbackVariadicVoid;
     public warn_state_checker?: ({
         input,
     }: {

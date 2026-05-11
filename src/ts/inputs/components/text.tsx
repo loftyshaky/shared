@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, KeyboardEvent } from 'react';
 import { observer } from 'mobx-react';
 
 import { svg } from 'shared/internal';
@@ -7,6 +7,12 @@ import { d_inputs, c_inputs, p_inputs, i_inputs } from 'inputs/internal';
 export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => {
     const input_ref = useRef<HTMLInputElement>(null);
     const { input, calculate_width, include_label, parent_input } = props;
+
+    useEffect(() => {
+        if (n(input_ref.current) && input.name.includes('_edit_label_input')) {
+            input_ref.current.focus();
+        }
+    }, [input]);
 
     const input_w: JSX.Element = (
         <>
@@ -71,6 +77,9 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                         onWheel={() => {
                             input.prevent_number_val_changeon_scroll!({ input });
                         }}
+                        onKeyDown={(e: KeyboardEvent): void => {
+                            d_inputs.Val.on_keydown({ input, parent_input: parent_input! }, e);
+                        }}
                     />
                     {n(input.text_btns)
                         ? input.text_btns.map(
@@ -105,7 +114,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                             on_click={() =>
                                 d_inputs.Val.remove_val({
                                     input,
-                                    parent_input,
+                                    parent_input: parent_input!,
                                     input_el: input_ref.current,
                                 })
                             }

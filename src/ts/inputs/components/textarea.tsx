@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
-
 import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((props) => {
