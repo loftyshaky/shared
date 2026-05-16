@@ -92,6 +92,9 @@
     "reload_ext_btn_text": {
         "message": "Reload extension"
     },
+    "locale_label_text": {
+        "message": "Language"
+    },
     "options_page_theme_label_text": {
         "message": "Settings page theme"
     },
@@ -109,6 +112,12 @@
     },
     "offers_are_visible_label_text": {
         "message": "Show offers"
+    },
+    "en_option_text": {
+        "message": "English"
+    },
+    "ru_option_text": {
+        "message": "Russian"
     },
     "light_option_text": {
         "message": "Light"
