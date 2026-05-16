@@ -156,6 +156,7 @@ class Class {
                     : {};
 
             const user_language = this.get_language();
+
             const is_english = user_language.includes('en');
 
             const en_msgs: any = get_msgs({ user_language: 'en' });
