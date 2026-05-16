@@ -113,6 +113,7 @@ const shared_config = ({
             clover_theme: path.join(paths.themes, 'clover_theme.scss'),
             aqua_theme: path.join(paths.themes, 'aqua_theme.scss'),
             lavender_theme: path.join(paths.themes, 'lavender_theme.scss'),
+            blaze_theme: path.join(paths.themes, 'blaze_theme.scss'),
             ruby_theme: path.join(paths.themes, 'ruby_theme.scss'),
         },
         output: {

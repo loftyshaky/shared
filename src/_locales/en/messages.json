@@ -137,6 +137,9 @@
     "lavender_option_text": {
         "message": "Lavender"
     },
+    "blaze_option_text": {
+        "message": "Blaze"
+    },
     "ruby_option_text": {
         "message": "Ruby"
     },

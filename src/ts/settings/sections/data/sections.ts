@@ -33,6 +33,7 @@ class Class {
                     new o_inputs.Option({ name: 'clover' }),
                     new o_inputs.Option({ name: 'aqua' }),
                     new o_inputs.Option({ name: 'lavender' }),
+                    new o_inputs.Option({ name: 'blaze' }),
                     new o_inputs.Option({ name: 'ruby' }),
                 ],
             };
