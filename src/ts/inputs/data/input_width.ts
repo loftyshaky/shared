@@ -80,8 +80,12 @@ class Class {
             );
         }, 'shr_1239');
 
-    public calculate = (): Promise<void> =>
+    public calculate = ({
+        set_all_inputs_to_msg_input_min_width_css = false,
+    }: { set_all_inputs_to_msg_input_min_width_css?: boolean } = {}): Promise<void> =>
         new Promise((reslove) => {
+            this.set_min_and_max_width();
+
             globalThis.requestAnimationFrame((): void =>
                 err(() => {
                     const els = sa<HTMLSpanElement>(
@@ -126,7 +130,13 @@ class Class {
                                             ? this.max_width
                                             : input_w_width_min_width_cond;
 
-                                    if (input_w_width_max_width_cond === this.old_width) {
+                                    if (set_all_inputs_to_msg_input_min_width_css) {
+                                        runInAction(() =>
+                                            err(() => {
+                                                this.width = this.min_width;
+                                            }, 'shr_1316'),
+                                        );
+                                    } else if (input_w_width_max_width_cond === this.old_width) {
                                         runInAction(() =>
                                             err(() => {
                                                 this.width = input_w_width_max_width_cond;
