@@ -114,10 +114,10 @@
         "message": "Show offers"
     },
     "en_option_text": {
-        "message": "English"
+        "message": "en - English"
     },
     "ru_option_text": {
-        "message": "Russian"
+        "message": "ru - русский"
     },
     "light_option_text": {
         "message": "Light"
