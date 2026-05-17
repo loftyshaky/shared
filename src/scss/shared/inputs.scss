@@ -18,11 +18,8 @@ input[type='file'] {
     width: auto;
 
     .input_item_inner {
+        width: inherit;
         padding-right: $main_margin;
-    }
-
-    &.checkbox {
-        align-items: center;
     }
 
     &.child {
@@ -39,6 +36,14 @@ input[type='file'] {
         height: unset;
         margin-right: 0;
         white-space: normal;
+    }
+
+    &.checkbox {
+        align-items: center;
+
+        .label_in_input_item_w {
+            display: block;
+        }
     }
 
     &.text,

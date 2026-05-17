@@ -42,7 +42,7 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
         <c_tr.BaseTr
             tag='span'
             name='fade'
-            cls={x.cls(['btn_w', `${type}_btn`, input.is_enabled_cls!(), input.name])}
+            cls={x.cls(['btn_w', `${type}_btn_w`, input.is_enabled_cls!(), input.name])}
             attr={{
                 title:
                     input instanceof o_inputs.IconBtn
@@ -63,7 +63,7 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
             }
             style={{ marginLeft: x.px(input.offset) }}
         >
-            <button className={x.cls(['btn'])} type='button'>
+            <button className={x.cls(['btn', `${type}_btn`])} type='button'>
                 {input instanceof o_inputs.IconBtn ? (
                     <input.Svg />
                 ) : (

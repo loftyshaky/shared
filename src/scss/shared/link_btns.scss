@@ -1,10 +1,23 @@
-.link_btn {
+.link_btn_w {
     @include btn;
 
     display: block;
-    font-size: $font_small;
+
+    .link_btn {
+        display: block;
+    }
 }
 
-.palette_link_btns .link_btn {
+.palette {
+    .link_btn_w.hide {
+        margin-top: $gap_small;
+    }
+
+    .link_btn {
+        font-size: $font_small;
+    }
+}
+
+.palette_link_btns .link_btn_w {
     margin-bottom: $gap;
 }

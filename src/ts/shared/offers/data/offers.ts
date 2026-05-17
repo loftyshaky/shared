@@ -69,7 +69,7 @@ class Class {
 
                                 const offer_is_current_ext: boolean = offer_text_raw
                                     .toLocaleLowerCase()
-                                    .includes(ext_name);
+                                    .includes(ext_name.toLocaleLowerCase());
 
                                 if (
                                     offer.is_enabled &&
