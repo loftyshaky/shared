@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) => {
-    const { input, calculate_width, include_label } = props;
+    const { input, id, calculate_width, include_label } = props;
 
     const input_w: JSX.Element = (
         <>
@@ -25,7 +25,7 @@ export const Range: React.FunctionComponent<p_inputs.Range> = observer((props) =
                         }}
                     >
                         <input
-                            id={input.name}
+                            id={d_inputs.LabelInInputItem.id({ input, id })}
                             name={input.name}
                             className={x.cls(['input', d_inputs.Val.focus_state({ input })])}
                             type='range'

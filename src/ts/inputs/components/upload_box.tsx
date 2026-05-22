@@ -9,7 +9,7 @@ import { c_inputs, o_inputs, d_inputs, s_inputs, p_inputs } from 'inputs/interna
 export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((props) => {
     const file_input_ref = useRef<HTMLInputElement>(null);
 
-    const { input, calculate_width } = props;
+    const { input, id, calculate_width } = props;
 
     useEffect(() => {
         d_inputs.Val.access({ input });
@@ -58,7 +58,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                         state={input.is_in_hover_state!}
                     >
                         <input
-                            id={input.name}
+                            id={d_inputs.LabelInInputItem.id({ input, id })}
                             name={input.name}
                             className='input'
                             type='file'

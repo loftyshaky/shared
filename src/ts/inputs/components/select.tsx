@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { o_inputs, d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Select: React.FunctionComponent<p_inputs.Select> = observer((props) => {
-    const { input, calculate_width, include_label } = props;
+    const { input, id, calculate_width, include_label } = props;
     const options = input.options[input.name];
 
     const input_w: JSX.Element = (
@@ -27,7 +27,7 @@ export const Select: React.FunctionComponent<p_inputs.Select> = observer((props)
                     }}
                 >
                     <select
-                        id={input.name}
+                        id={d_inputs.LabelInInputItem.id({ input, id })}
                         name={input.name}
                         className='input'
                         value={d_inputs.Val.access({ input }) as string}

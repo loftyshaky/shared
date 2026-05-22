@@ -61,6 +61,19 @@ class Class {
                 callback({ input });
             }
         }, 'shr_1306');
+
+    public id = ({ input, id }: { input: i_inputs.Input; id?: string }): string | undefined =>
+        err(() => (n(id) ? id : input.id), 'shr_1317');
+
+    public id_label_is_visible = ({
+        input_group,
+    }: {
+        input_group: o_inputs.Group;
+    }): string | undefined =>
+        err(
+            () => (input_group.use_group_id_on_child_inputs ? input_group.id : undefined),
+            'shr_1318',
+        );
 }
 
 export const LabelInInputItem = Class.get_instance();

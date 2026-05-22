@@ -4,10 +4,12 @@ import { c_inputs, c_color, o_inputs, o_color, i_inputs } from 'inputs/internal'
 
 export const resolve = ({
     input,
+    id,
     calculate_width = true,
     include_label = true,
 }: {
     input: i_inputs.Input | o_inputs.Link;
+    id?: string;
     calculate_width?: boolean;
     include_label?: boolean;
 }): JSX.Element =>
@@ -20,6 +22,7 @@ export const resolve = ({
             input_el = (
                 <c_inputs.Text
                     input={input as o_inputs.Text}
+                    id={id}
                     calculate_width={calculate_width}
                     include_label={include_label}
                 />
@@ -28,6 +31,7 @@ export const resolve = ({
             input_el = (
                 <c_inputs.Textarea
                     input={input as o_inputs.Textarea}
+                    id={id}
                     calculate_width={calculate_width}
                     include_label={include_label}
                 />
@@ -37,6 +41,7 @@ export const resolve = ({
                 <c_inputs.Select
                     input={input as o_inputs.Select}
                     calculate_width={calculate_width}
+                    id={id}
                     include_label={include_label}
                 />
             );
@@ -44,6 +49,7 @@ export const resolve = ({
             input_el = (
                 <c_inputs.Range
                     input={input as o_inputs.Range}
+                    id={id}
                     calculate_width={calculate_width}
                     include_label={include_label}
                 />
@@ -52,6 +58,7 @@ export const resolve = ({
             input_el = (
                 <c_inputs.Checkbox
                     input={input as o_inputs.Checkbox}
+                    id={id}
                     calculate_width={calculate_width}
                 />
             );
@@ -75,6 +82,7 @@ export const resolve = ({
             input_el = (
                 <c_inputs.UploadBox
                     input={input as o_inputs.UploadBox}
+                    id={id}
                     calculate_width={calculate_width}
                 />
             );

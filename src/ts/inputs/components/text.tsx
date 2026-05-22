@@ -6,7 +6,7 @@ import { d_inputs, c_inputs, p_inputs, i_inputs } from 'inputs/internal';
 
 export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => {
     const input_ref = useRef<HTMLInputElement>(null);
-    const { input, calculate_width, include_label, parent_input } = props;
+    const { input, id, calculate_width, include_label, parent_input } = props;
 
     useEffect(() => {
         if (n(input_ref.current) && input.name.includes('_edit_label_input')) {
@@ -38,7 +38,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                     }}
                 >
                     <input
-                        id={input.name}
+                        id={d_inputs.LabelInInputItem.id({ input, id })}
                         name={input.name}
                         className={x.cls(['input', input.text_type])}
                         type={input.text_type}

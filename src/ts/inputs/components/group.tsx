@@ -5,6 +5,7 @@ import { c_inputs, d_inputs, s_inputs, o_inputs, p_inputs, i_inputs } from 'inpu
 
 export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) => {
     const { input, calculate_width } = props;
+    const include_label: boolean = true;
 
     const input_w: JSX.Element = n(input.inputs) ? (
         <>
@@ -26,6 +27,9 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
                             <React.Fragment key={i}>
                                 {s_inputs.resolve({
                                     input: input_2,
+                                    id: d_inputs.LabelInInputItem.id_label_is_visible({
+                                        input_group: input,
+                                    }),
                                     calculate_width: input.is_column_layout,
                                     include_label: input.is_column_layout,
                                 })}
@@ -46,7 +50,7 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
         <c_inputs.InputItem
             input={input}
             input_w={input_w}
-            include_label={input.label_is_visible_computed!({ include_label: true })}
+            include_label={input.label_is_visible_computed!({ include_label })}
         />
     );
 });

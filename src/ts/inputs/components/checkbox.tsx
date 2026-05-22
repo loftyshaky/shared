@@ -5,7 +5,7 @@ import { svg, s_tab_index } from 'shared/internal';
 import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Checkbox: React.FunctionComponent<p_inputs.Checkbox> = observer((props) => {
-    const { input, calculate_width } = props;
+    const { input, id, calculate_width } = props;
     const width_accessed: number | string | undefined = n(input.section)
         ? d_inputs.InputWidth.width
         : 'auto';
@@ -37,7 +37,7 @@ export const Checkbox: React.FunctionComponent<p_inputs.Checkbox> = observer((pr
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <label className='wrap_label'>
                         <input
-                            id={input.name}
+                            id={d_inputs.LabelInInputItem.id({ input, id })}
                             name={input.name}
                             type='checkbox'
                             checked={d_inputs.Val.access({ input }) as boolean}

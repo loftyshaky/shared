@@ -10,6 +10,7 @@ export class Group extends o_inputs.InputBase {
     public content_is_visible_val_accessor?: string;
     public content_is_visible_default?: boolean = true;
     public editing_label?: boolean = false;
+    public use_group_id_on_child_inputs?: boolean = false;
 
     public constructor(obj: Group) {
         super(obj);

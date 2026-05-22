@@ -35,7 +35,7 @@ export const LabelInInputItem: React.FunctionComponent<p_inputs.LabelInInputItem
                         parent_input={input}
                     />
                 ) : (
-                    <label className='label_in_input_item' htmlFor={input.name}>
+                    <label className='label_in_input_item' htmlFor={input.id}>
                         {d_inputs.LabelInInputItem.label_text_computed!({ input })}
                     </label>
                 )}

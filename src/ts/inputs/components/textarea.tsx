@@ -4,7 +4,7 @@ import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((props) => {
     const textarea_ref = useRef<HTMLTextAreaElement>(null);
-    const { input, calculate_width, include_label } = props;
+    const { input, id, calculate_width, include_label } = props;
     const width = d_inputs.InputWidth.width_style!({
         input,
         calculate_width,
@@ -46,7 +46,7 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
                     }}
                 >
                     <textarea
-                        id={input.name}
+                        id={d_inputs.LabelInInputItem.id({ input, id })}
                         name={input.name}
                         className='input'
                         value={d_inputs.Val.access({ input }) as string}
