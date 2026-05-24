@@ -23,11 +23,12 @@ $outline_offset_2: 3px;
 .input_item .pcr-result:focus,
 .keyboard .input_item .color_picker_w input:not(.pcr-result):focus,
 .keyboard .btn.text_input:focus::before,
-.keyboard .icon_btn:focus,
+.keyboard .icon_btn .btn:focus,
 .keyboard .input_item .checkbox .box:focus,
 .keyboard .link:focus,
 .keyboard .link_btn:focus,
 .keyboard .help_btn:focus,
+.keyboard .side_btn:focus,
 .keyboard .input_item .input_w:not(.text, .textarea).is_in_focus_state::before,
 .keyboard .input_item.range .input.is_in_focus_state {
     @include outline_solid_thick;
@@ -42,7 +43,8 @@ body.keyboard .btn.text:focus {
 .keyboard .link:focus,
 .keyboard .link_btn:focus,
 .keyboard .help_btn:focus,
-.keyboard .icon_btn:focus,
+.keyboard .icon_btn .btn:focus,
+.keyboard .side_btn:focus,
 .keyboard .input_item.range .input.is_in_focus_state {
     outline-offset: $outline_offset_1;
 }

@@ -21,7 +21,6 @@ export const IconBtn: React.FunctionComponent<p_inputs.IconBtn> = observer((prop
                               `${input.name}_btn_title`,
                           )
                         : '',
-                tabIndex: input.tab_index!(),
                 onClick: () => {
                     input.event_callback({ input });
                 },
@@ -33,7 +32,12 @@ export const IconBtn: React.FunctionComponent<p_inputs.IconBtn> = observer((prop
             }
             style={{ marginLeft: x.px(input.offset) }}
         >
-            <button className={x.cls(['btn'])} type='button' aria-label={input.name}>
+            <button
+                className={x.cls(['btn'])}
+                type='button'
+                aria-label={input.name}
+                tabIndex={input.tab_index!()}
+            >
                 <input.Svg />
             </button>
             {include_label ? <c_inputs.LabelInInputItem input={input} /> : undefined}

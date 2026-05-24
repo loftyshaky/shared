@@ -3,6 +3,7 @@
     display: flex;
     flex-flow: column;
     overflow: auto;
+    reading-flow: flex-visual;
 
     .filler {
         position: relative;

@@ -51,7 +51,6 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
                               `${input.name}_btn_title`,
                           )
                         : '',
-                tabIndex: input.tab_index!(),
                 onClick: () => {
                     input.event_callback({ input });
                 },
@@ -63,7 +62,11 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
             }
             style={{ marginLeft: x.px(input.offset) }}
         >
-            <button className={x.cls(['btn', `${type}_btn`])} type='button'>
+            <button
+                className={x.cls(['btn', `${type}_btn`])}
+                type='button'
+                tabIndex={input.tab_index!()}
+            >
                 {input instanceof o_inputs.IconBtn ? (
                     <input.Svg />
                 ) : (
