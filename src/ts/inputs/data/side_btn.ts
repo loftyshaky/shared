@@ -1,3 +1,4 @@
+import { makeObservable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
 import { o_inputs, i_inputs } from 'inputs/internal';
@@ -9,8 +10,11 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
-    private constructor() {}
+    private constructor() {
+        makeObservable(this, {
+            set_side_btns_offset_bottom_val: action,
+        });
+    }
 
     is_enabled_cls? = computedFn(function ({
         name,
