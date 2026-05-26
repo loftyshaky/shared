@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { stop_propagation } from 'shared_clean/internal';
 import { c_tr } from 'shared/internal';
-import { p_inputs } from 'inputs/internal';
+import { p_inputs, o_inputs } from 'inputs/internal';
 
 export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
     const { input } = props;
@@ -13,10 +13,7 @@ export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
             tag='span'
             name='fade'
             cls={x.cls(['btn_w', 'text', input.is_enabled_cls!(), input.name])}
-            state={
-                input.is_visible_computed!() &&
-                ((input.is_cut && data.settings.prefs.enable_cut_features) || !input.is_cut)
-            }
+            state={input.cut_features_is_visible_computed!()}
             attr={{
                 tab_index: input.tab_index!(),
                 disabled: !input.is_enabled_final!(),
@@ -26,10 +23,7 @@ export const Btn: React.FunctionComponent<p_inputs.Btn> = observer((props) => {
             style={{ marginLeft: x.px(input.offset) }}
         >
             <button className={x.cls(['btn', 'text'])} type='button'>
-                {input.alt_msg ||
-                    (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                        `${input.name}_btn_text`,
-                    )}
+                {(input as o_inputs.Btn).btn_text!()}
             </button>
         </c_tr.BaseTr>
     );

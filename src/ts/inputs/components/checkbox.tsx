@@ -6,9 +6,7 @@ import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
 
 export const Checkbox: React.FunctionComponent<p_inputs.Checkbox> = observer((props) => {
     const { input, id, calculate_width } = props;
-    const width_accessed: number | string | undefined = n(input.section)
-        ? d_inputs.InputWidth.width
-        : 'auto';
+    const width_accessed: number | string | undefined = input.width_accessed!();
     const input_w_ref = useRef<HTMLElement>(null);
     const [width, set_width] = useState('auto');
 

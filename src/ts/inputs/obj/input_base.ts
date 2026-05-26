@@ -4,8 +4,8 @@ import { FormEvent } from 'react';
 import { makeObservable, observable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t } from 'shared_clean/internal';
-import { i_inputs } from 'inputs/internal';
+import { t, s_env } from 'shared_clean/internal';
+import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
 
 export class InputBase {
     public name: string;
@@ -191,4 +191,55 @@ export class InputBase {
                 parent_input.label_val = val;
             }
         }, 'shr_1307');
+
+    public icon_btn_title? = (): string =>
+        err(
+            () =>
+                this instanceof o_inputs.IconBtn
+                    ? d_inputs.TextTitle.alt_msg!({ input: this, suffix: 'btn_title' })
+                    : '',
+            'shr_1322',
+        );
+
+    public text_btn_title? = ({ name }: { name: string }): string =>
+        err(
+            () =>
+                d_inputs.TextTitle.alt_title!({
+                    input: this as o_inputs.Text,
+                    suffix: `${name}_text_btn_title`,
+                }),
+            'shr_1328',
+        );
+
+    public icon_btn_text? = ({ input }: { input?: o_inputs.InputBase } = {}): string =>
+        err(
+            () =>
+                d_inputs.TextTitle.alt_msg!({
+                    input: n(input) ? input : this,
+                    suffix: 'link_btn_text',
+                }),
+            'shr_1326',
+        );
+
+    public side_btn_title? = ({
+        name,
+        alt_title,
+    }: {
+        name: string;
+        alt_title: string | undefined;
+    }): string =>
+        err(
+            () =>
+                n(alt_title)
+                    ? alt_title
+                    : (globalThis as any)[s_env.Env.type()].msg(`${name}_side_btn_title`),
+            'shr_1327',
+        );
+
+    cut_features_is_visible_computed? = computedFn(function (this: InputBase): boolean {
+        return (
+            this.is_visible_computed!() &&
+            ((this.is_cut && data.settings.prefs.enable_cut_features) || !this.is_cut)
+        );
+    });
 }

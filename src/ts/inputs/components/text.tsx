@@ -2,16 +2,14 @@ import React, { useRef, useEffect, KeyboardEvent } from 'react';
 import { observer } from 'mobx-react';
 
 import { svg } from 'shared/internal';
-import { d_inputs, c_inputs, p_inputs, i_inputs } from 'inputs/internal';
+import { d_inputs, s_inputs, c_inputs, p_inputs, i_inputs } from 'inputs/internal';
 
 export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => {
     const input_ref = useRef<HTMLInputElement>(null);
     const { input, id, calculate_width, include_label, parent_input } = props;
 
     useEffect(() => {
-        if (n(input_ref.current) && input.name.includes('_edit_label_input')) {
-            input_ref.current.focus();
-        }
+        s_inputs.Text.focus_input({ input, input_el: input_ref.current });
     }, [input]);
 
     const input_w: JSX.Element = (
@@ -92,7 +90,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                                           Svg={text_btn.Svg}
                                           input={input}
                                           on_click={(): void => {
-                                              d_inputs.Text.run_text_btn_action({
+                                              s_inputs.Text.run_text_btn_action({
                                                   input,
                                                   text_btn,
                                                   input_el: n(input_ref.current)

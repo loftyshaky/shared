@@ -1,7 +1,7 @@
 import { makeObservable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t } from 'shared_clean/internal';
+import { t, s_env } from 'shared_clean/internal';
 import { d_inputs, i_inputs, o_inputs } from 'inputs/internal';
 
 class Class {
@@ -20,9 +20,7 @@ class Class {
     msg? = computedFn(function ({ input }: { input: i_inputs.Input }): string | undefined {
         return (
             input.alt_msg ||
-            (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                `${input.name}_label_text`,
-            ) ||
+            (globalThis as any)[s_env.Env.type()].msg(`${input.name}_label_text`) ||
             x.underscore_to_readable(input.name)
         );
     });
@@ -65,14 +63,13 @@ class Class {
     public id = ({ input, id }: { input: i_inputs.Input; id?: string }): string | undefined =>
         err(() => (n(id) ? id : input.id), 'shr_1317');
 
-    public id_label_is_visible = ({
-        input_group,
-    }: {
-        input_group: o_inputs.Group;
-    }): string | undefined =>
+    public content_is_visible_margin_cls = ({ input }: { input: i_inputs.Input }): string =>
         err(
-            () => (input_group.use_group_id_on_child_inputs ? input_group.id : undefined),
-            'shr_1318',
+            () =>
+                n((input as o_inputs.Group).content_is_visible_margin_cls)
+                    ? (input as o_inputs.Group).content_is_visible_margin_cls!()
+                    : '',
+            'shr_1332',
         );
 }
 

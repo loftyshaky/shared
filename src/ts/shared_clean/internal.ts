@@ -18,6 +18,7 @@ export * as s_announcement from 'shared_clean/announcement/scripts';
 export * as s_color from 'shared_clean/color/scripts';
 export * as s_css_vars from 'shared_clean/css_vars/scripts';
 export * as s_data from 'shared_clean/data/scripts';
+export * as s_env from 'shared_clean/env/scripts';
 export * as s_no_tr from 'shared_clean/no_tr/scripts';
 export * as s_service_worker from 'shared_clean/service_worker/scripts';
 export * as s_theme from 'shared_clean/theme/scripts';

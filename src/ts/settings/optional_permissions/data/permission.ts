@@ -1,5 +1,6 @@
 import { makeObservable, action } from 'mobx';
 
+import { s_env } from 'shared_clean/internal';
 import { i_optional_permissions } from 'settings/internal';
 
 class Class {
@@ -86,7 +87,7 @@ class Class {
 
             if (at_least_one_permission_need_to_be_enabled) {
                 show_notification({
-                    alt_msg: `${(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg('backup_permissions_start_notification')}${permissions_text}${(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg('backup_permissions_end_notification')}`,
+                    alt_msg: `${(globalThis as any)[s_env.Env.type()].msg('backup_permissions_start_notification')}${permissions_text}${(globalThis as any)[s_env.Env.type()].msg('backup_permissions_end_notification')}`,
                     hide_delay: 30000,
                 });
             }

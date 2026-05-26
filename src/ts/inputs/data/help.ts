@@ -78,6 +78,9 @@ class Class {
 
         return msg_with_links;
     });
+
+    public help_msg = ({ msg }: { msg: string | undefined }): string =>
+        err(() => (n(msg) ? msg : ''), 'shr_1323');
 }
 
 export const Help = Class.get_instance();

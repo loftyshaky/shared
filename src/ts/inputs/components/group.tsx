@@ -27,8 +27,8 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
                             <React.Fragment key={i}>
                                 {s_inputs.resolve({
                                     input: input_2,
-                                    id: d_inputs.LabelInInputItem.id_label_is_visible({
-                                        input_group: input,
+                                    id: d_inputs.LabelInInputItem.id({
+                                        input,
                                     }),
                                     calculate_width: input.is_column_layout,
                                     include_label: input.is_column_layout,

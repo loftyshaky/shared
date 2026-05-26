@@ -68,39 +68,6 @@ $icon_btn_size: 20px;
     }
 }
 
-.btn_options {
-    @include border;
-
-    backdrop-filter: $glass_blur;
-    box-shadow: $black_shadow;
-
-    .btn_option {
-        @include btn;
-
-        display: block;
-        width: 100%;
-        padding: 3px 6px;
-        border: 0;
-        text-align: left;
-        background-color: transparent;
-        cursor: pointer;
-        box-sizing: border-box;
-        color: unset;
-        text-decoration: none;
-        white-space: nowrap;
-    }
-
-    hr {
-        margin-top: 0;
-    }
-}
-
-.keyboard .btn_options .btn_option:focus {
-    @include outline_solid_thick;
-
-    outline-offset: -1px;
-}
-
 .icon_btn .btn,
 .side_btn {
     display: flex;

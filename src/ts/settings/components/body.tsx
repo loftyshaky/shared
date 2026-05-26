@@ -30,18 +30,24 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
             <div className='main_2 settings'>
                 <div className='section_btns'>
                     {Object.values(sections).map(
-                        (section: o_inputs.Section, i: number): JSX.Element => (
-                            <c_inputs.SectionBtn
-                                key={i}
-                                section={section}
-                                change_section_callback={change_section_callback}
-                                enable_developer_mode_save_callback={
-                                    section.name === 'admin'
-                                        ? enable_developer_mode_save_callback
-                                        : undefined
-                                }
-                            />
-                        ),
+                        (section: o_inputs.Section, i: number): JSX.Element => {
+                            const enable_developer_mode_save_callback_final =
+                                d_sections.Sections.enable_developer_mode_save_callback({
+                                    section,
+                                    enable_developer_mode_save_callback,
+                                });
+
+                            return (
+                                <c_inputs.SectionBtn
+                                    key={i}
+                                    section={section}
+                                    change_section_callback={change_section_callback}
+                                    enable_developer_mode_save_callback={
+                                        enable_developer_mode_save_callback_final
+                                    }
+                                />
+                            );
+                        },
                     )}
                     <div className='filler' />
                 </div>

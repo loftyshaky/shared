@@ -4,7 +4,7 @@ import { computedFn } from 'mobx-utils';
 import { t } from 'shared_clean/internal';
 import { d_offers } from 'shared/internal';
 import { o_inputs, d_inputs, d_color, i_inputs } from 'inputs/internal';
-import { d_sections } from 'settings/internal';
+import { s_sections } from 'settings/internal';
 
 class Class {
     private static instance: Class;
@@ -96,10 +96,17 @@ class Class {
             }
         }, 'shr_1083');
 
-    private reload_ext = (): void =>
-        err(() => {
-            ext.send_msg({ msg: 'reload_ext' });
-        }, 'shr_1084');
+    public enable_developer_mode_save_callback = ({
+        section,
+        enable_developer_mode_save_callback,
+    }: {
+        section: o_inputs.Section;
+        enable_developer_mode_save_callback: t.CallbackVoid | undefined;
+    }): t.CallbackVoid | undefined =>
+        err(
+            () => (section.name === 'admin' ? enable_developer_mode_save_callback : undefined),
+            'shr_1333',
+        );
 
     public make_shared_sections = ({
         download_back_up_callback,
@@ -153,7 +160,7 @@ class Class {
                                     const data_obj = await download_back_up_callback();
 
                                     if (download_backup) {
-                                        d_sections.BackUp.download({
+                                        s_sections.BackUp.download({
                                             data_obj,
                                             part_i: include_part_i_in_back_up_name ? 0 : 'none',
                                         });
@@ -166,13 +173,13 @@ class Class {
                         }),
                         new o_inputs.Btn({
                             name: 'upload_back_up',
-                            event_callback: d_sections.BackUp.open_file_browser,
+                            event_callback: s_sections.BackUp.open_file_browser,
                         }),
                         new o_inputs.File({
                             name: 'back_up',
                             accept: '.json',
                             multiple: allow_multiple_file_backup_upload,
-                            event_callback: d_sections.BackUp.upload,
+                            event_callback: s_sections.BackUp.upload,
                             save_callback: upload_back_up_callback,
                         }),
                         ...back_up_inputs,
@@ -187,7 +194,7 @@ class Class {
                     inputs: [
                         new o_inputs.Btn({
                             name: 'reload_ext',
-                            event_callback: this.reload_ext,
+                            event_callback: s_sections.Sections.reload_ext,
                         }),
                         this.get_shared_input({ input_change_val_callback }).options_page_theme,
                         this.get_shared_input({ input_change_val_callback }).transition_duration,

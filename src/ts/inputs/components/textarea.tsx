@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
-import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
+import { c_inputs, d_inputs, s_inputs, p_inputs } from 'inputs/internal';
 
 export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((props) => {
     const textarea_ref = useRef<HTMLTextAreaElement>(null);
@@ -11,20 +11,14 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
     });
 
     useEffect(() => {
-        if (n(textarea_ref.current)) {
-            window.addEventListener('resize', () =>
-                d_inputs.InputWidth.resize_textarea_with_resize_handle({
-                    input,
-                    textarea: textarea_ref.current,
-                }),
-            );
-            new ResizeObserver(() => {
-                d_inputs.InputWidth.resize_textarea_with_resize_handle({
-                    input,
-                    textarea: textarea_ref.current,
-                });
-            }).observe(textarea_ref.current);
-        }
+        window.addEventListener('resize', () =>
+            d_inputs.InputWidth.resize_textarea_with_resize_handle({
+                input,
+                textarea: textarea_ref.current,
+            }),
+        );
+
+        s_inputs.Textarea.set_up_resize_observer({ input, input_el: textarea_ref.current });
     }, [input]);
 
     const input_w: JSX.Element = (

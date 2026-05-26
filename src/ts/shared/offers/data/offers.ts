@@ -2,6 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import union from 'lodash/union';
 import { makeObservable, observable, computed, action } from 'mobx';
 
+import { s_env } from 'shared_clean/internal';
 import { o_offers, s_offers, i_offers } from 'shared/internal';
 
 class Class {
@@ -147,9 +148,9 @@ class Class {
 
     private get_offer_text_raw = ({ name }: { name: string | undefined }): string =>
         err(() => {
-            const offer_text_raw: string = (globalThis as any)[
-                env.env === 'ext' ? 'ext' : 'app'
-            ].msg(`offer_${name}_text`);
+            const offer_text_raw: string = (globalThis as any)[s_env.Env.type()].msg(
+                `offer_${name}_text`,
+            );
 
             return offer_text_raw;
         }, 'shr_1278');
@@ -159,12 +160,10 @@ class Class {
             const offer_text_raw: string = this.get_offer_text_raw({
                 name: this.offers_of_type[this.current_offer_i].name,
             });
-            const offer_link: string = (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+            const offer_link: string = (globalThis as any)[s_env.Env.type()].msg(
                 `offer_${this.offers_of_type[this.current_offer_i].name}_link_href`,
             );
-            const offer_link_browser: string = (globalThis as any)[
-                env.env === 'ext' ? 'ext' : 'app'
-            ].msg(
+            const offer_link_browser: string = (globalThis as any)[s_env.Env.type()].msg(
                 `offer_${this.offers_of_type[this.current_offer_i].name}_${env.browser}_link_href`,
             );
             const offer_link_final: string =
@@ -204,9 +203,7 @@ class Class {
     public get current_offer_banner_link(): string {
         const offer: o_offers.Offer = this.offers_of_type[this.current_offer_i];
 
-        return (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-            `offer_${offer.name}_link_href`,
-        );
+        return (globalThis as any)[s_env.Env.type()].msg(`offer_${offer.name}_link_href`);
     }
 
     public get current_offer_no(): number {

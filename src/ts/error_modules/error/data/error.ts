@@ -1,5 +1,6 @@
 import { makeObservable, action, runInAction } from 'mobx';
 
+import { s_env } from 'shared_clean/internal';
 import { d_error as d_error_clean, i_error } from 'error_modules_clean/internal';
 import { d_error } from 'error_modules/internal';
 
@@ -68,8 +69,7 @@ class Class {
     ): void => {
         if (error_ui_is_visible) {
             d_error.Msg.basic_msg =
-                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(error_msg_key) ||
-                alt_msg;
+                (globalThis as any)[s_env.Env.type()].msg(error_msg_key) || alt_msg;
             d_error.State.notification_type = notification_type;
 
             if (is_fullscreen) {
@@ -116,7 +116,7 @@ class Class {
             }
 
             const error_msg_pre =
-                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                (globalThis as any)[s_env.Env.type()].msg(
                     `${error_obj.error_msg || error_msg_key}_error`,
                 ) || alt_msg;
             const error_msg_final = error_msg_pre ? ` ${error_msg_pre}` : '';
@@ -125,18 +125,15 @@ class Class {
                 err(() => {
                     if (!silent_final) {
                         d_error.Msg.basic_msg = `${
-                            (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                                'an_error_occured_msg',
-                            ) + error_msg_final
+                            (globalThis as any)[s_env.Env.type()].msg('an_error_occured_msg') +
+                            error_msg_final
                         }`;
                         d_error.Msg.advanced_msg = `${
-                            (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                                'error_code_label',
-                            ) + (error_obj.error_code || error_code)
-                        }\n${(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg('error_type_label') + error_obj.name}\n${
-                            (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                                'error_msg_label',
-                            ) + error_obj.message
+                            (globalThis as any)[s_env.Env.type()].msg('error_code_label') +
+                            (error_obj.error_code || error_code)
+                        }\n${(globalThis as any)[s_env.Env.type()].msg('error_type_label') + error_obj.name}\n${
+                            (globalThis as any)[s_env.Env.type()].msg('error_msg_label') +
+                            error_obj.message
                         }`;
                     }
                 }, 'shr_1195'),

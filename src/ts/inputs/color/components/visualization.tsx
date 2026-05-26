@@ -1,7 +1,7 @@
 import React, { useRef, MouseEvent, FocusEvent, KeyboardEvent } from 'react';
 import { observer } from 'mobx-react';
 
-import { prevent_default } from 'shared_clean/internal';
+import { prevent_default, s_env } from 'shared_clean/internal';
 import { s_tab_index } from 'shared/internal';
 import { c_inputs, c_color, d_color, p_color } from 'inputs/internal';
 
@@ -98,9 +98,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         );
                     }}
                 >
-                    {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                        `${i}_color_btn_text`,
-                    )}
+                    {(globalThis as any)[s_env.Env.type()].msg(`${i}_color_btn_text`)}
                 </button>
                 <c_color.ColorPicker input={input} i={i} visualization_ref={visualization_ref} />
             </span>

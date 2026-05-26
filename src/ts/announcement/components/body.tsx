@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { s_title } from 'shared_clean/internal';
+import { s_env, s_title } from 'shared_clean/internal';
 
 export const Body: React.FunctionComponent = observer(() => (
     <div className='main'>
@@ -10,7 +10,7 @@ export const Body: React.FunctionComponent = observer(() => (
             className='msg_to_user'
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
-                __html: (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                __html: (globalThis as any)[s_env.Env.type()].msg(
                     `msg_to_user_${env.browser}_text`,
                 ),
             }}

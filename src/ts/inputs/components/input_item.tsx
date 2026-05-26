@@ -25,10 +25,7 @@ export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
                     input.is_enabled_cls!(),
                     input.is_column_layout_cond!(),
                 ])}
-                state={
-                    input.is_visible_computed!() &&
-                    ((input.is_cut && data.settings.prefs.enable_cut_features) || !input.is_cut)
-                }
+                state={input.cut_features_is_visible_computed!()}
                 style={{ marginLeft: x.px(input.offset) }}
             >
                 {input.type === 'group' ? undefined : <c_inputs.SideBtns input={input} />}

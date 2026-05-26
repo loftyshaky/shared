@@ -2,7 +2,8 @@ import maxBy from 'lodash/maxBy';
 import { makeObservable, observable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { s_css_vars } from 'shared_clean/internal';
+import { s_css_vars, s_env } from 'shared_clean/internal';
+
 import { i_inputs } from 'inputs/internal';
 
 class Class {
@@ -72,12 +73,8 @@ class Class {
         err(() => {
             this.min_width = n(min_width)
                 ? min_width
-                : +(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                      'input_min_width_css',
-                  );
-            this.max_width = +(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                'input_max_width_css',
-            );
+                : +(globalThis as any)[s_env.Env.type()].msg('input_min_width_css');
+            this.max_width = +(globalThis as any)[s_env.Env.type()].msg('input_max_width_css');
         }, 'shr_1239');
 
     public calculate = ({

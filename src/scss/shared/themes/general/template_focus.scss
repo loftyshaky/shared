@@ -32,8 +32,7 @@ body.keyboard .btn.text:focus,
 .keyboard .link_btn:focus,
 .keyboard .input_item .input_w:not(.text, .textarea).is_in_focus_state::before,
 .keyboard .input_item.range .input.is_in_focus_state,
-.keyboard .input_item .visualization_w .visualization:focus,
-.keyboard .btn_options .btn_option:focus {
+.keyboard .input_item .visualization_w .visualization:focus {
     outline-color: $upd;
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 
+import { s_env } from 'shared_clean/internal';
 import { c_tr } from 'shared/internal';
 import { c_inputs, c_color, o_inputs, d_color, p_color } from 'inputs/internal';
 
@@ -69,7 +70,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                     tr_end_unactive={[d_color.Visibility.hide_color_help_tr_end]}
                                 >
                                     <p className='color_help'>
-                                        {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                                        {(globalThis as any)[s_env.Env.type()].msg(
                                             'color_help_text',
                                         )}
                                     </p>

@@ -1,4 +1,5 @@
-import { t } from 'shared_clean/internal';
+import { t, s_env } from 'shared_clean/internal';
+import { d_inputs } from 'inputs/internal';
 
 export class Link {
     public name: string;
@@ -19,15 +20,16 @@ export class Link {
         this.name_clean = obj.name.replace(/i\d+i/, '');
     }
 
-    public text? = (): string =>
+    public link_text? = (): string =>
         err(() => {
-            const text: string =
-                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                    `${this.name_clean}_link_text`,
-                ) ||
-                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                    `${this.name_clean}_${this.browser}_link_text`,
-                );
+            const text: string = n(this.alt_msg)
+                ? this.alt_msg
+                : rs(
+                      (globalThis as any)[s_env.Env.type()].msg(`${this.name_clean}_link_text`) ||
+                          (globalThis as any)[s_env.Env.type()].msg(
+                              `${this.name_clean}_${this.browser}_link_text`,
+                          ),
+                  );
 
             return text;
         }, 'shr_1069');
@@ -36,13 +38,11 @@ export class Link {
         err(() => {
             const href: string | undefined = n(this.href)
                 ? this.href
-                : (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                      `${this.name_clean}_link_href`,
-                  ) ||
-                  (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                : (globalThis as any)[s_env.Env.type()].msg(`${this.name_clean}_link_href`) ||
+                  (globalThis as any)[s_env.Env.type()].msg(
                       `${this.name_clean}_${this.browser}_link_href`,
                   ) ||
-                  (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
+                  (globalThis as any)[s_env.Env.type()].msg(
                       `offer_${this.name_clean}_${this.browser}_link_href`,
                   );
 
@@ -60,4 +60,13 @@ export class Link {
                 (n(this.force_resolve) && this.force_resolve)
             );
         }, 'shr_1071');
+
+    public link_title? = (): string =>
+        err(
+            () =>
+                this.label_type === 'svg'
+                    ? d_inputs.TextTitle.alt_msg!({ input: this, suffix: 'link_title' })
+                    : '',
+            'shr_1324',
+        );
 }

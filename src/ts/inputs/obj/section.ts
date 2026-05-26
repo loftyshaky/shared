@@ -4,6 +4,7 @@ import { computedFn } from 'mobx-utils';
 import { i_offers } from 'shared/internal';
 import { i_inputs } from 'inputs/internal';
 import { d_sections } from 'settings/internal';
+import { s_env } from 'shared_clean/internal';
 
 export class Section {
     public name: string;
@@ -71,4 +72,13 @@ export class Section {
                 });
             }
         }, 'shr_1264');
+
+    public section_unavailable_msg_text? = (): string =>
+        err(
+            () =>
+                (globalThis as any)[s_env.Env.type()].msg(
+                    `${this.unavailable_msg}_section_unavailable_msg_text`,
+                ) || this.unavailable_msg,
+            'shr_1326',
+        );
 }

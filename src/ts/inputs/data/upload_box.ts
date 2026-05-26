@@ -18,17 +18,6 @@ class Class {
         });
     }
 
-    public trigger_click_on_file_input = ({
-        file_input,
-    }: {
-        file_input: HTMLInputElement | null;
-    }): void =>
-        err(() => {
-            if (n(file_input)) {
-                file_input.click();
-            }
-        }, 'shr_1198');
-
     public upload_files = action(
         (
             e: ChangeEvent | DragEvent,

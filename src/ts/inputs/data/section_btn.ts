@@ -1,5 +1,6 @@
 import { computedFn } from 'mobx-utils';
 
+import { s_env } from 'shared_clean/internal';
 import { o_inputs } from 'inputs/internal';
 
 class Class {
@@ -14,9 +15,8 @@ class Class {
 
     msg? = computedFn(function ({ section }: { section: o_inputs.Section }): string | undefined {
         return (
-            (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                `${section.name}_section_text`,
-            ) || x.underscore_to_readable(section.name)
+            (globalThis as any)[s_env.Env.type()].msg(`${section.name}_section_text`) ||
+            x.underscore_to_readable(section.name)
         );
     });
 }

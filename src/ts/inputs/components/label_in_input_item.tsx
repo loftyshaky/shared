@@ -21,9 +21,7 @@ export const LabelInInputItem: React.FunctionComponent<p_inputs.LabelInInputItem
             <div
                 className={x.cls([
                     'label_in_input_item_w',
-                    n((input as o_inputs.Group).content_is_visible_margin_cls)
-                        ? (input as o_inputs.Group).content_is_visible_margin_cls!()
-                        : '',
+                    d_inputs.LabelInInputItem.content_is_visible_margin_cls({ input }),
                 ])}
             >
                 {input.type === 'group' ? <c_inputs.SideBtns input={input} /> : undefined}

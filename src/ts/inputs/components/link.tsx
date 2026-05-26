@@ -9,23 +9,12 @@ export const Link: React.FunctionComponent<p_inputs.Link> = observer((props) => 
     return rb(link.show_link) ? (
         <a
             className={x.cls(['link', link.label_type, link.name])}
-            title={
-                link.label_type === 'svg'
-                    ? link.alt_msg ||
-                      (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                          `${link.name}_link_title`,
-                      )
-                    : ''
-            }
+            title={link.link_title!()}
             href={rs(link.href_final)}
             target={link.target}
             rel='noopener noreferrer'
         >
-            {link.label_type === 'svg' && n(link.Svg) ? (
-                <link.Svg />
-            ) : (
-                link.alt_msg || rs(link.text)
-            )}
+            {link.label_type === 'svg' && n(link.Svg) ? <link.Svg /> : link.link_text!()}
         </a>
     ) : null;
 });

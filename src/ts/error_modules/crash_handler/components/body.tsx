@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { observer } from 'mobx-react';
 
+import { s_env } from 'shared_clean/internal';
 import { d_crash_handler, s_crash_handler, p_crash_handler } from 'error_modules/internal';
 
 export const Body = observer(
@@ -22,9 +23,7 @@ export const Body = observer(
                             type='button'
                             onClick={s_crash_handler.Page.reload}
                         >
-                            {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                                'reload_ui_btn_text',
-                            )}
+                            {(globalThis as any)[s_env.Env.type()].msg('reload_ui_btn_text')}
                         </button>
                     </div>
                 );

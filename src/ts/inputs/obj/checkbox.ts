@@ -1,4 +1,5 @@
-import { o_inputs } from 'inputs/internal';
+import { computedFn } from 'mobx-utils';
+import { o_inputs, d_inputs } from 'inputs/internal';
 
 export class Checkbox extends o_inputs.InputBase {
     public type? = 'checkbox' as const;
@@ -7,4 +8,8 @@ export class Checkbox extends o_inputs.InputBase {
         super(obj);
         Object.assign(this, obj);
     }
+
+    width_accessed? = computedFn(function (this: Checkbox): number | string | undefined {
+        return n(this.section) ? d_inputs.InputWidth.width : 'auto';
+    });
 }

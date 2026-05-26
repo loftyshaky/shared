@@ -4,7 +4,7 @@ import set from 'lodash/set';
 import isNaN from 'lodash/isNaN';
 import { makeObservable, action } from 'mobx';
 
-import { t, s_color, i_color as i_color_shared_clean } from 'shared_clean/internal';
+import { t, s_color, s_env, i_color as i_color_shared_clean } from 'shared_clean/internal';
 import { o_color, d_color, i_color } from 'inputs/internal';
 
 class Class {
@@ -212,9 +212,7 @@ class Class {
         err(() => {
             // eslint-disable-next-line no-alert
             const confirmed_restore: boolean = globalThis.confirm(
-                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                    'restore_default_palette_confirm',
-                ),
+                (globalThis as any)[s_env.Env.type()].msg('restore_default_palette_confirm'),
             );
 
             if (confirmed_restore) {

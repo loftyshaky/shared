@@ -1,4 +1,6 @@
 import { makeObservable, observable } from 'mobx';
+
+import { s_env } from 'shared_clean/internal';
 import { o_inputs, i_inputs } from 'inputs/internal';
 
 export class Select extends o_inputs.InputBase {
@@ -22,9 +24,7 @@ export class Select extends o_inputs.InputBase {
 
             return (
                 option.alt_msg ||
-                (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                    `${option.name}_option_text`,
-                ) ||
+                (globalThis as any)[s_env.Env.type()].msg(`${option.name}_option_text`) ||
                 option.name
             );
         }, 'shr_1072');

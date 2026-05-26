@@ -33,7 +33,6 @@ export {
     s_loading_screen,
     d_offers,
     s_tab_index,
-    s_title,
 } from 'shared/internal';
 
 init_error();

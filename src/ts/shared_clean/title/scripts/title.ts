@@ -1,3 +1,5 @@
+import { s_env } from 'shared_clean/internal';
+
 class Class {
     private static instance: Class;
 
@@ -24,9 +26,7 @@ class Class {
             const title_el = s<HTMLTitleElement>('title');
 
             if (n(title_el)) {
-                const title = (globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                    `${page}_title_text`,
-                );
+                const title = (globalThis as any)[s_env.Env.type()].msg(`${page}_title_text`);
 
                 title_el.textContent =
                     page === 'announcement' ? `${we.runtime.getManifest().name} - ${title}` : title;

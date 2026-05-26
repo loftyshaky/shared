@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 
-import { prevent_default } from 'shared_clean/internal';
+import { prevent_default, s_env } from 'shared_clean/internal';
 import { c_tr } from 'shared/internal';
 import { c_inputs, o_inputs, d_inputs, s_inputs, p_inputs } from 'inputs/internal';
 
@@ -89,7 +89,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                         }),
                                 } as o_inputs.LinkBtn)}
                             />
-                            <span>{` ${(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg('drag_files_msg_text')}`}</span>
+                            <span>{` ${(globalThis as any)[s_env.Env.type()].msg('drag_files_msg_text')}`}</span>
                         </div>
                         <div
                             className={x.cls([
@@ -98,9 +98,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                 input.loading_msg_visibility_cls!(),
                             ])}
                         >
-                            {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                                'loading_msg_text',
-                            )}
+                            {(globalThis as any)[s_env.Env.type()].msg('loading_msg_text')}
                         </div>
                         <div
                             className={x.cls([
@@ -109,9 +107,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                 input.error_msg_visibility_cls!(),
                             ])}
                         >
-                            {(globalThis as any)[env.env === 'ext' ? 'ext' : 'app'].msg(
-                                'an_error_occured_msg',
-                            )}
+                            {(globalThis as any)[s_env.Env.type()].msg('an_error_occured_msg')}
                         </div>
                     </c_tr.BaseTr>
                 </span>

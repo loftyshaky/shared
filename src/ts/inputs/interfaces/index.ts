@@ -6,7 +6,6 @@ export * from 'inputs/interfaces/inputs_and_links';
 export * from 'inputs/interfaces/inputs';
 export * from 'inputs/interfaces/links';
 export * from 'inputs/interfaces/options';
-export * from 'inputs/interfaces/btn_option';
 export * from 'inputs/interfaces/sections';
 export * from 'inputs/interfaces/side_btn';
 export * from 'inputs/interfaces/state_cond';
