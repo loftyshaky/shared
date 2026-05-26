@@ -97,7 +97,8 @@ class Class {
         offer: o_offers.Offer;
     }): boolean =>
         err(() => {
-            const ui_language = env.env === 'ext' ? we.i18n.getUILanguage() : 'en';
+            const ui_language =
+                env.env === 'ext' ? we.i18n.getUILanguage() : data.settings.prefs.locale;
 
             const this_offer_is_whitelisted_for_this_ui_language: boolean =
                 offer.countries_whitelist === 'all' ||
