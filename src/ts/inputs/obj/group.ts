@@ -50,7 +50,8 @@ export class Group extends o_inputs.InputBase {
             : 'margin_bottom_0';
     });
 
-    public is_column_layout_cond? = () => (this.is_column_layout ? 'is_column_layout' : '');
+    public is_column_layout_cond? = (): 'is_column_layout' | '' =>
+        err(() => (this.is_column_layout ? 'is_column_layout' : ''), 'shr_1336');
 
     public get_input? = ({
         child_input,
