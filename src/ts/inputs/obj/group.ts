@@ -51,4 +51,11 @@ export class Group extends o_inputs.InputBase {
     });
 
     public is_column_layout_cond? = () => (this.is_column_layout ? 'is_column_layout' : '');
+
+    public get_input? = ({
+        child_input,
+    }: {
+        child_input: i_inputs.InputAndLink;
+    }): i_inputs.InputAndLink =>
+        err(() => (this.use_group_id_on_child_inputs ? this : child_input), 'shr_1335');
 }

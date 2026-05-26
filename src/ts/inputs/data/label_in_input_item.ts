@@ -60,8 +60,13 @@ class Class {
             }
         }, 'shr_1306');
 
-    public id = ({ input, id }: { input: i_inputs.Input; id?: string }): string | undefined =>
-        err(() => (n(id) ? id : input.id), 'shr_1317');
+    public id = ({
+        input,
+        id,
+    }: {
+        input: i_inputs.InputAndLink;
+        id?: string;
+    }): string | undefined => err(() => (n(id) ? id : input.id), 'shr_1317');
 
     public content_is_visible_margin_cls = ({ input }: { input: i_inputs.Input }): string =>
         err(

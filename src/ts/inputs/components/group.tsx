@@ -23,12 +23,12 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
                     }}
                 >
                     {Object.values(input.inputs).map(
-                        (input_2: i_inputs.Input | o_inputs.Link, i: number): JSX.Element => (
+                        (child_input: i_inputs.InputAndLink, i: number): JSX.Element => (
                             <React.Fragment key={i}>
                                 {s_inputs.resolve({
-                                    input: input_2,
+                                    input: child_input,
                                     id: d_inputs.LabelInInputItem.id({
-                                        input,
+                                        input: input.get_input!({ child_input }),
                                     }),
                                     calculate_width: input.is_column_layout,
                                     include_label: input.is_column_layout,
