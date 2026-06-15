@@ -1,43 +1,51 @@
-$range_track_height: 12px;
+@use 'vars';
+
+$track_height: 12px;
 $lower_fill_offset_top: 8px;
 
 .input_item {
     .range {
         .input {
+            height: vars.$input_height;
             min-width: inherit;
             appearance: none;
             padding: 0;
             background-color: transparent;
             cursor: pointer;
 
-            &::-webkit-slider-thumb {
+            &::-webkit-slider-thumb,
+            &::-moz-range-thumb {
                 appearance: none;
-                width: $range_track_height;
-                height: $input_height;
+                width: $track_height;
+                height: vars.$input_height;
                 margin-top: -$lower_fill_offset_top;
+                border: none;
+                border-radius: 0;
             }
 
-            &::-webkit-slider-runnable-track {
-                height: $range_track_height;
+            &::-webkit-slider-runnable-track,
+            &::-moz-range-track {
+                height: $track_height;
             }
         }
 
         .lower_fill {
             position: absolute;
-            height: $range_track_height;
+            height: $track_height;
             top: $lower_fill_offset_top;
             pointer-events: none;
+            z-index: -1;
         }
     }
 
     .displayed_val {
-        font-size: $font_small;
+        font-size: vars.$font_small;
         width: max-content;
         margin-left: auto;
-        margin-top: $gap_small;
+        margin-top: vars.$gap_small;
 
         &.help_is_present {
-            margin-right: $input_height;
+            margin-right: vars.$input_height;
         }
     }
 }

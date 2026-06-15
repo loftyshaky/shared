@@ -1,4 +1,4 @@
-import { t } from 'shared_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 export interface SideBtn {
     name: string;

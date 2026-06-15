@@ -1,4 +1,4 @@
-import { i_color } from 'inputs/internal';
+import type { i_color } from 'inputs/internal';
 
 type Keys =
     | 0
@@ -29,7 +29,6 @@ type Keys =
     | 25
     | 26
     | 27
-    | 29
     | 29;
 
 export interface ColorPickerState extends Record<Keys, i_color.ColorPickerStateOne> {

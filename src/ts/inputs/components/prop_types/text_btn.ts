@@ -1,5 +1,5 @@
-import { t } from 'shared_clean/internal';
-import { o_inputs } from 'inputs/internal';
+import type { o_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
 
 export interface TextBtn {
     name: string;

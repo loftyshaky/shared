@@ -1,8 +1,7 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
+import { d_inputs, type p_inputs } from 'inputs/internal';
 import { c_tr } from 'shared/internal';
-import { d_inputs, p_inputs } from 'inputs/internal';
 
 export const Help: React.FunctionComponent<p_inputs.Help> = observer((props) => {
     const { section_or_input } = props;
@@ -28,7 +27,6 @@ export const Help: React.FunctionComponent<p_inputs.Help> = observer((props) => 
                 },
             ]}
         >
-            {/* eslint-disable-next-line react/no-danger */}
             <span dangerouslySetInnerHTML={{ __html: d_inputs.Help.help_msg({ msg }) }} />
         </c_tr.BaseTr>
     );

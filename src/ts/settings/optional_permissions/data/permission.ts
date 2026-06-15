@@ -1,7 +1,8 @@
-import { makeObservable, action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 
+import type { i_optional_permissions } from 'settings/internal';
 import { s_env } from 'shared_clean/internal';
-import { i_optional_permissions } from 'settings/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -19,16 +20,16 @@ class Class {
     public set = ({
         name,
         optional_permission_checkbox_dict,
+        contains_permission,
         set_checkbox_val = true,
     }: {
         name: string;
         optional_permission_checkbox_dict: i_optional_permissions.OptionalPermissionCheckboxDict;
+        contains_permission: boolean;
         set_checkbox_val?: boolean;
     }): Promise<boolean> =>
         err_async(async () => {
             const permissions = optional_permission_checkbox_dict[name];
-
-            const contains_permission: boolean = await we.permissions.contains(permissions);
 
             if (contains_permission) {
                 const removed: boolean = await we.permissions.remove(permissions);
@@ -87,7 +88,7 @@ class Class {
 
             if (at_least_one_permission_need_to_be_enabled) {
                 show_notification({
-                    alt_msg: `${(globalThis as any)[s_env.Env.type()].msg('backup_permissions_start_notification')}${permissions_text}${(globalThis as any)[s_env.Env.type()].msg('backup_permissions_end_notification')}`,
+                    alt_msg: `${(globalThis as t.AnyRecord)[s_env.Env.type()].msg('backup_permissions_start_notification')}${permissions_text}${(globalThis as t.AnyRecord)[s_env.Env.type()].msg('backup_permissions_end_notification')}`,
                     hide_delay: 30000,
                 });
             }

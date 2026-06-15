@@ -2,8 +2,9 @@ import get from 'lodash/get';
 import { makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t } from 'shared_clean/internal';
-import { o_inputs, d_color, i_color } from 'inputs/internal';
+import type { i_color } from 'inputs/internal';
+import { d_color, o_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
 
 const color_picker_state: i_color.ColorPickerStateOne = {
     is_initialized: false,

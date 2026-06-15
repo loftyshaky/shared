@@ -1,7 +1,9 @@
-import { MouseEvent, FocusEvent, KeyboardEvent } from 'react';
-import { makeObservable, action, runInAction, observable } from 'mobx';
+import type { FocusEvent, KeyboardEvent, MouseEvent } from 'react';
 
-import { o_color, d_color, i_color } from 'inputs/internal';
+import { action, makeObservable, observable, runInAction } from 'mobx';
+
+import type { i_color, o_color } from 'inputs/internal';
+import { d_color } from 'inputs/internal';
 
 class Class {
     private static instance: Class;

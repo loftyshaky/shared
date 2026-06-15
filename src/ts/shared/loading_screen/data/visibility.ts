@@ -1,7 +1,7 @@
-import { makeObservable, observable, computed, action, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 
-import { s_css_vars } from 'shared_clean/internal';
 import { s_loading_screen } from 'shared/internal';
+import { s_css_vars } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

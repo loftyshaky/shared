@@ -1,28 +1,29 @@
 {
     "compilerOptions": {
+        "rootDir": ".",
         "outDir": "dist",
-        "baseUrl": "src",
-        "target": "es2020",
+        "target": "esnext",
         "module": "esnext",
-        "moduleResolution": "node",
-        "jsx": "react",
-        "declaration": true,
+        "moduleResolution": "bundler",
+        "jsx": "react-jsx",
         "strict": true,
         "esModuleInterop": true,
         "sourceMap": true,
-        "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"],
         "skipLibCheck": true,
+        "typeRoots": ["node_modules/@types"],
+        "types": ["node"],
         "paths": {
-            "shared_clean/*": ["./ts/shared_clean/*"],
-            "shared/*": ["./ts/shared/*"],
-            "error_modules/*": ["./ts/error_modules/*"],
-            "error_modules_clean/*": ["./ts/error_modules_clean/*"],
-            "inputs/*": ["./ts/inputs/*"],
-            "settings/*": ["./ts/settings/*"],
-            "announcement/*": ["./ts/announcement/*"],
-            "dependencies/*": ["./ts/dependencies/*"]
+            "build/*": ["./build/*"],
+            "custom": ["./src/ts/custom.d.ts"],
+            "shared_clean/*": ["./src/ts/shared_clean/*"],
+            "shared/*": ["./src/ts/shared/*"],
+            "error_modules/*": ["./src/ts/error_modules/*"],
+            "error_modules_clean/*": ["./src/ts/error_modules_clean/*"],
+            "inputs/*": ["./src/ts/inputs/*"],
+            "settings/*": ["./src/ts/settings/*"],
+            "announcement/*": ["./src/ts/announcement/*"],
+            "dependencies/*": ["./src/ts/dependencies/*"]
         }
     },
-    "include": ["src"],
-    "exclude": ["node_modules", "dist"]
+    "include": ["src/ts/**/*", "build/**/*"]
 }

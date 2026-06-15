@@ -1,7 +1,8 @@
 import { runInAction } from 'mobx';
 
-import { t } from 'shared_clean/internal';
-import { o_color, d_color, i_color } from 'inputs/internal';
+import type { i_color, o_color } from 'inputs/internal';
+import { d_color } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -10,7 +11,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public setting_color: boolean = false;
@@ -25,7 +25,7 @@ class Class {
         i: i_color.I;
         color_picker: HTMLSpanElement;
         visualization: HTMLButtonElement;
-    }): t.AnyRecord =>
+    }): Promise<t.AnyRecord> =>
         err_async(async () => {
             const pickr_default = await import('@simonwep/pickr');
             const Pickr = pickr_default.default;
@@ -64,7 +64,7 @@ class Class {
                             i,
                             input,
                             callback: (): void => {
-                                input.event_callback!({ input, i });
+                                void input.event_callback!({ input, i });
                             },
                         });
                     }

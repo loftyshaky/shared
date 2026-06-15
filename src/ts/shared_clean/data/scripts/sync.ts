@@ -1,6 +1,8 @@
-import { t, s_data } from 'shared_clean/internal';
 import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
+
+import type { t } from 'shared_clean/internal';
+import { s_data } from 'shared_clean/internal';
 
 export class Class {
     private static instance: Class;
@@ -9,14 +11,13 @@ export class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public react_sync = ({
         changes,
         callback,
     }: {
-        changes: any;
+        changes: t.AnyRecord;
         callback: t.CallbackVoid;
     }): Promise<void> =>
         err_async(async () => {
@@ -31,7 +32,7 @@ export class Class {
             if (found_new_changes) {
                 await s_data.Cache.get_data({ set_from_storage: true });
 
-                await callback();
+                callback();
             }
         }, 'shr_1240');
 }

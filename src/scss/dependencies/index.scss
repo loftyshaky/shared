@@ -1,5 +1,5 @@
-@import '../announcement/index';
-@import 'body';
-@import 'hr';
-@import 'links';
-@import 'main';
+@use '../announcement/index';
+@use 'body';
+@use 'hr';
+@use 'links';
+@use 'main';

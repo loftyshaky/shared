@@ -1,5 +1,6 @@
+import type { i_inputs, o_inputs } from 'inputs/internal';
 import { s_env } from 'shared_clean/internal';
-import { o_inputs, i_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -8,7 +9,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public alt_msg? = ({
@@ -22,7 +22,7 @@ class Class {
             () =>
                 n(input.alt_msg)
                     ? input.alt_msg
-                    : (globalThis as any)[s_env.Env.type()].msg(`${input.name}_${suffix}`),
+                    : (globalThis as t.AnyRecord)[s_env.Env.type()].msg(`${input.name}_${suffix}`),
             'shr_1320',
         );
 
@@ -31,7 +31,7 @@ class Class {
             () =>
                 n(input.alt_title)
                     ? input.alt_title
-                    : (globalThis as any)[s_env.Env.type()].msg(`${input.name}_${suffix}`),
+                    : (globalThis as t.AnyRecord)[s_env.Env.type()].msg(`${input.name}_${suffix}`),
             'shr_1320',
         );
 }

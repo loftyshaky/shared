@@ -1,11 +1,14 @@
-import isEmpty from 'lodash/isEmpty';
+import type { InputEvent } from 'react';
+
 import get from 'lodash/get';
-import { FormEvent } from 'react';
-import { makeObservable, observable, action } from 'mobx';
+import isEmpty from 'lodash/isEmpty';
+import { action, makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t, s_env } from 'shared_clean/internal';
-import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
+import type { i_inputs } from 'inputs/internal';
+import { d_inputs, o_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
+import { s_env } from 'shared_clean/internal';
 
 export class InputBase {
     public name: string;
@@ -40,7 +43,7 @@ export class InputBase {
     public section?: string;
     public subsection?: string;
     public developer_mode_setting?: boolean = false;
-    public event_callback: t.CallbackVariadicVoid;
+    public event_callback: t.CallbackVariadicVoid | t.CallbackVariadicVoidAsync;
     public keydown_callback?: t.CallbackVariadicVoid;
     public warn_state_checker?: ({
         input,
@@ -126,7 +129,7 @@ export class InputBase {
     private check_state? = ({ state_type }: { state_type: 'is_visible' | 'is_enabled' }): boolean =>
         err(() => {
             const conds_state: boolean = this.check_state_conds!({
-                state_conds: (this as any)[`${state_type}_conds`],
+                state_conds: (this as t.AnyRecord)[`${state_type}_conds`],
             });
 
             if (conds_state) {
@@ -182,7 +185,7 @@ export class InputBase {
 
     public edit_label_val? = (
         { parent_input }: { parent_input: i_inputs.Input },
-        e: FormEvent,
+        e: InputEvent,
     ): void =>
         err(() => {
             const val = (e.target as HTMLInputElement).value;
@@ -232,7 +235,7 @@ export class InputBase {
             () =>
                 n(alt_title)
                     ? alt_title
-                    : (globalThis as any)[s_env.Env.type()].msg(`${name}_side_btn_title`),
+                    : (globalThis as t.AnyRecord)[s_env.Env.type()].msg(`${name}_side_btn_title`),
             'shr_1327',
         );
 

@@ -1,10 +1,11 @@
-import { makeObservable, observable, action } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { i_offers } from 'shared/internal';
-import { i_inputs } from 'inputs/internal';
+import type { i_inputs } from 'inputs/internal';
 import { d_sections } from 'settings/internal';
+import type { i_offers } from 'shared/internal';
 import { s_env } from 'shared_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 export class Section {
     public name: string;
@@ -67,7 +68,7 @@ export class Section {
             this.content_is_visible = !this.content_is_visible;
 
             if (n(this.change_visibility_of_content_save_callback)) {
-                await this.change_visibility_of_content_save_callback({
+                this.change_visibility_of_content_save_callback({
                     bool: this.content_is_visible,
                 });
             }
@@ -76,7 +77,7 @@ export class Section {
     public section_unavailable_msg_text? = (): string =>
         err(
             () =>
-                (globalThis as any)[s_env.Env.type()].msg(
+                (globalThis as t.AnyRecord)[s_env.Env.type()].msg(
                     `${this.unavailable_msg}_section_unavailable_msg_text`,
                 ) || this.unavailable_msg,
             'shr_1326',

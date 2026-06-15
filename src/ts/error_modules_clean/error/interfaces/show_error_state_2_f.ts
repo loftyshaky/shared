@@ -1,4 +1,4 @@
-import { i_error } from 'error_modules_clean/internal';
+import type { i_error } from 'error_modules_clean/internal';
 
 export type ShowErrorState2F = (
     error_obj: i_error.ErrorObj | undefined,

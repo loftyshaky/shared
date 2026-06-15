@@ -2,7 +2,8 @@ import get from 'lodash/get';
 import { makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { o_inputs, i_inputs } from 'inputs/internal';
+import type { i_inputs } from 'inputs/internal';
+import { o_inputs } from 'inputs/internal';
 
 export class Group extends o_inputs.InputBase {
     public type? = 'group' as const;

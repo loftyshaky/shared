@@ -1,10 +1,12 @@
+@use '../shared/vars';
+
 .header {
     margin-top: 0;
-    margin-bottom: $gap;
-    font-size: $font_big;
+    margin-bottom: vars.$gap;
+    font-size: vars.$font_big;
 }
 
 .msg_to_user div * {
     display: inline;
-    font-size: $font_main;
+    font-size: vars.$font_main;
 }

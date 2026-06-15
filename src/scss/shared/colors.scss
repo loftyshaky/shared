@@ -1,4 +1,8 @@
-$palette_visualization_w_border_offset: 1 * 2;
+@use 'vars';
+@use 'mixins';
+
+$input_height: vars.$input_height + (vars.$border_width * 4) - 2;
+$palette_visualization_w_border_offset: vars.$border_width * 2;
 
 .input_item {
     &.color .label_in_input_item {
@@ -7,7 +11,7 @@ $palette_visualization_w_border_offset: 1 * 2;
 
     .inner_w {
         position: absolute;
-        height: $color_input_height;
+        height: $input_height;
         align-self: center;
         order: -1;
     }
@@ -21,14 +25,14 @@ $palette_visualization_w_border_offset: 1 * 2;
     .visualization_w {
         display: flex;
         align-items: center;
-        margin-right: $input_content_gap;
+        margin-right: vars.$input_content_gap;
     }
 
     .visualization {
         border: 0;
         outline: none;
-        min-width: $color_input_height;
-        height: $color_input_height;
+        min-width: $input_height;
+        height: $input_height;
         cursor: pointer;
         border-radius: 0;
     }
@@ -36,8 +40,8 @@ $palette_visualization_w_border_offset: 1 * 2;
     .palette_visualization_w {
         display: inline-flex;
         padding: 0;
-        margin-right: $gap + $palette_visualization_w_border_offset;
-        margin-bottom: $gap + $palette_visualization_w_border_offset;
+        margin-right: vars.$gap + $palette_visualization_w_border_offset;
+        margin-bottom: vars.$gap + $palette_visualization_w_border_offset;
         cursor: pointer;
 
         &:nth-child(10),
@@ -54,15 +58,15 @@ $palette_visualization_w_border_offset: 1 * 2;
     .palette_visualization {
         border: 0;
         outline: none;
-        width: $color_input_height;
-        height: $color_input_height;
+        width: $input_height;
+        height: $input_height;
         cursor: pointer;
         border-radius: 0;
     }
 
     .fill_shadow_w {
         position: absolute;
-        top: $input_content_gap + $input_content_gap;
+        top: vars.$input_content_gap + vars.$input_content_gap;
         left: 0;
     }
 
@@ -75,12 +79,12 @@ $palette_visualization_w_border_offset: 1 * 2;
     .palette_w {
         z-index: 3;
         position: absolute;
-        top: $input_content_gap + $input_content_gap;
+        top: vars.$input_content_gap + vars.$input_content_gap;
         left: 0;
     }
 
     .palette {
-        @include box_shadow;
+        @include mixins.box_shadow;
 
         position: fixed;
         padding: 10px;

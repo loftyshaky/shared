@@ -1,4 +1,4 @@
-import { i_error } from 'error_modules_clean/internal';
+import type { i_error } from 'error_modules_clean/internal';
 
 export interface ShowErrorState1 {
     error_msg_key: string;

@@ -1,11 +1,11 @@
-@import 'normalize.css';
-@import '../all';
-@import '../vars';
-@import '../mixins';
-@import '../mods';
-@import '../text';
-@import '../crash_handler';
-@import '../close_btn';
+@use 'normalize.css';
+@use '../all';
+@use '../vars';
+@use '../mixins';
+@use '../mods';
+@use '../text';
+@use '../crash_handler';
+@use '../close_btn';
 
 body,
 button {
@@ -13,7 +13,7 @@ button {
 }
 
 .main {
-    @include max_z_index;
+    @include mixins.max_z_index;
 
     position: fixed;
     bottom: 0;
@@ -45,19 +45,22 @@ button {
         display: block;
         width: 100%;
         height: 8px;
+        border: none;
+        background: transparent;
 
         &::-webkit-progress-bar {
             background-color: transparent;
         }
 
-        &::-webkit-progress-value {
+        &::-webkit-progress-value,
+        &::-moz-progress-bar {
             background-color: #ffe81a;
         }
     }
 
     .keep_visible_msg {
-        font-size: $font_small;
-        margin-left: $ext_name_offset;
+        font-size: vars.$font_small;
+        margin-left: vars.$ext_name_offset;
         margin-top: 2px;
     }
 
@@ -69,13 +72,13 @@ button {
     }
 
     .ext_name {
-        margin-top: $ext_name_offset;
-        margin-left: $ext_name_offset;
+        margin-top: vars.$ext_name_offset;
+        margin-left: vars.$ext_name_offset;
     }
 
     .more_info_btn {
-        @include btn;
-        @include outline_solid;
+        @include mixins.btn;
+        @include mixins.outline_solid;
 
         outline-color: white;
         background-color: transparent;
@@ -88,15 +91,15 @@ button {
     }
 
     .more_info_btn:hover {
-        color: $black;
+        color: vars.$black;
         background-color: white;
     }
 
     .more_info_btn:focus,
     .close_btn:focus {
-        @include outline_solid_thick;
+        @include mixins.outline_solid_thick;
 
-        outline-color: $black;
+        outline-color: vars.$black;
     }
 
     &.positive {

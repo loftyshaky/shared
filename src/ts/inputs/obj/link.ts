@@ -1,5 +1,6 @@
-import { t, s_env } from 'shared_clean/internal';
 import { d_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
+import { s_env } from 'shared_clean/internal';
 
 export class Link {
     public name: string;
@@ -25,8 +26,10 @@ export class Link {
             const text: string = n(this.alt_msg)
                 ? this.alt_msg
                 : rs(
-                      (globalThis as any)[s_env.Env.type()].msg(`${this.name_clean}_link_text`) ||
-                          (globalThis as any)[s_env.Env.type()].msg(
+                      (globalThis as t.AnyRecord)[s_env.Env.type()].msg(
+                          `${this.name_clean}_link_text`,
+                      ) ||
+                          (globalThis as t.AnyRecord)[s_env.Env.type()].msg(
                               `${this.name_clean}_${this.browser}_link_text`,
                           ),
                   );
@@ -38,11 +41,13 @@ export class Link {
         err(() => {
             const href: string | undefined = n(this.href)
                 ? this.href
-                : (globalThis as any)[s_env.Env.type()].msg(`${this.name_clean}_link_href`) ||
-                  (globalThis as any)[s_env.Env.type()].msg(
+                : (globalThis as t.AnyRecord)[s_env.Env.type()].msg(
+                      `${this.name_clean}_link_href`,
+                  ) ||
+                  (globalThis as t.AnyRecord)[s_env.Env.type()].msg(
                       `${this.name_clean}_${this.browser}_link_href`,
                   ) ||
-                  (globalThis as any)[s_env.Env.type()].msg(
+                  (globalThis as t.AnyRecord)[s_env.Env.type()].msg(
                       `offer_${this.name_clean}_${this.browser}_link_href`,
                   );
 

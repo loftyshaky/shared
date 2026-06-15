@@ -1,7 +1,6 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
-import { c_inputs, d_inputs, o_inputs, p_inputs } from 'inputs/internal';
+import { c_inputs, d_inputs, o_inputs, type p_inputs } from 'inputs/internal';
 
 export const LabelInInputItem: React.FunctionComponent<p_inputs.LabelInInputItem> = observer(
     (props) => {

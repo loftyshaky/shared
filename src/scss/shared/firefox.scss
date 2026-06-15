@@ -1,0 +1,30 @@
+@use 'vars';
+
+@mixin input_btn_padding_vertical {
+    padding-top: 0;
+    padding-bottom: 1px;
+}
+
+@supports (-moz-appearance: none) {
+    .input_item {
+        &.text,
+        &.number {
+            .input {
+                @include input_btn_padding_vertical;
+
+                height: vars.$input_height;
+            }
+        }
+
+        &.select select {
+            height: vars.$input_height;
+            line-height: normal;
+            padding-top: 2px;
+            padding-bottom: 4px;
+        }
+    }
+
+    .btn.text {
+        @include input_btn_padding_vertical;
+    }
+}

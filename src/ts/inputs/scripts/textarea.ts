@@ -1,4 +1,5 @@
-import { o_inputs, d_inputs } from 'inputs/internal';
+import type { o_inputs } from 'inputs/internal';
+import { d_inputs } from 'inputs/internal';
 
 class Class {
     private static instance: Class;
@@ -7,7 +8,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public set_up_resize_observer = ({

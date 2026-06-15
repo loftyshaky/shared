@@ -1,38 +1,39 @@
 /* stylelint-disable selector-class-pattern */
 
-@import 'template_focus';
+@use '../../mixins' as mixins;
+@use 'template_focus';
 
 @mixin link_colors_standard {
-    @include link_colors($ycp, $ptn, $cop, $uzf);
+    @include mixins.link_colors(var(--ycp), var(--ptn), var(--cop), var(--uzf));
 }
 
 ::selection {
-    background-color: $nqp !important;
+    background-color: var(--nqp) !important;
     color: white !important;
 }
 
 :not(html, body, select) {
     &::-webkit-scrollbar-corner,
     &::-webkit-resizer {
-        background-color: $hyn;
-        border-color: $hyn;
+        background-color: var(--hyn);
+        border-color: var(--hyn);
     }
 
     &::-webkit-scrollbar-track {
-        background-color: $npw;
+        background-color: var(--npw);
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: $fxm;
+        background-color: var(--fxm);
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background-color: $lpe;
+        background-color: var(--lpe);
     }
 
     &::-webkit-scrollbar-track:horizontal,
     &::-webkit-scrollbar-track:vertical {
-        border-color: $fxm;
+        border-color: var(--fxm);
     }
 }
 
@@ -47,31 +48,31 @@
 textarea {
     &::-webkit-scrollbar-corner,
     &::-webkit-resizer {
-        background-color: $nur;
-        border-color: $vqo;
+        background-color: var(--nur);
+        border-color: var(--vqo);
     }
 
     &::-webkit-scrollbar-track {
-        background-color: $hcx;
+        background-color: var(--hcx);
     }
 }
 
 .loading_screen {
     &.main {
-        background-color: $dfp;
+        background-color: var(--dfp);
     }
 
     svg {
-        stroke: $tgp;
+        stroke: var(--tgp);
     }
 }
 
 .help_btn svg {
-    fill: $lpe;
+    fill: var(--lpe);
 }
 
 body::before {
-    background: $gqb;
+    background: var(--gqb);
 }
 
 .main,
@@ -79,136 +80,143 @@ button,
 select,
 input,
 textarea {
-    color: $lpe;
+    color: var(--lpe);
 }
 
 hr {
-    background-color: $hyn;
+    background-color: var(--hyn);
 }
 
 .dependencies hr {
-    background-color: $lpe;
+    background-color: var(--lpe);
 }
 
 .sections_and_offers {
-    background-color: $tbn;
+    background-color: var(--tbn);
 
     .offers {
-        border-color: $hyn;
+        border-color: var(--hyn);
 
         .top_bar .btn_w.icon_btn svg {
-            fill: $lpe;
+            fill: var(--lpe);
         }
     }
 }
 
 .sections .section_name {
-    border-color: $hyn;
+    border-color: var(--hyn);
 }
 
 .section_btns {
-    background-color: $gvb;
+    background-color: var(--gvb);
 
     .section_btn {
-        background-color: $hfb;
+        background-color: var(--hfb);
 
         &.selected::before {
-            background-color: $pxd;
+            background-color: var(--pxd);
         }
 
         &:not(.selected):hover::before {
-            background-color: $ksu;
+            background-color: var(--ksu);
         }
     }
 }
 
 .input_item {
     .inset_border::before {
-        outline-color: $hyn;
+        outline-color: var(--hyn);
     }
 
     .input {
-        background-color: $npw;
+        background-color: var(--npw);
 
         &::placeholder {
-            color: $mdc;
+            color: var(--mdc);
         }
     }
 
     .btn {
         &.text_input {
-            background-color: $npw;
+            background-color: var(--npw);
 
             svg {
-                fill: $lpe;
+                fill: var(--lpe);
             }
         }
     }
 
     .palette {
-        background-color: $htc;
-        color: $rbp;
+        background-color: var(--htc);
+        color: var(--rbp);
     }
 
     .input_w {
         .visualization {
-            background-color: $npw;
+            background-color: var(--npw);
         }
 
         .palette_visualization_w.inset_border::before {
-            outline-color: $hev;
+            outline-color: var(--hev);
         }
 
         .palette_visualization {
-            background-color: $npw;
+            background-color: var(--npw);
         }
     }
 
+    &.select .input_w::after {
+        border-top-color: var(--lpe);
+    }
+
     select {
-        background-image: linear-gradient(45deg, transparent 50%, $lpe 50%),
-            linear-gradient(135deg, $lpe 50%, transparent 50%),
-            linear-gradient(to right, $lpe, $lpe);
+        background-image:
+            linear-gradient(45deg, transparent 50%, var(--lpe) 50%),
+            linear-gradient(135deg, var(--lpe) 50%, transparent 50%),
+            linear-gradient(to right, var(--lpe), var(--lpe));
 
         option {
-            color: $rbp;
+            color: var(--rbp);
         }
     }
 
     .range {
         .lower_fill {
-            background-color: $lpe;
+            background-color: var(--lpe);
         }
 
         .input {
-            &::-webkit-slider-thumb {
-                background-color: $lpe;
+            &::-webkit-slider-thumb,
+            &::-moz-range-thumb {
+                background-color: var(--lpe);
             }
 
-            &::-webkit-slider-runnable-track {
-                box-shadow: inset 0 0 0 1px $hyn;
+            &::-webkit-slider-runnable-track,
+            &::-moz-range-track {
+                box-shadow: inset 0 0 0 1px var(--hyn);
             }
         }
     }
 
     .checkbox .box {
-        outline-color: $hyn;
-        background-color: $npw;
+        outline-color: var(--hyn);
+        background-color: var(--npw);
 
         svg {
-            fill: $lpe;
+            fill: var(--lpe);
         }
     }
 
     .upload_box {
-        outline-color: $hyn;
+        outline-color: var(--hyn);
 
         .background {
             &.upload_box_idle {
-                background-color: $npw;
+                background-color: var(--npw);
             }
 
             &.upload_box_hover {
-                background-color: $qgp;
+                background-color: var(--qgp);
             }
 
             &.loading {
@@ -216,36 +224,36 @@ hr {
                 /* stylelint-disable-next-line function-parentheses-newline-inside */
                 background-image: repeating-linear-gradient(
                     -45deg,
-                    $npw,
-                    $npw 14px,
-                    $qgp 14px,
-                    $qgp 28px
+                    var(--npw),
+                    var(--npw) 14px,
+                    var(--qgp) 14px,
+                    var(--qgp) 28px
                 ); /* stylelint-disable-line function-parentheses-newline-inside */
             }
         }
     }
 
     &.color .link_btn {
-        @include link_colors($iub, $dwk, $yun, $hap);
+        @include mixins.link_colors(var(--iub), var(--dwk), var(--yun), var(--hap));
     }
 
     .color_picker_w {
         *:not(.pcr-last-color, .pcr-current-color) {
-            color: $rbp !important;
+            color: var(--rbp) !important;
         }
 
         input {
-            background-color: $npw !important;
-            outline-color: $hev !important;
+            background-color: var(--npw) !important;
+            outline-color: var(--hev) !important;
 
             &:hover:not(.pcr-result, .active) {
-                background-color: $hyv !important;
+                background-color: var(--hyv) !important;
             }
         }
     }
 
     .pcr-app {
-        background-color: $htc !important;
+        background-color: var(--htc) !important;
     }
 
     .pcr-color-preview,
@@ -253,26 +261,26 @@ hr {
     .pcr-slider,
     .pcr-picker,
     .pcr-result {
-        border-color: $hev !important;
+        border-color: var(--hev) !important;
     }
 
     .pcr-type.active {
-        background-color: $nep !important;
+        background-color: var(--nep) !important;
     }
 }
 
 .main:not(.loading_screen) {
     .main_2 {
-        background-color: $hfb;
+        background-color: var(--hfb);
     }
 
     .btn {
         &.text {
-            background-color: $npw;
-            outline-color: $hyn;
+            background-color: var(--npw);
+            outline-color: var(--hyn);
 
             &:hover {
-                background-color: $qgp;
+                background-color: var(--qgp);
             }
         }
     }
@@ -280,43 +288,43 @@ hr {
     .btn,
     .link.svg {
         svg {
-            fill: $lpe;
+            fill: var(--lpe);
         }
     }
 
     .icon_btn .btn {
-        background-color: $dlf;
+        background-color: var(--dlf);
 
         svg {
-            fill: $pgs;
+            fill: var(--lpe);
         }
     }
 
     .input_item .side_btn {
-        background-color: $hyp;
+        background-color: var(--hyp);
 
         &.is_disabled {
-            background-color: $tdu;
+            background-color: var(--tdu);
         }
 
         svg {
-            fill: $pgs;
+            fill: var(--pgs);
         }
     }
 }
 
 .offer img {
-    border-color: $hyn;
+    border-color: var(--hyn);
 }
 
 .input_error {
-    color: $thm;
+    color: var(--thm);
 }
 
 .ext_version {
-    color: $lpe;
+    color: var(--lpe);
 }
 
 .ad_label {
-    outline-color: $lpe;
+    outline-color: var(--lpe);
 }

@@ -1,8 +1,10 @@
+@use '../shared/vars';
+
 .main {
-    padding: $main_margin_2;
+    padding: vars.$main_margin_2;
     display: block;
 }
 
 iframe {
-    margin-top: $gap;
+    margin-top: vars.$gap;
 }

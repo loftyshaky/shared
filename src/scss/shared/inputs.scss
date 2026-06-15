@@ -1,3 +1,6 @@
+@use 'vars';
+@use 'mixins';
+
 input[type='file'] {
     display: none;
 }
@@ -7,7 +10,7 @@ input[type='file'] {
 }
 
 .label:not(:first-child) {
-    margin-top: $gap;
+    margin-top: vars.$gap;
 }
 
 .input_item {
@@ -19,7 +22,7 @@ input[type='file'] {
 
     .input_item_inner {
         width: inherit;
-        padding-right: $main_margin;
+        padding-right: vars.$main_margin;
     }
 
     &.child {
@@ -27,7 +30,7 @@ input[type='file'] {
     }
 
     &:not(:first-child) {
-        margin-top: $gap;
+        margin-top: vars.$gap;
     }
 
     .label_in_input_item_w {
@@ -53,23 +56,30 @@ input[type='file'] {
     &.upload_box,
     &.group {
         .label_in_input_item_w:not(:empty) {
-            margin-bottom: $gap_small;
+            margin-bottom: vars.$gap_small;
         }
     }
 
     .input {
-        @include input_basic;
+        padding: 0 vars.$input_inner_padding;
 
+        @include mixins.input_basic;
+        @include mixins.input_btn_padding_vertical;
+
+        height: vars.$input_height;
         width: inherit;
         opacity: 1; // needed to keep default color when element is is_enabled
-        height: $input_height;
-        padding: 0 $input_inner_padding;
         flex-grow: 1;
         border-radius: 0;
         box-sizing: border-box;
 
-        &.text {
-            line-height: $input_height;
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            appearance: none;
+        }
+
+        &[type='number'] {
+            appearance: textfield;
         }
     }
 
@@ -86,16 +96,16 @@ input[type='file'] {
         &.text,
         &.textarea,
         &.select {
-            @include border_transparent;
+            @include mixins.border_transparent;
         }
 
         .main_visualization_w {
-            @include border_transparent;
+            @include mixins.border_transparent;
         }
 
         &.is_in_focus_state:not(.select)::before,
         &.is_in_warn_state:not(.select)::before {
-            @include outline_solid_thick;
+            @include mixins.outline_solid_thick;
         }
     }
 }

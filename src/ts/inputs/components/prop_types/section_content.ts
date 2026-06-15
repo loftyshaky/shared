@@ -1,4 +1,4 @@
-import { o_inputs, i_inputs } from 'inputs/internal';
+import type { i_inputs, o_inputs } from 'inputs/internal';
 
 export interface SectionContent {
     section?: o_inputs.Section;

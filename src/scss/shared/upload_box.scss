@@ -1,12 +1,15 @@
-$upload_box_text_z_index: 2;
-$upload_box_loading_animation_size: 40px;
+@use 'vars';
+@use 'mixins';
+
+$text_z_index: 2;
+$loading_animation_size: 40px;
 $backgrond_margin: 2px;
 $backgrond_dim_offset: 2px * 2;
 $status_msg_offset: 5px;
 
 .input_item {
     .upload_box {
-        @include border_transparent;
+        @include mixins.border_transparent;
 
         position: relative;
         height: 104px;
@@ -16,12 +19,12 @@ $status_msg_offset: 5px;
         outline-offset: -3px;
 
         .what_to_do_msg {
-            @include center_translate;
+            @include mixins.center_translate;
 
             position: absolute;
-            padding-right: $gap;
-            padding-left: $gap;
-            z-index: $upload_box_text_z_index;
+            padding-right: vars.$gap;
+            padding-left: vars.$gap;
+            z-index: $text_z_index;
             width: 100%;
             box-sizing: border-box;
 
@@ -32,16 +35,16 @@ $status_msg_offset: 5px;
 
         .browse {
             display: inline;
-            font-size: $font_main;
+            font-size: vars.$font_main;
             opacity: 1 !important; // needed to keep default color when element is is_enabled
         }
 
         .status_msg {
             position: absolute;
             width: 100%;
-            font-size: $font_small;
+            font-size: vars.$font_small;
             margin-bottom: $status_msg_offset;
-            z-index: $upload_box_text_z_index;
+            z-index: $text_z_index;
 
             &.filenames {
                 align-self: start;
@@ -66,8 +69,7 @@ $status_msg_offset: 5px;
 
             &.loading {
                 animation: move 450ms linear infinite;
-                background-size: $upload_box_loading_animation_size
-                    $upload_box_loading_animation_size;
+                background-size: $loading_animation_size $loading_animation_size;
             }
         }
     }

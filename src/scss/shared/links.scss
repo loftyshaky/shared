@@ -1,3 +1,5 @@
+@use 'vars';
+
 .link {
     display: table;
     text-decoration: none;
@@ -12,12 +14,12 @@
     &.svg {
         svg {
             display: block;
-            width: $icon_btn_size;
-            height: $icon_btn_size;
+            width: vars.$icon_btn_size;
+            height: vars.$icon_btn_size;
         }
     }
 }
 
 .link:not(:first-child) {
-    margin-top: $gap;
+    margin-top: vars.$gap;
 }

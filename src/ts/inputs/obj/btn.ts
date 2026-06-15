@@ -1,4 +1,4 @@
-import { o_inputs, d_inputs } from 'inputs/internal';
+import { d_inputs, o_inputs } from 'inputs/internal';
 
 export class Btn extends o_inputs.InputBase {
     public type? = 'btn' as const;

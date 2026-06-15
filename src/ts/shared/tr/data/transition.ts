@@ -1,8 +1,7 @@
-import React from 'react';
 import { action } from 'mobx';
 
-import { t } from 'shared_clean/internal';
-import { i_tr } from 'shared/internal';
+import type { i_tr } from 'shared/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -11,7 +10,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     //> hide component when it faded out or show component when it starting fading in
@@ -29,7 +27,7 @@ class Class {
                 state: boolean;
                 tr_end_unactive?: t.CallbackVariadicVoid[];
                 tr_end_active?: t.CallbackVariadicVoid[];
-                tr_el_ref: React.RefObject<HTMLElement>;
+                tr_el_ref: React.RefObject<HTMLElement | null>;
                 called_from_component_did_update: boolean;
             },
             e?: React.TransitionEvent,

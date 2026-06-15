@@ -1,9 +1,8 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
-import { stop_propagation } from 'shared_clean/internal';
+import { o_inputs, type p_inputs } from 'inputs/internal';
 import { c_tr } from 'shared/internal';
-import { o_inputs, p_inputs } from 'inputs/internal';
+import { stop_propagation } from 'shared_clean/internal';
 
 export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observer((props) => {
     const { input, type } = props;
@@ -16,7 +15,7 @@ export const LinkIconBtn: React.FunctionComponent<p_inputs.LinkIconBtn> = observ
             attr={{
                 title: input.icon_btn_title!(),
                 onClick: () => {
-                    input.event_callback({ input });
+                    void input.event_callback({ input });
                 },
                 onKeyDown: stop_propagation,
             }}

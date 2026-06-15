@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 
-import { s_color, p_color } from 'inputs/internal';
+import { type p_color, s_color } from 'inputs/internal';
 
 export const FillShadow: React.FunctionComponent<p_color.FillShadow> = observer((props) => {
+    const { is_visible, width, height } = props;
+
+    void is_visible;
+
     useEffect(() =>
         err(() => {
             const { is_visible } = props;
@@ -13,11 +17,6 @@ export const FillShadow: React.FunctionComponent<p_color.FillShadow> = observer(
             }
         }, 'shr_1005'),
     );
-
-    const { is_visible, width, height } = props;
-
-    // eslint-disable-next-line no-unused-expressions
-    is_visible;
 
     return (
         <span className='fill_shadow_w'>

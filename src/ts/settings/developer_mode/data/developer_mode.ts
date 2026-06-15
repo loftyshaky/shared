@@ -1,6 +1,6 @@
-import { t } from 'shared_clean/internal';
+import { action, makeObservable } from 'mobx';
 
-import { makeObservable, action } from 'mobx';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -33,7 +33,7 @@ class Class {
 
                 show_notification({ error_msg_key: 'youre_now_a_developer_notification' });
 
-                await save_callback();
+                save_callback();
             }
         }, 'shr_1266');
 

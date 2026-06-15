@@ -1,18 +1,19 @@
+@use '../shared/vars';
+
 html,
 .body {
     height: 100%;
 }
 
 .main {
-    padding: $main_margin_2;
-    padding-left: $main_margin_2;
+    padding: vars.$main_margin_2;
     display: block;
-    height: calc(100vh - #{$main_margin_4});
+    height: calc(100vh - #{vars.$main_margin_4});
 }
 
 .main_2 {
     display: flex;
-    height: calc(100vh - $main_margin_4);
-    max-width: 1366px - $main_margin_2 + 2px;
+    height: calc(100vh - vars.$main_margin_4);
+    max-width: 1366px - vars.$main_margin_2 + 2px;
     margin: auto;
 }

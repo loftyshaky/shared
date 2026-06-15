@@ -1,7 +1,7 @@
 import get from 'lodash/get';
-import { makeObservable, action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 
-import { o_inputs, i_inputs } from 'inputs/internal';
+import type { i_inputs, o_inputs } from 'inputs/internal';
 import { d_sections } from 'settings/internal';
 
 class Class {

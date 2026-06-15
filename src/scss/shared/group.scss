@@ -1,3 +1,5 @@
+@use 'vars';
+
 .input_item.group:not(.is_column_layout) {
     .input_item {
         margin-top: 0;
@@ -29,7 +31,7 @@
         }
 
         & > .btn_w:not(:last-child) {
-            margin-right: $gap;
+            margin-right: vars.$gap;
         }
     }
 }

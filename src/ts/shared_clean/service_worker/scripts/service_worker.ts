@@ -5,11 +5,9 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     private make_persistent_intervals: ReturnType<typeof setInterval>[] = [];
-    private persistent_service_worker: boolean = false;
 
     public make_persistent = async (): Promise<void> =>
         err_async(async () => {
@@ -17,9 +15,9 @@ class Class {
 
             this.make_persistent_intervals.push(
                 setInterval(() => {
-                    err_async(async () => {
+                    void err_async(async () => {
                         if (data.settings.prefs.persistent_service_worker) {
-                            ext.get_active_tab();
+                            void ext.get_active_tab();
                         } else {
                             this.clear_make_persistent_intervals();
                         }

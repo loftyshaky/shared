@@ -25,6 +25,8 @@ export * as s_theme from 'shared_clean/theme/scripts';
 export * as s_title from 'shared_clean/title/scripts';
 export * as s_utils from 'shared_clean/utils/scripts';
 export * as s_viewport from 'shared_clean/viewport/scripts';
+export * as s_links from 'shared_clean/links/scripts';
 
 export * as i_color from 'shared_clean/color/interfaces';
 export * as i_data from 'shared_clean/data/interfaces';
+export * as i_links from 'shared_clean/links/interfaces';

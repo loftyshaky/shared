@@ -1,4 +1,4 @@
-import { o_inputs, o_color } from 'inputs/internal';
+import type { o_color, o_inputs } from 'inputs/internal';
 
 export type Input =
     | o_inputs.Text

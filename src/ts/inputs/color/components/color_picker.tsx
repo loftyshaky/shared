@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, MouseEvent } from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
+import { type MouseEvent, useEffect, useRef } from 'react';
 
+import { c_color, d_color, type i_color, type p_color, s_color } from 'inputs/internal';
 import { c_tr } from 'shared/internal';
-import { c_color, d_color, s_color, p_color, i_color } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
 
 export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observer((props) => {
-    const pickr_ref = useRef<any>(null);
+    const pickr_ref = useRef<t.Any>(null);
     const color_picker_ref = useRef<HTMLSpanElement>(null);
     const color_picker_is_initialized_ref = useRef<boolean>(false);
 
@@ -20,11 +21,11 @@ export const ColorPicker: React.FunctionComponent<p_color.ColorPicker> = observe
             ) {
                 color_picker_is_initialized_ref.current = true;
 
-                init();
+                void init();
             }
 
             if (n(color_picker_ref.current)) {
-                s_color.ColorPicker.update({
+                void s_color.ColorPicker.update({
                     pickr: pickr_ref.current,
                     color_picker: color_picker_ref.current,
                     input,

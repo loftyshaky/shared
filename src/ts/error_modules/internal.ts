@@ -1,6 +1,7 @@
-import 'shared/internal';
 import 'error_modules_clean/error/scripts';
 import 'error_modules/error/scripts';
+
+import 'shared/internal';
 
 export * as c_crash_handler from 'error_modules/crash_handler/components';
 export * as c_error from 'error_modules/error/components';

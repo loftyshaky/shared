@@ -1,4 +1,4 @@
-import { t } from 'shared_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -7,23 +7,20 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public apply_unchanged_prefs = ({
         settings,
         additional_unchanged_prefs = {},
     }: {
-        settings: any;
+        settings: t.AnyRecord;
         additional_unchanged_prefs?: t.AnyRecord;
     }): t.AnyRecord =>
         err(() => {
             settings.prefs = {
                 ...settings.prefs,
-                ...{
-                    current_section: data.settings.prefs.current_section,
-                    color_help_is_visible: data.settings.prefs.color_help_is_visible,
-                },
+                current_section: data.settings.prefs.current_section,
+                color_help_is_visible: data.settings.prefs.color_help_is_visible,
                 ...additional_unchanged_prefs,
             };
 

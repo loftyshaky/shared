@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 
-import { c_error, d_error, s_css, p_error } from 'error_modules/internal';
+import { c_error, d_error, type p_error, s_css } from 'error_modules/internal';
 
 export const Body: React.FunctionComponent<p_error.Body> = observer((props) => {
     const { app_id, on_render } = props;

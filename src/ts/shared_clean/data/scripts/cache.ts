@@ -1,4 +1,5 @@
 import { run_in_action_placeholder, s_data } from 'shared_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -7,23 +8,29 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public get_data = ({
         set_from_storage = false,
-    }: { set_from_storage?: boolean } = {}): Promise<any> =>
+    }: {
+        set_from_storage?: boolean;
+    } = {}): Promise<t.AnyRecord | undefined> =>
         err_async(async () => {
-            const session_data: any = await we.storage.session.get();
+            const session_data: t.AnyRecord =
+                env.browser !== 'firefox' || page !== 'content_script'
+                    ? await we.storage.session.get()
+                    : {};
 
             const cache_is_filled: boolean = n(session_data.settings);
-            let data_obj: any =
+            let data_obj: t.AnyRecord | undefined =
                 cache_is_filled && !set_from_storage ? session_data : await ext.storage_get();
 
             if (set_from_storage) {
-                data_obj = s_data.Settings.apply_unchanged_prefs({
-                    settings: data_obj,
-                });
+                if (n(data_obj)) {
+                    data_obj = s_data.Settings.apply_unchanged_prefs({
+                        settings: data_obj,
+                    });
+                }
             }
 
             if (!cache_is_filled || set_from_storage) {
@@ -39,7 +46,7 @@ class Class {
     public set_data = ({
         run_in_action = run_in_action_placeholder,
     }: {
-        run_in_action?: any;
+        run_in_action?: t.CallbackVariadicVoid;
     } = {}): Promise<void> =>
         err_async(async () => {
             // get data from storage. sync/local/session and set it to data. property. Run this function on page init().
@@ -47,7 +54,6 @@ class Class {
 
             run_in_action(() =>
                 err(() => {
-                    // eslint-disable-next-line prefer-object-spread
                     Object.assign(data, session);
                 }, 'shr_1244'),
             );
@@ -57,11 +63,13 @@ class Class {
         settings = {},
         run_in_action = run_in_action_placeholder,
     }: {
-        settings?: any;
-        run_in_action?: any;
+        settings?: t.AnyRecord;
+        run_in_action?: t.CallbackVariadicVoid;
     } = {}): Promise<void> =>
         err_async(async () => {
-            await we.storage.session.set({ settings });
+            if (env.browser !== 'firefox' || page !== 'content_script') {
+                await we.storage.session.set({ settings });
+            }
 
             run_in_action(() =>
                 err(() => {
@@ -76,11 +84,13 @@ class Class {
         run_in_action = run_in_action_placeholder,
     }: {
         key: string;
-        val: any;
-        run_in_action?: any;
+        val: t.Any;
+        run_in_action?: t.CallbackVariadicVoid;
     }): Promise<void> =>
         err_async(async () => {
-            await we.storage.session.set({ [key]: val });
+            if (env.browser !== 'firefox' || page !== 'content_script') {
+                await we.storage.session.set({ [key]: val });
+            }
 
             run_in_action(() =>
                 err(() => {
@@ -89,7 +99,7 @@ class Class {
             );
         }, 'shr_1249');
 
-    public get = ({ key }: { key: string }): Promise<any> =>
+    public get = ({ key }: { key: string }): Promise<t.CallbackAnyObjAsync> =>
         err_async(
             async () => (n(data[key]) ? data[key] : (await we.storage.session.get(key))[key]),
             'shr_1250',

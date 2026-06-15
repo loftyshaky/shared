@@ -1,4 +1,6 @@
-import { run_in_action_placeholder, o_schema } from 'shared_clean/internal';
+import type { o_schema } from 'shared_clean/internal';
+import { run_in_action_placeholder } from 'shared_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -12,16 +14,16 @@ class Class {
         version,
         transform_items,
         keys_to_remove = [],
-        force = false,
+        force,
         run_in_action = run_in_action_placeholder,
     }: {
-        data_obj: any;
-        version: number;
+        data_obj: t.AnyRecord;
+        version: string;
         transform_items: o_schema.TransformItem[];
         keys_to_remove?: string[];
         force: boolean;
-        run_in_action?: any;
-    }): Promise<any> =>
+        run_in_action?: t.CallbackVariadicVoid;
+    }): Promise<t.AnyRecord> =>
         err_async(async () => {
             if (version !== ext.get_app_version() || force) {
                 const properties_to_remove: string[] = [];
@@ -106,12 +108,12 @@ class Class {
             return data_obj;
         }, 'shr_1299');
 
-    public replace = ({ settings }: { settings: any }): Promise<void> =>
+    public replace = ({ settings }: { settings: t.AnyRecord }): Promise<void> =>
         err_async(async () => {
             await ext.storage_set(settings, true);
         }, 'shr_1236');
 
-    public get_version_legacy = ({ settings }: { settings: any }): number =>
+    public get_version_legacy = ({ settings }: { settings: t.AnyRecord }): string =>
         err(() => (n(settings.prefs) ? settings.prefs.version : settings.version), 'shr_1300');
 }
 

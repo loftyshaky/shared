@@ -1,7 +1,13 @@
-import React, { useEffect } from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 
-import { svg, c_tr, d_loading_screen, s_loading_screen, p_loading_screen } from 'shared/internal';
+import {
+    c_tr,
+    d_loading_screen,
+    type p_loading_screen,
+    s_loading_screen,
+    svg,
+} from 'shared/internal';
 
 export const Body: React.FunctionComponent<p_loading_screen.Body> = observer((props) => {
     const { app_id, on_render } = props;

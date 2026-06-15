@@ -1,3 +1,6 @@
+@use '../shared/vars';
+@use '../shared/mixins';
+
 .sections_and_offers {
     width: 100%;
     display: flex;
@@ -13,21 +16,21 @@
 }
 
 .section {
-    margin: $main_margin;
+    margin: vars.$main_margin;
 }
 
 .offers {
-    @include border_top;
+    @include mixins.border_top;
 
     order: 1;
 
     .offers_inner {
-        margin: $main_margin;
-        margin-top: $gap;
+        margin: vars.$main_margin;
+        margin-top: vars.$gap;
     }
 
     + .sections .section {
-        margin-bottom: $gap;
+        margin-bottom: vars.$gap;
     }
 }
 
@@ -39,7 +42,7 @@
         text-decoration: underline;
 
         &:not(:first-child) {
-            margin-top: $main_margin;
+            margin-top: vars.$main_margin;
         }
     }
 }

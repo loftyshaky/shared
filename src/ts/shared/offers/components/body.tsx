@@ -1,7 +1,6 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
-import { c_offers, c_tr, d_offers, p_offers } from 'shared/internal';
+import { c_offers, c_tr, d_offers, type p_offers } from 'shared/internal';
 
 export const Body: React.FunctionComponent<p_offers.Body> = observer((props) => {
     const { is_visible, offer_banner_type } = props;
@@ -14,7 +13,6 @@ export const Body: React.FunctionComponent<p_offers.Body> = observer((props) => 
             </div>
         </c_tr.BaseTr>
     ) : (
-        // eslint-disable-next-line react/jsx-no-useless-fragment
         <></>
     );
 });

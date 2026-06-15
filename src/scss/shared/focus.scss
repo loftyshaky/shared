@@ -1,5 +1,7 @@
 /* stylelint-disable no-descending-specificity, selector-class-pattern */
 
+@use 'mixins';
+
 $text_input_outline_size: 20px;
 $text_input_outline_offset: 4px;
 $outline_offset_1: 2px;
@@ -31,11 +33,11 @@ $outline_offset_2: 3px;
 .keyboard .side_btn:focus,
 .keyboard .input_item .input_w:not(.text, .textarea).is_in_focus_state::before,
 .keyboard .input_item.range .input.is_in_focus_state {
-    @include outline_solid_thick;
+    @include mixins.outline_solid_thick;
 }
 
 body.keyboard .btn.text:focus {
-    @include outline_solid_thick;
+    @include mixins.outline_solid_thick;
 }
 
 .keyboard .input_item .pcr-palette:focus,
@@ -50,28 +52,28 @@ body.keyboard .btn.text:focus {
 }
 
 .input_item .palette_visualization_w.selected:not(.opened) .palette_visualization {
-    @include outline_solid_thick;
+    @include mixins.outline_solid_thick;
 
     outline-offset: $outline_offset_2;
 }
 
 .input_item .visualization_w.opened .visualization,
 .input_item .palette_visualization_w.opened .palette_visualization {
-    @include outline_dashed_thick;
+    @include mixins.outline_dashed_thick;
 
     outline-offset: $outline_offset_2;
 }
 
 .keyboard .input_item .visualization_w .visualization:focus,
 .keyboard .input_item .palette_visualization_w .palette_visualization:focus {
-    @include outline_solid_thick;
+    @include mixins.outline_solid_thick;
 
     outline-offset: $outline_offset_2;
 }
 
 .keyboard .input_item .visualization_w.opened .visualization:focus,
 .keyboard .input_item .palette_visualization_w.opened .palette_visualization:focus {
-    @include outline_dashed_thick;
+    @include mixins.outline_dashed_thick;
 }
 
 .keyboard .btn.text_input:focus::before {
@@ -84,5 +86,5 @@ body.keyboard .btn.text:focus {
 }
 
 .reload_ui_btn_w .keyboard .btn:focus {
-    @include blue_border;
+    @include mixins.blue_border;
 }

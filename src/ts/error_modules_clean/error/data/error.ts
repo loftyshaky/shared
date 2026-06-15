@@ -1,4 +1,5 @@
-import { i_error } from 'error_modules_clean/internal';
+import type { i_error } from 'error_modules_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -74,13 +75,12 @@ class Class {
                     key: string;
                     undefined_property: boolean | string | number;
                 }): void => {
-                    (updated_error_obj[key as keyof i_error.ErrorObj] as
-                        | string
-                        | number
-                        | boolean
-                        | undefined) = n(error_obj[key as keyof i_error.ErrorObj])
-                        ? error_obj[key as keyof i_error.ErrorObj]
+                    const typed_key = key as keyof i_error.ErrorObj;
+                    const value = n(error_obj[typed_key])
+                        ? error_obj[typed_key]
                         : undefined_property;
+
+                    (updated_error_obj[typed_key] as t.Any) = value;
                 };
 
                 set_updated_error_obj_propery({
@@ -120,17 +120,16 @@ class Class {
     };
 
     public output = (error_obj: i_error.ErrorObj, error_code: string): void => {
-        const line = '---------------------------';
-        const separator_top = `${line}\n`;
-        const separator_bottom = `\n${line}`;
-        const error_code_and_msg = `${separator_top}Code: ${error_code}\nMessage: ${error_obj.message}`;
-        const console_output = error_obj.stack
-            ? `${error_code_and_msg}\nStack: ${error_obj.stack + separator_bottom}`
-            : error_code_and_msg + separator_bottom;
-        //< console output
+        const line: string = '---------------------------';
+        const separator_top: string = `${line}\n`;
+        const error_code_and_msg: string = `${separator_top}Code: ${error_code}\nMessage: ${error_obj.message}`;
+        const error_msg = error_obj.stack ? `${error_code_and_msg}\nStack:` : error_code_and_msg;
 
-        // eslint-disable-next-line no-console
-        console.error(console_output);
+        if (n(error_obj.stack)) {
+            console.error(error_msg, error_obj);
+        } else {
+            console.error(error_msg);
+        }
     };
 }
 

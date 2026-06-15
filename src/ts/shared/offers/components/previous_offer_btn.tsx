@@ -1,8 +1,7 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
 import { c_inputs, o_inputs } from 'inputs/internal';
-import { svg, d_offers } from 'shared/internal';
+import { d_offers, svg } from 'shared/internal';
 
 export const PreviousOfferBtn: React.FunctionComponent = observer(() => (
     <c_inputs.IconBtn

@@ -1,4 +1,4 @@
-import { i_error } from 'error_modules_clean/internal';
+import type { i_error } from 'error_modules_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -7,7 +7,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     private get_flash_server_text = (): string | undefined =>

@@ -7,7 +7,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     private enable_offers: boolean = true;
@@ -22,13 +21,13 @@ class Class {
               new o_offers.Offer({
                   name: 'tinkoff_black',
                   has_ad_label: true,
-                  browsers_whitelist: ['chrome'],
+                  browsers_whitelist: ['chrome', 'opera', 'yandex', 'firefox'],
                   countries_whitelist: ['ru'],
               }),
               new o_offers.Offer({
                   name: 'tinkoff_investments_brokerage_account',
                   has_ad_label: true,
-                  browsers_whitelist: ['chrome'],
+                  browsers_whitelist: ['chrome', 'opera', 'yandex', 'firefox'],
                   countries_whitelist: ['ru'],
               }),
               new o_offers.Offer({
@@ -41,14 +40,36 @@ class Class {
                   name: 'keymeleon',
                   prominent: true,
               }),
-              new o_offers.Offer({ name: 'clear_new_tab' }),
-              new o_offers.Offer({ name: 'empty_new_tab_page' }),
+              new o_offers.Offer({
+                  name: 'clear_new_tab',
+                  browsers_whitelist: 'all',
+                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
+              }),
+              new o_offers.Offer({
+                  name: 'empty_new_tab_page',
+                  browsers_whitelist: 'all',
+                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
+              }),
               new o_offers.Offer({
                   name: 'close_other_tabs_plus',
+                  browsers_whitelist: 'all',
+                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
               }),
-              new o_offers.Offer({ name: 'search_enhancer_for_google' }),
-              new o_offers.Offer({ name: 'scroll_to_top' }),
-              new o_offers.Offer({ name: 'advanced_extension_reloader' }),
+              new o_offers.Offer({
+                  name: 'search_enhancer_for_google',
+                  browsers_whitelist: 'all',
+                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
+              }),
+              new o_offers.Offer({
+                  name: 'scroll_to_top',
+                  browsers_whitelist: 'all',
+                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
+              }),
+              new o_offers.Offer({
+                  name: 'advanced_extension_reloader',
+                  browsers_whitelist: 'all',
+                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
+              }),
           ]
         : [];
 }

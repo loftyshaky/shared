@@ -1,4 +1,4 @@
-import { o_inputs } from 'inputs/internal';
+import type { o_inputs } from 'inputs/internal';
 
 export interface Select {
     input: o_inputs.Select;

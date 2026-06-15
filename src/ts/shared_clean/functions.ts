@@ -1,11 +1,13 @@
-import { t } from 'shared_clean/internal';
+import type { UIEvent } from 'react';
 
-export const prevent_default = (e: any): void =>
+import type { t } from 'shared_clean/internal';
+
+export const prevent_default = (e: UIEvent): void =>
     err(() => {
         e.preventDefault();
     }, 'shr_1111');
 
-export const stop_propagation = (e: any): void =>
+export const stop_propagation = (e: UIEvent): void =>
     err(() => {
         e.stopPropagation();
     }, 'shr_1218');

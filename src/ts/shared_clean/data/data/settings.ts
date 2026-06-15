@@ -1,6 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 import isEqual from 'lodash/isEqual';
 
+import type { t } from 'shared_clean/internal';
 import { run_in_action_placeholder, s_data } from 'shared_clean/internal';
 
 class Class {
@@ -10,18 +11,17 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public set = ({
         settings,
         run_in_action = run_in_action_placeholder,
     }: {
-        settings?: any;
-        run_in_action?: any;
+        settings?: t.AnyRecord;
+        run_in_action?: t.CallbackVariadicVoid;
     }): Promise<void> =>
         err_async(async () => {
-            let settings_final: any;
+            let settings_final: t.AnyRecord | undefined;
             const prefs_are_filled: boolean = x.prefs_are_filled();
 
             if (prefs_are_filled && n(settings)) {
@@ -30,14 +30,22 @@ class Class {
                 const default_settings = await ext.send_msg_resp({
                     msg: 'get_defaults',
                 });
+                const default_settings_final =
+                    !n(default_settings) ||
+                    typeof default_settings === 'string' ||
+                    typeof default_settings === 'number'
+                        ? undefined
+                        : (default_settings as t.AnyRecord);
 
-                settings_final = default_settings;
+                settings_final = default_settings_final;
             }
 
             run_in_action(() =>
                 err(() => {
-                    data.settings.prefs.home_btn_is_visible =
-                        settings_final.prefs.home_btn_is_visible;
+                    if (n(settings_final) && 'prefs' in settings_final) {
+                        data.settings.prefs.home_btn_is_visible =
+                            settings_final.prefs.home_btn_is_visible;
+                    }
                 }, 'shr_1364'),
             );
         }, 'shr_1365');
@@ -47,10 +55,10 @@ class Class {
         run_in_action = run_in_action_placeholder,
         set_data = s_data.Cache.set_data,
     }: {
-        to_js?: any;
-        run_in_action?: any;
-        set_data?: any;
-    } = {}): Promise<any> =>
+        to_js?: t.CallbackVariadicAnyObjAsync;
+        run_in_action?: t.CallbackVariadicVoid;
+        set_data?: t.CallbackVoidAsync;
+    } = {}): Promise<t.AnyRecord | undefined> =>
         err_async(async () => {
             if (!ext.ext_context_invalidated()) {
                 const old_settings = cloneDeep(data.settings);

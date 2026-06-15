@@ -1,8 +1,7 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
-import { svg, s_tab_index } from 'shared/internal';
 import { d_error } from 'error_modules/internal';
+import { s_tab_index, svg } from 'shared/internal';
 
 export const CloseBtn: React.FunctionComponent = observer(() => (
     <button

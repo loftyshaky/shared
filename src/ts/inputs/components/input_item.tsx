@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 
+import { c_inputs, d_inputs, type p_inputs } from 'inputs/internal';
 import { c_tr } from 'shared/internal';
-import { d_inputs, p_inputs, c_inputs } from 'inputs/internal';
 
 export const InputItem: React.FunctionComponent<p_inputs.InputItem> = observer(
     (props: p_inputs.InputItem) => {

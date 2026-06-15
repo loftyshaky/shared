@@ -1,4 +1,4 @@
-import { i_offers } from 'shared/internal';
+import type { i_offers } from 'shared/internal';
 
 export interface Body {
     is_visible: boolean;

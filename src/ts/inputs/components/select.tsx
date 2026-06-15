@@ -1,7 +1,8 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import type { JSX } from 'react';
 
-import { o_inputs, d_inputs, c_inputs, p_inputs } from 'inputs/internal';
+import { observer } from 'mobx-react-lite';
+
+import { c_inputs, d_inputs, type o_inputs, type p_inputs } from 'inputs/internal';
 
 export const Select: React.FunctionComponent<p_inputs.Select> = observer((props) => {
     const { input, id, calculate_width, include_label } = props;
@@ -55,7 +56,7 @@ export const Select: React.FunctionComponent<p_inputs.Select> = observer((props)
                     >
                         {options.map(
                             (option: o_inputs.Option, i: number): JSX.Element => (
-                                <option key={i} value={option.val}>
+                                <option key={option.name} value={option.val}>
                                     {input.option_text!({ i })}
                                 </option>
                             ),

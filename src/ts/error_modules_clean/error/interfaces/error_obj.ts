@@ -1,4 +1,4 @@
-import { i_error } from 'error_modules_clean/internal';
+import type { i_error } from 'error_modules_clean/internal';
 
 export interface ErrorObj extends Error, i_error.Error {
     name: string;

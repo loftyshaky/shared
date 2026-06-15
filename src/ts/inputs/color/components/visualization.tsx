@@ -1,21 +1,20 @@
-import React, { useRef, MouseEvent, FocusEvent, KeyboardEvent } from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
+import { type FocusEvent, type KeyboardEvent, type MouseEvent, useRef } from 'react';
 
-import { prevent_default, s_env } from 'shared_clean/internal';
+import { c_color, c_inputs, d_color, type p_color } from 'inputs/internal';
 import { s_tab_index } from 'shared/internal';
-import { c_inputs, c_color, d_color, p_color } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
+import { prevent_default, s_env } from 'shared_clean/internal';
 
 export const Visualization: React.FunctionComponent<p_color.Visualization> = observer((props) => {
     const visualization_w_ref = useRef<HTMLSpanElement>(null);
     const visualization_ref = useRef<HTMLButtonElement>(null);
-
     const { input, i, aria_label } = props;
-
-    // eslint-disable-next-line no-unused-expressions
-    n(input.state) && input.state.main;
-
     const visualization_cls = input.visualization_cls!({ i });
     const palette_visualization_cls = input.palette_visualization_cls!({ i });
+
+    // oxlint-disable-next-line no-unused-expressions
+    n(input.state) && input.state.main;
 
     return (
         <>
@@ -59,7 +58,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         );
                     }}
                     onMouseDown={(e: MouseEvent): void => {
-                        d_color.Visibility.change_visibility(
+                        void d_color.Visibility.change_visibility(
                             {
                                 input,
                                 i,
@@ -69,7 +68,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         );
                     }}
                     onMouseEnter={(e: MouseEvent): void => {
-                        d_color.Visibility.change_visibility(
+                        void d_color.Visibility.change_visibility(
                             {
                                 input,
                                 i,
@@ -79,7 +78,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         );
                     }}
                     onFocus={(e: FocusEvent): void => {
-                        d_color.Visibility.change_visibility(
+                        void d_color.Visibility.change_visibility(
                             {
                                 input,
                                 i,
@@ -98,7 +97,7 @@ export const Visualization: React.FunctionComponent<p_color.Visualization> = obs
                         );
                     }}
                 >
-                    {(globalThis as any)[s_env.Env.type()].msg(`${i}_color_btn_text`)}
+                    {(globalThis as t.AnyRecord)[s_env.Env.type()].msg(`${i}_color_btn_text`)}
                 </button>
                 <c_color.ColorPicker input={input} i={i} visualization_ref={visualization_ref} />
             </span>

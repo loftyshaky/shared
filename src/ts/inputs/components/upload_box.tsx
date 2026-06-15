@@ -1,10 +1,13 @@
-import merge from 'lodash/merge';
-import React, { useEffect, useRef } from 'react';
-import { observer } from 'mobx-react';
+import type { JSX } from 'react';
 
-import { prevent_default, s_env } from 'shared_clean/internal';
+import merge from 'lodash/merge';
+import { observer } from 'mobx-react-lite';
+import { useEffect, useRef } from 'react';
+
+import { c_inputs, d_inputs, type o_inputs, type p_inputs, s_inputs } from 'inputs/internal';
 import { c_tr } from 'shared/internal';
-import { c_inputs, o_inputs, d_inputs, s_inputs, p_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
+import { prevent_default, s_env } from 'shared_clean/internal';
 
 export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((props) => {
     const file_input_ref = useRef<HTMLInputElement>(null);
@@ -50,7 +53,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                 });
                             },
                             onDrop: (e: DragEvent): void => {
-                                d_inputs.UploadBox.upload_files(e, {
+                                void d_inputs.UploadBox.upload_files(e, {
                                     input,
                                 });
                             },
@@ -66,7 +69,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                             multiple={input.multiple}
                             ref={file_input_ref}
                             onChange={(e): void => {
-                                d_inputs.UploadBox.upload_files(e, {
+                                void d_inputs.UploadBox.upload_files(e, {
                                     input,
                                     file_input: file_input_ref.current,
                                 });
@@ -89,7 +92,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                         }),
                                 } as o_inputs.LinkBtn)}
                             />
-                            <span>{` ${(globalThis as any)[s_env.Env.type()].msg('drag_files_msg_text')}`}</span>
+                            <span>{` ${(globalThis as t.AnyRecord)[s_env.Env.type()].msg('drag_files_msg_text')}`}</span>
                         </div>
                         <div
                             className={x.cls([
@@ -98,7 +101,7 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                 input.loading_msg_visibility_cls!(),
                             ])}
                         >
-                            {(globalThis as any)[s_env.Env.type()].msg('loading_msg_text')}
+                            {(globalThis as t.AnyRecord)[s_env.Env.type()].msg('loading_msg_text')}
                         </div>
                         <div
                             className={x.cls([
@@ -107,7 +110,9 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
                                 input.error_msg_visibility_cls!(),
                             ])}
                         >
-                            {(globalThis as any)[s_env.Env.type()].msg('an_error_occured_msg')}
+                            {(globalThis as t.AnyRecord)[s_env.Env.type()].msg(
+                                'an_error_occured_msg',
+                            )}
                         </div>
                     </c_tr.BaseTr>
                 </span>
@@ -122,7 +127,9 @@ export const UploadBox: React.FunctionComponent<p_inputs.UploadBox> = observer((
         <c_inputs.InputItem
             input={input}
             input_w={input_w}
-            include_label={input.label_is_visible_computed!({ include_label: true })}
+            include_label={input.label_is_visible_computed!({
+                include_label: true,
+            })}
         />
     );
 });

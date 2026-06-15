@@ -1,9 +1,10 @@
-@import '../../vars';
-@import '../../mixins';
-@import '../../functions';
-@import '../colors/dark';
-@import 'template';
+@use '../colors/dark';
+@use 'template';
+
+$blue_neon:
+    rgb(0 115 255 / 100%) 0 0 33px,
+    rgb(255 255 255 / 40%) 0 0 10px;
 
 .main_2 {
-    box-shadow: $blue_neon_dark;
+    box-shadow: $blue_neon;
 }

@@ -1,3 +1,5 @@
+@use 'mixins';
+
 .input_error {
-    @include folding_text;
+    @include mixins.folding_text;
 }

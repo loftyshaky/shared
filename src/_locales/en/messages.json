@@ -74,11 +74,29 @@
     "tabs_permission_edge_label_text": {
         "message": "[tabs] Read your browsing history"
     },
+    "tabs_permission_opera_label_text": {
+        "message": "[tabs] Read your browsing history"
+    },
+    "tabs_permission_yandex_label_text": {
+        "message": "[tabs] Read your browsing history"
+    },
+    "tabs_permission_firefox_label_text": {
+        "message": "[tabs] Access browser tabs"
+    },
     "clipboard_read_permission_chrome_label_text": {
         "message": "[clipboardRead] Read data you copy and paste"
     },
     "clipboard_read_permission_edge_label_text": {
         "message": "[clipboardRead] Read data you copy and paste"
+    },
+    "clipboard_read_permission_opera_label_text": {
+        "message": "[clipboardRead] Read data you copy and paste"
+    },
+    "clipboard_read_permission_yandex_label_text": {
+        "message": "[clipboardRead] Read data you copy and paste"
+    },
+    "clipboard_read_permission_firefox_label_text": {
+        "message": "[clipboardRead] Get data from the clipboard"
     },
     "download_back_up_btn_text": {
         "message": "Download back up"
@@ -248,6 +266,12 @@
     "offer_clear_new_tab_edge_link_href": {
         "message": "https://microsoftedge.microsoft.com/addons/detail/ifphophaconbhfmkpdlfldelkjpjmlbj"
     },
+    "offer_clear_new_tab_opera_link_href": {
+        "message": "https://opera.com"
+    },
+    "offer_clear_new_tab_yandex_link_href": {
+        "message": "https://ya.ru"
+    },
     "offer_clear_new_tab_firefox_link_href": {
         "message": "https://addons.mozilla.org/firefox/addon/clear-new-tab"
     },
@@ -257,11 +281,29 @@
     "offer_search_enhancer_for_google_edge_link_href": {
         "message": "https://microsoftedge.microsoft.com/addons/detail/hfbafhkogonfgpkdopodhajncnodbbhd"
     },
+    "offer_search_enhancer_for_google_opera_link_href": {
+        "message": "https://opera.com"
+    },
+    "offer_search_enhancer_for_google_yandex_link_href": {
+        "message": "https://ya.ru"
+    },
+    "offer_search_enhancer_for_google_firefox_link_href": {
+        "message": "https://mozilla.org"
+    },
     "offer_advanced_extension_reloader_chrome_link_href": {
         "message": "https://chromewebstore.google.com/detail/hagknokdofkmojolcpbddjfdjhnjdkae"
     },
     "offer_advanced_extension_reloader_edge_link_href": {
         "message": "https://microsoftedge.microsoft.com/addons/detail/bcpgohifjmmcoiemghdamamlkbcbgifg"
+    },
+    "offer_advanced_extension_reloader_opera_link_href": {
+        "message": "https://opera.com"
+    },
+    "offer_advanced_extension_reloader_yandex_link_href": {
+        "message": "https://ya.ru"
+    },
+    "offer_advanced_extension_reloader_firefox_link_href": {
+        "message": "https://mozilla.org"
     },
     "offer_empty_new_tab_page_chrome_link_href": {
         "message": "https://chromewebstore.google.com/detail/odjfoclbnmllekbhpbgopiiaelcpeimb"
@@ -269,17 +311,44 @@
     "offer_empty_new_tab_page_edge_link_href": {
         "message": "https://microsoftedge.microsoft.com/addons/detail/cbdaoffmmppingmciephekphbcfngkkk"
     },
+    "offer_empty_new_tab_page_opera_link_href": {
+        "message": "https://opera.com"
+    },
+    "offer_empty_new_tab_page_yandex_link_href": {
+        "message": "https://ya.ru"
+    },
+    "offer_empty_new_tab_page_firefox_link_href": {
+        "message": "https://mozilla.org"
+    },
     "offer_scroll_to_top_chrome_link_href": {
         "message": "https://chromewebstore.google.com/detail/obebfhocibioiakindbigklnhhknkcdc"
     },
     "offer_scroll_to_top_edge_link_href": {
         "message": "https://microsoftedge.microsoft.com/addons/detail/cjmbcpckfanombcljcmgnhbdobjblbkk"
     },
+    "offer_scroll_to_top_opera_link_href": {
+        "message": "https://opera.com"
+    },
+    "offer_scroll_to_top_yandex_link_href": {
+        "message": "https://ya.ru"
+    },
+    "offer_scroll_to_top_firefox_link_href": {
+        "message": "https://mozilla.org"
+    },
     "offer_close_other_tabs_plus_chrome_link_href": {
         "message": "https://chromewebstore.google.com/detail/higiahnfphokonkjalljdfgjhafdjbil"
     },
     "offer_close_other_tabs_plus_edge_link_href": {
         "message": "https://microsoftedge.microsoft.com/addons/detail/hlgemamghlognmbmipcoapjgkngbbjko"
+    },
+    "offer_close_other_tabs_plus_opera_link_href": {
+        "message": "https://opera.com"
+    },
+    "offer_close_other_tabs_plus_yandex_link_href": {
+        "message": "https://ya.ru"
+    },
+    "offer_close_other_tabs_plus_firefox_link_href": {
+        "message": "https://mozilla.org"
     },
     "offer_tinkoff_black_link_href": {
         "message": "https://tbank.ru/baf/1HXOQh5Kg3z"

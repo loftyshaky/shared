@@ -1,3 +1,6 @@
+@use 'vars';
+@use 'mixins';
+
 .offers {
     overflow: auto;
     flex-shrink: 0;
@@ -11,7 +14,7 @@
         display: flex;
         justify-content: end;
         order: 1;
-        margin-top: $gap;
+        margin-top: vars.$gap;
 
         .visible {
             position: absolute;
@@ -39,17 +42,17 @@
 
     .offer {
         img {
-            @include border;
+            @include mixins.border;
 
             display: block;
-            margin-right: $main_margin;
+            margin-right: vars.$main_margin;
         }
 
         p {
             margin: 0;
 
             + a {
-                margin-top: $gap_small;
+                margin-top: vars.$gap_small;
                 display: block;
                 width: fit-content;
             }
@@ -60,7 +63,7 @@
         flex-grow: 1;
 
         div {
-            @include outline_solid;
+            @include mixins.outline_solid;
 
             display: inline-block;
             outline-offset: -1px;

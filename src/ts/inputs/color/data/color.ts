@@ -1,11 +1,14 @@
-import { MouseEvent } from 'react';
-import get from 'lodash/get';
-import set from 'lodash/set';
-import isNaN from 'lodash/isNaN';
-import { makeObservable, action } from 'mobx';
+import type { MouseEvent } from 'react';
 
-import { t, s_color, s_env, i_color as i_color_shared_clean } from 'shared_clean/internal';
-import { o_color, d_color, i_color } from 'inputs/internal';
+import get from 'lodash/get';
+import isNaN from 'lodash/isNaN';
+import set from 'lodash/set';
+import { action, makeObservable } from 'mobx';
+
+import type { i_color, o_color } from 'inputs/internal';
+import { d_color } from 'inputs/internal';
+import type { i_color as i_color_shared_clean, t } from 'shared_clean/internal';
+import { s_color, s_env } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -210,9 +213,10 @@ class Class {
         default_colors?: i_color_shared_clean.Color[];
     }): void =>
         err(() => {
-            // eslint-disable-next-line no-alert
             const confirmed_restore: boolean = globalThis.confirm(
-                (globalThis as any)[s_env.Env.type()].msg('restore_default_palette_confirm'),
+                (globalThis as t.AnyRecord)[s_env.Env.type()].msg(
+                    'restore_default_palette_confirm',
+                ),
             );
 
             if (confirmed_restore) {

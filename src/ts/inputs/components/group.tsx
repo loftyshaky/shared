@@ -1,10 +1,12 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import type { JSX } from 'react';
 
-import { c_inputs, d_inputs, s_inputs, o_inputs, p_inputs, i_inputs } from 'inputs/internal';
+import { observer } from 'mobx-react-lite';
+import { Fragment } from 'react';
+
+import { c_inputs, d_inputs, type i_inputs, type p_inputs, s_inputs } from 'inputs/internal';
 
 export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) => {
-    const { input, calculate_width } = props;
+    const { input } = props;
     const include_label: boolean = true;
 
     const input_w: JSX.Element = n(input.inputs) ? (
@@ -15,7 +17,6 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
                         'input_w',
                         'group',
                         input.name,
-                        calculate_width,
                         input.content_is_visible_cls!(),
                     ])}
                     style={{
@@ -23,8 +24,8 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
                     }}
                 >
                     {Object.values(input.inputs).map(
-                        (child_input: i_inputs.InputAndLink, i: number): JSX.Element => (
-                            <React.Fragment key={i}>
+                        (child_input: i_inputs.InputAndLink): JSX.Element => (
+                            <Fragment key={child_input.name}>
                                 {s_inputs.resolve({
                                     input: child_input,
                                     id: d_inputs.LabelInInputItem.id({
@@ -33,7 +34,7 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
                                     calculate_width: input.is_column_layout,
                                     include_label: input.is_column_layout,
                                 })}
-                            </React.Fragment>
+                            </Fragment>
                         ),
                     )}
                 </span>
@@ -42,7 +43,6 @@ export const Group: React.FunctionComponent<p_inputs.Group> = observer((props) =
             {input.include_help ? <c_inputs.Help section_or_input={input} /> : undefined}
         </>
     ) : (
-        // eslint-disable-next-line react/jsx-no-useless-fragment
         <></>
     );
 

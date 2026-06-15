@@ -1,10 +1,8 @@
 import { d_error } from 'error_modules_clean/internal';
-import { t } from 'shared_clean/internal';
-
-declare const globalThis: Global;
+import type { i_error } from 'error_modules_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 globalThis.page = 'front_end';
-
 globalThis.is_node = typeof process !== 'undefined' && process.release.name === 'node';
 
 export const init_page = (): void =>
@@ -20,10 +18,8 @@ globalThis.misplaced_dependency = (culprit_page: string): void =>
             const msg: string = `DEPENDENCIES FROM THE OTHER PAGE ACCIDENTALLY LOADED INTO THIS PAGE!!!\nCULPRIT PAGE: ${culprit_page.toUpperCase()}`;
 
             if (page === 'back_end') {
-                // eslint-disable-next-line no-console
                 console.log(msg);
             } else {
-                // eslint-disable-next-line no-alert
                 alert(msg);
             }
         }
@@ -36,15 +32,13 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     private log_error = (error_obj: Error, error_code: string): void => {
-        // eslint-disable-next-line no-console
         d_error.Error.output(error_obj, error_code);
     };
 
-    [index: string]: any;
+    [index: string]: t.Any;
 
     private origin: string = globalThis.location ? globalThis.location.origin : '';
     public app_root = '';
@@ -56,8 +50,10 @@ class Class {
     public get_app_version = (): string => {
         try {
             return env.version;
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1238');
+        } catch (error_obj: unknown) {
+            if (n(error_obj)) {
+                this.log_error(error_obj as i_error.ErrorObj, 'shr_1238');
+            }
         }
 
         return '';
@@ -66,8 +62,8 @@ class Class {
     public get_app_name = (): string => {
         try {
             return env.name;
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1309');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1309');
         }
 
         return '';
@@ -78,11 +74,10 @@ class Class {
             ? data.settings.prefs.locale
             : 'en';
 
-    private content_dir = (): string => {
+    private content_dir = async (): Promise<string> => {
         try {
             if (globalThis.is_node) {
-                // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
-                const path = require('path');
+                const path = await import('path');
 
                 return path.join(this.app_root, 'public', 'assets');
             }
@@ -92,8 +87,8 @@ class Class {
             }
 
             return '';
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1237');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1237');
         }
 
         return '';
@@ -106,14 +101,14 @@ class Class {
 
                 const set_messages_json = async ({ locale }: { locale: string }): Promise<void> => {
                     try {
+                        const content_dir: string = await this.content_dir();
+
                         if (globalThis.is_node) {
-                            // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
-                            const path = require('path');
-                            // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
-                            const fs = require('fs-extra');
+                            const path = await import('path');
+                            const fs = await import('fs-extra');
 
                             const messages_path: string = path.join(
-                                this.content_dir(),
+                                content_dir,
                                 '_locales',
                                 locale,
                                 'messages.json',
@@ -123,7 +118,7 @@ class Class {
                                 this[`messages_${locale}_json`] = fs.readJSONSync(messages_path);
                             }
                         } else {
-                            const path: string = `${this.content_dir()}/_locales/${locale}/messages.json`;
+                            const path: string = `${content_dir}/_locales/${locale}/messages.json`;
                             const response_head = await fetch(path, { method: 'HEAD' });
 
                             if (response_head.ok) {
@@ -132,8 +127,8 @@ class Class {
                                 this[`messages_${locale}_json`] = await response.json();
                             }
                         }
-                    } catch (error_obj: any) {
-                        this.log_error(error_obj, 'shr_1233');
+                    } catch (error_obj: unknown) {
+                        this.log_error(error_obj as i_error.ErrorObj, 'shr_1233');
                     }
                 };
 
@@ -141,8 +136,8 @@ class Class {
                 await set_messages_json({ locale: 'ru' });
                 await set_messages_json({ locale: 'de' });
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1191');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1191');
         }
 
         return '';
@@ -159,8 +154,10 @@ class Class {
 
             const is_english = user_language.includes('en');
 
-            const en_msgs: any = get_msgs({ user_language: 'en' });
-            const localized_msgs: any = is_english ? undefined : get_msgs({ user_language });
+            const en_msgs: t.AnyRecord = get_msgs({ user_language: 'en' });
+            const localized_msgs: t.AnyRecord | undefined = is_english
+                ? undefined
+                : get_msgs({ user_language });
 
             let msg_2: string | undefined =
                 n(en_msgs[msg]) && n(en_msgs[msg].message) ? en_msgs[msg].message : '';
@@ -173,8 +170,8 @@ class Class {
             }
 
             return n(msg_2) ? msg_2 : '';
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1192');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1192');
         }
 
         return '';
@@ -185,28 +182,27 @@ class Class {
             let env_file_text: string = '';
 
             if (globalThis.is_node) {
-                // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
-                const path = require('path');
-                // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
-                const fs = require('fs-extra');
+                const content_dir: string = await this.content_dir();
+                const path = await import('path');
+                const fs = await import('fs-extra');
 
-                env_file_text = fs.readFileSync(path.join(this.content_dir(), 'env.js'), {
+                env_file_text = fs.readFileSync(path.join(content_dir, 'env.mjs'), {
                     encoding: 'utf8',
                 });
             } else {
-                const response = await fetch(`${this.origin}/env.js`);
+                const response = await fetch(`${this.origin}/env.mjs`);
 
                 env_file_text = await response.text();
             }
 
             globalThis.env = JSON.parse(env_file_text.replace('globalThis.env = ', ''));
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1232');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1232');
         }
     };
 
     public get_input_errors = (
-        errors: any,
+        errors: t.AnyRecord,
         match_rules: {
             field: string;
             rule?: string;
@@ -219,7 +215,7 @@ class Class {
             const input_errors: string[] = [];
 
             if (!errors.success) {
-                errors.messages.errors.forEach((error: any) => {
+                errors.messages.errors.forEach((error: t.AnyRecord) => {
                     match_rules.forEach((match_rule) => {
                         const exclusion_matched: boolean =
                             n(match_rule.rules_exclude) &&
@@ -240,8 +236,8 @@ class Class {
 
                 return input_errors;
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1242');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1242');
         }
 
         return [];

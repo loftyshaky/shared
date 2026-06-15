@@ -1,10 +1,10 @@
 import maxBy from 'lodash/maxBy';
-import { makeObservable, observable, action, runInAction } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
+import type { i_inputs } from 'inputs/internal';
 import { s_css_vars, s_env } from 'shared_clean/internal';
-
-import { i_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -73,8 +73,10 @@ class Class {
         err(() => {
             this.min_width = n(min_width)
                 ? min_width
-                : +(globalThis as any)[s_env.Env.type()].msg('input_min_width_css');
-            this.max_width = +(globalThis as any)[s_env.Env.type()].msg('input_max_width_css');
+                : +(globalThis as t.AnyRecord)[s_env.Env.type()].msg('input_min_width_css');
+            this.max_width = +(globalThis as t.AnyRecord)[s_env.Env.type()].msg(
+                'input_max_width_css',
+            );
         }, 'shr_1239');
 
     public calculate = ({
@@ -162,29 +164,32 @@ class Class {
     }): void =>
         err(() => {
             if (n(textarea)) {
-                const inputs: HTMLElement = x.closest(textarea, '.inputs');
-                const input_item: HTMLElement = x.closest(textarea, '.input_item');
-                const help_btn = sb<HTMLElement>(input_item, '.help_btn');
-                const inputs_width: number = x.get_float_css_val(inputs, 'width');
-                const input_item_margin_left: number = x.get_numeric_css_val(
-                    input_item,
-                    'margin-left',
-                );
-                const help_btn_size: number = parseInt(
-                    s_css_vars.CssVars.get({ name: 'help_btn_size' }),
-                    10,
-                );
-                const help_btn_margin: number = parseInt(
-                    s_css_vars.CssVars.get({ name: 'help_btn_margin' }),
-                    10,
-                );
-                const max_width_help_btn_not_accounted: number =
-                    inputs_width - input_item_margin_left;
-                const max_width: number = n(help_btn)
-                    ? max_width_help_btn_not_accounted - (help_btn_size + help_btn_margin)
-                    : max_width_help_btn_not_accounted;
+                const inputs: HTMLElement | undefined = x.closest(textarea, '.inputs');
+                const input_item: HTMLElement | undefined = x.closest(textarea, '.input_item');
 
-                this.max_width_ob[input.name] = x.px(max_width);
+                if (n(inputs) && n(input_item)) {
+                    const help_btn = sb<HTMLElement>(input_item, '.help_btn');
+                    const inputs_width: number = x.get_float_css_val(inputs, 'width');
+                    const input_item_margin_left: number = x.get_numeric_css_val(
+                        input_item,
+                        'margin-left',
+                    );
+                    const help_btn_size: number = parseInt(
+                        s_css_vars.CssVars.get({ name: 'help_btn_size' }),
+                        10,
+                    );
+                    const help_btn_margin: number = parseInt(
+                        s_css_vars.CssVars.get({ name: 'help_btn_margin' }),
+                        10,
+                    );
+                    const max_width_help_btn_not_accounted: number =
+                        inputs_width - input_item_margin_left;
+                    const max_width: number = n(help_btn)
+                        ? max_width_help_btn_not_accounted - (help_btn_size + help_btn_margin)
+                        : max_width_help_btn_not_accounted;
+
+                    this.max_width_ob[input.name] = x.px(max_width);
+                }
             }
         }, 'shr_1238');
 }

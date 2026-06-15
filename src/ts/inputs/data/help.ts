@@ -1,8 +1,9 @@
-import { makeObservable, action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
-
+import type { i_inputs, o_inputs } from 'inputs/internal';
+import { d_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
 class Class {
     private static instance: Class;
 
@@ -53,15 +54,15 @@ class Class {
     }): string | undefined {
         const msg_env: string = env.env === 'ext' ? 'ext' : 'app';
         const msg: string = n(section_or_input.alt_help_msg)
-            ? (globalThis as any)[msg_env].msg(section_or_input.alt_help_msg) ||
+            ? (globalThis as t.AnyRecord)[msg_env].msg(section_or_input.alt_help_msg) ||
               section_or_input.alt_help_msg
-            : (globalThis as any)[msg_env].msg(`${section_or_input.name}_help_text`);
+            : (globalThis as t.AnyRecord)[msg_env].msg(`${section_or_input.name}_help_text`);
         const regex: RegExp = /@(.*?)@/gm;
         const link_items: RegExpExecArray[] = Array.from(msg.matchAll(regex));
         const links: string[] = link_items.map((link_item: RegExpExecArray): string =>
             err(
                 () =>
-                    `<a class='link help' href='${(globalThis as any)[msg_env].msg(`${link_item[1]}_help_link_href`)}' target='_blank' rel='noopener noreferrer'>${(globalThis as any)[msg_env].msg(`${link_item[1]}_help_link_text`)}</a>`,
+                    `<a class='link help' href='${(globalThis as t.AnyRecord)[msg_env].msg(`${link_item[1]}_help_link_href`)}' target='_blank' rel='noopener noreferrer'>${(globalThis as t.AnyRecord)[msg_env].msg(`${link_item[1]}_help_link_text`)}</a>`,
                 'shr_1313',
             ),
         );

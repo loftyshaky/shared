@@ -1,7 +1,8 @@
 import { computedFn } from 'mobx-utils';
 
+import type { i_inputs } from 'inputs/internal';
 import { s_env } from 'shared_clean/internal';
-import { i_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -39,7 +40,7 @@ class Class {
             ? input.input_errors
                   .reduce(
                       (previous_val, current_val) =>
-                          `${previous_val}\r\n${(globalThis as any)[s_env.Env.type()].msg(`${current_val}_input_error_text`)}`,
+                          `${previous_val}\r\n${(globalThis as t.AnyRecord)[s_env.Env.type()].msg(`${current_val}_input_error_text`)}`,
                       '',
                   )
                   .substring(2)

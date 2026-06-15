@@ -1,12 +1,54 @@
 {
     "name": "@loftyshaky/shared-app",
-    "description": "-",
     "version": "2.2.0",
-    "author": "loftyshaky",
+    "description": "-",
     "license": "MIT",
+    "author": "loftyshaky",
     "repository": {
         "type": "git",
         "url": "https://github.com/loftyshaky/shared.git"
+    },
+    "exports": {
+        "./build/*": {
+            "import": "./build/*.mjs",
+            "require": "./build/*.mjs",
+            "types": "./build/*.d.ts"
+        },
+        "./shared": {
+            "import": "./shared.mjs",
+            "require": "./shared.mjs",
+            "types": "./src/ts/shared.d.ts"
+        },
+        "./shared_clean": {
+            "import": "./shared_clean.mjs",
+            "require": "./shared_clean.mjs",
+            "types": "./src/ts/shared_clean.d.ts"
+        },
+        "./inputs": {
+            "import": "./inputs.mjs",
+            "require": "./inputs.mjs",
+            "types": "./src/ts/inputs.d.ts"
+        },
+        "./settings": {
+            "import": "./settings.mjs",
+            "require": "./settings.mjs",
+            "types": "./src/ts/settings.d.ts"
+        },
+        "./announcement": {
+            "import": "./announcement.mjs",
+            "require": "./announcement.mjs",
+            "types": "./src/ts/announcement.d.ts"
+        },
+        "./dependencies": {
+            "import": "./dependencies.mjs",
+            "require": "./dependencies.mjs",
+            "types": "./src/ts/dependencies.d.ts"
+        },
+        "./app": {
+            "import": "./app.mjs",
+            "require": "./app.mjs",
+            "types": "./src/ts/app.d.ts"
+        }
     },
     "scripts": {
         "pub": "npm publish --access public"

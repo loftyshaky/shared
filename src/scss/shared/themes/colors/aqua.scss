@@ -1,50 +1,55 @@
+@use '../../vars';
+
 $theme_color_ynq: white;
 $theme_color_jqv: rgb(255 255 255 / 0.1%);
 $theme_color_tdh: #67ff5f;
 $theme_color_udj: #ff7eee;
-$htc: $theme_color_ynq;
-$tbn: $glass_color;
-$gaq: #efefef;
-$gqb: linear-gradient(128deg, #1072d1 0%, #17909b 100%);
-$hfb: transparent;
-$gvb: rgb(255 255 255 / 36%);
-$npw: rgb(255 255 255 / 20%);
-$hcx: $theme_color_jqv;
-$hev: #bbb;
-$hyn: rgb(255 255 255 / 50%);
-$fxm: rgb(255 255 255 / 37.5%);
-$nur: rgb(255 255 255 / 20.8%);
-$yuv: rgb(255 255 255 / 60%);
-$vqo: $theme_color_jqv;
-$lpe: $theme_color_ynq;
-$rbp: $black;
-$tgp: $theme_color_ynq;
-$mdc: #b1b1b1; // Input placeholder
-$yos: #9e61ef; // Pagination button
-$nep: #90efff; // Button active (color picker)
-$htm: #ff974d; // Task (scheduler)
-$qgp: #49b344; // Button hover
-$hyv: #89ff84; // Button hover (color picker; scheduler; custom HTML/CSS/JS)
-$ycp: #fbff12; // Link normal
-$iub: #2e8cff; // Link normal (color picker) / Drop zone (scheduler)
-$cop: $theme_color_tdh; // Link hover
-$yun: #14bf0a; // Link hover (color picker) / text input data is valid (color picker)
-$ptn: #ff98f1; // Link visited
-$dwk: #d046e9; // Input focus (color picker)
-$uzf: #ffae9e; // Link click
-$hap: #f15f41; // Link click (color picker; scheduler; custom HTML/CSS/JS)
-$rqb: #ff5f66; // Text input data is in a warn state (outline)
-$thm: #ff9ea3; // Text input data is in warn state (error message)
-$suc: #d0111a; // [Clear New Tab] Text input data is in a warn state (outline; scheduler)
-$pxd: #fff900; // Section button selected indicator selected / [Clear New Tab] Background outline
-$ksu: $theme_color_tdh; // Section button selected indicator hover / Text input data is valid
-$upd: $theme_color_udj; // Tab key input outline
-$fpw: $theme_color_udj; // [Clear New Tab] Background focus outline
-$dfp: #0079ef; // Loading screen
-$pgs: $theme_color_ynq; // Side button svg
-$tdu: rgb(219 0 11 / 50%); // Side button inactive
-$hyp: rgb(13 255 0 / 40%); // Side button active
-$dlf: rgb(0 43 255 / 38%); // Icon button
-$nqp: rgb(255 84 169 / 99%); // Text selection
-$hgb: rgb(255 77 85 / 99%); // [Clear New Tab] Screen help text selection (custom HTML/CSS/JS)
-$beu: rgb(255 255 255 / 75%); // upload screen background
+
+:root {
+    --htc: #{$theme_color_ynq};
+    --gaq: #efefef;
+    --tbn: #{vars.$glass_color};
+    --gqb: linear-gradient(128deg, #1072d1 0%, #17909b 100%);
+    --hfb: transparent;
+    --gvb: rgb(255 255 255 / 36%);
+    --npw: rgb(255 255 255 / 20%);
+    --hcx: #{$theme_color_jqv};
+    --hev: #bbb;
+    --hyn: rgb(255 255 255 / 50%);
+    --fxm: rgb(255 255 255 / 37.5%);
+    --nur: rgb(255 255 255 / 20.8%);
+    --yuv: rgb(255 255 255 / 60%);
+    --vqo: #{$theme_color_jqv};
+    --lpe: #{$theme_color_ynq};
+    --rbp: #{vars.$black};
+    --tgp: #{$theme_color_ynq};
+    --mdc: #b1b1b1;
+    --yos: #9e61ef;
+    --nep: #90efff;
+    --htm: #ff974d;
+    --qgp: #49b344;
+    --hyv: #89ff84;
+    --ycp: #fbff12;
+    --iub: #2e8cff;
+    --cop: #{$theme_color_tdh};
+    --yun: #14bf0a;
+    --ptn: #ff98f1;
+    --dwk: #d046e9;
+    --uzf: #ffae9e;
+    --hap: #f15f41;
+    --rqb: #ff5f66;
+    --thm: #ff9ea3;
+    --suc: #d0111a;
+    --pxd: #fff900;
+    --ksu: #{$theme_color_tdh};
+    --upd: #{$theme_color_udj};
+    --fpw: #{$theme_color_udj};
+    --dfp: #0079ef;
+    --pgs: #{$theme_color_ynq};
+    --tdu: rgb(219 0 11 / 50%);
+    --hyp: rgb(13 255 0 / 40%);
+    --dlf: rgb(0 43 255 / 38%);
+    --nqp: rgb(255 84 169 / 99%);
+    --hgb: rgb(255 77 85 / 99%);
+    --beu: rgb(255 255 255 / 75%);
+}

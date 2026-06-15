@@ -1,4 +1,4 @@
-import { o_color } from 'inputs/internal';
+import type { o_color } from 'inputs/internal';
 
 export interface Body {
     input: o_color.Color;

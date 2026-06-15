@@ -1,6 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { observer } from 'mobx-react';
-import { c_inputs, d_inputs, s_inputs, p_inputs } from 'inputs/internal';
+import type { InputEvent, JSX } from 'react';
+
+import { observer } from 'mobx-react-lite';
+import { useEffect, useRef } from 'react';
+
+import { c_inputs, d_inputs, type p_inputs, s_inputs } from 'inputs/internal';
 
 export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((props) => {
     const textarea_ref = useRef<HTMLTextAreaElement>(null);
@@ -18,7 +21,10 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
             }),
         );
 
-        s_inputs.Textarea.set_up_resize_observer({ input, input_el: textarea_ref.current });
+        s_inputs.Textarea.set_up_resize_observer({
+            input,
+            input_el: textarea_ref.current,
+        });
     }, [input]);
 
     const input_w: JSX.Element = (
@@ -47,7 +53,7 @@ export const Textarea: React.FunctionComponent<p_inputs.Textarea> = observer((pr
                         spellCheck='false'
                         tabIndex={input.tab_index!()}
                         ref={textarea_ref}
-                        onInput={async (e): Promise<void> => {
+                        onInput={async (e: InputEvent): Promise<void> => {
                             await d_inputs.Val.text_and_textarea_on_input({ input }, e);
                         }}
                         onFocus={(): void => {

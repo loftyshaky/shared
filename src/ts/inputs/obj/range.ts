@@ -1,6 +1,6 @@
 import { computedFn } from 'mobx-utils';
 
-import { o_inputs, d_inputs } from 'inputs/internal';
+import { d_inputs, o_inputs } from 'inputs/internal';
 
 export class Range extends o_inputs.InputBase {
     public type? = 'range' as const;

@@ -1,12 +1,9 @@
-import reject_lodash from 'lodash/reject';
 import debounce from 'lodash/debounce';
+import reject_lodash from 'lodash/reject';
 import throttle from 'lodash/throttle';
 
-import { t } from 'shared_clean/internal';
+import type { t } from 'shared_clean/internal';
 
-declare const globalThis: Global & Window;
-
-// eslint-disable-next-line no-console
 globalThis.l = console.log.bind(console);
 
 // > undefined/null check
@@ -50,7 +47,7 @@ globalThis.rnb = <T1>(variable: T1): number =>
         'shr_1144',
     ); // resolve number boolean
 
-globalThis.ru = <T1>(variable: T1): any | undefined =>
+globalThis.ru = <T1>(variable: T1): t.Any =>
     err(() => (n(variable) ? shared.resolve_variable(variable) : undefined), 'shr_1145'); // resolve undefined
 // < undefined/null check
 
@@ -112,7 +109,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public in_service_worker: boolean = typeof document === 'undefined';
@@ -267,7 +263,7 @@ class Class {
             arr.splice(to, 0, arr.splice(from, 1)[0] as t.AnyArray);
         }, 'shr_1166');
 
-    public insert_item = (position: number, items: t.AnyArray, arr: t.AnyArray): any[] =>
+    public insert_item = (position: number, items: t.AnyArray, arr: t.AnyArray): t.Any[] =>
         err(() => [...arr.slice(0, position), ...items, ...arr.slice(position)], 'shr_1216');
 
     public remove_item = (i: number, arr: t.AnyArray): void =>
@@ -285,7 +281,7 @@ class Class {
         err(() => {
             const one = (el: HTMLElement): void =>
                 err(() => {
-                    if (n(el.addEventListener)) {
+                    if (typeof el.addEventListener === 'function') {
                         el.addEventListener(event, f);
                     }
                 }, 'shr_1168');
@@ -357,14 +353,20 @@ class Class {
             return new_style;
         }, 'shr_1171');
 
-    public get_css_val = (el: HTMLElement, key: string): string =>
-        err(() => globalThis.getComputedStyle(el).getPropertyValue(key), 'shr_1172');
+    public get_css_val = (el: HTMLElement | undefined, key: string): string =>
+        err(() => (n(el) ? globalThis.getComputedStyle(el).getPropertyValue(key) : ''), 'shr_1172');
 
-    public get_numeric_css_val = (el: HTMLElement, key: string): number =>
-        err(() => parseInt(globalThis.getComputedStyle(el).getPropertyValue(key), 10), 'shr_1173');
+    public get_numeric_css_val = (el: HTMLElement | undefined, key: string): number =>
+        err(
+            () => parseInt(n(el) ? globalThis.getComputedStyle(el).getPropertyValue(key) : '', 10),
+            'shr_1173',
+        );
 
-    public get_float_css_val = (el: HTMLElement, key: string): number =>
-        err(() => parseFloat(globalThis.getComputedStyle(el).getPropertyValue(key)), 'shr_1174');
+    public get_float_css_val = (el: HTMLElement | undefined, key: string): number =>
+        err(
+            () => parseFloat(n(el) ? globalThis.getComputedStyle(el).getPropertyValue(key) : ''),
+            'shr_1174',
+        );
 
     public str_is_number = (val: string): boolean =>
         err(() => /^\d+$|^\d+\.\d+$/.test(val), 'shr_1175');
@@ -380,11 +382,7 @@ class Class {
 
     public id = (): string =>
         err(() => {
-            const crypto: Crypto = n(globalThis.crypto)
-                ? globalThis.crypto
-                : // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports
-                  require('crypto').webcrypto;
-            const uint32 = crypto.getRandomValues(new Uint32Array(1))[0];
+            const uint32 = globalThis.crypto.getRandomValues(new Uint32Array(1))[0];
 
             return Array.from(uint32.toString(16))
                 .map((char: string): string => (this.rand_bool() ? char.toUpperCase() : char))
@@ -464,7 +462,7 @@ class Class {
             let offset = 0;
 
             for (let i = 0; i < size; i += 1) {
-                chunks[i] = str[n(str.substr) ? 'substr' : 'substring'](offset, len);
+                chunks[i] = str.substring(offset, offset + len);
                 offset += len;
             }
 
@@ -529,7 +527,7 @@ class Class {
             document.title += this.invisible_chars;
         }, 'shr_1188');
 
-    public async_debounce<T extends (...args: any[]) => Promise<any>>(
+    public async_debounce<T extends (...args: t.Any[]) => Promise<t.Any>>(
         f: T,
         wait: number,
         options: {
@@ -539,7 +537,7 @@ class Class {
         } = {},
     ): (...args: Parameters<T>) => Promise<ReturnType<T>> {
         const resolve_list: Array<(value: ReturnType<T> | PromiseLike<ReturnType<T>>) => void> = [];
-        let reject_list: Array<(reason?: any) => void> = [];
+        let reject_list: Array<(reason?: t.Any) => void> = [];
 
         const debounced = debounce(
             (...args: Parameters<T>) => {
@@ -565,14 +563,14 @@ class Class {
             });
     }
 
-    public async_throttle<F extends (...args: any[]) => Promise<any>>(
+    public async_throttle<F extends (...args: t.Any[]) => Promise<t.Any>>(
         f: F,
         wait: number,
         options: { leading?: boolean; trailing?: boolean } = {},
     ): (...args: Parameters<F>) => Promise<ReturnType<F>> {
         const throttled_f = throttle(
             (resolve, reject, ...args: Parameters<F>) => {
-                f(...args)
+                void f(...args)
                     .then(resolve)
                     .catch(reject);
             },
@@ -632,7 +630,6 @@ class Class {
         }, 'shr_1294');
 
     public pastel_color = (): string =>
-        // eslint-disable-next-line no-bitwise
         err(() => `hsl(${~~(360 * Math.random())} 70% 80%)`, 'shr_1262');
 
     public found_old_settings = (): boolean =>
@@ -659,6 +656,43 @@ class Class {
 
             return first_letter_uppercase;
         }, 'shr_1305');
+
+    public to_plain = (obj: t.Any): t.Any => {
+        if (obj === null || typeof obj !== 'object') {
+            return obj;
+        }
+
+        if (Array.isArray(obj)) {
+            return obj.map((item) => this.to_plain(item));
+        }
+
+        const plain: t.Any = {};
+        const all_keys: string[] = [...Object.keys(obj), ...Object.getOwnPropertyNames(obj)].filter(
+            (v, i, a) => a.indexOf(v) === i,
+        );
+
+        for (const key of all_keys) {
+            if (key !== '$mobx' && key !== 'constructor' && typeof obj[key] !== 'function') {
+                try {
+                    plain[key] = this.to_plain(obj[key]);
+                } catch {}
+            }
+        }
+
+        return plain;
+    };
+
+    public time_test = () => {
+        const now = new Date();
+
+        return `${now.getHours().toString().padStart(2, '0')}:${now
+            .getMinutes()
+            .toString()
+            .padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}.${now
+            .getMilliseconds()
+            .toString()
+            .padStart(3, '0')}`;
+    };
 }
 
 export const X = Class.get_instance();

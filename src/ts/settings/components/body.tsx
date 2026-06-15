@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
-import { observer } from 'mobx-react';
+import type { JSX } from 'react';
 
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
+
+import { c_inputs, d_color, type o_inputs, s_color } from 'inputs/internal';
+import { d_sections, type p_settings } from 'settings/internal';
 import { c_app_version, c_offers, d_offers } from 'shared/internal';
-import { c_inputs, o_inputs, d_color, s_color } from 'inputs/internal';
-import { d_sections, p_settings } from 'settings/internal';
 
 export const Body: React.FunctionComponent<p_settings.Body> = observer((props) => {
     const {
@@ -29,26 +31,24 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
         <>
             <div className='main_2 settings'>
                 <div className='section_btns'>
-                    {Object.values(sections).map(
-                        (section: o_inputs.Section, i: number): JSX.Element => {
-                            const enable_developer_mode_save_callback_final =
-                                d_sections.Sections.enable_developer_mode_save_callback({
-                                    section,
-                                    enable_developer_mode_save_callback,
-                                });
+                    {Object.values(sections).map((section: o_inputs.Section): JSX.Element => {
+                        const enable_developer_mode_save_callback_final =
+                            d_sections.Sections.enable_developer_mode_save_callback({
+                                section,
+                                enable_developer_mode_save_callback,
+                            });
 
-                            return (
-                                <c_inputs.SectionBtn
-                                    key={i}
-                                    section={section}
-                                    change_section_callback={change_section_callback}
-                                    enable_developer_mode_save_callback={
-                                        enable_developer_mode_save_callback_final
-                                    }
-                                />
-                            );
-                        },
-                    )}
+                        return (
+                            <c_inputs.SectionBtn
+                                key={section.name}
+                                section={section}
+                                change_section_callback={change_section_callback}
+                                enable_developer_mode_save_callback={
+                                    enable_developer_mode_save_callback_final
+                                }
+                            />
+                        );
+                    })}
                     <div className='filler' />
                 </div>
                 <div className='sections_and_offers'>
@@ -60,8 +60,8 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
                     ) : undefined}
                     <div className='sections' onScroll={s_color.Position.set}>
                         {Object.values(sections).map(
-                            (section: o_inputs.Section, i: number): JSX.Element => (
-                                <c_inputs.Section key={i} section={section} />
+                            (section: o_inputs.Section): JSX.Element => (
+                                <c_inputs.Section key={section.name} section={section} />
                             ),
                         )}
                     </div>

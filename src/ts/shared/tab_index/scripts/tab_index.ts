@@ -1,7 +1,8 @@
-import { MouseEvent, KeyboardEvent } from 'react';
+import type { KeyboardEvent, MouseEvent } from 'react';
 
-import { i_tab_index } from 'shared/internal';
-import { o_color, d_color, i_color } from 'inputs/internal';
+import type { i_color, o_color } from 'inputs/internal';
+import { d_color } from 'inputs/internal';
+import type { i_tab_index } from 'shared/internal';
 
 class Class {
     private static instance: Class;
@@ -106,7 +107,7 @@ class Class {
 
             const call_change_visibility = (): void =>
                 err(() => {
-                    d_color.Visibility.change_visibility(
+                    void d_color.Visibility.change_visibility(
                         {
                             input,
                             i,

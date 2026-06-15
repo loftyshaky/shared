@@ -1,7 +1,9 @@
+import type { t } from 'shared_clean/internal';
+
 export class TransformItem {
     public old_key?: string;
     public new_key?: string;
-    public new_val?: any;
+    public new_val?: t.Any;
     public update_existing_val?: boolean = false;
     public create_property_if_it_doesnt_exist?: boolean = true;
 

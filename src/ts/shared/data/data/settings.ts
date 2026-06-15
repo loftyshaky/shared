@@ -1,7 +1,8 @@
 import { runInAction, toJS } from 'mobx';
 
-import { d_data as d_data_shared_clean } from 'shared_clean/internal';
 import { d_data } from 'shared/internal';
+import type { t } from 'shared_clean/internal';
+import { d_data as d_data_shared_clean } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -10,10 +11,9 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
-    public set = ({ settings }: { settings?: any }): Promise<void> =>
+    public set = ({ settings }: { settings?: t.AnyRecord }): Promise<void> =>
         err_async(
             async () =>
                 d_data_shared_clean.Settings.set({
@@ -23,16 +23,22 @@ class Class {
             'shr_1365',
         );
 
-    public set_from_storage = (): Promise<any> =>
-        err_async(
-            async () =>
-                d_data_shared_clean.Settings.set_from_storage({
+    public set_from_storage = ({
+        settings,
+    }: {
+        settings?: t.AnyRecord;
+    } = {}): Promise<t.AnyRecord | undefined> =>
+        err_async(async () => {
+            if (n(settings)) {
+                await this.set({ settings });
+            } else {
+                return d_data_shared_clean.Settings.set_from_storage({
                     to_js: toJS,
                     run_in_action: runInAction,
                     set_data: d_data.Cache.set_data,
-                }),
-            'shr_1235',
-        );
+                });
+            }
+        }, 'shr_1235');
 }
 
 export const Settings = Class.get_instance();

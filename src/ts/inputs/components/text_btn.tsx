@@ -1,7 +1,6 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
-import { d_inputs, p_inputs } from 'inputs/internal';
+import { d_inputs, type p_inputs } from 'inputs/internal';
 
 export const TextBtn: React.FunctionComponent<p_inputs.TextBtn> = observer((props) => {
     const { input, name, Svg, on_click } = props;

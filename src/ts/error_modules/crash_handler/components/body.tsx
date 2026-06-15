@@ -1,37 +1,25 @@
-import React, { ReactNode } from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
+import { d_crash_handler, type p_crash_handler, s_crash_handler } from 'error_modules/internal';
+import type { t } from 'shared_clean/internal';
 import { s_env } from 'shared_clean/internal';
-import { d_crash_handler, s_crash_handler, p_crash_handler } from 'error_modules/internal';
 
-export const Body = observer(
-    class Body extends React.Component<p_crash_handler.Body> {
-        public static getDerivedStateFromError(): any {
-            d_crash_handler.Visibility.show_reload_ui_screen();
-        }
+const Body = observer(({ children }: p_crash_handler.Body) => {
+    if (d_crash_handler.Visibility.page_is_crashed) {
+        return (
+            <div className='reload_ui_btn_w'>
+                <button
+                    className={x.cls(['btn', 'reload_ui'])}
+                    type='button'
+                    onClick={s_crash_handler.Page.reload}
+                >
+                    {(globalThis as t.AnyRecord)[s_env.Env.type()].msg('reload_ui_btn_text')}
+                </button>
+            </div>
+        );
+    }
 
-        public componentDidCatch(err_obj: Error): void {
-            show_err_ribbon(err_obj, 'shr_1000', { error_msg_key: 'cant_render_ui' });
-        }
+    return <>{children}</>;
+});
 
-        public render(): JSX.Element | ReactNode {
-            if (d_crash_handler.Visibility.page_is_crashed) {
-                return (
-                    <div className='reload_ui_btn_w'>
-                        <button
-                            className={x.cls(['btn', 'reload_ui'])}
-                            type='button'
-                            onClick={s_crash_handler.Page.reload}
-                        >
-                            {(globalThis as any)[s_env.Env.type()].msg('reload_ui_btn_text')}
-                        </button>
-                    </div>
-                );
-            }
-
-            const { children } = this.props;
-
-            return children;
-        }
-    },
-);
+export { Body };

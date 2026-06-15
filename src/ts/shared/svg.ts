@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-
 import Check from '../../svg/check.svg';
 import Close from '../../svg/close.svg';
 import Help from '../../svg/help.svg';

@@ -1,23 +1,26 @@
+@use 'vars';
+@use 'mixins';
+
 .link_btn_w {
-    @include btn;
+    @include mixins.btn;
 
     display: block;
 
     .link_btn {
-        display: block;
+        display: flex;
     }
 }
 
 .palette {
     .link_btn_w.hide {
-        margin-top: $gap_small;
+        margin-top: vars.$gap_small;
     }
 
     .link_btn {
-        font-size: $font_small;
+        font-size: vars.$font_small;
     }
 }
 
 .palette_link_btns .link_btn_w {
-    margin-bottom: $gap;
+    margin-bottom: vars.$gap;
 }

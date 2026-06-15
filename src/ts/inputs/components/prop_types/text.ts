@@ -1,4 +1,4 @@
-import { o_inputs } from 'inputs/internal';
+import type { o_inputs } from 'inputs/internal';
 
 export interface Text {
     input: o_inputs.Text;

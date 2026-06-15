@@ -1,7 +1,8 @@
 import { action } from 'mobx';
 
+import type { o_inputs } from 'inputs/internal';
 import { s_env } from 'shared_clean/internal';
-import { o_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -10,13 +11,12 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     private set_placeholder_text = action(
         ({ input, msg_key }: { input: o_inputs.Text; msg_key: string }): void =>
             err(() => {
-                input.placeholder = (globalThis as any)[s_env.Env.type()].msg(msg_key);
+                input.placeholder = (globalThis as t.AnyRecord)[s_env.Env.type()].msg(msg_key);
             }, 'shr_1203'),
     );
 

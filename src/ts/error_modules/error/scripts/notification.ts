@@ -1,4 +1,5 @@
-import { d_error, i_error } from 'error_modules_clean/internal';
+import type { i_error } from 'error_modules_clean/internal';
+import { d_error } from 'error_modules_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -7,7 +8,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public show = ({
@@ -31,9 +31,9 @@ class Class {
             });
         }, 'shr_1253');
 
-    public show_unable_to_access_settings_error = async ({
+    public show_unable_to_access_settings_error = ({
         is_fullscreen = true,
-    }: i_error.ShowUnableToAccessSettingsError = {}): Promise<void> => {
+    }: i_error.ShowUnableToAccessSettingsError = {}): void => {
         if (!x.prefs_are_filled()) {
             show_notification({
                 error_msg_key: 'unable_to_access_settings_error',

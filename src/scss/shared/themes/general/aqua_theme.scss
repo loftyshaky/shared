@@ -1,9 +1,7 @@
-@import '../../vars';
-@import '../../mixins';
-@import '../../functions';
-@import '../colors/aqua';
-@import 'template';
+@use '../../mixins';
+@use '../colors/aqua';
+@use 'template';
 
 body .main_2.settings {
-    @include glass;
+    @include mixins.glass;
 }

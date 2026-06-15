@@ -1,5 +1,7 @@
+@use 'mixins';
+
 body::before {
-    @include full_spread;
+    @include mixins.full_spread;
 
     content: '';
     position: fixed;

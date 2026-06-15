@@ -1,17 +1,16 @@
-@import 'normalize.css';
-@import '../all';
-@import '../vars';
-@import '../mixins';
-@import '../transitions';
-@import '../mods';
-@import '../crash_handler';
+@use 'normalize.css';
+@use '../all';
+@use '../mixins';
+@use '../transitions';
+@use '../mods';
+@use '../crash_handler';
 
 $svg_size: 110px;
 $window_mode_svg_size: 64px;
 
 .main {
-    @include full_spread;
-    @include max_z_index;
+    @include mixins.full_spread;
+    @include mixins.max_z_index;
 
     position: fixed;
     top: 0;
@@ -23,7 +22,7 @@ $window_mode_svg_size: 64px;
 }
 
 svg {
-    @include center_translate;
+    @include mixins.center_translate;
 
     position: absolute;
     height: $svg_size;

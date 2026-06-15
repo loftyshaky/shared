@@ -1,3 +1,5 @@
+@use '../shared/mixins';
+
 .section_btns {
     flex-shrink: 0;
     display: flex;
@@ -11,7 +13,7 @@
     }
 
     .section_btn {
-        @include input_basic;
+        @include mixins.input_basic;
 
         position: relative;
         text-align: left;

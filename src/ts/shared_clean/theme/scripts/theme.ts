@@ -1,4 +1,5 @@
-import { t, s_no_tr } from 'shared_clean/internal';
+import type { t } from 'shared_clean/internal';
+import { s_no_tr } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -7,7 +8,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public set = ({

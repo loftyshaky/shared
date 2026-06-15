@@ -1,4 +1,5 @@
 import { s_env } from 'shared_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -7,7 +8,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public get = (): string =>
@@ -26,7 +26,9 @@ class Class {
             const title_el = s<HTMLTitleElement>('title');
 
             if (n(title_el)) {
-                const title = (globalThis as any)[s_env.Env.type()].msg(`${page}_title_text`);
+                const title = (globalThis as t.AnyRecord)[s_env.Env.type()].msg(
+                    `${page}_title_text`,
+                );
 
                 title_el.textContent =
                     page === 'announcement' ? `${we.runtime.getManifest().name} - ${title}` : title;

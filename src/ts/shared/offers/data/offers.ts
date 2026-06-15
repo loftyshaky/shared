@@ -1,9 +1,11 @@
 import isEmpty from 'lodash/isEmpty';
 import union from 'lodash/union';
-import { makeObservable, observable, computed, action } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
+import type { i_offers, o_offers } from 'shared/internal';
+import { s_offers } from 'shared/internal';
+import type { t } from 'shared_clean/internal';
 import { s_env } from 'shared_clean/internal';
-import { o_offers, s_offers, i_offers } from 'shared/internal';
 
 class Class {
     private static instance: Class;
@@ -100,6 +102,9 @@ class Class {
             const ui_language =
                 env.env === 'ext' ? we.i18n.getUILanguage() : data.settings.prefs.locale;
 
+            const this_offer_is_not_allowed_for_this_browser: boolean = (
+                offer.browsers_blacklist as string[]
+            ).some((browser: string): boolean => err(() => browser === env.browser, 'shr_1338'));
             const this_offer_is_whitelisted_for_this_ui_language: boolean =
                 offer.countries_whitelist === 'all' ||
                 (offer.countries_whitelist as string[]).some((country: string): boolean =>
@@ -120,6 +125,7 @@ class Class {
                 );
 
             const is_all_or_current_type_offer =
+                !this_offer_is_not_allowed_for_this_browser &&
                 this_offer_is_whitelisted_for_this_ui_language &&
                 this_offer_is_not_blacklisted_for_this_ui_language &&
                 this_offer_is_allowed_for_this_browser &&
@@ -149,7 +155,7 @@ class Class {
 
     private get_offer_text_raw = ({ name }: { name: string | undefined }): string =>
         err(() => {
-            const offer_text_raw: string = (globalThis as any)[s_env.Env.type()].msg(
+            const offer_text_raw: string = (globalThis as t.AnyRecord)[s_env.Env.type()].msg(
                 `offer_${name}_text`,
             );
 
@@ -161,10 +167,10 @@ class Class {
             const offer_text_raw: string = this.get_offer_text_raw({
                 name: this.offers_of_type[this.current_offer_i].name,
             });
-            const offer_link: string = (globalThis as any)[s_env.Env.type()].msg(
+            const offer_link: string = (globalThis as t.AnyRecord)[s_env.Env.type()].msg(
                 `offer_${this.offers_of_type[this.current_offer_i].name}_link_href`,
             );
-            const offer_link_browser: string = (globalThis as any)[s_env.Env.type()].msg(
+            const offer_link_browser: string = (globalThis as t.AnyRecord)[s_env.Env.type()].msg(
                 `offer_${this.offers_of_type[this.current_offer_i].name}_${env.browser}_link_href`,
             );
             const offer_link_final: string =
@@ -204,7 +210,7 @@ class Class {
     public get current_offer_banner_link(): string {
         const offer: o_offers.Offer = this.offers_of_type[this.current_offer_i];
 
-        return (globalThis as any)[s_env.Env.type()].msg(`offer_${offer.name}_link_href`);
+        return (globalThis as t.AnyRecord)[s_env.Env.type()].msg(`offer_${offer.name}_link_href`);
     }
 
     public get current_offer_no(): number {

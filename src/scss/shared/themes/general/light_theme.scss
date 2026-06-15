@@ -1,8 +1,9 @@
-@import '../../vars';
-@import '../../mixins';
-@import '../../functions';
-@import '../colors/light';
-@import 'template';
+@use '../colors/light';
+@use 'template';
+
+$black_shadow:
+    rgb(0 0 0 / 30%) 0 0 30px,
+    rgb(0 0 0 / 30%) 0 4px 8px;
 
 .main_2 {
     box-shadow: $black_shadow;

@@ -1,8 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { observer } from 'mobx-react';
+import type { JSX } from 'react';
 
-import { svg, s_tab_index } from 'shared/internal';
-import { d_inputs, c_inputs, p_inputs } from 'inputs/internal';
+import { observer } from 'mobx-react-lite';
+import { useEffect, useRef, useState } from 'react';
+
+import { c_inputs, d_inputs, type p_inputs } from 'inputs/internal';
+import { s_tab_index, svg } from 'shared/internal';
 
 export const Checkbox: React.FunctionComponent<p_inputs.Checkbox> = observer((props) => {
     const { input, id, calculate_width } = props;
@@ -32,7 +34,6 @@ export const Checkbox: React.FunctionComponent<p_inputs.Checkbox> = observer((pr
                     style={{ width }}
                     ref={input_w_ref}
                 >
-                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <label className='wrap_label'>
                         <input
                             id={d_inputs.LabelInInputItem.id({ input, id })}

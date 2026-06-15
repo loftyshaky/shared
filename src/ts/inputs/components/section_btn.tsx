@@ -1,7 +1,6 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
-import { d_inputs, p_inputs } from 'inputs/internal';
+import { d_inputs, type p_inputs } from 'inputs/internal';
 import { d_developer_mode, d_sections } from 'settings/internal';
 
 export const SectionBtn: React.FunctionComponent<p_inputs.SectionBtn> = observer((props) => {
@@ -23,7 +22,7 @@ export const SectionBtn: React.FunctionComponent<p_inputs.SectionBtn> = observer
                 });
 
                 if (n(enable_developer_mode_save_callback)) {
-                    d_developer_mode.DeveloperMode.enable({
+                    void d_developer_mode.DeveloperMode.enable({
                         save_callback: enable_developer_mode_save_callback,
                     });
                 }

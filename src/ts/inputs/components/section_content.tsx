@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
-import { observer } from 'mobx-react';
+import type { JSX } from 'react';
 
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
+import { Fragment } from 'react';
+
+import { c_inputs, type i_inputs, o_inputs, type p_inputs, s_inputs } from 'inputs/internal';
 import { c_offers, c_tr } from 'shared/internal';
-import { c_inputs, s_inputs, o_inputs, p_inputs, i_inputs } from 'inputs/internal';
 
 export const SectionContent: React.FunctionComponent<p_inputs.SectionContent> = observer(
     (props) => {
@@ -10,7 +13,7 @@ export const SectionContent: React.FunctionComponent<p_inputs.SectionContent> = 
 
         useEffect(() => {
             if (n(section) && n(section.set_content_is_visible)) {
-                section.set_content_is_visible();
+                void section.set_content_is_visible();
             }
         }, [section]);
 
@@ -43,22 +46,18 @@ export const SectionContent: React.FunctionComponent<p_inputs.SectionContent> = 
             n(section) && section.include_offers ? (
                 <c_offers.Body is_visible offer_banner_type={section.offer_banner_type} />
             ) : (
-                // eslint-disable-next-line react/jsx-no-useless-fragment
                 <></>
             );
 
         const InputsAndOffers = (): JSX.Element =>
             inputs.length === 0 ? (
-                // eslint-disable-next-line react/jsx-no-useless-fragment
                 <Offers />
             ) : (
                 <>
                     <div className='inputs'>
                         {Object.values(inputs).map(
                             (input: i_inputs.Input | o_inputs.Link): JSX.Element => (
-                                <React.Fragment key={input.id}>
-                                    {s_inputs.resolve({ input })}
-                                </React.Fragment>
+                                <Fragment key={input.id}>{s_inputs.resolve({ input })}</Fragment>
                             ),
                         )}
                     </div>

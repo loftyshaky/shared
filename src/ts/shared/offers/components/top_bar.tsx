@@ -1,5 +1,4 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
 import { c_offers, d_offers } from 'shared/internal';
 
@@ -20,7 +19,6 @@ export const TopBar: React.FunctionComponent = observer(() =>
             </span>
         </div>
     ) : (
-        // eslint-disable-next-line react/jsx-no-useless-fragment
         <></>
     ),
 );

@@ -1,9 +1,12 @@
-.close_btn {
-    @include btn;
+@use 'vars';
+@use 'mixins';
 
-    margin-top: $ext_name_offset;
-    margin-right: $ext_name_offset;
-    margin-left: $gap;
+.close_btn {
+    @include mixins.btn;
+
+    margin-top: vars.$ext_name_offset;
+    margin-right: vars.$ext_name_offset;
+    margin-left: vars.$gap;
 
     &:focus {
         outline-offset: 2px;

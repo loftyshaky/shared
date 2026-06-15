@@ -1,8 +1,10 @@
-import { makeObservable, action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t, s_env } from 'shared_clean/internal';
-import { d_inputs, i_inputs, o_inputs } from 'inputs/internal';
+import type { i_inputs, o_inputs } from 'inputs/internal';
+import { d_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
+import { s_env } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -20,7 +22,7 @@ class Class {
     msg? = computedFn(function ({ input }: { input: i_inputs.Input }): string | undefined {
         return (
             input.alt_msg ||
-            (globalThis as any)[s_env.Env.type()].msg(`${input.name}_label_text`) ||
+            (globalThis as t.AnyRecord)[s_env.Env.type()].msg(`${input.name}_label_text`) ||
             x.underscore_to_readable(input.name)
         );
     });

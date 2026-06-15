@@ -1,4 +1,4 @@
-import { o_inputs } from 'inputs/internal';
+import type { o_inputs } from 'inputs/internal';
 
 export interface Range {
     input: o_inputs.Range;

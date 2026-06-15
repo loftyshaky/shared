@@ -1,29 +1,33 @@
-$icon_btn_size: 20px;
+@use 'vars';
+@use 'mixins';
+
+$side_btn_height: vars.$input_height + (vars.$border_width * 2);
 
 .btn {
-    @include btn;
+    @include mixins.btn;
 
     position: relative;
 
     &.side_btn {
         svg {
-            @include text_btn_svg;
+            @include mixins.text_btn_svg;
         }
     }
 }
 
 .btn.text {
-    @include border_transparent;
-    @include outline_solid;
+    padding: 0 vars.$input_inner_padding;
 
+    @include mixins.border_transparent;
+    @include mixins.outline_solid;
+
+    height: vars.$input_height;
     border-radius: 0;
-    height: $input_height;
-    padding: 0 $input_inner_padding;
     display: table;
     box-sizing: border-box;
 
     &:not(:first-child) {
-        margin-top: $gap;
+        margin-top: vars.$gap;
     }
 
     &.color_ok_btn {
@@ -32,16 +36,16 @@ $icon_btn_size: 20px;
 }
 
 .btn_w {
-    @include border_transparent;
+    @include mixins.border_transparent;
 
     display: table;
 
     &:not(:first-child) {
-        margin-top: $gap;
+        margin-top: vars.$gap;
     }
 
     .shadow {
-        @include full_spread;
+        @include mixins.full_spread;
 
         position: absolute;
     }
@@ -53,13 +57,13 @@ $icon_btn_size: 20px;
         background-color: transparent;
 
         &:not(:first-child) {
-            margin-left: $gap !important;
+            margin-left: vars.$gap !important;
         }
 
         svg {
             display: block;
-            width: $icon_btn_size;
-            height: $icon_btn_size;
+            width: vars.$icon_btn_size;
+            height: vars.$icon_btn_size;
         }
     }
 
@@ -75,7 +79,7 @@ $icon_btn_size: 20px;
     justify-content: center;
     width: $side_btn_height;
     height: $side_btn_height;
-    margin-right: $gap;
+    margin-right: vars.$gap;
 }
 
 .icon_btn .btn {

@@ -1,5 +1,3 @@
-declare const globalThis: Global;
-
 globalThis.is_ext =
     // @ts-expect-error no types
     typeof browser !== 'undefined' ||

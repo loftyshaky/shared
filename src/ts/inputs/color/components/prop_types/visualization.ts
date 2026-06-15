@@ -1,4 +1,4 @@
-import { o_color, i_color } from 'inputs/internal';
+import type { i_color, o_color } from 'inputs/internal';
 
 export interface Visualization {
     input: o_color.Color;

@@ -1,33 +1,21 @@
-$scrollbar_width: 17px;
 $font_main: 17px;
 $font_big: 24px;
 $font_small: 13px;
 $gap: 10px;
 $gap_small: 4px;
 $border_width: 1px;
+$border_width_thick: 2px;
 $input_height: 28px;
-$color_input_height: $input_height + ($border_width * 4) - 2;
+$input_height_with_border: 28px + ($border_width * 2);
+$icon_btn_size: 20px;
 $input_content_gap: 8px;
 $input_inner_padding: 7px;
-$input_content_gap_2: $input_content_gap - ($border_width * 2);
 $main_margin: 16px;
 $ext_name_offset: 7px;
 $main_margin_2: $main_margin * 2;
 $main_margin_4: $main_margin * 4;
-$side_btn_height: $input_height + ($border_width * 2);
 $black: #212121;
 $yellow: #fbff75;
 $light_orange: #fff7c7;
 $blue: #3892ff;
-$black_shadow:
-    rgb(0 0 0 / 30%) 0 0 30px,
-    rgb(0 0 0 / 30%) 0 4px 8px;
-$black_shadow_2: 0 20px 30px rgb(0 0 0 / 20%);
-$blue_neon_dark:
-    rgb(0 115 255 / 100%) 0 0 33px,
-    rgb(255 255 255 / 40%) 0 0 10px;
-$blue_neon_very_dark:
-    rgb(0 102 255 / 85%) 0 0 36px,
-    rgb(255 255 255 / 40%) 0 0 10px;
 $glass_color: rgb(255 255 255 / 20%);
-$glass_blur: blur(8px);

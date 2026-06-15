@@ -1,6 +1,6 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import { d_inputs, p_inputs } from 'inputs/internal';
+import { observer } from 'mobx-react-lite';
+
+import { d_inputs, type p_inputs } from 'inputs/internal';
 
 export const SideBtn: React.FunctionComponent<p_inputs.SideBtn> = observer((props) => {
     const { input, name, alt_title, Svg, on_click } = props;

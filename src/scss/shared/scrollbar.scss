@@ -1,3 +1,6 @@
+@use 'vars';
+@use 'mixins';
+
 $thumb_border_left: 5px solid transparent;
 $thumb_border_right: 4px solid transparent;
 
@@ -11,16 +14,16 @@ $thumb_border_right: 4px solid transparent;
     }
 
     &::-webkit-resizer {
-        @include border_top;
-        @include border_left;
+        @include mixins.border_top;
+        @include mixins.border_left;
     }
 
     &::-webkit-scrollbar-track:vertical {
-        @include border_left;
+        @include mixins.border_left;
     }
 
     &::-webkit-scrollbar-track:horizontal {
-        @include border_top;
+        @include mixins.border_top;
     }
 
     &::-webkit-scrollbar-thumb:vertical {

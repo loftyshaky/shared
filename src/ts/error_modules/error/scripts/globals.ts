@@ -1,7 +1,7 @@
-import { d_error as d_error_clean, i_error } from 'error_modules_clean/internal';
-import { s_error, d_error } from 'error_modules/internal';
-
-declare const globalThis: Global;
+import { d_error, s_error } from 'error_modules/internal';
+import type { i_error } from 'error_modules_clean/internal';
+import { d_error as d_error_clean } from 'error_modules_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 globalThis.show_err_ribbon = (
     error_obj: i_error.ErrorObj | undefined,
@@ -73,20 +73,22 @@ globalThis.err = <T1>(
         is_fullscreen = false,
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
-): any => {
+): t.Any => {
     try {
         return f();
-    } catch (error_obj: any) {
-        d_error.Error.show(error_obj, error_code, {
-            error_msg_key,
-            alt_msg,
-            silent,
-            persistent,
-            exit,
-            hide_delay,
-            is_fullscreen,
-            prevent_subsequent_errors,
-        });
+    } catch (error_obj: unknown) {
+        if (n(error_obj)) {
+            d_error.Error.show(error_obj as i_error.ErrorObj, error_code, {
+                error_msg_key,
+                alt_msg,
+                silent,
+                persistent,
+                exit,
+                hide_delay,
+                is_fullscreen,
+                prevent_subsequent_errors,
+            });
+        }
     }
 
     return undefined;
@@ -105,20 +107,22 @@ globalThis.err_async = async <T1>(
         is_fullscreen = false,
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
-): Promise<any> => {
+): Promise<t.Any> => {
     try {
         return await f();
-    } catch (error_obj: any) {
-        d_error.Error.show(error_obj, error_code, {
-            error_msg_key,
-            alt_msg,
-            silent,
-            persistent,
-            exit,
-            hide_delay,
-            is_fullscreen,
-            prevent_subsequent_errors,
-        });
+    } catch (error_obj: unknown) {
+        if (n(error_obj)) {
+            d_error.Error.show(error_obj as i_error.ErrorObj, error_code, {
+                error_msg_key,
+                alt_msg,
+                silent,
+                persistent,
+                exit,
+                hide_delay,
+                is_fullscreen,
+                prevent_subsequent_errors,
+            });
+        }
     }
 
     return undefined;

@@ -1,9 +1,7 @@
-@import '../../vars';
-@import '../../mixins';
-@import '../../functions';
-@import '../colors/ruby';
-@import 'template';
+@use '../../mixins';
+@use '../colors/ruby';
+@use 'template';
 
 body .main_2.settings {
-    @include glass;
+    @include mixins.glass;
 }

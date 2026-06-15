@@ -1,7 +1,6 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
-import { p_inputs } from 'inputs/internal';
+import type { p_inputs } from 'inputs/internal';
 
 export const Link: React.FunctionComponent<p_inputs.Link> = observer((props) => {
     const { link } = props;

@@ -1,6 +1,7 @@
-import React from 'react';
+import type { JSX } from 'react';
 
-import { c_inputs, c_color, o_inputs, o_color, i_inputs } from 'inputs/internal';
+import type { i_inputs, o_color, o_inputs } from 'inputs/internal';
+import { c_color, c_inputs } from 'inputs/internal';
 
 export const resolve = ({
     input,

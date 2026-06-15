@@ -1,7 +1,7 @@
-import { makeObservable, action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { o_inputs, i_inputs } from 'inputs/internal';
+import type { i_inputs, o_inputs } from 'inputs/internal';
 
 class Class {
     private static instance: Class;
@@ -26,7 +26,7 @@ class Class {
         if (n(input.side_btns)) {
             const side_btn_2: i_inputs.SideBtn | undefined = input.side_btns.find(
                 (side_btn: i_inputs.SideBtn): boolean =>
-                    err(() => side_btn.name === name, 'cnt_4637'),
+                    err(() => side_btn.name === name, 'shr_1337'),
             );
 
             if (n(side_btn_2) && n(side_btn_2.is_enabled_cond)) {
@@ -45,7 +45,7 @@ class Class {
             input: i_inputs.Input;
             el?: HTMLElement | null;
         },
-        e?: TransitionEvent | undefined,
+        e?: TransitionEvent,
     ): void =>
         err(() => {
             if (n(el) || n(e)) {
@@ -73,8 +73,12 @@ class Class {
                         };
                     }, 'shr_1311');
 
-                const target = n(e) ? e.target : el;
-                const input_item: HTMLElement = x.closest(n(el) ? el : target, '.input_item');
+                const el_final = n(el) ? el : undefined;
+                const target = n(e) ? e.target : el_final;
+                const input_item: HTMLElement | undefined = x.closest(
+                    n(el) ? el : (target as HTMLElement),
+                    '.input_item',
+                );
                 const input_error_css_vals = get_el_css_vals({ el_classname: 'input_error' });
                 const help_css_vals = get_el_css_vals({ el_classname: 'help' });
 
@@ -88,7 +92,7 @@ class Class {
         }: {
             section_or_input: i_inputs.Input | o_inputs.Section;
         },
-        e?: TransitionEvent | undefined,
+        e?: TransitionEvent,
     ): void =>
         err(() => {
             if ('section' in section_or_input && !section_or_input.help_is_visible) {

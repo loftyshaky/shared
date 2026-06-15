@@ -1,6 +1,6 @@
 import { makeObservable, observable, runInAction } from 'mobx';
 
-import { t } from 'shared_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

@@ -1,8 +1,8 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 
-import { s_env } from 'shared_clean/internal';
 import { d_error } from 'error_modules/internal';
+import { s_env } from 'shared_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 export const Msg: React.FunctionComponent = observer(() => (
     <div className='msg'>
@@ -16,7 +16,7 @@ export const Msg: React.FunctionComponent = observer(() => (
                         d_error.Msg.change_visibility_of_advanced_msg({ is_visible: true })
                     }
                 >
-                    {(globalThis as any)[s_env.Env.type()].msg('error_more_info_btn_text')}
+                    {(globalThis as t.AnyRecord)[s_env.Env.type()].msg('error_more_info_btn_text')}
                 </button>
                 <div className={d_error.Msg.advanced_msg_is_visible_cls}>
                     {d_error.Msg.advanced_msg}

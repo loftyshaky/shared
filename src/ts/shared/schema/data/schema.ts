@@ -1,6 +1,8 @@
 import { runInAction } from 'mobx';
 
-import { d_schema, o_schema } from 'shared_clean/internal';
+import type { o_schema } from 'shared_clean/internal';
+import { d_schema } from 'shared_clean/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -16,12 +18,12 @@ class Class {
         keys_to_remove = [],
         force = false,
     }: {
-        data_obj: any;
-        version: number;
+        data_obj: t.AnyRecord;
+        version: string;
         transform_items: o_schema.TransformItem[];
         keys_to_remove?: string[];
         force?: boolean;
-    }): Promise<any> =>
+    }): Promise<t.AnyRecord> =>
         err_async(
             async () =>
                 d_schema.Schema.transform({

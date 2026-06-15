@@ -1,7 +1,7 @@
-import { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 
-import { t } from 'shared_clean/internal';
-import { o_inputs } from 'inputs/internal';
+import type { o_inputs } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -10,12 +10,11 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public download = ({
         data_obj,
-        part_i = 0,
+        part_i,
     }: {
         data_obj: t.AnyRecord | string;
         part_i: number | 'none';
@@ -28,8 +27,7 @@ class Class {
                 },
             );
             const app_name: string = env.env === 'ext' ? we.runtime.getManifest().name : 'App';
-            const locale: string =
-                env.env === 'ext' ? ext.msg('@@ui_locale') : (ext as any).get_language();
+            const locale: string = env.env === 'ext' ? ext.msg('@@ui_locale') : app.get_language();
 
             const a = document.createElement('a');
             x.append(document.body, a);
@@ -40,6 +38,11 @@ class Class {
                 { hour12: locale === 'en_US' },
             )}${part_i === 'none' ? '' : ` Part ${part_i + 1}`}.json`;
             a.click();
+
+            setTimeout(() => {
+                URL.revokeObjectURL(a.href);
+            }, 5000);
+
             x.remove(a);
         }, 'shr_1075');
 
@@ -63,8 +66,8 @@ class Class {
         err_async(
             async () => {
                 const data_objs: t.AnyRecord[] = [];
-                // eslint-disable-next-line no-restricted-syntax
-                for await (const blob of Array.from((e.target as HTMLInputElement).files!)) {
+
+                for (const blob of Array.from((e.target as HTMLInputElement).files!)) {
                     const back_up_file_input = s<HTMLInputElement>('.file.back_up');
 
                     if (n(back_up_file_input)) {
@@ -81,14 +84,14 @@ class Class {
                 }
 
                 if (n(input.save_callback)) {
-                    await input.save_callback({ data_objs });
+                    input.save_callback({ data_objs });
                 }
             },
             'shr_1077',
             { error_msg_key: 'invalid_file_type_back_up' },
         );
 
-    private read = ({ blob }: { blob: Blob }): Promise<string | unknown> =>
+    public read = ({ blob }: { blob: Blob }): Promise<unknown> =>
         err_async(async () => {
             const reader = new FileReader();
 

@@ -1,14 +1,21 @@
-import React, { useEffect, useRef } from 'react';
-import { runInAction } from 'mobx';
-import { observer } from 'mobx-react';
+import type { JSX } from 'react';
 
-import { s_env } from 'shared_clean/internal';
+import { runInAction } from 'mobx';
+import { observer } from 'mobx-react-lite';
+import { useEffect, useRef } from 'react';
+
+import { c_color, c_inputs, d_color, o_inputs, type p_color } from 'inputs/internal';
 import { c_tr } from 'shared/internal';
-import { c_inputs, c_color, o_inputs, d_color, p_color } from 'inputs/internal';
+import type { t } from 'shared_clean/internal';
+import { s_env } from 'shared_clean/internal';
 
 export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
     const { input } = props;
     const palette_ref = useRef<HTMLDivElement>(null);
+
+    void input.palette_is_visible;
+    // oxlint-disable-next-line no-unused-expressions
+    n(input.state) && input.state.main;
 
     useEffect(() =>
         err(() => {
@@ -22,11 +29,6 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
             );
         }, 'shr_1002'),
     );
-
-    // eslint-disable-next-line no-unused-expressions
-    input.palette_is_visible;
-    // eslint-disable-next-line no-unused-expressions
-    n(input.state) && input.state.main;
 
     const input_w: JSX.Element = (
         <>
@@ -70,7 +72,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                     tr_end_unactive={[d_color.Visibility.hide_color_help_tr_end]}
                                 >
                                     <p className='color_help'>
-                                        {(globalThis as any)[s_env.Env.type()].msg(
+                                        {(globalThis as t.AnyRecord)[s_env.Env.type()].msg(
                                             'color_help_text',
                                         )}
                                     </p>
@@ -118,6 +120,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                         ? data.settings.prefs.colors.map(
                                               (color: string, i: number): JSX.Element => (
                                                   <c_color.Visualization
+                                                      // oxlint-disable-next-line react/no-array-index-key (the amount of colors button never change)
                                                       key={i}
                                                       input={input}
                                                       i={i}
@@ -138,7 +141,7 @@ export const Body: React.FunctionComponent<p_color.Body> = observer((props) => {
                                                         i: 'main',
                                                         input,
                                                         callback: (): void => {
-                                                            input.event_callback({
+                                                            void input.event_callback({
                                                                 input,
                                                                 i: 'main',
                                                             });

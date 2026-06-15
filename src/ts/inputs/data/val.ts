@@ -1,11 +1,13 @@
+import type { InputEvent, KeyboardEvent, SyntheticEvent } from 'react';
+
 import get from 'lodash/get';
 import set from 'lodash/set';
-import { SyntheticEvent, FormEvent, KeyboardEvent } from 'react';
-import { makeObservable, observable, action, runInAction } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t, i_data } from 'shared_clean/internal';
-import { o_inputs, d_inputs, i_inputs } from 'inputs/internal';
+import type { i_inputs, o_inputs } from 'inputs/internal';
+import { d_inputs } from 'inputs/internal';
+import type { i_data, t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -121,7 +123,7 @@ class Class {
                 });
             }
 
-            input.event_callback({ input });
+            void input.event_callback({ input });
         }, 'shr_1065');
 
     public set = action(
@@ -165,7 +167,7 @@ class Class {
                     }
 
                     if (n((input as o_inputs.Text).remove_val_callback)) {
-                        await (input as o_inputs.Text).remove_val_callback!({ input });
+                        (input as o_inputs.Text).remove_val_callback!({ input });
                     }
 
                     await d_inputs.Val.set_warn_state({ input });
@@ -190,12 +192,12 @@ class Class {
         {
             input,
             parent_input,
-        }: { input: i_inputs.Input; parent_input: i_inputs.Input | undefined },
-        e: FormEvent,
+        }: { input: i_inputs.Input; parent_input?: i_inputs.Input | undefined },
+        e: InputEvent,
     ): Promise<void> =>
         err_async(async () => {
             if (!n(parent_input) || (n(parent_input) && !n(parent_input.label_val))) {
-                await d_inputs.Val.change(
+                d_inputs.Val.change(
                     {
                         input,
                     },
@@ -204,7 +206,7 @@ class Class {
 
                 await d_inputs.Val.set_warn_state({ input });
             } else if (n(input.edit_label_val)) {
-                input.edit_label_val({ parent_input }, e as any);
+                input.edit_label_val({ parent_input }, e);
             }
         }, 'shr_1254');
 

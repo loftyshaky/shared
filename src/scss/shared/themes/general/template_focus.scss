@@ -3,22 +3,22 @@
 .input_item {
     .input_w {
         &.is_in_focus_state:not(.select)::before {
-            outline-color: $ksu;
+            outline-color: var(--ksu);
         }
 
         &.is_in_warn_state:not(.select)::before,
         &.is_in_warn_state.upload_box {
-            outline-color: $rqb;
+            outline-color: var(--rqb);
         }
     }
 
     .visualization_w.opened .visualization {
-        outline-color: $pxd;
+        outline-color: var(--pxd);
     }
 
     .palette_visualization_w.opened .palette_visualization,
     .palette_visualization_w.selected .palette_visualization {
-        outline-color: $iub;
+        outline-color: var(--iub);
     }
 }
 
@@ -33,34 +33,34 @@ body.keyboard .btn.text:focus,
 .keyboard .input_item .input_w:not(.text, .textarea).is_in_focus_state::before,
 .keyboard .input_item.range .input.is_in_focus_state,
 .keyboard .input_item .visualization_w .visualization:focus {
-    outline-color: $upd;
+    outline-color: var(--upd);
 }
 
 .keyboard .input_item.color .btn.text:focus {
-    outline-color: $dwk;
+    outline-color: var(--dwk);
 }
 
 .keyboard .input_item .palette_visualization_w .palette_visualization:focus {
-    outline-color: $dwk;
+    outline-color: var(--dwk);
 }
 
 .keyboard .input_item .pcr-palette:focus,
 .keyboard .input_item .pcr-slider:focus,
 .keyboard .input_item .pcr-picker:focus,
 .keyboard .input_item .color_picker_w input:not(.pcr-result):focus {
-    outline-color: $dwk !important;
+    outline-color: var(--dwk) !important;
 }
 
 .input_item .pcr-result:focus {
-    outline-color: $yun !important;
+    outline-color: var(--yun) !important;
 }
 
 .keyboard .input_item .pcr-result:focus {
-    outline-color: $dwk !important;
+    outline-color: var(--dwk) !important;
 }
 
 .keyboard .section_btn:not(.selected):focus {
     box-shadow:
-        inset 0 0 0 2px $upd,
-        inset -2px 0 0 0 $upd;
+        inset 0 0 0 2px var(--upd),
+        inset -2px 0 0 0 var(--upd);
 }

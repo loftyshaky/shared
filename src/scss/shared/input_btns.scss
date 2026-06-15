@@ -1,12 +1,17 @@
+@use 'vars';
+@use 'mixins';
+
+$input_content_gap_2: vars.$input_content_gap - (vars.$border_width * 2);
+
 .btn {
     &.text_input {
-        @include btn;
+        @include mixins.btn;
 
         position: relative;
         padding: $input_content_gap_2 $input_content_gap_2 $input_content_gap_2 0;
 
         svg {
-            @include text_btn_svg;
+            @include mixins.text_btn_svg;
         }
     }
 }

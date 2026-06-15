@@ -1,34 +1,37 @@
+@use 'vars';
+@use 'mixins';
+
 .reload_ui_btn_w {
-    @include full_spread;
-    @include center_flex;
+    @include mixins.full_spread;
+    @include mixins.center_flex;
 
     position: fixed;
     visibility: hidden;
 
     .btn {
-        @include btn;
-        @include outline_solid;
+        @include mixins.btn;
+        @include mixins.outline_solid;
 
-        outline-color: $black;
+        outline-color: vars.$black;
         visibility: visible;
-        color: $black;
-        background-color: $light_orange;
+        color: vars.$black;
+        background-color: vars.$light_orange;
         padding: 6px 12px;
         width: max-content;
         font-size: 21px;
 
         &:hover {
-            background-color: $blue;
+            background-color: vars.$blue;
             color: white;
         }
 
         &:active {
-            background-color: $yellow;
-            color: $black;
+            background-color: vars.$yellow;
+            color: vars.$black;
         }
 
         &:focus {
-            @include outline_solid_thick;
+            @include mixins.outline_solid_thick;
 
             outline-color: #293fe2;
         }

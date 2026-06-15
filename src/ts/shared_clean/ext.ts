@@ -1,17 +1,19 @@
 // Allowing send_msg functions to throw errors (red) makes extension freeze when sending message to tab without onMessage event listrener!
 // Not using err/err_async because it causes infinite loop in content script and freezing when you disable/reload extension!
 
+import 'webextension-polyfill';
+
+import type { Tabs, Windows } from 'webextension-polyfill';
+
 import isEmpty from 'lodash/isEmpty';
 import merge from 'lodash/merge';
 import unset from 'lodash/unset';
-import browser, { Windows, Tabs } from 'webextension-polyfill';
 
 import { d_error } from 'error_modules_clean/internal';
-import { t } from 'shared_clean/internal';
+import type { i_error } from 'error_modules_clean/internal';
+import type { t } from 'shared_clean/internal';
 
-declare const globalThis: Global;
-
-globalThis.we = browser;
+globalThis.we = (globalThis as t.AnyRecord).browser;
 
 export const init_page = (): void =>
     err(() => {
@@ -32,10 +34,8 @@ globalThis.misplaced_dependency = (culprit_page: string): void =>
                 culprit_page.toUpperCase();
 
             if (page === 'background') {
-                // eslint-disable-next-line no-console
                 console.log(msg);
             } else {
-                // eslint-disable-next-line no-alert
                 alert(msg);
             }
         }
@@ -48,7 +48,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     private force_local_storage: boolean = false;
@@ -56,7 +55,7 @@ class Class {
 
     public only_cache = [];
 
-    private remove_only_cache = (data: any): void => {
+    private remove_only_cache = (data: t.AnyRecord): void => {
         this.only_cache.forEach((item: string): void => {
             unset(data, item);
         });
@@ -65,7 +64,6 @@ class Class {
     public ext_context_invalidated = () => !we.runtime?.id;
 
     private log_error = (error_obj: Error, error_code: string): void => {
-        // eslint-disable-next-line no-console
         d_error.Error.output(error_obj, error_code);
     };
 
@@ -74,8 +72,8 @@ class Class {
             if (!this.ext_context_invalidated()) {
                 return we.runtime.getManifest().version;
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1095');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1095');
         }
 
         return '';
@@ -86,8 +84,8 @@ class Class {
             if (!this.ext_context_invalidated()) {
                 return we.runtime.getManifest().name;
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1277');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1277');
         }
 
         return '';
@@ -111,8 +109,8 @@ class Class {
                     }
                 });
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1096');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1096');
         }
     };
 
@@ -120,12 +118,14 @@ class Class {
         try {
             if (!this.ext_context_invalidated()) {
                 const msg_2: string | undefined =
-                    n(we.i18n) && n(we.i18n.getMessage) ? we.i18n.getMessage(msg) : '';
+                    n(we.i18n) && n(we.i18n.getMessage.bind(we.i18n))
+                        ? we.i18n.getMessage(msg)
+                        : '';
 
                 return n(msg_2) ? msg_2 : '';
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1097');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1097');
         }
 
         return '';
@@ -141,8 +141,8 @@ class Class {
 
                 return tabs[0];
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1098');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1098');
         }
 
         return undefined;
@@ -153,20 +153,20 @@ class Class {
             if (!this.ext_context_invalidated()) {
                 await we.runtime.sendMessage(msg);
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1099');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1099');
         }
     };
 
-    public send_msg_resp = async (msg: t.Msg): Promise<any> => {
+    public send_msg_resp = async (msg: t.Msg): Promise<unknown> => {
         try {
             if (!this.ext_context_invalidated()) {
                 const response = await we.runtime.sendMessage(msg);
 
                 return response;
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1100');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1100');
         }
 
         return undefined;
@@ -177,20 +177,20 @@ class Class {
             if (!this.ext_context_invalidated()) {
                 await we.tabs.sendMessage(id, msg);
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1101');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1101');
         }
     };
 
-    public send_msg_to_tab_resp = async (id: number, msg: t.Msg): Promise<any> => {
+    public send_msg_to_tab_resp = async (id: number, msg: t.Msg): Promise<unknown> => {
         try {
             if (!this.ext_context_invalidated()) {
                 const response = await we.tabs.sendMessage(id, msg);
 
                 return response;
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1102');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1102');
         }
 
         return undefined;
@@ -205,12 +205,14 @@ class Class {
                     await this.send_msg_to_tab(tab.id, msg);
                 }
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1103');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1103');
         }
     };
 
-    public send_msg_to_active_tab_resp = async (msg: t.Msg): Promise<any> => {
+    public send_msg_to_active_tab_resp = async (
+        msg: t.Msg,
+    ): Promise<t.AnyRecord | string | number | undefined | void> => {
         try {
             if (!this.ext_context_invalidated()) {
                 const tab: Tabs.Tab | undefined = await this.get_active_tab();
@@ -219,8 +221,8 @@ class Class {
                     return this.send_msg_to_tab(tab.id, msg);
                 }
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1104');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1104');
         }
 
         return undefined;
@@ -234,25 +236,28 @@ class Class {
                         if (n(tab.id)) {
                             await this.send_msg_to_tab(tab.id, msg);
                         }
-                    } catch (error_obj: any) {
-                        this.log_error(error_obj, 'shr_1105');
+                    } catch (error_obj: unknown) {
+                        this.log_error(error_obj as i_error.ErrorObj, 'shr_1105');
                     }
                 });
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1106');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1106');
         }
     };
 
     public force_local_storage_f = () => {
         try {
             this.force_local_storage = true;
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1283');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1283');
         }
     };
 
-    public storage_get = async (keys?: string | string[], set: boolean = false): Promise<any> => {
+    public storage_get = async (
+        keys?: string | string[],
+        set: boolean = false,
+    ): Promise<t.AnyRecord | undefined> => {
         try {
             if (!this.ext_context_invalidated()) {
                 this.updating_storage = true;
@@ -273,8 +278,8 @@ class Class {
                                 await we.storage.sync.set(data_local);
                                 await we.storage.local.clear();
                             }
-                        } catch (error_obj: any) {
-                            this.log_error(error_obj, 'shr_1259');
+                        } catch (error_obj: unknown) {
+                            this.log_error(error_obj as i_error.ErrorObj, 'shr_1259');
                         }
                     }, 'shr_1295');
 
@@ -288,8 +293,8 @@ class Class {
 
                 return data_local;
             }
-        } catch (error_obj: any) {
-            this.log_error(error_obj, 'shr_1107');
+        } catch (error_obj: unknown) {
+            this.log_error(error_obj as i_error.ErrorObj, 'shr_1107');
         }
 
         return undefined;
@@ -322,8 +327,8 @@ class Class {
             } else {
                 try {
                     await set_data(false);
-                } catch (error_obj: any) {
-                    this.log_error(error_obj, 'shr_1268');
+                } catch (error_obj: unknown) {
+                    this.log_error(error_obj as i_error.ErrorObj, 'shr_1268');
 
                     await set_data(true);
                 }
@@ -359,40 +364,44 @@ class Class {
                                 '\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b', // I insert these invisible characters with x.insert_invisible_chars_in_title() in title to check if I've already injected the script
                             );
 
-                        const result = await (we as any).scripting.executeScript({
-                            function: already_injected_script_func,
+                        const result = await we.scripting.executeScript({
+                            func: already_injected_script_func,
                             target: { tabId: tab.id },
                         });
 
-                        const already_injected_script: boolean = result[0].result;
+                        const already_injected_script: unknown = result[0].result;
 
                         if (!already_injected_script) {
                             js_file_paths.forEach((file_path: string): void => {
                                 try {
-                                    (we as any).scripting.executeScript({
-                                        target: { tabId: tab.id },
-                                        files: [file_path],
-                                    });
-                                } catch (error_obj: any) {
-                                    this.log_error(error_obj, 'shr_1108');
+                                    if (n(tab.id)) {
+                                        void we.scripting.executeScript({
+                                            target: { tabId: tab.id },
+                                            files: [file_path],
+                                        });
+                                    }
+                                } catch (error_obj: unknown) {
+                                    this.log_error(error_obj as i_error.ErrorObj, 'shr_1108');
                                 }
                             });
 
                             css_file_paths.forEach((file_path: string): void => {
                                 try {
-                                    (we as any).scripting.insertCSS({
-                                        target: { tabId: tab.id },
-                                        files: [file_path],
-                                    });
-                                } catch (error_obj: any) {
-                                    this.log_error(error_obj, 'shr_1109');
+                                    if (n(tab.id)) {
+                                        void we.scripting.insertCSS({
+                                            target: { tabId: tab.id },
+                                            files: [file_path],
+                                        });
+                                    }
+                                } catch (error_obj: unknown) {
+                                    this.log_error(error_obj as i_error.ErrorObj, 'shr_1109');
                                 }
                             });
                         }
                     }
                 }
-            } catch (error_obj: any) {
-                this.log_error(error_obj, 'shr_1110');
+            } catch (error_obj: unknown) {
+                this.log_error(error_obj as i_error.ErrorObj, 'shr_1110');
             }
         });
     };

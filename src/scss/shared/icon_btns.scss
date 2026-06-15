@@ -1,12 +1,15 @@
+@use 'vars';
+@use 'mixins';
+
 .btn_w.icon_btn {
-    @include btn;
+    @include mixins.btn;
 
     display: flex;
     align-items: center;
     cursor: pointer;
 
     .label_in_input_item_w {
-        margin-left: $gap;
+        margin-left: vars.$gap;
 
         .label_in_input_item {
             cursor: pointer;

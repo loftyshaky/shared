@@ -1,4 +1,5 @@
-import { o_inputs, i_inputs } from 'inputs/internal';
+import type { i_inputs } from 'inputs/internal';
+import { o_inputs } from 'inputs/internal';
 
 export class Form extends o_inputs.InputBase {
     public type? = 'form' as const;

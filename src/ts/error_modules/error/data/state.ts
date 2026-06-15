@@ -1,7 +1,7 @@
-import { makeObservable, observable, computed, action } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
-import { i_error } from 'error_modules_clean/internal';
 import { d_error } from 'error_modules/internal';
+import type { i_error } from 'error_modules_clean/internal';
 
 class Class {
     private static instance: Class;

@@ -68,11 +68,29 @@
     "tabs_permission_edge_label_text": {
         "message": "[tabs] Чтение вашего журнала браузера"
     },
+    "tabs_permission_opera_label_text": {
+        "message": "[tabs] Просмотр истории посещений"
+    },
+    "tabs_permission_yandex_label_text": {
+        "message": "[tabs] Чтение истории просмотров"
+    },
+    "tabs_permission_firefox_label_text": {
+        "message": "[tabs] Доступ ко вкладкам браузера"
+    },
     "clipboard_read_permission_chrome_label_text": {
         "message": "[clipboardRead] Доступ к копируемым и вставляемым данным"
     },
     "clipboard_read_permission_edge_label_text": {
         "message": "[clipboardRead] Чтение данных, которые вы копируете и вставляете"
+    },
+    "clipboard_read_permission_opera_label_text": {
+        "message": "[clipboardRead] Доступ к данным буфера обмена"
+    },
+    "clipboard_read_permission_yandex_label_text": {
+        "message": "[clipboardRead] Доступ к копируемым и вставляемым данным"
+    },
+    "clipboard_read_permission_firefox_label_text": {
+        "message": "[clipboardRead] Получение данных из буфера обмена"
     },
     "download_back_up_btn_text": {
         "message": "Скачать резервную копию"

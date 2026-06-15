@@ -1,10 +1,11 @@
-import { makeObservable, observable, action } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t } from 'shared_clean/internal';
-import { d_offers } from 'shared/internal';
-import { o_inputs, d_inputs, d_color, i_inputs } from 'inputs/internal';
+import type { i_inputs } from 'inputs/internal';
+import { d_color, d_inputs, o_inputs } from 'inputs/internal';
 import { s_sections } from 'settings/internal';
+import { d_offers } from 'shared/internal';
+import type { t } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -112,22 +113,24 @@ class Class {
         download_back_up_callback,
         download_back_up_final_callback,
         upload_back_up_callback,
+        upload_back_up_save_callback,
         restore_defaults_callback,
         input_change_val_callback,
         admin_inputs = [],
         back_up_inputs = [],
         restore_inputs = [],
         include_back_up_help = false,
-        restore_help_msg = undefined,
+        restore_help_msg,
         download_backup = true,
         include_part_i_in_back_up_name = false,
         allow_multiple_file_backup_upload = false,
         admin_content_is_hideable = false,
         admin_change_visibility_of_content_save_callback,
     }: {
-        download_back_up_callback: t.CallbackAnyObj;
+        download_back_up_callback: t.CallbackAnyAsync;
         download_back_up_final_callback?: t.CallbackVoid;
-        upload_back_up_callback: t.CallbackVariadicVoid;
+        upload_back_up_callback?: t.CallbackVariadicVoid;
+        upload_back_up_save_callback?: t.CallbackVariadicVoid;
         restore_defaults_callback: t.CallbackVoid;
         input_change_val_callback: t.CallbackVariadicVoid;
         admin_inputs?: i_inputs.Input[];
@@ -179,8 +182,12 @@ class Class {
                             name: 'back_up',
                             accept: '.json',
                             multiple: allow_multiple_file_backup_upload,
-                            event_callback: s_sections.BackUp.upload,
-                            save_callback: upload_back_up_callback,
+                            event_callback: n(upload_back_up_callback)
+                                ? upload_back_up_callback
+                                : s_sections.BackUp.upload,
+                            save_callback: n(upload_back_up_save_callback)
+                                ? upload_back_up_save_callback
+                                : () => {},
                         }),
                         ...back_up_inputs,
                     ],

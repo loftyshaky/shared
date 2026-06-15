@@ -5,20 +5,23 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     private cls: string = 'no_tr';
 
     public enable = (
-        { el = document.head }: { el?: HTMLElement | ShadowRoot } = { el: document.head },
+        { el = document.head }: { el?: HTMLElement | ShadowRoot } = {
+            el: document.head,
+        },
     ): void =>
         err(() => {
             x.css(this.cls, el);
         }, 'shr_1120');
 
     public disable = (
-        { el = document.head }: { el?: HTMLElement | ShadowRoot } = { el: document.head },
+        { el = document.head }: { el?: HTMLElement | ShadowRoot } = {
+            el: document.head,
+        },
     ): Promise<void> =>
         err_async(async () => {
             await x.delay(500);

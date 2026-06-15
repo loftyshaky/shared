@@ -1,4 +1,10 @@
-$border_width_thick: 2px;
+@use 'vars';
+
+$black_shadow: 0 20px 30px rgb(0 0 0 / 20%);
+$glass_blur: blur(8px);
+$box_shadow_for_mixin:
+    rgb(0 0 0 / 30%) 0 0 2px,
+    rgb(0 0 0 / 30%) 0 4px 8px;
 
 @mixin hidden {
     position: fixed !important;
@@ -38,20 +44,27 @@ $border_width_thick: 2px;
     transform: translate(-50%, -50%);
 }
 
-@mixin center_horizontal_variable_width {
-    // max-width should be set
-    left: calc(-50vw + 50%);
-    right: calc(-50vw + 50%);
-    margin-left: auto;
-    margin-right: auto;
-}
-
 @mixin btn {
     background-color: transparent;
     outline: none;
     cursor: pointer;
     border: 0;
     padding: 0;
+}
+
+@mixin input_btn_padding_vertical {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+@mixin no_btn_style {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 }
 
 @mixin text_btn_svg {
@@ -65,10 +78,6 @@ $border_width_thick: 2px;
     outline: none;
 }
 
-$box_shadow_for_mixin:
-    rgb(0 0 0 / 30%) 0 0 2px,
-    rgb(0 0 0 / 30%) 0 4px 8px;
-
 @mixin box_shadow {
     box-shadow: $box_shadow_for_mixin;
 }
@@ -78,7 +87,7 @@ $box_shadow_for_mixin:
 }
 
 @mixin border {
-    border-width: $border_width;
+    border-width: vars.$border_width;
     border-style: solid;
 }
 
@@ -89,68 +98,68 @@ $box_shadow_for_mixin:
 }
 
 @mixin border_top {
-    border-top-width: $border_width;
+    border-top-width: vars.$border_width;
     border-top-style: solid;
 }
 
 @mixin border_bottom {
-    border-bottom-width: $border_width;
+    border-bottom-width: vars.$border_width;
     border-bottom-style: solid;
 }
 
 @mixin border_left {
-    border-left-width: $border_width;
+    border-left-width: vars.$border_width;
     border-left-style: solid;
 }
 
 @mixin border_right {
-    border-right-width: $border_width;
+    border-right-width: vars.$border_width;
     border-right-style: solid;
 }
 
 @mixin white_border {
-    border: $border_width solid white;
+    border: vars.$border_width solid white;
 }
 
 @mixin black_border {
-    border: $border_width solid $black;
+    border: vars.$border_width solid vars.$black;
 }
 
 @mixin blue_border {
-    border: $border_width solid $blue;
+    border: vars.$border_width solid vars.$blue;
 }
 
 @mixin outline_solid {
-    outline-width: $border_width;
+    outline-width: vars.$border_width;
     outline-style: solid;
 }
 
 @mixin outline_dashed {
-    outline-width: $border_width;
+    outline-width: vars.$border_width;
     outline-style: dashed;
 }
 
 @mixin outline_solid_thick {
-    outline-width: $border_width_thick;
+    outline-width: vars.$border_width_thick;
     outline-style: solid;
 }
 
 @mixin outline_dashed_thick {
-    outline-width: $border_width_thick;
+    outline-width: vars.$border_width_thick;
     outline-style: dashed;
 }
 
 @mixin folding_text {
     max-width: 700px;
-    font-size: $font_small;
+    font-size: vars.$font_small;
     margin: 0;
-    margin-top: $gap_small;
+    margin-top: vars.$gap_small;
     white-space: pre-wrap;
 }
 
 @mixin glass {
-    border: 1px solid $yuv;
-    box-shadow: $black_shadow_2;
+    border: 1px solid var(--yuv);
+    box-shadow: $black_shadow;
 }
 
 @mixin link_colors($main, $visited, $hover, $active) {

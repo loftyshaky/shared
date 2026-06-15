@@ -1,8 +1,11 @@
-import React, { useRef, useEffect, KeyboardEvent } from 'react';
-import { observer } from 'mobx-react';
+import type { JSX } from 'react';
 
+import { observer } from 'mobx-react-lite';
+import { type KeyboardEvent, useEffect, useRef } from 'react';
+import { Fragment } from 'react';
+
+import { c_inputs, d_inputs, type i_inputs, type p_inputs, s_inputs } from 'inputs/internal';
 import { svg } from 'shared/internal';
-import { d_inputs, s_inputs, c_inputs, p_inputs, i_inputs } from 'inputs/internal';
 
 export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => {
     const input_ref = useRef<HTMLInputElement>(null);
@@ -73,24 +76,24 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                             });
                         }}
                         onWheel={() => {
-                            input.prevent_number_val_changeon_scroll!({ input });
+                            void input.prevent_number_val_changeon_scroll!({ input });
                         }}
                         onKeyDown={(e: KeyboardEvent): void => {
-                            d_inputs.Val.on_keydown({ input, parent_input: parent_input! }, e);
+                            void d_inputs.Val.on_keydown({ input, parent_input: parent_input! }, e);
                         }}
                     />
                     {n(input.text_btns)
                         ? input.text_btns.map(
-                              (text_btn: i_inputs.TextBtn, i: number): JSX.Element =>
+                              (text_btn: i_inputs.TextBtn): JSX.Element =>
                                   n(text_btn.visibility_cond) &&
                                   text_btn.visibility_cond({ input }) ? (
                                       <c_inputs.TextBtn
-                                          key={i}
+                                          key={text_btn.name}
                                           name={text_btn.name}
                                           Svg={text_btn.Svg}
                                           input={input}
                                           on_click={(): void => {
-                                              s_inputs.Text.run_text_btn_action({
+                                              void s_inputs.Text.run_text_btn_action({
                                                   input,
                                                   text_btn,
                                                   input_el: n(input_ref.current)
@@ -100,7 +103,7 @@ export const Text: React.FunctionComponent<p_inputs.Text> = observer((props) => 
                                           }}
                                       />
                                   ) : (
-                                      <React.Fragment key={i} />
+                                      <Fragment key={input.name} />
                                   ),
                           )
                         : undefined}

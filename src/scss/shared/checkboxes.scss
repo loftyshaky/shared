@@ -1,4 +1,7 @@
-$box_size: 22px;
+@use 'vars';
+@use 'mixins';
+
+$checkmark_box_size: 22px;
 $checkmark_size: 18px;
 
 .input_item {
@@ -8,18 +11,18 @@ $checkmark_size: 18px;
         }
 
         .wrap_label {
-            @include center_flex;
-            @include border_transparent;
+            @include mixins.center_flex;
+            @include mixins.border_transparent;
 
-            margin-right: $input_content_gap;
+            margin-right: vars.$input_content_gap;
         }
 
         .box {
-            @include center_flex;
-            @include outline_solid;
+            @include mixins.center_flex;
+            @include mixins.outline_solid;
 
-            height: $box_size;
-            width: $box_size;
+            height: $checkmark_box_size;
+            width: $checkmark_box_size;
             cursor: pointer;
         }
 

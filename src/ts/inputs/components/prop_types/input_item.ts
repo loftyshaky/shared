@@ -1,4 +1,6 @@
-import { i_inputs } from 'inputs/internal';
+import type { JSX } from 'react';
+
+import type { i_inputs } from 'inputs/internal';
 
 export interface InputItem {
     input: i_inputs.Input;

@@ -1,7 +1,10 @@
-import { ChangeEvent } from 'react';
-import { makeObservable, action, runInAction } from 'mobx';
+import type { ChangeEvent } from 'react';
 
-import { o_inputs, d_inputs } from 'inputs/internal';
+import { action, makeObservable, runInAction } from 'mobx';
+
+import type { i_error } from 'error_modules_clean/internal';
+import type { o_inputs } from 'inputs/internal';
+import { d_inputs } from 'inputs/internal';
 
 class Class {
     private static instance: Class;
@@ -46,8 +49,12 @@ class Class {
                             ? (e as DragEvent).dataTransfer!.files
                             : (<HTMLInputElement>e.target).files,
                     });
-                } catch (error_obj: any) {
-                    show_err_ribbon(error_obj, 'shr_1202', { silent: true });
+                } catch (error_obj: unknown) {
+                    if (n(error_obj)) {
+                        show_err_ribbon(error_obj as i_error.ErrorObj, 'shr_1202', {
+                            silent: true,
+                        });
+                    }
 
                     runInAction(() =>
                         err(() => {

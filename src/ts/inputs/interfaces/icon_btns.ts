@@ -1,3 +1,3 @@
-import { o_inputs } from 'inputs/internal';
+import type { o_inputs } from 'inputs/internal';
 
 export type IconBtns = Record<string, o_inputs.IconBtn>;
