@@ -21,24 +21,30 @@ class Class {
               new o_offers.Offer({
                   name: 'tinkoff_black',
                   has_ad_label: true,
-                  browsers_whitelist: ['chrome', 'opera', 'yandex', 'firefox'],
+                  browsers_blacklist: ['edge'],
                   countries_whitelist: ['ru'],
               }),
               new o_offers.Offer({
                   name: 'tinkoff_investments_brokerage_account',
                   has_ad_label: true,
-                  browsers_whitelist: ['chrome', 'opera', 'yandex', 'firefox'],
+                  browsers_blacklist: ['edge'],
                   countries_whitelist: ['ru'],
-              }),
-              new o_offers.Offer({
-                  name: 'animated_themes',
-                  exts_whitelist: [...this.clear_new_tab],
-                  browsers_whitelist: ['chrome'],
-                  force_offer_despite_extension_name_in_its_text: true,
               }),
               new o_offers.Offer({
                   name: 'keymeleon',
                   prominent: true,
+              }),
+              new o_offers.Offer({
+                  name: 'other_projects',
+                  browsers_blacklist: ['edge'],
+                  prominent: true,
+              }),
+              new o_offers.Offer({
+                  name: 'animated_themes',
+                  prominent: true,
+                  exts_whitelist: [...this.clear_new_tab],
+                  browsers_whitelist: ['chrome'],
+                  force_offer_despite_extension_name_in_its_text: true,
               }),
               new o_offers.Offer({
                   name: 'clear_new_tab',
