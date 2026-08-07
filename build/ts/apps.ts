@@ -13,7 +13,6 @@ const apps: string[] = [
     'Advanced Extension Reloader Watch 1',
     'Advanced Extension Reloader Watch 2',
     'Keymeleon',
-    'Browservery',
     'App Puppeteer',
     'Anki Note Type Shared',
     'Advanced Extension Reloader',
@@ -27,7 +26,6 @@ const apps: string[] = [
 const app_types: string[] = [
     'package',
     'package',
-    'app',
     'app',
     'app',
     'app',
