@@ -31,7 +31,6 @@ const generate_shared_config = ({
 }) => {
     let build_error: boolean = false;
     const shared_folder_name = `shared${is_ext() ? '' : '-app'}`;
-
     const shared_path: string = path.join(
         app_root,
         'node_modules',
@@ -185,6 +184,10 @@ const generate_shared_config = ({
                     if (callback_close_bundle) {
                         setTimeout(() => {
                             callback_close_bundle({ build_error });
+
+                            if (env.exit_build === 'true') {
+                                process.exit(1);
+                            }
                         }, 200);
                     }
 
