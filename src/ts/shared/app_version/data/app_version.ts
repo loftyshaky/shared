@@ -1,3 +1,6 @@
+import type { t } from 'shared_clean/internal';
+import { s_env } from 'shared_clean/internal';
+
 class Class {
     private static instance: Class;
 
@@ -7,9 +10,19 @@ class Class {
 
     private constructor() {}
 
-    public browser = (): string =>
+    public version = (): string =>
         err(() => {
-            return n(env) && env.env === 'ext' ? ` ${env.browser}` : '';
+            return `v${(globalThis as t.AnyRecord)[s_env.Env.type()].get_app_version()}`;
+        }, 'shr_1339');
+
+    public suffix = (): string =>
+        err(() => {
+            const mode: string = env.mode.replace(/elopment|uction/, '');
+            const browser: string = n(env) && env.env === 'ext' ? ` ${env.browser}` : '';
+            const mode_final: string = browser === '' ? ` ${mode}` : `-${mode}`;
+            const test: string = n(env) && env.test === 'true' ? `-test` : '';
+
+            return `${browser}${mode_final}${test}`;
         }, 'shr_1334');
 }
 

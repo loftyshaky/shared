@@ -45,6 +45,7 @@ export interface Env {
     name: string;
     browser: Browser;
     mode: 'development' | 'production';
+    test: 'true' | 'false';
     env: 'ext' | 'app' | 'adonis_app';
 }
 

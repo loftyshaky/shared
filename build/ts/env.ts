@@ -4,6 +4,7 @@ const generate_env = ({ env, mode }: { env: Record<string, string>; mode: string
         name: process.env.npm_package_name,
         browser: env.browser,
         mode: mode,
+        test: env.test,
         env: env.env,
     });
 
