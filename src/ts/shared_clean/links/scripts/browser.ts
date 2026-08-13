@@ -13,6 +13,7 @@ class Class {
         chrome: 'chrome://new-tab-page/',
         edge: 'https://ntp.msn.com/edge/ntp/',
         opera: 'chrome://startpageshared/',
+        brave: 'brave://newtab',
         yandex: 'about:blank',
         firefox: 'about:blank',
     };

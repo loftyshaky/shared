@@ -15,6 +15,10 @@ npm run prod_test_exit_build_opera
 zip-a-folder ./dist ./release/opera.zip -d 'dist/'
 rimraf dist
 
+npm run prod_test_exit_build_brave
+zip-a-folder ./dist ./release/brave.zip -d 'dist/'
+rimraf dist
+
 npm run prod_test_exit_build_yandex
 zip-a-folder ./dist ./release/yandex.zip -d 'dist/'
 rimraf dist

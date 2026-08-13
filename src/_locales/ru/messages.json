@@ -71,6 +71,9 @@
     "tabs_permission_opera_label_text": {
         "message": "[tabs] Просмотр истории посещений"
     },
+    "tabs_permission_brave_label_text": {
+        "message": "[tabs] Чтение истории просмотров"
+    },
     "tabs_permission_yandex_label_text": {
         "message": "[tabs] Чтение истории просмотров"
     },
@@ -85,6 +88,9 @@
     },
     "clipboard_read_permission_opera_label_text": {
         "message": "[clipboardRead] Доступ к данным буфера обмена"
+    },
+    "clipboard_read_permission_brave_label_text": {
+        "message": "[clipboardRead] Доступ к копируемым и вставляемым данным"
     },
     "clipboard_read_permission_yandex_label_text": {
         "message": "[clipboardRead] Доступ к копируемым и вставляемым данным"

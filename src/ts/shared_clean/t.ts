@@ -1,7 +1,7 @@
 export type XEl = HTMLElement | ShadowRoot | ChildNode | undefined | null;
 export type XElNoShadow = HTMLElement | ChildNode | undefined | null;
 export type XEls = HTMLElement[] | NodeList | HTMLElement | undefined;
-export type Browser = 'chrome' | 'edge' | 'opera' | 'yandex' | 'firefox';
+export type Browser = 'chrome' | 'edge' | 'opera' | 'brave' | 'yandex' | 'firefox';
 export type BaseEl = Document | ShadowRoot | HTMLElement | undefined;
 // oxlint-disable-next-line typescript/no-explicit-any
 export type Any = any;

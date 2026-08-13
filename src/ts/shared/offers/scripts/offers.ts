@@ -49,32 +49,32 @@ class Class {
               new o_offers.Offer({
                   name: 'clear_new_tab',
                   browsers_whitelist: 'all',
-                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
+                  browsers_blacklist: ['opera', 'brave', 'yandex', 'firefox'],
               }),
               new o_offers.Offer({
                   name: 'empty_new_tab_page',
                   browsers_whitelist: 'all',
-                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
+                  browsers_blacklist: ['opera', 'brave', 'yandex', 'firefox'],
               }),
               new o_offers.Offer({
                   name: 'close_other_tabs_plus',
                   browsers_whitelist: 'all',
-                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
+                  browsers_blacklist: ['opera', 'brave', 'yandex', 'firefox'],
               }),
               new o_offers.Offer({
                   name: 'search_enhancer_for_google',
                   browsers_whitelist: 'all',
-                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
+                  browsers_blacklist: ['opera', 'brave', 'yandex', 'firefox'],
               }),
               new o_offers.Offer({
                   name: 'scroll_to_top',
                   browsers_whitelist: 'all',
-                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
+                  browsers_blacklist: ['opera', 'brave', 'yandex', 'firefox'],
               }),
               new o_offers.Offer({
                   name: 'advanced_extension_reloader',
                   browsers_whitelist: 'all',
-                  browsers_blacklist: ['opera', 'yandex', 'firefox'],
+                  browsers_blacklist: ['opera', 'brave', 'yandex', 'firefox'],
               }),
           ]
         : [];
