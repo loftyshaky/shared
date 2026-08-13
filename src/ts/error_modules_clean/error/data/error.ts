@@ -10,6 +10,7 @@ class Class {
 
     public hide_delay: number = 5000;
     private prevent_subsequent_errors: boolean = false;
+    public detect_infinite_loops: boolean = false;
     /*
     error_msg_key = a key to access to localized version of error message in [locale] messages.json file
     silent = don't show (true) / show (false) error ribbon
@@ -140,7 +141,7 @@ class Class {
         loop?: boolean;
     }) => {
         try {
-            if (data.settings && data.settings.prefs && data.settings.prefs.detect_infinite_loops) {
+            if (this.detect_infinite_loops) {
                 const now: Date = new Date();
                 const time: string = now.toLocaleTimeString
                     ? `${
@@ -156,6 +157,14 @@ class Class {
         } catch (error_obj: unknown) {
             console.error('Failed to print error code:', error_code, error_obj);
         }
+    };
+
+    public set_detect_infinite_loops_val = ({
+        settings,
+    }: { settings?: t.AnyRecord } = {}): void => {
+        this.detect_infinite_loops = (
+            n(settings) ? settings : data.settings
+        ).prefs.detect_infinite_loops;
     };
 }
 
