@@ -131,6 +131,9 @@
     "persistent_service_worker_label_text": {
         "message": "Persistent service worker"
     },
+    "detect_infinite_loops_label_text": {
+        "message": "Detect infinite loops"
+    },
     "developer_mode_label_text": {
         "message": "Show hidden developer settings"
     },

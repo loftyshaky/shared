@@ -125,6 +125,9 @@
     "persistent_service_worker_label_text": {
         "message": "Персистентный service worker"
     },
+    "detect_infinite_loops_label_text": {
+        "message": "Отслеживать бесконечные циклы"
+    },
     "developer_mode_label_text": {
         "message": "Показывать скрытые настройки для разработчиков"
     },

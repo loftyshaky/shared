@@ -1,5 +1,5 @@
 import type { o_schema } from 'shared_clean/internal';
-import { run_in_action_placeholder } from 'shared_clean/internal';
+import { run_in_action_placeholder, s_env } from 'shared_clean/internal';
 import type { t } from 'shared_clean/internal';
 
 class Class {
@@ -25,7 +25,10 @@ class Class {
         run_in_action?: t.CallbackVariadicVoid;
     }): Promise<t.AnyRecord> =>
         err_async(async () => {
-            if (version !== ext.get_app_version() || force) {
+            if (
+                version !== (globalThis as t.AnyRecord)[s_env.Env.type()].get_app_version() ||
+                force
+            ) {
                 const properties_to_remove: string[] = [];
 
                 transform_items.forEach((transform_item: o_schema.TransformItem): void =>

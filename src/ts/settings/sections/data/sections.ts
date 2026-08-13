@@ -213,6 +213,10 @@ class Class {
                             name: 'persistent_service_worker',
                             event_callback: input_change_val_callback,
                         }),
+                        new o_inputs.Checkbox({
+                            name: 'detect_infinite_loops',
+                            event_callback: input_change_val_callback,
+                        }),
                         ...(d_offers.Offers.found_offers_for_current_locale()
                             ? [
                                   new o_inputs.Checkbox({

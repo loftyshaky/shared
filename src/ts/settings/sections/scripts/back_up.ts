@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'react';
 
+import { d_error } from 'error_modules_clean/internal';
 import type { o_inputs } from 'inputs/internal';
 import type { t } from 'shared_clean/internal';
 
@@ -68,6 +69,8 @@ class Class {
                 const data_objs: t.AnyRecord[] = [];
 
                 for (const blob of Array.from((e.target as HTMLInputElement).files!)) {
+                    d_error.Error.print_error_code({ error_code: 'shr_1077', loop: true });
+
                     const back_up_file_input = s<HTMLInputElement>('.file.back_up');
 
                     if (n(back_up_file_input)) {

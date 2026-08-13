@@ -131,6 +131,32 @@ class Class {
             console.error(error_msg);
         }
     };
+
+    public print_error_code = ({
+        error_code,
+        loop = false,
+    }: {
+        error_code: string;
+        loop?: boolean;
+    }) => {
+        try {
+            if (data.settings && data.settings.prefs && data.settings.prefs.detect_infinite_loops) {
+                const now: Date = new Date();
+                const time: string = now.toLocaleTimeString
+                    ? `${
+                          now.toLocaleTimeString('en-US', { hour12: false }) +
+                          '.' +
+                          String(now.getMilliseconds()).padStart(3, '0')
+                      } - `
+                    : '';
+                const loop_string: string = loop ? 'loop - ' : '';
+
+                console.log(`${time}${loop_string}${error_code}`);
+            }
+        } catch (error_obj: unknown) {
+            console.error('Failed to print error code:', error_code, error_obj);
+        }
+    };
 }
 
 export const Error = Class.get_instance();

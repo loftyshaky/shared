@@ -43,6 +43,8 @@ globalThis.err = <T1>(
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
 ): t.Any => {
+    d_error.Error.print_error_code({ error_code });
+
     try {
         return f();
     } catch (error_obj: unknown) {
@@ -77,6 +79,8 @@ globalThis.err_async = async <T1>(
         prevent_subsequent_errors = false,
     }: i_error.ShowError = {},
 ): Promise<t.Any> => {
+    d_error.Error.print_error_code({ error_code });
+
     try {
         return await f();
     } catch (error_obj: unknown) {

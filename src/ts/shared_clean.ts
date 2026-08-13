@@ -1,6 +1,6 @@
 import 'error_modules_clean/error/scripts';
 
-export { i_error } from 'error_modules_clean/internal';
+export { d_error, i_error } from 'error_modules_clean/internal';
 
 export {
     X,
