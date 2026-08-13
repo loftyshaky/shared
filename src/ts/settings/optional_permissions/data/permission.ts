@@ -57,8 +57,10 @@ class Class {
 
     public show_enable_permissions_notification = ({
         permissions,
+        settings,
     }: {
         permissions: i_optional_permissions.ShowEnablePermissionsNotificationPermission[];
+        settings: t.AnyRecord;
     }): Promise<void> =>
         err_async(async () => {
             const permissions_text = await permissions.reduce(
@@ -73,7 +75,7 @@ class Class {
                     );
                     const permission_text: string =
                         !contains_permission &&
-                        data.settings.prefs[`${x.camel_to_underscore(permission.name)}_permission`]
+                        settings.prefs[`${x.camel_to_underscore(permission.name)}_permission`]
                             ? permission.name
                             : '';
 
