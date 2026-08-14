@@ -49,6 +49,10 @@ input[type='file'] {
         }
     }
 
+    &.text .input {
+        line-height: 2;
+    }
+
     &.text,
     &.textarea,
     &.select,
