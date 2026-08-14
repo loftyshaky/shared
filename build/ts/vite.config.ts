@@ -138,7 +138,7 @@ const generate_shared_config = ({
                               ruby_theme: path.join(paths.themes, 'ruby_theme.scss'),
                           },
             },
-            ...(env.content_script === 'true' ? {} : { watch: {} }),
+            watch: {},
             sourcemap: mode === 'development',
             license: {
                 fileName:
