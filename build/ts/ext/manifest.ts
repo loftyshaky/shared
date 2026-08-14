@@ -11,13 +11,23 @@ class Manifest {
 
     public generate = ({
         manifest,
-        add_colored_icon = false,
+        env,
+        colored_icon = false,
     }: {
         manifest: Record<string, string>;
-        add_colored_icon?: boolean;
+        env?: Record<string, string>;
+        colored_icon?: boolean;
     }) => {
-        const colored_icon_filename = ({ size }: { size: number }) =>
-            add_colored_icon ? `icon_colored${size}.png` : `icon${size}.png`;
+        const colored_icon_filename = ({
+            size,
+            force_colored = false,
+        }: {
+            size: number;
+            force_colored?: boolean;
+        }) =>
+            colored_icon && ((env && ['edge', 'firefox'].includes(env.browser)) || force_colored)
+                ? `icon_colored${size}.png`
+                : `icon${size}.png`;
 
         // oxlint-disable-next-line typescript/no-explicit-any
         const shared_manifest: Record<string, any> = {
@@ -25,23 +35,23 @@ class Manifest {
             version: process.env.npm_package_version,
             default_locale: 'en',
             icons: {
-                16: 'icon16.png',
-                24: 'icon24.png',
-                32: 'icon32.png',
-                48: 'icon48.png',
-                64: 'icon64.png',
-                96: 'icon96.png',
-                128: 'icon128.png',
+                16: colored_icon_filename({ size: 16 }),
+                24: colored_icon_filename({ size: 24 }),
+                32: colored_icon_filename({ size: 32 }),
+                48: colored_icon_filename({ size: 48 }),
+                64: colored_icon_filename({ size: 64 }),
+                96: colored_icon_filename({ size: 96 }),
+                128: colored_icon_filename({ size: 128 }),
             },
             action: {
                 default_icon: {
-                    16: colored_icon_filename({ size: 16 }),
-                    24: colored_icon_filename({ size: 24 }),
-                    32: colored_icon_filename({ size: 32 }),
-                    48: colored_icon_filename({ size: 48 }),
-                    64: colored_icon_filename({ size: 64 }),
-                    96: colored_icon_filename({ size: 96 }),
-                    128: colored_icon_filename({ size: 128 }),
+                    16: colored_icon_filename({ size: 16, force_colored: true }),
+                    24: colored_icon_filename({ size: 24, force_colored: true }),
+                    32: colored_icon_filename({ size: 32, force_colored: true }),
+                    48: colored_icon_filename({ size: 48, force_colored: true }),
+                    64: colored_icon_filename({ size: 64, force_colored: true }),
+                    96: colored_icon_filename({ size: 96, force_colored: true }),
+                    128: colored_icon_filename({ size: 128, force_colored: true }),
                 },
             },
         };
