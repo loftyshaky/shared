@@ -74,11 +74,18 @@ const generate_shared_config = ({
     }
 
     if (['ext', 'app'].includes(env.env)) {
-        copy_paths_2.push({
-            src: path.posix.join(app_root, 'src', 'icons'),
-            dest: dest_path,
-            rename: { stripBase: true },
-        });
+        copy_paths_2.push(
+            {
+                src: path.posix.join(app_root, 'src', 'icons'),
+                dest: dest_path,
+                rename: { stripBase: true },
+            },
+            {
+                src: path.posix.join(app_root, 'node_modules', '@loftyshaky', 'shared', 'fonts'),
+                dest: dest_path,
+                rename: { stripBase: true },
+            },
+        );
     }
 
     const copy_patterns_final: Target[] =
