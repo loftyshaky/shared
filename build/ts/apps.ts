@@ -52,7 +52,7 @@ const create_paths = ({
     exclude_types?: string[];
 }): VitePluginStaticCopyItem[] =>
     app.flatMap((app_dir: string, i: number): VitePluginStaticCopyItem[] =>
-        exclude_types.includes(app_types[i])
+        exclude_types.includes(app_types[i]) || !fs.existsSync(app_dir)
             ? []
             : [
                   {
