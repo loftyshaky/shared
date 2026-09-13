@@ -200,6 +200,9 @@
     "help_translating_link_text": {
         "message": "🈯 Помогите перевести это расширение на ваш язык"
     },
+    "website_link_text": {
+        "message": "🌍 Посетите мой сайт"
+    },
     "facebook_page_link_text": {
         "message": "🖼️ Подписывайтесь на мою страницу в Facebook"
     },

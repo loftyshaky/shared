@@ -212,6 +212,9 @@
     "help_translating_link_text": {
         "message": "🈯 Help translate this extension into your language"
     },
+    "website_link_text": {
+        "message": "🌍 Visit my website"
+    },
     "facebook_page_link_text": {
         "message": "🖼️ Follow my Facebook page"
     },
@@ -232,6 +235,9 @@
     },
     "privacy_policy_link_href": {
         "message": "https://github.com/loftyshaky/extensions-privacy-policy/blob/main/extensions-privacy-policy.md"
+    },
+    "website_link_href": {
+        "message": "https://browservery.top"
     },
     "facebook_page_link_href": {
         "message": "https://www.facebook.com/browservery"
