@@ -82,7 +82,7 @@ class Class {
     public get_app_name = (): string => {
         try {
             if (!this.ext_context_invalidated()) {
-                return we.runtime.getManifest().name;
+                return env.name;
             }
         } catch (error_obj: unknown) {
             this.log_error(error_obj as i_error.ErrorObj, 'shr_1277');

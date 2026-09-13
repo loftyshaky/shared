@@ -70,9 +70,8 @@ class Class {
                                 const is_all_or_current_type_offer =
                                     this.check_if_is_all_or_current_type_offer({ offer });
 
-                                const offer_is_current_ext: boolean = offer_text_raw
-                                    .toLocaleLowerCase()
-                                    .includes(ext_name.toLocaleLowerCase());
+                                const offer_is_current_ext: boolean =
+                                    offer_text_raw.includes(ext_name);
 
                                 if (
                                     offer.is_enabled &&
