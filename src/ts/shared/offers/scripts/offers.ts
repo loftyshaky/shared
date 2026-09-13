@@ -11,11 +11,6 @@ class Class {
 
     private enable_offers: boolean = true;
 
-    private clear_new_tab: string[] = [
-        'nnmhbhoglljdlhbllfgkemgenlplalie',
-        'felphkbfjadmcejnibcmcncimlappdde',
-    ];
-
     public offers: o_offers.Offer[] = this.enable_offers
         ? [
               new o_offers.Offer({
@@ -32,17 +27,20 @@ class Class {
               }),
               new o_offers.Offer({
                   name: 'keymeleon',
-                  prominent: true,
               }),
               new o_offers.Offer({
-                  name: 'other_projects',
+                  name: 'other_projects_extensions',
                   browsers_blacklist: ['edge'],
-                  prominent: true,
+                  apps_blacklist: ['keymeleon'],
+              }),
+              new o_offers.Offer({
+                  name: 'other_projects_apps',
+                  browsers_blacklist: ['edge'],
+                  apps_whitelist: ['keymeleon'],
               }),
               new o_offers.Offer({
                   name: 'animated_themes',
-                  prominent: true,
-                  exts_whitelist: [...this.clear_new_tab],
+                  apps_whitelist: ['clear_new_tab'],
                   browsers_whitelist: ['chrome'],
                   force_offer_despite_extension_name_in_its_text: true,
               }),

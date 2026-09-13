@@ -647,6 +647,12 @@ class Class {
     public camel_to_underscore = (string: string): string =>
         err(() => string.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase(), 'shr_1304');
 
+    public space_to_underscore = (string: string): string =>
+        err(() => string.replace(/ /g, '_').toLowerCase(), 'shr_1342');
+
+    public dash_to_underscore = (string: string): string =>
+        err(() => string.replace(/-/g, '_').toLowerCase(), 'shr_1343');
+
     public underscore_to_readable = (underscored_text: string) =>
         err(() => {
             const underscores_replaced_with_spaces: string = underscored_text.replace(/_/g, ' ');

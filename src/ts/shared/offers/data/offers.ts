@@ -57,26 +57,29 @@ class Class {
 
     public set_offers_of_type = (): void =>
         err(() => {
-            const ext_name: string = env.env === 'ext' ? ext.get_app_name() : app.get_app_name();
+            const app_name: string = x.dash_to_underscore(
+                env.env === 'ext' ? ext.get_app_name() : app.get_app_name(),
+            );
 
             const get_offers_of_type = (): o_offers.Offer[] =>
                 err(() => {
                     const offers_of_type: o_offers.Offer[] = s_offers.Offers.offers.flatMap(
                         (offer: o_offers.Offer): o_offers.Offer[] =>
                             err(() => {
-                                const offer_text_raw: string = this.get_offer_text_raw({
-                                    name: offer.name,
-                                });
+                                const offer_text_raw: string = x.space_to_underscore(
+                                    this.get_offer_text_raw({
+                                        name: offer.name,
+                                    }).toLowerCase(),
+                                );
                                 const is_all_or_current_type_offer =
                                     this.check_if_is_all_or_current_type_offer({ offer });
-
-                                const offer_is_current_ext: boolean =
-                                    offer_text_raw.includes(ext_name);
+                                const offer_is_current_app: boolean =
+                                    offer_text_raw.includes(app_name);
 
                                 if (
                                     offer.is_enabled &&
                                     is_all_or_current_type_offer &&
-                                    (!offer_is_current_ext ||
+                                    (!offer_is_current_app ||
                                         offer.force_offer_despite_extension_name_in_its_text)
                                 ) {
                                     return [offer];
@@ -100,6 +103,9 @@ class Class {
         err(() => {
             const ui_language =
                 env.env === 'ext' ? we.i18n.getUILanguage() : data.settings.prefs.locale;
+            const app_name: string = x.dash_to_underscore(
+                env.env === 'ext' ? ext.get_app_name() : app.get_app_name(),
+            );
 
             const this_offer_is_not_allowed_for_this_browser: boolean = (
                 offer.browsers_blacklist as string[]
@@ -117,18 +123,24 @@ class Class {
                 (offer.browsers_whitelist as string[]).some((browser: string): boolean =>
                     err(() => browser === env.browser, 'shr_1276'),
                 );
-            const this_offer_is_allowed_for_this_ext: boolean =
-                offer.exts_whitelist === 'all' ||
-                (offer.exts_whitelist as string[]).some((id: string): boolean =>
-                    err(() => (env.env === 'ext' ? id === we.runtime.id : false), 'shr_1296'),
+            const this_offer_is_whitelisted_for_this_app: boolean =
+                offer.apps_whitelist === 'all' ||
+                (offer.apps_whitelist as string[]).some((app_name_2: string): boolean =>
+                    err(() => app_name_2 === app_name, 'shr_1340'),
                 );
+            const this_offer_is_not_blacklisted_for_this_app: boolean = (
+                offer.apps_blacklist as string[]
+            ).every((app_name_2: string): boolean =>
+                err(() => app_name_2 !== app_name, 'shr_1341'),
+            );
 
             const is_all_or_current_type_offer =
                 !this_offer_is_not_allowed_for_this_browser &&
                 this_offer_is_whitelisted_for_this_ui_language &&
                 this_offer_is_not_blacklisted_for_this_ui_language &&
                 this_offer_is_allowed_for_this_browser &&
-                this_offer_is_allowed_for_this_ext;
+                this_offer_is_whitelisted_for_this_app &&
+                this_offer_is_not_blacklisted_for_this_app;
 
             return is_all_or_current_type_offer;
         }, 'shr_1279');

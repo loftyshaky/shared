@@ -1,6 +1,7 @@
 export class Offer {
     public name?: string = '';
-    public exts_whitelist?: string | string[] = 'all';
+    public apps_whitelist?: string | string[] = 'all';
+    public apps_blacklist?: string[] = [];
     public browsers_whitelist?: string | string[] = 'all';
     public browsers_blacklist?: string[] = [];
     public countries_whitelist?: string | string[] = 'all';
