@@ -1,10 +1,10 @@
 @use '../colors/dark';
 @use 'template';
 
-$blue_neon:
-    rgb(0 115 255 / 100%) 0 0 33px,
-    rgb(255 255 255 / 40%) 0 0 10px;
+$black_shadow:
+    rgb(0 0 0 / 60%) 0 0 30px,
+    rgb(0 0 0 / 30%) 0 4px 16px;
 
 .main_2 {
-    box-shadow: $blue_neon;
+    box-shadow: $black_shadow;
 }
