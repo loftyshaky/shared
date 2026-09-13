@@ -33,6 +33,7 @@ const config = defineConfig(({ mode }) => {
                     'build/ts/locales': path.join(paths.build, 'locales.ts'),
                     'build/ts/project_name': path.join(paths.build, 'project_name.ts'),
                     'build/ts/projects_path': path.join(paths.build, 'projects_path.ts'),
+                    'build/ts/minify_html': path.join(paths.build, 'minify_html.ts'),
                     'build/ts/plugins/watch': path.join(paths.build, 'plugins', 'watch.ts'),
                     'build/ts/vite.config': path.join(paths.build, 'vite.config.ts'),
                     'build/ts/ext/manifest': path.join(paths.build, 'ext', 'manifest.ts'),
