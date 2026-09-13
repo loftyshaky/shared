@@ -119,11 +119,19 @@ class Class {
                                 const input_w_with_max_width: HTMLSpanElement | undefined =
                                     get_input_w_with_max_width();
 
-                                if (n(input_w_with_max_width)) {
-                                    const input_w_width_min_width_cond: number =
-                                        input_w_with_max_width.offsetWidth < this.min_width
-                                            ? this.min_width
-                                            : input_w_with_max_width.offsetWidth;
+                                if (
+                                    n(input_w_with_max_width) ||
+                                    set_all_inputs_to_msg_input_min_width_css
+                                ) {
+                                    let input_w_width_min_width_cond: number = 0;
+
+                                    if (n(input_w_with_max_width)) {
+                                        input_w_width_min_width_cond =
+                                            input_w_with_max_width.offsetWidth < this.min_width
+                                                ? this.min_width
+                                                : input_w_with_max_width.offsetWidth;
+                                    }
+
                                     const input_w_width_max_width_cond: number =
                                         input_w_width_min_width_cond > this.max_width
                                             ? this.max_width
